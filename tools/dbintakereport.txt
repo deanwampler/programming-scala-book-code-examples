@@ -1,0 +1,167 @@
+RT #52329 https://prod.oreilly.com/internal/books/9780596155957/current/tools/dbintakereport.txt
+Programming Scala, 1E / 9780596155957
+
+Stylesheet: orm:series=animal
+
+The submitted XML files have been processed and imported to SVN as valid
+DocBook 4.4:
+
+  https://prod.oreilly.com/internal/books/9780596155957/current/
+
+(all paths below are relative to this URL)
+
+Preliminary pagecount: xvi + 412 = 428
+
+Notes:
+
+** AUs wrote in asciidoc and did their own conversion to DocBook; I've
+   cleaned up various idiosyncracies, but please let us know if you
+   come across markup oddities as there's interest from ED in
+   extending this model. (There may also be some lurking specialness
+   in the sourcefiles aimed at the OFPS version, more on which below.)
+
+** If there are markup/rendering ambiguities, keep in mind that AUs/ED
+   may have been looking at several renditions: asciidoc, OFPS, Rough
+   Cut, and PDF build from MS. A copy of the last can be found here
+   for comparison if needed:
+    
+     https://prod.oreilly.com/internal/books/9780596155957/branches/manuscript_to_prod_20090707/pdf/book.xml.pdf
+
+   and the OFPS version is here:
+
+     http://programming-scala.labs.oreilly.com/
+
+** MS <bookinfo> contained an <abstract> and <legalnotice>, apparently
+   for the OFPS version (where it appears above the TOC and includes a
+   link to the catalog page for the Rough Cut). I'm appending this
+   content for review: note that neither element rendered in MS PDF
+   builds and I haven't added them to the current <bookinfo>
+   (generated from PDB data, as usual).
+
+** MS contains <tip>s, <note>s, <warning>s, and <cautions>s, which of
+   course render in default Animal style using the two standard
+   icons. Not clear if AUs may be expecting other differentiation (in
+   OFPS, each has the element name as a label). I'm appending a census
+   of where they occur, in case that helps.
+
+** MS had table attributes apparently geared to OFPS display
+   (including absolute column widths that were causing content to
+   spill into margins); I've stripped all to give you default
+   PDF rendering.
+
+** AUs did not follow our guidelines for cross-refs to the
+   pseudobibliography. In particular, our standard cleanup scripts
+   stripped @xreflabel attributes on the targets (which wouldn't
+   necessarily work downstream) that they were using for "see [Foo]"
+   style. I've remapped such <xref>s to <link>s, but please proofread
+   carefully.
+
+** Index: incoming files had a couple of index entries; left as is.
+
+** URLs: in ch14.xml, the following links fail. Each redirects to a page
+   with a 403 error (unclear whether this is because they're part of a
+   multistep download process that may work inside an installer, but not
+   directly?):
+
+     http://www.scala-lang.org/scala-eclipse-plugin redirected to
+     http://www.scala-lang.org/archives/downloads/distrib/files/scala-plugin/
+     Status: 301 -> 403 Forbidden
+     The link is forbidden! This needs fixing. Usual suspects: a missing
+     index.html or Overview.html, or a missing ACL. 
+
+     http://www.scala-lang.org/scala-eclipse-plugin-nightly redirected to
+     http://www.scala-lang.org/archives/downloads/distrib/files/scala-plugin-nightly/
+     Status: 301 -> 403 Forbidden
+     The link is forbidden! This needs fixing. Usual suspects: a missing
+     index.html or Overview.html, or a missing ACL. 
+
+   Otherwise, all links passed after some markup fixes. The full
+   link-checkup report can be found here (showing the state of things
+   midway through intake cleanup):
+      
+     tools/link_checkup_intake_internal.html 
+
+   More gory details can be found in this cached copy of the W3C Link
+   Checker report (from an intermediate stage, but nothing else here
+   that you have to fix):
+
+     https://prod.oreilly.com/internal/books/9780596155957/current/tools/w3c_link_checker_report.html#results1
+
+** Draft PDF is at pdf/drafts/intake.pdf
+
+Please let me know about any other issues.
+
+--Abby
+
+<bookinfo> extras for OFPS only?
+==========================================================
+
+<abstract> 
+  <para><citetitle>Programming Scala</citetitle> introduces
+  an exciting new language that offers all the benefits of a modern
+  object model, functional programming, and an advanced type
+  system. Packed with code examples, this comprehensive book teaches
+  you how to be productive with Scala quickly, and explains what makes
+  this language ideal for today's highly scalable, component-based
+  applications that support concurrency and distribution. You'll also
+  learn the advantages that Scala offers as a language for the Java
+  Virtual Machine. </para> <para>Learn more at <ulink
+  url="http://programmingscala.com/">programmingscala.com</ulink> or
+  <ulink url="http://oreilly.com/catalog/9780596157746/">at the book's
+  catalog page</ulink>.</para> 
+</abstract>
+
+<legalnotice>
+  <para>This work has been released under the <ulink
+  url="http://creativecommons.org/licenses/by-nc/3.0/">Creative
+  Commons Attribution-Noncommercial</ulink>.</para> 
+</legalnotice>
+
+
+Admonition census
+==========================================================
+
+note
+----
+ch00.xml: 1
+ch01.xml: 11
+ch02.xml: 6
+ch03.xml: 4
+ch04.xml: 6
+ch05.xml: 9
+ch06.xml: 6
+ch08.xml: 1
+ch12.xml: 7
+ch13.xml: 1
+ch14.xml: 2
+
+tip
+---
+ch00.xml: 1
+ch01.xml: 2
+ch03.xml: 4
+ch04.xml: 1
+ch05.xml: 5
+ch06.xml: 5
+ch07.xml: 4
+ch08.xml: 3
+ch09.xml: 1
+ch10.xml: 1
+ch13.xml: 3
+ch14.xml: 2
+
+caution
+-------
+ch00.xml: 1
+ch03.xml: 1
+ch06.xml: 2
+
+warning
+-------
+ch02.xml: 4
+ch05.xml: 1
+ch06.xml: 2
+ch12.xml: 3
+ch13.xml: 3
+ch14.xml: 3
+
