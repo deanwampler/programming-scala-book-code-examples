@@ -481,10 +481,10 @@ case class Complex(real: Double, imaginary: Double) {
   <title>The <emphasis>add site</emphasis> Eclipse dialog.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/eclipse-add-site.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1401.pdf" format="PDF"/>
   </imageobject>
   <imageobject role="web">
-    <imagedata fileref="figs/web/eclipse-add-site.png" format="PNG"/>
+    <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1401.png" format="PNG"/>
   </imageobject>
   </mediaobject>  
 </figure>
@@ -494,10 +494,10 @@ case class Complex(real: Double, imaginary: Double) {
   <title>The <emphasis>Software Updates and Add-ons</emphasis> dialog.</title>
   <mediaobject>
   <imageobject role="print">
-    <imagedata fileref="figs/print/eclipse-install-scala2.pdf" format="PDF"/>
+    <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1402.pdf" format="PDF"/>
   </imageobject>
   <imageobject role="web">
-    <imagedata fileref="figs/web/eclipse-install-scala2.png" format="PNG"/>
+    <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1402.png" format="PNG"/>
   </imageobject>
   </mediaobject>
 </figure>
@@ -522,10 +522,10 @@ case class Complex(real: Double, imaginary: Double) {
   <title>IntelliJ IDEA Settings → Plugins.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/idea-settings-plugins1a.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1403.pdf" format="PDF"/>
     </imageobject>
     <imageobject role="web">
-      <imagedata fileref="figs/web/idea-settings-plugins1a.png" format="PNG"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1403.png" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>
@@ -535,10 +535,10 @@ case class Complex(real: Double, imaginary: Double) {
   <title>Available IntelliJ IDEA Scala plugins.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/idea-settings-plugins1b.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1404.pdf" format="PDF"/>
     </imageobject>
     <imageobject role="web">
-      <imagedata fileref="figs/web/idea-settings-plugins1b.png" format="PNG"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1404.png" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>
@@ -548,10 +548,10 @@ case class Complex(real: Double, imaginary: Double) {
   <title>Installed IntelliJ IDEA Scala plugins.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/idea-settings-plugins-confirm.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1405.pdf" format="PDF"/>
     </imageobject>
     <imageobject role="web">
-      <imagedata fileref="figs/web/idea-settings-plugins-confirm.png" format="PNG"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1405.png" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>
@@ -565,9 +565,9 @@ case class Complex(real: Double, imaginary: Double) {
   <title>Specifying IntelliJ IDEA Scala project details.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/idea-new-project1a.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1406.pdf" format="PDF"/>
       </imageobject><imageobject role="web">
-      <imagedata fileref="figs/web/idea-new-project1a.png" format="PNG"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1406.png" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>
@@ -576,10 +576,10 @@ case class Complex(real: Double, imaginary: Double) {
   <title>Adding Scala to the IntelliJ IDEA project.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/idea-new-project1b.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1407.pdf" format="PDF"/>
     </imageobject>
     <imageobject role="web">
-      <imagedata fileref="figs/web/idea-new-project1b.png" format="PNG"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1407.png" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>
@@ -599,10 +599,10 @@ case class Complex(real: Double, imaginary: Double) {
   <title>Adding the Scala plugins to be installed.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/netbeans-add-plugins.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1408.pdf" format="PDF"/>
     </imageobject>
     <imageobject role="web">
-      <imagedata fileref="figs/web/netbeans-add-plugins.png" format="PNG"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1408.png" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>
@@ -616,10 +616,10 @@ case class Complex(real: Double, imaginary: Double) {
   <title>Creating a new NetBeans Scala project.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/netbeans-new-project1.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1409.pdf" format="PDF"/>
     </imageobject>
     <imageobject role="web">
-      <imagedata fileref="figs/web/netbeans-new-project1.png" format="PNG"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1409.png" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>

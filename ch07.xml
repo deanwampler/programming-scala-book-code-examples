@@ -307,10 +307,10 @@ body length? 13</screen>
   <title>Scala’s type hierarchy.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/TypeHierarchy.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_0701.pdf" format="PDF"/>
   </imageobject>
   <imageobject role="web">
-    <imagedata fileref="figs/web/TypeHierarchy.png" format="PNG"/>
+    <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_0701.png" format="PNG"/>
   </imageobject>
   </mediaobject>
 </figure>

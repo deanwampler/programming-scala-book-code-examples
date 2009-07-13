@@ -1391,10 +1391,10 @@ object ButtonObserver3Spec extends Specification {
   <title>Diamond of Death in languages with multiple inheritance.</title>
   <mediaobject>
     <imageobject role="print">
-      <imagedata fileref="figs/print/diamond-of-death.pdf" format="PDF"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1301.pdf" format="PDF"/>
     </imageobject>
     <imageobject role="web">
-      <imagedata fileref="figs/web/diamond-of-death.png" format="PNG"/>
+      <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1301.png" format="PNG"/>
     </imageobject>
   </mediaobject>  
 </figure>
