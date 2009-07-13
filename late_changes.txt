@@ -1,0 +1,63 @@
+Fixes for bugs, etc. found after releasing to production.
+
+Zero to Sixty, Introducing Scala:
+- code-examples/IntroducingScala/shapes.scala example. remove "()" after Shape in declaration of Triangle.
+- Same example, added paragraph on Unit after describing draw method: "The +draw+ method returns +Unit+, which is a type that is roughly equivalent to +void+ in C-derived languages like Java, _etc._ (See <<ScalaTypeHierarchy>> in <<ScalaObjectSystem>> for more details.)"
+
+Type Less, Do More:
+- Discussion of stock price example. changed to "Doubles in Scala are immutable."
+- In "method declarations": "each argument LIST is surrounded by parentheses".
+- In "nesting method definitions": "The function actually returnS 1 for +i < 0+.) After the definition of the nested method, +factorial+ calls it with the passed-in value +i+ and the INITIAL accumulator value of 1."
+- In "Inferring types": Added "(We are sticking with Java types for the example.)"
+- Discussion of Joiner example: Change paragraph after "method-overloaded-return-script.scala" to the following: The two +joiner+ methods concatenate a +List+ of strings together. The first method also takes an argument for the separator string. The second method calls the first with a ``default'' separator of a single space.
+- Discussion of "method-broad-inference-return-script.scala": "We intended for +makeList+ to return a +List[String]+, but when +strings.length+ equals zero, we returned +List(0)+, incorrectly ``assuming'' that this expression is the correct way to create an empty list. In fact, we returned a +List[Int]+ with one element, +0+. We should have returned +List()+. Since the +else+ expression returns a +List[String]+, the result of +strings.toList+, the inferred return type for the method is the closest common super type of +List[Int]+ and +List[String]+, which is +List[Any]+. Note that the compilation error doesn't occur in the function definition. We only see it when we attempt to assign the value returned from +makeList+ to a +List[String]+ variable."
+- Discussion of what happens when you forget the = after function signature, dropped the description of Unit, which is now earlier.
+- Just before "Symbol Literals": "Copy and pastE"
+- Discussion of +Option.getOrElse+, expanded wording: "We also show the alternative method, +getOrElse+, in the last two +println+ statements. This method returns either the value in the +Option+, if it is a +Some+ instance, or it returns the second argument we passed to +getOrElse+, if it is a +None+ instance. In other words, the second argument to +getOrElse+ functions as the default return value."
+
+Rounding Out the Essentials:
+- "Pattern matching identifiers": Change two "being" to "begin".
+- In "Generator Expressions", paragraph after for example: "Yup, that's all that's necessary. This clean one-liner is possible because of Scala's +RichInt+ class. An _implicit conversion_ is invoked by the compiler to convert the +1+, an +Int+, into a +RichInt+. (We'll discuss these conversions in <<ScalaTypeHierarchy>> in <<ScalaObjectSystem>> and in <<ImplicitConversions>> in <<FunctionalProgramming>>.) +RichInt+ defines a +to+ method that takes another integer and returns an instance of +Range.Inclusive+. That is, +Inclusive+ is a nested class in the +Range+ _companion object_ (a concept we introduced briefly in <<IntroducingScala>>; see <<AdvancedObjectOrientedProgramming>> for details). This subclass of the _class_ +Range+ inherits a number of methods for working with sequences and iterable data structures, including those necessary to use it in a +for+ loop."
+- Tip just before "Matching on Case Classes": "TIP: Recall that the cases in a pattern match are evaluated in order. For example, if your first case is broader than your second case, the second case will never be reached. (Unreachable cases will cause a compiler error.) You may include a ``default'' case at the end of a pattern match, either using the underscore wild card character or a meaningfully-named variable. When using a variable, it should have no explicit type or it should be declared as +Any+, so it can match anything. On the other hand, try to design your code to avoid a catch-all clause by ensuring it only receives specific items that are expected."
+- "is an convenient way" -> "is a convenient way"
+- "That is, we're extracting the head and tail from the list using." -> "That is, we're extracting the head and tail from the list using ::."
+- "The second case matches the empty list, +Nil+. It does is print an end of line and terminates the recursion." -> "The second case matches the empty list, +Nil+. It prints an end of line and terminates the recursion."
+- Very last paragraph in chapter: "You should now be prepared to read a fair bit of Scala code, but there's plenty more about the language to put in your tool belt. In the next two chapters, we'll explore Scala's approach to object-oriented programming." -> "You should now be prepared to read a fair bit of Scala code, but there's plenty more about the language to put in your tool belt. In the next four chapters, we'll explore Scala's approach to object-oriented programming, starting with traits."
+
+Traits:
+- Formatting of this paragraph: "Notice the order of invocation of the class and trait constructors. Since the declaration of +C12+ is +extends Base12 with T1 with T2+, the order of construction for this simple class hierarchy is left to right, starting with the base class +Base12+, followed by the traits +T1+ and +T2+, and ending with the +C12+ constructor body. (For constructing arbitrarily-complex hierarchies, see ..." I'm showing the +xx+ from Asciidoc, where each pair of +...+ deliminates code in fixed width font. The problem was a missing + after the last "T2".
+- 
+Basic Object-Oriented Programming:
+- Paragraph after BulkReader example: "As in Java, the keyword +extends+ indicates the parent class, in this case +BulkReader+. In Scala, +extends+ is also used when a class inherits a trait as its parent (even when it mixes in other traits using the +with+ keyword). Also, +extends+ is used when one trait is the child of another trait or class. Yes, traits can inherit classes."
+- "invoke another constructors defined" -> "invoke another constructor defined"
+- Table on visibility scopes. Protected text should end "... are visible only within the same package and subpackages."
+- These properties could be size, color, WHETHER OR NOT THE WIDGET IS VISIBLE, etc...
+- "Here is one way WAY we might expand" -> "Here is one way we might expand"
+
+Advanced Object-Oriented Programming:
+- "Most OO languages allow you override" -> "Most OO languages allow you TO override"
+- shapes usage example for Scala v28: "val circle2 = circle 1 copy (radius = 4.0) " -> "val circle2 = circle1 copy (radius = 4.0)"
+- Replace 2 occurrences of "ClassWithAbsC1" with "ClassWithAbstractC1".
+
+
+Functional Programming:
+- Note in tail-call section about methods that might be overridden.
+- "A way to minimize this risk is to expose the lowest-level abstractions you can." -> "A way to minimize this risk is to expose the lowest-level abstractions possible."
+- First paragraph in "Sets in Functional Programming": Replace last sentence ("In practice, sets are usually implemented with maps, so the performance is more like O(log(N)).") with "In practice, sets are usually implemented with more efficient data structures."
+
+XML:
+- "find me elements named bread" uses the " character rather than typographically-appropriate ``''.
+
+Scala's Type System:
+- "Finally, we come to the point of this example. In line #6, we pass in a function that is" -> "Finally, we come to the point of this example. In line #7, we pass in a function that is"
+
+Application Design:
+- anno-example.scala: remove the "val" keywords from the declaration of class Persist.
+- "You are probably accustomed to doing using such names ..." -> "You are probably accustomed to using such names ..."
+- "It is a bit redundant the same word twice" -> "It is a bit redundant to have to use the same word twice"
+
+Tools, Libraries:
+- Example command line starting "java -classpath .:aspectj-home/lib/aspectjrt.jar:../lib/scala-library.jar " doesn't wrap properly.
+- Same problem several sections later. 
+- IntelliJ Section. Delete last sentence in "To use the plugin, you must use IntelliJ 8.0.X or later. Consider using the most recent "EAP" build for the latest feature updates. You must also have the Scala command-line SDK installed, as discussed in Section 1.2 in Chapter 1." That is, "You must also ..."
+- 
