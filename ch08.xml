@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="FunctionalProgramming">
 <title>Functional Programming in Scala</title>
 <simpara id="para_every_decade_or_two_a_major_c">Every decade or two, a major computing idea goes mainstream. These ideas may have lurked in the background of academic computer science research, or possibly in some lesser-known field of industry. The transition to mainstream acceptance comes in response to a perceived problem for which the idea is well suited. Object-oriented programming, which was invented in the 1960s, went mainstream in the 1980s, arguably in response to the emergence of graphical user interfaces, for which the OOP paradigm is a natural fit.</simpara>
@@ -429,7 +428,7 @@ println((1 to 1000000) reduceRight(_ + _))</programlisting>
 <simpara id="para_so_why_have_both_kinds_of_recu">So why have both kinds of recursion? If you’re not worried about overflow, a right recursion might be the most natural fit for the operation you are doing. Recall that when we used <literal>foldLeft</literal> to map integers to strings, we had to reverse the result. That was easy enough to do in that case, but in general, the result of a left recursion might not always be easy to convert to the right form.</simpara>
 </sect2>
 <sect2 id="OptionsAndOtherContainers">
-<title>Functional <literal>Options</literal></title>
+<title>Functional Options</title>
 <simpara id="para_you_ll_find_the_functional_ope">You’ll find the functional operations we’ve explored throughout the Scala library, and not exclusively on collection classes. The always handy <literal>Option</literal> container supports filter, map, flatMap, and other functionally-oriented methods that are only applied if the <literal>Option</literal> isn’t empty (that is, if it’s a <literal>Some</literal> and not a <literal>None</literal>).</simpara>
 <simpara id="para_let_s_see_this_in_practice_">Let’s see this in practice.</simpara>
 <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/option-script.scala

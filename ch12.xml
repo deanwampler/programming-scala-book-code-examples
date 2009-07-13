@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="ScalasTypeSystem">
 <title>The Scala Type System</title>
 <simpara id="para_types_intro">Scala is a statically-typed language. Its type system is one of the most sophisticated in any programming language, in part because it combines comprehensive ideas from functional programming and object-oriented programming. The type system tries to be logically comprehensive, complete, and consistent. It exceeds limitations in Java’s type system while containing innovations which appear in Scala for the first time.</simpara>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="DomainSpecificLanguages">
 <title>Domain-Specific Languages in Scala</title>
 <simpara id="para_dsl_defn">A <emphasis>Domain-Specific Language</emphasis> is a programming language that mimics the terms, idioms, and expressions used among experts in the targeted domain. Code written in a DSL reads like structured prose for the domain. Ideally, a domain expert with little experience in programming can read, understand, and validate this code. Sometimes, a domain expert might be able to write DSL code, even if he isn’t a professional programmer.</simpara>

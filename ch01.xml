@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="IntroducingScala">
 <title>Zero to Sixty: Introducing Scala</title>
 <sect1 id="_why_scala">
@@ -20,7 +19,7 @@
 <title>If You Are a Ruby, Python, etc. Programmer…</title>
 <simpara id="para__dynamically_typed__languages_"><emphasis>Dynamically typed</emphasis> languages like Ruby, Python, Groovy, JavaScript, and Smalltalk offer very high productivity due to their flexibility, powerful metaprogramming, and elegance.</simpara>
 <sidebar>
-<title>Statically Typed <emphasis>vs.</emphasis> Dynamically Typed Languages</title>
+<title>Statically Typed vs. Dynamically Typed Languages</title>
 <simpara id="para_one_of_the_fundamental_languag">One of the fundamental language design choices is <emphasis>static vs. dynamic</emphasis> typing.</simpara>
 <simpara id="para_the_word_typing_is_used_in">The word “typing” is used in many contexts in software. Pierce offers the following “plausible” definition that is useful for our purposes.</simpara>
 <blockquote>
@@ -373,7 +372,7 @@ package shapes {
 <simpara id="para_the_last_case_handles_any_ot">The last <literal>case</literal> clause handles any other message instance, thereby functioning as the <emphasis>default</emphasis> case. The actor reports an error and then drops the message. <literal>Any</literal> is the parent of all types in the Scala type hierarchy, like <literal>Object</literal> is the root type in Java and other languages. Hence, this case clause will match any message of any type. Pattern matching is eager; we have to put this case clause at the end, so it doesn’t consume the messages we are expecting!</simpara>
 <simpara id="para_recall_that_we_declared_draw_">Recall that we declared <literal>draw</literal> as an abstract method in <literal>Shape</literal> and we implemented <literal>draw</literal> in the concrete subclasses. Hence, the code in the first <literal>case</literal> statement invokes a polymorphic operation.</simpara>
 <sidebar>
-<title>Pattern Matching <emphasis>vs.</emphasis> Polymorphism</title>
+<title>Pattern Matching vs. Polymorphism</title>
 <simpara id="para__pattern_matching__plays_a_cen"><emphasis>Pattern matching</emphasis> plays a central role in functional programming just as polymorphism plays a central role in object-oriented programming. Functional pattern matching is much more important and sophisticated than the corresponding <literal>switch/case</literal> statements found in most <emphasis>imperative</emphasis> languages, like Java. We will examine Scala’s support for pattern matching in more detail in <xref linkend="FunctionalProgramming"/>. In our example here, we can begin to see that joining functional-style pattern matching with object-oriented polymorphic dispatching is a powerful combination that is a benefit of mixed paradigm languages like Scala.</simpara>
 </sidebar>
 <simpara id="para_finally_here_is_a_script_that">Finally, here is a script that uses the <literal>ShapeDrawingActor</literal> actor.</simpara>

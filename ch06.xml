@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="AdvancedObjectOrientedProgramming">
 <title>Advanced Object-Oriented Programming In Scala</title>
 <simpara id="para_we_finish_our_survey_of_scala_">We’ve got the basics of OOP in Scala under our belt, but there’s plenty more to learn.</simpara>

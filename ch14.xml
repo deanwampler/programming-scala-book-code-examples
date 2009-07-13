@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="ScalaToolsLibs">
 <title>Scala Tools, Libraries and IDE Support</title>
 <simpara id="para_in_the_last_chapter_applica">In the last chapter, <xref linkend="ApplicationDesign"/>, we looked at how to design scalable applications in Scala. In this chapter, we discuss tools and libraries that are essential for Scala application developers.</simpara>
@@ -18,7 +17,7 @@
 <screen>scalac upper3.scala</screen>
 <simpara id="para_options_for_scalac"><xref linkend="scalac-command-options"/> shows the list of the <userinput>scalac</userinput> <replaceable>options</replaceable>, as reported by <userinput>scalac -help</userinput>.</simpara>
 <table id="scalac-command-options" frame="none" rowsep="1" colsep="1">
-<title>The <userinput>scalac</userinput> command options.</title>
+<title>The scalac command options.</title>
 <tgroup cols="2">
 <colspec colwidth="95pt" align="left"/>
 <colspec colwidth="286pt" align="left"/>
@@ -158,7 +157,7 @@ g
 ...</screen>
 <simpara id="para_the_scala_command_accepts_al">The <userinput>scala</userinput> command accepts all the <replaceable>options</replaceable> that <userinput>scalac</userinput> accepts (see <xref linkend="scalac-command-options"/>), plus the options listed in <xref linkend="scala-command-options"/>.</simpara>
 <table id="scala-command-options" frame="none" rowsep="1" colsep="1">
-<title>The <userinput>scala</userinput> command options (in additions to the <userinput>scalac</userinput> options).</title>
+<title>The scala command options (in additions to the scalac options).</title>
 <tgroup cols="2">
 <colspec colwidth="95pt" align="left"/>
 <colspec colwidth="286pt" align="left"/>
@@ -206,7 +205,7 @@ g
 </table>
 <simpara id="para_use_the_i_file_option_in_">Use the <literal>-i</literal> <replaceable>file</replaceable> option in the interactive mode when you want to preload a file before typing commands. Once in the shell, you can also load a file using the command <userinput>:load</userinput> <replaceable>filename</replaceable>. <xref linkend="scala-interactive-special-commands"/> lists the special <literal>:X</literal> commands available within the interactive mode.</simpara>
 <table id="scala-interactive-special-commands" frame="none" rowsep="1" colsep="1">
-<title>Commands available within the <userinput>scala</userinput> interactive mode.</title>
+<title>Commands available within the scala interactive mode.</title>
 <tgroup cols="2">
 <colspec colwidth="95pt" align="left"/>
 <colspec colwidth="286pt" align="left"/>
@@ -414,7 +413,7 @@ case class Complex(real: Double, imaginary: Double) {
 <simpara id="para_scala_bazaar_system_sbaz_i">Scala Bazaar System (<userinput>sbaz</userinput>) is a packaging system that helps automate maintenance of a Scala installation. It is analogous to the <emphasis>gem</emphasis> packaging system for Ruby, <emphasis>CPAN</emphasis> for Perl, <emphasis>etc.</emphasis></simpara>
 <simpara id="para_there_is_a_nice_summary_of_how">There is a nice summary of how to use <userinput>sbaz</userinput> on the scala-lang.org website, <ulink url="http://www.scala-lang.org/node/93"/>. All command-line options are described in the developer documentation. The following table summarizes the most useful invokations.</simpara>
 <table id="sbaz-commands" frame="none" rowsep="1" colsep="1">
-<title>The most useful <userinput>sbaz</userinput> command options.</title>
+<title>The most useful sbaz command options.</title>
 <tgroup cols="2">
 <colspec colwidth="133pt" align="left"/>
 <colspec colwidth="248pt" align="left"/>
@@ -480,7 +479,7 @@ case class Complex(real: Double, imaginary: Double) {
 <simpara id="para_the_plugin_requires_jdk_5_or_h">The plugin requires JDK 5 or higher (JDK 6 is recommended) and Eclipse 3.3 or higher (Eclipse 3.4 is recommended). The plugin installs the Scala SDK itself. To install the plugin, invoke the <emphasis>Software Updates</emphasis> command in the <emphasis>Help</emphasis> menu.</simpara>
 <simpara id="para_click_the__available_software_">Click the <emphasis>Available Software</emphasis> tab and click the “Add Site…” button on the right hand side. You will see the dialog shown in <xref linkend="eclipse-add-site"/>.</simpara>
 <figure id="eclipse-add-site">
-  <title>The <emphasis>add site</emphasis> Eclipse dialog.</title>
+  <title>The add site Eclipse dialog.</title>
   <mediaobject>
     <imageobject role="print">
       <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1401.pdf" format="PDF"/>
@@ -493,7 +492,7 @@ case class Complex(real: Double, imaginary: Double) {
 <simpara id="para_enter_the_url_that_shown_in_th">Enter the URL that shown in the figure, <ulink url="http://www.scala-lang.org/scala-eclipse-plugin"/>. Some people prefer to work with the <emphasis>nightly</emphasis> releases, <ulink url="http://www.scala-lang.org/scala-eclipse-plugin-nightly"/>, but you should be aware that there is no guarantee they will work!</simpara>
 <simpara id="para_select_the_check_box_next_to_t">Select the check box next to the newly-added update site and click the <emphasis>Install</emphasis> button, as indicated in <xref linkend="eclipse-install-scala2"/>. <emphasis role="strong">Don’t</emphasis> click the “default” <emphasis>Close</emphasis> button!</simpara>
 <figure id="eclipse-install-scala2">
-  <title>The <emphasis>Software Updates and Add-ons</emphasis> dialog.</title>
+  <title>The Software Updates and Add-ons dialog.</title>
   <mediaobject>
   <imageobject role="print">
     <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1402.pdf" format="PDF"/>

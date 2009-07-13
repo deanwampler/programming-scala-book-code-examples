@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="ApplicationDesign">
 <title>Application Design</title>
 <simpara id="para_in_this_chapter_we_take_a_pra">In this chapter, we take a pragmatic look at developing applications
@@ -193,7 +192,7 @@ library (adapted and expanded from
 <ulink url="http://www.scala-lang.org/node/106"/>). We start with the direct children
 of <literal>Annotation</literal>, followed by the children of <literal>StaticAnnotation</literal>.</simpara>
 <table id="scala-annotations" frame="none" rowsep="1" colsep="1">
-<title>Scala annotations derived from <literal>Annotation</literal>.</title>
+<title>Scala annotations derived from Annotation.</title>
 <tgroup cols="3">
 <colspec colwidth="76pt" align="left"/>
 <colspec colwidth="133pt" align="left"/>
@@ -255,7 +254,7 @@ of <literal>Annotation</literal>, followed by the children of <literal>StaticAnn
 </tgroup>
 </table>
 <table id="scala-static-annotations" frame="none" rowsep="1" colsep="1">
-<title>Scala annotations derived from <literal>StaticAnnotation</literal>.</title>
+<title>Scala annotations derived from StaticAnnotation.</title>
 <tgroup cols="3">
 <colspec colwidth="76pt" align="left"/>
 <colspec colwidth="133pt" align="left"/>
@@ -2148,7 +2147,7 @@ balance is specified for the constructor. Similarly, the <literal>debit</literal
 specified.</simpara>
 <simpara id="para_the_following_specification_co">The following specification confirms that the “contract” is obeyed.</simpara>
 <example id="design-by-contract-example-spec">
-<title><literal>design-by-contract/bank-account-spec.scala</literal>: Testing the contract.</title>
+<title>design-by-contract/bank-account-spec.scala: Testing the contract.</title>
 <programlisting linenumbering="unnumbered">// code-examples/AppDesign/design-by-contract/bank-account-spec.scala
 
 import org.specs._

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="Concurrency">
 <title>Robust, Scalable Concurrency with Actors</title>
 <sect1 id="ProblemsOfSharedSynchronizedState">
@@ -366,7 +365,7 @@ object SpawnExample {
 }</programlisting>
 </sect2>
 <sect2 id="_using_literal_java_util_concurrent_literal">
-<title>Using <literal>java.util.concurrent</literal></title>
+<title>Using java.util.concurrent</title>
 <simpara id="para_if_you_re_familiar_with_the_ve">If you’re familiar with the venerable <literal>java.util.concurrent</literal> package, you’ll find it just as easy to use from Scala (or hard to use, depending on your point of view). Let’s use <literal>Executors</literal> to create a pool of threads. We’ll use the thread pool to run a simple class, implementing Java’s <literal>Runnable</literal> interface for thread-friendly classes, that identifies which thread it’s running on.</simpara>
 <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/util-concurrent.scala
 

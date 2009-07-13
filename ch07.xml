@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="ScalaObjectSystem">
 <title>The Scala Object System</title>
 <sect1 id="PredefObject">
@@ -9,7 +8,7 @@
 <tip id="para_tip_you_can_learn_a_lot_of_sc"><simpara>You can learn a lot of Scala by viewing the source for <literal>Predef</literal>. It is available by clicking the “source” link in the <literal>Predef</literal> <emphasis>Scaladoc</emphasis> page or you can download the full source code for Scala at <xref linkend="Scala" xrefstyle="select: title nopage"/>.</simpara></tip>
 <simpara id="para_here_is_a_partial_list_of_the_">Here is a partial list of the items imported or defined by <literal>Predef</literal> on the Java platform.</simpara>
 <table frame="none" rowsep="1" colsep="1">
-<title>Items Imported or Defined by <literal>Predef</literal>.</title>
+<title>Items Imported or Defined by Predef.</title>
 <tgroup cols="2">
 <colspec colwidth="45pt" align="left"/>
 <colspec colwidth="336pt" align="left"/>
@@ -319,7 +318,7 @@ body length? 13</screen>
 
 <simpara id="para_the_following_tables_discuss_t">The following tables discuss the types shown in <xref linkend="scalas-type-hierarchy"/>, as well as some other important types that aren’t shown. Some details are omitted for clarity. When the underlying “runtime” is discussed, the points made apply equally to the JVM and the .NET CLR, except where noted.</simpara>
 <table id="any-anyval-anyref" frame="none" rowsep="1" colsep="1">
-<title><literal>Any</literal>, <literal>AnyVal</literal>, and <literal>AnyRef</literal>.</title>
+<title>Any, AnyVal, and AnyRef.</title>
 <tgroup cols="3">
 <colspec colwidth="38pt" align="left"/>
 <colspec colwidth="38pt" align="left"/>
@@ -352,7 +351,7 @@ body length? 13</screen>
 </table>
 <simpara id="para_the__value_types__are_children">The <emphasis>value types</emphasis> are children of <literal>AnyVal</literal>.</simpara>
 <table id="AnyVal-value-types" frame="none" rowsep="1" colsep="1">
-<title>Direct subtypes of <literal>AnyVal</literal>, the <emphasis>value types</emphasis>.</title>
+<title>Direct subtypes of AnyVal, the value types.</title>
 <tgroup cols="2">
 <colspec colwidth="57pt" align="left"/>
 <colspec colwidth="325pt" align="left"/>
@@ -404,7 +403,7 @@ body length? 13</screen>
 </table>
 <simpara id="para_all_other_types_the__referenc">All other types, the <emphasis>reference types</emphasis>, are children of <literal>AnyRef</literal>. Here are some of the more commonly-used reference types. Note that there are some significant differences between the version 2.7.X and 2.8 collections.</simpara>
 <table id="AnyRef-reference-types" frame="none" rowsep="1" colsep="1">
-<title>Direct and indirect subtypes of <literal>AnyRef</literal>, the <emphasis>reference types</emphasis>.</title>
+<title>Direct and indirect subtypes of AnyRef, the reference types.</title>
 <tgroup cols="3">
 <colspec colwidth="114pt" align="left"/>
 <colspec colwidth="76pt" align="left"/>
@@ -692,7 +691,7 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
 <simpara id="para_to_help_us_along_we_calculate">To help us along, we calculated the linearizations for the other types and we also appended <literal>ScalaObject</literal>, <literal>AnyRef</literal>, and <literal>Any</literal> to remind ourselves that they should also be there. We also removed the logic to pass the caller’s name to <literal>m</literal>. That caller of <literal>C1</literal> will <emphasis>always</emphasis> be the element to its immediate left.</simpara>
 <simpara id="para_so_let_s_work_through_the_alg">So, let’s work through the algorithm for <literal>C2</literal> and confirm our results. We’ll suppress the <literal>ScalaObject</literal>, <literal>AnyRef</literal>, and <literal>Any</literal> for clarity, until the end.</simpara>
 <table frame="none" rowsep="1" colsep="1">
-<title>Hand Calculation of <literal>C2</literal> linearization: <literal>C2 extends C2A with T1 with T2 with T3 {…}</literal>.</title>
+<title>Hand Calculation of C2 linearization: C2 extends C2A with T1 with T2 with T3 {…}.</title>
 <tgroup cols="3">
 <colspec colwidth="38pt" align="left"/>
 <colspec colwidth="172pt" align="left"/>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="RoundingOutTheEssentials">
 <title>Rounding Out the Essentials</title>
 <simpara id="para_before_we_dive_into_scala_s_su">Before we dive into Scala’s support for object-oriented and functional programming, let’s finish our discussion of the essential features you’ll use in most of your programs.</simpara>
