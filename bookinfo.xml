@@ -1,27 +1,101 @@
 <?xml version="1.0"?>
 <!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <bookinfo>
-      <title>Programming Scala</title>
-      <author>
-        <firstname>Dean</firstname>
-        <surname>Wampler</surname>
-        <affiliation><orgname>Object Mentor, Inc.</orgname></affiliation>
-        <email>dean@deanwampler.com</email>
-      </author>
-      <author>
-        <firstname>Alex</firstname>
-        <surname>Payne</surname>
-        <affiliation><orgname>Twitter, Inc.</orgname></affiliation>
-        <email>alex@al3x.net</email>
-      </author>
-      <copyright>
-        <year>2008</year>
-        <holder>O’Reilly Media    </holder> </copyright>
-      <abstract>
-        <para><citetitle>Programming Scala</citetitle> introduces an exciting new language that offers all the benefits of a modern object model, functional programming, and an advanced type system. Packed with code examples, this comprehensive book teaches you how to be productive with Scala quickly, and explains what makes this language ideal for today's highly scalable, component-based applications that support concurrency and distribution. You'll also learn the advantages that Scala offers as a language for the Java Virtual Machine. </para>
-        <para>Learn more at <ulink url="http://programmingscala.com/">programmingscala.com</ulink> or <ulink url="http://oreilly.com/catalog/9780596157746/">at the book's catalog page</ulink>.</para>
-      </abstract>
-      <legalnotice>
-        <para>This work has been released under the <ulink url="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-Noncommercial</ulink>.</para>
-      </legalnotice>
+  <othercredit role="proofreader">
+    <firstname>FIX</firstname>
+    <surname>ME!</surname>
+  </othercredit>
+  <othercredit role="interiordesigner">
+    <firstname>FIX</firstname>
+    <surname>ME!</surname>
+  </othercredit>
+  <othercredit role="illustrator">
+    <firstname>Robert</firstname>
+    <surname>Romano</surname>
+  </othercredit>
+  <othercredit role="illustrator">
+    <firstname>Jessamyn</firstname>
+    <surname>Read</surname>
+  </othercredit>
+<!-- All rights reserved. -->
+  <publisher>
+    <publishername>O&#x2019;Reilly Media, Inc.    </publishername>
+    <address format="linespecific">
+      <street>1005 Gravenstein Highway North</street>
+      <city>Sebastopol</city>
+      <state>CA</state>
+      <postcode>95472</postcode>
+    </address>
+  </publisher>
+  <legalnotice role="printlocation">
+    <para>Printed in the United States of America.</para>
+  </legalnotice>
+  <legalnotice role="printer">
+    <para>[?]</para>
+  </legalnotice>
+  <legalnotice role="use">
+    <para>O&#x2019;Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most 
+          titles (<ulink role="orm:hideurl:ital" url="http://my.safaribooksonline.com/?portal=oreilly">http://my.safaribooksonline.com</ulink>). For more information, contact our corporate/institutional sales department:
+          (800) 998-9938 or <email>corporate@oreilly.com</email>.  </para>
+  </legalnotice>
+  <legalnotice role="trademarks">
+    <para>Nutshell Handbook, the Nutshell Handbook logo, and the O&#x2019;Reilly logo
+          are registered trademarks of O&#x2019;Reilly Media, Inc. !!FILL THIS IN!!
+          and related trade dress are trademarks of O&#x2019;Reilly Media, Inc.    </para>
+    <para>Many of the designations used by manufacturers and sellers to distinguish
+          their products are claimed as trademarks. Where those designations appear
+          in this book, and O&#x2019;Reilly Media, Inc. was aware of a trademark claim,
+          the designations have been printed in caps or initial caps.    </para>
+  </legalnotice>
+  <legalnotice role="damages">
+    <para>While every precaution has been taken in the preparation of this book,
+        the publisher and authors assume no responsibility for errors or omissions, 
+        or for damages resulting from the use of the information contained herein.</para>
+  </legalnotice>
+  <isbn>9780596155957</isbn>
+  <edition>1</edition>
+  <author>
+    <firstname>Dean</firstname>
+    <surname>Wampler</surname>
+    <authorblurb>
+      <para/>
+    </authorblurb>
+  </author>
+  <author>
+    <firstname>Alex</firstname>
+    <surname>Payne</surname>
+    <authorblurb>
+      <para/>
+    </authorblurb>
+  </author>
+  <editor>
+    <firstname>Mike</firstname>
+    <surname>Loukides</surname>
+  </editor>
+  <copyright>
+    <year>2009</year>
+    <holder>Dean Wampler and Alex Payne</holder>
+  </copyright>
+  <editor role="production">
+    <firstname/>
+    <surname/>
+  </editor>
+  <editor role="copy">
+    <firstname/>
+    <surname/>
+  </editor>
+  <othercredit role="indexer">
+    <firstname/>
+    <surname/>
+  </othercredit>
+  <othercredit role="coverdesigner">
+    <firstname/>
+    <surname/>
+  </othercredit>
+  <printhistory>
+    <formalpara>
+      <title>First Edition</title>
+      <para>September, 2009</para>
+    </formalpara>
+  </printhistory>
 </bookinfo>
