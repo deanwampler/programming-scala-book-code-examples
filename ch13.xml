@@ -2104,7 +2104,7 @@ There are alternatives to the cake pattern for implementing dependency injection
 <simpara id="para_we_ll_conclude_this_chapter_wi">We’ll conclude this chapter with a look at an approach to programming
 called <emphasis>Design by Contract</emphasis> <xref linkend="DesignByContract" xrefstyle="select: title nopage"/>, which was developed
 by Bertrand Meyer for the Eiffel language <xref linkend="Eiffel" xrefstyle="select: title nopage"/>.
-(See also <xref linkend="Hunt2000" xrefstyle="select: title nopage"/>, Chapter 4.). Design by Contract has been around
+(See also <xref linkend="Hunt2000" xrefstyle="select: title nopage"/>, <xref linkend="Traits"/>.). Design by Contract has been around
 for about twenty years. It has fallen somewhat out of favor, but it
 is still very useful for thinking about design.</simpara>
 <simpara id="para_when_considering_the_contract">When considering the “contract” of a module, you can specify three

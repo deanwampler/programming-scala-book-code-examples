@@ -193,7 +193,7 @@ Map&lt;Integer, String&gt; intToStringMap = new HashMap&lt;Integer, String&gt;()
 import java.util.HashMap
 ...
 val intToStringMap: Map[Integer, String] = new HashMap</programlisting>
-<simpara id="para_recall_from_chapter_1_that_sca">Recall from Chapter 1 that Scala uses square brackets (<literal>[…]</literal>) for generic type parameters. We specify <literal>Map[Integer, String]</literal> on the left-hand side of the equals sign. On the right-hand side, we instantiate the actual type we want, a <literal>HashMap</literal>, but we don’t have to repeat the <emphasis>type parameters</emphasis>.</simpara>
+<simpara id="para_recall_from_chapter_1_that_sca">Recall from <xref linkend="IntroducingScala"/> that Scala uses square brackets (<literal>[…]</literal>) for generic type parameters. We specify <literal>Map[Integer, String]</literal> on the left-hand side of the equals sign. On the right-hand side, we instantiate the actual type we want, a <literal>HashMap</literal>, but we don’t have to repeat the <emphasis>type parameters</emphasis>.</simpara>
 <simpara id="para_for_completeness_suppose_we_d">For completeness, suppose we don’t actually care if the instance is of type <literal>Map</literal> (the Java interface type). It can be of type <literal>HashMap</literal> for all we care.</simpara>
 <programlisting linenumbering="unnumbered">import java.util.Map
 import java.util.HashMap
