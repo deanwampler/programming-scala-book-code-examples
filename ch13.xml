@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<chapter id="ApplicationDesign">
+<?xml version="1.0" encoding="UTF-8"?><chapter id="ApplicationDesign">
 <title>Application Design</title>
 <simpara id="para_in_this_chapter_we_take_a_pra">In this chapter, we take a pragmatic look at developing applications
 in Scala. We discuss a few language and API features that we haven’t
@@ -1388,14 +1386,19 @@ object ButtonObserver3Spec extends Specification {
 <sect1 id="EffectiveTraitsDesign">
 <title>Effective Design of Traits</title>
 <simpara id="para_one_of_the_reasons_that_java_d">One of the reasons that many languages (like Java) do not implement multiple inheritance is because of the problems observed with multiple inheritance in C++. One of the those problems is the so-called <emphasis>diamond of death</emphasis>, which is illustrated in <xref linkend="diamond-of-death"/>.</simpara>
-<figure id="diamond-of-death"><title>Diamond of Death in languages with multiple inheritance.</title>
+
+<figure id="diamond-of-death">
+  <title>Diamond of Death in languages with multiple inheritance.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/diamond-of-death.png" contentwidth="4.8in"/>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/diamond-of-death.pdf" format="PDF"/>
     </imageobject>
-    <textobject><phrase>images/diamond-of-death.png</phrase></textobject>
-  </mediaobject>
+    <imageobject role="web">
+      <imagedata fileref="figs/web/diamond-of-death.png" format="PNG"/>
+    </imageobject>
+  </mediaobject>  
 </figure>
+
 <simpara id="para_in_c_each_constructor_for_">In C++, each constructor for <literal>C</literal> will invoke a constructor for <literal>B1</literal> and a constructor for <literal>B2</literal> (explicitly or implicitly). Each constructor for <literal>B1</literal> and <literal>B2</literal> will invoke a constructor for <literal>A</literal>. Hence, in a <emphasis>naïve</emphasis> implementation of multiple inheritance, the fields of <literal>A</literal>, <literal>a1</literal> and <literal>a2</literal>, could be initialized <emphasis>twice</emphasis> and possibly initialized in an inconsistent way or there might be two different <literal>A</literal> “pieces” in the <literal>C</literal> instance, one for <literal>B1</literal> and one for <literal>B2</literal>! C++ has mechanisms to clarify what should happen, but it’s up to the developer to understand the details and to do the correct thing.</simpara>
 <simpara id="para_scala_s_single_inheritance_wit">Scala’s single inheritance and support for traits avoid these problems, while providing the most important benefit of multiple inheritance, <emphasis>mixin</emphasis> composition. The order of construction is unambiguous (see <xref linkend="Linearization"/> in <xref linkend="ScalaObjectSystem"/>). Traits can’t have constructors, but Scala ensures that their fields are properly initialized when instances are created, as we saw in <xref linkend="ConstructingTraits"/> and <xref linkend="OverridingFieldsInTraits"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>. We saw another example of initializing <literal>vals</literal> in a trait in <xref linkend="FineGrainedVisibilityRules"/> above. There we defined concrete classes that overrode the definitions of the two abstract fields in the <literal>EncodedString</literal> trait.</simpara>
 <simpara id="para_however_since_a_trait_can_con">So, Scala handles many potential issues that arise when mixing the contributions of different traits into the set of possible states of an instance. Still, it’s important to consider how the contributions of different traits interact with each other.</simpara>

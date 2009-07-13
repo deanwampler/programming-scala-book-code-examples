@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<chapter id="ScalaToolsLibs">
+<?xml version="1.0" encoding="UTF-8"?><chapter id="ScalaToolsLibs">
 <title>Scala Tools, Libraries and IDE Support</title>
 <simpara id="para_in_the_last_chapter_applica">In the last chapter, <xref linkend="ApplicationDesign"/>, we looked at how to design scalable applications in Scala. In this chapter, we discuss tools and libraries that are essential for Scala application developers.</simpara>
 <simpara id="para_we_briefly_introduced_you_to_t">We briefly introduced you to the Scala command-line tools in <xref linkend="IntroducingScala"/>. Now we explore these tools in greater detail and learn about other tools that are essential for the Scala developer. We’ll discuss language-aware plugins for editors and IDEs, testing tools, and various libraries and frameworks. We won’t cover these topics in exhaustive detail, but we will tell you where to look for more information.</simpara>
@@ -479,22 +477,28 @@ case class Complex(real: Double, imaginary: Double) {
 <simpara id="para_for_details_on_the_eclipse_sca">For details on the Eclipse Scala plugin, start at this web page, <ulink url="http://www.scala-lang.org/node/94">http://www.scala-lang.org/node/94</ulink>. If you are interested in contributing to the development of the plugin, see this web page, <ulink url="http://lampsvn.epfl.ch/trac/scala/wiki/EclipsePlugin">http://lampsvn.epfl.ch/trac/scala/wiki/EclipsePlugin</ulink>.</simpara>
 <simpara id="para_the_plugin_requires_jdk_5_or_h">The plugin requires JDK 5 or higher (JDK 6 is recommended) and Eclipse 3.3 or higher (Eclipse 3.4 is recommended). The plugin installs the Scala SDK itself. To install the plugin, invoke the <emphasis>Software Updates</emphasis> command in the <emphasis>Help</emphasis> menu.</simpara>
 <simpara id="para_click_the__available_software_">Click the <emphasis>Available Software</emphasis> tab and click the "Add Site…" button on the right hand side. You will see the dialog shown in <xref linkend="eclipse-add-site"/>.</simpara>
-<figure id="eclipse-add-site"><title>The <emphasis>add site</emphasis> Eclipse dialog.</title>
+<figure id="eclipse-add-site">
+  <title>The <emphasis>add site</emphasis> Eclipse dialog.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/eclipse-add-site.png" contentwidth="4.8in"/>
-    </imageobject>
-    <textobject><phrase>images/eclipse-add-site.png</phrase></textobject>
-  </mediaobject>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/eclipse-add-site.pdf" format="PDF"/>
+  </imageobject>
+  <imageobject role="web">
+    <imagedata fileref="figs/web/eclipse-add-site.png" format="PNG"/>
+  </imageobject>
+  </mediaobject>  
 </figure>
 <simpara id="para_enter_the_url_that_shown_in_th">Enter the URL that shown in the figure, <ulink url="http://www.scala-lang.org/scala-eclipse-plugin">http://www.scala-lang.org/scala-eclipse-plugin</ulink>. Some people prefer to work with the <emphasis>nightly</emphasis> releases, <ulink url="http://www.scala-lang.org/scala-eclipse-plugin-nightly">http://www.scala-lang.org/scala-eclipse-plugin-nightly</ulink>, but you should be aware that there is no guarantee they will work!</simpara>
 <simpara id="para_select_the_check_box_next_to_t">Select the check box next to the newly-added update site and click the <emphasis>Install</emphasis> button, as indicated in <xref linkend="eclipse-install-scala2"/>. <emphasis role="strong">Don’t</emphasis> click the “default” <emphasis>Close</emphasis> button!</simpara>
-<figure id="eclipse-install-scala2"><title>The <emphasis>Software Updates and Add-ons</emphasis> dialog.</title>
+<figure id="eclipse-install-scala2">
+  <title>The <emphasis>Software Updates and Add-ons</emphasis> dialog.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/eclipse-install-scala2.png" contentwidth="4.8in"/>
-    </imageobject>
-    <textobject><phrase>images/eclipse-install-scala2.png</phrase></textobject>
+  <imageobject role="print">
+    <imagedata fileref="figs/print/eclipse-install-scala2.pdf" format="PDF"/>
+  </imageobject>
+  <imageobject role="web">
+    <imagedata fileref="figs/web/eclipse-install-scala2.png" format="PNG"/>
+  </imageobject>
   </mediaobject>
 </figure>
 <warning id="para_warning_it_is_easy_to_be_conf"><simpara>It is easy to be confused by the poor usability of the <emphasis>Software Updates</emphasis> dialog.</simpara></warning>
@@ -514,32 +518,41 @@ case class Complex(real: Double, imaginary: Double) {
 <simpara id="para_the_intellij__idea__team_provi">The IntelliJ <emphasis>IDEA</emphasis> team provides a <emphasis>beta</emphasis>-quality Scala plugin. Start here for details: <ulink url="http://www.jetbrains.net/confluence/display/SCA/Scala+Plugin+for+IntelliJ+IDEA">http://www.jetbrains.net/confluence/display/SCA/Scala+Plugin+for+IntelliJ+IDEA</ulink>.</simpara>
 <simpara id="para_to_use_the_plugin_you_must_us">To use the plugin, you must use IntelliJ 8.0.X or later. Consider using the most recent “EAP” build for the latest feature updates. You must also have the Scala command-line SDK installed, as discussed in <xref linkend="InstallingScala"/> in <xref linkend="IntroducingScala"/>.</simpara>
 <simpara id="para_to_install_the_scala_plugin_s">To install the Scala plugin, start IDEA. Open the <emphasis>Settings</emphasis> panel, <emphasis>e.g.,</emphasis> using the <emphasis>File → Settings</emphasis> menu item. On the left-hand side, scroll down to and click the <emphasis>Plugins</emphasis> item, as shown in <xref linkend="idea-settings-plugins"/>.</simpara>
-<figure id="idea-settings-plugins"><title>IntelliJ IDEA Settings → Plugins.</title>
+<figure id="idea-settings-plugins">
+  <title>IntelliJ IDEA Settings → Plugins.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/idea-settings-plugins1a.png" contentwidth="4.8in"/>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/idea-settings-plugins1a.pdf" format="PDF"/>
     </imageobject>
-    <textobject><phrase>images/idea-settings-plugins1a.png</phrase></textobject>
+    <imageobject role="web">
+      <imagedata fileref="figs/web/idea-settings-plugins1a.png" format="PNG"/>
+    </imageobject>
   </mediaobject>
 </figure>
 <simpara id="para_select_the__available__tab_on_">Select the <emphasis>Available</emphasis> tab on the right-hand side. Scroll down to the <emphasis>Scala</emphasis> plugin, as shown in
 <xref linkend="idea-settings-plugins-scala"/>.</simpara>
-<figure id="idea-settings-plugins-scala"><title>Available IntelliJ IDEA Scala plugins.</title>
+<figure id="idea-settings-plugins-scala">
+  <title>Available IntelliJ IDEA Scala plugins.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/idea-settings-plugins1b.png" contentwidth="4.8in"/>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/idea-settings-plugins1b.pdf" format="PDF"/>
     </imageobject>
-    <textobject><phrase>images/idea-settings-plugins1b.png</phrase></textobject>
+    <imageobject role="web">
+      <imagedata fileref="figs/web/idea-settings-plugins1b.png" format="PNG"/>
+    </imageobject>
   </mediaobject>
 </figure>
 <simpara id="para_right_click_the__scala__plugin">Right-click the <emphasis>Scala</emphasis> plugin name and select <emphasis>Download and Install</emphasis> from the menu. Repeat for the <emphasis>Scala Application</emphasis> plugin. You will have to restart IDEA for the plugins to be enabled.</simpara>
 <simpara id="para_after_idea_restarts_confirm_t">After IDEA restarts, confirm that the two plugins were installed correctly by reopening the <emphasis>Plugin Manager</emphasis>. Click the <emphasis>Installed</emphasis> tab and scroll down to find the two Scala plugins. They should be listed with a black font and the check boxes next to them should be checked, as seen in <xref linkend="idea-settings-plugins-confirm"/>.</simpara>
-<figure id="idea-settings-plugins-confirm"><title>Installed IntelliJ IDEA Scala plugins.</title>
+<figure id="idea-settings-plugins-confirm">
+  <title>Installed IntelliJ IDEA Scala plugins.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/idea-settings-plugins-confirm.png" contentwidth="4.8in"/>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/idea-settings-plugins-confirm.pdf" format="PDF"/>
     </imageobject>
-    <textobject><phrase>images/idea-settings-plugins-confirm.png</phrase></textobject>
+    <imageobject role="web">
+      <imagedata fileref="figs/web/idea-settings-plugins-confirm.png" format="PNG"/>
+    </imageobject>
   </mediaobject>
 </figure>
 <simpara id="para_if_the_font_is_red_or_the_chec">If the font is red or the check boxes are not checked, refer to the Scala Plugin web page above for debugging help.</simpara>
@@ -548,21 +561,26 @@ case class Complex(real: Double, imaginary: Double) {
 <title>Developing Scala Applications</title>
 <simpara id="para_to_create_an_idea_scala_project_sta">To create an IDEA Scala Project, start by selecting the <emphasis>File → New Project</emphasis> menu item. In the dialog, select the appropriate radio button for your situation, <emphasis>e.g.,</emphasis> “Create New Project from Scratch”.</simpara>
 <simpara id="para_on_the_next_screen_select__ja">On the next screen, select <emphasis>Java Module</emphasis> and fill in the usual project information. An example is shown in <xref linkend="idea-new-project1a"/>.</simpara>
-<figure id="idea-new-project1a"><title>Specifying IntelliJ IDEA Scala project details.</title>
+<figure id="idea-new-project1a">
+  <title>Specifying IntelliJ IDEA Scala project details.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/idea-new-project1a.png" contentwidth="4.8in"/>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/idea-new-project1a.pdf" format="PDF"/>
+      </imageobject><imageobject role="web">
+      <imagedata fileref="figs/web/idea-new-project1a.png" format="PNG"/>
     </imageobject>
-    <textobject><phrase>images/idea-new-project1a.png</phrase></textobject>
   </mediaobject>
 </figure>
 <simpara id="para_click_through_to_the_screen_ti">Click through to the screen titled <emphasis>Please Select Desired Technology</emphasis>. Check the <emphasis>Scala</emphasis> check box and check the <emphasis>New Scala SDK</emphasis> checkbox. Click the button labeled “…” to navigate to the location of your Scala SDK installation, as shown in <xref linkend="idea-new-project1b"/>. You will only need to specify the SDK the first time you create a project or when you install a new SDK in a different location.</simpara>
-<figure id="idea-new-project1b"><title>Adding Scala to the IntelliJ IDEA project.</title>
+<figure id="idea-new-project1b">
+  <title>Adding Scala to the IntelliJ IDEA project.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/idea-new-project1b.png" contentwidth="4.8in"/>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/idea-new-project1b.pdf" format="PDF"/>
     </imageobject>
-    <textobject><phrase>images/idea-new-project1b.png</phrase></textobject>
+    <imageobject role="web">
+      <imagedata fileref="figs/web/idea-new-project1b.png" format="PNG"/>
+    </imageobject>
   </mediaobject>
 </figure>
 <simpara id="para_click__finish__you_will_be_pr">Click <emphasis>Finish</emphasis>. You will be prompted to create either a <emphasis>Project</emphasis> or an <emphasis>Application</emphasis>. Select <emphasis>Application</emphasis> if you want to share this project with other Scala projects on the same machine.</simpara>
@@ -577,12 +595,15 @@ case class Complex(real: Double, imaginary: Double) {
 <simpara id="para_netbeans_has__beta__quality_sc">NetBeans has <emphasis>beta</emphasis>-quality Scala plugins. Start at this web page for details, <ulink url="http://wiki.netbeans.org/Scala">http://wiki.netbeans.org/Scala</ulink>. NetBeans 6.5 or a more recent nightly build is required. The Scala plugin contains a version of the Scala SDK. The wiki page provides instructions for using a different SDK, when desired.</simpara>
 <simpara id="para_to_install_the_plugin_downloa">To install the plugin, download the plugins zip file from <ulink url="http://sourceforge.net/project/showfiles.php?group_id=192439&amp;package_id=256544">http://sourceforge.net/project/showfiles.php?group_id=192439&amp;package_id=256544</ulink>. Unzip the file in a convenient directory.</simpara>
 <simpara id="para_start_netbeans_and_invoke_the_">Start NetBeans and invoke the <emphasis>Tools → Plugins</emphasis> menu item. Select the <emphasis>Downloaded</emphasis> tab and click the <emphasis>Add Plugins…</emphasis> button. Choose the directory where the Scala plugins are unzipped, select all the listed <literal>*.nbm</literal> files, as shown in <xref linkend="netbeans-add-plugins"/>. Click <emphasis>Open</emphasis>.</simpara>
-<figure id="netbeans-add-plugins"><title>Adding the Scala plugins to be installed.</title>
+<figure id="netbeans-add-plugins">
+  <title>Adding the Scala plugins to be installed.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/netbeans-add-plugins.png" contentwidth="4.8in"/>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/netbeans-add-plugins.pdf" format="PDF"/>
     </imageobject>
-    <textobject><phrase>images/netbeans-add-plugins.png</phrase></textobject>
+    <imageobject role="web">
+      <imagedata fileref="figs/web/netbeans-add-plugins.png" format="PNG"/>
+    </imageobject>
   </mediaobject>
 </figure>
 <simpara id="para_back_in_the__plugins__dialog_">Back in the <emphasis>Plugins</emphasis> dialog, make sure the check boxes for all the new plugins are checked. Click <emphasis>Install</emphasis>.</simpara>
@@ -591,12 +612,15 @@ case class Complex(real: Double, imaginary: Double) {
 <sect3 id="_developing_scala_applications_3">
 <title>Developing Scala Applications</title>
 <simpara id="para_to_create_a_netbeans_scala_project_sta">To create a NetBeans Scala Project, start by selecting the <emphasis>File → New Project</emphasis> menu item or clicking the <emphasis>New Project</emphasis> button. In the pop-up dialog, select <emphasis>Scala</emphasis> under <emphasis>Categories</emphasis> and <emphasis>Scala Application</emphasis> under <emphasis>Projects</emphasis>, as shown in <xref linkend="netbeans-new-project1"/>. Click <emphasis>Next</emphasis>.</simpara>
-<figure id="netbeans-new-project1"><title>Creating a new NetBeans Scala project.</title>
+<figure id="netbeans-new-project1">
+  <title>Creating a new NetBeans Scala project.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/netbeans-new-project1.png" contentwidth="4.8in"/>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/netbeans-new-project1.pdf" format="PDF"/>
     </imageobject>
-    <textobject><phrase>images/netbeans-new-project1.png</phrase></textobject>
+    <imageobject role="web">
+      <imagedata fileref="figs/web/netbeans-new-project1.png" format="PNG"/>
+    </imageobject>
   </mediaobject>
 </figure>
 <simpara id="para_fill_in_the_project_name_loca">Fill in the project name, location, <emphasis>etc.</emphasis> and click <emphasis>Finish</emphasis>.</simpara>

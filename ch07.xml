@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<chapter id="ScalaObjectSystem">
+<?xml version="1.0" encoding="UTF-8"?><chapter id="ScalaObjectSystem">
 <title>The Scala Object System</title>
 <sect1 id="PredefObject">
 <title>The Predef Object</title>
@@ -304,14 +302,19 @@ body length? 13</screen>
 <sect1 id="ScalaTypeHierarchy">
 <title>The Scala Type Hierarchy</title>
 <simpara id="para_we_have_mentioned_a_number_of_">We have mentioned a number of types in Scala’s type hierarchy already. Let’s look at the general structure of the hierarchy, as illustrated in <xref linkend="scalas-type-hierarchy"/>.</simpara>
-<figure id="scalas-type-hierarchy"><title>Scala’s type hierarchy.</title>
+
+<figure id="scalas-type-hierarchy">
+  <title>Scala’s type hierarchy.</title>
   <mediaobject>
-    <imageobject>
-      <imagedata fileref="images/TypeHierarchy.png" contentwidth="4.8in"/>
-    </imageobject>
-    <textobject><phrase>images/TypeHierarchy.png</phrase></textobject>
+    <imageobject role="print">
+      <imagedata fileref="figs/print/TypeHierarchy.pdf" format="PDF"/>
+  </imageobject>
+  <imageobject role="web">
+    <imagedata fileref="figs/web/TypeHierarchy.png" format="PNG"/>
+  </imageobject>
   </mediaobject>
 </figure>
+
 <simpara id="para_the_following_tables_discuss_t">The following tables discuss the types shown in <xref linkend="scalas-type-hierarchy"/>, as well as some other important types that aren’t shown. Some details are omitted for clarity. When the underlying “runtime” is discussed, the points made apply equally to the JVM and the .NET CLR, except where noted.</simpara>
 <table id="any-anyval-anyref" frame="none" rowsep="1" colsep="1">
 <title><literal>Any</literal>, <literal>AnyVal</literal>, and <literal>AnyRef</literal>.</title>
