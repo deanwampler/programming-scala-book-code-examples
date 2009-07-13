@@ -3,16 +3,16 @@
 <title>Preface</title>
 <sect1 id="_conventions_used_in_this_book">
 <title>Conventions Used in This Book</title>
-<simpara id="para_the_following_typographical_co">The following typographical conventions are used in this book:</simpara>
+<para id="para_the_following_typographical_co">The following typographical conventions are used in this book:</para>
 <variablelist id="para_book_conventions">
 <varlistentry id="varlistentry-italic">
 <term>
 <emphasis>Italic</emphasis>
 </term>
 <listitem>
-<simpara>
+<para>
   Indicates new terms, URLs, email addresses, filenames, and file extensions. Many italicized terms are defined in the <xref linkend="Glossary"/>.
-</simpara>
+</para>
 </listitem>
 </varlistentry>
 <varlistentry id="varlistentry-constant-width">
@@ -20,11 +20,11 @@
 <literal>Constant width</literal>
 </term>
 <listitem>
-<simpara>
+<para>
   Used for program listings, as well as within paragraphs to refer to program elements such as
   variable or function names, databases, data types, environment variables, statements, and
   keywords.
-</simpara>
+</para>
 </listitem>
 </varlistentry>
 <varlistentry id="varlistentry-constant-width-bold">
@@ -32,9 +32,9 @@
 <userinput>Constant width bold</userinput>
 </term>
 <listitem>
-<simpara>
+<para>
   Shows commands or other text that should be typed literally by the user.
-</simpara>
+</para>
 </listitem>
 </varlistentry>
 <varlistentry id="varlistentry-constant-width-italic">
@@ -42,18 +42,18 @@
 <replaceable>Constant width italic</replaceable>
 </term>
 <listitem>
-<simpara>
+<para>
   Shows text that should be replaced with user-supplied values or by values determined by context.
-</simpara>
+</para>
 </listitem>
 </varlistentry>
 </variablelist>
-<tip id="para_tip_this_icon_signifies_a_tip"><simpara>This icon signifies a tip, suggestion, or general note.</simpara></tip>
-<caution id="para_caution_this_icon_indicates_a"><simpara>This icon indicates a warning or caution.</simpara></caution>
+<tip id="para_tip_this_icon_signifies_a_tip"><para>This icon signifies a tip, suggestion, or general note.</para></tip>
+<caution id="para_caution_this_icon_indicates_a"><para>This icon indicates a warning or caution.</para></caution>
 </sect1>
 <sect1 id="UsingCodeExamples">
 <title>Using Code Examples</title>
-<simpara id="para_this_book_is_here_to_help_you_">This book is here to help you get your job done. In general, you may
+<para id="para_this_book_is_here_to_help_you_">This book is here to help you get your job done. In general, you may
 use the code in this book in your programs and documentation. You do not
 need to contact us for permission unless you’re reproducing a significant
 portion of the code. For example, writing a program that uses several
@@ -62,27 +62,27 @@ distributing a CD-ROM of examples from O’Reilly books does require
 permission. Answering a question by citing this book and quoting example
 code does not require permission. Incorporating a significant amount of
 example code from this book into your product’s documentation does require
-permission.</simpara>
-<simpara id="para_we_appreciate_but_do_not_requ">We appreciate, but do not require, attribution. An attribution
+permission.</para>
+<para id="para_we_appreciate_but_do_not_requ">We appreciate, but do not require, attribution. An attribution
 usually includes the title, author, publisher, and ISBN. For example:
 “<emphasis>Programming Scala</emphasis> by Dean Wampler and Alex Payne. Copyright 2009 O’Reilly
-Media, Inc., 978-0-596-15595-7.”</simpara>
-<simpara id="para_if_you_feel_your_use_of_code_e">If you feel your use of code examples falls outside fair use or the
+Media, Inc., 978-0-596-15595-7.”</para>
+<para id="para_if_you_feel_your_use_of_code_e">If you feel your use of code examples falls outside fair use or the
 permission given above, feel free to contact us at
-<email>permissions@oreilly.com</email>.</simpara>
+<email>permissions@oreilly.com</email>.</para>
 <sect2 id="GettingCodeExamples">
 <title>Getting the Code Examples</title>
-<simpara id="para_you_can_download_the_code_exam">You can download the code examples from TODO. Unzip the files to a convenient location. See the <literal>README.txt</literal> file in the distribution for instructions on building and using the examples.</simpara>
-<simpara id="para_file_name_conventions">Some of the example files can be run as scripts using the <userinput>scala</userinput> command. Others must be compiled into class files. Some files contain deliberate errors and won’t compile. We have adopted a file naming convention to indicate each of these cases, although as you learn Scala it should become obvious from the contents of the files, in most cases.</simpara>
+<para id="para_you_can_download_the_code_exam">You can download the code examples from TODO. Unzip the files to a convenient location. See the <literal>README.txt</literal> file in the distribution for instructions on building and using the examples.</para>
+<para id="para_file_name_conventions">Some of the example files can be run as scripts using the <userinput>scala</userinput> command. Others must be compiled into class files. Some files contain deliberate errors and won’t compile. We have adopted a file naming convention to indicate each of these cases, although as you learn Scala it should become obvious from the contents of the files, in most cases.</para>
 <variablelist id="para_script_file_convention">
 <varlistentry id="varlistentry-script-scala">
 <term>
 <literal>*-script.scala</literal>
 </term>
 <listitem>
-<simpara>
+<para>
   Files that end in <literal>-script.scala</literal> can be run on a command line using <userinput>scala</userinput>, <emphasis>e.g.,</emphasis> <userinput>scala foo-script.scala</userinput>. You can also start <userinput>scala</userinput> in the interpreter mode (when you don’t specify a script file) and load any script file in the interpreter using the <literal>:load filename</literal> command.
-</simpara>
+</para>
 </listitem>
 </varlistentry>
 <varlistentry id="varlistentry-wont-compile-scala">
@@ -90,9 +90,9 @@ permission given above, feel free to contact us at
 <literal>*-wont-compile.scala</literal>
 </term>
 <listitem>
-<simpara>
+<para>
   Files that end in <literal>-wont-compile.scala</literal> contain deliberate errors that will cause them to fail to compile. We use this naming convention, along with one or more embedded comments about the errors, so it will be clear that they are invalid. Also, these files are skipped by the build process for the examples.
-</simpara>
+</para>
 </listitem>
 </varlistentry>
 <varlistentry id="varlistentry-sake-scala">
@@ -100,9 +100,9 @@ permission given above, feel free to contact us at
 <literal>sake.scala</literal>
 </term>
 <listitem>
-<simpara>
+<para>
   Files named <literal>sake.scala</literal> are used by our build tool, called <userinput>sake</userinput>. The <literal>README.txt</literal> file describes this tool.
-</simpara>
+</para>
 </listitem>
 </varlistentry>
 <varlistentry id="varlistentry-scala">
@@ -110,9 +110,9 @@ permission given above, feel free to contact us at
 <literal>*.scala</literal>
 </term>
 <listitem>
-<simpara>
+<para>
   All other Scala files must be compiled using <userinput>scalac</userinput>. In the distribution, they are used either by other compiled or script files, such as tests, not all of which are listed in the book.
-</simpara>
+</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -120,18 +120,18 @@ permission given above, feel free to contact us at
 </sect1>
 <sect1 id="para_other_file_convention">
 <title>Safari® Books Online</title>
-<note id="para_note_when_you_see_a_safari_"><simpara>When you see a Safari® Books Online icon on the cover of your
+<note id="para_note_when_you_see_a_safari_"><para>When you see a Safari® Books Online icon on the cover of your
       favorite technology book, that means the book is available online
-      through the O’Reilly Network Safari Bookshelf.</simpara></note>
-<simpara id="para_safari_offers_a_solution_that_">Safari offers a solution that’s better than e-books. It’s a virtual
+      through the O’Reilly Network Safari Bookshelf.</para></note>
+<para id="para_safari_offers_a_solution_that_">Safari offers a solution that’s better than e-books. It’s a virtual
 library that lets you easily search thousands of top tech books, cut and
 paste code samples, download chapters, and find quick answers when you
 need the most accurate, current information. Try it for free at
-<ulink role="orm:hideurl:ital" url="http://my.safaribooksonline.com/?portal=oreilly">http://my.safaribooksonline.com</ulink>.</simpara>
+<ulink role="orm:hideurl:ital" url="http://my.safaribooksonline.com/?portal=oreilly">http://my.safaribooksonline.com</ulink>.</para>
 </sect1>
 <sect1 id="_how_to_contact_us">
 <title>How to Contact Us</title>
-<simpara id="para_please_address_comments_and_qu">Please address comments and questions concerning this book to the publisher:</simpara>
+<para id="para_please_address_comments_and_qu">Please address comments and questions concerning this book to the publisher:</para>
 <simplelist type="vert">
   <member>Reilly Media, Inc.</member>
   <member>1005 Gravenstein Highway North</member>
@@ -140,17 +140,17 @@ need the most accurate, current information. Try it for free at
   <member>707-829-0515 (international or local)</member>
   <member>707 829-0104 (fax)</member>
 </simplelist>
-<simpara id="para_we_have_a_web_page_for_this_bo">We have a web page for this book, where we list errata, examples,
-and any additional information. You can access this page at:</simpara>
+<para id="para_we_have_a_web_page_for_this_bo">We have a web page for this book, where we list errata, examples,
+and any additional information. You can access this page at:</para>
 <simplelist type="vert">
   <member><ulink url="http://oreilly.com/catalog/9780596155957/"/></member>
 </simplelist>
-<simpara id="para_to_comment_or_ask_technical_qu">To comment or ask technical questions about this book, send email to:</simpara>
+<para id="para_to_comment_or_ask_technical_qu">To comment or ask technical questions about this book, send email to:</para>
 <simplelist type="vert">
   <member><email>bookquestions@oreilly.com</email></member>
 </simplelist>
-<simpara id="para_for_more_information_about_our">For more information about our books, conferences, Resource Centers, and the O’Reilly Network, see
-our web site at:</simpara>
+<para id="para_for_more_information_about_our">For more information about our books, conferences, Resource Centers, and the O’Reilly Network, see
+our web site at:</para>
 <simplelist type="vert">
   <member><ulink url="http://oreilly.com"/></member>
 </simplelist>

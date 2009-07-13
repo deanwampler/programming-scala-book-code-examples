@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter id="AdvancedObjectOrientedProgramming">
 <title>Advanced Object-Oriented Programming In Scala</title>
-<simpara id="para_we_finish_our_survey_of_scala_">We’ve got the basics of OOP in Scala under our belt, but there’s plenty more to learn.</simpara>
+<para id="para_we_finish_our_survey_of_scala_">We’ve got the basics of OOP in Scala under our belt, but there’s plenty more to learn.</para>
 <sect1 id="OverridingMembers">
 <title>Overriding Members of Classes and Traits</title>
-<simpara id="para_classes_and_traits_can_declare">Classes and traits can declare <emphasis>abstract</emphasis> members: <emphasis>fields</emphasis>, <emphasis>methods</emphasis>, and <emphasis>types</emphasis>. These members must be defined by a derived class or trait before an instance can be created. Most object-oriented languages support abstract methods and some also support abstract fields and types.</simpara>
-<note id="para_note_when_overriding_a__concr"><simpara>When overriding a concrete member, Scala requires the <literal>override</literal> keyword. It is optional when a subtype defines (“overrides”) an abstract member. Conversely, don’t use <literal>override</literal> unless you are actually overriding a member.</simpara></note>
-<simpara id="para_requiring_the_override_keywo">Requiring the <literal>override</literal> keyword has several benefits.</simpara>
+<para id="para_classes_and_traits_can_declare">Classes and traits can declare <emphasis>abstract</emphasis> members: <emphasis>fields</emphasis>, <emphasis>methods</emphasis>, and <emphasis>types</emphasis>. These members must be defined by a derived class or trait before an instance can be created. Most object-oriented languages support abstract methods and some also support abstract fields and types.</para>
+<note id="para_note_when_overriding_a__concr"><para>When overriding a concrete member, Scala requires the <literal>override</literal> keyword. It is optional when a subtype defines (“overrides”) an abstract member. Conversely, don’t use <literal>override</literal> unless you are actually overriding a member.</para></note>
+<para id="para_requiring_the_override_keywo">Requiring the <literal>override</literal> keyword has several benefits.</para>
 <orderedlist numeration="arabic">
 <listitem>
-<simpara>
+<para>
 It catches misspelled members that were intended to be overrides. The compiler will throw an error that the member doesn’t override anything.
-</simpara>
+</para>
 </listitem>
 <listitem>
-<simpara>
+<para>
 It catches a potentially subtle bug that can occur if a new member is added to a base class where the member’s name collides with an older derived class member that is unknown to the base class developer. That is, the derived-class member was never intended to override a base-class member. Because the derived class member won’t have the <literal>override</literal> keyword, the compiler will throw an error when the new base-class member is introduced.
-</simpara>
+</para>
 </listitem>
 <listitem>
-<simpara>
+<para>
 Having to add the keyword reminds you to consider what members should or should not be overridden.
-</simpara>
+</para>
 </listitem>
 </orderedlist>
-<simpara id="para_java_has_an_optional_overrid">Java has an optional <literal>@Override</literal> annotation for methods. It helps catch errors of the first type (mispellings), but it can’t help with errors of the second type, since using the annotation is optional.</simpara>
+<para id="para_java_has_an_optional_overrid">Java has an optional <literal>@Override</literal> annotation for methods. It helps catch errors of the first type (mispellings), but it can’t help with errors of the second type, since using the annotation is optional.</para>
 <sect2 id="FinalDeclarations">
 <title>Attempting to Override final Declarations</title>
-<simpara id="para_however_if_a_declaration_incl">However, if a declaration includes the <literal>final</literal> keyword, then overriding the declaration is prohibited. In the following example, the <literal>fixedMethod</literal> is declared <literal>final</literal> in the parent class. Attempting to compile the example will result in a compilation error.</simpara>
+<para id="para_however_if_a_declaration_incl">However, if a declaration includes the <literal>final</literal> keyword, then overriding the declaration is prohibited. In the following example, the <literal>fixedMethod</literal> is declared <literal>final</literal> in the parent class. Attempting to compile the example will result in a compilation error.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/final-member-wont-compile.scala
 // WON'T COMPILE.
 
@@ -38,7 +38,7 @@ class NotFixed {
 class Changeable2 extends NotFixed {
   override def fixedMethod = "not fixed"   // ERROR
 }</programlisting>
-<simpara id="para_this_constraint_applies_to_cla">This constraint applies to classes and traits as well as members. In this example, the class <literal>Fixed</literal> is declared <literal>final</literal>, so an attempt to derive a new type from it will also fail to compile.</simpara>
+<para id="para_this_constraint_applies_to_cla">This constraint applies to classes and traits as well as members. In this example, the class <literal>Fixed</literal> is declared <literal>final</literal>, so an attempt to derive a new type from it will also fail to compile.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/final-class-wont-compile.scala
 // WON'T COMPILE.
 
@@ -47,14 +47,14 @@ final class Fixed {
 }
 
 class Changeable1 extends Fixed     // ERROR</programlisting>
-<note id="para_standard_final_classes"><simpara>Some of the types in the Scala library are final, including JDK classes like <literal>String</literal> and all the “value” types derived from <literal>AnyVal</literal> (see <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/>).</simpara></note>
-<simpara id="para_declarations_that_arent_final">For declarations that aren’t final, let’s examine the rules and behaviors for overriding, starting with methods.</simpara>
+<note id="para_standard_final_classes"><para>Some of the types in the Scala library are final, including JDK classes like <literal>String</literal> and all the “value” types derived from <literal>AnyVal</literal> (see <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/>).</para></note>
+<para id="para_declarations_that_arent_final">For declarations that aren’t final, let’s examine the rules and behaviors for overriding, starting with methods.</para>
 </sect2>
 <sect2 id="OverridingMethods">
 <title>Overriding Abstract and Concrete Methods</title>
-<simpara id="para_let_s_extend_our_earlier_widg">Let’s extend our familiar <literal>Widget</literal> base class with an abstract method <literal>draw</literal>, to support “rendering” the widget to a display, web page, <emphasis>etc.</emphasis> We’ll also override a concrete method familiar to any Java programmer, <literal>toString()</literal>, using an <emphasis>ad hoc</emphasis> format. As before, we will use a new package, <literal>ui3</literal>.</simpara>
-<note id="para_note_drawing_is_actually_a__c"><simpara>Drawing is actually a <emphasis>cross-cutting concern</emphasis>. The state of a <literal>Widget</literal> is one thing; how it is rendered on different platforms, thick clients, web pages, mobile devices, <emphasis>etc.</emphasis>, is a separate issue. So, drawing is a very good candidate for a trait, especially if you want your GUI abstractions to be portable. However, to keep things simple, we will handle drawing in the <literal>Widget</literal> hierarchy itself.</simpara></note>
-<simpara id="para_here_is_the_revised_widget_c">Here is the revised <literal>Widget</literal> class, with <literal>draw</literal> and <literal>toString</literal> methods.</simpara>
+<para id="para_let_s_extend_our_earlier_widg">Let’s extend our familiar <literal>Widget</literal> base class with an abstract method <literal>draw</literal>, to support “rendering” the widget to a display, web page, <emphasis>etc.</emphasis> We’ll also override a concrete method familiar to any Java programmer, <literal>toString()</literal>, using an <emphasis>ad hoc</emphasis> format. As before, we will use a new package, <literal>ui3</literal>.</para>
+<note id="para_note_drawing_is_actually_a__c"><para>Drawing is actually a <emphasis>cross-cutting concern</emphasis>. The state of a <literal>Widget</literal> is one thing; how it is rendered on different platforms, thick clients, web pages, mobile devices, <emphasis>etc.</emphasis>, is a separate issue. So, drawing is a very good candidate for a trait, especially if you want your GUI abstractions to be portable. However, to keep things simple, we will handle drawing in the <literal>Widget</literal> hierarchy itself.</para></note>
+<para id="para_here_is_the_revised_widget_c">Here is the revised <literal>Widget</literal> class, with <literal>draw</literal> and <literal>toString</literal> methods.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/widget.scala
 
 package ui3
@@ -63,9 +63,9 @@ abstract class Widget {
   def draw(): Unit
   override def toString() = "(widget)"
 }</programlisting>
-<simpara id="para_the_draw_method_is_abstract_">The <literal>draw</literal> method is abstract because it has no body; that is, the method isn’t followed by an equals sign (<literal>=</literal>), nor any text after it. Therefore, <literal>Widget</literal> has to be declared <literal>abstract</literal> (it was optional before). Each concrete subclass of <literal>Widget</literal> will have to implement <literal>draw</literal> or rely on a parent class that implements it. We don’t need to return anything from <literal>draw</literal>, so its return value is <literal>Unit</literal>.</simpara>
-<simpara id="para_the_tostring_method_is_str">The <literal>toString()</literal> method is straightforward. Since <literal>AnyRef</literal> defines <literal>toString</literal>, the <literal>override</literal> keyword is required for <literal>Widget.toString</literal>.</simpara>
-<simpara id="para_here_is_the_revised_button_c">Here is the revised <literal>Button</literal> class, with <literal>draw</literal> and <literal>toString</literal> methods..</simpara>
+<para id="para_the_draw_method_is_abstract_">The <literal>draw</literal> method is abstract because it has no body; that is, the method isn’t followed by an equals sign (<literal>=</literal>), nor any text after it. Therefore, <literal>Widget</literal> has to be declared <literal>abstract</literal> (it was optional before). Each concrete subclass of <literal>Widget</literal> will have to implement <literal>draw</literal> or rely on a parent class that implements it. We don’t need to return anything from <literal>draw</literal>, so its return value is <literal>Unit</literal>.</para>
+<para id="para_the_tostring_method_is_str">The <literal>toString()</literal> method is straightforward. Since <literal>AnyRef</literal> defines <literal>toString</literal>, the <literal>override</literal> keyword is required for <literal>Widget.toString</literal>.</para>
+<para id="para_here_is_the_revised_button_c">Here is the revised <literal>Button</literal> class, with <literal>draw</literal> and <literal>toString</literal> methods..</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/button.scala
 
 package ui3
@@ -83,21 +83,21 @@ class Button(val label: String) extends Widget with Clickable {
   override def toString() =
     "(button: label=" + label + ", " + super.toString() + ")"
 }</programlisting>
-<simpara id="para__button_implements_the_abstra"><literal>Button</literal> implements the abstract method <literal>draw</literal>. No <literal>override</literal> keyword is required. <literal>Button</literal> also overrides <literal>toString</literal>, so the <literal>override</literal> keyword is required. Note that <literal>super.toString</literal> is called.</simpara>
-<simpara id="para_the_super_keyword_is_analogo">The <literal>super</literal> keyword is analogous to <literal>this</literal>, but it binds to the parent type, which is the aggregation of the parent class and any mixed-in traits. The search for <literal>super.toString</literal> will find the “closest” parent type <literal>toString</literal>, as determined by the linearization process (see <xref linkend="Linearization"/> in <xref linkend="ScalaObjectSystem"/>). In this case, since <literal>Clickable</literal> doesn’t define <literal>toString</literal>, <literal>Widget.toString</literal> will be called.</simpara>
-<tip id="para_tip_overriding_a_concrete_met"><simpara>Overriding a concrete method should be done rarely, because it is error prone. Should you invoke the parent method? If so, when? Do you call it before doing anything else or afterwards? While the writer of the parent method might document the overriding constraints for the method, it’s difficult to ensure that the writer of a derived class will honor those constraints. A much more robust approach is the <emphasis>Template Method Pattern</emphasis> <xref linkend="GOF1995" xrefstyle="select: title nopage"/>.</simpara></tip>
+<para id="para__button_implements_the_abstra"><literal>Button</literal> implements the abstract method <literal>draw</literal>. No <literal>override</literal> keyword is required. <literal>Button</literal> also overrides <literal>toString</literal>, so the <literal>override</literal> keyword is required. Note that <literal>super.toString</literal> is called.</para>
+<para id="para_the_super_keyword_is_analogo">The <literal>super</literal> keyword is analogous to <literal>this</literal>, but it binds to the parent type, which is the aggregation of the parent class and any mixed-in traits. The search for <literal>super.toString</literal> will find the “closest” parent type <literal>toString</literal>, as determined by the linearization process (see <xref linkend="Linearization"/> in <xref linkend="ScalaObjectSystem"/>). In this case, since <literal>Clickable</literal> doesn’t define <literal>toString</literal>, <literal>Widget.toString</literal> will be called.</para>
+<tip id="para_tip_overriding_a_concrete_met"><para>Overriding a concrete method should be done rarely, because it is error prone. Should you invoke the parent method? If so, when? Do you call it before doing anything else or afterwards? While the writer of the parent method might document the overriding constraints for the method, it’s difficult to ensure that the writer of a derived class will honor those constraints. A much more robust approach is the <emphasis>Template Method Pattern</emphasis> <xref linkend="GOF1995" xrefstyle="select: title nopage"/>.</para></tip>
 </sect2>
 <sect2 id="OverridingFields">
 <title>Overriding Abstract and Concrete Fields</title>
-<simpara id="para_fewer_object_oriented_language">Most OO languages allow you override mutable fields (<literal>var</literal>). Fewer object-oriented languages allow you to define abstract fields or override concrete immutable fields (<literal>val</literal>). For example, it’s common for a base class constructor to initialize a mutable field and for a derived class constructor to change its value.</simpara>
-<simpara id="para_we_ll_discuss_overriding_field">We’ll discuss overriding fields in traits and classes separately, as traits have some particular issues.</simpara>
+<para id="para_fewer_object_oriented_language">Most OO languages allow you override mutable fields (<literal>var</literal>). Fewer object-oriented languages allow you to define abstract fields or override concrete immutable fields (<literal>val</literal>). For example, it’s common for a base class constructor to initialize a mutable field and for a derived class constructor to change its value.</para>
+<para id="para_we_ll_discuss_overriding_field">We’ll discuss overriding fields in traits and classes separately, as traits have some particular issues.</para>
 </sect2>
 <sect2 id="OverridingFieldsInTraits">
 <title>Overriding Abstract and Concrete Fields in Traits</title>
-<simpara id="para_recall_our_vetoableclicks_tr">Recall our <literal>VetoableClicks</literal> trait in <xref linkend="StackableTraits"/>. It defines a <literal>val</literal> named <literal>maxAllowed</literal> and initializes it to <literal>1</literal>. We would like the ability to override the value in a class that mixes in this trait.</simpara>
-<simpara id="para_unfortunately_in_the_v2_7_x_v">Unfortunately, in the version 2.7.X version of Scala, it is not possible to override a <literal>val</literal> defined in a <emphasis>trait</emphasis>. However it is possible to override a <literal>val</literal> defined in a parent <emphasis>class</emphasis>. Version 2.8 of Scala does support overriding a <literal>val</literal> in a trait.</simpara>
-<tip id="para_tip_because_the_override_beha"><simpara>Because the override behavior for a <literal>val</literal> in a trait is changing, you should avoid relying on the ability to override it, if you are currently using Scala version 2.7.X. Use another approach instead.</simpara></tip>
-<simpara id="para_unfortunately_the_v2_7_x_pars">Unfortunately, the version 2.7 compiler accepts code that attempts to override a trait-defined <literal>val</literal>, but the override does not actually happen, as illustrated by this example.</simpara>
+<para id="para_recall_our_vetoableclicks_tr">Recall our <literal>VetoableClicks</literal> trait in <xref linkend="StackableTraits"/>. It defines a <literal>val</literal> named <literal>maxAllowed</literal> and initializes it to <literal>1</literal>. We would like the ability to override the value in a class that mixes in this trait.</para>
+<para id="para_unfortunately_in_the_v2_7_x_v">Unfortunately, in the version 2.7.X version of Scala, it is not possible to override a <literal>val</literal> defined in a <emphasis>trait</emphasis>. However it is possible to override a <literal>val</literal> defined in a parent <emphasis>class</emphasis>. Version 2.8 of Scala does support overriding a <literal>val</literal> in a trait.</para>
+<tip id="para_tip_because_the_override_beha"><para>Because the override behavior for a <literal>val</literal> in a trait is changing, you should avoid relying on the ability to override it, if you are currently using Scala version 2.7.X. Use another approach instead.</para></tip>
+<para id="para_unfortunately_the_v2_7_x_pars">Unfortunately, the version 2.7 compiler accepts code that attempts to override a trait-defined <literal>val</literal>, but the override does not actually happen, as illustrated by this example.</para>
 <screen>// code-examples/AdvOOP/overrides/trait-val-script.scala
 // DANGER! Silent failure to override a trait's "name" (V2.7.5 only).
 // Works as expected in V2.8.0.
@@ -121,16 +121,16 @@ class ClassExtendsT1 extends T1 {
 
 val c2 = new ClassExtendsT1()
 println(c2.name)</screen>
-<simpara id="para_if_you_run_this_script_oo1a">If you run this script with <userinput>scala</userinput> version 2.7.5, the output is the following.</simpara>
+<para id="para_if_you_run_this_script_oo1a">If you run this script with <userinput>scala</userinput> version 2.7.5, the output is the following.</para>
 <screen>T1
 T1</screen>
-<simpara id="para_we_might_have_expected_the_two">Reading the script, we would have expected the two <literal>T1</literal> strings to be <literal>ClassWithT1</literal> and <literal>ClassExtendsT1</literal>, respectively.</simpara>
-<simpara id="para_however_if_you_run_this_scrip">However, if you run this script with <userinput>scala</userinput> version 2.8.0, you get this output.</simpara>
+<para id="para_we_might_have_expected_the_two">Reading the script, we would have expected the two <literal>T1</literal> strings to be <literal>ClassWithT1</literal> and <literal>ClassExtendsT1</literal>, respectively.</para>
+<para id="para_however_if_you_run_this_scrip">However, if you run this script with <userinput>scala</userinput> version 2.8.0, you get this output.</para>
 <screen>ClassWithT1
 ClassExtendsT1</screen>
-<caution id="para_caution_attempts_to_override_"><simpara>Attempts to override a trait-defined <literal>val</literal> will be accepted by the compiler, but have no effect in Scala version 2.7.X.</simpara></caution>
-<simpara id="para_there_are_two_workarounds_the">There are three workarounds you can use with Scala version 2.7. The first is to use some advanced options for <userinput>scala</userinput> and <userinput>scalac</userinput>. The <literal>-Xfuture</literal> option will enable the override behavior that is supported in version 2.8. The <literal>-Xcheckinit</literal> option will analyze your code and report if the behavior change will break it. The option <literal>-Xexperimental</literal>, which enables many experimental changes, will also warn you that the <literal>val</literal> override behavior is different.</simpara>
-<simpara id="para_second_val_override_workaround">The second workaround is to make the <literal>val</literal> abstract in the trait. This forces an instance using the trait to assign a value. Declaring a <literal>val</literal> in a trait abstract is a perfectly useful design approach for both versions of Scala. In fact, this will be the best design choice, when there is no appropriate default value to assign to the <literal>val</literal> in the trait.</simpara>
+<caution id="para_caution_attempts_to_override_"><para>Attempts to override a trait-defined <literal>val</literal> will be accepted by the compiler, but have no effect in Scala version 2.7.X.</para></caution>
+<para id="para_there_are_two_workarounds_the">There are three workarounds you can use with Scala version 2.7. The first is to use some advanced options for <userinput>scala</userinput> and <userinput>scalac</userinput>. The <literal>-Xfuture</literal> option will enable the override behavior that is supported in version 2.8. The <literal>-Xcheckinit</literal> option will analyze your code and report if the behavior change will break it. The option <literal>-Xexperimental</literal>, which enables many experimental changes, will also warn you that the <literal>val</literal> override behavior is different.</para>
+<para id="para_second_val_override_workaround">The second workaround is to make the <literal>val</literal> abstract in the trait. This forces an instance using the trait to assign a value. Declaring a <literal>val</literal> in a trait abstract is a perfectly useful design approach for both versions of Scala. In fact, this will be the best design choice, when there is no appropriate default value to assign to the <literal>val</literal> in the trait.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/trait-abs-val-script.scala
 
 trait AbstractT1 {
@@ -152,10 +152,10 @@ class ClassExtendsAbstractT1 extends AbstractT1 {
 
 val c2 = new ClassExtendsAbstractT1()
 println(c2.name)</programlisting>
-<simpara id="para_this_script_produces_the_outpu">This script produces the output that we would expect.</simpara>
+<para id="para_this_script_produces_the_outpu">This script produces the output that we would expect.</para>
 <screen>ClassWithAbstractT1
 ClassExtendsAbstractT1</screen>
-<simpara id="para_so_an_abstract_val_works_fi">So, an abstract <literal>val</literal> works fine, <emphasis>unless</emphasis> the field is used in the trait body in a way that will fail until the field is properly initialized. Unfortunately, the proper initialization won’t occur until after the trait’s body has executed. Consider the following example.</simpara>
+<para id="para_so_an_abstract_val_works_fi">So, an abstract <literal>val</literal> works fine, <emphasis>unless</emphasis> the field is used in the trait body in a way that will fail until the field is properly initialized. Unfortunately, the proper initialization won’t occur until after the trait’s body has executed. Consider the following example.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/trait-invalid-init-val-script.scala
 // ERROR: "value" read before initialized.
 
@@ -171,15 +171,15 @@ val c2b = new AbstractT2 {
   val value = 10
 }
 println("c2b.value = "+c2b.value+", inverse = "+c2b.inverse)</programlisting>
-<simpara id="para_while_it_appears_that_we_are_c">While it appears that we are creating an instance of the trait with <literal>new AbstractT2 …</literal>, we are actually using an anonymous inner class that implicitly extends the trait. This script shows what happens when <literal>inverse</literal> is calculated</simpara>
+<para id="para_while_it_appears_that_we_are_c">While it appears that we are creating an instance of the trait with <literal>new AbstractT2 …</literal>, we are actually using an anonymous inner class that implicitly extends the trait. This script shows what happens when <literal>inverse</literal> is calculated</para>
 <screen>In AbstractT2:
 AbstractT2: value = 0, inverse = Infinity
 In c2b:
 c2b.value = 10, inverse = Infinity</screen>
-<simpara id="para_as_you_might_expect_the_inve">As you might expect, the <literal>inverse</literal> is calculated too early. Note that a divide by zero exception isn’t thrown; the compiler recognizes the value is infinite, but it hasn’t actually “tried” the division yet!</simpara>
-<simpara id="para_the_behavior_of_this_script_is">The behavior of this script is actually quite subtle. As an exercise, try selectively removing (or commenting-out) the different <literal>println</literal> statements, one at a time. Observe what happens to the results. Sometimes <literal>inverse</literal> is initialized properly! (Hint: remove the <literal>println("In c2b:")</literal> statement. Then try putting it back, but after the <literal>val value = 10</literal> line.)</simpara>
-<simpara id="para_what_this_experiment_really_sh">What this experiment really shows is that side effects (<emphasis>i.e.,</emphasis> from the <literal>println</literal> statements) can be unexpected and subtle, especially during initialization. It’s best to avoid them.</simpara>
-<simpara id="para_scala_provides_two_solutions_t">Scala provides two solutions to this problem, <emphasis>lazy values</emphasis>, which we discuss in <xref linkend="LazyVals"/> in <xref linkend="FunctionalProgramming"/>, and <emphasis>pre-initialized fields</emphasis>, which is demonstrated in the following refinement to the previous example.</simpara>
+<para id="para_as_you_might_expect_the_inve">As you might expect, the <literal>inverse</literal> is calculated too early. Note that a divide by zero exception isn’t thrown; the compiler recognizes the value is infinite, but it hasn’t actually “tried” the division yet!</para>
+<para id="para_the_behavior_of_this_script_is">The behavior of this script is actually quite subtle. As an exercise, try selectively removing (or commenting-out) the different <literal>println</literal> statements, one at a time. Observe what happens to the results. Sometimes <literal>inverse</literal> is initialized properly! (Hint: remove the <literal>println("In c2b:")</literal> statement. Then try putting it back, but after the <literal>val value = 10</literal> line.)</para>
+<para id="para_what_this_experiment_really_sh">What this experiment really shows is that side effects (<emphasis>i.e.,</emphasis> from the <literal>println</literal> statements) can be unexpected and subtle, especially during initialization. It’s best to avoid them.</para>
+<para id="para_scala_provides_two_solutions_t">Scala provides two solutions to this problem, <emphasis>lazy values</emphasis>, which we discuss in <xref linkend="LazyVals"/> in <xref linkend="FunctionalProgramming"/>, and <emphasis>pre-initialized fields</emphasis>, which is demonstrated in the following refinement to the previous example.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/trait-pre-init-val-script.scala
 
 trait AbstractT2 {
@@ -196,13 +196,13 @@ val c2c = new {
 } with AbstractT2
 
 println("c2c.value = "+c2c.value+", inverse = "+c2c.inverse)</programlisting>
-<simpara id="para_we_instantiate_an_anonymous_in">We instantiate an anonymous inner class, initializing the <literal>value</literal> field in the block, before the <literal>with AbstractT2</literal> clause. This guarantees that <literal>value</literal> is initialized before the body of <literal>AbstractT2</literal> is executed, as shown when you run the script.</simpara>
+<para id="para_we_instantiate_an_anonymous_in">We instantiate an anonymous inner class, initializing the <literal>value</literal> field in the block, before the <literal>with AbstractT2</literal> clause. This guarantees that <literal>value</literal> is initialized before the body of <literal>AbstractT2</literal> is executed, as shown when you run the script.</para>
 <screen>In AbstractT2:
 AbstractT2: value = 10, inverse = 0.1
 c2c.value = 10, inverse = 0.1</screen>
-<simpara id="para_also_if_you_selectively_remov">Also, if you selectively remove any of the <literal>println</literal> statements, you get the same expected and now predictable results.</simpara>
-<simpara id="para_now_let_s_consider_the_second_">Now let’s consider the second workaround we described above, changing the declaration to <literal>var</literal>. This solution is more suitable if a good default value exists and you don’t want to require instances that use the trait to always set the value. In this case, change the <literal>val</literal> to a <literal>var</literal>, either a public <literal>var</literal> or a private <literal>var</literal> hidden behind reader and writer methods. Either way, we can simply reassign the value in a derived trait or class.</simpara>
-<simpara id="para_returning_to_our_vetoableclic">Returning to our <literal>VetoableClicks</literal> example, here is the modified <literal>VetoableClicks</literal> trait that uses a public <literal>var</literal> for <literal>maxAllowed</literal>.</simpara>
+<para id="para_also_if_you_selectively_remov">Also, if you selectively remove any of the <literal>println</literal> statements, you get the same expected and now predictable results.</para>
+<para id="para_now_let_s_consider_the_second_">Now let’s consider the second workaround we described above, changing the declaration to <literal>var</literal>. This solution is more suitable if a good default value exists and you don’t want to require instances that use the trait to always set the value. In this case, change the <literal>val</literal> to a <literal>var</literal>, either a public <literal>var</literal> or a private <literal>var</literal> hidden behind reader and writer methods. Either way, we can simply reassign the value in a derived trait or class.</para>
+<para id="para_returning_to_our_vetoableclic">Returning to our <literal>VetoableClicks</literal> example, here is the modified <literal>VetoableClicks</literal> trait that uses a public <literal>var</literal> for <literal>maxAllowed</literal>.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/vetoable-clicks.scala
 
 package ui3
@@ -217,7 +217,7 @@ trait VetoableClicks extends Clickable {
       super.click()
   }
 }</programlisting>
-<simpara id="para_here_is_a_new_specs_object">Here is a new “specs” object, <literal>ButtonClickableObserverVetoableSpec2</literal>, that demonstrates changing the value of <literal>maxAllowed</literal>.</simpara>
+<para id="para_here_is_a_new_specs_object">Here is a new “specs” object, <literal>ButtonClickableObserverVetoableSpec2</literal>, that demonstrates changing the value of <literal>maxAllowed</literal>.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/button-clickable-observer-vetoable2-spec.scala
 package ui3
 
@@ -240,14 +240,14 @@ object ButtonClickableObserverVetoableSpec2 extends Specification {
     }
   }
 }</programlisting>
-<simpara id="para_no_override_var_is_required_">No <literal>override var</literal> is required. We just assign a new value. Since the body of the trait is executed before the body of the class using it, reassigning the field value happens <emphasis>after</emphasis> the initial assignment in trait’s body. However, as we saw before, that reassignment could happen too late if the field is used in the trait’s body in some calculation that will become invalid by a reassignment later! You can avoid this problem if you make the field private and define a public writer method that redoes any dependent calculations.</simpara>
-<simpara id="para_another_disadvantage_of_using_">Another disadvantage of using a <literal>var</literal> declaration is that <literal>maxAllowed</literal> was not intended to be writable. As we will see in <xref linkend="FunctionalProgramming"/>, read-only values have important benefits. We would prefer for <literal>maxAllowed</literal> to be read-only, at least after the construction process completes.</simpara>
-<simpara id="para_we_can_see_that_the_simple_act">We can see that the simple act of changing the <literal>val</literal> to a <literal>var</literal> causes potential problems for the maintainer of <literal>VetoableClicks</literal>. Control over that field is now lost. The maintainer must carefully consider whether or not the value will change and if a change will invalidate the state of the instance. This issue is especially pernicious in multithreaded systems (see <xref linkend="ProblemsOfSharedSynchronizedState"/> in <xref linkend="Concurrency"/>).</simpara>
-<tip id="para_tip_avoid_var_fields_when_p"><simpara>Avoid <literal>var</literal> fields when possible (in classes as well as traits). Consider public <literal>var</literal> fields especially risky.</simpara></tip>
+<para id="para_no_override_var_is_required_">No <literal>override var</literal> is required. We just assign a new value. Since the body of the trait is executed before the body of the class using it, reassigning the field value happens <emphasis>after</emphasis> the initial assignment in trait’s body. However, as we saw before, that reassignment could happen too late if the field is used in the trait’s body in some calculation that will become invalid by a reassignment later! You can avoid this problem if you make the field private and define a public writer method that redoes any dependent calculations.</para>
+<para id="para_another_disadvantage_of_using_">Another disadvantage of using a <literal>var</literal> declaration is that <literal>maxAllowed</literal> was not intended to be writable. As we will see in <xref linkend="FunctionalProgramming"/>, read-only values have important benefits. We would prefer for <literal>maxAllowed</literal> to be read-only, at least after the construction process completes.</para>
+<para id="para_we_can_see_that_the_simple_act">We can see that the simple act of changing the <literal>val</literal> to a <literal>var</literal> causes potential problems for the maintainer of <literal>VetoableClicks</literal>. Control over that field is now lost. The maintainer must carefully consider whether or not the value will change and if a change will invalidate the state of the instance. This issue is especially pernicious in multithreaded systems (see <xref linkend="ProblemsOfSharedSynchronizedState"/> in <xref linkend="Concurrency"/>).</para>
+<tip id="para_tip_avoid_var_fields_when_p"><para>Avoid <literal>var</literal> fields when possible (in classes as well as traits). Consider public <literal>var</literal> fields especially risky.</para></tip>
 </sect2>
 <sect2 id="OverridingFieldsInClasses">
 <title>Overriding Abstract and Concrete Fields in Classes</title>
-<simpara id="para_in_contrast_to_traits_overrid">In contrast to traits, overriding a <literal>val</literal> declared in a class works as expected. Here is an example with both a <literal>val</literal> override and a <literal>var</literal> reassignment in a derived class.</simpara>
+<para id="para_in_contrast_to_traits_overrid">In contrast to traits, overriding a <literal>val</literal> declared in a class works as expected. Here is an example with both a <literal>val</literal> override and a <literal>var</literal> reassignment in a derived class.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/class-field-script.scala
 
 class C1 {
@@ -263,11 +263,11 @@ class ClassWithC1 extends C1 {
 val c = new ClassWithC1()
 println(c.name)
 println(c.count)</programlisting>
-<simpara id="para_the_override_keyword_is_requ">The <literal>override</literal> keyword is required for the <emphasis>concrete</emphasis> <literal>val</literal> field <literal>name</literal>, but not for the <literal>var</literal> field <literal>count</literal>. This is because we are changing the initialization of a constant (<literal>val</literal>), which is a “special” operation.</simpara>
-<simpara id="para_if_you_run_this_script_oo1b">If you run this script, the output is the following.</simpara>
+<para id="para_the_override_keyword_is_requ">The <literal>override</literal> keyword is required for the <emphasis>concrete</emphasis> <literal>val</literal> field <literal>name</literal>, but not for the <literal>var</literal> field <literal>count</literal>. This is because we are changing the initialization of a constant (<literal>val</literal>), which is a “special” operation.</para>
+<para id="para_if_you_run_this_script_oo1b">If you run this script, the output is the following.</para>
 <screen>ClassWithC1
 1</screen>
-<simpara id="para_both_fields_are_overridden_in_">Both fields are overridden in the derived class, as expected. Here is the same example modified so that both the <literal>val</literal> and the <literal>var</literal> are abstract in the base class.</simpara>
+<para id="para_both_fields_are_overridden_in_">Both fields are overridden in the derived class, as expected. Here is the same example modified so that both the <literal>val</literal> and the <literal>var</literal> are abstract in the base class.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/class-abs-field-script.scala
 
 abstract class AbstractC1 {
@@ -283,14 +283,14 @@ class ClassWithAbstractC1 extends AbstractC1 {
 val c = new ClassWithAbstractC1()
 println(c.name)
 println(c.count)</programlisting>
-<simpara id="para_the_override_keyword_is_not_">The <literal>override</literal> keyword is not required for <literal>name</literal> in <literal>ClassWithAbsC1</literal>, since the original declaration is abstract. The output of this script is the following.</simpara>
+<para id="para_the_override_keyword_is_not_">The <literal>override</literal> keyword is not required for <literal>name</literal> in <literal>ClassWithAbsC1</literal>, since the original declaration is abstract. The output of this script is the following.</para>
 <screen>ClassWithAbsC1
 1</screen>
-<simpara id="para_it_s_important_to_emphasize_th">It’s important to emphasize that <literal>name</literal> and <literal>count</literal> are <emphasis>abstract</emphasis> fields, not concrete fields with default values. A similar-looking declaration of <literal>name</literal> in a Java class, <literal>String name;</literal> would declare a concrete field with the default value (<literal>null</literal> in this case). Java doesn’t support abstract fields or types (as we’ll discuss next), only methods.</simpara>
+<para id="para_it_s_important_to_emphasize_th">It’s important to emphasize that <literal>name</literal> and <literal>count</literal> are <emphasis>abstract</emphasis> fields, not concrete fields with default values. A similar-looking declaration of <literal>name</literal> in a Java class, <literal>String name;</literal> would declare a concrete field with the default value (<literal>null</literal> in this case). Java doesn’t support abstract fields or types (as we’ll discuss next), only methods.</para>
 </sect2>
 <sect2 id="OverridingAbstractTypes">
 <title>Overriding Abstract Types</title>
-<simpara id="para_we_introduced_abstract_type_de">We introduced abstract type declarations in <xref linkend="AbstractTypesAndParameterizedTypes"/> in <xref linkend="TypeLessDoMore"/>. Recall the <literal>BulkReader</literal> example from that section.</simpara>
+<para id="para_we_introduced_abstract_type_de">We introduced abstract type declarations in <xref linkend="AbstractTypesAndParameterizedTypes"/> in <xref linkend="TypeLessDoMore"/>. Recall the <literal>BulkReader</literal> example from that section.</para>
 <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
 import java.io._
@@ -319,11 +319,11 @@ class FileBulkReader(val source: File) extends BulkReader {
 
 println( new StringBulkReader("Hello Scala!").read )
 println( new FileBulkReader(new File("abstract-types-script.scala")).read )</programlisting>
-<simpara id="para_abstract_types_are_an_alternat">Abstract types are an alternative to parameterized types, which we’ll explore in <xref linkend="ParameterizedTypes"/> in <xref linkend="ScalasTypeSystem"/>. Like parameterized types, they provide an abstraction mechanism at the type level.</simpara>
-<simpara id="para_the_example_shows_how_to_decla">The example shows how to declare an abstract type and how to define a concrete value in derived classes. <literal>BulkReader</literal> declares <literal>type In</literal> without initializing it. The concrete derived class <literal>StringBulkReader</literal> provides a concrete value using <literal>type In = String</literal>.</simpara>
-<simpara id="para_unlike_fields_and_methods_it_">Unlike fields and methods, it is not possible to override a concrete <literal>type</literal> definition. However, the abstract declaration can constrain the allowed concrete type values. We’ll learn how in <xref linkend="ScalasTypeSystem"/>.</simpara>
-<simpara id="para_finally_you_probably_noticed_">Finally, you probably noticed that this example also demonstrates defining an abstract field, using a constructor parameter, and an abstract method.</simpara>
-<simpara id="para_for_another_example_let_s_rev">For another example, let’s revisit our <literal>Subject</literal> trait from <xref linkend="TraitsAsMixins"/> in <xref linkend="Traits"/>. The definition of the <literal>Observer</literal> type is a <emphasis>structural type</emphasis> with a method named <literal>receiveUpdate</literal>. Observers must have this “structure”. Let’s generalize the implementation now, using an abstract type.</simpara>
+<para id="para_abstract_types_are_an_alternat">Abstract types are an alternative to parameterized types, which we’ll explore in <xref linkend="ParameterizedTypes"/> in <xref linkend="ScalasTypeSystem"/>. Like parameterized types, they provide an abstraction mechanism at the type level.</para>
+<para id="para_the_example_shows_how_to_decla">The example shows how to declare an abstract type and how to define a concrete value in derived classes. <literal>BulkReader</literal> declares <literal>type In</literal> without initializing it. The concrete derived class <literal>StringBulkReader</literal> provides a concrete value using <literal>type In = String</literal>.</para>
+<para id="para_unlike_fields_and_methods_it_">Unlike fields and methods, it is not possible to override a concrete <literal>type</literal> definition. However, the abstract declaration can constrain the allowed concrete type values. We’ll learn how in <xref linkend="ScalasTypeSystem"/>.</para>
+<para id="para_finally_you_probably_noticed_">Finally, you probably noticed that this example also demonstrates defining an abstract field, using a constructor parameter, and an abstract method.</para>
+<para id="para_for_another_example_let_s_rev">For another example, let’s revisit our <literal>Subject</literal> trait from <xref linkend="TraitsAsMixins"/> in <xref linkend="Traits"/>. The definition of the <literal>Observer</literal> type is a <emphasis>structural type</emphasis> with a method named <literal>receiveUpdate</literal>. Observers must have this “structure”. Let’s generalize the implementation now, using an abstract type.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/observer2.scala
 
 package observer
@@ -349,10 +349,10 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
 
   def notify(observer: Observer): Unit = observer(this)
 }</programlisting>
-<simpara id="para_now_abstractsubject_declare">Now, <literal>AbstractSubject</literal> declares <literal>type Observer</literal> as abstract (implicitly, because there is no definition). Since the original structural type is gone, we don’t know exactly how to notify an observer. So, we also added an abstract method <literal>notify</literal>, which a concrete class or trait will define as appropriate.</simpara>
-<simpara id="para_the_subjectforreceiveupdateob">The <literal>SubjectForReceiveUpdateObservers</literal> derived trait defines <literal>Observer</literal> with the same structural type we used in the original example and <literal>notify</literal> simply calls <literal>receiveUpdate</literal>, as before.</simpara>
-<simpara id="para_the_subjectforfunctionalobser">The <literal>SubjectForFunctionalObservers</literal> derived trait defines <literal>Observer</literal> to be a function taking an instance of <literal>AbstractSubject</literal> and returning <literal>Unit</literal>. All <literal>notify</literal> has to do is call the observer function, passing the subject as the sole argument. Note that this implementation is similar to the approach we used in our original button implementation, <literal>ButtonWithCallbacks</literal>, where the “callbacks” where user-supplied functions. (See <xref linkend="IntroducingTraits"/> in <xref linkend="Traits"/> and a revisited version in <xref linkend="Constructors"/> in <xref linkend="BasicObjectOrientedProgramming"/>.)</simpara>
-<simpara id="para_here_is_a_specification_that_e">Here is a specification that exercises these two variations, observing button clicks as before.</simpara>
+<para id="para_now_abstractsubject_declare">Now, <literal>AbstractSubject</literal> declares <literal>type Observer</literal> as abstract (implicitly, because there is no definition). Since the original structural type is gone, we don’t know exactly how to notify an observer. So, we also added an abstract method <literal>notify</literal>, which a concrete class or trait will define as appropriate.</para>
+<para id="para_the_subjectforreceiveupdateob">The <literal>SubjectForReceiveUpdateObservers</literal> derived trait defines <literal>Observer</literal> with the same structural type we used in the original example and <literal>notify</literal> simply calls <literal>receiveUpdate</literal>, as before.</para>
+<para id="para_the_subjectforfunctionalobser">The <literal>SubjectForFunctionalObservers</literal> derived trait defines <literal>Observer</literal> to be a function taking an instance of <literal>AbstractSubject</literal> and returning <literal>Unit</literal>. All <literal>notify</literal> has to do is call the observer function, passing the subject as the sole argument. Note that this implementation is similar to the approach we used in our original button implementation, <literal>ButtonWithCallbacks</literal>, where the “callbacks” where user-supplied functions. (See <xref linkend="IntroducingTraits"/> in <xref linkend="Traits"/> and a revisited version in <xref linkend="Constructors"/> in <xref linkend="BasicObjectOrientedProgramming"/>.)</para>
+<para id="para_here_is_a_specification_that_e">Here is a specification that exercises these two variations, observing button clicks as before.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/button-observer2-spec.scala
 
 package ui
@@ -391,15 +391,15 @@ object ButtonObserver2Spec extends Specification {
     }
   }
 }</programlisting>
-<simpara id="para_first_we_exercise_subjectforr">First we exercise <literal>SubjectForReceiveUpdateObservers</literal>, which looks very similar to our earlier examples. Next we exercise <literal>SubjectForFunctionalObservers</literal>. In this case, we don’t need another “observer” instance at all. We just maintain a <literal>count</literal> variable and pass a <emphasis>function literal</emphasis> to <literal>addObserver</literal> to increment the count (and ignore the button).</simpara>
-<simpara id="para_the_main_virtue_of_subjectfor">The main virtue of <literal>SubjectForFunctionalObservers</literal> is its minimalism. It requires no special instances, no traits defining abstractions, <emphasis>etc.</emphasis> For many cases, it is an ideal approach.</simpara>
-<simpara id="para__abstractsubject_is_more_reus"><literal>AbstractSubject</literal> is more reusable than the original definition of <literal>Subject</literal>, because it imposes fewer constraints on potential observers.</simpara>
-<note id="para_note_abstractsubject_illust"><simpara><literal>AbstractSubject</literal> illustrates that an abstraction with fewer concrete details is usually more reusable.</simpara></note>
-<simpara id="para_but_wait_there_s_more_we_ll_">But wait, there’s more! We’ll revisit the use of abstract types and the observer pattern in <xref linkend="ScalableAbstractions"/> in <xref linkend="ApplicationDesign"/>.</simpara>
+<para id="para_first_we_exercise_subjectforr">First we exercise <literal>SubjectForReceiveUpdateObservers</literal>, which looks very similar to our earlier examples. Next we exercise <literal>SubjectForFunctionalObservers</literal>. In this case, we don’t need another “observer” instance at all. We just maintain a <literal>count</literal> variable and pass a <emphasis>function literal</emphasis> to <literal>addObserver</literal> to increment the count (and ignore the button).</para>
+<para id="para_the_main_virtue_of_subjectfor">The main virtue of <literal>SubjectForFunctionalObservers</literal> is its minimalism. It requires no special instances, no traits defining abstractions, <emphasis>etc.</emphasis> For many cases, it is an ideal approach.</para>
+<para id="para__abstractsubject_is_more_reus"><literal>AbstractSubject</literal> is more reusable than the original definition of <literal>Subject</literal>, because it imposes fewer constraints on potential observers.</para>
+<note id="para_note_abstractsubject_illust"><para><literal>AbstractSubject</literal> illustrates that an abstraction with fewer concrete details is usually more reusable.</para></note>
+<para id="para_but_wait_there_s_more_we_ll_">But wait, there’s more! We’ll revisit the use of abstract types and the observer pattern in <xref linkend="ScalableAbstractions"/> in <xref linkend="ApplicationDesign"/>.</para>
 </sect2>
 <sect2 id="UniformAccessPrinciple">
 <title>When Accessor Methods and Fields Are Indistinguishable: The Uniform Access Principle</title>
-<simpara id="para_suppose_a_user_of_buttoncount">Suppose a user of <literal>ButtonCountObserver</literal> from <xref linkend="TraitsAsMixins"/> in <xref linkend="Traits"/> accesses the <literal>count</literal> member.</simpara>
+<para id="para_suppose_a_user_of_buttoncount">Suppose a user of <literal>ButtonCountObserver</literal> from <xref linkend="TraitsAsMixins"/> in <xref linkend="Traits"/> accesses the <literal>count</literal> member.</para>
 <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-count-observer-script.scala
 
 val bco = new ui.ButtonCountObserver
@@ -407,7 +407,7 @@ val oldCount = bco.count
 bco.count = 5
 val newCount = bco.count
 println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
-<simpara id="para_when_the_count_field_is_read">When the <literal>count</literal> field is read or written, as in this example, are methods called or is the field accessed directly? As originally declared in <literal>ButtonCountObserver</literal>, field is accessed directly. However, the user doesn’t really care. In fact, the following two definitions are functionally equivalent, from the perspective of the user.</simpara>
+<para id="para_when_the_count_field_is_read">When the <literal>count</literal> field is read or written, as in this example, are methods called or is the field accessed directly? As originally declared in <literal>ButtonCountObserver</literal>, field is accessed directly. However, the user doesn’t really care. In fact, the following two definitions are functionally equivalent, from the perspective of the user.</para>
 <programlisting linenumbering="unnumbered">class ButtonCountObserver {
   var count = 0  // public field access (original definition)
   // ...
@@ -418,14 +418,14 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
   def count_=(newCount: Int) = cnt = newCount  // writer method
   // ...
 }</programlisting>
-<simpara id="para_this_equivalence_in_scala_is_c">This equivalence is an example of the <emphasis>Uniform Access Principle</emphasis>. Clients read and write field values as if they are publicly accessible, even though in some case they are actually calling methods. The maintainer of <literal>ButtonCountObserver</literal> has the freedom to change the implementation without forcing users to make code changes.</simpara>
-<simpara id="para_the_reader_method_in_the_secon">The reader method in the second version does not have parentheses. Recall that consistency in the use of parentheses is required if a method definition omits parentheses. This is only possible if the method takes no arguments. For the uniform access principle to work, we want to define field reader methods without parentheses. (Contrast with Ruby where method parentheses are always optional, as long as the parse is unambiguous.)</simpara>
-<simpara id="para_the_writer_method_has_the_form">The writer method has the format <literal>count_=(…)</literal>. As a bit of syntactic sugar, the compiler allows invocations of methods with this format to be written in either of the following ways.</simpara>
+<para id="para_this_equivalence_in_scala_is_c">This equivalence is an example of the <emphasis>Uniform Access Principle</emphasis>. Clients read and write field values as if they are publicly accessible, even though in some case they are actually calling methods. The maintainer of <literal>ButtonCountObserver</literal> has the freedom to change the implementation without forcing users to make code changes.</para>
+<para id="para_the_reader_method_in_the_secon">The reader method in the second version does not have parentheses. Recall that consistency in the use of parentheses is required if a method definition omits parentheses. This is only possible if the method takes no arguments. For the uniform access principle to work, we want to define field reader methods without parentheses. (Contrast with Ruby where method parentheses are always optional, as long as the parse is unambiguous.)</para>
+<para id="para_the_writer_method_has_the_form">The writer method has the format <literal>count_=(…)</literal>. As a bit of syntactic sugar, the compiler allows invocations of methods with this format to be written in either of the following ways.</para>
 <programlisting linenumbering="unnumbered">obj.field_=(newValue)
 // or
 obj.field = newValue</programlisting>
-<simpara id="para_we_named_the_private_variable_">We named the private variable <literal>cnt</literal> in the alternative definition. Scala keeps field and method names in the <emphasis>same</emphasis> namespace, which means we can’t name the field <literal>count</literal> if a method is named <literal>count</literal>. Many languages, like Java, don’t have this restriction, because they keep field and method names in separate namespaces. However, these languages can’t support the uniform access principle as a result, unless they build in <emphasis>ad hoc</emphasis> support in their grammars or compilers.</simpara>
-<simpara id="para_object_in_member_namespace">Since member <literal>object</literal> definitions behave similar to fields from the caller’s perspective, they are also in the same namespace as methods and fields. Hence, the following class would not compile.</simpara>
+<para id="para_we_named_the_private_variable_">We named the private variable <literal>cnt</literal> in the alternative definition. Scala keeps field and method names in the <emphasis>same</emphasis> namespace, which means we can’t name the field <literal>count</literal> if a method is named <literal>count</literal>. Many languages, like Java, don’t have this restriction, because they keep field and method names in separate namespaces. However, these languages can’t support the uniform access principle as a result, unless they build in <emphasis>ad hoc</emphasis> support in their grammars or compilers.</para>
+<para id="para_object_in_member_namespace">Since member <literal>object</literal> definitions behave similar to fields from the caller’s perspective, they are also in the same namespace as methods and fields. Hence, the following class would not compile.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/member-namespace-wont-compile.scala
 // WON'T COMPILE
 
@@ -436,7 +436,7 @@ class IllegalMemberNameUse {
     def apply() = 2
   }
 }</programlisting>
-<simpara id="para_there_is_one_other_benefit_of_">There is one other benefit of this namespace “unification”. If a parent class declares a parameterless method, then a subclass can override that method with a <literal>val</literal>. If the parent’s method is concrete, then the <literal>override</literal> keyword is required.</simpara>
+<para id="para_there_is_one_other_benefit_of_">There is one other benefit of this namespace “unification”. If a parent class declares a parameterless method, then a subclass can override that method with a <literal>val</literal>. If the parent’s method is concrete, then the <literal>override</literal> keyword is required.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/method-field-class-script.scala
 
 class Parent {
@@ -448,7 +448,7 @@ class Child extends Parent {
 }
 
 println(new Child().name)   // =&gt; "Child"</programlisting>
-<simpara id="para_if_the_parent_s_method_is_abst">If the parent’s method is abstract, then the <literal>override</literal> keyword is optional.</simpara>
+<para id="para_if_the_parent_s_method_is_abst">If the parent’s method is abstract, then the <literal>override</literal> keyword is optional.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/abs-method-field-class-script.scala
 
 abstract class AbstractParent {
@@ -460,7 +460,7 @@ class ConcreteChild extends AbstractParent {
 }
 
 println(new ConcreteChild().name)   // =&gt; "Child"</programlisting>
-<simpara id="para_this_also_works_for_traits_if">This also works for Traits. If the trait’s method is concrete, we have the following.</simpara>
+<para id="para_this_also_works_for_traits_if">This also works for Traits. If the trait’s method is concrete, we have the following.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/method-field-trait-script.scala
 
 trait NameTrait {
@@ -472,7 +472,7 @@ class ConcreteNameClass extends NameTrait {
 }
 
 println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlisting>
-<simpara id="para_if_the_trait_s_method_is_abstr">If the trait’s method is abstract, then we have the following.</simpara>
+<para id="para_if_the_trait_s_method_is_abstr">If the trait’s method is abstract, then we have the following.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/abs-method-field-trait-script.scala
 
 trait AbstractNameTrait {
@@ -484,36 +484,36 @@ class ConcreteNameClass extends AbstractNameTrait {
 }
 
 println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlisting>
-<simpara id="para_why_is_this_feature_useful_it">Why is this feature useful? It allows derived classes and traits to use a simple field access, when that is sufficient, or a method call when more processing is required, such as lazy initialization. The same argument holds for the uniform access principle, in general.</simpara>
-<simpara id="para_overriding_a_def_with_a_val">Overriding a <literal>def</literal> with a <literal>val</literal> in a subclass can also be handy when interoperating with Java code. Turn a getter into a <literal>val</literal> by placing it in the constructor. You’ll see this in action in the below example, in which our Scala class <literal>Person</literal> implements a hypothetical <literal>PersonInterface</literal> from some  legacy Java code.</simpara>
+<para id="para_why_is_this_feature_useful_it">Why is this feature useful? It allows derived classes and traits to use a simple field access, when that is sufficient, or a method call when more processing is required, such as lazy initialization. The same argument holds for the uniform access principle, in general.</para>
+<para id="para_overriding_a_def_with_a_val">Overriding a <literal>def</literal> with a <literal>val</literal> in a subclass can also be handy when interoperating with Java code. Turn a getter into a <literal>val</literal> by placing it in the constructor. You’ll see this in action in the below example, in which our Scala class <literal>Person</literal> implements a hypothetical <literal>PersonInterface</literal> from some  legacy Java code.</para>
 <programlisting linenumbering="unnumbered">class Person(val getName: String) extends PersonInterface</programlisting>
-<simpara id="para_if_you_only_have_a_few_accesso">If you only have a few accessors in the Java code you’re integrating with, this technique makes quick work of them.</simpara>
-<simpara id="para_what_about_overriding_a_parame">What about overriding a parameterless method with a <literal>var</literal> or overriding a <literal>val</literal> or <literal>var</literal> with a method? These are not permitted, because they can’t match the behaviors of the things they are overriding.</simpara>
-<simpara id="para_if_you_attempt_to_use_a_var_">If you attempt to use a <literal>var</literal> to override a parameterless method, you get an error that the writer method, <literal>override name_=</literal>, is not overriding anything. This would also be inconsistent with a philosophical goal of functional programming, that a method that takes no parameters should always return the same result. To do otherwise would require side-effects in the implementation, which functional programming tries to avoid, for reasons we will examine in <xref linkend="FunctionalProgramming"/>. Because a <literal>var</literal> is changeable, the no-parameter “method” defined in the parent type would no longer return the same result consistently.</simpara>
-<simpara id="para_if_you_could_override_a_val_">If you could override a <literal>val</literal> with a method, there is no way for Scala to guarantee that the method will always return the same value, consistent with <literal>val</literal> semantics. That issue doesn’t exist with a <literal>var</literal>, of course, but you would have to override the <literal>var</literal> with two methods, a reader and a writer. The Scala compiler doesn’t support that substitution.</simpara>
+<para id="para_if_you_only_have_a_few_accesso">If you only have a few accessors in the Java code you’re integrating with, this technique makes quick work of them.</para>
+<para id="para_what_about_overriding_a_parame">What about overriding a parameterless method with a <literal>var</literal> or overriding a <literal>val</literal> or <literal>var</literal> with a method? These are not permitted, because they can’t match the behaviors of the things they are overriding.</para>
+<para id="para_if_you_attempt_to_use_a_var_">If you attempt to use a <literal>var</literal> to override a parameterless method, you get an error that the writer method, <literal>override name_=</literal>, is not overriding anything. This would also be inconsistent with a philosophical goal of functional programming, that a method that takes no parameters should always return the same result. To do otherwise would require side-effects in the implementation, which functional programming tries to avoid, for reasons we will examine in <xref linkend="FunctionalProgramming"/>. Because a <literal>var</literal> is changeable, the no-parameter “method” defined in the parent type would no longer return the same result consistently.</para>
+<para id="para_if_you_could_override_a_val_">If you could override a <literal>val</literal> with a method, there is no way for Scala to guarantee that the method will always return the same value, consistent with <literal>val</literal> semantics. That issue doesn’t exist with a <literal>var</literal>, of course, but you would have to override the <literal>var</literal> with two methods, a reader and a writer. The Scala compiler doesn’t support that substitution.</para>
 </sect2>
 </sect1>
 <sect1 id="CompanionObjects">
 <title>Companion Objects</title>
-<simpara id="para_recall_that_fields_and_methods">Recall that fields and methods defined in <literal>objects</literal> serve the role that class “static” fields and methods serve in languages like Java. When <literal>object</literal>-based fields and methods are closely associated with a particular <literal>class</literal>, they are normally defined in a <emphasis>companion object</emphasis>.</simpara>
-<simpara id="para_we_mentioned_companion_objects">We mentioned companion objects briefly in <xref linkend="IntroducingScala"/> and we discussed the <literal>Pair</literal> example from the Scala library in <xref linkend="TypeLessDoMore"/> and the last chapter. Let’s fill in the remaining details now.</simpara>
-<simpara id="para_first_recall_that_if_a_class">First, recall that if a <literal>class</literal> (or a <literal>type</literal> referring to a class) and an <literal>object</literal> are declared in the same file, in the same package, and with the same name, they are called a <emphasis>companion class</emphasis> (or <emphasis>companion type</emphasis>) and a <emphasis>companion object</emphasis>, respectively.</simpara>
-<simpara id="para_there_is_no_namespace_collisio">There is no namespace collision when the name is reused in this way, because Scala stores the class name in the type namespace, while it stores the object name in the term namespace <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>.</simpara>
-<simpara id="para_the_two_most_interesting_metho">The two most interesting methods frequently defined in a companion object are <literal>apply</literal> and <literal>unapply</literal>.</simpara>
+<para id="para_recall_that_fields_and_methods">Recall that fields and methods defined in <literal>objects</literal> serve the role that class “static” fields and methods serve in languages like Java. When <literal>object</literal>-based fields and methods are closely associated with a particular <literal>class</literal>, they are normally defined in a <emphasis>companion object</emphasis>.</para>
+<para id="para_we_mentioned_companion_objects">We mentioned companion objects briefly in <xref linkend="IntroducingScala"/> and we discussed the <literal>Pair</literal> example from the Scala library in <xref linkend="TypeLessDoMore"/> and the last chapter. Let’s fill in the remaining details now.</para>
+<para id="para_first_recall_that_if_a_class">First, recall that if a <literal>class</literal> (or a <literal>type</literal> referring to a class) and an <literal>object</literal> are declared in the same file, in the same package, and with the same name, they are called a <emphasis>companion class</emphasis> (or <emphasis>companion type</emphasis>) and a <emphasis>companion object</emphasis>, respectively.</para>
+<para id="para_there_is_no_namespace_collisio">There is no namespace collision when the name is reused in this way, because Scala stores the class name in the type namespace, while it stores the object name in the term namespace <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>.</para>
+<para id="para_the_two_most_interesting_metho">The two most interesting methods frequently defined in a companion object are <literal>apply</literal> and <literal>unapply</literal>.</para>
 <sect2 id="ApplyMethod">
 <title>Apply</title>
-<simpara id="para_scala_defines_a_form_of_syntac">Scala provides some syntactic sugar in the form of the <literal>apply</literal> method. When an instance of a class is followed by parentheses with a list of zero or more parameters, the compiler invokes the <literal>apply</literal> method for that instance. This is true for an <literal>object</literal> with a defined <literal>apply</literal> method (such as a companion object), as well as an instance of a <literal>class</literal> that defines an <literal>apply</literal> method.</simpara>
-<simpara id="para_in_the_case_of_an_object_a">In the case of an <literal>object</literal>, <literal>apply</literal> is conventionally used as a <emphasis>factory</emphasis> method, returning a new instance. This is what <literal>Pair.apply</literal> does in the Scala library, as we saw before. Here is <literal>Pair:</literal> from the standard library.</simpara>
+<para id="para_scala_defines_a_form_of_syntac">Scala provides some syntactic sugar in the form of the <literal>apply</literal> method. When an instance of a class is followed by parentheses with a list of zero or more parameters, the compiler invokes the <literal>apply</literal> method for that instance. This is true for an <literal>object</literal> with a defined <literal>apply</literal> method (such as a companion object), as well as an instance of a <literal>class</literal> that defines an <literal>apply</literal> method.</para>
+<para id="para_in_the_case_of_an_object_a">In the case of an <literal>object</literal>, <literal>apply</literal> is conventionally used as a <emphasis>factory</emphasis> method, returning a new instance. This is what <literal>Pair.apply</literal> does in the Scala library, as we saw before. Here is <literal>Pair:</literal> from the standard library.</para>
 <programlisting linenumbering="unnumbered">type Pair[+A, +B] = Tuple2[A, B]
 object Pair {
   def apply[A, B](x: A, y: B) = Tuple2(x, y)
   def unapply[A, B](x: Tuple2[A, B]): Option[Tuple2[A, B]] = Some(x)
 }</programlisting>
-<simpara id="para_so_you_can_create_a_new_pair_">So, you can create a new Pair as follows.</simpara>
+<para id="para_so_you_can_create_a_new_pair_">So, you can create a new Pair as follows.</para>
 <programlisting linenumbering="unnumbered">val p = Pair(1, "one")</programlisting>
-<simpara id="para_it_looks_like_we_are_some_how_">It looks like we are some how creating an <literal>Pair</literal> instance without a <literal>new</literal>. Rather than calling a <literal>Pair</literal> constructor directly, we are actually calling <literal>Pair.apply</literal> (<emphasis>i.e.,</emphasis> the companion object <literal>Pair</literal>), which then calls <literal>Tuple2.apply</literal> on the <literal>Tuple2</literal> companion object!</simpara>
-<tip id="para_tip_if_there_are_several_alte"><simpara>If there are several alternative constructors for a class and it also has a companion object, consider defining fewer constructors on the class and defining several overloaded <literal>apply</literal> methods on the companion object to handle the variations.</simpara></tip>
-<simpara id="para_however_apply_is_not_limite">However, <literal>apply</literal> is not limited to instantiating the companion class. It could instead return an instance of a subclass of the companion class. Here is an example where we define a companion object <literal>Widget</literal> that uses regular expressions to parse a string representing a <literal>Widget</literal> subclass. When a match occurs, the subclass is instantiated and the new instance is returned.</simpara>
+<para id="para_it_looks_like_we_are_some_how_">It looks like we are some how creating an <literal>Pair</literal> instance without a <literal>new</literal>. Rather than calling a <literal>Pair</literal> constructor directly, we are actually calling <literal>Pair.apply</literal> (<emphasis>i.e.,</emphasis> the companion object <literal>Pair</literal>), which then calls <literal>Tuple2.apply</literal> on the <literal>Tuple2</literal> companion object!</para>
+<tip id="para_tip_if_there_are_several_alte"><para>If there are several alternative constructors for a class and it also has a companion object, consider defining fewer constructors on the class and defining several overloaded <literal>apply</literal> methods on the companion object to handle the variations.</para></tip>
+<para id="para_however_apply_is_not_limite">However, <literal>apply</literal> is not limited to instantiating the companion class. It could instead return an instance of a subclass of the companion class. Here is an example where we define a companion object <literal>Widget</literal> that uses regular expressions to parse a string representing a <literal>Widget</literal> subclass. When a match occurs, the subclass is instantiated and the new instance is returned.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/widget.scala
 
 package objects
@@ -533,12 +533,12 @@ object Widget {
     case _ =&gt; None
   }
 }</programlisting>
-<simpara id="para__widget_apply_receives_a_stri"><literal>Widget.apply</literal> receives a string “specification” that defines which class to instantiate. The string might come from a configuration file with widgets to create at startup, for example. The string format is the same format used by <literal>toString()</literal>. Regular expressions are defined for each type. (<emphasis>Combinator parsers</emphasis> are an alternative. They are discussed in <xref linkend="ExternalDSLsWithCombinatorParsers"/> in <xref linkend="DomainSpecificLanguages"/>.)</simpara>
-<simpara id="para_the_match_expression_applies">The <literal>match</literal> expression applies each regular expression to the string. A case expression like</simpara>
+<para id="para__widget_apply_receives_a_stri"><literal>Widget.apply</literal> receives a string “specification” that defines which class to instantiate. The string might come from a configuration file with widgets to create at startup, for example. The string format is the same format used by <literal>toString()</literal>. Regular expressions are defined for each type. (<emphasis>Combinator parsers</emphasis> are an alternative. They are discussed in <xref linkend="ExternalDSLsWithCombinatorParsers"/> in <xref linkend="DomainSpecificLanguages"/>.)</para>
+<para id="para_the_match_expression_applies">The <literal>match</literal> expression applies each regular expression to the string. A case expression like</para>
 <programlisting linenumbering="unnumbered">case ButtonExtractorRE(label) =&gt; new Some(new Button(label))</programlisting>
-<simpara id="para_means_that_the_string_is_match">means that the string is matched against the <literal>ButtonExtractorRE</literal> regular expression. If successful, it extracts the substring in the first capture group in the regular expression and assigns it to the variable <literal>label</literal>. Finally, a new <literal>Button</literal> with this label is created, wrapped in a <literal>Some</literal>. We’ll learn how this extraction process works in the next section, <xref linkend="UnapplyMethod"/>.</simpara>
-<simpara id="para_a_similar_case_handles_textfi">A similar case handles <literal>TextField</literal> creation. (<literal>TextField</literal> is not shown. See the online code examples.). Finally, if <literal>apply</literal> can’t match the string, it returns <literal>None</literal>.</simpara>
-<simpara id="para_specs_exercise">Here is a “specs” <literal>object</literal> that exercises <literal>Widget.apply</literal>.</simpara>
+<para id="para_means_that_the_string_is_match">means that the string is matched against the <literal>ButtonExtractorRE</literal> regular expression. If successful, it extracts the substring in the first capture group in the regular expression and assigns it to the variable <literal>label</literal>. Finally, a new <literal>Button</literal> with this label is created, wrapped in a <literal>Some</literal>. We’ll learn how this extraction process works in the next section, <xref linkend="UnapplyMethod"/>.</para>
+<para id="para_a_similar_case_handles_textfi">A similar case handles <literal>TextField</literal> creation. (<literal>TextField</literal> is not shown. See the online code examples.). Finally, if <literal>apply</literal> can’t match the string, it returns <literal>None</literal>.</para>
+<para id="para_specs_exercise">Here is a “specs” <literal>object</literal> that exercises <literal>Widget.apply</literal>.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/widget-apply-spec.scala
 
 package objects
@@ -569,18 +569,18 @@ object WidgetApplySpec extends Specification {
     }
   }
 }</programlisting>
-<simpara id="para_the_first_match_statement_impl">The first match statement implicitly invokes <literal>Widget.apply</literal> with the string “(button: label=click me, (Widget))”. If a button wrapped in a Some is not returned with the label “click me”, this test will fail. Next, a similar test for a <literal>TextField</literal> widget is done. The final test uses an invalid string and confirms that <literal>None</literal> is returned.</simpara>
-<simpara id="para_a_drawback_of_this_particular_">A drawback of this particular implementation is that we have hard-coded a dependency on each derived class of <literal>Widget</literal> in <literal>Widget</literal> itself, which breaks the <emphasis>Open-Closed Principle</emphasis> (see <xref linkend="Meyer1997" xrefstyle="select: title nopage"/> and <xref linkend="Martin2003" xrefstyle="select: title nopage"/>). A better implementation would use a factory design pattern from &lt;&lt;    GOF1995&gt;&gt;. Nevertheless, the example illustrates how an <literal>apply</literal> method can be used as a real factory.</simpara>
-<simpara id="para_there_is_no_requirement_for_a">There is no requirement for <literal>apply</literal> in an <literal>object</literal> to be used as a factory. Neither is there any restriction on the argument list or what <literal>apply</literal> returns. However, because it is so common to use <literal>apply</literal> in an <literal>object</literal> as a factory, use caution when using <literal>apply</literal> for other purposes, as it could confuse users. However, there are good counter examples, such as the use of <literal>apply</literal> in Domain-Specific Languages (see <xref linkend="DomainSpecificLanguages"/>).</simpara>
-<simpara id="para_the_factory_convention_is_less">The factory convention is less commonly used for <literal>apply</literal> defined in classes. For example, in the Scala standard library, <literal>Array.apply(i: int)</literal> returns the element at index <literal>i</literal> in the array. Many of the other collections use <literal>apply</literal> in a similar way. So, users can write code like the following.</simpara>
+<para id="para_the_first_match_statement_impl">The first match statement implicitly invokes <literal>Widget.apply</literal> with the string “(button: label=click me, (Widget))”. If a button wrapped in a Some is not returned with the label “click me”, this test will fail. Next, a similar test for a <literal>TextField</literal> widget is done. The final test uses an invalid string and confirms that <literal>None</literal> is returned.</para>
+<para id="para_a_drawback_of_this_particular_">A drawback of this particular implementation is that we have hard-coded a dependency on each derived class of <literal>Widget</literal> in <literal>Widget</literal> itself, which breaks the <emphasis>Open-Closed Principle</emphasis> (see <xref linkend="Meyer1997" xrefstyle="select: title nopage"/> and <xref linkend="Martin2003" xrefstyle="select: title nopage"/>). A better implementation would use a factory design pattern from &lt;&lt;    GOF1995&gt;&gt;. Nevertheless, the example illustrates how an <literal>apply</literal> method can be used as a real factory.</para>
+<para id="para_there_is_no_requirement_for_a">There is no requirement for <literal>apply</literal> in an <literal>object</literal> to be used as a factory. Neither is there any restriction on the argument list or what <literal>apply</literal> returns. However, because it is so common to use <literal>apply</literal> in an <literal>object</literal> as a factory, use caution when using <literal>apply</literal> for other purposes, as it could confuse users. However, there are good counter examples, such as the use of <literal>apply</literal> in Domain-Specific Languages (see <xref linkend="DomainSpecificLanguages"/>).</para>
+<para id="para_the_factory_convention_is_less">The factory convention is less commonly used for <literal>apply</literal> defined in classes. For example, in the Scala standard library, <literal>Array.apply(i: int)</literal> returns the element at index <literal>i</literal> in the array. Many of the other collections use <literal>apply</literal> in a similar way. So, users can write code like the following.</para>
 <programlisting linenumbering="unnumbered">val a = Array(1,2,3,4)
 println(a(2))  // =&gt; 3</programlisting>
-<simpara id="para_finally_as_a_reminder_althou">Finally, as a reminder, although <literal>apply</literal> is handled specially by the compiler, it is otherwise no different than any other method. You can overload it, you can invoke it directly, <emphasis>etc.</emphasis></simpara>
+<para id="para_finally_as_a_reminder_althou">Finally, as a reminder, although <literal>apply</literal> is handled specially by the compiler, it is otherwise no different than any other method. You can overload it, you can invoke it directly, <emphasis>etc.</emphasis></para>
 </sect2>
 <sect2 id="UnapplyMethod">
 <title>Unapply</title>
-<simpara id="para_the_name_unapply_suggests_th">The name <literal>unapply</literal> suggests that it does the “opposite” operation that <literal>apply</literal> does. Indeed, it is used to extract the constituent parts of an instance. Pattern matching uses this feature extensively. Hence, <literal>unapply</literal> is often defined in companion objects and it is used to extract the field values from instances of the corresponding companion types. For this reason, <literal>unapply</literal> methods are called <emphasis>extractors</emphasis>.</simpara>
-<simpara id="para_here_is_an_expanded_button_sc">Here is an expanded <literal>button.scala</literal> with a <literal>Button</literal> <literal>object</literal> that defines an <literal>unapply</literal> extractor method.</simpara>
+<para id="para_the_name_unapply_suggests_th">The name <literal>unapply</literal> suggests that it does the “opposite” operation that <literal>apply</literal> does. Indeed, it is used to extract the constituent parts of an instance. Pattern matching uses this feature extensively. Hence, <literal>unapply</literal> is often defined in companion objects and it is used to extract the field values from instances of the corresponding companion types. For this reason, <literal>unapply</literal> methods are called <emphasis>extractors</emphasis>.</para>
+<para id="para_here_is_an_expanded_button_sc">Here is an expanded <literal>button.scala</literal> with a <literal>Button</literal> <literal>object</literal> that defines an <literal>unapply</literal> extractor method.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/button.scala
 
 package objects
@@ -602,8 +602,8 @@ class Button(val label: String) extends Widget with Clickable {
 object Button {
   def unapply(button: Button) = Some(button.label)
 }</programlisting>
-<simpara id="para__button_unapply_takes_a_singl"><literal>Button.unapply</literal> takes a single <literal>Button</literal> argument and returns a <literal>Some</literal> wrapping the <literal>label</literal> value. This demonstrates the protocol for <literal>unapply</literal> methods. They return a <literal>Some</literal> wrapping the extracted fields. (We’ll see how to handle more than one field in a moment.)</simpara>
-<simpara id="para_specs_button_unapply">Here is a “specs” <literal>object</literal> that exercises <literal>Button.unapply</literal>.</simpara>
+<para id="para__button_unapply_takes_a_singl"><literal>Button.unapply</literal> takes a single <literal>Button</literal> argument and returns a <literal>Some</literal> wrapping the <literal>label</literal> value. This demonstrates the protocol for <literal>unapply</literal> methods. They return a <literal>Some</literal> wrapping the extracted fields. (We’ll see how to handle more than one field in a moment.)</para>
+<para id="para_specs_button_unapply">Here is a “specs” <literal>object</literal> that exercises <literal>Button.unapply</literal>.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/button-unapply-spec.scala
 
 package objects
@@ -648,10 +648,10 @@ object ButtonUnapplySpec extends Specification {
     }
   }
 }</programlisting>
-<simpara id="para_the_first_three_examples_in_">The first three examples (<literal>in</literal> clauses) confirm that <literal>Button.unapply</literal> is only called for actual <literal>Button</literal> instances or instances of derived classes, like <literal>RadioButton</literal>.</simpara>
-<simpara id="para_since_unapply_takes_a_butto">Since <literal>unapply</literal> takes a <literal>Button</literal> argument (in this case), the Scala runtime type checks the instance being matched. It then looks for a companion object with an <literal>unapply</literal> method and invokes that method, passing the instance. The default case clause <literal>case _</literal> is invoked for the instances that don’t type check as compatible. The pattern matching process is fully type safe.</simpara>
-<simpara id="para_the_remaining_examples_in_c">The remaining examples (<literal>in</literal> clauses) confirm that the correct values for the <literal>label</literal> are extracted. The Scala runtime automatically extracts the item in the <literal>Some</literal>.</simpara>
-<simpara id="para_what_about_extracting_multiple">What about extracting multiple fields? For a fixed set of known fields, a <literal>Some</literal> wrapping a <literal>Tuple</literal> is returned, as shown in this updated version of <literal>RadioButton</literal>.</simpara>
+<para id="para_the_first_three_examples_in_">The first three examples (<literal>in</literal> clauses) confirm that <literal>Button.unapply</literal> is only called for actual <literal>Button</literal> instances or instances of derived classes, like <literal>RadioButton</literal>.</para>
+<para id="para_since_unapply_takes_a_butto">Since <literal>unapply</literal> takes a <literal>Button</literal> argument (in this case), the Scala runtime type checks the instance being matched. It then looks for a companion object with an <literal>unapply</literal> method and invokes that method, passing the instance. The default case clause <literal>case _</literal> is invoked for the instances that don’t type check as compatible. The pattern matching process is fully type safe.</para>
+<para id="para_the_remaining_examples_in_c">The remaining examples (<literal>in</literal> clauses) confirm that the correct values for the <literal>label</literal> are extracted. The Scala runtime automatically extracts the item in the <literal>Some</literal>.</para>
+<para id="para_what_about_extracting_multiple">What about extracting multiple fields? For a fixed set of known fields, a <literal>Some</literal> wrapping a <literal>Tuple</literal> is returned, as shown in this updated version of <literal>RadioButton</literal>.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/radio-button.scala
 
 package objects
@@ -666,7 +666,7 @@ object RadioButton {
   def unapply(button: RadioButton) = Some((button.on, button.label))
                  // equivalent to: = Some(Pair(button.on, button.label))
 }</programlisting>
-<simpara id="para_a_some_wrapping_a_pair_butt">A <literal>Some</literal> wrapping a <literal>Pair(button.on, button.label)</literal> is returned. As we discuss in <xref linkend="PredefObject"/> in <xref linkend="ScalaObjectSystem"/>, <literal>Pair</literal> is a <emphasis>type</emphasis> defined to be equal to <literal>Tuple2</literal>. Here is the corresponding “specs” <literal>object</literal> that tests it.</simpara>
+<para id="para_a_some_wrapping_a_pair_butt">A <literal>Some</literal> wrapping a <literal>Pair(button.on, button.label)</literal> is returned. As we discuss in <xref linkend="PredefObject"/> in <xref linkend="ScalaObjectSystem"/>, <literal>Pair</literal> is a <emphasis>type</emphasis> defined to be equal to <literal>Tuple2</literal>. Here is the corresponding “specs” <literal>object</literal> that tests it.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/radio-button-unapply-spec.scala
 
 package objects
@@ -707,19 +707,19 @@ object RadioButtonUnapplySpec extends Specification {
     }
   }
 }</programlisting>
-<simpara id="para_the_apply_and_unapply_meth">The <literal>apply</literal> and <literal>unapply</literal> methods provide an elegant, yet type-safe way to construct and “deconstruct” instances.</simpara>
+<para id="para_the_apply_and_unapply_meth">The <literal>apply</literal> and <literal>unapply</literal> methods provide an elegant, yet type-safe way to construct and “deconstruct” instances.</para>
 </sect2>
 <sect2 id="UnapplySeqMethod">
 <title>Apply and UnapplySeq for Collections</title>
-<simpara id="para_what_if_you_want_to_build_a_co">What if you want to build a collection from a variable argument list passed to <literal>apply</literal>? What if you want to extract the first few elements from a collection and you don’t care about the rest of it?</simpara>
-<simpara id="para_in_this_case_you_define_appl">In this case, you define <literal>apply</literal> and <literal>unapplySeq</literal> (“unapply sequence”) methods. Here are those methods from Scala’s own List class.</simpara>
+<para id="para_what_if_you_want_to_build_a_co">What if you want to build a collection from a variable argument list passed to <literal>apply</literal>? What if you want to extract the first few elements from a collection and you don’t care about the rest of it?</para>
+<para id="para_in_this_case_you_define_appl">In this case, you define <literal>apply</literal> and <literal>unapplySeq</literal> (“unapply sequence”) methods. Here are those methods from Scala’s own List class.</para>
 <programlisting linenumbering="unnumbered">def apply[A](xs: A*): List[A] = xs.toList
 
 def unapplySeq[A](x: List[A]): Some[List[A]] = Some(x)</programlisting>
-<simpara id="para_the_a_type_parameterizatio">The <literal>[A]</literal> type parameterization on these methods allows the <literal>List</literal> <literal>object</literal>, which is not parameterized, to construct a new <literal>List[A]</literal> (See <xref linkend="ParameterizedTypes"/> in <xref linkend="ScalasTypeSystem"/> for more details.) Most of the time, the type parameter will be inferred based on the context.</simpara>
-<simpara id="para_the_parameter_list_xs_a_is">The parameter list <literal>xs: A*</literal> is a variable argument list. Callers of <literal>apply</literal> can pass as many <literal>A</literal> instances as they want, including none. Internally, variable argument lists are stored in an <literal>Seq[A]</literal>, which inherits the <literal>toList</literal> method from <literal>Iterable</literal> that we used here.</simpara>
-<tip id="para_tip_this_is_a_handy_idiom_for"><simpara>This is a handy idiom for API writers. Accepting variable arguments to a function can be convenient for users and converting the arguments to a <literal>List</literal> is often ideal for internal management.</simpara></tip>
-<simpara id="para_here_is_an_example_script_that">Here is an example script that uses <literal>List.apply</literal> implicitly.</simpara>
+<para id="para_the_a_type_parameterizatio">The <literal>[A]</literal> type parameterization on these methods allows the <literal>List</literal> <literal>object</literal>, which is not parameterized, to construct a new <literal>List[A]</literal> (See <xref linkend="ParameterizedTypes"/> in <xref linkend="ScalasTypeSystem"/> for more details.) Most of the time, the type parameter will be inferred based on the context.</para>
+<para id="para_the_parameter_list_xs_a_is">The parameter list <literal>xs: A*</literal> is a variable argument list. Callers of <literal>apply</literal> can pass as many <literal>A</literal> instances as they want, including none. Internally, variable argument lists are stored in an <literal>Seq[A]</literal>, which inherits the <literal>toList</literal> method from <literal>Iterable</literal> that we used here.</para>
+<tip id="para_tip_this_is_a_handy_idiom_for"><para>This is a handy idiom for API writers. Accepting variable arguments to a function can be convenient for users and converting the arguments to a <literal>List</literal> is often ideal for internal management.</para></tip>
+<para id="para_here_is_an_example_script_that">Here is an example script that uses <literal>List.apply</literal> implicitly.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/list-apply-example-script.scala
 
 val list1 = List()
@@ -728,12 +728,12 @@ val list3 = List("1", "2.2", "three", "four")
 println("1: "+list1)
 println("2: "+list2)
 println("3: "+list3)</programlisting>
-<simpara id="para_the_four_is_a__symbol__ess">The <literal>'four</literal> is a <emphasis>symbol</emphasis>, essentially an interned string. Symbols are more commonly used in Ruby, for example, where the same symbol would be written as <literal>:four</literal>. Symbols are useful for representing identities consistently.</simpara>
-<simpara id="para_this_script_yields_the_followi">This script yields the following output.</simpara>
+<para id="para_the_four_is_a__symbol__ess">The <literal>'four</literal> is a <emphasis>symbol</emphasis>, essentially an interned string. Symbols are more commonly used in Ruby, for example, where the same symbol would be written as <literal>:four</literal>. Symbols are useful for representing identities consistently.</para>
+<para id="para_this_script_yields_the_followi">This script yields the following output.</para>
 <screen>1: List()
 2: List(1, 2.2, three, 'four)
 3: List(1, 2.2, three, four)</screen>
-<simpara id="para_the_unapplyseq_method_is_tri">The <literal>unapplySeq</literal> method is trivial; it returns the input list wrapped in a <literal>Some</literal>. However, this is sufficient for pattern matching as shown in this example.</simpara>
+<para id="para_the_unapplyseq_method_is_tri">The <literal>unapplySeq</literal> method is trivial; it returns the input list wrapped in a <literal>Some</literal>. However, this is sufficient for pattern matching as shown in this example.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/list-unapply-example-script.scala
 
 val list = List(1, 2.2, "three", 'four)
@@ -741,14 +741,14 @@ list match {
   case List(x, y, _*) =&gt; println("x = "+x+", y = "+y)
   case _ =&gt; throw new Exception("No match! "+list)
 }</programlisting>
-<simpara id="para_the_list_x_y___syntax_m">The <literal>List(x, y, _*)</literal> syntax means we will only match on a list with at least two elements and the first two elements will be assigned to <literal>x</literal> and <literal>y</literal>. We don’t care about the rest of the list. The <literal>_*</literal> matches zero or more remaining elements.</simpara>
-<simpara id="para_out2">The output is the following.</simpara>
+<para id="para_the_list_x_y___syntax_m">The <literal>List(x, y, _*)</literal> syntax means we will only match on a list with at least two elements and the first two elements will be assigned to <literal>x</literal> and <literal>y</literal>. We don’t care about the rest of the list. The <literal>_*</literal> matches zero or more remaining elements.</para>
+<para id="para_out2">The output is the following.</para>
 <screen>x = 1, y = 2.2</screen>
-<simpara id="para_we_ll_have_much_more_to_say_ab">We’ll have much more to say about <literal>List</literal> and pattern matching in <xref linkend="ListsInFunctionalProgramming"/> in <xref linkend="FunctionalProgramming"/>.</simpara>
+<para id="para_we_ll_have_much_more_to_say_ab">We’ll have much more to say about <literal>List</literal> and pattern matching in <xref linkend="ListsInFunctionalProgramming"/> in <xref linkend="FunctionalProgramming"/>.</para>
 </sect2>
 <sect2 id="CompanionObjectsAndJavaStaticMethods">
 <title>Companion Objects and Java Static Methods</title>
-<simpara id="para_there_is_one_more_thing_to_kno">There is one more thing to know about companion objects. Whenever you define a <literal>main</literal> method to use as the entry point for an application, Scala requires you to put it in an object. However, at the time of this writing, <literal>main</literal> methods cannot be defined in a companion object. Because of implementation details in the generated code, the JVM won’t find the <literal>main</literal> method. This issue may be resolved in a future release. For now, you must define any <literal>main</literal> method in a <emphasis>singleton</emphasis> object (<emphasis>i.e.,</emphasis> a “non-companion” object) <xref linkend="ScalaTips" xrefstyle="select: title nopage"/>. Consider the following example of a simple <literal>Person</literal> class and companion object that attempts to define <literal>main</literal>.</simpara>
+<para id="para_there_is_one_more_thing_to_kno">There is one more thing to know about companion objects. Whenever you define a <literal>main</literal> method to use as the entry point for an application, Scala requires you to put it in an object. However, at the time of this writing, <literal>main</literal> methods cannot be defined in a companion object. Because of implementation details in the generated code, the JVM won’t find the <literal>main</literal> method. This issue may be resolved in a future release. For now, you must define any <literal>main</literal> method in a <emphasis>singleton</emphasis> object (<emphasis>i.e.,</emphasis> a “non-companion” object) <xref linkend="ScalaTips" xrefstyle="select: title nopage"/>. Consider the following example of a simple <literal>Person</literal> class and companion object that attempts to define <literal>main</literal>.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/person.scala
 
 package objects
@@ -772,18 +772,18 @@ object Person {
 object PersonTest {
   def main(args: Array[String]) = Person.main(args)
 }</programlisting>
-<simpara id="para_this_code_compiles_fine_but_i">This code compiles fine, but if you attempt to invoke <literal>Person.main</literal>, using <userinput>scala -cp ... objects.Person</userinput>, you get the following error.</simpara>
+<para id="para_this_code_compiles_fine_but_i">This code compiles fine, but if you attempt to invoke <literal>Person.main</literal>, using <userinput>scala -cp ... objects.Person</userinput>, you get the following error.</para>
 <screen>java.lang.NoSuchMethodException: objects.Person.main([Ljava.lang.String;)</screen>
-<simpara id="para_the_objects_person_class_fil">The <literal>objects/Person.class</literal> file exists. If you decompile it with <userinput>javap -classpath ... objects.Person</userinput> (see <xref linkend="CommandLineToolDecompilers"/> in <xref linkend="ScalaToolsLibs"/>), you can see that it doesn’t contain a <literal>main</literal> method. If you decompile <literal>objects/Person$.class</literal>, the file for the companion object’s byte code, it has a <literal>main</literal> method, but notice that it isn’t declared <literal>static</literal>. So, attempting to invoke <userinput>scala -cp ... objects.Person$</userinput> also fails to find the “static” <literal>main</literal>.</simpara>
+<para id="para_the_objects_person_class_fil">The <literal>objects/Person.class</literal> file exists. If you decompile it with <userinput>javap -classpath ... objects.Person</userinput> (see <xref linkend="CommandLineToolDecompilers"/> in <xref linkend="ScalaToolsLibs"/>), you can see that it doesn’t contain a <literal>main</literal> method. If you decompile <literal>objects/Person$.class</literal>, the file for the companion object’s byte code, it has a <literal>main</literal> method, but notice that it isn’t declared <literal>static</literal>. So, attempting to invoke <userinput>scala -cp ... objects.Person$</userinput> also fails to find the “static” <literal>main</literal>.</para>
 <screen>java.lang.NoSuchMethodException: objects.Person$.main is not static</screen>
-<simpara id="para_the_separate__singleton__objec">The separate <emphasis>singleton</emphasis> object <literal>PersonTest</literal> defined in this example has to be used. Decompiling it with <userinput>javap -classpath ... objects.PersonTest</userinput> shows that it has a <literal>static main</literal> method. If you invoke it using <userinput>scala -cp ... objects.PersonTest</userinput>, the <literal>PersonTest.main</literal> method is invoked, which in turn invokes <literal>Person.main</literal>. You get an assertion error from the second call to <literal>assert</literal>, which is intentional.</simpara>
+<para id="para_the_separate__singleton__objec">The separate <emphasis>singleton</emphasis> object <literal>PersonTest</literal> defined in this example has to be used. Decompiling it with <userinput>javap -classpath ... objects.PersonTest</userinput> shows that it has a <literal>static main</literal> method. If you invoke it using <userinput>scala -cp ... objects.PersonTest</userinput>, the <literal>PersonTest.main</literal> method is invoked, which in turn invokes <literal>Person.main</literal>. You get an assertion error from the second call to <literal>assert</literal>, which is intentional.</para>
 <screen>java.lang.AssertionError: assertion failed
     at scala.Predef$.assert(Predef.scala:87)
     at objects.Person$.test(person.scala:15)
     at objects.PersonTest$.main(person.scala:20)
     at objects.PersonTest.main(person.scala)
     ....</screen>
-<simpara id="para_general_problem_with_statics_and_companions">In fact, this is a general issue with methods defined in companion objects that need to be visible to Java code as static methods. They aren’t static in the byte code. You have to put these methods in singleton objects instead. Consider the following Java class that attempts to create a user with <literal>Person.apply</literal>.</simpara>
+<para id="para_general_problem_with_statics_and_companions">In fact, this is a general issue with methods defined in companion objects that need to be visible to Java code as static methods. They aren’t static in the byte code. You have to put these methods in singleton objects instead. Consider the following Java class that attempts to create a user with <literal>Person.apply</literal>.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/PersonUserWontCompile.java
 // WON'T COMPILE
 
@@ -795,7 +795,7 @@ public class PersonUserWontCompile {
     System.out.println(buck);
   }
 }</programlisting>
-<simpara id="para_if_we_compile_it_after_compil">If we compile it (after compiling <literal>Person.scala</literal>), we get the following error.</simpara>
+<para id="para_if_we_compile_it_after_compil">If we compile it (after compiling <literal>Person.scala</literal>), we get the following error.</para>
 <screen>$ javac -classpath ... objects/PersonUserWontCompile.java
 objects/PersonUserWontCompile.java:5: cannot find symbol
 symbol  : method apply(java.lang.String,int)
@@ -803,7 +803,7 @@ location: class objects.Person
         Person buck = Person.apply("Buck Trends", 100);
                             ^
 1 error</screen>
-<simpara id="para_however_we_can_use_the_follow">However, we can use the following singleton object.</simpara>
+<para id="para_however_we_can_use_the_follow">However, we can use the following singleton object.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/person-factory.scala
 
 package objects
@@ -811,7 +811,7 @@ package objects
 object PersonFactory {
   def make(name: String, age: Int) = new Person(name, age)
 }</programlisting>
-<simpara id="para_now_the_following_java_class_w">Now the following Java class will compile.</simpara>
+<para id="para_now_the_following_java_class_w">Now the following Java class will compile.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/PersonUser.java
 
 package objects;
@@ -824,14 +824,14 @@ public class PersonUser {
     System.out.println(buck);
   }
 }</programlisting>
-<warning id="para_warning_do_not_main_methods"><simpara>Do not define <literal>main</literal> or any other method in a <emphasis>companion</emphasis> object that needs to be visible to Java code as a <literal>static</literal> method. Define it in a <emphasis>singleton</emphasis> object, instead.</simpara></warning>
-<simpara id="para_calling_companion_object_methods_from_java">If you have no other choice but to call a method in a companion object from Java, you can explicitly create an instance of the object with <literal>new</literal>, since the object is a “regular” Java class in the byte code, and call the method on the instance.</simpara>
+<warning id="para_warning_do_not_main_methods"><para>Do not define <literal>main</literal> or any other method in a <emphasis>companion</emphasis> object that needs to be visible to Java code as a <literal>static</literal> method. Define it in a <emphasis>singleton</emphasis> object, instead.</para></warning>
+<para id="para_calling_companion_object_methods_from_java">If you have no other choice but to call a method in a companion object from Java, you can explicitly create an instance of the object with <literal>new</literal>, since the object is a “regular” Java class in the byte code, and call the method on the instance.</para>
 </sect2>
 </sect1>
 <sect1 id="CaseClasses">
 <title>Case Classes</title>
-<simpara id="para_in_matchingoncaseclasses_i">In <xref linkend="MatchingOnCaseClasses"/> in <xref linkend="RoundingOutTheEssentials"/>, we briefly introduced you to <emphasis>case classes</emphasis>. Case classes have several useful features, but also some drawbacks.</simpara>
-<simpara id="para_let_s_rewrite_the_shape_exam">Let’s rewrite the <literal>Shape</literal> example we used in <xref linkend="ATasteOfConcurrency"/> in <xref linkend="IntroducingScala"/> to use case classes. Here is the original implementation.</simpara>
+<para id="para_in_matchingoncaseclasses_i">In <xref linkend="MatchingOnCaseClasses"/> in <xref linkend="RoundingOutTheEssentials"/>, we briefly introduced you to <emphasis>case classes</emphasis>. Case classes have several useful features, but also some drawbacks.</para>
+<para id="para_let_s_rewrite_the_shape_exam">Let’s rewrite the <literal>Shape</literal> example we used in <xref linkend="ATasteOfConcurrency"/> in <xref linkend="IntroducingScala"/> to use case classes. Here is the original implementation.</para>
 <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes.scala
 
 package shapes {
@@ -862,7 +862,7 @@ package shapes {
       "Triangle(" + point1 + "," + point2 + "," + point3 + ")"
   }
 }</programlisting>
-<simpara id="para_here_is_the_example_rewritten_">Here is the example rewritten using the <literal>case</literal> keyword.</simpara>
+<para id="para_here_is_the_example_rewritten_">Here is the example rewritten using the <literal>case</literal> keyword.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case.scala
 
 package shapes {
@@ -886,10 +886,10 @@ package shapes {
     def draw() = println("Triangle.draw: " + this)
   }
 }</programlisting>
-<simpara id="para_adding_the_case_keyword_caus">Adding the <literal>case</literal> keyword causes the compiler to add a number of useful features automatically. The keyword suggests an association with <literal>case</literal> expressions in pattern matching. Indeed, they are particularly well suited for that application, as we will see.</simpara>
-<simpara id="para_first_the_parser_automaticall">First, the compiler automatically converts the constructor arguments into immutable fields (<literal>val</literal>’s). The <literal>val</literal> keyword is optional. If you want mutable fields, use the <literal>var</literal> keyword. So, our constructor argument lists are now shorter.</simpara>
-<simpara id="para_second_the_parser_automatical">Second, the compiler automatically implements <literal>equals</literal>, <literal>hashCode</literal>, and <literal>toString</literal> methods to the class, which use the fields specified as constructor arguments. So, we no longer need our own <literal>toString</literal> methods. In fact, the generated <literal>toString</literal> methods produce the same outputs as the ones we implemented ourselves. Also, the body of <literal>Point</literal> is gone because there are no methods that we need to define!</simpara>
-<simpara id="para_the_following_script_uses_thes">The following script uses these methods that are now in the shapes.</simpara>
+<para id="para_adding_the_case_keyword_caus">Adding the <literal>case</literal> keyword causes the compiler to add a number of useful features automatically. The keyword suggests an association with <literal>case</literal> expressions in pattern matching. Indeed, they are particularly well suited for that application, as we will see.</para>
+<para id="para_first_the_parser_automaticall">First, the compiler automatically converts the constructor arguments into immutable fields (<literal>val</literal>’s). The <literal>val</literal> keyword is optional. If you want mutable fields, use the <literal>var</literal> keyword. So, our constructor argument lists are now shorter.</para>
+<para id="para_second_the_parser_automatical">Second, the compiler automatically implements <literal>equals</literal>, <literal>hashCode</literal>, and <literal>toString</literal> methods to the class, which use the fields specified as constructor arguments. So, we no longer need our own <literal>toString</literal> methods. In fact, the generated <literal>toString</literal> methods produce the same outputs as the ones we implemented ourselves. Also, the body of <literal>Point</literal> is gone because there are no methods that we need to define!</para>
+<para id="para_the_following_script_uses_thes">The following script uses these methods that are now in the shapes.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example1-script.scala
 
 import shapes._
@@ -906,18 +906,18 @@ println("shape1: "+shape1+". hash = "+shape1.hashCode)
 for (shape2 &lt;- shapesList) {
   println("shape2: "+shape2+". 1 == 2 ? "+(shape1 == shape2))
 }</programlisting>
-<simpara id="para_output1">This script outputs the following.</simpara>
+<para id="para_output1">This script outputs the following.</para>
 <screen>shape1: Circle(Point(0.0,0.0),1.0). hash = 2061963534
 shape2: Circle(Point(0.0,0.0),1.0). 1 == 2 ? true
 shape2: Circle(Point(5.0,2.0),3.0). 1 == 2 ? false
 shape2: Rectangle(Point(0.0,0.0),2.0,5.0). 1 == 2 ? false
 shape2: Rectangle(Point(-2.0,-1.0),4.0,3.0). 1 == 2 ? false
 shape2: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0)). 1 == 2 ? false</screen>
-<simpara id="para_as_we_ll_see_in_equalityofob">As we’ll see in <xref linkend="EqualityOfObjects"/> below, the <literal>==</literal> method actually invokes the <literal>equals</literal> method.</simpara>
-<simpara id="para_even_outside_of_case_express">Even outside of <literal>case</literal> expressions, automatic generation of these three methods is very convenient for simple, “structural” classes, <emphasis>i.e.,</emphasis> classes that contain relatively simple fields and behaviors.</simpara>
-<simpara id="para_third_when_the_case_keyword">Third, when the <literal>case</literal> keyword is used, the compiler automatically creates a <emphasis>companion object</emphasis> with an <literal>apply</literal> factory method that takes the same arguments as the <emphasis>primary</emphasis> constructor. The previous example used the appropriate <literal>apply</literal> methods to create the <literal>Points</literal>, the different <literal>Shapes</literal>, and also the <literal>List</literal> itself. That’s why we don’t need <literal>new</literal>; we’re actually calling <literal>apply(x,y)</literal> in the <literal>Point</literal> companion object, for example.</simpara>
-<note id="para_note_you_can_have__secondary_"><simpara>You can have <emphasis>secondary</emphasis> constructors in case classes, but there will be no overloaded <literal>apply</literal> method generated that has the same argument list. You’ll have to use <literal>new</literal> to create instances with those constructors.</simpara></note>
-<simpara id="para_the_companion_object_also_gets">The companion object also gets an <literal>unapply</literal> method, called an <emphasis>extractor</emphasis>. Extractors are used to extract the parts of an object in an elegant fashion. The following script demonstrates the extractors in pattern matching <literal>case</literal> statements.</simpara>
+<para id="para_as_we_ll_see_in_equalityofob">As we’ll see in <xref linkend="EqualityOfObjects"/> below, the <literal>==</literal> method actually invokes the <literal>equals</literal> method.</para>
+<para id="para_even_outside_of_case_express">Even outside of <literal>case</literal> expressions, automatic generation of these three methods is very convenient for simple, “structural” classes, <emphasis>i.e.,</emphasis> classes that contain relatively simple fields and behaviors.</para>
+<para id="para_third_when_the_case_keyword">Third, when the <literal>case</literal> keyword is used, the compiler automatically creates a <emphasis>companion object</emphasis> with an <literal>apply</literal> factory method that takes the same arguments as the <emphasis>primary</emphasis> constructor. The previous example used the appropriate <literal>apply</literal> methods to create the <literal>Points</literal>, the different <literal>Shapes</literal>, and also the <literal>List</literal> itself. That’s why we don’t need <literal>new</literal>; we’re actually calling <literal>apply(x,y)</literal> in the <literal>Point</literal> companion object, for example.</para>
+<note id="para_note_you_can_have__secondary_"><para>You can have <emphasis>secondary</emphasis> constructors in case classes, but there will be no overloaded <literal>apply</literal> method generated that has the same argument list. You’ll have to use <literal>new</literal> to create instances with those constructors.</para></note>
+<para id="para_the_companion_object_also_gets">The companion object also gets an <literal>unapply</literal> method, called an <emphasis>extractor</emphasis>. Extractors are used to extract the parts of an object in an elegant fashion. The following script demonstrates the extractors in pattern matching <literal>case</literal> statements.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example2-script.scala
 
 import shapes._
@@ -941,7 +941,7 @@ def matchOn(shape: Shape) = shape match {
 }
 
 shapesList.foreach { shape =&gt; matchOn(shape) }</programlisting>
-<simpara id="para_output2">This script outputs the following.</simpara>
+<para id="para_output2">This script outputs the following.</para>
 <screen>Circle: center = Point(0.0,0.0), radius = 1.0
 Circle: center = Point(5.0,2.0), radius = 3.0
 Rectangle: lower-left = Point(0.0,0.0), height = 2.0, width = 5.0
@@ -949,29 +949,29 @@ Rectangle: lower-left = Point(-2.0,-1.0), height = 4.0, width = 3.0
 Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1.0)</screen>
 <sect2 id="SyntacticSugarForBinaryOperations">
 <title>Syntactic Sugar for Binary Operations</title>
-<simpara id="para_by_the_way_remember_in_matc">By the way, remember in <xref linkend="MatchingOnSequences"/> in <xref linkend="RoundingOutTheEssentials"/> when we discussed matching on lists? We wrote this <literal>case</literal> expression.</simpara>
+<para id="para_by_the_way_remember_in_matc">By the way, remember in <xref linkend="MatchingOnSequences"/> in <xref linkend="RoundingOutTheEssentials"/> when we discussed matching on lists? We wrote this <literal>case</literal> expression.</para>
 <programlisting linenumbering="unnumbered">def processList(l: List[Any]): Unit = l match {
   case head :: tail =&gt; ...
   ...
 }</programlisting>
-<simpara id="para_it_turns_out_that_the_followin">It turns out that the following expressions are identical.</simpara>
+<para id="para_it_turns_out_that_the_followin">It turns out that the following expressions are identical.</para>
 <programlisting linenumbering="unnumbered">  case head :: tail =&gt; ...
   case ::(head, tail) =&gt; ...</programlisting>
-<simpara id="para_we_are_using_the_companion_obj">We are using the companion object for the case class named <literal>::</literal>, which is used for non-empty lists. When used in <literal>case</literal> expressions, the compiler supports this  special infix operator notation for invocations of <literal>unapply</literal>.</simpara>
-<simpara id="para_it_works_not_only_for_unapply">It works not only for <literal>unapply</literal> methods with two arguments, but also with one or more arguments. We could rewrite our <literal>matchOn</literal> method above this way.</simpara>
+<para id="para_we_are_using_the_companion_obj">We are using the companion object for the case class named <literal>::</literal>, which is used for non-empty lists. When used in <literal>case</literal> expressions, the compiler supports this  special infix operator notation for invocations of <literal>unapply</literal>.</para>
+<para id="para_it_works_not_only_for_unapply">It works not only for <literal>unapply</literal> methods with two arguments, but also with one or more arguments. We could rewrite our <literal>matchOn</literal> method above this way.</para>
 <programlisting linenumbering="unnumbered">def matchOn(shape: Shape) = shape match {
   case center Circle radius =&gt; ...
   case ll Rectangle (h, w) =&gt; ...
   case p1 Triangle (p2, p3) =&gt; ...
   case _ =&gt; ...
 }</programlisting>
-<simpara id="para_for_an_unapply_that_takes_on">For an <literal>unapply</literal> that takes one argument, you would have to insert an empty set of parentheses to avoid a parsing ambiguity.</simpara>
+<para id="para_for_an_unapply_that_takes_on">For an <literal>unapply</literal> that takes one argument, you would have to insert an empty set of parentheses to avoid a parsing ambiguity.</para>
 <programlisting linenumbering="unnumbered">  case arg Foo () =&gt; ...</programlisting>
-<simpara id="para_from_the_point_of_view_of_clar">From the point of view of clarity, this syntax is elegant for some cases when there are two arguments. For lists, <literal>head :: tail</literal> matches the expressions for building up lists, so there is a beautiful symmetry when the extraction process uses the same syntax. However, the merits of this syntax are less clear for other examples, especially when there are N != 2 arguments.</simpara>
+<para id="para_from_the_point_of_view_of_clar">From the point of view of clarity, this syntax is elegant for some cases when there are two arguments. For lists, <literal>head :: tail</literal> matches the expressions for building up lists, so there is a beautiful symmetry when the extraction process uses the same syntax. However, the merits of this syntax are less clear for other examples, especially when there are N != 2 arguments.</para>
 </sect2>
 <sect2 id="TheCopyMethodInScalaVersion28">
 <title>The copy Method in Scala Version 2.8</title>
-<simpara id="para_in_scala_version_2_8_another_">In Scala version 2.8, another instance method is automatically generated, called <literal>copy</literal>. This method is useful when you want to make a new instance of a case class that is identical to another instance with a few fields changed. Consider the following example script.</simpara>
+<para id="para_in_scala_version_2_8_another_">In Scala version 2.8, another instance method is automatically generated, called <literal>copy</literal>. This method is useful when you want to make a new instance of a case class that is identical to another instance with a few fields changed. Consider the following example script.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example3-v28-script.scala
 // Scala version 2.8 only.
 
@@ -982,30 +982,30 @@ val circle2 = circle 1 copy (radius = 4.0)
 
 println(circle1)
 println(circle2)</programlisting>
-<simpara id="para_the_second_circle_is_created_b">The second circle is created by copying the first and specifying a new radius. The <literal>copy</literal> method implementation that is generated by the compiler exploits the new named and default parameters in Scala version 2.8, which we discussed in <xref linkend="MethodDefaultAndNamedArguments"/> in <xref linkend="TypeLessDoMore"/>. The generated implementation of <literal>Circle.copy</literal> looks roughly like the following.</simpara>
+<para id="para_the_second_circle_is_created_b">The second circle is created by copying the first and specifying a new radius. The <literal>copy</literal> method implementation that is generated by the compiler exploits the new named and default parameters in Scala version 2.8, which we discussed in <xref linkend="MethodDefaultAndNamedArguments"/> in <xref linkend="TypeLessDoMore"/>. The generated implementation of <literal>Circle.copy</literal> looks roughly like the following.</para>
 <programlisting linenumbering="unnumbered">case class Circle(center: Point, radius: Double) extends Shape() {
   ...
   def copy(center: Point = this.center, radius: Double = this.radius) =
     new Circle(center, radius)
 }</programlisting>
-<simpara id="para_so_default_values_are_provide">So, default values are provided for all the arguments to the method (only two in this case). When using the <literal>copy</literal> method, the user only specifies by name the fields that are changing. The values for the rest of the fields are used without having to  reference them explicitly.</simpara>
+<para id="para_so_default_values_are_provide">So, default values are provided for all the arguments to the method (only two in this case). When using the <literal>copy</literal> method, the user only specifies by name the fields that are changing. The values for the rest of the fields are used without having to  reference them explicitly.</para>
 </sect2>
 <sect2 id="CaseClassInheritance">
 <title>Case Class Inheritance</title>
-<simpara id="para_did_you_notice_that_shapes_c">Did you notice that new <literal>Shapes</literal> code in <xref linkend="CaseClasses"/> did not put the <literal>case</literal> keyword on the abstract <literal>Shape</literal> class? This is allowed by the compiler, but there are reasons for not having one case class inherit another. First, it can complicate field initialization. Suppose we make <literal>Shape</literal> a case class. Suppose we want to add a string field to all shapes representing an “id” that the user wants to set. It makes sense to define this field in <literal>Shape</literal>. Let’s make these two changes to <literal>Shape</literal>.</simpara>
+<para id="para_did_you_notice_that_shapes_c">Did you notice that new <literal>Shapes</literal> code in <xref linkend="CaseClasses"/> did not put the <literal>case</literal> keyword on the abstract <literal>Shape</literal> class? This is allowed by the compiler, but there are reasons for not having one case class inherit another. First, it can complicate field initialization. Suppose we make <literal>Shape</literal> a case class. Suppose we want to add a string field to all shapes representing an “id” that the user wants to set. It makes sense to define this field in <literal>Shape</literal>. Let’s make these two changes to <literal>Shape</literal>.</para>
 <programlisting linenumbering="unnumbered">abstract case class Shape(id: String) {
   def draw(): Unit
 }</programlisting>
-<simpara id="para_now_the_derived_shapes_need_to">Now the derived shapes need to pass the <literal>id</literal> to the <literal>Shape</literal> constructor. For example, <literal>Circle</literal> would become the following.</simpara>
+<para id="para_now_the_derived_shapes_need_to">Now the derived shapes need to pass the <literal>id</literal> to the <literal>Shape</literal> constructor. For example, <literal>Circle</literal> would become the following.</para>
 <programlisting linenumbering="unnumbered">case class Circle(id: String, center: Point, radius: Double) extends Shape(id){
   def draw(): Unit
 }</programlisting>
-<simpara id="para_however_if_you_compile_this_c">However, if you compile this code, you’ll get errors like the following.</simpara>
+<para id="para_however_if_you_compile_this_c">However, if you compile this code, you’ll get errors like the following.</para>
 <screen>... error: error overriding value id in class Shape of type String;
  value id needs `override' modifier
   case class Circle(id: String, center: Point, radius: Double) extends Shape(id){
                     ^</screen>
-<simpara id="para_remember_that_both_definitions">Remember that both definitions of <literal>id</literal>, the one in <literal>Shape</literal> and the one in <literal>Circle</literal> are considered <literal>val</literal> field definitions! The error message tells us the answer; use the <literal>override</literal> keyword, as we discussed in <xref linkend="OverridingMembers"/>. So, the complete set of required modifications are as follows.</simpara>
+<para id="para_remember_that_both_definitions">Remember that both definitions of <literal>id</literal>, the one in <literal>Shape</literal> and the one in <literal>Circle</literal> are considered <literal>val</literal> field definitions! The error message tells us the answer; use the <literal>override</literal> keyword, as we discussed in <xref linkend="OverridingMembers"/>. So, the complete set of required modifications are as follows.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case-id.scala
 
 package shapesid {
@@ -1030,8 +1030,8 @@ package shapesid {
     def draw() = println("Triangle.draw: " + this)
   }
 }</programlisting>
-<simpara id="para_note_that_we_also_have_to_add_">Note that we also have to add the <literal>val</literal> keywords. This works, but it is somewhat ugly.</simpara>
-<simpara id="para_a_more_ominous_problem_involve">A more ominous problem involves the generated <literal>equals</literal> methods. Under inheritance, the <literal>equals</literal> methods don’t obey all the standard rules for robust object equality. We’ll discuss those rules below in <xref linkend="EqualityOfObjects"/>. For now, consider the following example.</simpara>
+<para id="para_note_that_we_also_have_to_add_">Note that we also have to add the <literal>val</literal> keywords. This works, but it is somewhat ugly.</para>
+<para id="para_a_more_ominous_problem_involve">A more ominous problem involves the generated <literal>equals</literal> methods. Under inheritance, the <literal>equals</literal> methods don’t obey all the standard rules for robust object equality. We’ll discuss those rules below in <xref linkend="EqualityOfObjects"/>. For now, consider the following example.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case-equals-ambiguity-script.scala
 
 import shapesid._
@@ -1046,56 +1046,56 @@ val fc = FancyCircle("me", "circle", Point(0.0,0.0), 10.0)
 val c  = Circle("circle", Point(0.0,0.0), 10.0)
 format("FancyCircle == Circle? %b\n", (fc == c))
 format("Circle == FancyCircle? %b\n", (c  == fc))</programlisting>
-<simpara id="para_if_you_run_this_script_you_ge">If you run this script, you get the following output.</simpara>
+<para id="para_if_you_run_this_script_you_ge">If you run this script, you get the following output.</para>
 <screen>FancyCircle == Circle? false
 Circle == FancyCircle? true</screen>
-<simpara id="para_so_circle_equals_evaluates_">So, <literal>Circle.equals</literal> evaluates to true when given a <literal>FancyCircle</literal> with the same values for the <literal>Circle</literal> fields. The reverse case isn’t true. While you might argue that, as far as <literal>Circle</literal> is concerned, they really <emphasis>are</emphasis> equal, most people would argue that this is a risky, “relaxed” interpretation of equality. It’s true that a future version of Scala could generate <literal>equals</literal> methods for <literal>case</literal> classes that do exact type-equality checking.</simpara>
-<simpara id="para_so_the_conveniences_provided_">So, the conveniences provided by case classes sometimes lead to problems. It is best to avoid inheritance of one case class by another. Note that it’s fine for a case class to inherit from a non-case class or trait. It’s also fine for a non-case class or trait to inherit from a case class.</simpara>
-<simpara id="para_because_of_these_issues_it_is">Because of these issues, it is possible that case class inheritance will be deprecated and removed in future versions of Scala.</simpara>
-<warning id="para_warning_avoid_inheriting_a_ca"><simpara>Avoid inheriting a case class from another case class.</simpara></warning>
+<para id="para_so_circle_equals_evaluates_">So, <literal>Circle.equals</literal> evaluates to true when given a <literal>FancyCircle</literal> with the same values for the <literal>Circle</literal> fields. The reverse case isn’t true. While you might argue that, as far as <literal>Circle</literal> is concerned, they really <emphasis>are</emphasis> equal, most people would argue that this is a risky, “relaxed” interpretation of equality. It’s true that a future version of Scala could generate <literal>equals</literal> methods for <literal>case</literal> classes that do exact type-equality checking.</para>
+<para id="para_so_the_conveniences_provided_">So, the conveniences provided by case classes sometimes lead to problems. It is best to avoid inheritance of one case class by another. Note that it’s fine for a case class to inherit from a non-case class or trait. It’s also fine for a non-case class or trait to inherit from a case class.</para>
+<para id="para_because_of_these_issues_it_is">Because of these issues, it is possible that case class inheritance will be deprecated and removed in future versions of Scala.</para>
+<warning id="para_warning_avoid_inheriting_a_ca"><para>Avoid inheriting a case class from another case class.</para></warning>
 </sect2>
 </sect1>
 <sect1 id="EqualityOfObjects">
 <title>Equality of Objects</title>
-<simpara id="para_implementing_a_reliable_equali">Implementing a reliable equality test for instances is difficult to do correctly. <emphasis>Effective Java</emphasis> <xref linkend="Bloch2008" xrefstyle="select: title nopage"/> and the <emphasis>Scaladoc</emphasis> page for <literal>AnyRef.equals</literal> describe the requirements for a good equality test. A very good description of the techniques for writing correct <literal>equals</literal> and <literal>hashCode</literal> methods can be found in <xref linkend="Odersky2009" xrefstyle="select: title nopage"/>, which uses Java syntax, but is adapted from chapter 28 of <emphasis>Programming in Scala</emphasis> <xref linkend="Odersky2008" xrefstyle="select: title nopage"/>. Consult these references when you need to implement your own <literal>equals</literal> and <literal>hashCode</literal> methods. Recall that these methods are created automatically for <literal>case</literal> classes.</simpara>
-<simpara id="para_here_we_focus_on_the_different">Here we focus on the different equality methods available in Scala and their meanings. There are some slight inconsistencies between the Scala specification <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/> and the <emphasis>Scaladoc</emphasis> pages for the equality-related methods for <literal>Any</literal> and <literal>AnyRef</literal>, but the general behavior is clear.</simpara>
-<caution id="para_caution_some_of_the_equality_"><simpara>Some of the equality methods have the same names as equality methods in other languages, but the semantics are sometimes different!</simpara></caution>
+<para id="para_implementing_a_reliable_equali">Implementing a reliable equality test for instances is difficult to do correctly. <emphasis>Effective Java</emphasis> <xref linkend="Bloch2008" xrefstyle="select: title nopage"/> and the <emphasis>Scaladoc</emphasis> page for <literal>AnyRef.equals</literal> describe the requirements for a good equality test. A very good description of the techniques for writing correct <literal>equals</literal> and <literal>hashCode</literal> methods can be found in <xref linkend="Odersky2009" xrefstyle="select: title nopage"/>, which uses Java syntax, but is adapted from chapter 28 of <emphasis>Programming in Scala</emphasis> <xref linkend="Odersky2008" xrefstyle="select: title nopage"/>. Consult these references when you need to implement your own <literal>equals</literal> and <literal>hashCode</literal> methods. Recall that these methods are created automatically for <literal>case</literal> classes.</para>
+<para id="para_here_we_focus_on_the_different">Here we focus on the different equality methods available in Scala and their meanings. There are some slight inconsistencies between the Scala specification <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/> and the <emphasis>Scaladoc</emphasis> pages for the equality-related methods for <literal>Any</literal> and <literal>AnyRef</literal>, but the general behavior is clear.</para>
+<caution id="para_caution_some_of_the_equality_"><para>Some of the equality methods have the same names as equality methods in other languages, but the semantics are sometimes different!</para></caution>
 <sect2 id="_the_equals_method">
 <title>The equals Method</title>
-<simpara id="para_the_equals_method_tests_for_">The <literal>equals</literal> method tests for <emphasis>value</emphasis> equality. That is, <literal>obj1 equals obj2</literal> is true if both <literal>obj1</literal> and <literal>obj2</literal> have the same value. They do not need to refer to the same instance.</simpara>
-<simpara id="para_hence_equals_behaves_like_t">Hence, <literal>equals</literal> behaves like the <literal>equals</literal> method in Java and the <literal>eql?</literal> method in Ruby.</simpara>
+<para id="para_the_equals_method_tests_for_">The <literal>equals</literal> method tests for <emphasis>value</emphasis> equality. That is, <literal>obj1 equals obj2</literal> is true if both <literal>obj1</literal> and <literal>obj2</literal> have the same value. They do not need to refer to the same instance.</para>
+<para id="para_hence_equals_behaves_like_t">Hence, <literal>equals</literal> behaves like the <literal>equals</literal> method in Java and the <literal>eql?</literal> method in Ruby.</para>
 </sect2>
 <sect2 id="_the_and_methods">
 <title>The == and != Methods</title>
-<simpara id="para_while_is_an_operator_in_m">While <literal>==</literal> is an operator in many languages, it is a method in Scala, defined as <literal>final</literal> in <literal>Any</literal>. It tests for <emphasis>value</emphasis> equality, like <literal>equals</literal>. That is, <literal>obj1 == obj2</literal> is true if both <literal>obj1</literal> and <literal>obj2</literal> have the same value. In fact, <literal>==</literal> delegates to <literal>equals</literal>. Here is part of the <emphasis>Scaladoc</emphasis> entry for <literal>Any.==</literal>.</simpara>
+<para id="para_while_is_an_operator_in_m">While <literal>==</literal> is an operator in many languages, it is a method in Scala, defined as <literal>final</literal> in <literal>Any</literal>. It tests for <emphasis>value</emphasis> equality, like <literal>equals</literal>. That is, <literal>obj1 == obj2</literal> is true if both <literal>obj1</literal> and <literal>obj2</literal> have the same value. In fact, <literal>==</literal> delegates to <literal>equals</literal>. Here is part of the <emphasis>Scaladoc</emphasis> entry for <literal>Any.==</literal>.</para>
 <screen>o == arg0 is the same as o.equals(arg0).</screen>
-<simpara id="para_here_is_the_corresponding_part">Here is the corresponding part of the <emphasis>Scaladoc</emphasis> entry for <literal>AnyRef.==</literal>.</simpara>
+<para id="para_here_is_the_corresponding_part">Here is the corresponding part of the <emphasis>Scaladoc</emphasis> entry for <literal>AnyRef.==</literal>.</para>
 <screen>o == arg0 is the same as if (o eq null) arg0 eq null else o.equals(arg0).</screen>
-<simpara id="para_as_you_would_expect_is_th">As you would expect <literal>!=</literal> is the negation, <emphasis>i.e.,</emphasis> it is equivalent to <literal>!(obj1 == obj2)</literal>.</simpara>
-<simpara id="para_since_and_are_declar">Since <literal>==</literal> and <literal>!=</literal> are declared <literal>final</literal> in <literal>Any</literal>, you can’t override them, but you don’t need to, since they delegate to <literal>equals</literal>.</simpara>
-<note id="para_note_that_in_java_c_043"><simpara>In Java, C++, and C# the <literal>==</literal> operator tests for <emphasis>reference</emphasis>, not <emphasis>value</emphasis> equality. In contrast, Ruby’s <literal>==</literal> operator tests for <emphasis>value</emphasis> equality. Whatever language you’re used to, make sure to remember that in Scala, <literal>==</literal> is testing for value equality.</simpara></note>
+<para id="para_as_you_would_expect_is_th">As you would expect <literal>!=</literal> is the negation, <emphasis>i.e.,</emphasis> it is equivalent to <literal>!(obj1 == obj2)</literal>.</para>
+<para id="para_since_and_are_declar">Since <literal>==</literal> and <literal>!=</literal> are declared <literal>final</literal> in <literal>Any</literal>, you can’t override them, but you don’t need to, since they delegate to <literal>equals</literal>.</para>
+<note id="para_note_that_in_java_c_043"><para>In Java, C++, and C# the <literal>==</literal> operator tests for <emphasis>reference</emphasis>, not <emphasis>value</emphasis> equality. In contrast, Ruby’s <literal>==</literal> operator tests for <emphasis>value</emphasis> equality. Whatever language you’re used to, make sure to remember that in Scala, <literal>==</literal> is testing for value equality.</para></note>
 </sect2>
 <sect2 id="_the_ne_and_eq_methods">
 <title>The ne and eq Methods</title>
-<simpara id="para_the_eq_method_tests_for__ref">The <literal>eq</literal> method tests for <emphasis>reference</emphasis> equality. That is, <literal>obj1 eq obj2</literal> is true if both <literal>obj1</literal> and <literal>obj2</literal> point to the same location in memory. These methods are only defined for <literal>AnyRef</literal>.</simpara>
-<simpara id="para_hence_eq_behave_like_the_">Hence, <literal>eq</literal> behave like the <literal>==</literal> operator in Java, C++, and C#, but not <literal>==</literal> in Ruby.</simpara>
-<simpara id="para_the_ne_method_is_the_negatio">The <literal>ne</literal> method is the negation of <literal>eq</literal>, <emphasis>i.e.,</emphasis> it is equivalent to <literal>!(obj1 eq obj2)</literal>.</simpara>
+<para id="para_the_eq_method_tests_for__ref">The <literal>eq</literal> method tests for <emphasis>reference</emphasis> equality. That is, <literal>obj1 eq obj2</literal> is true if both <literal>obj1</literal> and <literal>obj2</literal> point to the same location in memory. These methods are only defined for <literal>AnyRef</literal>.</para>
+<para id="para_hence_eq_behave_like_the_">Hence, <literal>eq</literal> behave like the <literal>==</literal> operator in Java, C++, and C#, but not <literal>==</literal> in Ruby.</para>
+<para id="para_the_ne_method_is_the_negatio">The <literal>ne</literal> method is the negation of <literal>eq</literal>, <emphasis>i.e.,</emphasis> it is equivalent to <literal>!(obj1 eq obj2)</literal>.</para>
 </sect2>
 <sect2 id="_array_equality_and_the_sameelements_method">
 <title>Array Equality and the sameElements Method</title>
-<simpara id="para_comparing_the_contents_of_two_">Comparing the contents of two Arrays doesn’t have an obvious result in Scala.</simpara>
+<para id="para_comparing_the_contents_of_two_">Comparing the contents of two Arrays doesn’t have an obvious result in Scala.</para>
 <screen>scala&gt; Array(1, 2) == Array(1, 2)
 res0: Boolean = false</screen>
-<simpara id="para_that_s_a_surprise_thankfully_">That’s a surprise! Thankfully, there’s a simple solution in the form of the <literal>sameElements</literal> method.</simpara>
+<para id="para_that_s_a_surprise_thankfully_">That’s a surprise! Thankfully, there’s a simple solution in the form of the <literal>sameElements</literal> method.</para>
 <screen>scala&gt; Array(1, 2).sameElements(Array(1, 2))
 res1: Boolean = true</screen>
-<simpara id="para_much_better_remember_to_use_">Much better. Remember to use <literal>sameElements</literal> when you want to test if two Arrays contain the same elements.</simpara>
-<simpara id="para_while_this_may_seem_like_an_in">While this may seem like an inconsistency, encouraging an explicit test of the equality of two mutable data structures is a conservative approach on the part of the language designers. In the long run, it should save you from unexpected results in your conditionals.</simpara>
+<para id="para_much_better_remember_to_use_">Much better. Remember to use <literal>sameElements</literal> when you want to test if two Arrays contain the same elements.</para>
+<para id="para_while_this_may_seem_like_an_in">While this may seem like an inconsistency, encouraging an explicit test of the equality of two mutable data structures is a conservative approach on the part of the language designers. In the long run, it should save you from unexpected results in your conditionals.</para>
 </sect2>
 </sect1>
 <sect1 id="AdvOOPRecapAndWhatsNext">
 <title>Recap and What’s Next</title>
-<simpara id="para_we_explored_the_fine_points_of">We explored the fine points of overriding members in derived classes. We learned about object equality, case classes, and companion classes and objects.</simpara>
-<simpara id="para_in_the_next_chapter_on_scalas_object_system">In the next chapter, we’ll learn about the Scala type hierarchy, in particular, the <literal>Predef</literal> object that includes many useful definitions. We’ll also learn about Scala’s alternative to Java’s <literal>static</literal> class members and the <emphasis>linearization</emphasis> rules for method lookup.</simpara>
+<para id="para_we_explored_the_fine_points_of">We explored the fine points of overriding members in derived classes. We learned about object equality, case classes, and companion classes and objects.</para>
+<para id="para_in_the_next_chapter_on_scalas_object_system">In the next chapter, we’ll learn about the Scala type hierarchy, in particular, the <literal>Predef</literal> object that includes many useful definitions. We’ll also learn about Scala’s alternative to Java’s <literal>static</literal> class members and the <emphasis>linearization</emphasis> rules for method lookup.</para>
 </sect1>
 </chapter>
