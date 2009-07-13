@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="ApplicationDesign">
 <title>Application Design</title>
 <para id="para_in_this_chapter_we_take_a_pra">In this chapter, we take a pragmatic look at developing applications
@@ -23,7 +24,7 @@ environment. In this section, we will focus on the JDK environment.</para>
 <para id="para_in_java_annotations_are_decla">In Java, annotations are declared using special conventions, <emphasis>e.g.,</emphasis>
 declaring annotations with the <literal>@interface</literal> keyword instead of the
 <literal>class</literal> or <literal>interface</literal> keyword. Here is the declaration of an
-annotation taken from a toolkit called Contract4J <xref linkend="Contract4J" xrefstyle="select: title nopage"/> that
+annotation taken from a toolkit called Contract4J <link linkend="Contract4J" xrefstyle="select:nopage">[Contract4J]</link> that
 uses annotations to support <emphasis>design by contract</emphasis> programming in Java
 (see also <xref linkend="DesignByContractExample"/> below). Some of the comments
 have been removed for clarity.</para>
@@ -110,7 +111,7 @@ field. The <literal>value</literal> field is specified as before with a one-elem
 parameter list. The <literal>message</literal> is initialized in a follow-on block in
 curly braces.</para>
 <para id="para_testing_this_code_would_requir">Testing this code would require the <emphasis>Contract4J</emphasis> library, build setup,
-<emphasis>etc.</emphasis> We won’t cover those steps here. Refer to <xref linkend="Contract4J" xrefstyle="select: title nopage"/> for
+<emphasis>etc.</emphasis> We won’t cover those steps here. Refer to <link linkend="Contract4J" xrefstyle="select:nopage">[Contract4J]</link> for
 more information.</para>
 <para id="para_scala_annotations_don_t_use_a_">Scala annotations don’t use a special declaration syntax. They are
 declared as normal classes. This approach eliminates a “special
@@ -185,7 +186,7 @@ annotations derived from <literal>ClassfileAnnotation</literal>, perhaps for obv
 reasons.</para>
 <warning id="para_warning_avoid_classfileannot"><para>Avoid <literal>ClassfileAnnotation</literal>. Implement annotations that
 require runtime retention in Java instead.</para></warning>
-<para id="para_for_scala_version_2_7_x_anoth">For Scala version 2.7.X, another important limitation to keep in mind is that annotations can’t be nested. This causes problems when using JPA annotations in Scala code, for example, as discussed in <xref linkend="JPAScala" xrefstyle="select: title nopage"/>. However, Scala version 2.8 removes this limitation.</para>
+<para id="para_for_scala_version_2_7_x_anoth">For Scala version 2.7.X, another important limitation to keep in mind is that annotations can’t be nested. This causes problems when using JPA annotations in Scala code, for example, as discussed in <link linkend="JPAScala" xrefstyle="select:nopage">[JPAScala]</link>. However, Scala version 2.8 removes this limitation.</para>
 <warning id="para_warning_annotations_can_only_"><para>Annotations can only be nested in Scala version 2.8.</para></warning>
 <para id="para_the_following_tables_describe_">The following tables describe all the annotations defined in the Scala
 library (adapted and expanded from
@@ -825,7 +826,7 @@ objects.</para></tip>
 we briefly discussed how it encourages avoiding
 <literal>null</literal> references in your code, which Tony Hoare, who introduced the
 concept of <literal>null</literal> in 1965, called his “billion dollar mistake”
-<xref linkend="Hoare2009" xrefstyle="select: title nopage"/>.</para>
+<link linkend="Hoare2009" xrefstyle="select:nopage">[Hoare2009]</link>.</para>
 <para id="para_scala_has_to_support_null_b">Scala has to support <literal>null</literal>, because <literal>null</literal> is supported on both the
 JVM and .NET and other libraries use <literal>null</literal>. In fact, <literal>null</literal> is used
 by some Scala libraries.</para>
@@ -932,7 +933,7 @@ following command.</para>
 <screen>scala file-printer-refactored-script.scala file-printer-refactored-script.scala</screen>
 <sect2 id="OptionsAndForComprehensions">
 <title>Options and For Comprehensions</title>
-<para id="para_one_other_benefit_of_option_with_for_comps">There is one other benefit of using <literal>Options</literal> with <literal>for</literal> comprehensions, automatic removal of <literal>None</literal> elements from comprehensions, under most conditions <xref linkend="Pollak2007" xrefstyle="select: title nopage"/>, <xref linkend="Spiewak2009c" xrefstyle="select: title nopage"/>. Consider this first version of script that uses <literal>Options</literal> in a <literal>for</literal> comprehension.</para>
+<para id="para_one_other_benefit_of_option_with_for_comps">There is one other benefit of using <literal>Options</literal> with <literal>for</literal> comprehensions, automatic removal of <literal>None</literal> elements from comprehensions, under most conditions <link linkend="Pollak2007" xrefstyle="select:nopage">[Pollak2007]</link>, <link linkend="Spiewak2009c" xrefstyle="select:nopage">[Spiewak2009c]</link>. Consider this first version of script that uses <literal>Options</literal> in a <literal>for</literal> comprehension.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AppDesign/options-nulls/option-for-comp-v1-script.scala
 
 case class User(userName: String, name: String, email: String, bio: String)
@@ -980,7 +981,7 @@ var validUsers = for {
 validUsers.foreach (user =&gt; println(user))</programlisting>
 <para id="para_before_you_rerun_the_script_w">Before you rerun the script, what do you expect to happen? Will it print 5 lines with some fields empty (or containing other kinds of values)?</para>
 <para id="para_same_3_of_5_users_printed">It prints the same thing! How did it do the filtering we wanted without the explicit conditional?</para>
-<para id="para_the_answer_lies_in_the_way_tha">The answer lies in the way that <literal>for</literal> comprehensions are implemented. Here are a couple of simple for comprehensions followed by their translations <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>. First, we’ll look at a single <emphasis>generator</emphasis> with a <literal>yield</literal>.</para>
+<para id="para_the_answer_lies_in_the_way_tha">The answer lies in the way that <literal>for</literal> comprehensions are implemented. Here are a couple of simple for comprehensions followed by their translations <link linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>. First, we’ll look at a single <emphasis>generator</emphasis> with a <literal>yield</literal>.</para>
 <programlisting linenumbering="unnumbered">for (p1 &lt;- e1) yield e2          // for comprehension
 
 e1 map ( case p1 =&gt; e2 )         // translation</programlisting>
@@ -996,7 +997,7 @@ e1 flatMap ( case p1 =&gt; for (p2 &lt;- e2 ...) yield eN )  // translation</pro
 
 e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</programlisting>
 <para id="para_note_that_the_second_through_t">Note that the second through the N<superscript>th</superscript> generators become nested for comprehensions that need translating.</para>
-<para id="para_there_are_similar_translations">There are similar translations for conditional statements (which become calls to <literal>filter</literal>) and <literal>val</literal> assignments. We won’t show them here, since our primary purpose is to describe just enough of the implementation details so you can understand how <literal>Options</literal> and for comprehensions work together. The additional details are described in <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>, with examples.</para>
+<para id="para_there_are_similar_translations">There are similar translations for conditional statements (which become calls to <literal>filter</literal>) and <literal>val</literal> assignments. We won’t show them here, since our primary purpose is to describe just enough of the implementation details so you can understand how <literal>Options</literal> and for comprehensions work together. The additional details are described in <link linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>, with examples.</para>
 <para id="para_if_you_follow_this_translation">If you follow this translation process on our example, you get the following expansion.</para>
 <programlisting linenumbering="unnumbered">var validUsers = newUserProfiles flatMap {
   case user =&gt; user.get("userName") flatMap {
@@ -1114,7 +1115,7 @@ will improve the robustness of your Scala libraries and the applications that us
 </sect1>
 <sect1 id="ScalableAbstractions">
 <title>Scalable Abstractions</title>
-<para id="para_it_has_been_a_goal_for_some_ti">It has been a goal for some time in our industry to create reusable <emphasis>components</emphasis>. Unfortunately, there is little agreement on the meaning of the term <emphasis>component</emphasis> nor a related term, <emphasis>module</emphasis> (which some people consider synonymous with <emphasis>component</emphasis>). Proposed definitions usually start with assumptions about the platform, granularity, deployment and configuration scenarios, versioning issues, <emphasis>etc.</emphasis> <xref linkend="Szyperski1998" xrefstyle="select: title nopage"/>.</para>
+<para id="para_it_has_been_a_goal_for_some_ti">It has been a goal for some time in our industry to create reusable <emphasis>components</emphasis>. Unfortunately, there is little agreement on the meaning of the term <emphasis>component</emphasis> nor a related term, <emphasis>module</emphasis> (which some people consider synonymous with <emphasis>component</emphasis>). Proposed definitions usually start with assumptions about the platform, granularity, deployment and configuration scenarios, versioning issues, <emphasis>etc.</emphasis> <link linkend="Szyperski1998" xrefstyle="select:nopage">[Szyperski1998]</link>.</para>
 <para id="para_we_ll_avoid_that_discussion_an">We’ll avoid that discussion and use the term <emphasis>component</emphasis> informally to refer to a grouping of types and packages that exposes coherent abstractions (preferably just one) for the services it offers, has minimal coupling to other components, and is internally cohesive.</para>
 <para id="para_all_languages_offer_mechanisms">All languages offer mechanisms for defining components, at least to some degree. Objects are the primary encapsulation mechanism in object-oriented languages. However, objects alone aren’t enough, because we quickly find that objects naturally cluster together into more coarse-grained aggregates, especially as our applications grow. Generally speaking, an object isn’t necessarily a component and a component may contain many objects. Scala and Java offer packages for aggregating types. Ruby modules serve a similar purpose, as do C# and C++ namespaces.</para>
 <para id="para_however_these_packaging_mecha">However, these packaging mechanisms still have limitations. A common problem is that they don’t clearly define what is publicly visible outside the component boundary and what is internal to the component. For example, in Java, any public type or public method on a public type is visible outside the package boundary to every other component. You can make types and methods “package private”, but then they are invisible to other packages encapsulated in the component. Java doesn’t have a clear sense of component boundaries.</para>
@@ -1255,8 +1256,8 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
 <title>Self-Type Annotations and Abstract Type Members</title>
 <para id="para_there_are_a_few_things_that_are_unsatisfying1">There are a few things that are unsatisfying about the implementation of <literal>AbstractSubject</literal> in our second version of the Observer Pattern. The first occurs in <literal>SubjectForReceiveUpdateObservers</literal>, where the <literal>Observer</literal> type is defined to be the structural type <literal>{ def receiveUpdate(subject: Any) }</literal>. It would be nice to narrow the type of <literal>subject</literal> to something more specific than <literal>Any</literal>.</para>
 <para id="para_there_are_a_few_things_that_are_unsatisfying2">The second issue, which is really the same problem in a different form, occurs in <literal>SubjectForFunctionalObservers</literal>, where the <literal>Observer</literal> type is defined to be the type <literal>(AbstractSubject) =&gt; Unit</literal>. We would like the argument to the function to be something more specific than <literal>AbstractSubject</literal>. Perhaps this drawback wasn’t so evident before, because our simple examples never needed to access <literal>Button</literal> state information or methods.</para>
-<para id="para_in_fact_we_expect_the_actual_">In fact, we expect the actual types of the subject and observer to be specialized <emphasis>covariantly</emphasis>. For example, when we’re observing <literal>Buttons</literal>, we expect our observers to be specialized for <literal>Buttons</literal>, so they can access <literal>Button</literal> state and methods. This <emphasis>covariant</emphasis> specialization is sometimes called <emphasis>family polymorphism</emphasis> <xref linkend="Odersky2005" xrefstyle="select: title nopage"/>. Let’s fix our design to support this covariance.</para>
-<para id="para_to_simplify_the_example_let_s">To simplify the example, let’s focus on just the <literal>receiveUpdate</literal> form of the Observer, which we implemented with <literal>SubjectForReceiveUpdateObservers</literal> before. Here is a reworking of our pattern, loosely following an example in <xref linkend="Odersky2005" xrefstyle="select: title nopage"/>. (Note that the Scala syntax has changed somewhat since that paper was written.)</para>
+<para id="para_in_fact_we_expect_the_actual_">In fact, we expect the actual types of the subject and observer to be specialized <emphasis>covariantly</emphasis>. For example, when we’re observing <literal>Buttons</literal>, we expect our observers to be specialized for <literal>Buttons</literal>, so they can access <literal>Button</literal> state and methods. This <emphasis>covariant</emphasis> specialization is sometimes called <emphasis>family polymorphism</emphasis> <link linkend="Odersky2005" xrefstyle="select:nopage">[Odersky2005]</link>. Let’s fix our design to support this covariance.</para>
+<para id="para_to_simplify_the_example_let_s">To simplify the example, let’s focus on just the <literal>receiveUpdate</literal> form of the Observer, which we implemented with <literal>SubjectForReceiveUpdateObservers</literal> before. Here is a reworking of our pattern, loosely following an example in <link linkend="Odersky2005" xrefstyle="select:nopage">[Odersky2005]</link>. (Note that the Scala syntax has changed somewhat since that paper was written.)</para>
 <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/observer3-wont-compile.scala
 // WON'T COMPILE
 
@@ -1380,7 +1381,7 @@ object ButtonObserver3Spec extends Specification {
 }</programlisting>
 <para id="para_we_create_three_buttons_and_on">We create three buttons and one observer for all of them. We then click the buttons different numbers of times. Finally, we confirm that the clicks were properly counted for each button.</para>
 <para id="para_abstract_types_and_self_types_conclusion_">We see again how abstract types combined with self-type annotations provide a reusable abstraction that is easy to extend in a type-safe way for particular needs. Even though we defined a general protocol for observing an “event” after it happened, we were able to define subtypes specific to <literal>Buttons</literal> without resorting to unsafe casts from <literal>Subject</literal> abstractions.</para>
-<para id="para_modular_scala_compiler">The Scala compiler itself is implemented using these mechanisms <xref linkend="Odersky2005" xrefstyle="select: title nopage"/> to make it modular in useful ways. For example, it is relatively straightforward to implement compiler plugins.</para>
+<para id="para_modular_scala_compiler">The Scala compiler itself is implemented using these mechanisms <link linkend="Odersky2005" xrefstyle="select:nopage">[Odersky2005]</link> to make it modular in useful ways. For example, it is relatively straightforward to implement compiler plugins.</para>
 <para id="para_revisit_in_di">We’ll revisit these idioms in <xref linkend="DependencyInjectionInScala"/> below.</para>
 </sect2>
 </sect1>
@@ -1478,7 +1479,7 @@ val button2 = new Button("click me!") with VetoableClicks
 println("new Button(...) with VetoableClicks")
 for (i &lt;- 1 to 3 ) button2.click()</programlisting>
 <para id="para_now_clickable_contributes_th">This script prints the same output as before. Now <literal>Clickable</literal> contributes one state dimension for <literal>count</literal> (which is now a method that returns the value of the private <literal>clicks</literal> field). <literal>VetoableClicks</literal> <emphasis>modifies</emphasis> this dimension by reducing the number of possible values for <literal>count</literal> from <literal>0</literal> to infinity down to just <literal>0</literal> and <literal>1</literal>. Therefore, one trait affects the <emphasis>behavior</emphasis> of another. We might say that <literal>VetoableClicks</literal> is <emphasis>invasive</emphasis>, because it changes the behavior of other mixins.</para>
-<para id="para_why_is_all_this_important_whi">Why is all this important? While the problems of multiple-inheritance are eliminated in Scala’s model of single inheritance plus traits, care is required when mixing state and behavior contributions to create well-behaved applications. For example, if you have a test suite that <literal>Button</literal> passes, will a <literal>Button with VetoableClicks</literal> instance pass the same test suite? The suite won’t pass if it assumes that you can click a button as many times as you want. There are different “specifications” for these two kinds of buttons. This difference is expressed by the <emphasis>Liskov Substitution Principle</emphasis> <xref linkend="Martin2003" xrefstyle="select: title nopage"/>. An instance of a <literal>Button with VetoableClicks</literal> won’t be <emphasis>substitutable</emphasis> in every situation where a regular <literal>Button</literal> instance is used. This is a consequence of the <emphasis>invasive</emphasis> nature of <literal>VetoableClicks</literal>.</para>
+<para id="para_why_is_all_this_important_whi">Why is all this important? While the problems of multiple-inheritance are eliminated in Scala’s model of single inheritance plus traits, care is required when mixing state and behavior contributions to create well-behaved applications. For example, if you have a test suite that <literal>Button</literal> passes, will a <literal>Button with VetoableClicks</literal> instance pass the same test suite? The suite won’t pass if it assumes that you can click a button as many times as you want. There are different “specifications” for these two kinds of buttons. This difference is expressed by the <emphasis>Liskov Substitution Principle</emphasis> <link linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>. An instance of a <literal>Button with VetoableClicks</literal> won’t be <emphasis>substitutable</emphasis> in every situation where a regular <literal>Button</literal> instance is used. This is a consequence of the <emphasis>invasive</emphasis> nature of <literal>VetoableClicks</literal>.</para>
 <para id="para_similarly_orthogonal_state_an">When a trait adds only orthogonal state and behavior, without affecting the rest of the state and behavior of the instance, it makes reuse and composition much easier, as well as reducing the potential for bugs. The observer pattern implementations we have seen are quite reusable. The only requirement for reuse is to provide some “glue” to adapt the generic subject and observer traits to particular circumstances.</para>
 <para id="para_this_does_not_mean_that__invas">This does not mean that <emphasis>invasive</emphasis> mixins are bad, just that they should be used wisely. The “vetoable events” pattern can be very useful.</para>
 </sect1>
@@ -1486,7 +1487,7 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
 <title>Design Patterns</title>
 <para id="para_design_patterns_have_taken_a_b">Design patterns have taken a beating lately. Critics dismiss them as
 workarounds for missing language features. Indeed, some of the <emphasis>Gang
-of Four</emphasis> patterns <xref linkend="GOF1995" xrefstyle="select: title nopage"/> are not really needed in Scala, as native
+of Four</emphasis> patterns <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link> are not really needed in Scala, as native
 features provide better substitutes.
 Other patterns are part of the language itself, so
 no special coding is needed.
@@ -1499,21 +1500,21 @@ widely-useful ideas. These ideas are part of the <emphasis>vocabulary</emphasis>
 developers use to describe their designs.</para>
 <para id="para_pattern_ideas_language_features">Some common patterns are native language features in Scala,
 like <emphasis>singleton</emphasis> objects that eliminate the need for a <emphasis>Singleton Pattern</emphasis>
-<xref linkend="GOF1995" xrefstyle="select: title nopage"/> implementation like you often use in Java code.</para>
-<para id="para_pattern_ideas_language_features2">The <emphasis>Iterator Pattern</emphasis> <xref linkend="GOF1995" xrefstyle="select: title nopage"/> is so pervasive in programming that most languages
+<link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link> implementation like you often use in Java code.</para>
+<para id="para_pattern_ideas_language_features2">The <emphasis>Iterator Pattern</emphasis> <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link> is so pervasive in programming that most languages
 include iteration mechanisms for any type that can be treated like a collection.
 For example, in Scala you can iterate through the characters in a <literal>String</literal> with <literal>foreach</literal>.</para>
 <screen>"Programming Scala".foreach {c =&gt; println(c)}</screen>
 <para id="para_pattern_ideas_language_features_string_foreach">Actually, in this case, an implicit conversation is invoked to convert the <literal>java.lang.String</literal> to
 a <literal>RichString</literal>, which has the <literal>foreach</literal> method. That’s an example of the pattern called <emphasis>pimp my library</emphasis>, which we saw in <xref linkend="ImplicitConversions"/>.</para>
 <para id="para_pattern_ideas_language_better_alternatives">Other common patterns have better alternatives in Scala. We’ll discuss a better alternative
-to the <emphasis>Visitor Pattern</emphasis> <xref linkend="GOF1995" xrefstyle="select: title nopage"/> in a moment.</para>
+to the <emphasis>Visitor Pattern</emphasis> <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link> in a moment.</para>
 <para id="para_other_patterns_useful">Finally, still other patterns can be implemented in Scala and remain very useful.
 For example, the <emphasis>Observer Pattern</emphasis> that we discussed earlier in this chapter and
 in <xref linkend="Traits"/> is a very useful pattern for many design
 problems. It can be implemented very elegantly using mixin composition.</para>
-<para id="para_wont_discuss_all_patterns">We won’t discuss all the well known patterns, such as those in <xref linkend="GOF1995" xrefstyle="select: title nopage"/>.
-A number of the GOF patterns are discussed at <xref linkend="ScalaWikiPatterns" xrefstyle="select: title nopage"/>, along with other
+<para id="para_wont_discuss_all_patterns">We won’t discuss all the well known patterns, such as those in <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link>.
+A number of the GOF patterns are discussed at <link linkend="ScalaWikiPatterns" xrefstyle="select:nopage">[ScalaWiki:Patterns]</link>, along with other
 patterns that are somewhat specific to Scala.
 Instead, we’ll discuss a few illustrative examples.
 We’ll start by discussing a replacement for the <emphasis>Visitor Pattern</emphasis> that
@@ -1522,7 +1523,7 @@ Then we’ll discuss a powerful way of implementing <emphasis>Dependency Injecti
 Scala using the <emphasis>Cake Pattern</emphasis>.</para>
 <sect2 id="VisitorAlternativeInScala">
 <title>The Visitor Pattern: A Better Alternative</title>
-<para id="para_visitor_pattern_description">The <emphasis>Visitor Pattern</emphasis> <xref linkend="GOF1995" xrefstyle="select: title nopage"/> solves the problem of adding a new operation to a
+<para id="para_visitor_pattern_description">The <emphasis>Visitor Pattern</emphasis> <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link> solves the problem of adding a new operation to a
 class hierarchy without editing the source code for the classes in the hierarchy.
 For a number of practical reasons, it may not be feasible or desirable to edit the
 hierarchy to support the new operation.</para>
@@ -1556,7 +1557,7 @@ package shapes {
 the drawing method will be highly dependent on the particular context of use, such as details
 of the graphics libraries on the platforms the application will run on. For greater reusability,
 we would like drawing to be an operation we decouple from the shapes themselves.</para>
-<para id="para_first_we_refactor_the_shape_">First, we refactor the <literal>Shape</literal> hierarchy to support the Visitor Pattern, following the example in <xref linkend="GOF1995" xrefstyle="select: title nopage"/>.</para>
+<para id="para_first_we_refactor_the_shape_">First, we refactor the <literal>Shape</literal> hierarchy to support the Visitor Pattern, following the example in <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link>.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-visitor.scala
 
 package shapes {
@@ -1632,7 +1633,7 @@ list foreach { _.accept(shapesDrawer) }</programlisting>
 Rectangle.draw: Rectangle(Point(0.0,0.0),2.0,3.0)
 Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))</screen>
 <para id="para_visitor_has_been_criticized_fo">Visitor has been criticized for being somewhat inelegant and for breaking the
-<emphasis>Open-Closed Principle</emphasis> (OCP) <xref linkend="Martin2003" xrefstyle="select: title nopage"/>, because if the hierarchy changes, you are
+<emphasis>Open-Closed Principle</emphasis> (OCP) <link linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>, because if the hierarchy changes, you are
 forced to edit (and test and redeploy) <emphasis>all</emphasis> the visitors for that hierarchy. Note
 that every <literal>ShapeVisitor</literal> trait has methods that hard-code information about every
 <literal>Shape</literal> derived type. These kinds of changes are also error prone.</para>
@@ -1913,8 +1914,8 @@ scala&gt;</screen>
 <para id="para_an_example_of_ioc_is_jndi_ins">An example of IoC is JNDI. Instead of instantiating an accessor object, the client object asks JDNI to provide one. The client doesn’t care what actual type of accessor is returned. Hence, the client object is no longer coupled to a concrete implementation of the dependency. It only depends on an appropriate <emphasis>abstraction</emphasis> of a persistence accessor, <emphasis>i.e.,</emphasis> a Java interface or Scala trait.</para>
 <para id="para_dependency_injection_takes_ioc">Dependency injection takes IoC to its logical conclusion. Now the object does nothing to resolve the dependency. Instead, an external mechanism with system-wide knowledge “injects” the appropriate accessor object using a constructor argument or a setter method. This happens when the client is constructed. DI eliminates dependencies on IoC mechanisms in code (<emphasis>e.g.,</emphasis> no more JNDI calls) and keeps objects relatively simple, with minimal coupling to other objects.</para>
 <para id="para_back_to_unit_testing_it_is_pr">Back to unit testing, it is preferable to use a <emphasis>test double</emphasis> for heavyweight dependencies to minimize the overhead and other complications of testing. Our client object with a dependency on a database accessor object is a classic example. While unit testing the client, the overhead and complications of using a real database are prohibitive. Using a lightweight test double with hard-coded sample data provides simpler setup and tear down, faster execution, and predictable behavior from the data accessor dependency.</para>
-<para id="para_java_di">In Java, DI is usually done using an inversion of control container, like the Spring Framework <xref linkend="SpringFramework" xrefstyle="select: title nopage"/>, or a Java-API equivalent, like Google’s Guice API <xref linkend="Guice" xrefstyle="select: title nopage"/>. These options can be used with Scala code, especially when you are introducing Scala into a mature Java environment.</para>
-<para id="para_the_cake_pattern_">However, Scala offers some unique options for implementing DI in Scala code, which are discussed by <xref linkend="Boner2008b" xrefstyle="select: title nopage"/>. We’ll discuss one of them, the <emphasis>Cake Pattern</emphasis>, which can replace or complement XML-based dependency injection mechanisms. We’ll see that it is similar to the implementation of the observer pattern we discussed earlier in this chapter, in <xref linkend="SelfTypeAnnotationsAndAbstractTypeMembers"/>. The cake pattern was described by <xref linkend="Odersky2005" xrefstyle="select: title nopage"/>, although it was given that name after that paper was published.  <xref linkend="Boner2008b" xrefstyle="select: title nopage"/> also discusses alternatives.</para>
+<para id="para_java_di">In Java, DI is usually done using an inversion of control container, like the Spring Framework <link linkend="SpringFramework" xrefstyle="select:nopage">[SpringFramework]</link>, or a Java-API equivalent, like Google’s Guice API <link linkend="Guice" xrefstyle="select:nopage">[Guice]</link>. These options can be used with Scala code, especially when you are introducing Scala into a mature Java environment.</para>
+<para id="para_the_cake_pattern_">However, Scala offers some unique options for implementing DI in Scala code, which are discussed by <link linkend="Boner2008b" xrefstyle="select:nopage">[Bon&#xE9;r2008b]</link>. We’ll discuss one of them, the <emphasis>Cake Pattern</emphasis>, which can replace or complement XML-based dependency injection mechanisms. We’ll see that it is similar to the implementation of the observer pattern we discussed earlier in this chapter, in <xref linkend="SelfTypeAnnotationsAndAbstractTypeMembers"/>. The cake pattern was described by <link linkend="Odersky2005" xrefstyle="select:nopage">[Odersky2005]</link>, although it was given that name after that paper was published.  <xref linkend="Boner2008b" xrefstyle="select: title nopage"/> also discusses alternatives.</para>
 <para id="para_let_s_build_a_simple_component">Let’s build a simple component model for an overly-simplified Twitter client. We want a configurable UI, a configurable local cache of past tweets, and a configurable connection to the Twitter service itself. Each of these “components” will be specified separately, along with a client component that will function as the “middleware” that ties the application together. The client component will depend on the other components. When we create a concrete client, we’ll configure in the concrete pieces of the other components that we need.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AppDesign/dep-injection/twitter-client.scala
 
@@ -2096,15 +2097,15 @@ Chat history:
 <para id="para_your_date_will_vary_of_course">Your date will vary, of course. Recall that the <literal>Sending tweet to Twitter HQ</literal> line is printed by the fake service.</para>
 <para id="para_to_recap_each_major_component">To recap, each major component in the Twitter client was declared in its own trait, with a nested type for the component’s fields and methods. The client component declared its dependencies on the other components through a self-type annotation. The concrete client class mixed in those components and defined each component <literal>val</literal> to be an appropriate subtype of the corresponding abstract classes and traits that were declared in the components.</para>
 <para id="para_other_di_approaches">We get type-safe “wiring” together of components, a flexible component model, and we did it all in Scala code!
-There are alternatives to the cake pattern for implementing dependency injection in Scala. See <xref linkend="Boner2008b" xrefstyle="select: title nopage"/> for other examples.</para>
+There are alternatives to the cake pattern for implementing dependency injection in Scala. See <link linkend="Boner2008b" xrefstyle="select:nopage">[Bon&#xE9;r2008b]</link> for other examples.</para>
 </sect2>
 </sect1>
 <sect1 id="DesignByContractExample">
 <title>Better Design with Design By Contract</title>
 <para id="para_we_ll_conclude_this_chapter_wi">We’ll conclude this chapter with a look at an approach to programming
-called <emphasis>Design by Contract</emphasis> <xref linkend="DesignByContract" xrefstyle="select: title nopage"/>, which was developed
-by Bertrand Meyer for the Eiffel language <xref linkend="Eiffel" xrefstyle="select: title nopage"/>.
-(See also <xref linkend="Hunt2000" xrefstyle="select: title nopage"/>, <xref linkend="Traits"/>.). Design by Contract has been around
+called <emphasis>Design by Contract</emphasis> <link linkend="DesignByContract" xrefstyle="select:nopage">[DesignByContract]</link>, which was developed
+by Bertrand Meyer for the Eiffel language <link linkend="Eiffel" xrefstyle="select:nopage">[Eiffel]</link>.
+(See also <link linkend="Hunt2000" xrefstyle="select:nopage">[Hunt2000]</link>, <xref linkend="Traits"/>.). Design by Contract has been around
 for about twenty years. It has fallen somewhat out of favor, but it
 is still very useful for thinking about design.</para>
 <para id="para_when_considering_the_contract">When considering the “contract” of a module, you can specify three

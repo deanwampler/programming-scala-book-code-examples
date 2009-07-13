@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <glossary id="Glossary">
   <title>Glossary</title>
   <glossentry id="glossentry-tag">
@@ -108,7 +109,7 @@ Aspect-Oriented Programming
 </glossterm>
     <glossdef>
       <para>
-  (Sometimes called <emphasis>Aspect-Oriented Software Development</emphasis>) An approach to <emphasis>cross-cutting concerns</emphasis>, where the concerns are designed and implemented in a “modular” way (that is, with appropriate encapsulation, lack of duplication, <emphasis>etc.</emphasis>), then integrated into all the relevant execution points in a succinct and robust way, <emphasis>e.g.</emphasis> through declarative or programmatic means. In AOP terms, the execution points are called <emphasis>join points</emphasis>, a particular set of them is called a <emphasis>pointcut</emphasis> and the new behavior that is executed before, after, or “around” a join point is called <emphasis>advice</emphasis>. <emphasis>AspectJ</emphasis> <xref linkend="AspectJ" xrefstyle="select: title nopage"/> is the best known AOP toolkit. Scala <emphasis>traits</emphasis> can be used to implement some aspect-like functionality.
+  (Sometimes called <emphasis>Aspect-Oriented Software Development</emphasis>) An approach to <emphasis>cross-cutting concerns</emphasis>, where the concerns are designed and implemented in a “modular” way (that is, with appropriate encapsulation, lack of duplication, <emphasis>etc.</emphasis>), then integrated into all the relevant execution points in a succinct and robust way, <emphasis>e.g.</emphasis> through declarative or programmatic means. In AOP terms, the execution points are called <emphasis>join points</emphasis>, a particular set of them is called a <emphasis>pointcut</emphasis> and the new behavior that is executed before, after, or “around” a join point is called <emphasis>advice</emphasis>. <emphasis>AspectJ</emphasis> <link linkend="AspectJ" xrefstyle="select:nopage">[AspectJ]</link> is the best known AOP toolkit. Scala <emphasis>traits</emphasis> can be used to implement some aspect-like functionality.
 </para>
     </glossdef>
   </glossentry>
@@ -1043,7 +1044,7 @@ Packrat Parsers
 </glossterm>
     <glossdef>
       <para>
-  Parsers for <emphasis>parsing expression grammars</emphasis> (PEGs) <xref linkend="Ford" xrefstyle="select: title nopage"/>. They have several benefits, such as lack of ambiguity and good performance characteristics. The forthcoming Scala version 2.8 parser combinator library will add support for creating packrat parsers.
+  Parsers for <emphasis>parsing expression grammars</emphasis> (PEGs) <link linkend="Ford" xrefstyle="select:nopage">[Ford]</link>. They have several benefits, such as lack of ambiguity and good performance characteristics. The forthcoming Scala version 2.8 parser combinator library will add support for creating packrat parsers.
 </para>
     </glossdef>
   </glossentry>
@@ -1073,7 +1074,7 @@ Parsing expression grammars (PEGs)
 </glossterm>
     <glossdef>
       <para>
-  An alternative to <emphasis>context-free grammars</emphasis> that provide guaranteed linear-time parsing using <emphasis>memoization</emphasis> and unambiguous grammars <xref linkend="PEG" xrefstyle="select: title nopage"/>.
+  An alternative to <emphasis>context-free grammars</emphasis> that provide guaranteed linear-time parsing using <emphasis>memoization</emphasis> and unambiguous grammars <link linkend="PEG" xrefstyle="select:nopage">[PEG]</link>.
 </para>
     </glossdef>
   </glossentry>

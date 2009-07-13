@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="IntroducingScala">
 <title>Zero to Sixty: Introducing Scala</title>
 <sect1 id="_why_scala">
@@ -177,7 +178,7 @@ Scalable - Performance
 </sect1>
 <sect1 id="ForMoreInformation">
 <title>For More Information</title>
-<para id="para_as_you_explore_scala_you_will">As you explore Scala, you will find other useful resources that are available on <ulink url="http://scala-lang.org"/>. You will find links for development support tools and libraries, tutorials, the language specification <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>, and academic papers that describe features of the language.</para>
+<para id="para_as_you_explore_scala_you_will">As you explore Scala, you will find other useful resources that are available on <ulink url="http://scala-lang.org"/>. You will find links for development support tools and libraries, tutorials, the language specification <link linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>, and academic papers that describe features of the language.</para>
 <para id="para_the_documentation_for_the_scal">The documentation for the Scala tools and APIs are especially useful. You can browse the API at <ulink url="http://www.scala-lang.org/docu/files/api/index.html"/>. This documentation was generated using the <userinput>scaladoc</userinput> tool, analogous to Java’s <userinput>javadoc</userinput> tool. See <xref linkend="CommandLineToolScaladoc"/> in <xref linkend="ScalaToolsLibs"/> for more information.</para>
 <para id="para_you_can_also_download_a_compre">You can also download a compressed file of the API documentation for local browsing using the appropriate link on the downloads page, <ulink url="http://www.scala-lang.org/downloads"/>, or you can install it with the <userinput>sbaz</userinput> package tool, as follows.</para>
 <screen>sbaz install scala-devel-docs</screen>
@@ -298,8 +299,8 @@ object Upper {
 </sect1>
 <sect1 id="ATasteOfConcurrency">
 <title>A Taste of Concurrency</title>
-<para id="para_there_are_many_reasons_to_be_s">There are many reasons to be seduced by Scala. One reason is the <literal>Actors</literal> API included in the Scala library, which is based on the robust <literal>Actors</literal> concurrency model built into Erlang <xref linkend="Haller2007" xrefstyle="select: title nopage"/>. Here is an example to whet your appetite.</para>
-<para id="para_in_the_actor_model_of_concurre">In the Actor model of concurrency <xref linkend="Agha1987" xrefstyle="select: title nopage"/>, independent software entities called <emphasis>actors</emphasis> share no state information with each other. Instead, they communicate by exchanging messages. By eliminating the need to synchronize access to shared, mutable state, it is far easier to write robust, concurrent applications.</para>
+<para id="para_there_are_many_reasons_to_be_s">There are many reasons to be seduced by Scala. One reason is the <literal>Actors</literal> API included in the Scala library, which is based on the robust <literal>Actors</literal> concurrency model built into Erlang <link linkend="Haller2007" xrefstyle="select:nopage">[Haller2007]</link>. Here is an example to whet your appetite.</para>
+<para id="para_in_the_actor_model_of_concurre">In the Actor model of concurrency <link linkend="Agha1987" xrefstyle="select:nopage">[Agha1987]</link>, independent software entities called <emphasis>actors</emphasis> share no state information with each other. Instead, they communicate by exchanging messages. By eliminating the need to synchronize access to shared, mutable state, it is far easier to write robust, concurrent applications.</para>
 <para id="para_in_this_example_instances_in_a_">In this example, instances in a geometric <literal>Shape</literal> hierarchy are sent to an actor for drawing on a display. Imagine a scenario where a rendering “farm” generates scenes in an animation. As the rendering of a scene is completed, the shape “primitives” that are part of the scene are sent to an actor for a display subsystem.</para>
 <para id="para_to_begin_we_define_a_shape_">To begin, we define a <literal>Shape</literal> class hierarchy.</para>
 <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes.scala

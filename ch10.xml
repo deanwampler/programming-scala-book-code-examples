@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="HerdingXMLInScalaDSLs">
 <title>Herding XML in Scala</title>
 <para id="para_xml_has_long_since_become_the_">XML has long since become the <emphasis>lingua franca</emphasis> of machine-to-machine communication on the Internet. The format’s combination of human readability, standardization, and tool support has made working with XML an inevitability for programmers. Yet, writing code that deals in XML is an unpleasant chore in most programming languages. Scala improves this situation.</para>
