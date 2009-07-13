@@ -70,7 +70,7 @@ usually includes the title, author, publisher, and ISBN. For example:
 Media, Inc., 978-0-596-15595-7.”</simpara>
 <simpara id="para_if_you_feel_your_use_of_code_e">If you feel your use of code examples falls outside fair use or the
 permission given above, feel free to contact us at
-<ulink url="mailto:permissions@oreilly.com">permissions@oreilly.com</ulink>.</simpara>
+<email>permissions@oreilly.com</email>.</simpara>
 <sect2 id="GettingCodeExamples">
 <title>Getting the Code Examples</title>
 <simpara id="para_you_can_download_the_code_exam">You can download the code examples from TODO. Unzip the files to a convenient location. See the <literal>README.txt</literal> file in the distribution for instructions on building and using the examples.</simpara>
@@ -128,24 +128,32 @@ permission given above, feel free to contact us at
 library that lets you easily search thousands of top tech books, cut and
 paste code samples, download chapters, and find quick answers when you
 need the most accurate, current information. Try it for free at
-<ulink url="http://safari.oreilly.com">http://safari.oreilly.com</ulink>.</simpara>
+<ulink role="orm:hideurl:ital" url="http://my.safaribooksonline.com/?portal=oreilly">http://my.safaribooksonline.com</ulink>.</simpara>
 </sect1>
 <sect1 id="_how_to_contact_us">
 <title>How to Contact Us</title>
 <simpara id="para_please_address_comments_and_qu">Please address comments and questions concerning this book to the publisher:</simpara>
-<screen>O’Reilly Media, Inc
-1005 Gravenstein Highway North
-Sebastopol, CA 95472
-800-998-9938 (in the United States or Canada)
-707-829-0515 (international or local)
-707 829-0104 (fax)</screen>
+<simplelist type="vert">
+  <member>Reilly Media, Inc.</member>
+  <member>1005 Gravenstein Highway North</member>
+  <member>Sebastopol, CA 95472</member>
+  <member>800-998-9938 (in the United States or Canada)</member>
+  <member>707-829-0515 (international or local)</member>
+  <member>707 829-0104 (fax)</member>
+</simplelist>
 <simpara id="para_we_have_a_web_page_for_this_bo">We have a web page for this book, where we list errata, examples,
 and any additional information. You can access this page at:</simpara>
-<screen>http://www.oreilly.com/catalog/CATALOGPAGE</screen>
+<simplelist type="vert">
+  <member><ulink url="http://oreilly.com/catalog/9780596155957/"/></member>
+</simplelist>
 <simpara id="para_to_comment_or_ask_technical_qu">To comment or ask technical questions about this book, send email to:</simpara>
-<screen>mailto:bookquestions@oreilly.com[bookquestions@oreilly.com]</screen>
+<simplelist type="vert">
+  <member><email>bookquestions@oreilly.com</email></member>
+</simplelist>
 <simpara id="para_for_more_information_about_our">For more information about our books, conferences, Resource Centers, and the O’Reilly Network, see
 our web site at:</simpara>
-<screen>http://www.oreilly.com</screen>
+<simplelist type="vert">
+  <member><ulink url="http://oreilly.com"/></member>
+</simplelist>
 </sect1>
 </preface>
