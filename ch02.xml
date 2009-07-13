@@ -403,12 +403,12 @@ scala&gt; println(double(2))
 <sect2 id="IntegerLiterals">
 <title>Integer Literals</title>
 <para id="para_integer_literals_can_be_expres">Integer literals can be expresses in decimal, hexadecimal, or octal. The details are summarized in <xref linkend="integer-literals-table"/>.</para>
-<table id="integer-literals-table" frame="none" rowsep="1" colsep="1">
+<table id="integer-literals-table">
 <title>Integer literals.</title>
 <tgroup cols="3">
-<colspec colwidth="51pt" align="left"/>
-<colspec colwidth="237pt" align="left"/>
-<colspec colwidth="51pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Kind </entry>
@@ -438,12 +438,12 @@ scala&gt; println(double(2))
 <para id="para_for_long_literals_it_is_nec">For <literal>Long</literal> literals, it is necessary to append the <literal>L</literal> or <literal>l</literal> character at the end of the literal. Otherwise, an <literal>Int</literal> is used.
 The valid values for an integer literal are bounded by the type of the variable to which the value will be assigned.
 <xref linkend="integer-boundaries-table"/> defines the limits, which are inclusive.</para>
-<table id="integer-boundaries-table" frame="none" rowsep="1" colsep="1">
+<table id="integer-boundaries-table">
 <title>Ranges of allowed values for integer literals (boundaries are inclusive).</title>
 <tgroup cols="3">
-<colspec colwidth="99pt" align="left"/>
-<colspec colwidth="99pt" align="left"/>
-<colspec colwidth="99pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Target Type </entry>
@@ -542,12 +542,12 @@ It is a compile time error if a backslash character in a character or string lit
 '\012'    // '\n' in octal
 ’\t’</programlisting>
 <para id="para_the_valid_escape_sequences_are">The valid escape sequences are shown in <xref linkend="char-escape-sequences-table"/>.</para>
-<table id="char-escape-sequences-table" frame="none" rowsep="1" colsep="1">
+<table id="char-escape-sequences-table">
 <title>Character escape sequences.</title>
 <tgroup cols="3">
-<colspec colwidth="99pt" align="left"/>
-<colspec colwidth="99pt" align="left"/>
-<colspec colwidth="99pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Sequence </entry>
@@ -876,12 +876,12 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 <sect1 id="ReservedWords">
 <title>Reserved Words</title>
 <para id="para_reserved_words_table_lists_the_reserved_words"><xref linkend="reserved-words-table"/> lists the reserved words in Scala, which we sometimes call “keywords”, and briefly describes how they are used <link linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>.</para>
-<table id="reserved-words-table" frame="none" rowsep="1" colsep="1">
+<table id="reserved-words-table">
 <title>Reserved Words.</title>
 <tgroup cols="3">
-<colspec colwidth="57pt" align="left"/>
-<colspec colwidth="172pt" align="left"/>
-<colspec colwidth="153pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> <literal>Word</literal> </entry>

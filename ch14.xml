@@ -17,11 +17,11 @@
 <para id="para_scalac_examples">For example, we used the following <userinput>scalac</userinput> invocation command in <xref linkend="ATasteOfScala"/> in <xref linkend="IntroducingScala"/>, where we created a simple command-line tool to convert input strings to upper case.</para>
 <screen>scalac upper3.scala</screen>
 <para id="para_options_for_scalac"><xref linkend="scalac-command-options"/> shows the list of the <userinput>scalac</userinput> <replaceable>options</replaceable>, as reported by <userinput>scalac -help</userinput>.</para>
-<table id="scalac-command-options" frame="none" rowsep="1" colsep="1">
+<table id="scalac-command-options">
 <title>The scalac command options.</title>
 <tgroup cols="2">
-<colspec colwidth="95pt" align="left"/>
-<colspec colwidth="286pt" align="left"/>
+
+
 <thead valign="top">
 <row>
 <entry> Option </entry>
@@ -157,11 +157,11 @@ o
 g
 ...</screen>
 <para id="para_the_scala_command_accepts_al">The <userinput>scala</userinput> command accepts all the <replaceable>options</replaceable> that <userinput>scalac</userinput> accepts (see <xref linkend="scalac-command-options"/>), plus the options listed in <xref linkend="scala-command-options"/>.</para>
-<table id="scala-command-options" frame="none" rowsep="1" colsep="1">
+<table id="scala-command-options">
 <title>The scala command options (in additions to the scalac options).</title>
 <tgroup cols="2">
-<colspec colwidth="95pt" align="left"/>
-<colspec colwidth="286pt" align="left"/>
+
+
 <thead valign="top">
 <row>
 <entry> Option </entry>
@@ -205,11 +205,11 @@ g
 </tgroup>
 </table>
 <para id="para_use_the_i_file_option_in_">Use the <literal>-i</literal> <replaceable>file</replaceable> option in the interactive mode when you want to preload a file before typing commands. Once in the shell, you can also load a file using the command <userinput>:load</userinput> <replaceable>filename</replaceable>. <xref linkend="scala-interactive-special-commands"/> lists the special <literal>:X</literal> commands available within the interactive mode.</para>
-<table id="scala-interactive-special-commands" frame="none" rowsep="1" colsep="1">
+<table id="scala-interactive-special-commands">
 <title>Commands available within the scala interactive mode.</title>
 <tgroup cols="2">
-<colspec colwidth="95pt" align="left"/>
-<colspec colwidth="286pt" align="left"/>
+
+
 <thead valign="top">
 <row>
 <entry> Option </entry>
@@ -413,11 +413,11 @@ case class Complex(real: Double, imaginary: Double) {
 <title>The sbaz Command Line Tool</title>
 <para id="para_scala_bazaar_system_sbaz_i">Scala Bazaar System (<userinput>sbaz</userinput>) is a packaging system that helps automate maintenance of a Scala installation. It is analogous to the <emphasis>gem</emphasis> packaging system for Ruby, <emphasis>CPAN</emphasis> for Perl, <emphasis>etc.</emphasis></para>
 <para id="para_there_is_a_nice_summary_of_how">There is a nice summary of how to use <userinput>sbaz</userinput> on the scala-lang.org website, <ulink url="http://www.scala-lang.org/node/93"/>. All command-line options are described in the developer documentation. The following table summarizes the most useful invokations.</para>
-<table id="sbaz-commands" frame="none" rowsep="1" colsep="1">
+<table id="sbaz-commands">
 <title>The most useful sbaz command options.</title>
 <tgroup cols="2">
-<colspec colwidth="133pt" align="left"/>
-<colspec colwidth="248pt" align="left"/>
+
+
 <thead valign="top">
 <row>
 <entry> Command </entry>
@@ -875,11 +875,11 @@ ComplexSpecification.check</programlisting>
 <sect2 id="MiscSmallerLibraries">
 <title>Miscellaneous Smaller Libraries</title>
 <para id="para_finally_here_is_a_list_of_sev">Finally, here is a list of several Scala-specific libraries you might find useful for your applications.</para>
-<table id="misc-scala-libs" frame="none" rowsep="1" colsep="1">
+<table id="misc-scala-libs">
 <title>Miscellaneous Scala Libraries.</title>
 <tgroup cols="2">
-<colspec colwidth="76pt" align="left"/>
-<colspec colwidth="306pt" align="left"/>
+
+
 <thead valign="top">
 <row>
 <entry> Name </entry>
@@ -1169,11 +1169,11 @@ case class ComplexBean(
 <sect2 id="ScalaNamesInJavaCode">
 <title>Scala Names in Java Code</title>
 <para id="para_as_we_discussed_in_roundingo">As we discussed in <xref linkend="RoundingOutTheEssentials"/>, Scala allows more flexible identifiers, <emphasis>e.g.</emphasis>, <emphasis>operator characters</emphasis> like <literal>*</literal>, <literal>&lt;</literal>, <emphasis>etc.</emphasis> These characters are encoded (or “mangled”, if you prefer) to satisfy the tighter constraints of the JVM specification. They are translated as follows (adapted from <link linkend="Spiewak2009a" xrefstyle="select:nopage">[Spiewak2009a]</link>).</para>
-<table id="char-encoding" frame="none" rowsep="1" colsep="1">
+<table id="char-encoding">
 <title>Encoding of operator characters.</title>
 <tgroup cols="2">
-<colspec colwidth="106pt" align="left"/>
-<colspec colwidth="106pt" align="left"/>
+
+
 <thead valign="top">
 <row>
 <entry> Operator </entry>
@@ -1481,7 +1481,7 @@ Object: NamedObject(Dean Wampler)</screen>
 <sect2 id="TerracottaInterop">
 <title>Terracotta</title>
 <para id="para_terracotta_terracotta_is_a">Terracotta <link linkend="Terracotta" xrefstyle="select:nopage">[Terracotta]</link> is an open-source clustering product that distributes an application over several servers by clustering JVMs upon which the application executes. For efficiency, not all of the application’s heap objects are distributed. Instead, the programmer specifies which data structures to distribute through configuration files. A benefit of Terracotta is that the application does not require code changes to support this clustering (at least in principle; some limited customization can be useful for performance reasons). Instead, the byte code is instrumented to provide the clustering. Terracotta is an alternative to distributed caches that require code changes.</para>
-<para id="para_terracotta_example"><link linkend="Boner2008a" xrefstyle="select:nopage">[Bon&#xE9;r2008a]</link> provides a detailed write up of how to use Terracotta with Scala Actors. A Scala-specific, Terracotta Integration Module (TIM) must be installed. When configuring which objects to distribute, you have to use the encoded names for companion objects, method names, <emphasis>etc.</emphasis> as they exist at the byte-code level. We discussed these encodings in <xref linkend="ScalaNamesInJavaCode"/> above. Finally, you have to add some more parameters to the <userinput>java</userinput> invocation command inside the <userinput>scala</userinput> script. Otherwise, clustering Scala applications with Terracotta works just like it does for Java applications.</para>
+<para id="para_terracotta_example"><link linkend="Boner2008a" xrefstyle="select:nopage">[Bonér2008a]</link> provides a detailed write up of how to use Terracotta with Scala Actors. A Scala-specific, Terracotta Integration Module (TIM) must be installed. When configuring which objects to distribute, you have to use the encoded names for companion objects, method names, <emphasis>etc.</emphasis> as they exist at the byte-code level. We discussed these encodings in <xref linkend="ScalaNamesInJavaCode"/> above. Finally, you have to add some more parameters to the <userinput>java</userinput> invocation command inside the <userinput>scala</userinput> script. Otherwise, clustering Scala applications with Terracotta works just like it does for Java applications.</para>
 </sect2>
 <sect2 id="HadoopInterop">
 <title>Hadoop</title>

@@ -192,12 +192,12 @@ require runtime retention in Java instead.</para></warning>
 library (adapted and expanded from
 <ulink url="http://www.scala-lang.org/node/106"/>). We start with the direct children
 of <literal>Annotation</literal>, followed by the children of <literal>StaticAnnotation</literal>.</para>
-<table id="scala-annotations" frame="none" rowsep="1" colsep="1">
+<table id="scala-annotations">
 <title>Scala annotations derived from Annotation.</title>
 <tgroup cols="3">
-<colspec colwidth="76pt" align="left"/>
-<colspec colwidth="133pt" align="left"/>
-<colspec colwidth="172pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Name </entry>
@@ -254,12 +254,12 @@ of <literal>Annotation</literal>, followed by the children of <literal>StaticAnn
 </tbody>
 </tgroup>
 </table>
-<table id="scala-static-annotations" frame="none" rowsep="1" colsep="1">
+<table id="scala-static-annotations">
 <title>Scala annotations derived from StaticAnnotation.</title>
 <tgroup cols="3">
-<colspec colwidth="76pt" align="left"/>
-<colspec colwidth="133pt" align="left"/>
-<colspec colwidth="172pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Name </entry>
@@ -1915,7 +1915,7 @@ scala&gt;</screen>
 <para id="para_dependency_injection_takes_ioc">Dependency injection takes IoC to its logical conclusion. Now the object does nothing to resolve the dependency. Instead, an external mechanism with system-wide knowledge “injects” the appropriate accessor object using a constructor argument or a setter method. This happens when the client is constructed. DI eliminates dependencies on IoC mechanisms in code (<emphasis>e.g.,</emphasis> no more JNDI calls) and keeps objects relatively simple, with minimal coupling to other objects.</para>
 <para id="para_back_to_unit_testing_it_is_pr">Back to unit testing, it is preferable to use a <emphasis>test double</emphasis> for heavyweight dependencies to minimize the overhead and other complications of testing. Our client object with a dependency on a database accessor object is a classic example. While unit testing the client, the overhead and complications of using a real database are prohibitive. Using a lightweight test double with hard-coded sample data provides simpler setup and tear down, faster execution, and predictable behavior from the data accessor dependency.</para>
 <para id="para_java_di">In Java, DI is usually done using an inversion of control container, like the Spring Framework <link linkend="SpringFramework" xrefstyle="select:nopage">[SpringFramework]</link>, or a Java-API equivalent, like Google’s Guice API <link linkend="Guice" xrefstyle="select:nopage">[Guice]</link>. These options can be used with Scala code, especially when you are introducing Scala into a mature Java environment.</para>
-<para id="para_the_cake_pattern_">However, Scala offers some unique options for implementing DI in Scala code, which are discussed by <link linkend="Boner2008b" xrefstyle="select:nopage">[Bon&#xE9;r2008b]</link>. We’ll discuss one of them, the <emphasis>Cake Pattern</emphasis>, which can replace or complement XML-based dependency injection mechanisms. We’ll see that it is similar to the implementation of the observer pattern we discussed earlier in this chapter, in <xref linkend="SelfTypeAnnotationsAndAbstractTypeMembers"/>. The cake pattern was described by <link linkend="Odersky2005" xrefstyle="select:nopage">[Odersky2005]</link>, although it was given that name after that paper was published.  <xref linkend="Boner2008b" xrefstyle="select: title nopage"/> also discusses alternatives.</para>
+<para id="para_the_cake_pattern_">However, Scala offers some unique options for implementing DI in Scala code, which are discussed by <link linkend="Boner2008b" xrefstyle="select:nopage">[Bonér2008b]</link>. We’ll discuss one of them, the <emphasis>Cake Pattern</emphasis>, which can replace or complement XML-based dependency injection mechanisms. We’ll see that it is similar to the implementation of the observer pattern we discussed earlier in this chapter, in <xref linkend="SelfTypeAnnotationsAndAbstractTypeMembers"/>. The cake pattern was described by <link linkend="Odersky2005" xrefstyle="select:nopage">[Odersky2005]</link>, although it was given that name after that paper was published.  <xref linkend="Boner2008b" xrefstyle="select: title nopage"/> also discusses alternatives.</para>
 <para id="para_let_s_build_a_simple_component">Let’s build a simple component model for an overly-simplified Twitter client. We want a configurable UI, a configurable local cache of past tweets, and a configurable connection to the Twitter service itself. Each of these “components” will be specified separately, along with a client component that will function as the “middleware” that ties the application together. The client component will depend on the other components. When we create a concrete client, we’ll configure in the concrete pieces of the other components that we need.</para>
 <programlisting linenumbering="unnumbered">// code-examples/AppDesign/dep-injection/twitter-client.scala
 
@@ -2097,7 +2097,7 @@ Chat history:
 <para id="para_your_date_will_vary_of_course">Your date will vary, of course. Recall that the <literal>Sending tweet to Twitter HQ</literal> line is printed by the fake service.</para>
 <para id="para_to_recap_each_major_component">To recap, each major component in the Twitter client was declared in its own trait, with a nested type for the component’s fields and methods. The client component declared its dependencies on the other components through a self-type annotation. The concrete client class mixed in those components and defined each component <literal>val</literal> to be an appropriate subtype of the corresponding abstract classes and traits that were declared in the components.</para>
 <para id="para_other_di_approaches">We get type-safe “wiring” together of components, a flexible component model, and we did it all in Scala code!
-There are alternatives to the cake pattern for implementing dependency injection in Scala. See <link linkend="Boner2008b" xrefstyle="select:nopage">[Bon&#xE9;r2008b]</link> for other examples.</para>
+There are alternatives to the cake pattern for implementing dependency injection in Scala. See <link linkend="Boner2008b" xrefstyle="select:nopage">[Bonér2008b]</link> for other examples.</para>
 </sect2>
 </sect1>
 <sect1 id="DesignByContractExample">

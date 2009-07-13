@@ -215,12 +215,12 @@ abstract class Widget {
 <para id="para_also_like_java_and_c_the_vis">As in Java and C#, the keywords that modify visibility, such as <literal>private</literal> and <literal>protected</literal>, appear at the beginning of declarations. You’ll find them before the <literal>class</literal> or <literal>trait</literal> keywords for types, before the <literal>val</literal> or <literal>var</literal> for fields, and before the <literal>def</literal> for methods.</para>
 <note id="para_note_you_can_also_use_an_acce"><para>You can also use an access modifier keyword on the primary constructor of a class. Put it after the type name and type parameters, if any, and before the argument list, as in this example: <literal>class Restricted[+A] private (name: String) {…}</literal></para></note>
 <para id="para_visibility_scopes_table_summarizes_the_visibility_scopes"><xref linkend="visibility-scopes-table"/> summarizes the visibility scopes.</para>
-<table id="visibility-scopes-table" frame="none" rowsep="1" colsep="1">
+<table id="visibility-scopes-table">
 <title>Visibility Scopes.</title>
 <tgroup cols="3">
-<colspec colwidth="76pt" align="left"/>
-<colspec colwidth="95pt" align="left"/>
-<colspec colwidth="210pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Name </entry>

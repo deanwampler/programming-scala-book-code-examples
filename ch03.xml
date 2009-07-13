@@ -336,12 +336,12 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
 <sect1 id="_conditional_operators">
 <title>Conditional Operators</title>
 <para id="para_scala_borrows_most_of_the_cond">Scala borrows most of the conditional operators from Java and its predecessors. You’ll find the following in <literal>if</literal> statements, <literal>while</literal> loops, and everywhere else conditions apply.</para>
-<table id="conditional-operators" frame="none" rowsep="1" colsep="1">
+<table id="conditional-operators">
 <title>Conditional Operators</title>
 <tgroup cols="3">
-<colspec colwidth="57pt" align="left"/>
-<colspec colwidth="57pt" align="left"/>
-<colspec colwidth="267pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Operator </entry>

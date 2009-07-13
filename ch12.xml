@@ -105,12 +105,12 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
 <para id="para_parameterized_types_diff_with_java">An important difference between Java and Scala generics is how <emphasis>variance</emphasis> under inheritance works. For example, if a method has an argument of type <literal>List[AnyRef]</literal>, can you pass a <literal>List[String]</literal> value? In other words, should a <literal>List[String]</literal> be considered a <emphasis>subtype</emphasis> of <literal>List[AnyRef]</literal>. If so, this kind of variance is called <emphasis>covariance</emphasis>, because the supertype-subtype relationship of the container (the parameterized type) “goes in the same direction” as the relationship between the type parameters. In other contexts, you might want <emphasis>contravariant</emphasis> or <emphasis>invariant</emphasis> behavior, which we’ll describe shortly.</para>
 <para id="para_in_scala_the_type_designer_sp">In scala, the variance behavior is defined at the <emphasis>declaration site</emphasis> using <emphasis>variance annotations</emphasis>, ‘+’, ‘-’, or nothing. In other words, the type designer decides how the type should vary under inheritance.</para>
 <para id="para_let_s_examine_the_three_kinds_">Let’s examine the three kinds of variance, summarized in the following table, and understand how to use them effectively. We’ll assume that <literal>T</literal><superscript>sup</superscript> is a <emphasis>supertype</emphasis> of <literal>T</literal> and <literal>T</literal><subscript>sub</subscript> is a <emphasis>subtype</emphasis> of <literal>T</literal>.</para>
-<table id="type-variance-annotations-table" frame="none" rowsep="1" colsep="1">
+<table id="type-variance-annotations-table">
 <title>Type variance annotations and their meanings.</title>
 <tgroup cols="3">
-<colspec colwidth="76pt" align="left"/>
-<colspec colwidth="76pt" align="left"/>
-<colspec colwidth="229pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Annotation </entry>
@@ -1177,12 +1177,12 @@ object ProcessList {
 <para id="para_we_ve_already_learned_that_the">We’ve already learned that the best we can do in pattern matching is to focus on the fact that we have a list and not try to determine the “lost” type parameter for the list instance. For type safety, we have to specify that a list has a parameter, but since we don’t know what it is, we use the wild card <literal>_</literal> character for the type parameter, e.g.,</para>
 <programlisting linenumbering="unnumbered">case l: List[_] =&gt; // do something "generic" with the list</programlisting>
 <para id="para_when_used_in_a_type_context_li">When used in a type context like this, the <literal>List[_]</literal> is actually shorthand for the <emphasis>existential type</emphasis>, <literal>List[T] forSome { type T }</literal>. This is the most general case. We’re saying the type parameter for the list could be any type. Here are some other examples which demonstrate the use of type bounds.</para>
-<table id="existential-type-examples-table" frame="none" rowsep="1" colsep="1">
+<table id="existential-type-examples-table">
 <title>Existential type examples.</title>
 <tgroup cols="3">
-<colspec colwidth="153pt" align="left"/>
-<colspec colwidth="153pt" align="left"/>
-<colspec colwidth="76pt" align="left"/>
+
+
+
 <thead valign="top">
 <row>
 <entry> Shorthand </entry>
