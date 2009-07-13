@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="AdvancedObjectOrientedProgramming">
 <title>Advanced Object-Oriented Programming In Scala</title>
@@ -888,7 +888,7 @@ package shapes {
   }
 }</programlisting>
 <simpara id="para_adding_the_case_keyword_caus">Adding the <literal>case</literal> keyword causes the compiler to add a number of useful features automatically. The keyword suggests an association with <literal>case</literal> expressions in pattern matching. Indeed, they are particularly well suited for that application, as we will see.</simpara>
-<simpara id="para_first_the_parser_automaticall">First, the compiler automatically converts the constructor arguments into immutable fields (<literal>val</literal>'s). The <literal>val</literal> keyword is optional. If you want mutable fields, use the <literal>var</literal> keyword. So, our constructor argument lists are now shorter.</simpara>
+<simpara id="para_first_the_parser_automaticall">First, the compiler automatically converts the constructor arguments into immutable fields (<literal>val</literal>’s). The <literal>val</literal> keyword is optional. If you want mutable fields, use the <literal>var</literal> keyword. So, our constructor argument lists are now shorter.</simpara>
 <simpara id="para_second_the_parser_automatical">Second, the compiler automatically implements <literal>equals</literal>, <literal>hashCode</literal>, and <literal>toString</literal> methods to the class, which use the fields specified as constructor arguments. So, we no longer need our own <literal>toString</literal> methods. In fact, the generated <literal>toString</literal> methods produce the same outputs as the ones we implemented ourselves. Also, the body of <literal>Point</literal> is gone because there are no methods that we need to define!</simpara>
 <simpara id="para_the_following_script_uses_thes">The following script uses these methods that are now in the shapes.</simpara>
 <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example1-script.scala
@@ -993,7 +993,7 @@ println(circle2)</programlisting>
 </sect2>
 <sect2 id="CaseClassInheritance">
 <title>Case Class Inheritance</title>
-<simpara id="para_did_you_notice_that_shapes_c">Did you notice that new <literal>Shapes</literal> code in <xref linkend="CaseClasses"/> did not put the <literal>case</literal> keyword on the abstract <literal>Shape</literal> class? This is allowed by the compiler, but there are reasons for not having one case class inherit another. First, it can complicate field initialization. Suppose we make <literal>Shape</literal> a case class. Suppose we want to add a string field to all shapes representing an "id" that the user wants to set. It makes sense to define this field in <literal>Shape</literal>. Let’s make these two changes to <literal>Shape</literal>.</simpara>
+<simpara id="para_did_you_notice_that_shapes_c">Did you notice that new <literal>Shapes</literal> code in <xref linkend="CaseClasses"/> did not put the <literal>case</literal> keyword on the abstract <literal>Shape</literal> class? This is allowed by the compiler, but there are reasons for not having one case class inherit another. First, it can complicate field initialization. Suppose we make <literal>Shape</literal> a case class. Suppose we want to add a string field to all shapes representing an “id” that the user wants to set. It makes sense to define this field in <literal>Shape</literal>. Let’s make these two changes to <literal>Shape</literal>.</simpara>
 <programlisting linenumbering="unnumbered">abstract case class Shape(id: String) {
   def draw(): Unit
 }</programlisting>

@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <glossary id="Glossary">
   <title>Glossary</title>
   <glossentry id="glossentry-tag">
@@ -30,7 +30,7 @@ Abstract Type
       <orderedlist id="glossary_abstract_type" numeration="lowerroman">
         <listitem>
           <simpara>
-A <emphasis>class</emphasis> or <emphasis>trait</emphasis> with one or more methods, fields, or types declared, but undefined. Abstract types can&#x2019;t be instantiated. Contrast with <emphasis>concrete types</emphasis>.
+A <emphasis>class</emphasis> or <emphasis>trait</emphasis> with one or more methods, fields, or types declared, but undefined. Abstract types can’t be instantiated. Contrast with <emphasis>concrete types</emphasis>.
 </simpara>
         </listitem>
         <listitem>
@@ -57,7 +57,7 @@ Actor Model of Concurrency
 </glossterm>
     <glossdef>
       <simpara>
-  A concurrency model where autonomous <emphasis>actors</emphasis> coordinate work by exchanging  messages. An actor&#x2019;s messages are stored in a <emphasis>mailbox</emphasis> until the actor processes them.
+  A concurrency model where autonomous <emphasis>actors</emphasis> coordinate work by exchanging  messages. An actor’s messages are stored in a <emphasis>mailbox</emphasis> until the actor processes them.
 </simpara>
     </glossdef>
   </glossentry>
@@ -67,7 +67,7 @@ Annotated Type
 </glossterm>
     <glossdef>
       <simpara>
-  Any type that has one or more &#x201C;@&#x201D; annotations applied to it.
+  Any type that has one or more “@” annotations applied to it.
 </simpara>
     </glossdef>
   </glossentry>
@@ -77,7 +77,7 @@ Annotation
 </glossterm>
     <glossdef>
       <simpara>
-  A way of attaching &#x201C;metadata&#x201D; to a declaration that can be exploited by the compiler and other tools for code generation, verification and validation, <emphasis>etc.</emphasis> In Scala (and Java) An annotation is a class. When used, it is prefixed with the @ character.
+  A way of attaching “metadata” to a declaration that can be exploited by the compiler and other tools for code generation, verification and validation, <emphasis>etc.</emphasis> In Scala (and Java) An annotation is a class. When used, it is prefixed with the @ character.
 </simpara>
       <simpara id="para_any_explicit_type_declarations">Any explicit type declarations are also called <emphasis>annotations</emphasis>.</simpara>
       <simpara id="para_one_or_more_additions_to_a_typ">One or more additions to a type declaration that specify behaviors like variance under inheritance, bounds, and views.</simpara>
@@ -109,7 +109,7 @@ Aspect-Oriented Programming
 </glossterm>
     <glossdef>
       <simpara>
-  (Sometimes called <emphasis>Aspect-Oriented Software Development</emphasis>) An approach to <emphasis>cross-cutting concerns</emphasis>, where the concerns are designed and implemented in a &#x201C;modular&#x201D; way (that is, with appropriate encapsulation, lack of duplication, <emphasis>etc.</emphasis>), then integrated into all the relevant execution points in a succinct and robust way, <emphasis>e.g.</emphasis> through declarative or programmatic means. In AOP terms, the execution points are called <emphasis>join points</emphasis>, a particular set of them is called a <emphasis>pointcut</emphasis> and the new behavior that is executed before, after, or &#x201C;around&#x201D; a join point is called <emphasis>advice</emphasis>. <emphasis>AspectJ</emphasis> <xref linkend="AspectJ" xrefstyle="select: title nopage"/> is the best known AOP toolkit. Scala <emphasis>traits</emphasis> can be used to implement some aspect-like functionality.
+  (Sometimes called <emphasis>Aspect-Oriented Software Development</emphasis>) An approach to <emphasis>cross-cutting concerns</emphasis>, where the concerns are designed and implemented in a “modular” way (that is, with appropriate encapsulation, lack of duplication, <emphasis>etc.</emphasis>), then integrated into all the relevant execution points in a succinct and robust way, <emphasis>e.g.</emphasis> through declarative or programmatic means. In AOP terms, the execution points are called <emphasis>join points</emphasis>, a particular set of them is called a <emphasis>pointcut</emphasis> and the new behavior that is executed before, after, or “around” a join point is called <emphasis>advice</emphasis>. <emphasis>AspectJ</emphasis> <xref linkend="AspectJ" xrefstyle="select: title nopage"/> is the best known AOP toolkit. Scala <emphasis>traits</emphasis> can be used to implement some aspect-like functionality.
 </simpara>
     </glossdef>
   </glossentry>
@@ -119,7 +119,7 @@ AspectJ
 </glossterm>
     <glossdef>
       <simpara>
-  A extension of Java that supports <emphasis>aspect-oriented programming</emphasis>. AspectJ supports two forms of syntax, an extended Java-based syntax and a &#x201C;pure&#x201D; Java syntax that uses Java annotations to indicate the <emphasis>pointcuts</emphasis> and <emphasis>advices</emphasis> of an aspect. The aspect behaviors (advices) can be incorporated into the target code at compile time, as a post-compile &#x201C;weaving&#x201D; step, or at load time.
+  A extension of Java that supports <emphasis>aspect-oriented programming</emphasis>. AspectJ supports two forms of syntax, an extended Java-based syntax and a “pure” Java syntax that uses Java annotations to indicate the <emphasis>pointcuts</emphasis> and <emphasis>advices</emphasis> of an aspect. The aspect behaviors (advices) can be incorporated into the target code at compile time, as a post-compile “weaving” step, or at load time.
 </simpara>
     </glossdef>
   </glossentry>
@@ -129,7 +129,7 @@ Attribute
 </glossterm>
     <glossdef>
       <simpara>
-  Another name for a type <emphasis>field</emphasis>, used by convention in many object-oriented programming languages. Scala follows Java&#x2019;s convention of preferring the term <emphasis>field</emphasis> over <emphasis>attribute</emphasis>.
+  Another name for a type <emphasis>field</emphasis>, used by convention in many object-oriented programming languages. Scala follows Java’s convention of preferring the term <emphasis>field</emphasis> over <emphasis>attribute</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -159,7 +159,7 @@ Behavior-Driven Development
 </glossterm>
     <glossdef>
       <simpara>
-  A style of <emphasis>test-driven development</emphasis> (TDD) that emphasizes TDD&#x2019;s role in driving the understanding of requirements for the code. You follow the same process as in TDD, where the &#x201C;tests&#x201D; are written before the code. The difference is that the automated tests are written in a format that looks more like a requirements (or behavioral) specification and less like a test of the code&#x2019;s conformance to the requirements. However, the specification format is still executable and it still provides the verification, validation and regression testing service that TDD tests provide.
+  A style of <emphasis>test-driven development</emphasis> (TDD) that emphasizes TDD’s role in driving the understanding of requirements for the code. You follow the same process as in TDD, where the “tests” are written before the code. The difference is that the automated tests are written in a format that looks more like a requirements (or behavioral) specification and less like a test of the code’s conformance to the requirements. However, the specification format is still executable and it still provides the verification, validation and regression testing service that TDD tests provide.
 </simpara>
     </glossdef>
   </glossentry>
@@ -169,7 +169,7 @@ Bound Variable
 </glossterm>
     <glossdef>
       <simpara>
-  A <emphasis>variable</emphasis> that is declared as an argument to a <emphasis>function literal</emphasis>. It is &#x201C;bound&#x201D; to a value when the <emphasis>closure</emphasis> created from the function literal is invoked.
+  A <emphasis>variable</emphasis> that is declared as an argument to a <emphasis>function literal</emphasis>. It is “bound” to a value when the <emphasis>closure</emphasis> created from the function literal is invoked.
 </simpara>
     </glossdef>
   </glossentry>
@@ -179,8 +179,8 @@ By-Name Parameter
 </glossterm>
     <glossdef>
       <simpara>
-  A <emphasis>by-name</emphasis> parameter looks like a function value that takes no parameters, but rather than being declared with the signature <literal>p: () &#x21D2; R</literal>, where
-<literal>R</literal> is the return type, it is declared with the signature <literal>p: &#x21D2; R</literal>. By-name parameters are evaluated every time they are referenced in the function, rather than being evaluated <emphasis>once</emphasis> just before the function call, like a <emphasis>by-value parameter</emphasis>. For example, they are useful for a function that is designed to look like a control construct that takes a &#x201C;block&#x201D;, not a function with explicit parameter arguments, (think of how <emphasis>while loops</emphasis> look, for example). The function argument that has block-like behavior would be a by-name parameter.
+  A <emphasis>by-name</emphasis> parameter looks like a function value that takes no parameters, but rather than being declared with the signature <literal>p: () ⇒ R</literal>, where
+<literal>R</literal> is the return type, it is declared with the signature <literal>p: ⇒ R</literal>. By-name parameters are evaluated every time they are referenced in the function, rather than being evaluated <emphasis>once</emphasis> just before the function call, like a <emphasis>by-value parameter</emphasis>. For example, they are useful for a function that is designed to look like a control construct that takes a “block”, not a function with explicit parameter arguments, (think of how <emphasis>while loops</emphasis> look, for example). The function argument that has block-like behavior would be a by-name parameter.
 </simpara>
     </glossdef>
   </glossentry>
@@ -280,7 +280,7 @@ Closure
 </glossterm>
     <glossdef>
       <simpara>
-  In Scala, an instance that has been created from a <emphasis>function literal</emphasis> with all the <emphasis>free variables</emphasis> referenced in the function literal bound to variables of the same name in the enclosing scope where the function literal was used. In other words, the instance is &#x201C;closed&#x201D; in the sense that the free variables are bound. Because they are instances, closures are <emphasis>first-class</emphasis> values. They can be passed to other functions to customize their behavior. For example, <literal>List.foreach</literal> takes a closure that is applied to each element in the list. See also <emphasis>bound variables</emphasis> and <emphasis>function literals</emphasis>.
+  In Scala, an instance that has been created from a <emphasis>function literal</emphasis> with all the <emphasis>free variables</emphasis> referenced in the function literal bound to variables of the same name in the enclosing scope where the function literal was used. In other words, the instance is “closed” in the sense that the free variables are bound. Because they are instances, closures are <emphasis>first-class</emphasis> values. They can be passed to other functions to customize their behavior. For example, <literal>List.foreach</literal> takes a closure that is applied to each element in the list. See also <emphasis>bound variables</emphasis> and <emphasis>function literals</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -330,7 +330,7 @@ Compound Type
 </glossterm>
     <glossdef>
       <simpara>
-  The actual type of a declaration of the form <literal>T1 extends T2 with T3 with &#x2026; TN { R }</literal>, where <literal>R</literal> is the <emphasis>refinement</emphasis> (body). Definitions in <literal>R</literal> affect the type.
+  The actual type of a declaration of the form <literal>T1 extends T2 with T3 with … TN { R }</literal>, where <literal>R</literal> is the <emphasis>refinement</emphasis> (body). Definitions in <literal>R</literal> affect the type.
 </simpara>
     </glossdef>
   </glossentry>
@@ -390,7 +390,7 @@ Cross-Cutting Concerns
 </glossterm>
     <glossdef>
       <simpara>
-  &#x201C;Concerns&#x201D; (kinds of requirements, design or coding issues) that don&#x2019;t fit in the same boundaries as the primary modularity decomposition. The same behaviors must be invoked consistently at specific execution points over a range of objects and functions. For example, the same ORM (Object-Relational Mapping) persistence strategy needs to be used consistently for a set of classes, not just a single class. Hence, such &#x201C;concerns&#x201D; are said to be &#x201C;cross-cutting&#x201D;. Supporting these concerns should not involve duplication of code, <emphasis>etc.</emphasis> See also <emphasis>Aspect-Oriented Programming</emphasis>.
+  “Concerns” (kinds of requirements, design or coding issues) that don’t fit in the same boundaries as the primary modularity decomposition. The same behaviors must be invoked consistently at specific execution points over a range of objects and functions. For example, the same ORM (Object-Relational Mapping) persistence strategy needs to be used consistently for a set of classes, not just a single class. Hence, such “concerns” are said to be “cross-cutting”. Supporting these concerns should not involve duplication of code, <emphasis>etc.</emphasis> See also <emphasis>Aspect-Oriented Programming</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -440,7 +440,7 @@ Dependency Injection
 </glossterm>
     <glossdef>
       <simpara>
-  A form of <emphasis>inversion of control</emphasis>, where an object&#x2019;s external dependencies are given to it, either programmatically or through a DI framework that is driven by configuration information. Hence, the object remains &#x201C;passive&#x201D;, rather than taking an active role in resolving dependencies. The injection mechanism uses constructor arguments or field setters provided by the object. DI minimizes the coupling of objects. They only need to know about the abstractions of their dependencies.
+  A form of <emphasis>inversion of control</emphasis>, where an object’s external dependencies are given to it, either programmatically or through a DI framework that is driven by configuration information. Hence, the object remains “passive”, rather than taking an active role in resolving dependencies. The injection mechanism uses constructor arguments or field setters provided by the object. DI minimizes the coupling of objects. They only need to know about the abstractions of their dependencies.
 </simpara>
     </glossdef>
   </glossentry>
@@ -490,7 +490,7 @@ Duck Typing
 </glossterm>
     <glossdef>
       <simpara>
-  A term used in languages with <emphasis>dynamic typing</emphasis> for the way method resolution works. As long as an object accepts a method call (message send), the runtime is satisfied. &#x201C;If it walks like a duck and talks like a duck, it&#x2019;s a duck&#x201D;. Contrast to the use of <emphasis>structural types</emphasis> in some <emphasis>statically-typed</emphasis> languages like Scala.
+  A term used in languages with <emphasis>dynamic typing</emphasis> for the way method resolution works. As long as an object accepts a method call (message send), the runtime is satisfied. “If it walks like a duck and talks like a duck, it’s a duck”. Contrast to the use of <emphasis>structural types</emphasis> in some <emphasis>statically-typed</emphasis> languages like Scala.
 </simpara>
     </glossdef>
   </glossentry>
@@ -510,7 +510,7 @@ Encapsulation
 </glossterm>
     <glossdef>
       <simpara>
-  Restricting the visibility of members of a type so they are not visible to clients of the type when they shouldn&#x2019;t be. This is a way of exposing only the <emphasis>abstraction</emphasis> supported by the type, while hiding implementation details, which prevents unwanted access to them from clients and keeps the <emphasis>abstraction</emphasis> exposed by the type consistent and minimal.
+  Restricting the visibility of members of a type so they are not visible to clients of the type when they shouldn’t be. This is a way of exposing only the <emphasis>abstraction</emphasis> supported by the type, while hiding implementation details, which prevents unwanted access to them from clients and keeps the <emphasis>abstraction</emphasis> exposed by the type consistent and minimal.
 </simpara>
     </glossdef>
   </glossentry>
@@ -540,7 +540,7 @@ Existential Types
 </glossterm>
     <glossdef>
       <simpara>
-  A way of expressing the presence of a type without knowing its concrete value, sometimes, because it can&#x2019;t be known. It is used primarily to support aspects of Java&#x2019;s type system within Scala&#x2019;s type system, including <emphasis>type erasure</emphasis>, &#x201C;raw&#x201D; types (<emphasis>e.g.,</emphasis> pre-Java 5 collections), and <emphasis>call site</emphasis> <emphasis>type variance</emphasis>.
+  A way of expressing the presence of a type without knowing its concrete value, sometimes, because it can’t be known. It is used primarily to support aspects of Java’s type system within Scala’s type system, including <emphasis>type erasure</emphasis>, “raw” types (<emphasis>e.g.,</emphasis> pre-Java 5 collections), and <emphasis>call site</emphasis> <emphasis>type variance</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -580,7 +580,7 @@ First Class
 </glossterm>
     <glossdef>
       <simpara>
-  An adjective indicating that the applicable &#x201C;thing&#x201D; is a first-class value in the language, meaning you can assign instances to variables, pass them as function parameters, and return them from functions. Often used to refer to <emphasis>functions</emphasis>, which are first-class values in Scala and other <emphasis>functional programming</emphasis> languages.
+  An adjective indicating that the applicable “thing” is a first-class value in the language, meaning you can assign instances to variables, pass them as function parameters, and return them from functions. Often used to refer to <emphasis>functions</emphasis>, which are first-class values in Scala and other <emphasis>functional programming</emphasis> languages.
 </simpara>
     </glossdef>
   </glossentry>
@@ -590,7 +590,7 @@ For Comprehension
 </glossterm>
     <glossdef>
       <simpara>
-  Another name for Scala&#x2019;s <literal>for</literal> expression.
+  Another name for Scala’s <literal>for</literal> expression.
 </simpara>
     </glossdef>
   </glossentry>
@@ -610,7 +610,7 @@ Free Variable
 </glossterm>
     <glossdef>
       <simpara>
-  A <emphasis>variable</emphasis> that is referenced in a <emphasis>function literal</emphasis>, but is not passed in as an argument. Therefore, it must be &#x201C;bound&#x201D; to a defined variable of the same name in the context where the function literal is used, to form a <emphasis>closure</emphasis>.
+  A <emphasis>variable</emphasis> that is referenced in a <emphasis>function literal</emphasis>, but is not passed in as an argument. Therefore, it must be “bound” to a defined variable of the same name in the context where the function literal is used, to form a <emphasis>closure</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -630,7 +630,7 @@ Function Literal
 </glossterm>
     <glossdef>
       <simpara>
-  Scala&#x2019;s term for an anonymous <emphasis>function</emphasis> expression, from which <emphasis>closures</emphasis> are created.
+  Scala’s term for an anonymous <emphasis>function</emphasis> expression, from which <emphasis>closures</emphasis> are created.
 </simpara>
     </glossdef>
   </glossentry>
@@ -640,7 +640,7 @@ Function Type
 </glossterm>
     <glossdef>
       <simpara>
-  In Scala, all functions are instances of <literal>FunctionN[-T1, T2, &#x2026;, TN, +R]</literal> types, where <literal>N</literal> is the number of arguments (0 through 22 are supported). The type signature syntax <literal>(T1, T2, &#x2026;, TN) &#x21D2; R</literal> is used for declaring concrete instances, <emphasis>i.e.,</emphasis> function literals.
+  In Scala, all functions are instances of <literal>FunctionN[-T1, T2, …, TN, +R]</literal> types, where <literal>N</literal> is the number of arguments (0 through 22 are supported). The type signature syntax <literal>(T1, T2, …, TN) ⇒ R</literal> is used for declaring concrete instances, <emphasis>i.e.,</emphasis> function literals.
 </simpara>
     </glossdef>
   </glossentry>
@@ -690,7 +690,7 @@ Immutable Value
 </glossterm>
     <glossdef>
       <simpara>
-  A value that can&#x2019;t be changed after it has been initialized. Contrast with <emphasis>mutable value</emphasis>.
+  A value that can’t be changed after it has been initialized. Contrast with <emphasis>mutable value</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -700,7 +700,7 @@ Imperative Programming
 </glossterm>
     <glossdef>
       <simpara>
-  The quality of many <emphasis>object-oriented</emphasis> and &#x201C;procedural&#x201D; programs where the code consists of statements directing the system to take a particular sequence of action. Contrast with <emphasis>declarative programming</emphasis>.
+  The quality of many <emphasis>object-oriented</emphasis> and “procedural” programs where the code consists of statements directing the system to take a particular sequence of action. Contrast with <emphasis>declarative programming</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -791,7 +791,7 @@ Invariance and Invariant
 </glossterm>
     <glossdef>
       <simpara>
-  In the context of the variance behavior of <emphasis>parameterized types</emphasis> under inheritance, if a parameter <literal>A</literal> is <emphasis>invariant</emphasis> in a parameterized type <literal>T[A]</literal>, then there is no <emphasis>variance annotation</emphasis> and a type <literal>T[B]</literal> is a <emphasis>subtype</emphasis> of <literal>T[A]</literal> if and only if <literal>B</literal> equals <literal>A</literal>. That is, the type can&#x2019;t be changed. See also <emphasis>covariance</emphasis> and <emphasis>contravariance</emphasis>.
+  In the context of the variance behavior of <emphasis>parameterized types</emphasis> under inheritance, if a parameter <literal>A</literal> is <emphasis>invariant</emphasis> in a parameterized type <literal>T[A]</literal>, then there is no <emphasis>variance annotation</emphasis> and a type <literal>T[B]</literal> is a <emphasis>subtype</emphasis> of <literal>T[A]</literal> if and only if <literal>B</literal> equals <literal>A</literal>. That is, the type can’t be changed. See also <emphasis>covariance</emphasis> and <emphasis>contravariance</emphasis>.
 </simpara>
       <simpara id="para_in_the_context_of__design_by_c">In the context of <emphasis>design by contract</emphasis>, an assertion that should be true on exit from a method or other boundary point. See</simpara>
     </glossdef>
@@ -802,7 +802,7 @@ Inversion of Control
 </glossterm>
     <glossdef>
       <simpara>
-  The idea that an object should not instantiate it&#x2019;s own copies of external dependencies, but rather rely on other mechanisms to supply those dependencies. IoC promotes better decoupling and testability, as the object only knows about the abstractions of its dependencies, not specific concrete implementers of them. A weak form of IoC is when an object calls a factory, service locator, <emphasis>etc.</emphasis> to obtain the dependents. Hence, the object still has an active role and it has a dependency on the &#x201C;provider&#x201D;. The strongest form of IoC is <emphasis>dependency injection</emphasis>, where the object remains &#x201C;passive&#x201D;.
+  The idea that an object should not instantiate it’s own copies of external dependencies, but rather rely on other mechanisms to supply those dependencies. IoC promotes better decoupling and testability, as the object only knows about the abstractions of its dependencies, not specific concrete implementers of them. A weak form of IoC is when an object calls a factory, service locator, <emphasis>etc.</emphasis> to obtain the dependents. Hence, the object still has an active role and it has a dependency on the “provider”. The strongest form of IoC is <emphasis>dependency injection</emphasis>, where the object remains “passive”.
 </simpara>
     </glossdef>
   </glossentry>
@@ -814,7 +814,7 @@ Lazy
       <simpara>
   Immutable variables (<literal>vals</literal>) can be declared <literal>lazy</literal>, meaning they will only be evaluated when they are read. This feature is useful for expensive evaluations that may not be needed.
 </simpara>
-      <simpara id="para_lazy_data_structures_can_also_">Lazy data structures can also be used to define infinite data structures that won&#x2019;t exhaust system resources as long as only a finite subset of the structure is evaluated. The <literal>Stream</literal> and <literal>Range</literal> classes are both lazy. Contrast with <emphasis>strict</emphasis>.</simpara>
+      <simpara id="para_lazy_data_structures_can_also_">Lazy data structures can also be used to define infinite data structures that won’t exhaust system resources as long as only a finite subset of the structure is evaluated. The <literal>Stream</literal> and <literal>Range</literal> classes are both lazy. Contrast with <emphasis>strict</emphasis>.</simpara>
     </glossdef>
   </glossentry>
   <glossentry id="glossentry-linearization">
@@ -833,7 +833,7 @@ Literal
 </glossterm>
     <glossdef>
       <simpara>
-  Used to refer to &#x201C;literal&#x201D; value expressions, such as numbers (<emphasis>e.g.,</emphasis> <literal>1</literal>, <literal>3.14</literal>), strings (<emphasis>e.g.,</emphasis> "Hello Scala!"), tuples (<emphasis>e.g.,</emphasis> <literal>(1, 2, 3)</literal>), and <emphasis>function literals</emphasis> (<emphasis>e.g.,</emphasis> <literal>(x) &#x21D2; x + x</literal>).
+  Used to refer to “literal” value expressions, such as numbers (<emphasis>e.g.,</emphasis> <literal>1</literal>, <literal>3.14</literal>), strings (<emphasis>e.g.,</emphasis> “Hello Scala!”), tuples (<emphasis>e.g.,</emphasis> <literal>(1, 2, 3)</literal>), and <emphasis>function literals</emphasis> (<emphasis>e.g.,</emphasis> <literal>(x) ⇒ x + x</literal>).
 </simpara>
     </glossdef>
   </glossentry>
@@ -873,7 +873,7 @@ MapReduce
 </glossterm>
     <glossdef>
       <simpara>
-  A divide and conquer strategy for processing large data sets in parallel. In the &#x201C;map&#x201D; phase, the data sets are subdivided. The desired computation is performed on each subset. The &#x201C;reduce&#x201D; phase combines the results of the subset calculations into a final result. MapReduce frameworks handle the details of managing the operations and the nodes they run on, including restarting operations that fail for some reason. The user of the framework only has to write the algorithms for mapping and reducing the data sets and computing with the subsets.
+  A divide and conquer strategy for processing large data sets in parallel. In the “map” phase, the data sets are subdivided. The desired computation is performed on each subset. The “reduce” phase combines the results of the subset calculations into a final result. MapReduce frameworks handle the details of managing the operations and the nodes they run on, including restarting operations that fail for some reason. The user of the framework only has to write the algorithms for mapping and reducing the data sets and computing with the subsets.
 </simpara>
     </glossdef>
   </glossentry>
@@ -893,7 +893,7 @@ Memoization
 </glossterm>
     <glossdef>
       <simpara>
-  A form of caching that optimizes function invocations. The results from a function&#x2019;s invocations are saved so that when repeated invocations with the same inputs are made, the cached results can be returned instead of re-invoking the function again.
+  A form of caching that optimizes function invocations. The results from a function’s invocations are saved so that when repeated invocations with the same inputs are made, the cached results can be returned instead of re-invoking the function again.
 </simpara>
     </glossdef>
   </glossentry>
@@ -905,7 +905,7 @@ Message
       <simpara>
   In the <emphasis>actor model of concurrency</emphasis>, messages are exchanged between actors to coordinate their work.
 </simpara>
-      <simpara id="para_in_object_oriented_programming">In object-oriented programming, method invocation is sometimes referred to as &#x201C;sending a message to an object&#x201D;, especially in certain languages, like Smalltalk and to some extent, Ruby.</simpara>
+      <simpara id="para_in_object_oriented_programming">In object-oriented programming, method invocation is sometimes referred to as “sending a message to an object”, especially in certain languages, like Smalltalk and to some extent, Ruby.</simpara>
     </glossdef>
   </glossentry>
   <glossentry id="glossentry-method">
@@ -924,7 +924,7 @@ Mixin
 </glossterm>
     <glossdef>
       <simpara>
-  A narrowly-focused encapsulation of state and behavior that is more useful as an adjunct to another object&#x2019;s state and behavior, rather than standing on its own. Mixins in Scala are implemented using <emphasis>traits</emphasis>.
+  A narrowly-focused encapsulation of state and behavior that is more useful as an adjunct to another object’s state and behavior, rather than standing on its own. Mixins in Scala are implemented using <emphasis>traits</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -984,7 +984,7 @@ Object Oriented Programming
 </glossterm>
     <glossdef>
       <simpara>
-  A form of programming that encapsulates state values and operations on that state, exposing a cohesive abstraction to clients of the object while hiding internal implementation details. OOP also supports subtyping to define specializations and &#x201C;family&#x201D; relationships between types.
+  A form of programming that encapsulates state values and operations on that state, exposing a cohesive abstraction to clients of the object while hiding internal implementation details. OOP also supports subtyping to define specializations and “family” relationships between types.
 </simpara>
     </glossdef>
   </glossentry>
@@ -994,7 +994,7 @@ Operator Characters
 </glossterm>
     <glossdef>
       <simpara>
-  Characters like &#x2018;&lt;&#x2019;, &#x2018;*&#x2019;, <emphasis>etc.</emphasis> that are not letters, digits, nor reserved characters, like left and right parentheses, &#x201C;curly&#x201D; braces, or &#x201C;square&#x201D; braces, the semicolon, colon, or comma. These characters can be used in method names to implement a form of <emphasis>operator overloading</emphasis>.
+  Characters like ‘&lt;’, ‘*’, <emphasis>etc.</emphasis> that are not letters, digits, nor reserved characters, like left and right parentheses, “curly” braces, or “square” braces, the semicolon, colon, or comma. These characters can be used in method names to implement a form of <emphasis>operator overloading</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1014,7 +1014,7 @@ Operator Overloading
 </glossterm>
     <glossdef>
       <simpara>
-  The feature in some languages where standard mathematical operators, like &#x2018;*&#x2019;, &#x2018;/&#x2019;, &#x2018;&lt;&#x2019;, <emphasis>etc.</emphasis> can be defined by users for custom types. In Scala, a form of operator overloading is supported by allowing operator characters to be used as normal method names and by allowing methods with one argument to be invoked with <emphasis>infix notation</emphasis>. The &#x201C;operator precedence&#x201D; for these methods is determined by the first character, <emphasis>e.g.,</emphasis> method *&lt; will have higher precedence than method +&lt;.
+  The feature in some languages where standard mathematical operators, like ‘*’, ‘/’, ‘&lt;’, <emphasis>etc.</emphasis> can be defined by users for custom types. In Scala, a form of operator overloading is supported by allowing operator characters to be used as normal method names and by allowing methods with one argument to be invoked with <emphasis>infix notation</emphasis>. The “operator precedence” for these methods is determined by the first character, <emphasis>e.g.,</emphasis> method *&lt; will have higher precedence than method +&lt;.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1024,7 +1024,7 @@ Overloaded Functions
 </glossterm>
     <glossdef>
       <simpara>
-  Two or more functions defined in the same scope (e.g., as methods in a type or as &#x201C;bare&#x201D; functions) that have the same name, but different <emphasis>signatures</emphasis>.
+  Two or more functions defined in the same scope (e.g., as methods in a type or as “bare” functions) that have the same name, but different <emphasis>signatures</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1034,7 +1034,7 @@ Package Objects
 </glossterm>
     <glossdef>
       <simpara>
-  A special kind of object declaration that declares members that should be visible at the scope of the named package. For example, for the declaration <literal>package object math { type Complex = &#x2026; }</literal>, the <literal>Complex</literal> type can be referenced as <literal>math.Complex</literal>.
+  A special kind of object declaration that declares members that should be visible at the scope of the named package. For example, for the declaration <literal>package object math { type Complex = … }</literal>, the <literal>Complex</literal> type can be referenced as <literal>math.Complex</literal>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1054,7 +1054,7 @@ Parameterized Types
 </glossterm>
     <glossdef>
       <simpara>
-  Scala&#x2019;s analog of <emphasis>generics</emphasis> in Java. Parameterized types are defined with placeholder parameters for types they use. When an instance of a parameterized type is created, specific types must be specified to replace all the type parameters. See also <emphasis>type constructor</emphasis>.
+  Scala’s analog of <emphasis>generics</emphasis> in Java. Parameterized types are defined with placeholder parameters for types they use. When an instance of a parameterized type is created, specific types must be specified to replace all the type parameters. See also <emphasis>type constructor</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1104,7 +1104,7 @@ Path-Dependent Type
 </glossterm>
     <glossdef>
       <simpara>
-  A nested type T is unique based on its &#x201C;path&#x201D;, the hierarchical, period-delimited list of the the enclosing packages, the enclosing types, and finally the type T itself. Instances of T can have different, incompatible types. For example, if T is nested in a trait and the trait appears in the <emphasis>linearizations</emphasis> of different types, then the instances in those Ts will have different types.
+  A nested type T is unique based on its “path”, the hierarchical, period-delimited list of the the enclosing packages, the enclosing types, and finally the type T itself. Instances of T can have different, incompatible types. For example, if T is nested in a trait and the trait appears in the <emphasis>linearizations</emphasis> of different types, then the instances in those Ts will have different types.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1264,7 +1264,7 @@ Scaladocs
 </glossterm>
     <glossdef>
       <simpara>
-  The API documented generated form Scala source code using the <userinput>scaladoc</userinput> tool, analogous to Java&#x2019;s <emphasis>Javadocs</emphasis>.
+  The API documented generated form Scala source code using the <userinput>scaladoc</userinput> tool, analogous to Java’s <emphasis>Javadocs</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1304,7 +1304,7 @@ Side-effect Free
 </glossterm>
     <glossdef>
       <simpara>
-  Functions or expressions that have no side effects, meaning they modify no global or &#x201C;object&#x201D; state.
+  Functions or expressions that have no side effects, meaning they modify no global or “object” state.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1364,7 +1364,7 @@ State
 </glossterm>
     <glossdef>
       <simpara>
-  As in, &#x201C;the state of an object&#x201D;, where it informally means the set of all the current values of an object&#x2019;s <emphasis>fields</emphasis>.
+  As in, “the state of an object”, where it informally means the set of all the current values of an object’s <emphasis>fields</emphasis>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1384,7 +1384,7 @@ Strict
 </glossterm>
     <glossdef>
       <simpara>
-  Used to refer to data structures that are not <emphasis>lazy</emphasis>, <emphasis>i.e.,</emphasis> they are defined &#x201C;eagerly&#x201D; by the expressions used to construct them.
+  Used to refer to data structures that are not <emphasis>lazy</emphasis>, <emphasis>i.e.,</emphasis> they are defined “eagerly” by the expressions used to construct them.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1394,7 +1394,7 @@ Structural Type
 </glossterm>
     <glossdef>
       <simpara>
-  A <emphasis>structural type</emphasis> is like an anonymous type, where only the &#x201C;structure&#x201D; a candidate type must support is specified, such as <emphasis>members</emphasis> that must be present. Structural types do not name the candidate types that can match, nor do any matching types need to share a common <emphasis>parent trait</emphasis> or <emphasis>class</emphasis> with the structural type. Hence, structural types are a type-safe analog to <emphasis>duck typing</emphasis> in dynamically-typed languages, like Ruby.
+  A <emphasis>structural type</emphasis> is like an anonymous type, where only the “structure” a candidate type must support is specified, such as <emphasis>members</emphasis> that must be present. Structural types do not name the candidate types that can match, nor do any matching types need to share a common <emphasis>parent trait</emphasis> or <emphasis>class</emphasis> with the structural type. Hence, structural types are a type-safe analog to <emphasis>duck typing</emphasis> in dynamically-typed languages, like Ruby.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1424,7 +1424,7 @@ Symbol
 </glossterm>
     <glossdef>
       <simpara>
-  An interned string. Literal symbols are written starting with a single &#x201C;right quote&#x201D;, <emphasis>e.g.,</emphasis> <literal>'name</literal>.
+  An interned string. Literal symbols are written starting with a single “right quote”, <emphasis>e.g.,</emphasis> <literal>'name</literal>.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1464,7 +1464,7 @@ Test Double
 </glossterm>
     <glossdef>
       <simpara>
-  When testing the behavior of one object, a test double is another object that satisfies a dependency in the object under test. The test double may assist in the testing process, provide controlled test data and behaviors, and very aspects of the interaction between the object under test and the test double. Specific types of test doubles include &#x201C;fakes&#x201D;, &#x201C;mocks&#x201D;, and &#x201C;stubs&#x201D;.
+  When testing the behavior of one object, a test double is another object that satisfies a dependency in the object under test. The test double may assist in the testing process, provide controlled test data and behaviors, and very aspects of the interaction between the object under test and the test double. Specific types of test doubles include “fakes”, “mocks”, and “stubs”.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1484,7 +1484,7 @@ Trampoline
 </glossterm>
     <glossdef>
       <simpara>
-  A loop that iterates through a list of functions, invoking each in turn. The metaphor of bouncing the functions off a trampoline is the source of the name. It can be used to rewrite a form of recursion where a function doesn&#x2019;t call itself, but rather calls a different function which invokes the original function, and so forth, back and forth. There is a proposal for the Scala version 2.8 compiler to include a trampoline implementation.
+  A loop that iterates through a list of functions, invoking each in turn. The metaphor of bouncing the functions off a trampoline is the source of the name. It can be used to rewrite a form of recursion where a function doesn’t call itself, but rather calls a different function which invokes the original function, and so forth, back and forth. There is a proposal for the Scala version 2.8 compiler to include a trampoline implementation.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1494,7 +1494,7 @@ Tuple
 </glossterm>
     <glossdef>
       <simpara>
-  A grouping of two or more items of arbitrary types into a &#x201C;Cartesian product&#x201D;, without first defining a class to hold them. Literal tuple values are written in parentheses and separated by commas, <emphasis>e.g.,</emphasis> <literal>(x1, x2, &#x2026;)</literal>. They are <emphasis>first-class</emphasis> values, so you can assign them to variables, pass them as values, and return them from functions. Tuples are represented by <literal>TupleN</literal> classes, for N between 2 and 22, inclusive.
+  A grouping of two or more items of arbitrary types into a “Cartesian product”, without first defining a class to hold them. Literal tuple values are written in parentheses and separated by commas, <emphasis>e.g.,</emphasis> <literal>(x1, x2, …)</literal>. They are <emphasis>first-class</emphasis> values, so you can assign them to variables, pass them as values, and return them from functions. Tuples are represented by <literal>TupleN</literal> classes, for N between 2 and 22, inclusive.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1514,7 +1514,7 @@ Type Annotation
 </glossterm>
     <glossdef>
       <simpara>
-  An explicit declaration of the type of a value, <emphasis>e.g.,</emphasis> <literal>count: Int</literal>, where <literal>Int</literal> is the <emphasis>type annotation</emphasis>. A type annotation is required when <emphasis>type inference</emphasis> can&#x2019;t be used. In Scala, function parameters require type annotations and annotations are required in some other contexts where the type can&#x2019;t be inferred, <emphasis>e.g.,</emphasis> for return values of some functions.
+  An explicit declaration of the type of a value, <emphasis>e.g.,</emphasis> <literal>count: Int</literal>, where <literal>Int</literal> is the <emphasis>type annotation</emphasis>. A type annotation is required when <emphasis>type inference</emphasis> can’t be used. In Scala, function parameters require type annotations and annotations are required in some other contexts where the type can’t be inferred, <emphasis>e.g.,</emphasis> for return values of some functions.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1534,7 +1534,7 @@ Type Constructor
 </glossterm>
     <glossdef>
       <simpara>
-  Informally, a <emphasis>parameterized type</emphasis> is sometimes called a type constructor, although a &#x201C;non-parameterized&#x201D; type is really a type constructor, too, just with zero parameters! The analogy with an instance constructor is that you specify specific concrete types for the parameters to create a new concrete type, just as you specify values to an instance constructor to create an instance.
+  Informally, a <emphasis>parameterized type</emphasis> is sometimes called a type constructor, although a “non-parameterized” type is really a type constructor, too, just with zero parameters! The analogy with an instance constructor is that you specify specific concrete types for the parameters to create a new concrete type, just as you specify values to an instance constructor to create an instance.
 </simpara>
     </glossdef>
   </glossentry>
@@ -1634,7 +1634,7 @@ Value Type
 </glossterm>
     <glossdef>
       <simpara>
-  A subclass of <literal>AnyVal</literal> that wraps a corresponding non-object &#x201C;primitive&#x201D; type on the runtime platform (<emphasis>e.g.,</emphasis> JVM and .NET). The value types are <literal>Boolean</literal>, <literal>Char</literal>, <literal>Byte</literal>, <literal>Double</literal>, <literal>Float</literal>, <literal>Long</literal>, <literal>Int</literal>, and <literal>Short</literal>. All are declared <literal>abstract final</literal> so they can&#x2019;t be used in <literal>new V</literal> expressions. Instead, programs specify literal values, <emphasis>e.g.,</emphasis> <literal>3.14</literal> for a <literal>Double</literal> or use methods that return new values. The Scala runtimes handles instantiation. All the instances of value types are immutable <emphasis>value objects</emphasis>.
+  A subclass of <literal>AnyVal</literal> that wraps a corresponding non-object “primitive” type on the runtime platform (<emphasis>e.g.,</emphasis> JVM and .NET). The value types are <literal>Boolean</literal>, <literal>Char</literal>, <literal>Byte</literal>, <literal>Double</literal>, <literal>Float</literal>, <literal>Long</literal>, <literal>Int</literal>, and <literal>Short</literal>. All are declared <literal>abstract final</literal> so they can’t be used in <literal>new V</literal> expressions. Instead, programs specify literal values, <emphasis>e.g.,</emphasis> <literal>3.14</literal> for a <literal>Double</literal> or use methods that return new values. The Scala runtimes handles instantiation. All the instances of value types are immutable <emphasis>value objects</emphasis>.
 </simpara>
       <simpara id="para_the_term__value_type__is_also_">The term <emphasis>value type</emphasis> is also used to mean the categories of types for instances. That is, the type of every instance must fall into one of several categories: <emphasis>annotated types</emphasis>, <emphasis>compound types</emphasis>, <emphasis>function types</emphasis>, <emphasis>infix types</emphasis>, <emphasis>parameterized types</emphasis>, <emphasis>tuples</emphasis>, <emphasis>type designators</emphasis>, <emphasis>type projections</emphasis>, <emphasis>singleton types</emphasis>.</simpara>
     </glossdef>
@@ -1645,7 +1645,7 @@ Variable
 </glossterm>
     <glossdef>
       <simpara>
-  A named reference to a value. If the variable is declared with the <literal>val</literal> keyword, a new value can&#x2019;t be assigned to the variable. If the variable is declared with the <literal>var</literal> keyword, a new value can be assigned to the variable. The value a variable references must be type compatible with the declared or inferred type of the variable.
+  A named reference to a value. If the variable is declared with the <literal>val</literal> keyword, a new value can’t be assigned to the variable. If the variable is declared with the <literal>var</literal> keyword, a new value can be assigned to the variable. The value a variable references must be type compatible with the declared or inferred type of the variable.
 </simpara>
     </glossdef>
   </glossentry>

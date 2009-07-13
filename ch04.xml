@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="Traits">
 <title>Traits</title>
@@ -73,7 +73,7 @@ trait Subject {
 <simpara id="para_the_main_thing_to_notice_for_n">The main thing to notice for now is how this structural type minimizes the coupling between the <literal>Subject</literal> trait and any potential users of the trait.</simpara>
 <note id="para_note_subject_is_still_coupl"><simpara><literal>Subject</literal> is still coupled by the name of the method in <literal>Observer</literal> through the structural type, <emphasis>i.e.</emphasis>, to a method named <literal>receiveUpdate</literal>. There are several ways we can reduce this remaining coupling. We’ll see how in <xref linkend="OverridingAbstractTypes"/> below.</simpara></note>
 <simpara id="para_next_we_declare_a_list_of_obs">Next, we declare a list of observers. We make it a <literal>var</literal>, rather than a <literal>val</literal>, because <literal>List</literal> is immutable, so we must create a new list when an observer is added using the <literal>addObserver</literal> method.</simpara>
-<simpara id="para_we_ll_discuss_scala_list_s_m">We’ll discuss Scala <literal>List</literal>'s more in <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/> and also in <xref linkend="FunctionalProgramming"/>. For now, notice that <literal>addObserver</literal> uses the the list <emphasis>cons</emphasis> “operator” method (<literal>::</literal>) to <emphasis>prepend</emphasis> an <literal>observer</literal> to the list of <literal>observers</literal>.  The scala compiler is smart enough to turn the following statement,</simpara>
+<simpara id="para_we_ll_discuss_scala_list_s_m">We’ll discuss Scala <literal>List</literal>’s more in <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/> and also in <xref linkend="FunctionalProgramming"/>. For now, notice that <literal>addObserver</literal> uses the the list <emphasis>cons</emphasis> “operator” method (<literal>::</literal>) to <emphasis>prepend</emphasis> an <literal>observer</literal> to the list of <literal>observers</literal>.  The scala compiler is smart enough to turn the following statement,</simpara>
 <programlisting linenumbering="unnumbered">observers ::= observer</programlisting>
 <simpara id="para_into_this_statement_">into this statement,</simpara>
 <programlisting linenumbering="unnumbered">observers = observer :: observers</programlisting>
@@ -100,7 +100,7 @@ class ObservableButton(name: String) extends Button(name) with Subject {
   }
 }</programlisting>
 <simpara id="para_we_start_by_importing_everythi">We start by importing everything in the <literal>observer</literal> package, using the ‘_’ wild card. Actually, we have only defined the <literal>Subject</literal> trait in the package.</simpara>
-<simpara id="para_the_new_class_uses_the_with_">The new class uses the <literal>with</literal> keyword to add the <literal>Subject</literal> trait to the class. <literal>ObservableButton</literal> overrides the <literal>click</literal> method. Using the <literal>super</literal> keyword (see <xref linkend="OverridingMethods"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>), it first invokes the “superclass” method, <literal>Button.click</literal>, then it notifies the observers. Since the new <literal>click</literal> method overrides <literal>Button</literal>'s concrete implementation, the <literal>override</literal> keyword is required.</simpara>
+<simpara id="para_the_new_class_uses_the_with_">The new class uses the <literal>with</literal> keyword to add the <literal>Subject</literal> trait to the class. <literal>ObservableButton</literal> overrides the <literal>click</literal> method. Using the <literal>super</literal> keyword (see <xref linkend="OverridingMethods"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>), it first invokes the “superclass” method, <literal>Button.click</literal>, then it notifies the observers. Since the new <literal>click</literal> method overrides <literal>Button</literal>’s concrete implementation, the <literal>override</literal> keyword is required.</simpara>
 <simpara id="para_the_with_keyword_is_analogou">The <literal>with</literal> keyword is analogous to Java’s <literal>implements</literal> keyword for interfaces. You can specify as many traits as you want, each with its own <literal>with</literal> keyword.</simpara>
 <simpara id="para_a_class_can_extend_a_trait_and">A class can extend a trait and a trait can extend a class. In fact, our <literal>Widget</literal> class above could have been declared to be a trait.</simpara>
 <note id="para_note_if_you_declare_a_class_t"><simpara>If you declare a class that uses one or more traits and it <emphasis>doesn’t</emphasis> extend another class, you must use the <literal>extends</literal> keyword for the first trait listed.</simpara></note>
@@ -369,7 +369,7 @@ After Creating C12</screen>
 </sect1>
 <sect1 id="TraitsRecapAndWhatsNext">
 <title>Recap and What’s Next</title>
-<simpara id="para_in_this_chapter_we_learned_ho">In this chapter, we learned how to use traits to encapsulate and share cross-cutting concerns between classes. We covered when and how to use traits, how to "stack" multiple traits, and the rules for initializing values within traits.</simpara>
+<simpara id="para_in_this_chapter_we_learned_ho">In this chapter, we learned how to use traits to encapsulate and share cross-cutting concerns between classes. We covered when and how to use traits, how to “stack” multiple traits, and the rules for initializing values within traits.</simpara>
 <simpara id="para_at_this_point_in_your_reading_">At this point in your reading, you’ve learned about many of Scala’s key features and concepts. You should be able to look at most well-written Scala code and have a basic level of understanding of what’s happening in it. To truly master the language, though, we need to go deeper.</simpara>
 <simpara id="para_in_the_next_chapter_we_explor">In the next chapter, we explore how the fundamentals of object-oriented programming work in Scala. Even if you’re an old hand at object-oriented programming, you’ll want to read the next several chapters to understand the particulars of Scala’s approach to OOP.</simpara>
 </sect1>

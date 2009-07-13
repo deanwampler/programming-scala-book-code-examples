@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="ScalasTypeSystem">
 <title>The Scala Type System</title>
@@ -479,7 +479,7 @@ import bounds.abbrevlist._
 scala&gt; 1 :: 2 :: 3 :: AbbrevNil
 res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
 <simpara id="para_abbrevnil_to_string_output">Note the output on the last line, which shows the nesting of <literal>(head,tail)</literal> elements.</simpara>
-<simpara id="para_for_another_example_of_a_simil">For another example using similar approaches, this time for defining a Stack, see <ulink url="http://www.scala-lang.org/node/129">http://www.scala-lang.org/node/129</ulink>.</simpara>
+<simpara id="para_for_another_example_of_a_simil">For another example using similar approaches, this time for defining a Stack, see <ulink url="http://www.scala-lang.org/node/129"/>.</simpara>
 </sect2>
 <sect2 id="ViewsAndViewBounds">
 <title>Views and View Bounds</title>
@@ -1293,7 +1293,7 @@ Calling first on List created from ints1 Seq:
 <sect1 id="_recap_and_what_8217_s_next_5">
 <title>Recap and What’s Next</title>
 <simpara id="para_it_s_important_to_remember_tha">It’s important to remember that you don’t have to master the intricacies of Scala’s rich type system to use Scala effectively. As you use Scala more and more, mastering the type system will help you create powerful, sophisticated libraries that will accelerate your productivity.</simpara>
-<simpara id="para_the_scalaspec2009_describe">The <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/> describes the type system in formal detail. Like any specification, it can be difficult reading. The effort is worthwhile if you want a deep understanding of the type system. There are also a multitude of papers on Scala’s type system. You can find many linked on the official <ulink url="http://scala-lang.org">http://scala-lang.org</ulink> website.</simpara>
+<simpara id="para_the_scalaspec2009_describe">The <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/> describes the type system in formal detail. Like any specification, it can be difficult reading. The effort is worthwhile if you want a deep understanding of the type system. There are also a multitude of papers on Scala’s type system. You can find many linked on the official <ulink url="http://scala-lang.org"/> website.</simpara>
 <simpara id="para_we_have_completed_the_heavy_">The next two chapters cover the pragmatics of application design and Scala’s development tools and libraries.</simpara>
 </sect1>
 </chapter>

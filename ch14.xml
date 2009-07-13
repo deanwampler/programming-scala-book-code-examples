@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><chapter id="ScalaToolsLibs">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="ScalaToolsLibs">
 <title>Scala Tools, Libraries and IDE Support</title>
 <simpara id="para_in_the_last_chapter_applica">In the last chapter, <xref linkend="ApplicationDesign"/>, we looked at how to design scalable applications in Scala. In this chapter, we discuss tools and libraries that are essential for Scala application developers.</simpara>
 <simpara id="para_we_briefly_introduced_you_to_t">We briefly introduced you to the Scala command-line tools in <xref linkend="IntroducingScala"/>. Now we explore these tools in greater detail and learn about other tools that are essential for the Scala developer. We’ll discuss language-aware plugins for editors and IDEs, testing tools, and various libraries and frameworks. We won’t cover these topics in exhaustive detail, but we will tell you where to look for more information.</simpara>
@@ -405,12 +407,12 @@ case class Complex(real: Double, imaginary: Double) {
 <sect2 id="CommandLineToolScaladoc">
 <title>The scaladoc Command Line Tool</title>
 <simpara id="para_the_scaladoc_command_is_anal">The <userinput>scaladoc</userinput> command is analogous to <userinput>javadoc</userinput>. It is used to generate documentation from Scala source files, called <emphasis>Scaladocs</emphasis>. The <userinput>scaladoc</userinput> parser supports the same <literal>@</literal> annotations that <userinput>javadoc</userinput> supports, such as <literal>@author</literal>, <literal>@param</literal>, <emphasis>etc.</emphasis></simpara>
-<simpara id="para_if_you_use_scaladoc_for_your">If you use <userinput>scaladoc</userinput> for your documentation, you might want to investigate <userinput>vscaladoc</userinput>, an improved <userinput>scaladoc</userinput> tool that is available at <ulink url="http://code.google.com/p/vscaladoc/">http://code.google.com/p/vscaladoc/</ulink>. You can also find documentation on <userinput>vscaladoc</userinput> at <xref linkend="ScalaTools" xrefstyle="select: title nopage"/>.</simpara>
+<simpara id="para_if_you_use_scaladoc_for_your">If you use <userinput>scaladoc</userinput> for your documentation, you might want to investigate <userinput>vscaladoc</userinput>, an improved <userinput>scaladoc</userinput> tool that is available at <ulink url="http://code.google.com/p/vscaladoc/"/>. You can also find documentation on <userinput>vscaladoc</userinput> at <xref linkend="ScalaTools" xrefstyle="select: title nopage"/>.</simpara>
 </sect2>
 <sect2 id="CommandLineToolSbaz">
 <title>The sbaz Command Line Tool</title>
 <simpara id="para_scala_bazaar_system_sbaz_i">Scala Bazaar System (<userinput>sbaz</userinput>) is a packaging system that helps automate maintenance of a Scala installation. It is analogous to the <emphasis>gem</emphasis> packaging system for Ruby, <emphasis>CPAN</emphasis> for Perl, <emphasis>etc.</emphasis></simpara>
-<simpara id="para_there_is_a_nice_summary_of_how">There is a nice summary of how to use <userinput>sbaz</userinput> on the scala-lang.org website, <ulink url="http://www.scala-lang.org/node/93">http://www.scala-lang.org/node/93</ulink>. All command-line options are described in the developer documentation. The following table summarizes the most useful invokations.</simpara>
+<simpara id="para_there_is_a_nice_summary_of_how">There is a nice summary of how to use <userinput>sbaz</userinput> on the scala-lang.org website, <ulink url="http://www.scala-lang.org/node/93"/>. All command-line options are described in the developer documentation. The following table summarizes the most useful invokations.</simpara>
 <table id="sbaz-commands" frame="none" rowsep="1" colsep="1">
 <title>The most useful <userinput>sbaz</userinput> command options.</title>
 <tgroup cols="2">
@@ -425,7 +427,7 @@ case class Complex(real: Double, imaginary: Double) {
 <tbody valign="top">
 <row>
 <entry><simpara><userinput>sbaz showuniverse</userinput></simpara></entry>
-<entry><simpara>Show the current “universe” (remote repository). Defaults to <ulink url="http://scala-webapps.epfl.ch/sbaz/scala-dev">http://scala-webapps.epfl.ch/sbaz/scala-dev</ulink>.</simpara></entry>
+<entry><simpara>Show the current “universe” (remote repository). Defaults to <ulink url="http://scala-webapps.epfl.ch/sbaz/scala-dev"/>.</simpara></entry>
 </row>
 <row>
 <entry><simpara><userinput>sbaz setuniverse</userinput> <replaceable>univ</replaceable></simpara></entry>
@@ -459,14 +461,14 @@ case class Complex(real: Double, imaginary: Double) {
 </sect1>
 <sect1 id="BuildTools">
 <title>Build Tools</title>
-<simpara id="para_scala_plugins_have_been_implem">Scala plugins have been implemented for several, commonly used build tools, including <emphasis>ant</emphasis> (<ulink url="http://ant.apache.org/">http://ant.apache.org/</ulink>), <emphasis>maven</emphasis> (<ulink url="http://maven.apache.org/">http://maven.apache.org/</ulink>), and <emphasis>buildr</emphasis> (<ulink url="http://buildr.apache.org/">http://buildr.apache.org/</ulink>). There are also several build tools written in Scala and aimed specifically at Scala development. Perhaps the best known example of these tools is <emphasis>sbt</emphasis> ("Simple Build Tool" - <xref linkend="SBT" xrefstyle="select: title nopage"/>).</simpara>
+<simpara id="para_scala_plugins_have_been_implem">Scala plugins have been implemented for several, commonly used build tools, including <emphasis>ant</emphasis> (<ulink url="http://ant.apache.org/"/>), <emphasis>maven</emphasis> (<ulink url="http://maven.apache.org/"/>), and <emphasis>buildr</emphasis> (<ulink url="http://buildr.apache.org/"/>). There are also several build tools written in Scala and aimed specifically at Scala development. Perhaps the best known example of these tools is <emphasis>sbt</emphasis> (“Simple Build Tool” - <xref linkend="SBT" xrefstyle="select: title nopage"/>).</simpara>
 <simpara id="para_build_tools_documented_on_sites">These plugins and tools are documented very well on their respective websites, so we refer you to those sites for details.</simpara>
-<simpara id="para_ant_support">The Scala distribution includes <emphasis>ant</emphasis> tasks for <userinput>scalac</userinput>, <userinput>fsc</userinput>, and <userinput>scaladoc</userinput>. They are used very much like the corresponding Java ant tasks. They are described at <ulink url="http://scala-lang.org/node/98">http://scala-lang.org/node/98</ulink>.</simpara>
-<simpara id="para_maven_support">A Scala <emphasis>maven</emphasis> plugin is available at <ulink url="http://scala-tools.org/mvnsites/maven-scala-plugin/">http://scala-tools.org/mvnsites/maven-scala-plugin/</ulink>. It does not require Scala to be installed, as it will download Scala for you. Several third-party Scala projects, such as Lift (see <xref linkend="Lift"/> below), use <emphasis>maven</emphasis>.</simpara>
-<simpara id="para_buildr_support"><emphasis>Buildr</emphasis> is an apache project available at <ulink url="http://buildr.apache.org/">http://buildr.apache.org/</ulink>. It is aimed at JVM applications written in any language, with built-in support for Scala and Groovy, as well as Java. It is compatible with maven repositories and project layouts. Since build scripts are written in Ruby, they tend to be much more succinct that corresponding <emphasis>maven</emphasis> files. Buildr is also useful for testing JVM applications with Ruby testing tools, like <emphasis>RSpec</emphasis> (<ulink url="http://rspec.info">http://rspec.info</ulink>) and Cucumber (<ulink url="http://cukes.info">http://cukes.info</ulink>), if you use JRuby (<ulink url="http://jruby.codehaus.org/">http://jruby.codehaus.org/</ulink>) to run your builds.</simpara>
-<simpara id="para_sbt_support">The Scala-oriented <emphasis>sbt</emphasis> (simple-build-tool), available at <ulink url="http://code.google.com/p/simple-build-tool/">http://code.google.com/p/simple-build-tool/</ulink>, has some similarities to <emphasis>Buildr</emphasis>. It is also compatible with <emphasis>maven</emphasis>, but it uses Scala as the language for writing build scripts. It also has built-in support for generating <emphasis>Scaladocs</emphasis> and for testing with ScalaTest, Specs, and ScalaCheck.</simpara>
+<simpara id="para_ant_support">The Scala distribution includes <emphasis>ant</emphasis> tasks for <userinput>scalac</userinput>, <userinput>fsc</userinput>, and <userinput>scaladoc</userinput>. They are used very much like the corresponding Java ant tasks. They are described at <ulink url="http://scala-lang.org/node/98"/>.</simpara>
+<simpara id="para_maven_support">A Scala <emphasis>maven</emphasis> plugin is available at <ulink url="http://scala-tools.org/mvnsites/maven-scala-plugin/"/>. It does not require Scala to be installed, as it will download Scala for you. Several third-party Scala projects, such as Lift (see <xref linkend="Lift"/> below), use <emphasis>maven</emphasis>.</simpara>
+<simpara id="para_buildr_support"><emphasis>Buildr</emphasis> is an apache project available at <ulink url="http://buildr.apache.org/"/>. It is aimed at JVM applications written in any language, with built-in support for Scala and Groovy, as well as Java. It is compatible with maven repositories and project layouts. Since build scripts are written in Ruby, they tend to be much more succinct that corresponding <emphasis>maven</emphasis> files. Buildr is also useful for testing JVM applications with Ruby testing tools, like <emphasis>RSpec</emphasis> (<ulink url="http://rspec.info"/>) and Cucumber (<ulink url="http://cukes.info"/>), if you use JRuby (<ulink url="http://jruby.codehaus.org/"/>) to run your builds.</simpara>
+<simpara id="para_sbt_support">The Scala-oriented <emphasis>sbt</emphasis> (simple-build-tool), available at <ulink url="http://code.google.com/p/simple-build-tool/"/>, has some similarities to <emphasis>Buildr</emphasis>. It is also compatible with <emphasis>maven</emphasis>, but it uses Scala as the language for writing build scripts. It also has built-in support for generating <emphasis>Scaladocs</emphasis> and for testing with ScalaTest, Specs, and ScalaCheck.</simpara>
 </sect1>
-<sect1 id="IntegrationWithIDEs" xreflabel="Integration with IDEs">
+<sect1 id="IntegrationWithIDEs">
 <title>Integration with IDEs</title>
 <simpara id="para_java_background">If you come from a Java background, you are probably a little bit spoiled by the rich features of today’s Java IDEs. Scala IDE support is not yet as good, but it is evolving rapidly in Eclipse, IntelliJ IDEA, and NetBeans. At the time of this writing, all the Scala plugins for these IDEs support syntax highlighting, project management, and limited support for automated refactorings, <emphasis>etc.</emphasis> While each of the plugins has particular advantages over the others, they are all close enough in functionality that you will probably find it acceptable to adopt the plugin for the IDE that you already prefer.</simpara>
 <simpara id="para_this_section_describes_how_to_">This section describes how to use the Scala support available in Eclipse, IntelliJ IDEA, and NetBeans. We assume you already know how to use each IDE for development in other languages, like Java.</simpara>
@@ -474,9 +476,9 @@ case class Complex(real: Double, imaginary: Double) {
 <title>Eclipse</title>
 <sect3 id="_installing_the_scala_plugin">
 <title>Installing the Scala Plugin</title>
-<simpara id="para_for_details_on_the_eclipse_sca">For details on the Eclipse Scala plugin, start at this web page, <ulink url="http://www.scala-lang.org/node/94">http://www.scala-lang.org/node/94</ulink>. If you are interested in contributing to the development of the plugin, see this web page, <ulink url="http://lampsvn.epfl.ch/trac/scala/wiki/EclipsePlugin">http://lampsvn.epfl.ch/trac/scala/wiki/EclipsePlugin</ulink>.</simpara>
+<simpara id="para_for_details_on_the_eclipse_sca">For details on the Eclipse Scala plugin, start at this web page, <ulink url="http://www.scala-lang.org/node/94"/>. If you are interested in contributing to the development of the plugin, see this web page, <ulink url="http://lampsvn.epfl.ch/trac/scala/wiki/EclipsePlugin"/>.</simpara>
 <simpara id="para_the_plugin_requires_jdk_5_or_h">The plugin requires JDK 5 or higher (JDK 6 is recommended) and Eclipse 3.3 or higher (Eclipse 3.4 is recommended). The plugin installs the Scala SDK itself. To install the plugin, invoke the <emphasis>Software Updates</emphasis> command in the <emphasis>Help</emphasis> menu.</simpara>
-<simpara id="para_click_the__available_software_">Click the <emphasis>Available Software</emphasis> tab and click the "Add Site…" button on the right hand side. You will see the dialog shown in <xref linkend="eclipse-add-site"/>.</simpara>
+<simpara id="para_click_the__available_software_">Click the <emphasis>Available Software</emphasis> tab and click the “Add Site…” button on the right hand side. You will see the dialog shown in <xref linkend="eclipse-add-site"/>.</simpara>
 <figure id="eclipse-add-site">
   <title>The <emphasis>add site</emphasis> Eclipse dialog.</title>
   <mediaobject>
@@ -488,7 +490,7 @@ case class Complex(real: Double, imaginary: Double) {
   </imageobject>
   </mediaobject>  
 </figure>
-<simpara id="para_enter_the_url_that_shown_in_th">Enter the URL that shown in the figure, <ulink url="http://www.scala-lang.org/scala-eclipse-plugin">http://www.scala-lang.org/scala-eclipse-plugin</ulink>. Some people prefer to work with the <emphasis>nightly</emphasis> releases, <ulink url="http://www.scala-lang.org/scala-eclipse-plugin-nightly">http://www.scala-lang.org/scala-eclipse-plugin-nightly</ulink>, but you should be aware that there is no guarantee they will work!</simpara>
+<simpara id="para_enter_the_url_that_shown_in_th">Enter the URL that shown in the figure, <ulink url="http://www.scala-lang.org/scala-eclipse-plugin"/>. Some people prefer to work with the <emphasis>nightly</emphasis> releases, <ulink url="http://www.scala-lang.org/scala-eclipse-plugin-nightly"/>, but you should be aware that there is no guarantee they will work!</simpara>
 <simpara id="para_select_the_check_box_next_to_t">Select the check box next to the newly-added update site and click the <emphasis>Install</emphasis> button, as indicated in <xref linkend="eclipse-install-scala2"/>. <emphasis role="strong">Don’t</emphasis> click the “default” <emphasis>Close</emphasis> button!</simpara>
 <figure id="eclipse-install-scala2">
   <title>The <emphasis>Software Updates and Add-ons</emphasis> dialog.</title>
@@ -515,7 +517,7 @@ case class Complex(real: Double, imaginary: Double) {
 <title>IntelliJ</title>
 <sect3 id="_installing_the_scala_plugins">
 <title>Installing the Scala Plugins</title>
-<simpara id="para_the_intellij__idea__team_provi">The IntelliJ <emphasis>IDEA</emphasis> team provides a <emphasis>beta</emphasis>-quality Scala plugin. Start here for details: <ulink url="http://www.jetbrains.net/confluence/display/SCA/Scala+Plugin+for+IntelliJ+IDEA">http://www.jetbrains.net/confluence/display/SCA/Scala+Plugin+for+IntelliJ+IDEA</ulink>.</simpara>
+<simpara id="para_the_intellij__idea__team_provi">The IntelliJ <emphasis>IDEA</emphasis> team provides a <emphasis>beta</emphasis>-quality Scala plugin. Start here for details: <ulink url="http://www.jetbrains.net/confluence/display/SCA/Scala+Plugin+for+IntelliJ+IDEA"/>.</simpara>
 <simpara id="para_to_use_the_plugin_you_must_us">To use the plugin, you must use IntelliJ 8.0.X or later. Consider using the most recent “EAP” build for the latest feature updates. You must also have the Scala command-line SDK installed, as discussed in <xref linkend="InstallingScala"/> in <xref linkend="IntroducingScala"/>.</simpara>
 <simpara id="para_to_install_the_scala_plugin_s">To install the Scala plugin, start IDEA. Open the <emphasis>Settings</emphasis> panel, <emphasis>e.g.,</emphasis> using the <emphasis>File → Settings</emphasis> menu item. On the left-hand side, scroll down to and click the <emphasis>Plugins</emphasis> item, as shown in <xref linkend="idea-settings-plugins"/>.</simpara>
 <figure id="idea-settings-plugins">
@@ -592,8 +594,8 @@ case class Complex(real: Double, imaginary: Double) {
 <title>NetBeans</title>
 <sect3 id="_installing_the_scala_plugins_2">
 <title>Installing the Scala Plugins</title>
-<simpara id="para_netbeans_has__beta__quality_sc">NetBeans has <emphasis>beta</emphasis>-quality Scala plugins. Start at this web page for details, <ulink url="http://wiki.netbeans.org/Scala">http://wiki.netbeans.org/Scala</ulink>. NetBeans 6.5 or a more recent nightly build is required. The Scala plugin contains a version of the Scala SDK. The wiki page provides instructions for using a different SDK, when desired.</simpara>
-<simpara id="para_to_install_the_plugin_downloa">To install the plugin, download the plugins zip file from <ulink url="http://sourceforge.net/project/showfiles.php?group_id=192439&amp;package_id=256544">http://sourceforge.net/project/showfiles.php?group_id=192439&amp;package_id=256544</ulink>. Unzip the file in a convenient directory.</simpara>
+<simpara id="para_netbeans_has__beta__quality_sc">NetBeans has <emphasis>beta</emphasis>-quality Scala plugins. Start at this web page for details, <ulink url="http://wiki.netbeans.org/Scala"/>. NetBeans 6.5 or a more recent nightly build is required. The Scala plugin contains a version of the Scala SDK. The wiki page provides instructions for using a different SDK, when desired.</simpara>
+<simpara id="para_to_install_the_plugin_downloa">To install the plugin, download the plugins zip file from <ulink url="http://sourceforge.net/project/showfiles.php?group_id=192439&amp;package_id=256544"/>. Unzip the file in a convenient directory.</simpara>
 <simpara id="para_start_netbeans_and_invoke_the_">Start NetBeans and invoke the <emphasis>Tools → Plugins</emphasis> menu item. Select the <emphasis>Downloaded</emphasis> tab and click the <emphasis>Add Plugins…</emphasis> button. Choose the directory where the Scala plugins are unzipped, select all the listed <literal>*.nbm</literal> files, as shown in <xref linkend="netbeans-add-plugins"/>. Click <emphasis>Open</emphasis>.</simpara>
 <figure id="netbeans-add-plugins">
   <title>Adding the Scala plugins to be installed.</title>
@@ -632,7 +634,7 @@ case class Complex(real: Double, imaginary: Double) {
 <title>Text Editors</title>
 <simpara id="para_the_sbaz_tool_manages_the_s">The <userinput>sbaz</userinput> tool manages the <literal>scala-tool-support</literal> package that includes Scala plugins for several editors, including <emphasis>Emacs</emphasis>, <emphasis>Vim</emphasis>, <emphasis>TextMate</emphasis> and others. Like <userinput>sbaz</userinput>, the <literal>scala-tool-support</literal> package is also included with the language installation. See the directories in <replaceable>scala-home</replaceable><literal>/misc/scala-tool-support</literal> for the supported editors. Most of the editor-specific directories contain instructions for installing the plugin. In other cases, consult your editor’s instructions for installing third-party plugins.</simpara>
 <simpara id="para_some_of_the_packages_are_fairl">Some of the packages are fairly immature. If you want to contribute to the Scala community, please consider improving the quality of the existing plugins or contributing new plugins.</simpara>
-<note id="para_note_at_the_time_of_this_writ"><simpara>At the time of this writing, there are several variations of a Scala “bundle” for the <emphasis>TextMate</emphasis> editor, which is a popular text editor for Mac OS X. These bundles are currently being managed by Paul Phillips on the GitHub site at <ulink url="http://github.com/paulp/scala-textmate/tree/master">http://github.com/paulp/scala-textmate/tree/master</ulink>. Hopefully, the best features of each bundle will be unified into an “authoritative” bundle and integrated back into the <literal>scala-tool-support</literal> package.</simpara></note>
+<note id="para_note_at_the_time_of_this_writ"><simpara>At the time of this writing, there are several variations of a Scala “bundle” for the <emphasis>TextMate</emphasis> editor, which is a popular text editor for Mac OS X. These bundles are currently being managed by Paul Phillips on the GitHub site at <ulink url="http://github.com/paulp/scala-textmate/tree/master"/>. Hopefully, the best features of each bundle will be unified into an “authoritative” bundle and integrated back into the <literal>scala-tool-support</literal> package.</simpara></note>
 </sect2>
 </sect1>
 <sect1 id="_test_driven_development_in_scala">
@@ -641,9 +643,9 @@ case class Complex(real: Double, imaginary: Double) {
 <simpara id="para_if_you_work_in_a_pure_java">If you work in a “pure” Java shop, consider introducing one or more of these Scala testing tools to test-drive your Java code. This approach is a low-risk way to introduce Scala to your environment, so you can gain experience with it before making the commitment to Scala as your production code language. In particular, you might experiment with <emphasis>ScalaTest</emphasis> (see <xref linkend="ScalaTest"/> next), which can be used with <emphasis>JUnit</emphasis> <xref linkend="JUnit" xrefstyle="select: title nopage"/> and <emphasis>TestNG</emphasis> <xref linkend="TestNG" xrefstyle="select: title nopage"/>. You might also consider <emphasis>ScalaCheck</emphasis> or <emphasis>Reductio</emphasis> (see <xref linkend="ScalaCheck"/> below), which offer innovations that may not be available in Java testing frameworks. All of the tools we describe here integrate with Java testing and build tools, like <emphasis>JUnit</emphasis>, <emphasis>TestNG</emphasis>, various <emphasis>mocking</emphasis> libraries, <emphasis>Ant</emphasis> <xref linkend="Ant" xrefstyle="select: title nopage"/>, and <emphasis>Maven</emphasis> <xref linkend="Maven" xrefstyle="select: title nopage"/>. All of them also offer convenient Scala DSLs for testing.</simpara>
 <sect2 id="ScalaTest">
 <title>ScalaTest</title>
-<simpara id="para_scala_s_version_of_the_venerab">Scala’s version of the venerable <emphasis>XUnit</emphasis> tool is <emphasis>ScalaTest</emphasis>, available at <ulink url="http://www.artima.com/scalatest/">http://www.artima.com/scalatest/</ulink>.</simpara>
+<simpara id="para_scala_s_version_of_the_venerab">Scala’s version of the venerable <emphasis>XUnit</emphasis> tool is <emphasis>ScalaTest</emphasis>, available at <ulink url="http://www.artima.com/scalatest/"/>.</simpara>
 <simpara id="para_you_can_drive_your_tests_using">You can drive your tests using the built-in <literal>Runner</literal> or use the provided integration with <emphasis>JUnit</emphasis> or <emphasis>TestNG</emphasis>. <emphasis>ScalaTest</emphasis> also comes with an <emphasis>Ant</emphasis> task and it works with the <emphasis>ScalaCheck</emphasis> testing tool (described below).</simpara>
-<simpara id="para_besides_supporting_the_traditi">Besides supporting the traditional <emphasis>XUnit</emphasis>-style syntax with test methods and assertions, <emphasis>ScalaTest</emphasis> provides a <emphasis>Behavior-Driven Development</emphasis> <xref linkend="BDD" xrefstyle="select: title nopage"/> syntax that is becoming increasingly popular. The <emphasis>ScalaTest</emphasis> web site (<ulink url="http://www.artima.com/scalatest/">http://www.artima.com/scalatest/</ulink>) provides examples for these and other options.</simpara>
+<simpara id="para_besides_supporting_the_traditi">Besides supporting the traditional <emphasis>XUnit</emphasis>-style syntax with test methods and assertions, <emphasis>ScalaTest</emphasis> provides a <emphasis>Behavior-Driven Development</emphasis> <xref linkend="BDD" xrefstyle="select: title nopage"/> syntax that is becoming increasingly popular. The <emphasis>ScalaTest</emphasis> web site (<ulink url="http://www.artima.com/scalatest/"/>) provides examples for these and other options.</simpara>
 <simpara id="para_here_is_an_example_test_for_th">Here is an example <emphasis>ScalaTest</emphasis> test for the simple <literal>Complex</literal> class we used previously in the <xref linkend="CommandLineToolDecompilers"/> section.</simpara>
 <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/complex-test.scala
 
@@ -785,7 +787,7 @@ Finished in 0 second, 37 ms
 Complex addition with (0.0, 0.0) should
 + return a number N' that is identical to original number N
 ...</screen>
-<simpara id="para_there_are_many_ways_to_run_spe">There are many ways to run specifications, including using an <emphasis>Ant</emphasis> task or using the built-in integration with <emphasis>ScalaTest</emphasis> or <emphasis>JUnit</emphasis>. <emphasis>JUnit</emphasis> is the best approach for running specifications in some IDEs. These and other options are described in the <emphasis>User’s Guide</emphasis> at <ulink url="http://code.google.com/p/specs/wiki/RunningSpecs">http://code.google.com/p/specs/wiki/RunningSpecs</ulink>.</simpara>
+<simpara id="para_there_are_many_ways_to_run_spe">There are many ways to run specifications, including using an <emphasis>Ant</emphasis> task or using the built-in integration with <emphasis>ScalaTest</emphasis> or <emphasis>JUnit</emphasis>. <emphasis>JUnit</emphasis> is the best approach for running specifications in some IDEs. These and other options are described in the <emphasis>User’s Guide</emphasis> at <ulink url="http://code.google.com/p/specs/wiki/RunningSpecs"/>.</simpara>
 </sect2>
 <sect2 id="ScalaCheck">
 <title>ScalaCheck</title>
@@ -850,20 +852,20 @@ ComplexSpecification.check</programlisting>
 <simpara id="para_while_scala_benefits_from_the_">While Scala benefits from the rich legacy of Java and .NET libraries, there is a growing collection of libraries written specifically for Scala. Here we discuss some of the more notable ones.</simpara>
 <sect2 id="Lift">
 <title>Lift</title>
-<simpara id="para__lift__http_liftweb_net_i"><emphasis>Lift</emphasis> (<ulink url="http://liftweb.net/">http://liftweb.net/</ulink>) is the leading web application framework written in Scala. It recently reached “1.0” status. <emphasis>Lift</emphasis> has been used for a number of commercial websites. You can also find documentation on Lift at <xref linkend="ScalaTools" xrefstyle="select: title nopage"/>.</simpara>
-<simpara id="para_other_web_frameworks_include_s">Other web frameworks include Sweet (<ulink url="http://code.google.com/p/sweetscala/">http://code.google.com/p/sweetscala/</ulink>), Pinky (<ulink url="http://bitbucket.org/pk11/pinky/wiki/Home">http://bitbucket.org/pk11/pinky/wiki/Home</ulink>), and Slinky (<ulink url="http://code.google.com/p/slinky2/">http://code.google.com/p/slinky2/</ulink>).</simpara>
+<simpara id="para__lift__http_liftweb_net_i"><emphasis>Lift</emphasis> (<ulink url="http://liftweb.net/"/>) is the leading web application framework written in Scala. It recently reached “1.0” status. <emphasis>Lift</emphasis> has been used for a number of commercial websites. You can also find documentation on Lift at <xref linkend="ScalaTools" xrefstyle="select: title nopage"/>.</simpara>
+<simpara id="para_other_web_frameworks_include_s">Other web frameworks include Sweet (<ulink url="http://code.google.com/p/sweetscala/"/>), Pinky (<ulink url="http://bitbucket.org/pk11/pinky/wiki/Home"/>), and Slinky (<ulink url="http://code.google.com/p/slinky2/"/>).</simpara>
 </sect2>
 <sect2 id="Scalaz">
 <title>Scalaz</title>
-<simpara id="para__scalaz__http_wiki_workingm"><emphasis>Scalaz</emphasis> (<ulink url="http://code.google.com/p/scalaz/">http://code.google.com/p/scalaz/</ulink>) is a library that fills-in gaps in the standard library. Among its features are enhancements to several core Scala types, such as <literal>Boolean</literal>, <literal>Unit</literal>, <literal>String</literal>, and <literal>Option</literal>, plus support for functional <emphasis>control</emphasis> abstractions, such as <literal>FoldLeft</literal>, <literal>FoldRight</literal>, <literal>Monad</literal>, <emphasis>etc.</emphasis> that expand upon what is available in the standard library.</simpara>
+<simpara id="para__scalaz__http_wiki_workingm"><emphasis>Scalaz</emphasis> (<ulink url="http://code.google.com/p/scalaz/"/>) is a library that fills-in gaps in the standard library. Among its features are enhancements to several core Scala types, such as <literal>Boolean</literal>, <literal>Unit</literal>, <literal>String</literal>, and <literal>Option</literal>, plus support for functional <emphasis>control</emphasis> abstractions, such as <literal>FoldLeft</literal>, <literal>FoldRight</literal>, <literal>Monad</literal>, <emphasis>etc.</emphasis> that expand upon what is available in the standard library.</simpara>
 </sect2>
 <sect2 id="Scalax">
 <title>Scalax</title>
-<simpara id="para__scalax__http_scalax_scalaf"><emphasis>Scalax</emphasis> (<ulink url="http://scalax.scalaforge.org/">http://scalax.scalaforge.org/</ulink>) is another third-party library effort to supplement the Scala core library.</simpara>
+<simpara id="para__scalax__http_scalax_scalaf"><emphasis>Scalax</emphasis> (<ulink url="http://scalax.scalaforge.org/"/>) is another third-party library effort to supplement the Scala core library.</simpara>
 </sect2>
 <sect2 id="MetaScala">
 <title>MetaScala</title>
-<simpara id="para__metascala__http_www_assemb"><emphasis>MetaScala</emphasis> (<ulink url="http://www.assembla.com/wiki/show/metascala">http://www.assembla.com/wiki/show/metascala</ulink>) is an experimental metaprogramming library for Scala. Metaprogramming features tend to be weaker in statically-typed languages than in dynamically-typed languages. Also, the JVM and .NET CLR impose their own constraints on metaprogramming.</simpara>
+<simpara id="para__metascala__http_www_assemb"><emphasis>MetaScala</emphasis> (<ulink url="http://www.assembla.com/wiki/show/metascala"/>) is an experimental metaprogramming library for Scala. Metaprogramming features tend to be weaker in statically-typed languages than in dynamically-typed languages. Also, the JVM and .NET CLR impose their own constraints on metaprogramming.</simpara>
 <simpara id="para_many_of_the_features_of_scala_">Many of the features of Scala obviate the need for metaprogramming, compared to languages like Ruby, but sometimes metaprogramming is still useful. <emphasis>MetaScala</emphasis> attempts to address those needs more fully than Scala’s built-in reflection support.</simpara>
 </sect2>
 <sect2 id="JavaRebel">
@@ -887,27 +889,27 @@ ComplexSpecification.check</programlisting>
 <tbody valign="top">
 <row>
 <entry><simpara>Kestrel</simpara></entry>
-<entry><simpara>A tiny, very fast queue system (<ulink url="http://github.com/robey/kestrel/tree/master">http://github.com/robey/kestrel/tree/master</ulink>).</simpara></entry>
+<entry><simpara>A tiny, very fast queue system (<ulink url="http://github.com/robey/kestrel/tree/master"/>).</simpara></entry>
 </row>
 <row>
 <entry><simpara>ScalaModules</simpara></entry>
-<entry><simpara>Scala DSL to ease OSGi development (<ulink url="http://code.google.com/p/scalamodules/">http://code.google.com/p/scalamodules/</ulink>).</simpara></entry>
+<entry><simpara>Scala DSL to ease OSGi development (<ulink url="http://code.google.com/p/scalamodules/"/>).</simpara></entry>
 </row>
 <row>
 <entry><simpara>Configgy</simpara></entry>
-<entry><simpara>Managing configuration files and logging for “daemons” written in Scala (<ulink url="http://www.lag.net/configgy/">http://www.lag.net/configgy/</ulink>).</simpara></entry>
+<entry><simpara>Managing configuration files and logging for “daemons” written in Scala (<ulink url="http://www.lag.net/configgy/"/>).</simpara></entry>
 </row>
 <row>
 <entry><simpara>scouchdb</simpara></entry>
-<entry><simpara>Scala interface to CouchDB (<ulink url="http://code.google.com/p/scouchdb/">http://code.google.com/p/scouchdb/</ulink>).</simpara></entry>
+<entry><simpara>Scala interface to CouchDB (<ulink url="http://code.google.com/p/scouchdb/"/>).</simpara></entry>
 </row>
 <row>
 <entry><simpara>scala-otp</simpara></entry>
-<entry><simpara>A project to implement a platform for building fault-tolerant, distributed applications based on Actors, patterned after Erlang’s OTP (<ulink url="http://github.com/jboner/scala-otp/tree/master">http://github.com/jboner/scala-otp/tree/master</ulink>).</simpara></entry>
+<entry><simpara>A project to implement a platform for building fault-tolerant, distributed applications based on Actors, patterned after Erlang’s OTP (<ulink url="http://github.com/jboner/scala-otp/tree/master"/>).</simpara></entry>
 </row>
 <row>
 <entry><simpara>scala-query</simpara></entry>
-<entry><simpara>A type-safe database query API for Scala (<ulink url="http://github.com/szeiger/scala-query/tree/master">http://github.com/szeiger/scala-query/tree/master</ulink>).</simpara></entry>
+<entry><simpara>A type-safe database query API for Scala (<ulink url="http://github.com/szeiger/scala-query/tree/master"/>).</simpara></entry>
 </row>
 </tbody>
 </tgroup>
@@ -1370,7 +1372,7 @@ public aspect LogComplex {
 <simpara id="para_if_you_have_aspectj_installed_">If you have AspectJ installed in an <replaceable>aspectj-home</replaceable> directory, you can compile this file as follows.</simpara>
 <screen>ajc -classpath .:aspectj-home/lib/aspectjrt.jar:../lib/scala-library.jar \
   aspectj/LogComplex.aj</screen>
-<simpara id="para_this_is_one_line_we_used_the_">This is one line; we used the \ to indicate a line wrap. To run this code with the <literal>LogComplex</literal> aspect, we use <emphasis>load-time weaving</emphasis> (<ulink url="http://www.eclipse.org/aspectj/doc/released/devguide/ltw.html">http://www.eclipse.org/aspectj/doc/released/devguide/ltw.html</ulink>). We’ll invoke Java with an <emphasis>agent</emphasis> that “weaves” the <emphasis>advice</emphasis> from <literal>LogComplex</literal> into <literal>Complex</literal>. To use load-time weaving, we also need the following configuration file, <literal>META-INF/aop.xml</literal>.</simpara>
+<simpara id="para_this_is_one_line_we_used_the_">This is one line; we used the \ to indicate a line wrap. To run this code with the <literal>LogComplex</literal> aspect, we use <emphasis>load-time weaving</emphasis> (<ulink url="http://www.eclipse.org/aspectj/doc/released/devguide/ltw.html"/>). We’ll invoke Java with an <emphasis>agent</emphasis> that “weaves” the <emphasis>advice</emphasis> from <literal>LogComplex</literal> into <literal>Complex</literal>. To use load-time weaving, we also need the following configuration file, <literal>META-INF/aop.xml</literal>.</simpara>
 <programlisting linenumbering="unnumbered">&lt;!-- code-examples/ToolsLibs/META-INF/aop.xml --&gt;
 
 &lt;aspectj&gt;
@@ -1470,7 +1472,7 @@ println("Object: " + obj)</programlisting>
 <screen>scala -cp \
   spring-home/dist/spring.jar:spring-home/.../commons-logging.jar:. \
   spring/object-bean-script.scala</screen>
-<simpara>(The current working directory "." is needed in the classpath to find the XML file.) There are many lines of logging output. The last two lines are what we care about.</simpara>
+<simpara>(The current working directory “.” is needed in the classpath to find the XML file.) There are many lines of logging output. The last two lines are what we care about.</simpara>
 <screen>...
 Factory Name: Factory for Named Objects
 Object: NamedObject(Dean Wampler)</screen>

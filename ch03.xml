@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="RoundingOutTheEssentials">
 <title>Rounding Out the Essentials</title>
@@ -388,7 +388,7 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
 </sect1>
 <sect1 id="PatternMatching">
 <title>Pattern Matching</title>
-<simpara id="para_an_idea_borrowed_from_function">An idea borrowed from functional languages, <emphasis>pattern matching</emphasis> is a powerful yet concise way to make a programmatic choice between multiple conditions. Pattern matching is the familiar <literal>case</literal> statement from your favorite C-like language, but on steroids. In the typical <literal>case</literal> statement you’re limited to matching against values of ordinal types, yielding trivial expressions like this: "in the case that <literal>i</literal> is 5, print a message; in the case that <literal>i</literal> is 6, exit the program". With Scala’s pattern matching, your cases can include types, wild-cards, sequences, and even deep inspections of an object’s variables.</simpara>
+<simpara id="para_an_idea_borrowed_from_function">An idea borrowed from functional languages, <emphasis>pattern matching</emphasis> is a powerful yet concise way to make a programmatic choice between multiple conditions. Pattern matching is the familiar <literal>case</literal> statement from your favorite C-like language, but on steroids. In the typical <literal>case</literal> statement you’re limited to matching against values of ordinal types, yielding trivial expressions like this: “in the case that <literal>i</literal> is 5, print a message; in the case that <literal>i</literal> is 6, exit the program”. With Scala’s pattern matching, your cases can include types, wild-cards, sequences, and even deep inspections of an object’s variables.</simpara>
 <sect2 id="ASimpleMatch">
 <title>A Simple Match</title>
 <simpara id="para_to_begin_with_let_s_simulate_">To begin with, let’s simulate flipping a coin by matching the value of a boolean:</simpara>
@@ -525,7 +525,7 @@ for (person &lt;- List(alice, bob, charlie)) {
 Hi Bob!
 Who are you, 32 year-old person named Charlie?</screen>
 <simpara id="para_we_first_define_a__case_class_">We first define a <emphasis>case class</emphasis>, a special type of class that we’ll learn more about in <xref linkend="CaseClasses"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>. For now, it will suffice to say that a case class allows for very terse construction of simple objects with some pre-defined methods. Our pattern match then looks for Alice and Bob by inspecting the values passed to the constructor of the <literal>Person</literal> case class. Charlie falls through to the catch-all case; even though he has the same <literal>age</literal> value as Bob, we’re matching on the <literal>name</literal> property as well.</simpara>
-<simpara id="para_this_type_pattern_match_become">This type of pattern match becomes extremely useful when working with Actors, as we’ll see later on. Case classes are frequently sent to Actors as messages, and deep pattern matching on an object’s contents is an convenient way to "parse" those messages.</simpara>
+<simpara id="para_this_type_pattern_match_become">This type of pattern match becomes extremely useful when working with Actors, as we’ll see later on. Case classes are frequently sent to Actors as messages, and deep pattern matching on an object’s contents is an convenient way to “parse” those messages.</simpara>
 </sect2>
 <sect2 id="MatchingOnRegularExpressions">
 <title>Matching on Regular Expressions</title>

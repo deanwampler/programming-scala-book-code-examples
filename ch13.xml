@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><chapter id="ApplicationDesign">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="ApplicationDesign">
 <title>Application Design</title>
 <simpara id="para_in_this_chapter_we_take_a_pra">In this chapter, we take a pragmatic look at developing applications
 in Scala. We discuss a few language and API features that we haven’t
@@ -188,7 +190,7 @@ require runtime retention in Java instead.</simpara></warning>
 <warning id="para_warning_annotations_can_only_"><simpara>Annotations can only be nested in Scala version 2.8.</simpara></warning>
 <simpara id="para_the_following_tables_describe_">The following tables describe all the annotations defined in the Scala
 library (adapted and expanded from
-<ulink url="http://www.scala-lang.org/node/106">http://www.scala-lang.org/node/106</ulink>). We start with the direct children
+<ulink url="http://www.scala-lang.org/node/106"/>). We start with the direct children
 of <literal>Annotation</literal>, followed by the children of <literal>StaticAnnotation</literal>.</simpara>
 <table id="scala-annotations" frame="none" rowsep="1" colsep="1">
 <title>Scala annotations derived from <literal>Annotation</literal>.</title>
@@ -1590,7 +1592,7 @@ package shapes {
 Concrete derived classes will implement each method to do the appropriate operation for the particular
 type passed in.</simpara>
 <simpara id="para_the_visitor_pattern_requires_a">The visitor pattern requires a one-time modification to the class hierarchy.
-An overridden method named "accept" must be added, which takes a <literal>Visitor</literal> parameter.
+An overridden method named “accept” must be added, which takes a <literal>Visitor</literal> parameter.
 This method must be overridden for each class. It calls the corresponding method
 defined on the visitor instance, passing <literal>this</literal> as the argument.</simpara>
 <simpara id="para_finally_note_that_we_declared">Finally, note that we declared <literal>Shape</literal> to be <literal>sealed</literal>. It won’t help us prevent some bugs in
@@ -2106,7 +2108,7 @@ by Bertrand Meyer for the Eiffel language <xref linkend="Eiffel" xrefstyle="sele
 (See also <xref linkend="Hunt2000" xrefstyle="select: title nopage"/>, Chapter 4.). Design by Contract has been around
 for about twenty years. It has fallen somewhat out of favor, but it
 is still very useful for thinking about design.</simpara>
-<simpara id="para_when_considering_the_contract">When considering the "contract" of a module, you can specify three
+<simpara id="para_when_considering_the_contract">When considering the “contract” of a module, you can specify three
 types of conditions. First, you can specify the required inputs for a
 module to successfully perform a service (<emphasis>e.g.,</emphasis> when a method is
 called) These constraints are called <emphasis>preconditions</emphasis>. They can also
@@ -2195,7 +2197,7 @@ literal as a “predicate”.</simpara>
 <simpara id="para_a_drawback_of_using_these_meth">A drawback of using these methods and <literal>Ensuring</literal> is that you can’t
 disable these checks in production. It may <emphasis>not</emphasis> be acceptable to
 terminate abruptly if a condition fails, although if the system is
-allowed to "limp along" it might crash later and the problem would be
+allowed to “limp along” it might crash later and the problem would be
 harder to debug. The performance overhead may be another reason to
 disable contract checks at runtime.</simpara>
 <simpara id="para_these_days_the_goals_of_desig">These days, the goals of Design by Contract are largely met by

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="DomainSpecificLanguages">
 <title>Domain-Specific Languages in Scala</title>
@@ -460,7 +460,7 @@ Call to the helper’s <literal>percent_of(gross)</literal> method, where <liter
 </sect1>
 <sect1 id="ExternalDSLsWithCombinatorParsers">
 <title>External DSLs with Parser Combinators</title>
-<simpara id="para_when_you_write_a_parser_for_an">When you write a parser for an external DSL' you can use a parser generator tool like Antlr <xref linkend="Antlr" xrefstyle="select: title nopage"/>. However, the Scala library includes a powerful parser combinator library that can be used for parsing most external DSLs that have a context-free grammar. An attractive feature of this library is the way it defines an internal DSL that makes parser definitions look very similar to familiar grammar notations, like EBNF (Extended Backus-Naur Form - <xref linkend="EBNF" xrefstyle="select: title nopage"/>).</simpara>
+<simpara id="para_when_you_write_a_parser_for_an">When you write a parser for an external DSL’ you can use a parser generator tool like Antlr <xref linkend="Antlr" xrefstyle="select: title nopage"/>. However, the Scala library includes a powerful parser combinator library that can be used for parsing most external DSLs that have a context-free grammar. An attractive feature of this library is the way it defines an internal DSL that makes parser definitions look very similar to familiar grammar notations, like EBNF (Extended Backus-Naur Form - <xref linkend="EBNF" xrefstyle="select: title nopage"/>).</simpara>
 <sect2 id="_about_parser_combinators">
 <title>About Parser Combinators</title>
 <simpara id="para_parser_combinators_are_buildin">Parser combinators are building blocks for parsers. Parsers that handle specific kinds of input, <emphasis>e.g.,</emphasis> floating-point numbers, integers, <emphasis>etc.</emphasis>, can be combined together to form other parser combinators for larger expressions. A combinator framework makes it easy to combine parsers to handle sequential and alternative cases, repetition, optional terms, <emphasis>etc.</emphasis></simpara>
@@ -723,7 +723,7 @@ scala&gt;</screen>
 <programlisting linenumbering="unnumbered">def deduct = "minus" ~&gt; "deductions" ~&gt; "for" ~&gt;
              "{" ~&gt; repsep(deductItem, "," ) &lt;~ "}"</programlisting>
 <simpara id="para_we_discard_everything_except_f">We discard everything except for the list of zero or more <literal>deductItems</literal>. There are none in our example, so we get an empty list for which <literal>toString</literal> returns <literal>List()</literal>. Therefore, calling <literal>p.∼.toString</literal> on our outer-most type, the one that parameterizes <literal>p.Parser</literal>, returns the string <literal><indexterm><primary>"Buck Trends"∼(2∼weeks</primary></indexterm>"Buck Trends"∼(2∼weeks∼List())</literal>. We’re done!</simpara>
-<simpara id="para_well_not_quite_we_re_still_n">Well, not quite. We’re still not calculating an actual paycheck for ol' Buck. Let’s complete our implementation.</simpara>
+<simpara id="para_well_not_quite_we_re_still_n">Well, not quite. We’re still not calculating an actual paycheck for ol’ Buck. Let’s complete our implementation.</simpara>
 </sect2>
 <sect2 id="_generating_paychecks_with_the_external_dsl">
 <title>Generating Paychecks with the External DSL</title>

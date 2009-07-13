@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="FunctionalProgramming">
 <title>Functional Programming in Scala</title>
@@ -492,7 +492,7 @@ val pantsTest: PartialFunction[String, String] = {
 
 println(pantsTest.isDefinedAt("pants"))
 println(pantsTest.isDefinedAt("skort"))</programlisting>
-<simpara id="para_here_our_partial_function_is_">Here, our partial function is a test for the string "pants". When we inquire as to whether the string "pants" is defined for this function, the result is <literal>true</literal>. But for the string "skort", the result is <literal>false</literal>. Were we defining our own partial function, we could provide an implementation of <literal>isDefinedAt</literal> that performs any arbitrary test for the boundaries of our function.</simpara>
+<simpara id="para_here_our_partial_function_is_">Here, our partial function is a test for the string “pants”. When we inquire as to whether the string “pants” is defined for this function, the result is <literal>true</literal>. But for the string “skort”, the result is <literal>false</literal>. Were we defining our own partial function, we could provide an implementation of <literal>isDefinedAt</literal> that performs any arbitrary test for the boundaries of our function.</simpara>
 </sect1>
 <sect1 id="Currying">
 <title>Currying</title>
@@ -618,7 +618,7 @@ multiplier(2)
 multiplier(2)(3)</programlisting>
 <simpara id="para_our_multiplier_takes_two_lists">Our multiplier takes two lists of parameters. The latter includes an integer value, <literal>factor</literal>, marked <literal>implicit</literal>. This keywords informs the compiler to seek the value for <literal>factor</literal> from the surrounding scope, if available, or to use whatever parameter has been explicitly supplied to the function.</simpara>
 <simpara id="para_we_ve_defined_our_own_factor_">We’ve defined our own <literal>factor</literal> value in scope, and that value is used in the first called to <literal>multiplier</literal>. In the second call, we’re explicitly passing in a value for <literal>factor</literal>, and it overrides the value in the surrounding scope.</simpara>
-<simpara id="para_essentially_implicit_function">Essentially, implicit function parameters behave as parameters with a default value, with the key difference being that the value comes from the surrounding scope. Had our <literal>factor</literal> value resided in a class or object, we would have had to import it into the local scope. If the compiler can’t determine the value to use for an implicit parameter, an error of "no implicit argument matching parameter" will occur.</simpara>
+<simpara id="para_essentially_implicit_function">Essentially, implicit function parameters behave as parameters with a default value, with the key difference being that the value comes from the surrounding scope. Had our <literal>factor</literal> value resided in a class or object, we would have had to import it into the local scope. If the compiler can’t determine the value to use for an implicit parameter, an error of “no implicit argument matching parameter” will occur.</simpara>
 <sect2 id="FinalThoughtsOnImplicits">
 <title>Final Thoughts on Implicits</title>
 <simpara id="para_implicits_can_be_perilously_cl">Implicits can be perilously close to “magic”. When used excessively, they obfuscate the code’s behavior for the reader. Also, be careful about the implementation of a conversion method, especially if the return type is not explicitly declared. If a future change to the method also changes the return type in some subtle way, the conversion may suddenly fail to work. In general, implicits can cause mysterious behavior that is hard to debug!</simpara>
@@ -651,7 +651,7 @@ whileAwesome(count &lt; 5) {
   println("still awesome")
   count += 1
 }</programlisting>
-<simpara id="para_what_would_happen_if_we_remove">What would happen if we removed the arrow between <literal>conditional:</literal> and <literal>Boolean</literal>? The expression <literal>count &lt; 5</literal> would be evaluated to <literal>true</literal> before being passed into our custom while loop, and the message "still awesome" would be printed to the console indefinitely. By delaying evaluation until <literal>conditional</literal> is called inside our function with a by-name parameter, we get the behavior we expect.</simpara>
+<simpara id="para_what_would_happen_if_we_remove">What would happen if we removed the arrow between <literal>conditional:</literal> and <literal>Boolean</literal>? The expression <literal>count &lt; 5</literal> would be evaluated to <literal>true</literal> before being passed into our custom while loop, and the message “still awesome” would be printed to the console indefinitely. By delaying evaluation until <literal>conditional</literal> is called inside our function with a by-name parameter, we get the behavior we expect.</simpara>
 </sect1>
 <sect1 id="LazyVals">
 <title>Lazy Vals</title>
@@ -688,10 +688,10 @@ In c2d:
 Using c2d:
 c2d.value = 10, inverse = Infinity</screen>
 <simpara id="para_this_println_forces_inverse">This <literal>println</literal> forces <literal>inverse</literal> to be evaluated inside the body of <literal>AbstractT2</literal>, before <literal>value</literal> is initialized by the class body, thereby reproducing the problem we had before.</simpara>
-<simpara id="para_this_example_raises_an_importa">This example raises an important point; if other <literal>val</literal>'s use the <literal>lazy val</literal> in the same class or trait body, they should be declared <literal>lazy</literal>, too. Also, watch out for function calls in the body that use the <literal>lazy val</literal>.</simpara>
+<simpara id="para_this_example_raises_an_importa">This example raises an important point; if other <literal>val</literal>’s use the <literal>lazy val</literal> in the same class or trait body, they should be declared <literal>lazy</literal>, too. Also, watch out for function calls in the body that use the <literal>lazy val</literal>.</simpara>
 <tip id="para_tip_if_a_val_is_lazy_mak"><simpara>If a <literal>val</literal> is <literal>lazy</literal>, make sure all uses of the <literal>val</literal> are also lazy!</simpara></tip>
-<simpara id="para_so_how_is_a_lazy_val_differ">So, how is a <literal>lazy val</literal> different from a method call? In a method call, the body is executed <emphasis>every</emphasis> time the method in invoked. For a <literal>lazy val</literal>, the initialization “body” is evaluated only once, when the variable is used for the first time. This one-time evaluation makes little sense for a mutable field. Therefore, the <literal>lazy</literal> keyword is not allowed on <literal>var</literal>'s. (They can’t really make use of it anyway.)</simpara>
-<simpara id="para_use_lazy_val_s_for_costly_co">You can also use <literal>lazy val</literal>'s to avoid costly initializations that you may not actually need and to defer initializations that slow down application startup. They work well in constructors, where it’s clear to other programmers that all the one-time heavy lifting for initializing an instance is done in one place.</simpara>
+<simpara id="para_so_how_is_a_lazy_val_differ">So, how is a <literal>lazy val</literal> different from a method call? In a method call, the body is executed <emphasis>every</emphasis> time the method in invoked. For a <literal>lazy val</literal>, the initialization “body” is evaluated only once, when the variable is used for the first time. This one-time evaluation makes little sense for a mutable field. Therefore, the <literal>lazy</literal> keyword is not allowed on <literal>var</literal>’s. (They can’t really make use of it anyway.)</simpara>
+<simpara id="para_use_lazy_val_s_for_costly_co">You can also use <literal>lazy val</literal>’s to avoid costly initializations that you may not actually need and to defer initializations that slow down application startup. They work well in constructors, where it’s clear to other programmers that all the one-time heavy lifting for initializing an instance is done in one place.</simpara>
 <simpara id="para_another_use_for_laziness_i">Another use for “laziness” is to manage potentially infinite data structures where only a manageable subset of the data will actually be used. In fact, mathematic notation is inherently lazy. When we write the Fibonacci sequence, for example, we might write it as an infinite sequence, something like this.</simpara>
 <screen>Fib = 1, 1, 2, 6, 24, 120, ...</screen>
 <simpara id="para_some_pure_functional_languages">Some pure functional languages are lazy by default, so they mimic this behavior as closely as possible. This can work without exhausting resources if the user never tries to use more than a finite subset of these values. Scala is not lazy by default, but it does offer support for working with infinite data structures. We’ll address this topic in <xref linkend="InfiniteDataStructuresAndLaziness"/> in <xref linkend="ScalasTypeSystem"/>.</simpara>

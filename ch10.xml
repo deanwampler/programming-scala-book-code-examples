@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="HerdingXMLInScalaDSLs">
 <title>Herding XML in Scala</title>
@@ -48,7 +48,7 @@ assert(someXML.isInstanceOf[scala.xml.Elem])</programlisting>
 <simpara id="para_if_we_paste_the_above_into_the">If we paste the previous example into the interpreter, we can explore our sandwich using some handy tools provided by <literal>NodeSeq</literal>.</simpara>
 <screen>scala&gt; someXML \ "bread"
 res2: scala.xml.NodeSeq = &lt;bread&gt;wheat&lt;/bread&gt;</screen>
-<simpara id="para_that_backslash_what_the_docu">That backslash - what the documentation calls a <emphasis>projection function</emphasis> - says, "find me elements named <replaceable>bread</replaceable>". We’ll always get a <literal>NodeSeq</literal> back when using a projection function. If we’re only interested in what’s between the tags, we can use the <literal>text</literal> method.</simpara>
+<simpara id="para_that_backslash_what_the_docu">That backslash - what the documentation calls a <emphasis>projection function</emphasis> - says, “find me elements named <replaceable>bread</replaceable>“. We’ll always get a <literal>NodeSeq</literal> back when using a projection function. If we’re only interested in what’s between the tags, we can use the <literal>text</literal> method.</simpara>
 <screen>scala&gt; (someXML \ "bread").text
 res3: String = wheat</screen>
 <tip id="para_tip_it_s_valid_syntax_to_say_"><simpara>It’s valid syntax to say <literal>someXML \ "bread" text</literal>, without parentheses or the dot before the call to <literal>text</literal>. You’ll still get the same result, but it’s harder to read. Parentheses make your intent clear.</simpara></tip>
@@ -114,7 +114,7 @@ bobXML: scala.xml.Elem =
 &lt;person&gt;
   &lt;name&gt;Bob&lt;/name&gt;
 &lt;/person&gt;</screen>
-<simpara id="para_as_we_can_see_the_name_vari">As we can see, the <literal>name</literal> variable was substituted when we constructed the XML document assigned to <literal>bobXML</literal>. That evaluation only occurs once; were <literal>name</literal> subsequently redefined, the <literal>&lt;name&gt;</literal> element of <literal>bobXML</literal> would still contain the string "Bob".</simpara>
+<simpara id="para_as_we_can_see_the_name_vari">As we can see, the <literal>name</literal> variable was substituted when we constructed the XML document assigned to <literal>bobXML</literal>. That evaluation only occurs once; were <literal>name</literal> subsequently redefined, the <literal>&lt;name&gt;</literal> element of <literal>bobXML</literal> would still contain the string “Bob”.</simpara>
 <sect2 id="_a_real_world_example">
 <title>A Real-World Example</title>
 <simpara id="para_for_a_more_complete_example_l">For a more complete example, let’s say we’re designing that favorite latter-day “hello world”, a blogging system. We’ll start with a class to represent an Atom-friendly blog post.</simpara>

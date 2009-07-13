@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><chapter id="ScalaObjectSystem">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="ScalaObjectSystem">
 <title>The Scala Object System</title>
 <sect1 id="PredefObject">
 <title>The Predef Object</title>
@@ -87,22 +89,22 @@
 <orderedlist numeration="arabic">
 <listitem>
 <simpara>
-("Hello", 3.14)
+(“Hello”, 3.14)
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Pair("Hello", 3.14)
+Pair(“Hello”, 3.14)
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Tuple2("Hello", 3.14)
+Tuple2(“Hello”, 3.14)
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-"Hello" → 3.14
+“Hello” → 3.14
 </simpara>
 </listitem>
 </orderedlist>
@@ -486,7 +488,7 @@ body length? 13</screen>
 <simpara id="para_besides_list_defined_in_th">Besides <literal>List</literal>, some of the other library collections include <literal>Map</literal>, <literal>Set</literal>, <literal>Queue</literal>, and <literal>Stack</literal>. These other collections come in two varieties, mutable and immutable. The immutable collections are in the package <literal>scala.collection.immutable</literal>, while the mutable collections are in <literal>scala.collection.mutable</literal>. Only an immutable version of <literal>List</literal> is provided; for a mutable list, use a <literal>ListBuffer</literal>, which can return a <literal>List</literal> via the <literal>toList</literal> method. For Scala version 2.8, the collections implementations reuse code from <literal>scala.collection.generic</literal>. Users of the collections would normally not use any types defined in this package. We’ll explore some of these of these collections in greater detail in <xref linkend="FunctionalDataStructures"/> in <xref linkend="FunctionalProgramming"/>.</simpara>
 <simpara id="para_consistent_with_its_emphasis_o">Consistent with its emphasis on <emphasis>functional programming</emphasis> (see <xref linkend="FunctionalProgramming"/>), Scala encourages you to use the immutable collections, since <literal>List</literal> is automatically imported and <literal>Predef</literal> defines types <literal>Map</literal> and <literal>Set</literal> that refer to the immutable versions of these collections. All other collections have to be imported explicitly.</simpara>
 <simpara id="para__predef_defines_a_number_of_i"><literal>Predef</literal> defines a number of implicit conversion methods for the value types (excluding for <literal>Unit</literal>). There are implicit conversions to the corresponding <literal>scala.runtime.RichX</literal> types. For example, the <literal>byteWrapper</literal> method converts a <literal>Byte</literal> to a <literal>scala.runtime.RichByte</literal>. There are implicit conversions between the “numeric” types, <literal>Byte</literal>, <literal>Short</literal>, <literal>Int</literal>, <literal>Long</literal>, and <literal>Float</literal> to the other types that are “wider” than the original. For example, <literal>Byte</literal> to <literal>Int</literal>, <literal>Int</literal> to <literal>Long</literal>, <literal>Int</literal>, to <literal>Double</literal>, <emphasis>etc.</emphasis> Finally, there are conversions to the corresponding Java wrapper types, <emphasis>e.g.,</emphasis> <literal>Int</literal> to <literal>java.lang.Integer</literal>. We discuss implicit conversions in more detail in <xref linkend="ImplicitConversions"/> in <xref linkend="FunctionalProgramming"/>. We explored <literal>Predef</literal> in <xref linkend="PredefObject"/> at the beginning of this chapter.</simpara>
-<simpara id="para_either_example">There are several examples of <literal>Option</literal> elsewhere, <emphasis>e.g.,</emphasis> <xref linkend="OptionSomeNone"/> in <xref linkend="TypeLessDoMore"/>. Here is a script that illustrates using an <literal>Either</literal> return value to handle a thrown exception or successful result (adapted from <ulink url="http://dcsobral.blogspot.com/2009/06/catching-exceptions.html">http://dcsobral.blogspot.com/2009/06/catching-exceptions.html</ulink>).</simpara>
+<simpara id="para_either_example">There are several examples of <literal>Option</literal> elsewhere, <emphasis>e.g.,</emphasis> <xref linkend="OptionSomeNone"/> in <xref linkend="TypeLessDoMore"/>. Here is a script that illustrates using an <literal>Either</literal> return value to handle a thrown exception or successful result (adapted from <ulink url="http://dcsobral.blogspot.com/2009/06/catching-exceptions.html"/>).</simpara>
 <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/typehierarchy/either-script.scala
 
 def exceptionToLeft[T](f: =&gt; T): Either[java.lang.Throwable, T] = try {
