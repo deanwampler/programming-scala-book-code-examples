@@ -1,0 +1,1299 @@
+<?xml version="1.0"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="ScalasTypeSystem">
+<title>The Scala Type System</title>
+<simpara id="para_types_intro">Scala is a statically-typed language. Its type system is one of the most sophisticated in any programming language, in part because it combines comprehensive ideas from functional programming and object-oriented programming. The type system tries to be logically comprehensive, complete, and consistent. It exceeds limitations in Java’s type system while containing innovations which appear in Scala for the first time.</simpara>
+<simpara id="para_however_much_of_this_sophisti">However, the type system can be intimidating at first, especially if you come from a dynamically-typed language like Ruby or Python. Fortunately, type inference hides most of the complexities away.  Most of the time, you don’t need to know the particulars, so we encourage you not to worry that you must master the type system in order to use Scala effectively. You might choose to skim this chapter if you’re new to Scala, so you’ll know where to look when type-related questions arise later.</simpara>
+<simpara id="para_still_the_more_you_know_about">Still, the more you know about the type system, the more you will be able to exploit its features in your programs. This is especially true for library writers, who will want to understand when to use parameterized types <emphasis>vs.</emphasis> abstract types, which type parameters should be covariant, contravariant, or invariant under subtyping, and so forth. Also, some understanding of the type system will help you understand and debug the occasional compilation failure related to typing. Finally, this understanding will help you make sense of the type information shown in the sources and <emphasis>Scaladocs</emphasis> for Scala libraries.</simpara>
+<simpara id="para_if_you_didn_t_understand_some_">If you didn’t understand some of the terms we used in the preceding paragraphs, don’t worry. We’ll explain them and why they are useful. We’re not going to discuss Scala’s type system in exhaustive detail. Rather, we want you to come away with a pragmatic understanding of the type system. You should develop an awareness of the features available, what purposes they serve, and how to read and understand type declarations.</simpara>
+<simpara id="para_we_ll_also_highlight_similarit">We’ll also highlight similarities with Java’s type system, since it may be a familiar point of reference for you. Understanding the differences is also useful for interoperability with Java libraries. To focus the discussion, we won’t cover the .NET type system, except to point out some notable differences that .NET programmers will want to know.</simpara>
+<sect1 id="ReflectingOnTypes">
+<title>Reflecting on Types</title>
+<simpara id="para_reflecting_on_types">Scala supports the same reflection capabilities that Java and .NET support. The syntax is different in some cases.</simpara>
+<simpara id="para_java_class_methods">First, you can use the same methods you might use in Java or .NET code. The following script shows some of the reflection methods available on the JVM, through <literal>java.lang.Object</literal> and <literal>java.lang.Class</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/reflection/jvm-script.scala
+
+trait T[A] {
+  val vT: A
+  def mT = vT
+}
+
+class C extends T[String] {
+  val vT = "T"
+  val vC = "C"
+  def mC = vC
+
+  class C2
+  trait T2
+}
+
+val c = new C
+val clazz = c.getClass              // method from java.lang.Object
+val clazz2 = classOf[C]             // Scala method: classOf[C] ~ C.class
+val methods = clazz.getMethods      // method from java.lang.Class&lt;T&gt;
+val ctors = clazz.getConstructors   // ...
+val fields = clazz.getFields
+val annos = clazz.getAnnotations
+val name  = clazz.getName
+val parentInterfaces = clazz.getInterfaces
+val superClass = clazz.getSuperclass
+val typeParams = clazz.getTypeParameters</programlisting>
+<simpara id="para_note_that_these_methods_are_on">Note that these methods are only available on subtypes of <literal>AnyRef</literal>.</simpara>
+<simpara id="para_the_classof_t_method_return">The <literal>classOf[T]</literal> method returns the runtime representation for a Scala type. It is analogous to the Java expression <literal>T.class</literal>. Using <literal>classOf[T]</literal> is convenient when you have a type that you want information about, while <literal>getClass</literal> is convenient for retrieving the same information from an instance of the type.</simpara>
+<simpara id="para_however_classof_t_and_get">However, <literal>classOf[T]</literal> and <literal>getClass</literal> return slightly different values, reflecting the effect of <emphasis>type erasure</emphasis> on the JVM, in the case of <literal>getClass</literal>.</simpara>
+<screen>scala&gt; classOf[C]
+res0: java.lang.Class[C] = class C
+
+scala&gt; c.getClass
+res1: java.lang.Class[_] = class C</screen>
+<note id="para_note_although_net_does_not_h"><simpara>Although .NET does not have type erasure, meaning it supports <emphasis>reified types</emphasis>, the .NET version of Scala currently follows the JVM’s erasure model in order to avoid incompatibilities that would require a “forked” implementation.</simpara></note>
+<simpara id="para_we_ll_discuss_a_workaround_for">We’ll discuss a workaround for erasure, called <emphasis>Manifests</emphasis>, after we discuss <emphasis>Parameterized Types</emphasis> in the next section.</simpara>
+<simpara id="para_scala_also_provides_methods_fo">Scala also provides methods for testing whether or not an object matches a type and also for casting an object to a type.</simpara>
+<simpara id="para__any_isinstanceof_t_will_ret"><literal>x.isInstanceOf[T]</literal> will return true if the instance <literal>x</literal> is of type <literal>T</literal>. However, this test is subject to type erasure. For example, <literal>List(3.14159).isInstanceOf[List[String]]</literal> will return true, because the type parameter of <literal>List</literal> is lost at the byte code level. However, you’ll get an “unchecked” warning from the compiler.</simpara>
+<simpara id="para__any_asinstanceof_t_will_cas"><literal>x.asInstanceOf[T]</literal> will cast <literal>x</literal> to <literal>T</literal> or throw a <literal>ClassCastException</literal> if <literal>T</literal> and the type of <literal>x</literal> are not compatible. Once again, type erasure must be considered with parameterized types. The expression <literal>List(3.14159).asInstanceOf[List[String]]</literal> will succeed.</simpara>
+<simpara id="para_note_that_these_two_operations">Note that these two operations are methods and not keywords in the language, and their names are deliberately somewhat verbose. Normally, type checks and casts like these should be avoided. For type checks, use pattern matching instead. For casts, consider why a cast is necessary and determine if a refactoring of the design can eliminate the requirement for a cast.</simpara>
+<note id="para_exper_scala_reflect"><simpara>At the time of this writing, there are some experimental features in the <literal>scala.reflect</literal> package that might appear in the final version 2.8 release. These features are designed to make reflective examination and invocation of code easier than using the corresponding Java methods.</simpara></note>
+</sect1>
+<sect1 id="ParameterizedTypes">
+<title>Understanding Parameterized Types</title>
+<simpara id="para_we_introduced__parameterized_t">We introduced <emphasis>parameterized types</emphasis> and <emphasis>methods</emphasis> in <xref linkend="IntroducingScala"/>, and filled in a few more details in <xref linkend="AbstractTypesAndParameterizedTypes"/> in <xref linkend="TypeLessDoMore"/>. If you come from a Java or C# background, you probably already have some knowledge of parameterized types and methods. Now we explore the details of Scala’s sophisticated support for parameterized types.</simpara>
+<simpara id="para_scala_s_parameterized_types_ar">Scala’s parameterized types are similar to Java and C# generics and C++ templates. They provide the same capabilities as Java generics, but with significant differences and extensions, reflecting the sophistication of Scala’s type system.</simpara>
+<simpara id="para_to_recap_a_declaration_like_">To recap, a declaration like <literal>class List[+A]</literal> means that <literal>List</literal> is parameterized by a single type, represented by <literal>A</literal>. The ‘+’ is called a <emphasis>variance annotation</emphasis>. We’ll come back to it in <xref linkend="VarianceUnderInheritance"/> below.</simpara>
+<simpara id="para_a_declaration_like_list_043">Sometimes, a <emphasis>parameterized type</emphasis> like <literal>List</literal> is called a <emphasis>type constructor</emphasis>, because it is used to create specific types. For example, <literal>List</literal> is the type constructor for <literal>List[String]</literal> and <literal>List[Int]</literal>, which are different types. (Although they are actually implemented with the same byte code due to <emphasis>type erasure</emphasis>.) In fact, it’s more accurate to say that all traits and classes are type constructors. Those without type parameters are effectively zero-argument, parameterized types.</simpara>
+<warning id="para_warning_if_you_write_class_s"><simpara>If you write <literal>class StringList[String] extends List[String] {…}</literal>, Scala will interpret <literal>String</literal> as the name of the type parameter, not the creation of a type based on actual Strings. You want to write <literal>class StringList extends List[String] {…}</literal>.</simpara></warning>
+<sect2 id="Manifests">
+<title>Manifests</title>
+<simpara id="para_there_is_an_experimental_featu">There is an experimental feature in Scala (since version 2.7.2), called <emphasis>Manifests</emphasis>, that captures type information that is erased in the byte code. This feature is not documented in the <emphasis>Scaladocs</emphasis>, but you can examine the source for the <literal>scala.reflect.Manifest</literal> trait. <xref linkend="Ortiz2008" xrefstyle="select: title nopage"/> discusses <literal>Manifests</literal> and provides examples of their use.</simpara>
+<simpara id="para_a_manifest_is_declared_as_an">A <literal>Manifest</literal> is declared as an implicit argument to a method or type that wants to capture the erased type information. Unlike most implicit arguments, the user does not need to supply an in-scope <literal>Manifest</literal> value or method. Instead, the compiler generates one automatically. Here is an example the illustrates some of the strengths and weaknesses of <literal>Manifests</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/manifests/manifest-script.scala
+
+import scala.reflect.Manifest
+
+object WhichList {
+  def apply[B](value: List[B])(implicit m: Manifest[B]) = m.toString match {
+    case "int"              =&gt; println( "List[Int]" )
+    case "double"           =&gt; println( "List[Double]" )
+    case "java.lang.String" =&gt; println( "List[String]" )
+    case _                  =&gt; println( "List[???]" )
+  }
+}
+
+WhichList(List(1, 2, 3))
+WhichList(List(1.1, 2.2, 3.3))
+WhichList(List("one", "two", "three"))
+
+List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
+  WhichList(_)
+}</programlisting>
+<simpara id="para__whichlist_tries_to_determine"><literal>WhichList</literal> tries to determine the type of list passed in. It uses the value of the manifest’s <literal>toString</literal> method to determine this information. Notice that it works when the list is constructed inside the call to <literal>WhichList.apply</literal>. It does <emphasis>not</emphasis> work when a previously constructed list is passed to <literal>WhichList.apply</literal>.</simpara>
+<simpara id="para_the_compiler_exploits_the_type">The compiler exploits the type information it knows in the first case to construct the implicit <literal>Manifest</literal> with the correct <literal>B</literal>. However, when given previously-constructed lists, the crucial type information is already lost.</simpara>
+<simpara id="para_hence_manifests_can_t_resur">Hence, Manifests can’t “resurrect” type information from byte code, but they can be used capture and exploit type information before it is erased.</simpara>
+</sect2>
+<sect2 id="ParameterizedMethods">
+<title>Parameterized Methods</title>
+<simpara id="para_because_the_runtime_system_ins">Individual methods can also be parameterized. Good examples are the <literal>apply</literal> methods in companion objects for parameterized classes. Recall that companion objects are singleton objects associated with a companion class. There is only one instance of a singleton object, as its name implies, so type parameters would be meaningless.</simpara>
+<simpara id="para_often_the_methods_in_these_co">Let’s consider <literal>object List</literal>, the companion object for <literal>class List[+A]</literal>. Here is the definition of the <literal>apply</literal> method in <literal>object List</literal>.</simpara>
+<programlisting linenumbering="unnumbered">def apply[A](xs: A*): List[A] = xs.toList</programlisting>
+<simpara id="para_so_the_following_declarations">The <literal>apply</literal> methods takes a variable length list of arguments of type <literal>A</literal>, which will be inferred from the arguments, and returns a list created from the arguments. Here is an example.</simpara>
+<programlisting linenumbering="unnumbered">val languages = List("Scala", "Java", "Ruby", "C#", "C++", "Python", ...)
+val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
+<simpara id="para_we_ll_look_at_other_parameteri">We’ll look at other parameterized methods below.</simpara>
+</sect2>
+</sect1>
+<sect1 id="VarianceUnderInheritance">
+<title>Variance Under Inheritance</title>
+<simpara id="para_parameterized_types_diff_with_java">An important difference between Java and Scala generics is how <emphasis>variance</emphasis> under inheritance works. For example, if a method has an argument of type <literal>List[AnyRef]</literal>, can you pass a <literal>List[String]</literal> value? In other words, should a <literal>List[String]</literal> be considered a <emphasis>subtype</emphasis> of <literal>List[AnyRef]</literal>. If so, this kind of variance is called <emphasis>covariance</emphasis>, because the supertype-subtype relationship of the container (the parameterized type) “goes in the same direction” as the relationship between the type parameters. In other contexts, you might want <emphasis>contravariant</emphasis> or <emphasis>invariant</emphasis> behavior, which we’ll describe shortly.</simpara>
+<simpara id="para_in_scala_the_type_designer_sp">In scala, the variance behavior is defined at the <emphasis>declaration site</emphasis> using <emphasis>variance annotations</emphasis>, ‘+’, ‘-’, or nothing. In other words, the type designer decides how the type should vary under inheritance.</simpara>
+<simpara id="para_let_s_examine_the_three_kinds_">Let’s examine the three kinds of variance, summarized in the following table, and understand how to use them effectively. We’ll assume that <literal>T</literal><superscript>sup</superscript> is a <emphasis>supertype</emphasis> of <literal>T</literal> and <literal>T</literal><subscript>sub</subscript> is a <emphasis>subtype</emphasis> of <literal>T</literal>.</simpara>
+<table id="type-variance-annotations-table" frame="none" rowsep="1" colsep="1">
+<title>Type variance annotations and their meanings.</title>
+<tgroup cols="3">
+<colspec colwidth="76pt" align="left"/>
+<colspec colwidth="76pt" align="left"/>
+<colspec colwidth="229pt" align="left"/>
+<thead valign="top">
+<row>
+<entry> Annotation </entry>
+<entry> Java Equivalent </entry>
+<entry> Description</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara>+</simpara></entry>
+<entry><simpara><literal>? extends T</literal></simpara></entry>
+<entry><simpara><emphasis>Covariant</emphasis> subclassing. <emphasis>E.g.,</emphasis> <literal>List[T</literal><subscript>sub</subscript><literal>]</literal> is a subtype of <literal>List[T]</literal>.</simpara></entry>
+</row>
+<row>
+<entry><simpara>-</simpara></entry>
+<entry><simpara><literal>? super T</literal></simpara></entry>
+<entry><simpara><emphasis>Contravariant</emphasis> subclassing. <emphasis>E.g.,</emphasis> <literal>X[T</literal><superscript>sup</superscript><literal>]</literal> is a subtype of <literal>X[T]</literal>.</simpara></entry>
+</row>
+<row>
+<entry><simpara><emphasis>none</emphasis></simpara></entry>
+<entry><simpara><literal>T</literal></simpara></entry>
+<entry><simpara><emphasis>Invariant</emphasis> subclassing. <emphasis>E.g.,</emphasis> Can’t substitute <literal>Y[T</literal><superscript>sup</superscript><literal>]</literal> or <literal>Y[T</literal><subscript>sub</subscript><literal>]</literal> for <literal>Y[T]</literal>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara id="para_the_java_equivalent_column">The “Java Equivalent” column is a bit misleading; we’ll explain why in a moment.</simpara>
+<simpara id="para_class_list_is_declared_list">Class <literal>List</literal> is declared <literal>List[+A]</literal>, which means that <literal>List[String]</literal> is a subclass of <literal>List[AnyRef]</literal>, so <literal>Lists</literal> are covariant in the type parameter <literal>A</literal>. (When a type like <literal>List</literal> has only one covariant type parameter, you’ll often here the shorthand expression “Lists are covariant” and similarly for types with a single contravariant type parameter.)</simpara>
+<simpara id="para_the_declarations_function__n_">The traits <literal>FunctionN</literal>, for <literal>N</literal> equals 0 to 22, are used by Scala to implement  function values as true objects. Let’s pick <literal>Function1</literal> as a representative example. It is declared <literal>trait Function1[-T, +R]</literal>.</simpara>
+<simpara id="para_the_043_r_is_the_return_ty">The <literal>+R</literal> is the return type and it has the covariant annotation ‘+’. The type for the single argument has the <emphasis>contravariant</emphasis> annotation ‘-’. For functions with more than one argument all the argument types have the contravariant annotation. So, for example, using our <literal>T</literal>, <literal>T</literal><superscript>sup</superscript>, and <literal>T</literal><subscript>sub</subscript> types, the following definition would be legal.</simpara>
+<simpara id="para__val_f_function1_t_t_new_"><literal>val f: Function1[T, T] = new Function1[T</literal><superscript>sup</superscript><literal>, T</literal><subscript>sub</subscript><literal>] { … }</literal></simpara>
+<simpara id="para_hence_the_function_traits_are">Hence, the function traits are covariant in the return type parameter <literal>R</literal> and contravariant in the argument parameters <literal>T</literal><subscript>1</subscript><literal>, T</literal><subscript>2</subscript><literal>, …, T</literal><subscript>N</subscript>.</simpara>
+<simpara id="para_so_what_does_this_really_mean_">So, what does this really mean? Let’s look at an example to understand the variance behavior. If you have prior experience with <emphasis>Design by Contract</emphasis> <xref linkend="DesignByContract" xrefstyle="select: title nopage"/>, it might help you to recall how it works, which is very similar. (We will discuss <emphasis>Design by Contract</emphasis> briefly in <xref linkend="DesignByContractExample"/> in <xref linkend="ApplicationDesign"/>.) This script demonstrates variance under inheritance.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/func-script.scala
+// WON'T COMPILE
+
+class CSuper                { def msuper = println("CSuper") }
+class C      extends CSuper { def m      = println("C") }
+class CSub   extends C      { def msub   = println("CSub") }
+
+var f: C =&gt; C = (c: C)      =&gt; new C       // #1
+    f         = (c: CSuper) =&gt; new CSub    // #2
+    f         = (c: CSuper) =&gt; new C       // #3
+    f         = (c: C)      =&gt; new CSub    // #4
+    f         = (c: CSub)   =&gt; new CSuper  // #5: ERROR!</programlisting>
+<simpara id="para_this_script_doesn_t_produce_an">This script doesn’t produce any output. If you run it, it will fail to compile on the last line.</simpara>
+<simpara id="para_start_with_simple_hierarchy_of_3_classes">We start by defining a very simple hierarchy of three classes, <literal>C</literal> and its superclass <literal>CSuper</literal> and its subtype <literal>CSub</literal>. Each one defines a method, which we’ll exploit shortly.</simpara>
+<simpara id="para_next_we_define_a_var_named_">Next we define a <literal>var</literal> named <literal>f</literal> on the line with the #1 comment. It is a function with the signature <literal>C =&gt; C</literal>. More precisely, it is of type <literal>Function1(-C,+C)</literal>. To be clear, the value assigned to <literal>f</literal> is after the equals sign, <literal>(c: C) =&gt; new C</literal>. We actually ignore the input <literal>c</literal> value and just create a new <literal>C</literal>.</simpara>
+<simpara id="para_now_we_call_applyfunc_passi">Now we assign different anonymous function values to <literal>f</literal>. We use whitespace to make the similarities and differences stand out when comparing the original declaration of <literal>f</literal> and the subsequent re-assignments. We keep reassigning to <literal>f</literal> because we are just testing what will and won’t compile at this point. Specifically, we want to know what function values we can legally assign to <literal>f: (C) =&gt; C</literal>.</simpara>
+<simpara id="para_the_second_invocation_2_pas">The second assignment on line #2 assigns <literal>(x:CSuper) =&gt; new CSub</literal> as the function value. This also works, because the argument to <literal>Function1</literal> is <emphasis>contravariant</emphasis>, so we can substitute the <emphasis>supertype</emphasis>, while the return type of <literal>Function1</literal> is <emphasis>covariant</emphasis>, so our function value can return an instance of the <emphasis>subtype</emphasis>.</simpara>
+<simpara id="para_the_next_two_lines_also_work_">The next two lines also work. On line #3, we use a <literal>CSuper</literal> for the argument, which works as it did in line #2. We return a <literal>C</literal>, which also works as expected. Similarly, on line #4, we use <literal>C</literal> as the argument and <literal>CSub</literal> as the return type, both of which worked fine in the previous lines.</simpara>
+<simpara id="para_the_last_line_does_not_compile">The last line, #5, does not compile because we are attempting to use a covariant argument in a contravariant position. We’re also attempting to use a contravariant return value where only covariant values are allowed.</simpara>
+<simpara id="para_okay_but__why__is_all_this_co">Why is the correct behavior correct in these cases? Here’s where <emphasis>Design by Contract</emphasis> thinking comes in handy. Let’s see how a client might use use some of these definitions of <literal>f</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/func2-script.scala
+// WON'T COMPILE
+
+class CSuper                { def msuper = println("CSuper") }
+class C      extends CSuper { def m      = println("C") }
+class CSub   extends C      { def msub   = println("CSub") }
+
+def useF(f: C =&gt; C) = {
+  val c1 = new C     // #1
+  val c2: C = f(c1)  // #2
+  c2.msuper          // #3
+  c2.m               // #4
+}
+
+useF((c: C)      =&gt; new C)        // #5
+useF((c: CSuper) =&gt; new CSub)     // #6
+useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programlisting>
+<simpara id="para_the_usef_method_takes_a_func">The <literal>useF</literal> method takes a function <literal>C =&gt; C</literal> as an argument. (We’re just passing function literals now, rather than assigning them to <literal>f</literal>.) It creates a <literal>C</literal> (line #1) and passes it to the input function to create a new <literal>C</literal> (line #2). Then it uses the features of <literal>C</literal>, namely it calls the <literal>msuper</literal> and <literal>m</literal> methods (lines #3 and #4, respectively).</simpara>
+<simpara id="para_in_invocation_2_we_passed_">You could say that the <literal>useF</literal> method specifies a <emphasis>contract</emphasis> of behavior. It expects to be passed a function that can take a <literal>C</literal> and return a <literal>C</literal>. It will call the passed-in function, passing a <literal>C</literal> instance to it, and it will expect to receive a <literal>C</literal> back.</simpara>
+<simpara id="para_in_line_5_we_pass_usef_a_f">In line #5, we pass <literal>useF</literal> a function that takes a <literal>C</literal> and returns a <literal>C</literal>. The returned <literal>C</literal> will work with lines #3 and #4, by definition. All is good.</simpara>
+<simpara id="para_in_line_6_we_pass_in_a_fun">Finally, we come to the point of this example. In line #5, we pass in a function that is “willing” to accept a <literal>CSuper</literal> and “promises” to return a <literal>CSub</literal>. That is, this function is type inferred to be <literal>Function1[CSuper,CSub]</literal>. In effect, it widens the allowed instances by accepting a supertype. Keep in mind that it will never actually be passed a <literal>CSuper</literal> by <literal>useF</literal>, only a <literal>C</literal>. However, since it can accept a wider set of instances, it will work fine if it only gets <literal>C</literal> instances.</simpara>
+<simpara id="para_return_promise">Similarly, by “promising” to return a <literal>CSub</literal>, this anonymous function narrows the possible values returned to <literal>useF</literal>. That’s okay, too, because <literal>useF</literal> will accept any <literal>C</literal> in return, so if it only gets <literal>CSubs</literal>, it will be happy. Lines #3 and #4 will still work.</simpara>
+<simpara id="para_applying_the_same_arguments_w">Applying the same arguments, we can see why the last line in the script, line #7, fails to compile. Now the anonymous function can only accept a <literal>CSub</literal>, but <literal>useF</literal> will pass it a <literal>C</literal>. The body of the anonymous function would now break, because it calls <literal>c.msub</literal> which doesn’t exist in <literal>C</literal>. Similarly, returning a <literal>CSuper</literal> when a <literal>C</literal> is expected breaks line #4 in <literal>useF</literal>, because <literal>CSuper</literal> doesn’t have the <literal>m</literal> method.</simpara>
+<simpara id="para_the_same_arguments_explain_how">The same arguments are used to explain how contracts can change under inheritance in <emphasis>Design by Contract</emphasis>.</simpara>
+<simpara id="para_note_that_variance_annotations">Note that variance annotations only make sense on the type parameters for parameterized types, not parameterized methods, because the annotations affect the behavior of subtyping. Methods aren’t subtyped, but the types that contain them might be subtyped.</simpara>
+<note id="para_note_the_8216_043_8217_"><simpara>The ‘+’ <emphasis>variance annotation</emphasis> means the parameterized type is <emphasis>covariant</emphasis> in the type parameter. The ‘-’ variance annotation means the parameterized type is <emphasis>contravariant</emphasis> in the type parameter. No variance annotation means the parameterized type is <emphasis>invariant</emphasis> in the type parameter.</simpara></note>
+<simpara id="para_finally_the_compiler_checks_y">Finally, the compiler checks your use of variance annotations for problems like the one we just described in the last lines of the examples. Suppose you attempted to define your own function type this way.</simpara>
+<programlisting linenumbering="unnumbered">trait MyFunction2[+T1, +T2, -R] {
+  def apply(v1:T1, v2:T2): R = { ... }
+  ...
+}</programlisting>
+<simpara id="para_variance_errors_compile_checks">The compiler would throw the following errors for the <literal>apply</literal> method.</simpara>
+<screen>... error: contravariant type R occurs in covariant position in type (T1,T2)R
+       def apply(v1:T1, v2:T2):R
+           ^
+... error: covariant type T1 occurs in contravariant position in type T1 ...
+       def apply(v1:T1, v2:T2):R
+                 ^
+... error: covariant type T2 occurs in contravariant position in type T2 ...
+       def apply(v1:T1, v2:T2):R
+                        ^</screen>
+<sect2 id="VarianceOfMutableTypes">
+<title>Variance of Mutable Types</title>
+<simpara id="para_all_the_parameterized_types_we">All the parameterized types we’ve discussed so far have been immutable types. What about the variance behavior of mutable types? The short answer is that only <emphasis>invariance</emphasis> is allowed. Consider this example.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/mutable-type-variance-script.scala
+// WON'T COMPILE: Mutable parameterized types can't have variance annotations
+
+class ContainerPlus[+A](var value: A)      // ERROR
+class ContainerMinus[-A](var value: A)     // ERROR
+
+println( new ContainerPlus("Hello World!") )
+println( new ContainerMinus("Hello World!") )</programlisting>
+<simpara id="para_mutable_type_script_errors">Running this script throws the following errors.</simpara>
+<screen>... 4: error: covariant type A occurs in contravariant position in type A \
+    of parameter of setter value_=
+class ContainerPlus[+A](var value: A)      // ERROR
+                             ^
+... 5: error: contravariant type A occurs in covariant position in type =&gt; A \
+    of method value
+class ContainerMinus[-A](var value: A)     // ERROR
+                              ^
+two errors found</screen>
+<simpara id="para_we_can_make_sense_of_these_err">We can make sense of these errors by remembering our discussion of <literal>FunctionN</literal> type variance under inheritance, where the types of the function arguments are <emphasis>contravariant</emphasis> (<emphasis>i.e.,</emphasis> <literal>-T1</literal>) and the return type is <emphasis>covariant</emphasis> (<emphasis>i.e.,</emphasis> <literal>+R</literal>).</simpara>
+<simpara id="para_the_problem_with_a_mutable_typ">The problem with a mutable type is that at least one of its fields has the equivalent of read <emphasis>and</emphasis> write operations, either through direct access or through accessor methods.</simpara>
+<simpara id="para_in_the_first_error_we_are_try">In the first error, we are trying to use a covariant type as an argument to a setter (write) method, but we saw from our discussion of function types that argument types to a method must be contravariant. A covariant type is fine for the getter (read) method.</simpara>
+<simpara id="para_similarly_for_the_second_erro">Similarly, for the second error, we are trying to use a contravariant type as the return value of a read method, which must be covariant. For the write method, the contravariant type is fine.</simpara>
+<simpara id="para_hence_the_compiler_won_t_let_">Hence, the compiler won’t let us use a variance annotation on a type that is used for a mutable field. For this reason, all the mutable parameterized types in the Scala library are <emphasis>invariant</emphasis> in their type parameters. Some of them have corresponding immutable types that have covariant or contravariant parameters.</simpara>
+</sect2>
+<sect2 id="VarianceInScalaVsJava">
+<title>Variance In Scala vs. Java</title>
+<simpara id="para_in_scala_the_variance_behavio">As we said, the variance behavior is defined at the <emphasis>declaration site</emphasis> in Scala. In Java, it is defined at the <emphasis>call site</emphasis>. The <emphasis>client</emphasis> of a type defines the variance behavior desired <xref linkend="Naftalin2006" xrefstyle="select: title nopage"/>. In other words, when you use a Java generic and specify the type parameter, you also specify the variance behavior (including invariance, which is the default). You can’t specify variance behavior at the definition site in Java, although you can use expressions that look similar. Those expressions define <emphasis>type bounds</emphasis>, which we’ll discuss below.</simpara>
+<simpara id="para_in_java_variance_specification">In Java variance specifications, a wild card ‘?’ always appears before the <literal>super</literal> or <literal>extends</literal> keyword, as shown in the previous table. When we said after the table that the “Java Equivalent” column is a bit misleading, we were referring to the differences between declaration <emphasis>vs.</emphasis> call site specifications. There is another way in which the Scala and Java behaviors differ, which we’ll cover in <xref linkend="ExistentialTypes"/> below.</simpara>
+<simpara id="para_because_variances_in_java_are_">A drawback of call-site variance specifications is that it forces the users of Java generics to understand the type system more thoroughly than is necessary for Scala users, who don’t need to specify this behavior when using parameterized types. (Scala users also benefit greatly from type inference.)</simpara>
+<simpara id="para_let_s_look_at_a_java_example_">Let’s look at a Java example, a simplified Java version of Scala’s <literal>Option</literal>, <literal>Some</literal>, and <literal>None</literal> types.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/Option.java
+
+package variances;
+
+abstract public class Option&lt;T&gt; {
+  abstract public boolean isEmpty();
+
+  abstract public T get();
+
+  public T getOrElse(T t) {
+    return isEmpty() ? t : get();
+  }
+}</programlisting>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/Some.java
+
+package variances;
+
+public class Some&lt;T&gt; extends Option&lt;T&gt; {
+
+  public Some(T value) {
+    this.value = value;
+  }
+
+  public boolean isEmpty() { return false; }
+
+  private T value;
+
+  public T get() { return value; }
+
+  public String toString() {
+    return "Option(" + value + ")";
+  }
+}</programlisting>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/None.java
+
+package variances;
+
+public class None&lt;T&gt; extends Option&lt;T&gt; {
+
+  public boolean isEmpty() { return true; }
+
+  public T get() { throw new java.util.NoSuchElementException(); }
+
+  public String toString() {
+    return "None";
+  }
+}</programlisting>
+<simpara id="para_here_is_an_example_that_uses_t">Here is an example that uses this Java <literal>Option</literal> hierarchy.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/OptionExample.java
+
+package variances;
+import java.io.*;
+import shapes.*;  // From "Introducing Scala" chapter
+
+public class OptionExample {
+  static String[] shapeNames = {"Rectangle", "Circle", "Triangle", "Unknown"};
+  static public void main(String[] args) {
+
+    Option&lt;? extends Shape&gt; shapeOption =
+      makeShape(shapeNames[0], new Point(0.,0.), 2., 5.);
+    print(shapeNames[0], shapeOption);
+
+    shapeOption = makeShape(shapeNames[1], new Point(0.,0.), 2.);
+    print(shapeNames[1], shapeOption);
+
+    shapeOption = makeShape(shapeNames[2],
+      new Point(0.,0.), new Point(2.,0.), new Point(0.,2.));
+    print(shapeNames[2], shapeOption);
+
+    shapeOption = makeShape(shapeNames[3]);
+    print(shapeNames[3], shapeOption);
+  }
+
+  static public Option&lt;? extends Shape&gt; makeShape(String shapeName,
+      Object... args) {
+    if (shapeName == shapeNames[0])
+      return new Some&lt;Rectangle&gt;(new Rectangle((Point) args[0],
+        (Double) args[1], (Double) args[2]));
+    else if (shapeName == shapeNames[1])
+      return new Some&lt;Circle&gt;(new Circle((Point) args[0], (Double) args[1]));
+    else if (shapeName == shapeNames[2])
+      return new Some&lt;Triangle&gt;(new Triangle((Point) args[0],
+        (Point) args[1], (Point) args[2]));
+    else
+      return new None&lt;Shape&gt;();
+  }
+
+  static void print(String name, Option&lt;? extends Shape&gt; shapeOption) {
+    System.out.println(name + "? " + shapeOption);
+  }
+}</programlisting>
+<simpara id="para__optionexample_main_uses_the_"><literal>OptionExample.main</literal> uses the <literal>Shape</literal> hierarchy from <xref linkend="IntroducingScala"/>, but we have updated it slightly to exploit features that we’ve learned since then, such as <literal>case</literal> classes.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/shapes/shapes.scala
+
+package shapes {
+  case class Point(x: Double, y: Double) {
+    override def toString() = "Point(" + x + "," + y + ")"
+  }
+
+  abstract class Shape() {
+    def draw(): Unit
+  }
+
+  case class Circle(center: Point, radius: Double) extends Shape {
+    def draw() = println("Circle.draw: " + this)
+  }
+
+  case class Rectangle(lowerLeft: Point, height: Double, width: Double)
+        extends Shape {
+    def draw() = println("Rectangle.draw: " + this)
+  }
+
+  case class Triangle(point1: Point, point2: Point, point3: Point)
+        extends Shape() {
+    def draw() = println("Triangle.draw: " + this)
+  }
+}</programlisting>
+<simpara id="para_running_optionexample_with_">Running <literal>OptionExample</literal> with <userinput>scala -cp ... variances.OptionExample</userinput> produces the following output.</simpara>
+<screen>Rectangle? Option(Rectangle(Point(0.0,0.0),2.0,5.0))
+Circle? Option(Circle(Point(0.0,0.0),2.0))
+Triangle? Option(Triangle(Point(0.0,0.0),Point(2.0,0.0),Point(0.0,2.0)))
+Unknown? None</screen>
+<simpara id="para_note_that_we_are_also_demonstr">By the way, we are also demonstrating Scala-Java interoperability, which we’ll revisit in <xref linkend="JavaInterop"/> in <xref linkend="ScalaToolsLibs"/>.</simpara>
+<simpara id="para__optionexample_main_calls_the"><literal>OptionExample.main</literal> calls the static factory method <literal>makeShape</literal>, whose arguments are the name of a geometric shape and a variable length list of parameters to pass to the <literal>Shape</literal> constructors.</simpara>
+<simpara id="para_note_that_the_makeshape_retu">Note that <literal>makeShape</literal> returns <literal>Option&lt;? extends Shape&gt;</literal> and when we instantiate a <literal>Shape</literal>, we return a <literal>Some</literal> parameterized with the <literal>Shape</literal> subtype it wraps. If an unknown shape name is passed in, then we return a <literal>None&lt;Shape&gt;</literal>. We must parameterize a <literal>None</literal> instance with <literal>Shape</literal>. Because Scala defines a subtype of <emphasis>all</emphasis> types, <literal>Nothing</literal>, Scala can define <literal>None</literal> as <literal>case object None extends Option[Nothing]</literal>.</simpara>
+<simpara id="para_the_java_type_system_provides_">The Java type system provides no way to implement our Java <literal>None</literal> in a similar way. Having a singleton object <literal>None</literal> has a number of advantages, including greater efficiency, because we aren’t creating lots of little objects, and unambiguous behavior of <literal>equals</literal>, because we don’t need to define the semantics of equality between different type instantiations of our Java <literal>None&lt;?&gt;</literal> type, for example, <literal>None&lt;String&gt;</literal> <emphasis>vs.</emphasis> <literal>None&lt;Shape&gt;</literal>.</simpara>
+<simpara id="para_finally_note_that_main_a_c">Finally, note that <literal>OptionExample</literal>, a client of <literal>Option</literal>, has to specify type variance, <literal>Option&lt;? extends Shape&gt;</literal> in several places. In Scala, the client doesn’t carry this burden.</simpara>
+</sect2>
+<sect2 id="ImplementationNotes">
+<title>Implementation Notes</title>
+<simpara id="para_it_s_worth_noting_how_paramete">The implementation of parameterized types and methods is worth noting. The implementations are generated when the defining source file is compiled. For each type parameter, the implementation assumes that <literal>Any</literal> subtype could be specified (<literal>Object</literal> is used in Java generics). These aspects have performance implications that we will revisit when we discuss the <literal>@specialized</literal> annotation in <xref linkend="Annotations"/> in <xref linkend="ApplicationDesign"/>.</simpara>
+</sect2>
+</sect1>
+<sect1 id="TypeBounds">
+<title>Type Bounds</title>
+<simpara id="para_when_defining_a_parameterized_">When defining a parameterized type or method, it may be necessary to specify <emphasis>bounds</emphasis> on the type. For example, a parameterized type might assume that a particular type parameter contains certain methods.</simpara>
+<sect2 id="UpperTypeBounds">
+<title>Upper Type Bounds</title>
+<simpara id="para_for_example_there_are_several">Consider the overloaded <literal>apply</literal> methods in <literal>object scala.Array</literal> that create new arrays. There are optimized implementations for each of the <literal>AnyVal</literal> types. There is another implementation of <literal>apply</literal> that is parameterized for any type that is a subtype of <literal>AnyRef</literal>. Here is the implementation in Scala version 2.7.5.</simpara>
+<programlisting linenumbering="unnumbered">object Array {
+  ...
+  def apply[A &lt;: AnyRef](xs: A*): Array[A] = {
+    val array = new Array[A](xs.length)
+    var i = 0
+    for (x &lt;- xs.elements) { array(i) = x; i += 1 }
+    array
+  }
+  ...
+}</programlisting>
+<simpara id="para_the_type_parameter_a_anyre">The type parameter <literal>A &lt;: AnyRef</literal> means “any type <literal>A</literal> that is a <emphasis>subtype</emphasis> of <literal>AnyRef</literal> (including <literal>AnyRef</literal> itself)”. So the <literal>&lt;:</literal> operator indicates that the type to the left must be derived from the type to the right, or that they must be the same types. As we said in <xref linkend="ReservedWords"/> in <xref linkend="TypeLessDoMore"/>, this operator is actually a reserved word in the language.</simpara>
+<simpara id="para_these_bounds_are_called__upper">These bounds are called <emphasis>upper type bounds</emphasis>, following the <emphasis>de facto</emphasis> convention that diagrams of type hierarchies put subtypes below their supertypes. We followed this convention in the diagram shown in <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/>.</simpara>
+<simpara id="para_without_the_bound_in_this_case">Without the bound in this case, <emphasis>i.e.,</emphasis> if the signature were <literal>def apply[A](xs: A*): Array[A]</literal>, the declaration would be ambiguous with the other <literal>apply</literal> methods for each of the <literal>AnyVal</literal> types.</simpara>
+<note id="para_note_the_type_signature_a_"><simpara>The type signature <literal>A &lt;: B</literal> says that <literal>A</literal> must be a <emphasis>subtype</emphasis> of <literal>B</literal> or the same as <literal>B</literal>. In Java, this would be expressed as <literal>A extends B</literal> in a type declaration. This is different than <emphasis>instantiating</emphasis> a type at a call site, where the syntax <literal>? extends B</literal> is used in Java, indicating the <emphasis>variance</emphasis> behavior.</simpara></note>
+<simpara id="para_keep_in_mind_the_distinction_b">Keep in mind the distinction between type variance and type bounds. For a type like <literal>List</literal>, the <emphasis>variance</emphasis> behavior describes how actual types instantiated from it, like <literal>List[AnyRef]</literal> and <literal>List[String]</literal>, are related. In this case, <literal>List[String]</literal> is a subtype of <literal>List[AnyRef]</literal>, since <literal>String</literal> is a subtype of <literal>AnyRef</literal>.</simpara>
+<simpara id="para_in_contrast_a__type_bound__li">In contrast, lower and upper type bounds limit the allowed types that can be used for a type parameter when instantiating a type from a parameterized type. For example, <literal>def apply[A &lt;: AnyRef]…</literal> says that any type used for <literal>A</literal> must be a subtype of <literal>AnyRef</literal>.</simpara>
+</sect2>
+<sect2 id="LowerTypeBounds">
+<title>Lower Type Bounds</title>
+<simpara id="para_similarly_there_are_circumsta">Similarly, there are circumstances when we might want to express that only <literal>supertypes</literal> of a particular type are allowed. We call these <emphasis>lower type bounds</emphasis>, again because the allowed type would be above the boundary in a typical type hierarchy diagram.</simpara>
+<simpara id="para_in_fact_any_method_can_be_par">A particularly interesting example is the <literal>::</literal> (“cons”) method in class <literal>List[+A]</literal>. Recall that this operator is used to create a new list by prepending an element to a list.</simpara>
+<programlisting linenumbering="unnumbered">class List[+A] {
+  ...
+  def ::[B &gt;: A](x : B) : List[B] = new scala.::(x, this)
+  ...
+}</programlisting>
+<simpara id="para_the_new_list_is_of_type_scala">The new list will be of type <literal>List[B]</literal>, specifically a <literal>scala.::</literal>. The <literal>::</literal> <emphasis>class</emphasis> (as opposed to the <literal>::</literal> <emphasis>method</emphasis>) is derived from <literal>List</literal>. We’ll come back to it in a moment.</simpara>
+<simpara id="para_the_operator_can_prepend_">The <literal>::</literal> method can prepend an object of a different type from <literal>A</literal>, the type of the elements in the original list. The compiler will infer the closest common supertype for <literal>A</literal> and the parameter <literal>x</literal>. It will use that supertype as <literal>B</literal>. Here’s an example that prepends a different type of object on a list.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/bounds/list-ab-script.scala
+
+val languages = List("Scala", "Java", "Ruby", "C#", "C++", "Python")
+val list = 3.14 :: languages
+println(list)</programlisting>
+<simpara id="para_the_script_prints_the_followin">The script prints the following output.</simpara>
+<screen>List(3.14, Scala, Java, Ruby, C#, C++, Python)</screen>
+<simpara id="para_the_new_list_of_type_list_any">The new list of type <literal>List[Any]</literal>, since <literal>Any</literal> is the closest common supertype of <literal>String</literal> and <literal>Double</literal>. We started with a list of <literal>Strings</literal>, so <literal>A</literal> was <literal>String</literal>. Then we prepended a <literal>Double</literal>, so the compiler inferred <literal>B</literal> to be <literal>Any</literal>, the closest (and only) common supertype.</simpara>
+<note id="para_note_the_type_signature_b_"><simpara>The type signature <literal>B :&gt; A</literal> says that <literal>B</literal> must be a <emphasis>supertype</emphasis> of <literal>A</literal> or the same as <literal>A</literal>. There is no analog in Java; <literal>B super A</literal> is not supported.</simpara></note>
+</sect2>
+<sect2 id="ACloserLookAtLists">
+<title>A Closer Look at Lists</title>
+<simpara id="para_putting_these_features_togethe">Putting these features together, it’s worth looking at the implementation of the <literal>List</literal> class in the Scala library. It illustrates several useful idioms for functional-style, immutable data structures that are fully type safe, yet flexible. We won’t show the entire implementation, and we’ll omit the <literal>object List</literal>, many methods in the <literal>List</literal> class, and the comments that are used to generate the <emphasis>Scaladocs</emphasis>. We encourage you to look at the complete implementation of <literal>List</literal>, either by downloading the source distribution from the Scala web site [Scala] or by browsing to the implementation through the <emphasis>Scaladocs</emphasis> page for <literal>List</literal>. To avoid confusion with <literal>scala.List</literal>, we’ll use our own package and name, <literal>AbbrevList</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/bounds/abbrev-list.scala
+// Adapted from scala/List.scala in the Scala version 2.7.5 distribution.
+
+package bounds.abbrevlist
+
+sealed abstract class AbbrevList[+A] {
+
+  def isEmpty: Boolean
+  def head: A
+  def tail: AbbrevList[A]
+
+  def ::[B &gt;: A] (x: B): AbbrevList[B] = new bounds.abbrevlist.::(x, this)
+
+  final def foreach(f: A =&gt; Unit) = {
+    var these = this
+    while (!these.isEmpty) {
+      f(these.head)
+      these = these.tail
+    }
+  }
+}
+
+// The empty AbbrevList.
+
+case object AbbrevNil extends AbbrevList[Nothing] {
+  override def isEmpty = true
+
+  def head: Nothing =
+    throw new NoSuchElementException("head of empty AbbrevList")
+
+  def tail: AbbrevList[Nothing] =
+    throw new NoSuchElementException("tail of empty AbbrevList")
+}
+
+// A non-empty AbbrevList characterized by a head and a tail.
+
+final case class ::[B](private var hd: B,
+    private[abbrevlist] var tl: AbbrevList[B]) extends AbbrevList[B] {
+
+  override def isEmpty: Boolean = false
+  def head : B = hd
+  def tail : AbbrevList[B] = tl
+}</programlisting>
+<simpara id="para_notice_that_while_abbrevlist_">Notice that while <literal>AbbrevList</literal> is immutable, the internal implementation uses mutable variables, <emphasis>e.g.,</emphasis> in <literal>forEach</literal>.</simpara>
+<simpara id="para_there_are_three_types_defined_">There are three types defined, forming a sealed hierarchy. <literal>AbbrevList</literal> (the analog of <literal>List</literal>) is an abstract trait that declares three abstract methods, <literal>isEmpty</literal>, <literal>head</literal>, and <literal>tail</literal>. It defines the “cons” operator, <literal>::</literal> and a <literal>foreach</literal> method. All the other methods found in <literal>List</literal> could be implemented with these methods, although some methods (like <literal>List.length</literal>) use different implementation options for efficiency.</simpara>
+<simpara id="para__abbrevnil_is_the_analog_of_"><literal>AbbrevNil</literal> is the analog of <literal>Nil</literal>. It is a case object that extends <literal>AbbrevList[Nothing]</literal>. It returns true from <literal>isEmpty</literal> and it throws an exception from <literal>head</literal> and <literal>tail</literal>. Because <literal>AbbrevNil</literal> (and <literal>Nil</literal>) have essentially no state and behavior, having an object rather than a class eliminates unnecessary copies, makes <literal>equals</literal> fast and simple, <emphasis>etc.</emphasis></simpara>
+<simpara id="para_the_class_is_final_its_a">The <literal>::</literal> class is the analog of <literal>scala.::</literal> derived from <literal>List</literal>. It is declared final. Its arguments are the element to become the <literal>head</literal> of the new list and an existing list, which will be the <literal>tail</literal> of the new list. Note that these values are stored directly as fields. The <literal>head</literal> and <literal>tail</literal> methods defined in <literal>AbbrevList</literal> are just reader methods for these fields. There is no other data structure required to represent the list.</simpara>
+<simpara id="para_this_is_why_prepending_a_new_e">This is why prepending a new element to create a new list is an O(1) operation. The <literal>List</literal> class also has a deprecated method <literal>+</literal> for creating a new list by appending an element to the end of an existing list. That operation is O(N), where N is the length of the list.</simpara>
+<simpara id="para_as_you_build_up_new_lists_by_p">As you build up new lists by prepending elements to other lists, a nested hierarchy of <literal>::</literal> instances is created. Because the lists are immutable, there are no concerns about corruption if one of the <literal>::</literal> is changed in some way.</simpara>
+<simpara id="para_you_can_see_this_nesting_if_yo">You can see this nesting if you print out a list, exploiting the <literal>toString</literal> method generated because of the <literal>case</literal> keyword. Here is an example <userinput>scala</userinput> session.</simpara>
+<screen>$ scala -cp ...
+Welcome to Scala version 2.7.5.final ...
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala&gt; import bounds.abbrevlist._
+import bounds.abbrevlist._
+
+scala&gt; 1 :: 2 :: 3 :: AbbrevNil
+res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
+<simpara id="para_abbrevnil_to_string_output">Note the output on the last line, which shows the nesting of <literal>(head,tail)</literal> elements.</simpara>
+<simpara id="para_for_another_example_of_a_simil">For another example using similar approaches, this time for defining a Stack, see <ulink url="http://www.scala-lang.org/node/129">http://www.scala-lang.org/node/129</ulink>.</simpara>
+</sect2>
+<sect2 id="ViewsAndViewBounds">
+<title>Views and View Bounds</title>
+<simpara id="para_we_ve_seen_many_examples_where">We’ve seen many examples where an <literal>implicit</literal> method was used to convert one type to another, for example to give the appearance of adding new methods to an existing type, the so-called “pimp my library” pattern. We used this pattern extensively in <xref linkend="DomainSpecificLanguages"/>. You can also use function values that have the <literal>implicit</literal> keyword. We’ll see an examples of both shortly.</simpara>
+<simpara id="para_a__view__is_a_value_of_functio">A <emphasis>view</emphasis> is an implicit value of function type that converts a type <literal>A</literal> to <literal>B</literal>. The function has the type <literal>A =&gt; B</literal> or <literal>(=&gt; A) =&gt; B</literal> (recall that <literal>(=&gt; A)</literal> would a <emphasis>by-name parameter</emphasis>). An in-scope implicit method with the same signature can also be used as a view, <emphasis>e.g.,</emphasis> an implicit method imported from an <literal>object</literal>. The term <emphasis>view</emphasis> conveys the sense of having a view from one type (<literal>A</literal>) to another type (<literal>B</literal>).</simpara>
+<simpara id="para_a_view_is_applied_in_two_circu">A view is applied in two circumstances.</simpara>
+<orderedlist id="para_1_when_a_type_a_is_used_in_" numeration="arabic">
+<listitem>
+<simpara>
+When a type <literal>A</literal> is used in a context where another type <literal>B</literal> is expected and there is a view in scope that can convert <literal>A</literal> to <literal>B</literal>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+When a non-existent member <literal>m</literal> of a type <literal>A</literal> is referenced, but there is an in-scope view that can convert <literal>A</literal> to a <literal>B</literal> that has the <literal>m</literal> member.
+</simpara>
+</listitem>
+</orderedlist>
+<simpara id="para_a_common_example_of_the_second">A common example of the second circumstance is the <literal>x -&gt; y</literal> initialization syntax for <literal>Maps</literal>, which triggers invocation of <literal>Predef.anyToArrowAssoc(x)</literal>, as we discussed in <xref linkend="PredefObject"/> in <xref linkend="ScalaObjectSystem"/>.</simpara>
+<simpara id="para_for_the_first_case_predef_a">For an example of the first circumstance, <literal>Predef</literal> also defines many views for converting between <literal>AnyVal</literal> types and for converting an <literal>AnyVal</literal> type to its corresponding <literal>java.lang</literal> type. For example, <literal>double2Double</literal> converts a <literal>scala.Double</literal> to a <literal>java.lang.Double</literal>.</simpara>
+<simpara id="para_a__view_bound__a_b_is_i">A <emphasis>view bound</emphasis> in a type declaration is indicated with the <literal>&lt;%</literal> keyword, <emphasis>e.g.,</emphasis> <literal>A &lt;% B</literal>. It allows any type to be used for <literal>A</literal> if it can be converted to <literal>B</literal> using a view.</simpara>
+<simpara id="para_a_method_or_class_containing_s">A method or class containing such a type parameter is treated as being equivalent to a corresponding method or class with an extra argument list with one element, a view. For example, consider the following method defintion with a view bound.</simpara>
+<programlisting linenumbering="unnumbered">def m [A &lt;% B](arglist): R = ...</programlisting>
+<simpara id="para_it_is_effectively_this_method_">It is effectively the same as this method definition.</simpara>
+<programlisting linenumbering="unnumbered">def m [A](arglist)(implicit viewAB: A =&gt; B): R = ...</programlisting>
+<simpara id="para_the_implicit_parameter_view_">(The implicit parameter <literal>viewAB</literal> would be given a unique name by the compiler.) Note that we have an additional argument list, as opposed to an additional argument in the existing argument list.</simpara>
+<simpara id="para_why_does_view_bounds_trans_work">Why does this transformation work? We said that a valid <literal>A</literal> must have a view in scope that transforms it to a <literal>B</literal>. The implicit <literal>viewAB</literal> argument will get invoked inside <literal>m</literal> to convert all <literal>A</literal> instances to <literal>B</literal> instances where needed.</simpara>
+<simpara id="para_for_this_to_work_there_must_b">For this to work, there must be a view of the correct type in scope to satisfy the implicit argument. You could also pass a function with the correct signature explicitly as the second argument list when you call <literal>m</literal>. However, there is one situation where this won’t work, which we’ll describe after our example below.</simpara>
+<simpara id="para_for_view_bounds_on_types_the_">For view bounds on types, the implicit view argument list would be added to the primary constructor.</simpara>
+<note id="para_note_traits_can_t_have_view_b"><simpara>Traits can’t have view bounds for their type parameters, because they can’t have constructor argument lists.</simpara></note>
+<simpara id="para_to_make_this_more_concrete_le">To make this more concrete, let’s use view bounds to implement a <literal>LinkedList</literal> class that uses <literal>Nodes</literal>, where each <literal>Node</literal> has a <literal>payload</literal> and a reference to the next <literal>Node</literal> in the list. First, here is a hierarchy of <literal>Nodes</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/bounds/node.scala
+
+package bounds
+
+abstract trait Node[+A] {
+  def payload: A
+  def next: Node[A]
+}
+
+case class ::[+A](val payload: A, val next: Node[A]) extends Node[A] {
+  override def toString =
+    String.format("(%s :: %s)", payload.toString, next.toString)
+}
+
+object NilNode extends Node[Nothing] {
+  def payload = throw new NoSuchElementException("No payload in NilNode")
+  def next    = throw new NoSuchElementException("No next in NilNode")
+
+  override def toString = "*"
+}</programlisting>
+<simpara id="para_this_type_hierarchy_looks_a_lo">This type hierarchy is modeled after <literal>List</literal> and <literal>AbbrevList</literal> above. The <literal>::</literal> type represents intermediate nodes and <literal>NilNode</literal> is analogous to <literal>Nil</literal> for <literal>Lists</literal>. We also override <literal>toString</literal> to give us convenient output, which we’ll examine shortly.</simpara>
+<simpara id="para_the_following_script_defines_t">The following script defines a <literal>LinkedList</literal> type that uses <literal>Nodes</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/bounds/view-bounds-script.scala
+
+import bounds._
+
+implicit def any2Node[A](x: A): Node[A] = bounds.::[A](x, NilNode)
+
+case class LinkedList[A &lt;% Node[A]](val head: Node[A]) {
+
+  def ::[B &gt;: A &lt;% Node[B]](x: Node[B]) =
+    LinkedList(bounds.::(x.payload, head))
+
+  override def toString = head.toString
+}
+
+val list1 = LinkedList(1)
+val list2 = 2 :: list1
+val list3 = 3 :: list2
+val list4 = "FOUR!" :: list3
+
+println(list1)
+println(list2)
+println(list3)
+println(list4)</programlisting>
+<simpara id="para_it_starts_with_a_definition_of">It starts with a definition of a a parameterized implicit method, <literal>any2Node</literal>, that converts <literal>A</literal> to <literal>Node[A]</literal>. It will be used as the implicit view argument when we work with <literal>LinkedLists</literal>. It creates a “leaf” node using a <literal>bounds.::</literal> node with a reference to <literal>NilNode</literal> as the “next” element in the list.</simpara>
+<simpara id="para_an_alternative_would_be_a_func">An alternative would be a function value that converts <literal>Any</literal> to <literal>Node[Any]</literal>.</simpara>
+<programlisting linenumbering="unnumbered">implicit val any2Node = (a: Any) =&gt; bounds.::[Any](a, NilNode)</programlisting>
+<simpara id="para_otherwise_the_script_would_ru">Otherwise, the script would run the same, except that some of the temporary lists would be using <literal>Node[Any]</literal> rather than <literal>Node[Int]</literal>.</simpara>
+<simpara id="para_look_at_the_declaration_of_li">Look at the declaration of <literal>LinkedList</literal>.</simpara>
+<programlisting linenumbering="unnumbered">case class LinkedList[A &lt;% Node[A]](val head: Node[A]) { ... }</programlisting>
+<simpara id="para_it_defines_a_view_bound_on_a_">It defines a view bound on <literal>A</literal> and takes a single argument, the head <literal>Node</literal> of the list (which may be the head of a chain of <literal>Nodes</literal>). As we see later in the script, even though the constructor expects a <literal>Node[A]</literal> argument, we can pass it an <literal>A</literal> and the implicit view <literal>any2Node</literal> will get invoked. The beauty of this approach is that a client never has to worry about proper construction of <literal>Nodes</literal>. The machinery handles that process automatically.</simpara>
+<simpara id="para_the_class_also_has_a_cons_">The class also has a “cons” operator.</simpara>
+<programlisting linenumbering="unnumbered">def ::[B &gt;: A &lt;% Node[B]](x: Node[B]) = ...</programlisting>
+<simpara id="para_the_type_parameter_means_b_">The type parameter means ``<literal>B</literal> is lower bounded (<emphasis>i.e.,</emphasis> is a supertype of) <literal>A</literal> and <literal>B</literal> also has a view bound of <literal>B &lt;% Node[B]</literal>. As we saw for <literal>List</literal> and <literal>AbbrevList</literal>, the lower bound allows us to prepend items of different types from the original <literal>A</literal> type. This method will have its own implicit view argument, but our parameterized, implicit method, <literal>any2Node</literal>, will be used for this argument, too.</simpara>
+<simpara id="para_we_mentioned_previously_that_i">We mentioned previously that if you don’t have a view in scope, you could pass a “non-implicit” converter as the second argument list explicitly. This actually won’t work in our example, because the constructor and <literal>::</literal> method in <literal>LinkedList</literal> take <literal>Node[A]</literal> arguments, but we call them with <literal>Ints</literal> and <literal>Strings</literal>. We would have to call them with <literal>Node[Int]</literal> and <literal>Node[String]</literal> arguments explicitly. We would also have to invoke <literal>::</literal> in an ugly way, <literal>val list2 = list1.::(2)(converter)</literal>, for example.</simpara>
+<simpara id="para_even_though_it_looks_like_the_">Let’s clarify the syntax a bit. When you see <literal>B &gt;: A &lt;% Node[B]</literal>, it’s tempting to assume that the <literal>&lt;%</literal> should apply to <literal>A</literal> in this expression. It actually applies to <literal>B</literal>. The grammar for type parameters, including view bounds, is the following <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>.</simpara>
+<programlisting linenumbering="unnumbered">TypeParam ::= (id | ‘_’) [TypeParamClause] [‘&gt;:’ Type] [‘&lt;:’ Type] [‘&lt;%’ Type]
+TypeParamClause ::= ‘[’ VariantTypeParam {‘,’ VariantTypeParam} ‘]’
+VariantTypeParam ::= [‘+’ | ‘’] TypeParam</programlisting>
+<simpara id="para_so_yes_you_can_have_some_ver">So, yes, you can have some very complex, hierarchical types! In our <literal>::</literal> method, the <literal>id</literal> is <literal>B</literal>, the <literal>TypeParamClause</literal> is empty, and we have the <literal>&gt;: A</literal> and <literal>&lt;% Node[B]</literal> expressions on the right. Again, all the bounds expressions apply to the first <literal>id</literal> (<literal>B</literal>) or the underscore ‘_’.</simpara>
+<simpara id="para_you_would_use_the_underscore_">The underscore ‘_’ is used for <emphasis>existential types</emphasis>, which we’ll cover below, in <xref linkend="ExistentialTypes"/>.</simpara>
+<simpara id="para_finally_we_create_a_linkedli">Finally, we create a <literal>LinkedList</literal> in the script, prepend some values to create new lists, and then print them out.</simpara>
+<screen>1 :: *
+2 :: 1 :: *
+3 :: 2 :: 1 :: *
+FOUR! :: 3 :: 2 :: 1 :: *</screen>
+<simpara id="para_again_the_view_bounds_let_us_">To recap, the view bounds let us work with “payloads” of <literal>Ints</literal> and <literal>Strings</literal> while the implementation handled the necessary conversions to <literal>Nodes</literal>.</simpara>
+<simpara id="para_view_bounds_are_not_used_as_of">View bounds are not used as often as upper and lower bounds, but they provide an elegant mechanism for those times when automatic coercion from one type into another is useful. As always, use implicits with caution; implicit conversions are far from obvious when reading code and debugging mysterious behavior.</simpara>
+</sect2>
+</sect1>
+<sect1 id="NothingAndNull">
+<title>Nothing and Null</title>
+<simpara id="para_nothing_and_null">In <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/>, we mentioned that <literal>Null</literal> is a subtype of all <literal>AnyRef</literal> types and <literal>Nothing</literal> is a subtype of all types, including <literal>Null</literal>.</simpara>
+<simpara id="para__null_is_declared_as_a_final"><literal>Null</literal> is declared as a <literal>final trait</literal> (so it can’t be subtyped) and it has only one instance, <literal>null</literal>. Since <literal>Null</literal> is a subtype of all <literal>AnyRef</literal> types, you can always assign <literal>null</literal> as an instance of any of those types. Java, in contrast, simply treats <literal>null</literal> as a keyword with special handling by the compiler.</simpara>
+<simpara id="para_null_not_subtype_of_anyval">On the other hand, since <literal>Null</literal> is not a subtype of <literal>AnyVal</literal>, it is not possible to assign <literal>null</literal> to an <literal>Int</literal>, for example, which is also consistent with the primitive semantics in Java.</simpara>
+<simpara id="para_for_example_nil_is_of_type_"><literal>Nothing</literal> is also a <literal>final trait</literal>, but it has no instances. However, it is still useful for defining types. The best  example is <literal>Nil</literal>, the empty list, which is a <literal>case object</literal>. It is of type <literal>List[Nothing]</literal>. Because lists are covariant in Scala, as we saw above, this makes <literal>Nil</literal> an instance of <literal>List[T]</literal>, for any type T. We also exploited this feature above in our <literal>AbbrevList</literal> and <literal>LinkedList</literal> implementations.</simpara>
+</sect1>
+<sect1 id="_understanding_abstract_types">
+<title>Understanding Abstract Types</title>
+<simpara id="para_what_are_abstract_types">Besides parameterized types, which are common in statically-typed, object-oriented languages, Scala also supports abstract types, which are common in functional languages. We introduced abstract types in <xref linkend="AbstractTypesAndParameterizedTypes"/> in <xref linkend="TypeLessDoMore"/>.</simpara>
+<simpara id="para_these_two_features_overlap_som">These two features overlap somewhat. Technically, you could implement almost all the idioms that parameterized types support using abstract types and <emphasis>vice versa</emphasis>. However, in practice, each feature is a natural fit for different design problems.</simpara>
+<simpara id="para_recall_our_version_of_observe">Recall our version of <literal>Observer</literal> that uses abstract types in <xref linkend="AdvancedObjectOrientedProgramming"/>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/observer2.scala
+
+package observer
+
+trait AbstractSubject {
+  type Observer
+
+  private var observers = List[Observer]()
+  def addObserver(observer:Observer) = observers ::= observer
+  def notifyObservers = observers foreach (notify(_))
+
+  def notify(observer: Observer): Unit
+}
+
+trait SubjectForReceiveUpdateObservers extends AbstractSubject {
+  type Observer = { def receiveUpdate(subject: Any) }
+
+  def notify(observer: Observer): Unit = observer.receiveUpdate(this)
+}
+
+trait SubjectForFunctionalObservers extends AbstractSubject {
+  type Observer = (AbstractSubject) =&gt; Unit
+
+  def notify(observer: Observer): Unit = observer(this)
+}</programlisting>
+<simpara id="para__abstractsubject_declares_a_t"><literal>AbstractSubject</literal> declares a type <literal>Observer</literal> with no type bounds. It is defined in the two derived traits. In <literal>SubjectForReceiveUpdateObservers</literal>, it is defined to be a <emphasis>structural type</emphasis>. In <literal>SubjectForFunctionalObservers</literal>, it is defined to be a <emphasis>function type</emphasis>. We’ll have more to say about structural and function types later in this chapter.</simpara>
+<simpara id="para_we_can_also_use_type_bounds_wh">We can also use type bounds when we declare or refine the declaration of abstract types. We saw a simple example previously in this chapter in <xref linkend="TypeProjections"/> where we had a declaration <literal>type t &lt;: AnyRef</literal>. That is, <literal>t</literal> had an <emphasis>upper type bound</emphasis> (superclass) of <literal>AnyRef</literal>. <literal>AnyVal</literal> types weren’t allowed.</simpara>
+<simpara id="para_we_can_also_have__lower_bounds">We can also have <emphasis>lower type bounds</emphasis> (subclasses) and we can use most of the <emphasis>value type</emphasis> (see <xref linkend="ValueTypes"/> below) in the bounds expressions. Here is an example illustrating the most common options.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/abstracttypes/abs-type-examples-script.scala
+
+trait exampleTrait {
+  type t1               // Unconstrained
+  type t2 &gt;: t3 &lt;: t1   // t2 must be a supertype of t3 and a subtype of t1
+  type t3 &lt;: t1         // t3 must be a subtype of t1
+  type t4               // Unconstrained
+  type t5 = List[t4]    // List of t4, whatever t4 will eventually be...
+
+  val v1: t1            // Can't initialize until t1 defined.
+  val v3: t3            // etc.
+  val v2: t2            // ...
+  val v4: t4            // ...
+  val v5: t5            // ...
+}
+
+trait T1 { val name1: String }
+trait T2 extends T1 { val name2: String }
+class C(val name1: String, val name2: String) extends T2
+
+object example extends exampleTrait {
+  type t1 = T1
+  type t2 = T2
+  type t3 = C
+  type t4 = Int
+
+  val v1 = new T1 { val name1 = "T1"}
+  val v3 = new C("C1", "C2")
+  val v2 = new T2 { val name1 = "T1"; val name2 = "T2" }
+  val v4 = 10
+  val v5 = List(1,2,3,4,5)
+}</programlisting>
+<simpara id="para_the_comments_explain_most_of_t">The comments explain most of the details. The relationships between <literal>t1</literal>, <literal>t2</literal>, and <literal>t3</literal> have some interesting points. First, the declaration of <literal>t2</literal> says that it must be “between” <literal>t1</literal> and <literal>t3</literal>. Whatever <literal>t1</literal> becomes, it must be a super class of <literal>t2</literal> (or equal to it) and <literal>t3</literal> must be a subclass of <literal>t2</literal> (or equal to it).</simpara>
+<simpara id="para_remember_from_typebounds">Remember from <xref linkend="TypeBounds"/> that we are making a declaration of the <emphasis>first</emphasis> type after the <literal>type</literal> keyword, <literal>t2</literal>, not the type in the middle, <literal>t3</literal>. The rest of the expression is telling us the bounds of <literal>t2</literal>.</simpara>
+<simpara id="para_consider_the_next_line_that_de">Consider the next line that declares <literal>t3</literal> to be a subtype of <literal>t1</literal>. If you were to omit the type bound, the compiler would throw an error, because <literal>t3 &lt;: t1</literal> is implied by the previous declaration of <literal>t2</literal>. That doesn’t mean that you can leave out the declaration of <literal>t3</literal>. It has to be there, but it also has to show a consistent type bound with the one implied in the <literal>t2</literal> declaration.</simpara>
+<simpara id="para_when_we_revisit_the_observer_p">When we revisit the Observer pattern in <xref linkend="SelfTypeAnnotationsAndAbstractTypeMembers"/> in <xref linkend="ApplicationDesign"/>, we’ll see another example of type bounds used on abstract types. We’ll see a problem they can cause, along with an elegant solution.</simpara>
+<simpara id="para_finally_abstract_types_don_t_">Finally, abstract types don’t have variance annotations.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/abstracttypes/abs-type-variances-wont-compile.scala
+// WON'T COMPILE
+
+trait T1 { val name1: String }
+trait T2 extends T1 { val name2: String }
+class C(val name1: String, val name2: String) extends T2
+
+trait T {
+  type t: +T1   // ERROR, no +/- type variance annotations
+  val v
+}</programlisting>
+<simpara id="para_remember_that_the_types_are__m">Remember that the abstract types are <emphasis>members</emphasis> of the enclosing type, not type parameters, as for parameterized types. The enclosing type may have an inheritance relationship with other types, but member types behave just like member methods and variables. They don’t affect the inheritance relationships of their enclosing type. Like other members, abstract types can be declared abstract or concrete. However, they can also be refined in subtypes without being fully defined, unlike variables and methods. Of course, instances can only be created when the abstract types are given concrete definitions.</simpara>
+<sect2 id="_parameterized_types_vs_abstract_types">
+<title>Parameterized Types vs. Abstract Types</title>
+<simpara id="para_when_to_use_one__vs___the_othe">When should you use parameterized types <emphasis>vs.</emphasis> abstract types? Parameterized types are the most natural fit for parameterized container types like <literal>List</literal> and <literal>Option</literal>. Consider the declaration of <literal>Some</literal> from the standard library.</simpara>
+<programlisting linenumbering="unnumbered">case final class Some[+A](val x : A) { ... }</programlisting>
+<simpara id="para_if_we_tried_to_convert_this_to">If we tried to convert this to use abstract types, we might start with the following.</simpara>
+<programlisting linenumbering="unnumbered">case final class Some(val x : ???) {
+  type A
+  ...
+}</programlisting>
+<simpara id="para_what_should_be_the_type_of_the">What should be the type of the field <literal>x</literal>? We can’t use <literal>A</literal> because it’s not in scope at the point of the constructor argument. We could use <literal>Any</literal>, but that defeats the value of having appropriately-typed declarations.</simpara>
+<simpara id="para_if_a_type_will_have_constructo">If a type will have constructor arguments declared using a “placeholder” type that has not yet been defined, then parameterized types are the only good solution (short of using <literal>Any</literal> or <literal>AnyRef</literal>).</simpara>
+<simpara id="para_you_can_use_abstract_types_as_">You can use abstract types as method arguments and return values within a function. However, two problems can arise. First, you can run into problems with path-dependent types (discussed below in <xref linkend="PathDependentTypes"/>), where the compiler thinks you are trying to use an incompatible type in a particular context when in fact they are paths to compatible types. Second, it’s awkward to express methods like <literal>List.::</literal> (“cons”) using abstract types where type changes (expansion in this case) can occur.</simpara>
+<programlisting linenumbering="unnumbered">class List[+A] {
+  ...
+  def ::[B &gt;: A](x : B) : List[B] = new scala.::(x, this)
+  ...
+}</programlisting>
+<simpara id="para_also_if_you_want_to_express_v">Also, if you want to express variance under inheritance that is tied to the type abstractions, then parameterized types with variance annotations make these behaviors obvious and explicit.</simpara>
+<simpara id="para_these_limitations_of_abstract_">These limitations of abstract types really reflect the tension between object-oriented inheritance and the origin of abstract types in pure functional programming type systems, which don’t have inheritance. Parameterized types are more popular in object-oriented languages because they handle inheritance more naturally in most circumstances.</simpara>
+<simpara id="para_on_the_other_hand_when_you_wa">On the other hand, sometimes it’s useful to refer to a type abstraction as a member of another type, as opposed to a parameter used to construct new types from a parameterized type. Refining an abstract type declaration through a series of enclosing type refinements can be quite elegant.</simpara>
+<programlisting linenumbering="unnumbered">trait T1 {
+  type t
+  val v: t
+}
+trait T2 extends T1 {
+  type t &lt;: SomeType1
+}
+trait T3 extends T2 {
+  type t &lt;: SomeType2  // where SomeType2 &lt;: SomeType1
+}
+class C extends T3 {
+  type t = Concrete    // where Concrete &lt;: SomeType2
+  val v = new Concrete(...)
+}
+...</programlisting>
+<simpara id="para_abstract_types_are_often_used_">This example also shows that abstract types are often used to declare abstract variables of the same type. Less frequently, they are used for method declarations.</simpara>
+<simpara id="para_when_the_abstract_variables_ar">When the abstract variables are eventually made concrete, they can either be defined inside the type body, much as they were originally declared, or they can be initialized through constructor arguments. Using constructor arguments lets the user decide on the actual values, while initializing them in the body lets the type designer decide on the appropriate value.</simpara>
+<simpara id="para_we_used_constructor_arguments_">We used constructor arguments in the brief <literal>BulkReader</literal> example we presented in  <xref linkend="AbstractTypesAndParameterizedTypes"/> in <xref linkend="TypeLessDoMore"/>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
+
+import java.io._
+
+abstract class BulkReader {
+  type In
+  val source: In
+  def read: String
+}
+
+class StringBulkReader(val source: String) extends BulkReader {
+  type In = String
+  def read = source
+}
+
+class FileBulkReader(val source: File) extends BulkReader {
+  type In = File
+  def read = {
+    val in = new BufferedInputStream(new FileInputStream(source))
+    val numBytes = in.available()
+    val bytes = new Array[Byte](numBytes)
+    in.read(bytes, 0, numBytes)
+    new String(bytes)
+  }
+}
+
+println( new StringBulkReader("Hello Scala!").read )
+println( new FileBulkReader(new File("abstract-types-script.scala")).read )</programlisting>
+<simpara id="para_if_you_come_from_an_object_ori">If you come from an object-oriented background, you will naturally tend to use parameterized types more often than abstract types. The Scala standard library tends to emphasize parameterized types, too. Still, you should learn the merits of abstract types and use them when they make sense.</simpara>
+</sect2>
+</sect1>
+<sect1 id="PathDependentTypes">
+<title>Path-Dependent Types</title>
+<simpara id="para_languages_that_let_you_nest_ty">Languages that let you nest types provide ways to refer to those type <emphasis>paths</emphasis>. Scala provides a rich syntax for path-dependent types. Although you will probably use them rarely, it’s useful to understand the basics, as compiler errors often contain type paths.</simpara>
+<simpara id="para_path_dependent_types">Consider the following example.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/typepaths/type-path-wont-compile.scala
+// ERROR: Won't compile
+
+trait Service {
+  trait Logger {
+    def log(message: String): Unit
+  }
+  val logger: Logger
+
+  def run = {
+    logger.log("Starting " + getClass.getSimpleName + ":")
+    doRun
+  }
+
+  protected def doRun: Boolean
+}
+
+object MyService1 extends Service {
+  class MyService1Logger extends Logger {
+    def log(message: String) = println("1: "+message)
+  }
+  override val logger = new MyService1Logger
+  def doRun = true  // do some real work...
+}
+
+object MyService2 extends Service {
+  override val logger = MyService1.logger  // ERROR
+  def doRun = true  // do some real work...
+}</programlisting>
+<simpara id="para_if_you_compile_this_file_you_g">If you compile this file you get the following error.</simpara>
+<screen>...:27: error: error overriding value logger in trait Service of type \
+    MyService2.Logger;
+ value logger has incompatible type MyService1.MyService1Logger
+  override val logger = MyService1.logger  // ERROR
+               ^
+one error found</screen>
+<simpara id="para_the_error_says_that_the_logge">The error says that the <literal>logger</literal> value in <literal>MyService2</literal> on line 25 has type <literal>MyService2.Logger</literal>, even though it’s declared to be of type <literal>Logger</literal> in the parent <literal>Service</literal> trait. Also, we’re trying to assign it a value of type <literal>MyService1.MyService1Logger</literal>.</simpara>
+<simpara id="para_these_three_types_are_differen">These three types are different in Scala. <literal>Logger</literal> is nested in <literal>Service</literal>, which is the parent of <literal>MyService1</literal> and <literal>MyService2</literal>. In Scala, that means that the the nested <literal>Logger</literal> type is unique for each of the service types. The actual type is <emphasis>path dependent</emphasis>.</simpara>
+<simpara id="para_in_this_case_the_easiest_solu">In this case, the easiest solution is to move the declaration of <literal>Logger</literal> outside of <literal>Service</literal>, thereby removing the path dependency. In other cases, it’s possible to qualify the type so that it resolves to what you want.</simpara>
+<simpara id="para_there_are_several_kinds_of_typ">There are several kinds of type paths.</simpara>
+<sect2 id="_c_this">
+<title>C.this</title>
+<simpara id="para_for_a_class_c_you_can_use_c_">For a class C, you can use <literal>C.this</literal> or <literal>this</literal> inside the body to refer to the current instance.</simpara>
+<programlisting linenumbering="unnumbered">class C1 {
+  var x = "1"
+  def setX1(x:String) = this.x = x
+  def setX2(x:String) = C1.this.x = x
+}</programlisting>
+<simpara id="para_both_setx1_and_setx2_have_">Both <literal>setX1</literal> and <literal>setX2</literal> have the same effect, because <literal>C1.this</literal> is equivalent to <literal>this</literal>.</simpara>
+<simpara id="para_inside_a_type_body_and_outside">Inside a type body and outside a method definition, <literal>this</literal> refers to the type itself.</simpara>
+<programlisting linenumbering="unnumbered">trait T1 {
+  class C
+  val c1 = new C
+  val c2 = new this.C
+}</programlisting>
+<simpara id="para_the_values_c1_and_c2_have_">The values <literal>c1</literal> and <literal>c2</literal> have the same type. The <literal>this</literal> in the expression <literal>this.C</literal> refers to the trait <literal>T1</literal>.</simpara>
+</sect2>
+<sect2 id="_c_super">
+<title>C.super</title>
+<simpara id="para_you_can_refer_specifically_to_">You can refer specifically to the parent of a type with <literal>super</literal>.</simpara>
+<programlisting linenumbering="unnumbered">class C2 extends C1
+class C3 extends C2 {
+  def setX3(x:String) = super.setX1(x)
+  def setX4(x:String) = C3.super.setX1(x)
+  def setX5(x:String) = C3.super[C2].setX1(x)
+}</programlisting>
+<simpara id="para__c3_super_is_equivalent_to_s"><literal>C3.super</literal> is equivalent to <literal>super</literal> in this example. If you want to refer specifically to one of the parents of a type, you can qualify <literal>super</literal> with the type, as shown in <literal>setX5</literal>. This is particularly useful for the case where a type mixes in several traits, each of which overrides the same method. If you need access to one of the methods in a specific trait, you can qualify <literal>super</literal>. However, this qualification can’t refer to “grandparent” types.</simpara>
+<simpara id="para_super_and_linearization">What if you are calling <literal>super</literal> in a class with several mixins and it extends another type? To which type does <literal>super</literal> bind?  Without the qualification, the rules of <emphasis>linearization</emphasis> determine the target of <literal>super</literal> (see <xref linkend="Linearization"/> in <xref linkend="ScalaObjectSystem"/>).</simpara>
+<simpara id="para_just_as_for_this_you_can_us">Just as for <literal>this</literal>, you can use <literal>super</literal> to refer to the parent type in a type body outside a method.</simpara>
+<programlisting linenumbering="unnumbered">class C4 {
+  class C5
+}
+class C6 extends C4 {
+  val c5a = new C5
+  val c5b = new super.C5
+}</programlisting>
+<simpara id="para_both_c5a_and_c5b_have_the_">Both <literal>c5a</literal> and <literal>c5b</literal> have the same type.</simpara>
+</sect2>
+<sect2 id="_path_x">
+<title>path.x</title>
+<simpara id="para_you_can_reach_a_nested_type_">You can reach a nested type with a period-delimited path expression.</simpara>
+<programlisting linenumbering="unnumbered">package P1 {
+  object O1 {
+    object O2 {
+      val name = "name"
+    }
+  }
+}
+class C7 {
+  val name = P1.O1.O2.name
+}</programlisting>
+<simpara id="para_the_elements_of_a_type_path_mu"><literal>C7.name</literal> uses a path to the <literal>name</literal> value in <literal>O2</literal>. The elements of a type path must be <emphasis>stable</emphasis>, which roughly means that all elements in the path must be packages, singleton objects, or type declarations that alias the same. The last element in the path can be a class or trait. See <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/> for the details.</simpara>
+<programlisting linenumbering="unnumbered">object O3 {
+  object O4 {
+    type t = java.io.File
+    class C
+    trait T
+  }
+  class C2 {
+    type t = Int
+  }
+}
+class C8 {
+  type t1 = O3.O4.t
+  type t2 = O3.O4.C
+  type t3 = O3.O4.T
+//  type t4 = O3.C2.t   // ERROR: C2 is not a "value" in O3
+}</programlisting>
+</sect2>
+</sect1>
+<sect1 id="ValueTypes">
+<title>Value Types</title>
+<simpara id="para_because_scala_is_a_strongly_an">Because Scala is strongly and statically typed, every value has a type. The term <emphasis>value types</emphasis> refers to all the different forms these types take, so it encompasses many forms that are now familiar to us, plus a few new ones we haven’t encountered until now.</simpara>
+<warning id="para_warning_we_are_using_the_term"><simpara>We are using the term <emphasis>value type</emphasis> here in the same way the term is used by <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>. However, elsewhere in the book we also follow the specification’s overloaded use of the term to refer to all subtypes of <literal>AnyVal</literal>.</simpara></warning>
+<sect2 id="_type_designators">
+<title>Type Designators</title>
+<simpara id="para_the_conventional_type_ids_we_c">The conventional type ids we commonly use are called <emphasis>type designators</emphasis>.</simpara>
+<programlisting linenumbering="unnumbered">class Person              // "Person" is a type designator
+object O { type t }       // "O"
+...</programlisting>
+<simpara id="para_they_are_actually_a_short_hand">They are actually a short hand syntax for <emphasis>type projections</emphasis>, which we cover below.</simpara>
+</sect2>
+<sect2 id="_tuples">
+<title>Tuples</title>
+<simpara id="para_a_value_of_the_form_x_1_">A value of the form <literal>(x</literal><subscript>1</subscript><literal>, … x</literal><subscript>N</subscript><literal>)</literal> is a tuple value type.</simpara>
+</sect2>
+<sect2 id="_parameterized_types">
+<title>Parameterized Types</title>
+<simpara id="para_when_we_create_a_type_from_a_t">When we create a type from a parameterized type, e.g., <literal>List[Int]</literal> and <literal>List[String]</literal> from <literal>List[A]</literal>, the types <literal>List[Int]</literal> and <literal>List[String]</literal> are value types, because they are associated with declared values, <emphasis>e.g.,</emphasis> <literal>val names = List[String]</literal>.</simpara>
+</sect2>
+<sect2 id="_annotated_types">
+<title>Annotated Types</title>
+<simpara id="para_when_we_annotate_a_type__e_g_">When we annotate a type, <emphasis>e.g.,</emphasis> <literal>@serializable @cloneable class C(val x:String)</literal>, the actual type includes the annotations.</simpara>
+</sect2>
+<sect2 id="_compound_types">
+<title>Compound Types</title>
+<simpara id="para_a_declaration_of_the_form_t_">A declaration of the form <literal>T</literal><subscript>1</subscript><literal> extends T</literal><subscript>2</subscript><literal> with T</literal><subscript>3</subscript><literal> { R }</literal>, where <literal>R</literal> is the <emphasis>refinement</emphasis> (body), declares a compound type. Any declarations in the refinement are part of the compound type definition. The notion of compound types accounts for the fact not all types are named, since we can have anonymous types, such as this example <userinput>scala</userinput> session.</simpara>
+<screen>scala&gt; val x = new T1 with T2 {
+        type z = String
+        val v: z = "Z"
+}
+x: java.lang.Object with T1 with T2{type z = String; def zv: this.z} = \
+    $anon$1@9d9347d</screen>
+<simpara id="para_note_that_path_dependent_type_">Note that path-dependent type <literal>this.z</literal> in the output.</simpara>
+<simpara id="para_a_particularly_interesting_cas">A particularly interesting case is a declaration of the form <literal>val x = new { R }</literal>, <emphasis>i.e.,</emphasis> without any type ids. This is equivalent to <literal>val x = new AnyRef { R }</literal>.</simpara>
+</sect2>
+<sect2 id="_infix_types">
+<title>Infix Types</title>
+<simpara id="para_some_parameterized_types_take_">Some parameterized types take two type arguments, <emphasis>e.g.,</emphasis> <literal>scala.Either[+A,+B]</literal>. Scala allows you to declare instances of these types using an infix notation, <emphasis>e.g.,</emphasis> <literal>a Either b. Consider the following script that uses +Either</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/infix-types-script.scala
+
+def attempt(operation: =&gt; Boolean): Throwable Either Boolean = try {
+  Right(operation)
+} catch {
+  case t: Throwable =&gt; Left(t)
+}
+
+println(attempt { throw new RuntimeException("Boo!") })
+println(attempt { true })
+println(attempt { false })</programlisting>
+<simpara id="para_the_attempt_method_will_eval">The <literal>attempt</literal> method will evaluate the <emphasis>call-by-value</emphasis> parameter <literal>operation</literal> and return its <literal>Boolean</literal> result, wrapped in a <literal>Right</literal> <emphasis>or</emphasis> any <literal>Throwable</literal> that is caught, wrapped in a <literal>Left</literal>. The script produces this output.</simpara>
+<screen>Left(java.lang.RuntimeException: Boo!)
+Right(true)
+Right(false)</screen>
+<simpara id="para_notice_the_return_value_thro">Notice the declared return value, <literal>Throwable Either Boolean</literal>. It is identical to <literal>Either[Throwable, Boolean]</literal>. Recall from <xref linkend="ScalaTypeHierarchy"/> that when using this exception-handling idiom with <literal>Either</literal>, it is conventional to use <literal>Left</literal> for the exception and <literal>Right</literal> for the normal return value.</simpara>
+</sect2>
+<sect2 id="FunctionTypes">
+<title>Function Types</title>
+<simpara id="para_about_function_types">The functions we have been writing are also types. <literal>(T</literal><subscript>1</subscript><literal>, T</literal><subscript>2</subscript><literal>, … T</literal><subscript>N</subscript><literal>) =&gt; R</literal> is the type for all functions that take <literal>N</literal> arguments and return a value of type <literal>R</literal>.</simpara>
+<simpara id="para_when_there_is_only_one_argumen">When there is only one argument, you can drop the parentheses, <literal>T =&gt; R</literal>. A Function that takes a <emphasis>call-by-name</emphasis> parameter (as discussed in <xref linkend="FunctionalProgramming"/>) has the type <literal>(=&gt;T) =&gt; R</literal>. We used a call-by-name argument in our <literal>attempt</literal> example in the previous section.</simpara>
+<simpara id="para_recall_that_everything_in_scal">Recall that everything in Scala is an object, even functions. The Scala library defines traits for each <literal>FunctionN</literal>, for <literal>N</literal> from <literal>0</literal> to <literal>22</literal>, inclusive. Here, for example, is the version 2.7.5 source for <literal>scala.Function3</literal>, omitting most comments and a few other details that don’t concern us now.</simpara>
+<programlisting linenumbering="unnumbered">// From Scala version 2.7.5: scala.Function3 (excerpt).
+package scala
+
+trait Function3[-T1, -T2, -T3, +R] extends AnyRef {
+  def apply(v1:T1, v2:T2, v3:T3): R
+  override def toString() = "&lt;function&gt;"
+
+  /** f(x1,x2,x3)  == (f.curry)(x1)(x2)(x3)
+   */
+  def curry: T1 =&gt; T2 =&gt; T3 =&gt; R = {
+    (x1: T1) =&gt; (x2: T2) =&gt; (x3: T3) =&gt; apply(x1,x2,x3)
+  }
+}</programlisting>
+<simpara id="para_as_we_discussed_in_varianceu">As we discussed in <xref linkend="VarianceUnderInheritance"/> above, The <literal>FunctionN</literal> traits are <emphasis>contravariant</emphasis> in the type parameters for the arguments and <emphasis>covariant</emphasis> in the return type parameter.</simpara>
+<simpara id="para_recall_that_when_you_reference">Recall that when you reference any object followed by an argument list, Scala calls the <literal>apply</literal> method on the object. In this way, any object with an <literal>apply</literal> method can also be considered a function, providing a nice symmetry with the object-oriented nature of Scala.</simpara>
+<simpara id="para_when_you_define_a_function_val">When you define a function value, the compiler instantiates the appropriate <literal>FunctionN</literal> object and uses your definition of the function as the body of <literal>apply</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/function-types-script.scala
+
+val capitalizer = (s: String) =&gt; s.toUpperCase
+
+val capitalizer2 = new Function1[String,String] {
+  def apply(s: String) = s.toUpperCase
+}
+
+println( List("Programming", "Scala") map capitalizer)
+println( List("Programming", "Scala") map capitalizer2)</programlisting>
+<simpara id="para_the_capitalizer_and_capital">The <literal>capitalizer</literal> and <literal>capitalizer2</literal> function values are effectively the same, where the latter mimics the compiler’s output.</simpara>
+<simpara id="para_the_curry_method_returns_a_n">We discussed the <literal>curry</literal> method previously in <xref linkend="Currying"/> in <xref linkend="FunctionalProgramming"/>. It returns a new function with <literal>N</literal> argument lists, each of which has a single argument taken from the original argument list of <literal>N</literal> arguments. Note that the same <literal>apply</literal> method is invoked.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/curried-function-script.scala
+
+val f  = (x: Double, y: Double, z: Double) =&gt; x * y / z
+val fc = f.curry
+
+val answer1 = f(2., 5., 4.)
+val answer2 = fc(2.)(5.)(4.)
+println( answer1 + " == " + answer2 + "? " + (answer1 == answer2))
+
+val fc1 = fc(2.)
+val fc2 = fc1(5.)
+val answer3 = fc2(4.)
+println( answer3 + " == " + answer2 + "? " + (answer3 == answer2))</programlisting>
+<simpara id="para_curried_function_script_output">This script produces the following output.</simpara>
+<screen>2.5 == 2.5? true
+2.5 == 2.5? true</screen>
+<simpara id="para_in_the_first_part_of_the_scrip">In the first part of the script, we define a <literal>Function3</literal> value <literal>f</literal> that does <literal>Double</literal> arithmetic. We create a new function value <literal>fc</literal> by currying <literal>f</literal>. Then we call both functions with the same arguments and print out the results. As expected, they both produce the same output. (There are no concerns about rounding errors in the comparison here; recall that both functions call the same <literal>apply</literal> method, so they must return the same value.)</simpara>
+<simpara id="para_in_the_second_part_of_the_scri">In the second part of the script, we exploit the feature of curried functions that we can <emphasis>partially apply</emphasis> arguments, creating new functions, until we apply all the arguments. The example also helps us make sense of the declaration of <literal>curry</literal> in <literal>Function3</literal>.</simpara>
+<simpara id="para_functions_are_right_associativ">Functions are right-associative, so a type <literal>T1 =&gt; T2 =&gt; T3 =&gt; R</literal> is equivalent to <literal>T1 =&gt; (T2 =&gt; (T3 =&gt; R))</literal>. We see this in the script. In the statement <literal>val fc1 = fc(2.)</literal>, we call <literal>fc</literal> with just the first argument list (corresponding to <literal>T1</literal> equals <literal>Double</literal>). It returns a <emphasis>new</emphasis> function of type <literal>T2 =&gt; (T3 =&gt; R)</literal> or <literal>Double =&gt; (Double =&gt; Double)</literal>, in our case.</simpara>
+<simpara id="para_next_in_val_fc2_fc1_5_">Next, in <literal>val fc2 = fc1(5.)</literal>, we supply the second (<literal>T2</literal>) argument, returning a new function of type <literal>T3 =&gt; R</literal>, that is <literal>Double =&gt; Double</literal>. Finally, in <literal>val answer3 = fc2(4.)</literal> we supply the last argument to compute the value of type <literal>R</literal>, that is <literal>Double</literal>.</simpara>
+<note id="para_note_a_type_t1_062_t2_"><simpara>A type <literal>T1 =&gt; T2 =&gt; T3 =&gt; R</literal> is equivalent to <literal>T1 =&gt; (T2 =&gt; (T3 =&gt; R))</literal>. When we call a function of this type with a value for <literal>T1</literal>, it returns a new function of type <literal>T2 =&gt; (T3 =&gt; R)</literal>, and so forth.</simpara></note>
+<simpara id="para_finally_since_functions_are_i">Finally, since functions are instances of traits, you can use the traits as parents of other types. In the Scala library, <literal>Seq[+A]</literal> is a subclass of <literal>PartialFunction[Int,A]</literal>, which is a subclass of <literal>(Int) = A</literal>, <emphasis>i.e.,</emphasis> <literal>Function1[Int,A]</literal>.</simpara>
+</sect2>
+<sect2 id="TypeProjections">
+<title>Type Projections</title>
+<simpara id="para_about_type_projections"><emphasis>Type projections</emphasis> are a way to refer to a type declaration nested in another type.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/type-projection-script.scala
+
+trait T {
+  type t &lt;: AnyRef
+}
+class C1 extends T {
+  type t = String
+}
+class C2 extends C1
+
+val ic1: C1#t = "C1"
+val ic2: C2#t = "C2"
+println(ic1)
+println(ic2)</programlisting>
+<simpara id="para_type_proj_output">Both <literal>C1#t</literal> and <literal>C2#t</literal> are <literal>String</literal>. You can also reference the abstract type <literal>T#t</literal>, but you can’t use it in a declaration because it is abstract.</simpara>
+</sect2>
+<sect2 id="_singleton_types">
+<title>Singleton Types</title>
+<simpara id="para_about_singleton_types">If you have a value <literal>v</literal> of a subtype of <literal>AnyRef</literal>, including <literal>null</literal>, you can get its <emphasis>singleton type</emphasis> using the expression <literal>v.type</literal>. These expressions can be used as types in declarations. This feature is useful on rare occasions to work around the fact that types are path dependent, which we discussed in <xref linkend="PathDependentTypes"/> above. In these cases an object may have a path dependent type that appears to be incompatible with another path dependent type, when in fact they are compatible. Using the <literal>v.type</literal> expression retrieves the singleton type, a “unique” type that eliminates the path dependency. Two values <literal>v1</literal> and <literal>v2</literal> may have different path-dependent types, but they could have the same singleton type.</simpara>
+<simpara id="para_this_example_uses_the_singleto">This example uses the singleton type for one value in a declaration of another.</simpara>
+<programlisting linenumbering="unnumbered">class C {
+  val x = "Cx"
+}
+val c = new C
+val x: c.x.type = c.x</programlisting>
+</sect2>
+</sect1>
+<sect1 id="SelfTypeAnnotations">
+<title>Self Type Annotations</title>
+<simpara id="para_self_types">You can use <literal>this</literal> in a method to refer to the enclosing type, which is useful for referencing a member of the type. Using <literal>this</literal> is not usually necessary for this purpose, but it’s useful occasionally for disambiguating a reference when several values are in scope with the same name. By default, the type of <literal>this</literal> is the same as the enclosing type, but this is not really essential.</simpara>
+<simpara id="para__self_type_annotations__let_yo"><emphasis>Self-type annotations</emphasis> let you specify additional type expectations for <literal>this</literal> and they can be used to create aliases for <literal>this</literal>. Let’s consider the latter case first.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/selftype/this-alias-script.scala
+
+class C1 { self =&gt;
+  def talk(message: String) = println("C1.talk: " + message)
+  class C2 {
+    class C3 {
+      def talk(message: String) = self.talk("C3.talk: " + message)
+    }
+    val c3 = new C3
+  }
+  val c2 = new C2
+}
+val c1 = new C1
+c1.talk("Hello")
+c1.c2.c3.talk("World")</programlisting>
+<simpara id="para_this_alias_script_output">It prints the following.</simpara>
+<screen>C1.talk: Hello
+C1.talk: C3.talk: World</screen>
+<simpara id="para_we_give_the_outer_scope_c1_">We give the outer scope (<literal>C1</literal>) <literal>this</literal> the alias <literal>self</literal>, so we can easily refer to it in <literal>C3</literal>. We could use <literal>self</literal> within any method inside the body of <literal>C1</literal> or its nested types. Note that the name <literal>self</literal> is arbitrary, but it is somewhat conventional. In fact, you could say <literal>this =&gt;</literal>, but it would be completely redundant.</simpara>
+<simpara id="para_if_the_self_type_annotation_ha">If the self-type annotation has types in the annotation, we get some very different benefits.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/selftype/selftype-script.scala
+
+trait Persistence {
+  def startPersistence: Unit
+}
+
+trait Midtier {
+  def startMidtier: Unit
+}
+
+trait UI {
+  def startUI: Unit
+}
+
+trait Database extends Persistence {
+  def startPersistence = println("Starting Database")
+}
+
+trait ComputeCluster extends Midtier {
+  def startMidtier = println("Starting ComputeCluster")
+}
+
+trait WebUI extends UI {
+  def startUI = println("Starting WebUI")
+}
+
+trait App {
+  self: Persistence with Midtier with UI =&gt;
+
+  def run = {
+    startPersistence
+    startMidtier
+    startUI
+  }
+}
+
+object MyApp extends App with Database with ComputeCluster with WebUI
+
+MyApp.run</programlisting>
+<simpara id="para_this_script_shows_a_schematic_">This script shows a schematic layout for an <literal>App</literal> (application) infrastructure supporting several tiers/components, persistent storage, midtier, and UI. We’ll explore this approach to component design in more detail in <xref linkend="ApplicationDesign"/>.</simpara>
+<simpara id="para_for_now_we_just_care_about_th">For now, we just care about the role of self types. Each abstract trait declares a “start” method that does the work of initializing the tier. (We’re ignoring issues like success <emphasis>vs.</emphasis> failure of startup, <emphasis>etc.</emphasis>) Each abstract tier is implemented by a corresponding concrete trait (not a class, so we can use them as mixins). We have traits for database persistence, some sort of computation cluster to do the heavy lifting for the business logic, and a web-based UI.</simpara>
+<simpara id="para_the_app_traits_wires_the_tie">The <literal>App</literal> traits wires the tiers together. For example, it does the work of starting the tiers in the <literal>run</literal> method.</simpara>
+<simpara id="para_note_the_self_type_annotation_">Note the self-type annotation, <literal>self: Persistence with Midtier with UI =&gt;</literal>. It has two practical effects.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+The body of the trait can assume it is an instance of <literal>Persistence</literal>, <literal>Midtier</literal>, and <literal>UI</literal>, so it can call methods defined in those types, whether or not they are actually defined at this point. We’re doing just that in <literal>run</literal>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+The concrete type that mixes in this trait must also mix in these three other traits or descendants of them.
+</simpara>
+</listitem>
+</orderedlist>
+<simpara id="para_in_other_words_the_self_type_">In other words, the self type in <literal>App</literal> specifies dependencies on other components. These dependencies are satisfied in <literal>MyApp</literal>, which mixes in the concrete traits for the three tiers.</simpara>
+<simpara id="para_if_you_think_about_it_we_coul">We could have declared <literal>App</literal> using inheritance instead.</simpara>
+<programlisting linenumbering="unnumbered">trait App with Persistence with Midtier with UI {
+
+  def run = { ... }
+}</programlisting>
+<simpara id="para_it_is_effectively_the_same_thi">This is effectively the same. As we said, the self-type annotation lets the <literal>App</literal> assume it is of type <literal>Persistence</literal>, <emphasis>etc.</emphasis>. That’s exactly what happens when you mix in a trait, too.</simpara>
+<simpara id="para_so_why_are_self_types_useful_">Why, then, are self types useful if they appear to be equivalent to inheritance? There are some theoretical reasons and a few special cases where self-type annotations offer unique benefits. In practice, you could use inheritance for almost all cases. By convention, people use inheritance when they want to imply that a type <emphasis>behaves as</emphasis> (inherits from) another type and they use self-type annotations when they want to express a dependency between a type and other types <xref linkend="McIver2009" xrefstyle="select: title nopage"/>.</simpara>
+<simpara id="para_in_our_case_we_don_t_really_t">In our case, we don’t really think of an <literal>App</literal> as <emphasis>being</emphasis> a UI, database, <emphasis>etc.</emphasis> We think of an <literal>App</literal> as being composed of those things. Note that in most object-oriented languages, you would express this compositional dependency with member fields, especially if your language doesn’t support mixin composition, like Java. For example, you might write <literal>App</literal> in Java this way.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/selftype/JavaApp.java
+
+package selftype;
+
+public abstract class JavaApp {
+  public interface Persistence {
+    public void startPersistence();
+  }
+
+  public interface Midtier {
+    public void startMidtier();
+  }
+
+  public interface UI {
+    public void startUI();
+  }
+
+  private Persistence persistence;
+  private Midtier midtier;
+  private UI ui;
+
+  public JavaApp(Persistence persistence, Midtier midtier, UI ui) {
+    this.persistence = persistence;
+    this.midtier = midtier;
+    this.ui = ui;
+  }
+
+  public void run() {
+    persistence.startPersistence();
+    midtier.startMidtier();
+    ui.startUI();
+  }
+}</programlisting>
+<simpara id="para_you_can_certainly_write_applic">(We nested the component interfaces inside <literal>JavaApp</literal> to avoid creating separate files for each one!) You can certainly write applications this way in Scala. However, the self-type approach turns programmatic dependency resolution, <emphasis>i.e.,</emphasis> passing dependencies to constructors or setter methods at runtime, into declarative dependency resolution at compile time, which catches errors earlier. Declarative programming, which is a hallmark of functional programming, is generally more robust, succinct, and clear, compared to imperative programming.</simpara>
+<simpara id="para_in_selftypeannotationsandabs">We will return to self-type annotations as a component composition model in <xref linkend="ApplicationDesign"/>. See the <xref linkend="SelfTypeAnnotationsAndAbstractTypeMembers"/> and <xref linkend="DependencyInjectionInScala"/> sections in that chapter.</simpara>
+</sect1>
+<sect1 id="StructuralTypes">
+<title>Structural Types</title>
+<simpara id="para_structural_types">You can think of <emphasis>structural types</emphasis> as a type-safe approach to <emphasis>duck typing</emphasis>, the popular name for the way method resolution works in dynamically typed languages. In Ruby, for example, when you write <literal>starFighter.shootWeapons</literal>, the runtime looks for a <literal>shootWeapons</literal> method on the object referenced by <literal>starFighter</literal>. That method, if found, might have been defined in the class used to instantiate <literal>starFighter</literal> or one of its parents or “included” modules. The method might also have been added to the object using the metaprogramming facility of Ruby. Finally, the object might override the catch-all <literal>method_missing</literal> method and do something reasonable when the object receives the <literal>shootWeapons</literal> “message”.</simpara>
+<simpara id="para_what_scala_allows_you_do_inste">Scala doesn’t support this kind of method resolution, Instead, Scala allows you to specify that an object must adhere to a certain <emphasis>structure</emphasis>: that it contains certain types, fields, or methods, without concern for the actual type of the object. We first encountered structural types near the beginning of <xref linkend="Traits"/>. Here is the example we saw then, a variation of the Observer pattern.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/observer/observer.scala
+
+package observer
+
+trait Subject {
+  type Observer = { def receiveUpdate(subject: Any) }
+
+  private var observers = List[Observer]()
+  def addObserver(observer:Observer) = observers ::= observer
+  def notifyObservers = observers foreach (_.receiveUpdate(this))
+}</programlisting>
+<simpara id="para_the_declaration_type_observer">The declaration <literal>type Observer = { def receiveUpdate(subject: Any) }</literal> says that any valid observer must have the <literal>receiveUpdate</literal> method. It doesn’t matter what the actual type is for a particular observer.</simpara>
+<simpara id="para_structural_types_have_the_virt">Structural types have the virtue of minimizing the interface between two things. In this case, the coupling consists of only a single method signature, rather than a type, such as a shared trait. A drawback of a structural type is that we still couple to a particular <emphasis>names</emphasis>. If a name is arbitrary, we don’t really care about its name so much as its intent. In our example of a single method, we can avoid coupling to the name using a function object instead. In fact, we did this in <xref linkend="OverridingAbstractTypes"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>.</simpara>
+<simpara id="para_structural_types_when_names_are_good">On the other hand, if the name is a universal convention in some sense, then coupling to it has more merit. For example, <literal>foreach</literal> is very common name in the Scala library with a particular meaning, so defining a structural type based on <literal>foreach</literal> might be better for conveying intent to the user, rather than using an anonymous function of some kind.</simpara>
+</sect1>
+<sect1 id="ExistentialTypes">
+<title>Existential Types</title>
+<simpara id="para_existential_types"><emphasis>Existential types</emphasis> are a way of abstracting over types. They let you “acknowledge” that there is a type involved without specifying exactly what it is, usually because you don’t know what it is and you don’t need that knowledge in the current context.</simpara>
+<simpara id="para_existential_types_are_particul">Existential types are particularly useful for interfacing to Java’s type system for three cases.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+The type parameters of generics are “erased” at the byte code level (called <emphasis>type erasure</emphasis>). For example, when a <literal>List[Int]</literal> is created, the <literal>Int</literal> type is not available in the byte code.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+You might encounter “raw” types, such as pre-Java 5 libraries where collections had no type parameters. (All type parameters are effectively <literal>Object</literal>).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+When Java uses wild cards in generics to express variance behavior when the generics are <emphasis>used</emphasis>, the actual type is unknown. (We discussed this earlier in <xref linkend="VarianceUnderInheritance"/>.)
+</simpara>
+</listitem>
+</orderedlist>
+<simpara id="para_consider_the_case_of_pattern_m">Consider the case of pattern matching on <literal>List[A]</literal> objects. You might like to write code like the following</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/existentials/type-erasure-wont-work.scala
+// WARNINGS: Does not work as you might expect.
+
+object ProcessList {
+  def apply[B](list: List[B]) = list match {
+    case lInt:    List[Int]    =&gt; // do something
+    case lDouble: List[Double] =&gt; // do something
+    case lString: List[String] =&gt; // do something
+    case _                     =&gt; // default behavior
+  }
+}</programlisting>
+<simpara id="para_if_you_compile_this_with_the_">If you compile this with the <literal>-unchecked</literal> flag on the JVM, you’ll get warnings that the type parameters like <literal>Int</literal> are unchecked, because of type erasure. Hence, we can’t distinguish between any of the list types shown.</simpara>
+<simpara id="para_the_manifests_that_we_discus">The <literal>Manifests</literal> that we discussed previously won’t work either, because they can’t recover the erased type of <literal>B</literal>.</simpara>
+<simpara id="para_we_ve_already_learned_that_the">We’ve already learned that the best we can do in pattern matching is to focus on the fact that we have a list and not try to determine the “lost” type parameter for the list instance. For type safety, we have to specify that a list has a parameter, but since we don’t know what it is, we use the wild card <literal>_</literal> character for the type parameter, e.g.,</simpara>
+<programlisting linenumbering="unnumbered">case l: List[_] =&gt; // do something "generic" with the list</programlisting>
+<simpara id="para_when_used_in_a_type_context_li">When used in a type context like this, the <literal>List[_]</literal> is actually shorthand for the <emphasis>existential type</emphasis>, <literal>List[T] forSome { type T }</literal>. This is the most general case. We’re saying the type parameter for the list could be any type. Here are some other examples which demonstrate the use of type bounds.</simpara>
+<table id="existential-type-examples-table" frame="none" rowsep="1" colsep="1">
+<title>Existential type examples.</title>
+<tgroup cols="3">
+<colspec colwidth="153pt" align="left"/>
+<colspec colwidth="153pt" align="left"/>
+<colspec colwidth="76pt" align="left"/>
+<thead valign="top">
+<row>
+<entry> Shorthand </entry>
+<entry> Full </entry>
+<entry> Description</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara><literal>List[_]</literal></simpara></entry>
+<entry><simpara><literal>List[T] forSome { type T }</literal></simpara></entry>
+<entry><simpara>T can be any subtype of <literal>Any</literal>.</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>List[_ &lt;: scala.actors.AbstractActor]</literal></simpara></entry>
+<entry><simpara><literal>List[T] forSome { type T &lt;: scala.actors.AbstractActor }</literal></simpara></entry>
+<entry><simpara>T can be any subtype of <literal>AbstractActor</literal>.</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>List[_ &gt;: MyFancyActor &lt;: scala.actors.AbstractActor]</literal></simpara></entry>
+<entry><simpara><literal>List[T] forSome { type T &gt;: MyFancyActor &lt;: scala.actors.AbstractActor }</literal></simpara></entry>
+<entry><simpara>T can be any subtype of <literal>AbstractActor</literal> up to and including the subtype <literal>MyFancyActor</literal>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara id="para_if_you_think_about_how_scala_s">If you think about how Scala syntax for generics is mapped to Java syntax, you might have noticed that an expression like <literal>java.util.List[_ &lt;: scala.actors.AbstractActor]</literal> is structurally similar to the Java variance expression <literal>java.util.List&lt;? extends scala.actors.AbstractActor&gt;</literal>. In fact, they are the same declarations. Although we said that variance behavior in Scala is defined at the declaration site, you can use existential type expressions in Scala to define call-site variance behavior. It is not recommended, for the reasons discussed previously, but you have that option.</simpara>
+<simpara id="para_you_won_t_see_the_forsome_ex">You won’t see the <literal>forSome</literal> existential type syntax very often in Scala code, because existential types exist primarily to support Java generics while preserving correctness in Scala’s type system. Type inference hides the details from us in most contexts. When working with Scala types, the other type constructs we have discussed in this chapter are preferred to existential types.</simpara>
+</sect1>
+<sect1 id="InfiniteDataStructuresAndLaziness">
+<title>Infinite Data Structures and Laziness</title>
+<simpara id="para_infinite_data_structures">We described lazy values in <xref linkend="FunctionalProgramming"/>. In functional languages that are lazy by default, like Haskell, laziness makes it easy to support <emphasis>infinite</emphasis> data structures.</simpara>
+<simpara id="para_for_example_consider_the_foll">For example, consider the following Scala method <literal>fib</literal> that calculates the Fibonacci number for <literal>n</literal> in the infinite Fibonacci sequence.</simpara>
+<programlisting linenumbering="unnumbered">def fib(n: Int): Int = n match {
+  case 0 | 1 =&gt; n
+  case _ =&gt; fib(n-1) + fib(n-2)
+}</programlisting>
+<simpara id="para_if_scala_were_purely_lazy_we_">If Scala were purely lazy, we could imagine a definition of the Fibonacci sequence like the following and it wouldn’t create an infinite loop.</simpara>
+<programlisting linenumbering="unnumbered">fibonacci_sequence = for (i &lt;- 0 to infinity) yield fib(i)</programlisting>
+<simpara id="para_scala_isn_t_lazy_by_default_b">Scala isn’t lazy by default (and there is no <literal>infinity</literal> value or keyword…), but the library contains a <literal>Stream</literal> class that supports lazy evaluation and hence it can support infinite data structures. We’ll show an implementation of the Fibonacci sequence in a moment. First, here is a simpler example that uses streams to represent all positive integers, all positive odd integers, and all positive even integers.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/lazy/lazy-ints-script.scala
+
+def from(n: Int): Stream[Int] = Stream.cons(n, from(n+1))
+
+lazy val ints = from(0)
+lazy val odds = ints.filter(_ % 2 == 1)
+lazy val evens = ints.filter(_ % 2 == 0)
+
+odds.take(10).print
+evens.take(10).print</programlisting>
+<simpara id="para_lazy_ints_output">It produces this output.</simpara>
+<screen>1, 3, 5, 7, 9, 11, 13, 15, 17, 19, Stream.empty
+0, 2, 4, 6, 8, 10, 12, 14, 16, 18, Stream.empty</screen>
+<simpara id="para_the_from_method_is_recursive">The <literal>from</literal> method is recursive and it never terminates! We use it to define the <literal>ints</literal> by calling <literal>from(0)</literal>. <literal>Streams.cons</literal> is an object with an <literal>apply</literal> method that is analogous to the <literal>::</literal> (“cons”) method on <literal>List</literal>. It returns a new stream with the first argument as the head and the second argument, another stream, as the tail. The <literal>odds</literal> and <literal>evens</literal> infinite streams are computed by filtering <literal>ints</literal>.</simpara>
+<simpara id="para_once_we_have_defined_the_strea">Once we have defined the streams, the <literal>take</literal> method returns a new stream of the fixed size specified, 10 in this case. When we print this stream with the <literal>print</literal> method, it prints the 10 elements followed by <literal>Stream.empty</literal> when it hits the end of the stream.</simpara>
+<simpara id="para_returning_to_the_fibonacci_seq">Returning to the Fibonacci sequence, there is a famous definition using infinite, lazy sequences that exploits the “zip” operation (see, <emphasis>e.g.,</emphasis> <xref linkend="Abelson1996" xrefstyle="select: title nopage"/>). Our discussion for Scala is adapted from <xref linkend="Ortiz2007" xrefstyle="select: title nopage"/>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/lazy/lazy-fibonacci-script.scala
+
+lazy val fib: Stream[Int] =
+  Stream.cons(0, Stream.cons(1, fib.zip(fib.tail).map(p =&gt; p._1 + p._2)))
+
+fib.take(10).print</programlisting>
+<simpara id="para_lazy_fibonacci_output">It produces this output.</simpara>
+<screen>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, Stream.empty</screen>
+<simpara id="para_how_does_this_work_like_our_i">How does this work? Like our iterative definition at the start of this section, we explicitly specify the first two values, 0 and 1. The rest of the numbers are computed using <literal>zip</literal>, exploiting the fact that <literal>fib(n) = fib(n-1) + fib(n-2)</literal>, for <literal>n &gt; 1</literal>.</simpara>
+<simpara id="para_the_call_fib_zip_fib_tail_c">The call <literal>fib.zip(fib.tail)</literal> creates a new stream of tuples with the elements of <literal>fib</literal> in the first position of the tuple, and the elements of <literal>fib.tail</literal> in the second position of the tuple. To get back to a single integer for each position in the stream, we map the stream of tuples to a stream of <literal>Ints</literal> by adding the tuple elements. Here are the tuples calculated.</simpara>
+<screen>(0,1), (1,1), (1,2), (2,3), (3,5), (5,8), (8,13), (13, 21), (21, 34), ...</screen>
+<simpara id="para_note_that_each_second_element_">Note that each second element is the next number in the Fibonacci sequence after the first element in the tuple. Adding them we get the following.</simpara>
+<screen>1, 2, 3, 5, 8, 13, 21, 34, 55, ...</screen>
+<simpara id="para_since_we_concatenate_this_stre">Since we concatenate this stream after 0 and 1, we get the Fibonacci sequence.</simpara>
+<screen>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...</screen>
+<simpara id="para_another_scala_type_that_is_laz">Another lazy Scala type, albeit a finite one, is <literal>Range</literal>. Typically, you write literal ranges such as <literal>1 to 1000</literal>. <literal>Range</literal> is lazy, so that very large ranges don’t consume too many resources. However, this feature can lead to subtle problems unless you are careful, as documented by <xref linkend="Smith2009b" xrefstyle="select: title nopage"/> and commenters. Using the example described there, consider this function for returning a <literal>Seq</literal> of three random integers.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeSystem/lazy/lazy-range-danger-script.scala
+
+def mkRandomInts() = {
+  val randInts = for {
+    i &lt;- 1 to 3
+    val rand = i + (new scala.util.Random).nextInt
+  } yield rand
+  randInts
+}
+val ints1 = mkRandomInts
+
+println("Calling first on ints1 Seq:")
+for (i &lt;- 1 to 3) {
+  println( ints1.first)
+}
+
+val ints2 = ints1.toList
+println("Calling first on List created from ints1 Seq:")
+for (i &lt;- 1 to 3) {
+  println( ints2.first)
+}</programlisting>
+<simpara id="para_here_is_the_output_from_one_ru">Here is the output from one run. The actual values will vary from run to run.</simpara>
+<screen>Calling first on ints1 Seq:
+-1532554511
+-1532939260
+-1532939260
+Calling first on List created from ints1 Seq:
+-1537171498
+-1537171498
+-1537171498</screen>
+<simpara id="para_calling_first_on_the_sequenc">Calling <literal>first</literal> on the sequence does not always return the same value! The reason is that the range at the beginning of the for comprehension effectively forces the who sequence to be lazy. Hence, it is re-evaluated with <emphasis>each</emphasis> call to <literal>first</literal> and the first value in the sequence actually changes, since <literal>Random</literal> returns a different number each time (at least it will if there is a sufficient time delta between calls).</simpara>
+<simpara id="para_however_calling_tolist_on_t">However, calling <literal>toList</literal> on the sequence forces it to evaluate the whole range and create a <emphasis>strict</emphasis> list.</simpara>
+<warning id="para_warning_avoid_using_ranges_in"><simpara>Avoid using ranges in <literal>for (…) yield x</literal> constructs, while <literal>for (…) {…}</literal> alternatives are fine.</simpara></warning>
+<simpara id="para_finally_scala_version_2_8_wil">Finally, Scala version 2.8 will include a <literal>force</literal> method on all collections that will force them to be <emphasis>strict</emphasis>.</simpara>
+</sect1>
+<sect1 id="_recap_and_what_8217_s_next_5">
+<title>Recap and What’s Next</title>
+<simpara id="para_it_s_important_to_remember_tha">It’s important to remember that you don’t have to master the intricacies of Scala’s rich type system to use Scala effectively. As you use Scala more and more, mastering the type system will help you create powerful, sophisticated libraries that will accelerate your productivity.</simpara>
+<simpara id="para_the_scalaspec2009_describe">The <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/> describes the type system in formal detail. Like any specification, it can be difficult reading. The effort is worthwhile if you want a deep understanding of the type system. There are also a multitude of papers on Scala’s type system. You can find many linked on the official <ulink url="http://scala-lang.org">http://scala-lang.org</ulink> website.</simpara>
+<simpara id="para_we_have_completed_the_heavy_">The next two chapters cover the pragmatics of application design and Scala’s development tools and libraries.</simpara>
+</sect1>
+</chapter>

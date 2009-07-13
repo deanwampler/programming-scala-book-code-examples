@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="Traits">
+<title>Traits</title>
+<sect1 id="IntroducingTraits">
+<title>Introducing Traits</title>
+<simpara id="para_before_we_dive_into_object_ori">Before we dive into object-oriented programming, there’s one more essential feature of Scala that you should get acquainted with: <emphasis>traits</emphasis>. Understanding the value of this feature requires a little backstory.</simpara>
+<simpara id="para_a_java_class_can__implement__a">In Java, a class can implement an arbitrary number of <emphasis>interfaces</emphasis>. This model is very useful for declaring that a class exposes multiple abstractions. Unfortunately, it has one major drawback.</simpara>
+<simpara id="para_for_many_interfaces_much_of_t">For many interfaces, much of the functionality can be implemented with “boilerplate” code that will be valid for all classes that use the interface. Java provides no built-in mechanism for defining and using such reusable code. Instead, Java programmers must use ad hoc conventions to reuse implementation code for a given interface. In the worst case, the developer just “copies and pastes” the same code into every class that needs it.</simpara>
+<simpara id="para_often_the_implementation_of_a">Often, the implementation of an interface has members that are unrelated (“orthogonal”) to the rest of the instance’s members. The term <emphasis>mixin</emphasis> is often used for such focused and potentially reusable parts of an instance that could be independently maintained.</simpara>
+<simpara id="para_look_at_gui_text_field_class">Have a look at the following code for a button in a graphical user interface, which uses callbacks for “clicks”.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-callbacks.scala
+
+package ui
+
+class ButtonWithCallbacks(val label: String,
+    val clickedCallbacks: List[() =&gt; Unit]) extends Widget {
+
+  require(clickedCallbacks != null, "Callback list can't be null!")
+
+  def this(label: String, clickedCallback: () =&gt; Unit) =
+    this(label, List(clickedCallback))
+
+  def this(label: String) = {
+    this(label, Nil)
+    println("Warning: button has no click callbacks!")
+  }
+
+  def click() = {
+    // ... logic to give the appearance of clicking a physical button ...
+    clickedCallbacks.foreach(f =&gt; f())
+  }
+}</programlisting>
+<simpara id="para_there_s_a_lot_going_on_here_n">There’s a lot going on here. The primary constructor takes a <literal>label</literal> argument and a list of <literal>callbacks</literal> that are invoked when the button’s <literal>click</literal> method is invoked. We’ll explore this class in greater detail in <xref linkend="BasicObjectOrientedProgramming"/>. For now we want to focus on one particular problem. Not only does <literal>ButtonWithCallbacks</literal> handle behaviors essential to buttons (like clicking), it also handles notification of click events by invoking the callback functions. This goes against the <emphasis>Single Responsibility Principle</emphasis> <xref linkend="Martin2003" xrefstyle="select: title nopage"/>, a means to the design goal of <emphasis>separation of concerns</emphasis>. We would like to separate the button-specific logic from the callback logic, such that each logical component becomes simpler, more modular, and more reusable. The callback logic is a good example of a <emphasis>mixin</emphasis>.</simpara>
+<simpara id="para_this_separation_is_difficult_t">This separation is difficult to do in Java, even if we define an interface for the callback behavior. We still have to embed the implementation code in the class somehow, compromising modularity. The only other alternative is to use a specialized tool like <emphasis>aspect-oriented programming</emphasis> (AOP, see <xref linkend="AOSD" xrefstyle="select: title nopage"/>), as implemented by AspectJ <xref linkend="AspectJ" xrefstyle="select: title nopage"/>, an extension of Java. AOP is primarily designed to separate the implementations of “pervasive” concerns that are repeated throughout an application. It seeks to modularize these concerns, yet enable the fine-grained “mixing” of their behaviors with other concerns, including the core domain logic of the application, either at build or run time.</simpara>
+<sect2 id="TraitsAsMixins">
+<title>Traits as Mixins</title>
+<simpara id="para_scala_provides_a_complete__mix">Scala provides a complete mixin solution, called <emphasis>traits</emphasis>. In our example, we can define the callback <emphasis>abstraction</emphasis> in a trait, as in a Java interface, but we can also implement the abstraction in the trait (or a derived trait).  We can declare classes that “mix in” the trait, much the way you can declare classes that implement an interface in Java. However, in Scala we can even mix-in traits at the same time we create instances. That is, we don’t have to declare a class first that mixes in all the traits we want. So, Scala traits preserve separation of concerns while giving us the ability to compose behavior on demand.</simpara>
+<simpara id="para_if_you_come_from_a_java_background">If you come from a Java background, you can think of traits as interfaces <emphasis>with</emphasis> optional implementations. Other languages provide constructs that are similar to traits, such as <emphasis>modules</emphasis> in Ruby, for example.</simpara>
+<simpara id="para_let_s_use_a_trait_to_separate_">Let’s use a trait to separate the callback handling from the button logic. We’ll generalize our approach a little bit. Callbacks are really a special case of the <emphasis>Observer Pattern</emphasis> <xref linkend="GOF1995" xrefstyle="select: title nopage"/>. So, let’s create a <emphasis>trait</emphasis> that implements this pattern, then use it to handle callback behavior. To simplify things, we’ll start with a single callback that counts the number of button clicks.</simpara>
+<simpara id="para_first_let_s_simplify_our_butt">First, let’s define a simple <literal>Button</literal> class.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button.scala
+
+package ui
+
+class Button(val label: String) extends Widget {
+  def click() = {
+    // Logic to give the appearance of clicking a button...
+  }
+}</programlisting>
+<simpara id="para_simplified_widget">Here is the parent class, <literal>Widget</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/widget.scala
+
+package ui
+
+abstract class Widget</programlisting>
+<simpara id="para_the_logic_for_managing_callbac">The logic for managing callbacks (<emphasis>i.e.</emphasis>, the <literal>clickedCallbacks</literal> list) is omitted, as are the two auxiliary constructors. Only the button’s <literal>label</literal> field and <literal>click</literal> method remain. The <literal>click</literal> method now only cares about the visual appearance of a “physical” button being clicked. <literal>Button</literal> has only one concern, handling the “essence” of being a button.</simpara>
+<simpara id="para_here_is_a__trait__that_impleme">Here is a <emphasis>trait</emphasis> that implements the logic of the <emphasis>Observer Pattern</emphasis>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/observer/observer.scala
+
+package observer
+
+trait Subject {
+  type Observer = { def receiveUpdate(subject: Any) }
+
+  private var observers = List[Observer]()
+  def addObserver(observer:Observer) = observers ::= observer
+  def notifyObservers = observers foreach (_.receiveUpdate(this))
+}</programlisting>
+<simpara id="para_except_for_the_trait_keyword">Except for the <literal>trait</literal> keyword, <literal>Subject</literal> looks like a normal class. <literal>Subject</literal> defines all the members it declares. Traits can declare <emphasis>abstract</emphasis> members, <emphasis>concrete</emphasis> members, or both, just as classes can (see <xref linkend="OverridingMembers"/> in <xref linkend="AdvancedObjectOrientedProgramming"/> for more details). Also like classes, traits can contain nested trait and class definitions and classes can contain nested trait definitions.</simpara>
+<simpara id="para_the_first_line_defines_a_type">The first line defines a <literal>type</literal> for an <literal>Observer</literal>. This is a <emphasis>structural type</emphasis> of the form <literal>{ def receiveUpdate(subject:Any) }</literal>. Structural types specify only the structure a subtype must support; you could think of them as “anonymous” types.</simpara>
+<simpara id="para_in_this_case_the_structural_t">In this case, the structural type is defined by a method with a particular signature. Any type that has a method with this signature can be used as an observer. We’ll learn more about structural types in <xref linkend="ScalasTypeSystem"/>. If you’re wondering why we didn’t use <literal>Subject</literal> as the type of the argument, instead of <literal>Any</literal>, we’ll revisit that issue in <xref linkend="SelfTypeAnnotationsAndAbstractTypeMembers"/> in <xref linkend="ApplicationDesign"/>.</simpara>
+<simpara id="para_the_main_thing_to_notice_for_n">The main thing to notice for now is how this structural type minimizes the coupling between the <literal>Subject</literal> trait and any potential users of the trait.</simpara>
+<note id="para_note_subject_is_still_coupl"><simpara><literal>Subject</literal> is still coupled by the name of the method in <literal>Observer</literal> through the structural type, <emphasis>i.e.</emphasis>, to a method named <literal>receiveUpdate</literal>. There are several ways we can reduce this remaining coupling. We’ll see how in <xref linkend="OverridingAbstractTypes"/> below.</simpara></note>
+<simpara id="para_next_we_declare_a_list_of_obs">Next, we declare a list of observers. We make it a <literal>var</literal>, rather than a <literal>val</literal>, because <literal>List</literal> is immutable, so we must create a new list when an observer is added using the <literal>addObserver</literal> method.</simpara>
+<simpara id="para_we_ll_discuss_scala_list_s_m">We’ll discuss Scala <literal>List</literal>'s more in <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/> and also in <xref linkend="FunctionalProgramming"/>. For now, notice that <literal>addObserver</literal> uses the the list <emphasis>cons</emphasis> “operator” method (<literal>::</literal>) to <emphasis>prepend</emphasis> an <literal>observer</literal> to the list of <literal>observers</literal>.  The scala compiler is smart enough to turn the following statement,</simpara>
+<programlisting linenumbering="unnumbered">observers ::= observer</programlisting>
+<simpara id="para_into_this_statement_">into this statement,</simpara>
+<programlisting linenumbering="unnumbered">observers = observer :: observers</programlisting>
+<simpara id="para_note_that_we_wrote_observer_">Note that we wrote <literal>observer :: observers</literal>, with the existing <literal>observers</literal> list on the <emphasis>right</emphasis> hand side. Recall that any method that ends with <literal>:</literal> binds to the <emphasis>right</emphasis>. So, the previous statement is equivalent to the following statement.</simpara>
+<programlisting linenumbering="unnumbered">observers = observers.::(observer)</programlisting>
+<simpara id="para_the_notifyobservers_method_i">The <literal>notifyObservers</literal> method iterates through the <literal>observers</literal>, using the <literal>foreach</literal> method and calls <literal>receiveUpdate</literal> on each one. (Note that we are using the “infix” operator notation instead of <literal>observers.foreach</literal>.) We use the placeholder ‘_’ to shorten the following expression,</simpara>
+<programlisting linenumbering="unnumbered">(obs) =&gt; obs.receiveUpdate(this)</programlisting>
+<simpara id="para_into_this_expression_">into this expression,</simpara>
+<programlisting linenumbering="unnumbered">_.receiveUpdate(this)</programlisting>
+<simpara id="para_this_expression_is_actually_th">This expression is actually the body of an “anonymous function”, called a <emphasis>function literal</emphasis> in Scala. This is similar to a <emphasis>lambda</emphasis> and similar constructs used in many other languages. Function literals and the related concept of a <emphasis>closure</emphasis> are discussed in <xref linkend="FunctionLiteralsAndClosures"/> in <xref linkend="FunctionalProgramming"/>.</simpara>
+<simpara id="para_in_java_the_foreach_method_">In Java, the <literal>foreach</literal> method would probably take an interface and you would pass an instance of a class that implements the interface (<emphasis>e.g.,</emphasis> the way <literal>Comparable</literal> is typically used).</simpara>
+<simpara id="para_in_scala_the_list_a_foreach">In Scala, the <literal>List[A].foreach</literal> method expects an argument of type <literal>(A) =&gt; Unit</literal>, which is a function taking an instance of type <literal>A</literal>, where A represents the type of the elements of the list (<literal>Observer</literal>, in this case), and returning <literal>Unit</literal> (like <literal>void</literal> in Java).</simpara>
+<note id="para_note_we_chose_to_use_a_var_"><simpara>We chose to use a <literal>var</literal> with immutable <literal>Lists</literal> for the observers in this example. We could have used a <literal>val</literal> with a mutable type, like <literal>ListBuffer</literal>. That choice would make a little more sense for a real application, but we wanted to avoid the distraction of explaining new library classes.</simpara></note>
+<simpara id="para_once_again_we_learned_a_lot_o">Once again, we learned a lot of Scala from a small example. Now let’s put our <literal>Subject</literal> trait to use. Here is <literal>ObservableButton</literal>, which subclasses <literal>Button</literal> and mixes in <literal>Subject</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/observable-button.scala
+
+package ui
+import observer._
+
+class ObservableButton(name: String) extends Button(name) with Subject {
+  override def click() = {
+    super.click()
+    notifyObservers
+  }
+}</programlisting>
+<simpara id="para_we_start_by_importing_everythi">We start by importing everything in the <literal>observer</literal> package, using the ‘_’ wild card. Actually, we have only defined the <literal>Subject</literal> trait in the package.</simpara>
+<simpara id="para_the_new_class_uses_the_with_">The new class uses the <literal>with</literal> keyword to add the <literal>Subject</literal> trait to the class. <literal>ObservableButton</literal> overrides the <literal>click</literal> method. Using the <literal>super</literal> keyword (see <xref linkend="OverridingMethods"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>), it first invokes the “superclass” method, <literal>Button.click</literal>, then it notifies the observers. Since the new <literal>click</literal> method overrides <literal>Button</literal>'s concrete implementation, the <literal>override</literal> keyword is required.</simpara>
+<simpara id="para_the_with_keyword_is_analogou">The <literal>with</literal> keyword is analogous to Java’s <literal>implements</literal> keyword for interfaces. You can specify as many traits as you want, each with its own <literal>with</literal> keyword.</simpara>
+<simpara id="para_a_class_can_extend_a_trait_and">A class can extend a trait and a trait can extend a class. In fact, our <literal>Widget</literal> class above could have been declared to be a trait.</simpara>
+<note id="para_note_if_you_declare_a_class_t"><simpara>If you declare a class that uses one or more traits and it <emphasis>doesn’t</emphasis> extend another class, you must use the <literal>extends</literal> keyword for the first trait listed.</simpara></note>
+<simpara id="para_if_you_don_t_use_extends_for">If you don’t use <literal>extends</literal> for the first trait, <emphasis>e.g.,</emphasis> you write the following.</simpara>
+<programlisting linenumbering="unnumbered">// ERROR:
+class ObservableButton(name: String) with Button(name) with Subject {...}</programlisting>
+<simpara id="para_you_ll_get_an_error_like_this_">You’ll get an error like this.</simpara>
+<screen>... error: ';' expected but 'with' found.
+       class ObservableButton(name: String) with Button(name) with Subject {...}
+                                            ^</screen>
+<simpara id="para_the_error_should_really_say_">The error should really say “<replaceable>with</replaceable> found, but <replaceable>extends</replaceable> expected.”</simpara>
+<simpara id="para_to_demonstrate_this_code_let_">To demonstrate this code, let’s start with a class for observing button clicks that simply counts the number of clicks.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-count-observer.scala
+
+package ui
+import observer._
+
+class ButtonCountObserver {
+  var count = 0
+  def receiveUpdate(subject: Any) = count += 1
+}</programlisting>
+<simpara id="para_finally_let_s_write_a_test_th">Finally, let’s write a test that exercises all these classes. We will use the <emphasis>Specs</emphasis> library (discussed in the <xref linkend="ScalaSpecs"/> section of <xref linkend="ScalaToolsLibs"/>) to write a <emphasis>Behavior-Driven Development</emphasis> (<xref linkend="BDD" xrefstyle="select: title nopage"/>) “specification” that exercises the combined <literal>Button</literal> and <literal>Subject</literal> types.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-observer-spec.scala
+
+package ui
+import org.specs._
+import observer._
+
+object ButtonObserverSpec extends Specification {
+  "A Button Observer" should {
+    "observe button clicks" in {
+      val observableButton = new ObservableButton("Okay")
+      val buttonObserver = new ButtonCountObserver
+      observableButton.addObserver(buttonObserver)
+
+      for (i &lt;- 1 to 3) observableButton.click()
+      buttonObserver.count mustEqual 3
+    }
+  }
+}</programlisting>
+<simpara id="para_if_you_downloaded_the_code_exa">If you downloaded the code examples from the O’Reilly site, then you can follow the directions in its <literal>README</literal> files for building and running the examples in this chapter. The output of the <literal>specs</literal> “target” of the build should include the following text.</simpara>
+<screen>Specification "ButtonCountObserverSpec"
+  A Button Observer should
+  + observe button clicks
+
+Total for specification "ButtonCountObserverSpec":
+Finished in 0 second, 10 ms
+1 example, 1 expectation, 0 failure, 0 error</screen>
+<simpara id="para_notice_that_the_strings_a_bu">Notice that the strings <literal>"A Button Observer should"</literal> and <literal>"observe button clicks"</literal> correspond to strings in the example. The output of a <emphasis>Specs</emphasis> run provides a nice summary of the requirements for the items being tested, assuming good choices were made for the strings.</simpara>
+<simpara id="para_the_body_of_the_test_creates_a">The body of the test creates an “Okay” <literal>ObservableButton</literal> and a <literal>ButtonCountObserver</literal>, which  gives the observer to the button. The button is clicked three times, using the <literal>for</literal> loop. The last line requires the observer’s <literal>count</literal> to equal 3. If you are accustomed to using an <emphasis>XUnit</emphasis>-style TDD tool, like <literal>JUnit</literal> <xref linkend="JUnit" xrefstyle="select: title nopage"/> or <literal>ScalaTest</literal> <xref linkend="ScalaTestTool" xrefstyle="select: title nopage"/> (see also <xref linkend="ScalaTest"/> in <xref linkend="ScalaToolsLibs"/>), then the last line is equivalent to the following <literal>JUnit</literal> assertion.</simpara>
+<programlisting linenumbering="unnumbered">assertEquals(3, buttonObserver.count)</programlisting>
+<note id="para_note_the__specs__library_see"><simpara>The <emphasis>Specs</emphasis> library (see <xref linkend="ScalaSpecs"/>) and the <emphasis>ScalaTest</emphasis> library (see <xref linkend="ScalaTest"/>) both support <emphasis>behavior-driven development</emphasis> <xref linkend="BDD" xrefstyle="select: title nopage"/>, a style of <emphasis>test-driven development</emphasis> <xref linkend="TDD" xrefstyle="select: title nopage"/> that emphasizes the “specification” role of tests.</simpara></note>
+<simpara id="para_suppose_we_only_need_one_obse">Suppose we only need one <literal>ObservableButton</literal> instance? We actually don’t have to declare a class that subclasses <literal>Button</literal> with <literal>Subject</literal>. We can incorporate the trait when we create the instance.</simpara>
+<simpara id="para_the_next_example_shows_a_revis">The next example shows a revised <emphasis>Specs</emphasis> file that instantiates a <literal>Button</literal> with <literal>Subject</literal> mixed in as part of the declaration.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-observer-anon-spec.scala
+
+package ui
+import org.specs._
+import observer._
+
+object ButtonObserverAnonSpec extends Specification {
+  "A Button Observer" should {
+    "observe button clicks" in {
+      val observableButton = new Button("Okay") with Subject {
+        override def click() = {
+          super.click()
+          notifyObservers
+        }
+      }
+
+      val buttonObserver = new ButtonCountObserver
+      observableButton.addObserver(buttonObserver)
+
+      for (i &lt;- 1 to 3) observableButton.click()
+      buttonObserver.count mustEqual 3
+    }
+  }
+}</programlisting>
+<simpara id="para_the_revised_declaration_of_ob">The revised declaration of <literal>observableButton</literal> actually creates an anonymous class in which we override the <literal>click</literal> method, as before. The main difference with creating anonymous classes in Java is that we can incorporate traits in this process. Java does not let you implement a new interface while instantiating a class.</simpara>
+<simpara id="para_finally_note_that_the_inherit">Finally, note that the inheritance hierarchy for an instance can be complex if it mixes in traits that extend other traits, <emphasis>etc</emphasis>. We’ll discuss the details of the hierarchy in <xref linkend="Linearization"/> in <xref linkend="ScalaObjectSystem"/>.</simpara>
+</sect2>
+</sect1>
+<sect1 id="StackableTraits">
+<title>Stackable Traits</title>
+<simpara id="para_there_are_a_couple_of_refineme">There are a couple of refinements we can do to improve the reusability of our work and to make it easier to use more than one trait at a time, <emphasis>i.e.,</emphasis> to “stack” them.</simpara>
+<simpara id="para_first_let_s_introduce_a_new_t">First, let’s introduce a new trait, <literal>Clickable</literal>, an abstraction for any widget that responds to clicks.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/clickable.scala
+
+package ui2
+
+trait Clickable {
+  def click()
+}</programlisting>
+<note id="para_note_we_re_starting_with_a_ne"><simpara>We’re starting with a new package, <literal>ui2</literal>, to make it easier to keep older and newer versions of the examples distinct in the downloadable code.</simpara></note>
+<simpara id="para_the_clickable_trait_looks_ju">The <literal>Clickable</literal> trait looks just like a Java interface; it is completely abstract. It defines a single, abstract method, <literal>click</literal>. The method is abstract because it has no body. If <literal>Clickable</literal> were a class, we would have to add the <literal>abstract</literal> keyword in front of the <literal>class</literal> keyword. This is not necessary for traits.</simpara>
+<simpara id="para_here_is_the_refactored_button_">Here is the refactored button, which uses the trait.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button.scala
+
+package ui2
+
+import ui.Widget
+
+class Button(val label: String) extends Widget with Clickable {
+  def click() = {
+    // Logic to give the appearance of clicking a button...
+  }
+}</programlisting>
+<simpara id="para_this_code_is_like_java_code_th">This code is like Java code that implements a <literal>Clickable</literal> interface.</simpara>
+<simpara id="para_previously_when_we_defined_o">When we previously defined <literal>ObservableButton</literal> (in <xref linkend="TraitsAsMixins"/>), we overrode <literal>Button.click</literal> to notify the observers. We had to duplicate that logic in <literal>ButtonObserverAnonSpec</literal> when we declared <literal>observableButton</literal> as a <literal>Button</literal> instance that mixed in the <literal>Subject</literal> trait directly. Let’s eliminate this duplication.</simpara>
+<simpara id="para_we_don_t_really_care_about_obs">When we refactor the code this way, we realize that we don’t really care about observing buttons; we care about observing clicks. Here is a trait that focuses solely on observing <literal>Clickable</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/observable-clicks.scala
+
+package ui2
+import observer._
+
+trait ObservableClicks extends Clickable with Subject {
+  abstract override def click() = {
+    super.click()
+    notifyObservers
+  }
+}</programlisting>
+<simpara id="para_the_observableclicks_trait_e">The <literal>ObservableClicks</literal> trait extends <literal>Clickable</literal> and mixes in <literal>Subject</literal>. It then overrides the <literal>click</literal> method with an implementation that looks almost the same as the overridden method shown in <xref linkend="TraitsAsMixins"/>. The important difference is the <literal>abstract</literal> keyword.</simpara>
+<simpara id="para_look_closely_at_this_method_i">Look closely at this method. It calls <literal>super.click()</literal>, but what is <literal>super</literal> in this case? At this point, it could only appear to be <literal>Clickable</literal>, which <emphasis>declares</emphasis>, but does not <emphasis>define</emphasis> the <literal>click</literal> method, or it could be <literal>Subject</literal>, which doesn’t have a <literal>click</literal> method. So, <literal>super</literal> can’t be bound, at least not yet.</simpara>
+<simpara id="para_in_fact_super_will_be_bound">In fact, <literal>super</literal> will be bound when this trait is mixed into an instance that defines a concrete <literal>click</literal> method, such as <literal>Button</literal>. Therefore, we need an <literal>abstract</literal> keyword on <literal>ObservableClicks.click</literal> to tell the compiler (and the reader) that <literal>click</literal> is not yet fully implemented, even though <literal>ObservableClicks.click</literal> has a body.</simpara>
+<note id="para_note_except_for_declaring_abs"><simpara>Except for declaring abstract classes, the <literal>abstract</literal> keyword is only required on a method in a trait when the method has a body, but it calls the <literal>super</literal> method which doesn’t have a concrete implementation in parents of the trait.</simpara></note>
+<simpara id="para_let_s_use_this_trait_with_but">Let’s use this trait with <literal>Button</literal> and its concrete <literal>click</literal> method in a <emphasis>Specs</emphasis> test.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button-clickable-observer-spec.scala
+
+package ui2
+import org.specs._
+import observer._
+import ui.ButtonCountObserver
+
+object ButtonClickableObserverSpec extends Specification {
+  "A Button Observer" should {
+    "observe button clicks" in {
+      val observableButton = new Button("Okay") with ObservableClicks
+      val buttonClickCountObserver = new ButtonCountObserver
+      observableButton.addObserver(buttonClickCountObserver)
+
+      for (i &lt;- 1 to 3) observableButton.click()
+      buttonClickCountObserver.count mustEqual 3
+    }
+  }
+}</programlisting>
+<simpara id="para_compare_this_code_to_button_">Compare this code to <literal>ButtonObserverAnonSpec</literal>. We instantiate a <literal>Button</literal> with the <literal>ObservableClicks</literal> trait mixed in, but now there is no override of <literal>click</literal> required. Hence, this client of <literal>Button</literal> doesn’t have to worry about properly overriding <literal>click</literal>. The hard work is already done by <literal>ObservableClicks</literal>. The desired behavior is <emphasis>composed declaratively</emphasis> when needed.</simpara>
+<simpara id="para_let_s_finish_our_example_by_ad">Let’s finish our example by adding a second trait. The <emphasis>JavaBeans</emphasis> specification <xref linkend="JavaBeansSpec" xrefstyle="select: title nopage"/> has the idea of “vetoable” events, where listeners for changes to a JavaBean can veto the change. Let’s implement something similar with a trait that vetoes more than a set number of clicks.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/vetoable-clicks.scala
+
+package ui2
+import observer._
+
+trait VetoableClicks extends Clickable {
+  val maxAllowed = 1  // default
+  private var count = 0
+
+  abstract override def click() = {
+    if (count &lt; maxAllowed) {
+      count += 1
+      super.click()
+    }
+  }
+}</programlisting>
+<simpara id="para_once_again_we_override_the_c">Once again, we override the <literal>click</literal> method. As before, the override must be declared <literal>abstract</literal>. The maximum allowed number of clicks defaults to 1. You might wonder what we mean by “defaults” here? Isn’t the field declared to be a <literal>val</literal>? There is no constructor defined to initialize it to another value. We’ll revisit these questions in <xref linkend="OverridingMembers"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>.</simpara>
+<simpara id="para_this_trait_also_declares_a_co">This trait also declares a <literal>count</literal> variable to keep track of the number of clicks seen. It is declared <literal>private</literal>, so it is invisible outside the trait (see <xref linkend="VisibilityRules"/> in <xref linkend="BasicObjectOrientedProgramming"/>). The overridden <literal>click</literal> method increments <literal>count</literal>. It only calls the <literal>super.click()</literal> method if the count is less than or equal to the <literal>maxAllowed</literal> count.</simpara>
+<simpara id="para_specs_object_for_obs_clicks">Here is a <emphasis>Specs</emphasis> object that demonstrates <literal>ObservableClicks</literal> and <literal>VetoableClicks</literal> working together. Note that a separate <literal>with</literal> keyword is required for each trait, as opposed to using one keyword and separating the names with commas, as Java does for <literal>implements</literal> clauses.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button-clickable-observer-vetoable-spec.scala
+
+package ui2
+import org.specs._
+import observer._
+import ui.ButtonCountObserver
+
+object ButtonClickableObserverVetoableSpec extends Specification {
+  "A Button Observer with Vetoable Clicks" should {
+    "observe only the first button click" in {
+      val observableButton =
+          new Button("Okay") with ObservableClicks with VetoableClicks
+      val buttonClickCountObserver = new ButtonCountObserver
+      observableButton.addObserver(buttonClickCountObserver)
+
+      for (i &lt;- 1 to 3) observableButton.click()
+      buttonClickCountObserver.count mustEqual 1
+    }
+  }
+}</programlisting>
+<simpara id="para_the_expected_observer_count_is">The expected observer count is 1. The <literal>observableButton</literal> is declared as follows.</simpara>
+<programlisting linenumbering="unnumbered">new Button("Okay") with ObservableClicks with VetoableClicks</programlisting>
+<simpara id="para_we_can_infer_that_the_click_">We can infer that the <literal>click</literal> override in <literal>VetoableClicks</literal> is called <emphasis>before</emphasis> the <literal>click</literal> override in <literal>ObservableClicks</literal>. Loosely speaking, since our anonymous class doesn’t define <literal>click</literal> itself, the method lookup proceeds <emphasis>right to left</emphasis>, as declared. It’s actually more complicated than that, as we’ll see later in <xref linkend="Linearization"/> in <xref linkend="ScalaObjectSystem"/>.</simpara>
+<simpara id="para_in_the_meantime_what_happens_">In the meantime, what happens if we use the traits in the reverse order?</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button-vetoable-clickable-observer-spec.scala
+
+package ui2
+import org.specs._
+import observer._
+import ui.ButtonCountObserver
+
+object ButtonVetoableClickableObserverSpec extends Specification {
+  "A Vetoable Button with Click Observer" should {
+    "observe all the button clicks, even when some are vetoed" in {
+      val observableButton =
+          new Button("Okay") with VetoableClicks with ObservableClicks
+      val buttonClickCountObserver = new ButtonCountObserver
+      observableButton.addObserver(buttonClickCountObserver)
+
+      for (i &lt;- 1 to 3) observableButton.click()
+      buttonClickCountObserver.count mustEqual 3
+    }
+  }
+}</programlisting>
+<simpara id="para_now_the_expected_observer_coun">Now the expected observer count is 3. <literal>ObservableClicks</literal> now has precedence over <literal>VetoableClicks</literal>, so the count of clicks is incremented, even when some clicks are subsequently vetoed!</simpara>
+<simpara id="para_so_the_order_of_declaration_m">So, the order of declaration matters, which is important to remember for preventing unexpected behavior when traits impact each other. Perhaps another lesson to note is that splitting objects into too many fine-grained traits can obscure the order of execution in your code!</simpara>
+<simpara id="para_breaking_up_your_application_i">Breaking up your application into small, focused traits is a powerful way to create reusable, scalable abstractions and “components”. Complex behaviors can be built up through <emphasis>declarative composition</emphasis> of traits. We will explore this idea in greater detail in <xref linkend="ScalableAbstractions"/> in <xref linkend="ApplicationDesign"/>.</simpara>
+</sect1>
+<sect1 id="ConstructingTraits">
+<title>Constructing Traits</title>
+<simpara id="para_traits_don_t_support_auxiliary">Traits don’t support auxiliary constructors, nor do they accept an argument list for the primary constructor, the body of a trait. Traits can extend classes or other traits. However, they can’t pass arguments to the parent class constructor (even literal values), so traits can only extend classes that have a no-argument primary or auxiliary constructor.</simpara>
+<simpara id="para_however_like_classes_the_bod">However, like classes, the body of a trait is executed every time an instance is created that uses the trait, as demonstrated by the following script.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/trait-construction-script.scala
+
+trait T1 {
+  println( "  in T1: x = " + x )
+  val x=1
+  println( "  in T1: x = " + x )
+}
+trait T2 {
+  println( "  in T2: y = " + y )
+  val y="T2"
+  println( "  in T2: y = " + y )
+}
+
+class Base12 {
+  println( "  in Base12: b = " + b )
+  val b="Base12"
+  println( "  in Base12: b = " + b )
+}
+class C12 extends Base12 with T1 with T2 {
+  println( "  in C12: c = " + c )
+  val c="C12"
+  println( "  in C12: c = " + c )
+}
+println( "Creating C12:" )
+new C12
+println( "After Creating C12" )</programlisting>
+<simpara id="para_running_script_oop1a">Running this script with the <userinput>scala</userinput> command yields the following output.</simpara>
+<screen>Creating C12:
+  in Base12: b = null
+  in Base12: b = Base12
+  in T1: x = 0
+  in T1: x = 1
+  in T2: y = null
+  in T2: y = T2
+  in C12: c = null
+  in C12: c = C12
+After Creating C12</screen>
+<simpara id="para_notice_the_order_of_invocation">Notice the order of invocation of the class and trait constructors. Since the declaration of <literal>C12</literal> is <literal>extends Base12 with T1 with T2</literal>, the order of construction for this simple class hierarchy is left to right, starting with the base class <literal>Base12</literal>, followed by the traits <literal>T1</literal> and <literal>T2, and ending with the +C12</literal> constructor body. (For constructing arbitrarily-complex hierarchies, see <xref linkend="Linearization"/> in <xref linkend="ScalaObjectSystem"/>.)</simpara>
+<simpara id="para_so_while_you_can_t_pass_const">So, while you can’t pass construction parameters to traits, you can initialize fields with default values or leave them abstract. We actually saw this before in our <literal>Subject</literal> trait, where the <literal>Subject.observers</literal> field was initialized to an empty list.</simpara>
+<simpara id="para_if_a_field_in_a_trait_does_not">If a concrete field in a trait does not have a suitable default value, there is no “fail-safe” way to initialize the value. All the alternative approaches require some ad hoc steps by users of the trait, which is error prone because they might do it wrong or forget to do it all. Perhaps the field should be left abstract, so that classes or other traits that use this trait are forced to define the value appropriately. We’ll discuss overriding abstract and concrete members in detail in <xref linkend="AdvancedObjectOrientedProgramming"/>.</simpara>
+<simpara id="para_another_solution_is_to_move_th">Another solution is to move that field to a separate class, where the construction process can guarantee that the correct initialization data is supplied by the user. It might be that the whole trait should actually be a class instead, so you can define a constructor for it that initializes the field.</simpara>
+<sect2 id="ClassOrTrait">
+<title>Class or Trait?</title>
+<simpara id="para_when_considering_whether_a_c">When considering whether a “concept” should be a trait or a class, keep in mind that traits as mixins make the most sense for “adjunct” behavior. If you find that a particular trait is used most often as a parent of other classes, so that the child classes <emphasis>behave as</emphasis> the parent trait, then consider defining the trait as a class instead, to make this logical relationship more clear. (We said <emphasis>behaves as</emphasis>, rather than <emphasis>is a</emphasis>, because the former is the more precise definition of inheritance, based on the <emphasis>Liskov Substitution Principle</emphasis> - see <xref linkend="Martin2003" xrefstyle="select: title nopage"/>, for example.)</simpara>
+<tip id="para_tip_avoid_fields_in_traits_th"><simpara>Avoid concrete fields in traits that can’t be initialized to suitable default values. Use abstract fields instead or convert the trait to a class with a constructor. Of course, stateless traits don’t have any issues with initialization.</simpara></tip>
+<simpara id="para_it_s_a_general_principle_of_go">It’s a general principle of good object-oriented design that an instance should always be in a known valid state, starting from the moment the construction process finishes.</simpara>
+</sect2>
+</sect1>
+<sect1 id="TraitsRecapAndWhatsNext">
+<title>Recap and What’s Next</title>
+<simpara id="para_in_this_chapter_we_learned_ho">In this chapter, we learned how to use traits to encapsulate and share cross-cutting concerns between classes. We covered when and how to use traits, how to "stack" multiple traits, and the rules for initializing values within traits.</simpara>
+<simpara id="para_at_this_point_in_your_reading_">At this point in your reading, you’ve learned about many of Scala’s key features and concepts. You should be able to look at most well-written Scala code and have a basic level of understanding of what’s happening in it. To truly master the language, though, we need to go deeper.</simpara>
+<simpara id="para_in_the_next_chapter_we_explor">In the next chapter, we explore how the fundamentals of object-oriented programming work in Scala. Even if you’re an old hand at object-oriented programming, you’ll want to read the next several chapters to understand the particulars of Scala’s approach to OOP.</simpara>
+</sect1>
+</chapter>

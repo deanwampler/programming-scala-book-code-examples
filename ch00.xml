@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<preface id="Preface">
+<title>Preface</title>
+<sect1 id="_conventions_used_in_this_book">
+<title>Conventions Used in This Book</title>
+<simpara id="para_the_following_typographical_co">The following typographical conventions are used in this book:</simpara>
+<variablelist id="para_book_conventions">
+<varlistentry id="varlistentry-italic">
+<term>
+<emphasis>Italic</emphasis>
+</term>
+<listitem>
+<simpara>
+  Indicates new terms, URLs, email addresses, filenames, and file extensions. Many italicized terms are defined in the <xref linkend="Glossary"/>.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry id="varlistentry-constant-width">
+<term>
+<literal>Constant width</literal>
+</term>
+<listitem>
+<simpara>
+  Used for program listings, as well as within paragraphs to refer to program elements such as
+  variable or function names, databases, data types, environment variables, statements, and
+  keywords.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry id="varlistentry-constant-width-bold">
+<term>
+<userinput>Constant width bold</userinput>
+</term>
+<listitem>
+<simpara>
+  Shows commands or other text that should be typed literally by the user.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry id="varlistentry-constant-width-italic">
+<term>
+<replaceable>Constant width italic</replaceable>
+</term>
+<listitem>
+<simpara>
+  Shows text that should be replaced with user-supplied values or by values determined by context.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<tip id="para_tip_this_icon_signifies_a_tip"><simpara>This icon signifies a tip, suggestion, or general note.</simpara></tip>
+<caution id="para_caution_this_icon_indicates_a"><simpara>This icon indicates a warning or caution.</simpara></caution>
+</sect1>
+<sect1 id="UsingCodeExamples">
+<title>Using Code Examples</title>
+<simpara id="para_this_book_is_here_to_help_you_">This book is here to help you get your job done. In general, you may
+use the code in this book in your programs and documentation. You do not
+need to contact us for permission unless you’re reproducing a significant
+portion of the code. For example, writing a program that uses several
+chunks of code from this book does not require permission. Selling or
+distributing a CD-ROM of examples from O’Reilly books does require
+permission. Answering a question by citing this book and quoting example
+code does not require permission. Incorporating a significant amount of
+example code from this book into your product’s documentation does require
+permission.</simpara>
+<simpara id="para_we_appreciate_but_do_not_requ">We appreciate, but do not require, attribution. An attribution
+usually includes the title, author, publisher, and ISBN. For example:
+“<emphasis>Programming Scala</emphasis> by Dean Wampler and Alex Payne. Copyright 2009 O’Reilly
+Media, Inc., 978-0-596-15595-7.”</simpara>
+<simpara id="para_if_you_feel_your_use_of_code_e">If you feel your use of code examples falls outside fair use or the
+permission given above, feel free to contact us at
+<ulink url="mailto:permissions@oreilly.com">permissions@oreilly.com</ulink>.</simpara>
+<sect2 id="GettingCodeExamples">
+<title>Getting the Code Examples</title>
+<simpara id="para_you_can_download_the_code_exam">You can download the code examples from TODO. Unzip the files to a convenient location. See the <literal>README.txt</literal> file in the distribution for instructions on building and using the examples.</simpara>
+<simpara id="para_file_name_conventions">Some of the example files can be run as scripts using the <userinput>scala</userinput> command. Others must be compiled into class files. Some files contain deliberate errors and won’t compile. We have adopted a file naming convention to indicate each of these cases, although as you learn Scala it should become obvious from the contents of the files, in most cases.</simpara>
+<variablelist id="para_script_file_convention">
+<varlistentry id="varlistentry-script-scala">
+<term>
+<literal>*-script.scala</literal>
+</term>
+<listitem>
+<simpara>
+  Files that end in <literal>-script.scala</literal> can be run on a command line using <userinput>scala</userinput>, <emphasis>e.g.,</emphasis> <userinput>scala foo-script.scala</userinput>. You can also start <userinput>scala</userinput> in the interpreter mode (when you don’t specify a script file) and load any script file in the interpreter using the <literal>:load filename</literal> command.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry id="varlistentry-wont-compile-scala">
+<term>
+<literal>*-wont-compile.scala</literal>
+</term>
+<listitem>
+<simpara>
+  Files that end in <literal>-wont-compile.scala</literal> contain deliberate errors that will cause them to fail to compile. We use this naming convention, along with one or more embedded comments about the errors, so it will be clear that they are invalid. Also, these files are skipped by the build process for the examples.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry id="varlistentry-sake-scala">
+<term>
+<literal>sake.scala</literal>
+</term>
+<listitem>
+<simpara>
+  Files named <literal>sake.scala</literal> are used by our build tool, called <userinput>sake</userinput>. The <literal>README.txt</literal> file describes this tool.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry id="varlistentry-scala">
+<term>
+<literal>*.scala</literal>
+</term>
+<listitem>
+<simpara>
+  All other Scala files must be compiled using <userinput>scalac</userinput>. In the distribution, they are used either by other compiled or script files, such as tests, not all of which are listed in the book.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+<sect1 id="para_other_file_convention">
+<title>Safari® Books Online</title>
+<note id="para_note_when_you_see_a_safari_"><simpara>When you see a Safari® Books Online icon on the cover of your
+      favorite technology book, that means the book is available online
+      through the O’Reilly Network Safari Bookshelf.</simpara></note>
+<simpara id="para_safari_offers_a_solution_that_">Safari offers a solution that’s better than e-books. It’s a virtual
+library that lets you easily search thousands of top tech books, cut and
+paste code samples, download chapters, and find quick answers when you
+need the most accurate, current information. Try it for free at
+<ulink url="http://safari.oreilly.com">http://safari.oreilly.com</ulink>.</simpara>
+</sect1>
+<sect1 id="_how_to_contact_us">
+<title>How to Contact Us</title>
+<simpara id="para_please_address_comments_and_qu">Please address comments and questions concerning this book to the publisher:</simpara>
+<screen>O’Reilly Media, Inc
+1005 Gravenstein Highway North
+Sebastopol, CA 95472
+800-998-9938 (in the United States or Canada)
+707-829-0515 (international or local)
+707 829-0104 (fax)</screen>
+<simpara id="para_we_have_a_web_page_for_this_bo">We have a web page for this book, where we list errata, examples,
+and any additional information. You can access this page at:</simpara>
+<screen>http://www.oreilly.com/catalog/CATALOGPAGE</screen>
+<simpara id="para_to_comment_or_ask_technical_qu">To comment or ask technical questions about this book, send email to:</simpara>
+<screen>mailto:bookquestions@oreilly.com[bookquestions@oreilly.com]</screen>
+<simpara id="para_for_more_information_about_our">For more information about our books, conferences, Resource Centers, and the O’Reilly Network, see
+our web site at:</simpara>
+<screen>http://www.oreilly.com</screen>
+</sect1>
+</preface>

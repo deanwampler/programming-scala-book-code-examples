@@ -1,0 +1,799 @@
+<?xml version="1.0"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="BasicObjectOrientedProgramming">
+<title>Basic Object-Oriented Programming in Scala</title>
+<simpara id="para_scala_is_an_object_oriented_la">Scala is an object-oriented language like Java, Python, Ruby, Smalltalk, and others. If you’re coming from the Java world, you’ll notice some notable improvements over the limitations of Java’s object model.</simpara>
+<simpara id="para_we_assume_you_have_some_prior_">We assume you have some prior experience with object-oriented programming (OOP), so we will not discuss the basic principles here, although some common terms and concepts are discussed in the <xref linkend="Glossary"/>. See <xref linkend="Meyer1997" xrefstyle="select: title nopage"/> for a detailed introduction to OOP, see <xref linkend="Martin2003" xrefstyle="select: title nopage"/> for a recent treatment of OOP principles in the context of “agile software development”, see <xref linkend="GOF1995" xrefstyle="select: title nopage"/> to learn about <emphasis>design patterns</emphasis>, and see <xref linkend="WirfsBrock2003" xrefstyle="select: title nopage"/> for a discussion of object-oriented design concepts.</simpara>
+<sect1 id="ClassBasics">
+<title>Class and Object Basics</title>
+<simpara id="para_let_s_review_the_basic_terms_f">Let’s review the terminology of OOP in Scala.</simpara>
+<note id="para_note_we_saw_previously_that_s"><simpara>We saw previously that Scala has the concept of a declared <literal>object</literal>, which we’ll dig into in <xref linkend="ClassesAndObjects"/>. We’ll use the term <emphasis>instance</emphasis> to refer to a class instance generically, meaning either an <literal>object</literal> or an instance of a <literal>class</literal>, to avoid the potential for confusion between these two concepts.</simpara></note>
+<simpara id="para_classes_are_declared_with_a_cl">Classes are declared with the keyword <literal>class</literal>. We will see later that additional keywords can also be used, like <literal>final</literal> to prevent creation of <emphasis>derived</emphasis> classes and <literal>abstract</literal> to indicate that the class can’t be instantiated, usually because it contains or inherits member declarations without providing concrete definitions for them.</simpara>
+<simpara id="para_an_instance_can_refer_to_itsel">An instance can refer to itself using the <literal>this</literal> keyword, just as in Java and similar languages.</simpara>
+<simpara id="para_following_scala_s_convention_">Following Scala’s convention, we use the term <emphasis>method</emphasis> for a function that is tied to an instance. Some other object-oriented languages use the term “member function”. Method definitions start with the <literal>def</literal> keyword.</simpara>
+<simpara id="para_like_java_but_unlike_ruby_sc">Like Java, but unlike Ruby and Python, Scala allows <emphasis>overloaded methods</emphasis>. Two or more methods can have the same name as long as their full <emphasis>signatures</emphasis> are unique. The <emphasis>signature</emphasis> includes the type name, the list of parameters with types, and the method’s return value.</simpara>
+<simpara id="para_type_erasure_method_overloading">However, there is an exception to this rule due to <emphasis>type erasure</emphasis>, which is a feature of the JVM only, but is used by Scala on both the JVM and .NET platforms, to minimize incompatibilities. Suppose two methods are identical except that one takes a parameter of type <literal>List[String]</literal> while the other takes a parameter of type <literal>List[Int]</literal>, as in the the following example.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/type-erasure-wont-compile.scala
+// WON'T COMPILE
+
+object Foo {
+  def bar(list: List[String]) = list.toString
+  def bar(list: List[Int]) = list.size.toString
+}</programlisting>
+<simpara id="para_you_ll_get_a_compilation_error">You’ll get a compilation error on the second method because the two methods will have an identical signature after type erasure.</simpara>
+<warning id="para_warning_the_scala_interpret"><simpara>The <userinput>scala</userinput> interpreter will let you type in both methods. It appears to simply drop the first version. However, if you try to load the previous example using the <literal>:load file</literal> command, you’ll get the same error <userinput>scalac</userinput> raises.</simpara></warning>
+<simpara id="para_we_ll_discuss_type_erasure_in_">We’ll discuss type erasure in more detail in <xref linkend="ScalasTypeSystem"/>.</simpara>
+<simpara id="para_also_by_convention_we_use_the">Also by convention, we use the term <emphasis>field</emphasis> for a variable that is tied to an instance. The term <emphasis>attribute</emphasis> is often used in other languages (like Ruby). Note that the state of an instance is the union of all the values currently represented by the instance’s fields.</simpara>
+<simpara id="para_as_we_discussed_in_variabled">As we discussed in <xref linkend="VariableDeclarationsAndDefinitions"/> in <xref linkend="TypeLessDoMore"/>, read-only (“value”) fields are declared using the <literal>val</literal> keyword and read/write fields are declared using the <literal>var</literal> keyword.</simpara>
+<simpara id="para_scala_also_allows__types__to_b">Scala also allows types to be declared in classes, as we saw in <xref linkend="AbstractTypesAndParameterizedTypes"/> in <xref linkend="TypeLessDoMore"/>.</simpara>
+<simpara id="para_we_use_the_term__member__to_re">We use the term <emphasis>member</emphasis> to refer to a field, method, or type in a generic way. Note that field and method members (but not type members) share the same <emphasis>namespace</emphasis>, unlike Java. We’ll discuss this more in <xref linkend="UniformAccessPrinciple"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>.</simpara>
+<simpara id="para_new_instances_of_reference_types">Finally, new instances of <emphasis>reference types</emphasis> are created from a class using the <literal>new ClassName(…)</literal> syntax, as in languages like Java and C#. Note that you can drop the parentheses when using a <emphasis>default</emphasis> constructor (<emphasis>i.e.,</emphasis> one that takes no arguments). In some cases, literal values can be used instead, <emphasis>e.g.,</emphasis> <literal>val name = "Programming Scala"</literal> is equivalent to <literal>val name = new String("Programming Scala")</literal>.</simpara>
+<simpara id="para_new_instances_of_value_types">Instances of <emphasis>value types</emphasis> (<emphasis>e.g.,</emphasis> <literal>Int</literal>, <literal>Double</literal>, <emphasis>etc.</emphasis>), which correspond to the primitives in languages like Java, are always created using literal values, <emphasis>e.g.,</emphasis> <literal>1</literal>, <literal>3.14</literal>, <emphasis>etc.</emphasis>. In fact, there are no public constructors for these types, so an expression like <literal>val i = new Int(1)</literal> won’t compile.</simpara>
+<simpara id="para_we_ll_discuss__reference__vs_">We’ll discuss the difference between reference and value types in <xref linkend="ScalaTypeHierarchy"/>.</simpara>
+</sect1>
+<sect1 id="ParentClasses">
+<title>Parent Classes</title>
+<simpara id="para_scala_supports__single_inherit">Scala supports single inheritance, not multiple inheritance. A child (or derived) class can have one and only one parent (or base) class. The sole exception is the root of the Scala class hierarchy, <literal>Any</literal>.</simpara>
+<simpara id="para_here_is_a_simple_example_from_">We’ve seen several examples of parent and child classes already. Here are snippets of one of the first examples we saw, in <xref linkend="AbstractTypesAndParameterizedTypes"/> from <xref linkend="TypeLessDoMore"/>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
+
+import java.io._
+
+abstract class BulkReader {
+  // ...
+}
+
+class StringBulkReader(val source: String) extends BulkReader {
+  // ...
+}
+
+class FileBulkReader(val source: File) extends BulkReader {
+  // ...
+}</programlisting>
+<simpara id="para_as_in_java_the_keyword_exten">As in Java, the keyword <literal>extends</literal> indicates the parent class, in this case <literal>BulkReader</literal>. We’ll use <literal>Widget</literal> as the parent class for all GUI elements in subsequent examples.</simpara>
+<simpara id="para_if_you_don_t_extend_a_parent">If you don’t <literal>extend</literal> a parent class, the default parent is <literal>AnyRef</literal>, a direct child class of <literal>Any</literal>. (We discuss the difference between <literal>Any</literal> and <literal>AnyRef</literal> when we discuss the Scala type hierarchy in <xref linkend="ScalaTypeHierarchy"/>.)</simpara>
+</sect1>
+<sect1 id="Constructors">
+<title>Constructors in Scala</title>
+<simpara id="para_scala_distinguishes_between_a_">Scala distinguishes between a <emphasis>primary constructor</emphasis> and zero or more <emphasis>auxiliary constructors</emphasis>. In Scala, the primary constructor is the entire body of the class. Any parameters that the constructor requires are listed after the class name. We’ve seen many examples of this already, as in the <literal>ButtonWithCallbacks</literal> example we used in <xref linkend="Traits"/>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-callbacks.scala
+
+package ui
+
+class ButtonWithCallbacks(val label: String,
+    val clickedCallbacks: List[() =&gt; Unit]) extends Widget {
+
+  require(clickedCallbacks != null, "Callback list can't be null!")
+
+  def this(label: String, clickedCallback: () =&gt; Unit) =
+    this(label, List(clickedCallback))
+
+  def this(label: String) = {
+    this(label, Nil)
+    println("Warning: button has no click callbacks!")
+  }
+
+  def click() = {
+    // ... logic to give the appearance of clicking a physical button ...
+    clickedCallbacks.foreach(f =&gt; f())
+  }
+}</programlisting>
+<simpara id="para_the_buttonwithcallbacks_clas">The <literal>ButtonWithCallbacks</literal> class represents a button on a graphical user interface. It has a label and a list of callback functions that are invoked if the button is clicked. Each callback function takes no arguments and returns <literal>Unit</literal>. The <literal>click</literal> method iterates through the list of callbacks and invokes each one.</simpara>
+<simpara id="para__buttonwithcallbacks_defines_"><literal>ButtonWithCallbacks</literal> defines three constructors. The primary constructor, which is the body of the entire class, has a parameter list that takes a label string and a list of callback functions. Because each parameter is declared as a <literal>val</literal>, the compiler generates a private field corresponding to each parameter (a different internal name is used), along with a public reader method that has the same name as the parameter. “Private” and “public” have the same meaning here as in most object-oriented languages. We’ll discuss the various visibility rules and the keywords that control them in <xref linkend="VisibilityRules"/> below.</simpara>
+<simpara id="para_if_a_parameter_has_the_var_k">If a parameter has the <literal>var</literal> keyword, a public writer method is also generated with the parameter’s name as a prefix, followed by <literal>_=</literal>. For example, if <literal>label</literal> were declared as a <literal>var</literal>, the writer method would be named <literal>label_=</literal> and it would take a single argument of type <literal>String</literal>.</simpara>
+<simpara id="para_suppress_accessors">There are times when you don’t want the accessor methods to be generated automatically. In other words, you want the field to be <emphasis>private</emphasis>. Add the <literal>private</literal> keyword before the <literal>val</literal> or <literal>var</literal> keyword and the accessor methods won’t be generated. (See <xref linkend="VisibilityRules"/> below for more details.)</simpara>
+<note id="para_note_scala_doesn_t_follow_the"><simpara>For you Java programmers, Scala doesn’t follow the <emphasis>JavaBeans</emphasis> <xref linkend="JavaBeansSpec" xrefstyle="select: title nopage"/> convention that field reader and writer methods begin with <literal>get</literal> and <literal>set</literal> respectively, followed by the field name with the first character capitalized. We’ll see why when we discuss the <emphasis>Uniform Access Principle</emphasis> in <xref linkend="UniformAccessPrinciple"/> below. However, you can get JavaBeans-style <emphasis>getters</emphasis> and <emphasis>setters</emphasis> when you need them using <literal>scala.reflect.BeanProperty</literal> annotation, as we’ll discuss in <xref linkend="JavaBeanProperties"/> in <xref linkend="ScalaToolsLibs"/>.</simpara></note>
+<simpara id="para_when_an_instance_of_the_class_">When an instance of the class is created, each field corresponding to a parameter in the parameter list will be initialized with the parameter automatically. No constructor logic is required to initialize these fields, in contrast to most other object-oriented languages.</simpara>
+<simpara id="para_the_first_statement_in_the_cla">The first statement in the class (<emphasis>i.e.,</emphasis> the constructor) body is a test to ensure that a non-<literal>null</literal> list has been passed to the constructor. (It does allow an empty <literal>Nil</literal> list, however.) It uses the convenient <literal>require</literal> function that is imported automatically into the current scope (as we’ll discuss in <xref linkend="PredefObject"/> in <xref linkend="ScalaObjectSystem"/>). If the list is null, <literal>require</literal> will throw an exception. The <literal>require</literal> function and its companion <literal>assume</literal> are very useful for <emphasis>design by contract</emphasis> programming, as discussed in <xref linkend="DesignByContractExample"/> in <xref linkend="ApplicationDesign"/>.</simpara>
+<simpara id="para_here_is_a_partial_specification">Here is part of a full specification for <literal>ButtonWithCallbacks</literal> that demonstrates the <literal>require</literal> statement in use.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-callbacks-spec.scala
+package ui
+import org.specs._
+
+object ButtonWithCallbacksSpec extends Specification {
+  "A ButtonWithCallbacks" should {
+    // ...
+    "not be constructable with a null callback list" in {
+      val nullList:List[() =&gt; Unit] = null
+      val errorMessage =
+        "requirement failed: Callback list can't be null!"
+      (new ButtonWithCallbacks("button1", nullList)) must throwA(
+        new IllegalArgumentException(errorMessage))
+    }
+  }
+}</programlisting>
+<simpara id="para_scala_diff_pass_null">Scala even makes it difficult to pass <literal>null</literal> as the second parameter to the constructor; it won’t type check when you compile it. However, you can assign <literal>null</literal> to a value, as shown. If we didn’t have the <literal>must throwA(…)</literal> clause, we would see the following exception thrown.</simpara>
+<screen>java.lang.IllegalArgumentException: requirement failed: Callback list can't be null!
+        at scala.Predef$.require(Predef.scala:112)
+        at ui.ButtonWithCallbacks.&lt;init&gt;(button-callbacks.scala:7)
+....</screen>
+<simpara id="para_in_this_example_two_auxiliary">In this example, two auxiliary constructors are defined for the user’s convenience. The first auxiliary constructor accepts a label and a single callback. It calls the primary constructor, passing the label and a new <literal>List</literal> to wrap the single callback.</simpara>
+<simpara id="para_the_second_auxiliary_construct">The second auxiliary constructor accepts just a label. It calls the primary constructor with <literal>Nil</literal> (which represents an empty <literal>List</literal> object). The constructor then prints a warning message that there are no callbacks, since lists are immutable and there is no way to replace the callback list <literal>val</literal> with a new one.</simpara>
+<simpara id="para_in_order_to_avoid_potential_in">In order to avoid infinite recursion, Scala requires each auxiliary constructor to invoke another constructors defined before it <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>. The constructor invoked may be either another auxiliary constructor or the primary constructor, and must be the first statement in the auxiliary constructor’s body. Additional processing can occur after this call, such as the warning message printed in our example.</simpara>
+<note id="para_note_that_because_all_auxiliar"><simpara>Because all auxiliary constructors eventually invoke the primary constructor, logic checks and other initializations done in the body will be performed consistently for all instances created.</simpara></note>
+<simpara id="para_there_are_a_few_advantages_of_">There are a few advantages of Scala’s constraints on constructors.</simpara>
+<variablelist id="para_advantages_of_ctor_constraints_">
+<varlistentry id="varlistentry-elimination-of-duplication">
+<term>
+Elimination of Duplication
+</term>
+<listitem>
+<simpara>
+  Because auxiliary constructors invoke the primary constructor, potential duplication of construction logic is largely eliminated.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry id="varlistentry-code-size-reduction">
+<term>
+Code Size Reduction
+</term>
+<listitem>
+<simpara>
+  As shown in the examples, when one or more of the primary constructor parameters is declared as a <literal>val</literal> or a <literal>var</literal>, Scala automatically generates a field, the appropriate accessor methods (unless they are declared <literal>private</literal>), and the initialization logic for when instances are created.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara id="para_there_is_also_at_least_one_dis">There is also at least one disadvantage of Scala’s constraints on constructors.</simpara>
+<variablelist id="para_less_flexibility_">
+<varlistentry id="varlistentry-less-flexibility">
+<term>
+Less Flexibility
+</term>
+<listitem>
+<simpara>
+  Sometimes it’s just not convenient to have one constructor body that all constructors are forced to use. However, the authors find these circumstances to be rare. In such cases, it may simply be that the class has too many responsibilities and it should be refactored into smaller classes.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<sect2 id="CallingParentClassConstructors">
+<title>Calling Parent Class Constructors</title>
+<simpara id="para_the_following_example_illustra">The primary constructor in a derived class must invoke one of the parent class constructors, either the primary constructor or an auxiliary constructor. In the following example, a class derived from <literal>ButtonWithCallbacks</literal>, called <literal>RadioButtonWithCallbacks</literal>, invokes the primary <literal>ButtonWithCallbacks</literal> constructor. “Radio” buttons can be either on or off.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/ui/radio-button-callbacks.scala
+
+package ui
+
+/**
+ * Button with two states, on or off, like an old-style,
+ * channel-selection button on a radio.
+ */
+class RadioButtonWithCallbacks(
+  var on: Boolean, label: String, clickedCallbacks: List[() =&gt; Unit])
+      extends ButtonWithCallbacks(label, clickedCallbacks) {
+
+  def this(on: Boolean, label: String, clickedCallback: () =&gt; Unit) =
+      this(on, label, List(clickedCallback))
+
+  def this(on: Boolean, label: String) = this(on, label, Nil)
+}</programlisting>
+<simpara id="para_the_primary_constructor_for_r">The primary constructor for <literal>RadioButtonWithCallbacks</literal> takes three parameters: an <literal>on</literal> state (<literal>true</literal> or <literal>false</literal>), a label, and a list of callbacks. It passes the label and list of callbacks to its parent class, <literal>ButtonWithCallbacks</literal>. The <literal>on</literal> parameter is declared as a <literal>var</literal>, so it is mutable. <literal>on</literal> is also the one constructor parameter unique to a radio button, so it is kept as an attribute of <literal>RadioButtonWithCallbacks</literal>.</simpara>
+<simpara id="para_for_consistency_with_its_paren">For consistency with its parent class, <literal>RadioButtonWithCallbacks</literal> also declares two auxiliary constructors. Note that they must invoke a preceding constructor in <literal>RadioButtonWithCallbacks</literal>, as before. They can’t invoke a <literal>ButtonWithCallbacks</literal> constructor directly. Declaring all these constructors in each class could get tedious after a while, but we explored techniques in <xref linkend="Traits"/> that can eliminate repetition.</simpara>
+<note id="para_cant_super_class_constructor"><simpara>While <literal>super</literal> is used to invoke overridden methods, as in Java, it cannot be used to invoke a super class constructor.</simpara></note>
+</sect2>
+</sect1>
+<sect1 id="NestedClasses">
+<title>Nested Classes</title>
+<simpara id="para_scala_lets_you_nest_class_decl">Scala lets you nest class declarations, like many object-oriented languages. Suppose we want all <literal>Widgets</literal> to have a map of properties. These properties could be size, color, whether or not a visibility, <emphasis>etc</emphasis>. We might use a simple <literal>map</literal> to hold the properties, but let’s assume that we also want to control access to the properties, and to perform other operations when they change.</simpara>
+<simpara id="para_here_is_one_way_way_we_might_e">Here is one way way we might expand our original <literal>Widget</literal> example from <xref linkend="TraitsAsMixins"/> in <xref linkend="Traits"/> to add this feature.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/ui/widget.scala
+
+package ui
+
+abstract class Widget {
+  class Properties {
+    import scala.collection.immutable.HashMap
+
+    private var values: Map[String, Any] = new HashMap
+
+    def size = values.size
+
+    def get(key: String) = values.get(key)
+
+    def update(key: String, value: Any) = {
+      // Do some preprocessing, e.g., filtering.
+      values = values.update(key, value)
+      // Do some postprocessing.
+    }
+  }
+
+  val properties = new Properties
+}</programlisting>
+<simpara id="para_widget_with_properties">We added a <literal>Properties</literal> class that has a private, mutable reference to an immutable <literal>HashMap</literal>. We also added three public methods that retrieve the size (<emphasis>i.e.,</emphasis> the number of properties defined), retrieve a single element in the map, and update the map with a new element, respectively. We might need to do additional work in the <literal>update</literal> method, and we’ve indicated as much with comments.</simpara>
+<note id="para_so_scala_allows_declarations_"><simpara>You can see from the above example that Scala allows classes to be declared inside one another, or “nested”. A nested class make sense when you have enough related functionality to lump together in a class, but said functionality is only ever going to be used by its “outer” class.</simpara></note>
+<simpara id="para_so_far_we_ve_covered_how_to_d">So far, we’ve covered how to declare classes, how to instantiate them, and some of the basics of inheritance. In the next section, we’ll discuss visibility rules within classes and objects.</simpara>
+</sect1>
+<sect1 id="VisibilityRules">
+<title>Visibility Rules</title>
+<note id="para_for_convenience_we_ll_use_the"><simpara>For convenience, we’ll use the word “type” in this section to refer to classes and traits generically, as opposed to referring to member <literal>type</literal> declarations. We’ll include those when we use the term “member” generically, unless otherwise indicated.</simpara></note>
+<simpara id="para_most_object_oriented_languages">Most object-oriented languages have constructs to constrain the visibility (or scope) of type and type-member declarations. These constructs support the object-oriented form of encapsulation, where only the essential public abstraction of a class or trait is exposed and implementation information is hidden from view.</simpara>
+<simpara id="para_you_ll_want_to_use_public_visi">You’ll want to use public visibility for anything that users of your classes and objects should see and use. Keep in mind that the set of publicly visible members form the abstraction exposed by the type, along with the type’s name itself.</simpara>
+<simpara id="para_the_conventional_wisdom_in_obj">The conventional wisdom in object-oriented design is that fields should be private or protected. If access is required, it should happen through methods, but not everything should be accessible by default. The virtue of the <emphasis>Uniform Access Principle</emphasis> (see <xref linkend="UniformAccessPrinciple"/>) is that we can give the user the semantics of public field access via either a method or direct access to a field, whichever is appropriate for the task.</simpara>
+<tip id="para_tip_the_art_of_good_object_or"><simpara>The art of good object-oriented design includes defining minimal, clear, and cohesive public abstractions.</simpara></tip>
+<simpara id="para_there_are_two_kinds_of_users">There are two kinds of “users” of a type: derived types and code that works with instances of the type. Derived types usually need more access to the members of their parent types than users of instances do.</simpara>
+<simpara id="para_scala_s_visibility_rules_are_s">Scala’s visibility rules are similar to Java’s, but tend to be both more consistently applied and more flexible. For example, in Java, if an inner class has a <literal>private</literal> member, the enclosing class can see it. In Scala, the enclosing class can’t see a <literal>private</literal> member, but Scala provides another way to declare it visible to the enclosing class.</simpara>
+<simpara id="para_also_like_java_and_c_the_vis">As in Java and C#, the keywords that modify visibility, such as <literal>private</literal> and <literal>protected</literal>, appear at the beginning of declarations. You’ll find them before the <literal>class</literal> or <literal>trait</literal> keywords for types, before the <literal>val</literal> or <literal>var</literal> for fields, and before the <literal>def</literal> for methods.</simpara>
+<note id="para_note_you_can_also_use_an_acce"><simpara>You can also use an access modifier keyword on the primary constructor of a class. Put it after the type name and type parameters, if any, and before the argument list, as in this example: <literal>class Restricted[+A] private (name: String) {…}</literal></simpara></note>
+<simpara id="para_visibility_scopes_table_summarizes_the_visibility_scopes"><xref linkend="visibility-scopes-table"/> summarizes the visibility scopes.</simpara>
+<table id="visibility-scopes-table" frame="none" rowsep="1" colsep="1">
+<title>Visibility Scopes.</title>
+<tgroup cols="3">
+<colspec colwidth="76pt" align="left"/>
+<colspec colwidth="95pt" align="left"/>
+<colspec colwidth="210pt" align="left"/>
+<thead valign="top">
+<row>
+<entry> Name </entry>
+<entry> Keyword </entry>
+<entry> Description</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara>public</simpara></entry>
+<entry><simpara><emphasis>none</emphasis></simpara></entry>
+<entry><simpara>Public members and types are visible everywhere, across all boundaries.</simpara></entry>
+</row>
+<row>
+<entry><simpara>protected</simpara></entry>
+<entry><simpara><literal>protected</literal></simpara></entry>
+<entry><simpara>Protected members are visible to the defining type, to derived types, and to nested types. Protected types are visible only within the same package.</simpara></entry>
+</row>
+<row>
+<entry><simpara>private</simpara></entry>
+<entry><simpara><literal>private</literal></simpara></entry>
+<entry><simpara>Private members are visible only within the defining type and nested types. Private types are visible only within the same package.</simpara></entry>
+</row>
+<row>
+<entry><simpara>scoped protected</simpara></entry>
+<entry><simpara><literal>protected[scope]</literal></simpara></entry>
+<entry><simpara>Visibility is limited to <literal>scope</literal>, which can be a package, type, or <literal>this</literal> (meaning the same instance, when applied to members, or the enclosing package, when applied to types). See the text below for details.</simpara></entry>
+</row>
+<row>
+<entry><simpara>scoped private</simpara></entry>
+<entry><simpara><literal>private[scope]</literal></simpara></entry>
+<entry><simpara>Synonymous with scoped protected visibility, except under inheritance (discussed below).</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara id="para_let_s_explore_these_visibility">Let’s explore these visibility options in more detail. To keep things simple, we’ll use fields for member examples. Method and <literal>type</literal> declarations behave the same way.</simpara>
+<note id="para_unfortunately_you_can_t_apply"><simpara>Unfortunately, you can’t apply any of the visibility modifiers to packages. Therefore, a package is always public, even when it contains no publicly visible types.</simpara></note>
+<sect2 id="PublicVisibility">
+<title>Public Visibility</title>
+<simpara id="para_any_declaration_without_a_visi">Any declaration without a visibility keyword is “public”, meaning it is visible everywhere. There is no <literal>public</literal> keyword in Scala. This is in contrast to Java, which defaults to public visibility only within the enclosing package (<emphasis>i.e.,</emphasis> “package private”). Other object-oriented languages, like Ruby, also default to public visibility.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/public.scala
+
+package scopeA {
+  class PublicClass1 {
+    val publicField = 1
+
+    class Nested {
+      val nestedField = 1
+    }
+
+    val nested = new Nested
+  }
+
+  class PublicClass2 extends PublicClass1 {
+    val field2  = publicField + 1
+    val nField2 = new Nested().nestedField
+  }
+}
+
+package scopeB {
+  class PublicClass1B extends scopeA.PublicClass1
+
+  class UsingClass(val publicClass: scopeA.PublicClass1) {
+    def method = "UsingClass:" +
+      " field: " + publicClass.publicField +
+      " nested field: " + publicClass.nested.nestedField
+  }
+}</programlisting>
+<simpara id="para_you_can_compile_this_file_with">You can compile this file with <userinput>scalac</userinput>. It should compile without error.</simpara>
+<simpara id="para_everything_is_public_in_these_">Everything is public in these packages and classes. Note that <literal>scopeB.UsingClass</literal> can access <literal>scopeA.PublicClass1</literal> and its members, including the instance of <literal>Nested</literal> and its public field.</simpara>
+</sect2>
+<sect2 id="ProtectedVisibility">
+<title>Protected Visibility</title>
+<simpara id="para_protected_visibility_is_for_th">Protected visibility is for the benefit of implementers of derived types, who need a little more access to the details of their parent types. Any member declared with the <literal>protected</literal> keyword is visible only to the defining type, including other instances of the same type and any derived types. When applied to a type, <literal>protected</literal> limits visibility to the enclosing package.</simpara>
+<simpara id="para_java_in_contrast_makes_prote">Java, in contrast, makes protected members visible throughout the enclosing package. Scala handles this case with scoped private and protected access.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/protected-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  class ProtectedClass1(protected val protectedField1: Int) {
+    protected val protectedField2 = 1
+
+    def equalFields(other: ProtectedClass1) =
+      (protectedField1 == other.protectedField1) &amp;&amp;
+      (protectedField1 == other.protectedField1) &amp;&amp;
+      (nested == other.nested)
+
+    class Nested {
+      protected val nestedField = 1
+    }
+
+    protected val nested = new Nested
+  }
+
+  class ProtectedClass2 extends ProtectedClass1(1) {
+    val field1 = protectedField1
+    val field2 = protectedField2
+    val nField = new Nested().nestedField  // ERROR
+  }
+
+  class ProtectedClass3 {
+    val protectedClass1 = new ProtectedClass1(1)
+    val protectedField1 = protectedClass1.protectedField1 // ERROR
+    val protectedField2 = protectedClass1.protectedField2 // ERROR
+    val protectedNField = protectedClass1.nested.nestedField // ERROR
+  }
+
+  protected class ProtectedClass4
+
+  class ProtectedClass5 extends ProtectedClass4
+  protected class ProtectedClass6 extends ProtectedClass4
+}
+
+package scopeB {
+  class ProtectedClass4B extends scopeA.ProtectedClass4 // ERROR
+}</programlisting>
+<simpara id="para_when_you_compile_this_file_wit">When you compile this file with <userinput>scalac</userinput>, you get the following output. (The file name before the <literal>N:</literal> line numbers have been removed from the output to better fit the space.)</simpara>
+<screen>16: error: value nestedField cannot be accessed in ProtectedClass2.this.Nested
+        val nField = new Nested().nestedField
+                                  ^
+20: error: value protectedField1 cannot be accessed in scopeA.ProtectedClass1
+        val protectedField1 = protectedClass1.protectedField1
+                                              ^
+21: error: value protectedField2 cannot be accessed in scopeA.ProtectedClass1
+        val protectedField2 = protectedClass1.protectedField2
+                                              ^
+22: error: value nested cannot be accessed in scopeA.ProtectedClass1
+        val protectedNField = protectedClass1.nested.nestedField
+                                              ^
+32: error: class ProtectedClass4 cannot be accessed in package scopeA
+    class ProtectedClass4B extends scopeA.ProtectedClass4
+                                          ^
+5 errors found</screen>
+<simpara id="para_the_comments_in_the_li">The <literal>// ERROR</literal> comments in the listing mark the lines that fail to parse.</simpara>
+<simpara id="para__protectedclass2_can_access_p"><literal>ProtectedClass2</literal> can access protected members of <literal>ProtectedClass1</literal> since it derives from it. However, it can’t access the protected <literal>nestedField</literal> in <literal>protectedClass1.nested</literal>. Also, <literal>ProtectedClass3</literal> can’t access protected members of the <literal>ProtectedClass1</literal> instance it uses.</simpara>
+<simpara id="para_finally_because_protectedcla">Finally, because <literal>ProtectedClass4</literal> is declared <literal>protected</literal>, it is not visible in the <literal>scopeB</literal> package.</simpara>
+</sect2>
+<sect2 id="PrivateVisibility">
+<title>Private Visibility</title>
+<simpara id="para_private_visibility_is_for_comp">Private visibility completely hides implementation details, even from the implementers of derived classes. Any member declared with the <literal>private</literal> keyword is visible only to the defining type, including other instances of the same type. When applied to a type, <literal>private</literal> limits visibility to the enclosing package.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  class PrivateClass1(private val privateField1: Int) {
+    private val privateField2 = 1
+
+    def equalFields(other: PrivateClass1) =
+      (privateField1 == other.privateField1) &amp;&amp;
+      (privateField2 == other.privateField2) &amp;&amp;
+      (nested == other.nested)
+
+    class Nested {
+      private val nestedField = 1
+    }
+
+    private val nested = new Nested
+  }
+
+  class PrivateClass2 extends PrivateClass1(1) {
+    val field1 = privateField1  // ERROR
+    val field2 = privateField2  // ERROR
+    val nField = new Nested().nestedField // ERROR
+  }
+
+  class PrivateClass3 {
+    val privateClass1 = new PrivateClass1(1)
+    val privateField1 = privateClass1.privateField1 // ERROR
+    val privateField2 = privateClass1.privateField2 // ERROR
+    val privateNField = privateClass1.nested.nestedField // ERROR
+  }
+
+  private class PrivateClass4
+
+  class PrivateClass5 extends PrivateClass4  // ERROR
+  protected class PrivateClass6 extends PrivateClass4 // ERROR
+  private class PrivateClass7 extends PrivateClass4
+}
+
+package scopeB {
+  class PrivateClass4B extends scopeA.PrivateClass4  // ERROR
+}</programlisting>
+<simpara id="para_compiling_yields1">Compiling this file yields the following output.</simpara>
+<screen>14: error: not found: value privateField1
+        val field1 = privateField1
+                     ^
+15: error: not found: value privateField2
+        val field2 = privateField2
+                     ^
+16: error: value nestedField cannot be accessed in PrivateClass2.this.Nested
+        val nField = new Nested().nestedField
+                                  ^
+20: error: value privateField1 cannot be accessed in scopeA.PrivateClass1
+        val privateField1 = privateClass1.privateField1
+                                          ^
+21: error: value privateField2 cannot be accessed in scopeA.PrivateClass1
+        val privateField2 = privateClass1.privateField2
+                                          ^
+22: error: value nested cannot be accessed in scopeA.PrivateClass1
+        val privateNField = privateClass1.nested.nestedField
+                                          ^
+27: error: private class PrivateClass4 escapes its defining scope as part
+of type scopeA.PrivateClass4
+    class PrivateClass5 extends PrivateClass4
+                                ^
+28: error: private class PrivateClass4 escapes its defining scope as part
+of type scopeA.PrivateClass4
+    protected class PrivateClass6 extends PrivateClass4
+                                          ^
+33: error: class PrivateClass4 cannot be accessed in package scopeA
+    class PrivateClass4B extends scopeA.PrivateClass4
+                                        ^
+9 errors found</screen>
+<simpara id="para_now_privateclass2_can_t_acc">Now, <literal>PrivateClass2</literal> can’t access private members of its parent class <literal>PrivateClass1</literal>. They are completely invisible to the subclass, as indicated by the error messages. Nor can it access a private field in a <literal>Nested</literal> class.</simpara>
+<simpara id="para_just_as_for_the_case_of_prote">Just as for the case of <literal>protected</literal> access, <literal>PrivateClass3</literal> can’t access private members of the <literal>PrivateClass1</literal> instance it is using. Note, however, that the <literal>equalFields</literal> method can access private members of the <literal>other</literal> instance.</simpara>
+<simpara id="para_the_declarations_of_privatecl">The declarations of <literal>PrivateClass5</literal> and <literal>PrivateClass6</literal> fail, because if allowed, they would enable <literal>PrivateClass4</literal> to “escape its defining scope”. However, the declaration of <literal>PrivateClass7</literal> succeeds, because it is also declared to be private. Curiously, our previous example was able to declare a public class that subclassed a protected class without a similar error.</simpara>
+<simpara id="para_finally_just_as_for_protecte">Finally, just as for <literal>protected</literal> type declarations, the <literal>private</literal> types can’t be subclassed outside the same package.</simpara>
+</sect2>
+<sect2 id="ScopedPrivateAndProtectedVisibility">
+<title>Scoped Private and Protected Visibility</title>
+<simpara id="para_scala_allows_you_to_fine_tune_">Scala allows you to fine-tune the scope of visibility with the scoped <literal>private</literal> and <literal>protected</literal> visibility declarations. Note that using <literal>private</literal> or <literal>protected</literal> in a scoped declaration is interchangeable, as they behave identically, except under inheritance when applied to members.</simpara>
+<tip id="para_tip_while_either_choice_is_fi"><simpara>While either choice behaves the same in most scenarios, it is more common to see <literal>private[X]</literal> rather than <literal>protected[X]</literal> used in code. In the core libraries included with Scala, the ratio is roughly five to one.</simpara></tip>
+<simpara id="para_let_s_begin_by_considering_the">Let’s begin by considering the only differences in behavior between scoped private and scoped public, how they behave under inheritance when members have these scopes.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/scope-inheritance-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  class Class1 {
+    private[scopeA]   val scopeA_privateField = 1
+    protected[scopeA] val scopeA_protectedField = 2
+    private[Class1]   val class1_privateField = 3
+    protected[Class1] val class1_protectedField = 4
+    private[this]     val this_privateField = 5
+    protected[this]   val this_protectedField = 6
+  }
+
+  class Class2 extends Class1 {
+    val field1 = scopeA_privateField
+    val field2 = scopeA_protectedField
+    val field3 = class1_privateField     // ERROR
+    val field4 = class1_protectedField
+    val field5 = this_privateField       // ERROR
+    val field6 = this_protectedField
+  }
+}
+
+package scopeB {
+  class Class2B extends scopeA.Class1 {
+    val field1 = scopeA_privateField     // ERROR
+    val field2 = scopeA_protectedField
+    val field3 = class1_privateField     // ERROR
+    val field4 = class1_protectedField
+    val field5 = this_privateField       // ERROR
+    val field6 = this_protectedField
+  }
+}</programlisting>
+<simpara id="para_compiling_scoped_members_yields">Compiling this file yields the following output.</simpara>
+<screen>17: error: not found: value class1_privateField
+    val field3 = class1_privateField     // ERROR
+                 ^
+19: error: not found: value this_privateField
+    val field5 = this_privateField       // ERROR
+                 ^
+26: error: not found: value scopeA_privateField
+    val field1 = scopeA_privateField     // ERROR
+                 ^
+28: error: not found: value class1_privateField
+    val field3 = class1_privateField     // ERROR
+                 ^
+30: error: not found: value this_privateField
+    val field5 = this_privateField       // ERROR
+                 ^
+5 errors found</screen>
+<simpara id="para_the_first_two_errors_inside_">The first two errors, inside <literal>Class2</literal>, show us that a derived class inside the same package can’t reference a member that is scoped private to the parent class or <literal>this</literal>, but it can reference a private member scoped to the package (or type) that encloses both <literal>Class1</literal> and <literal>Class2</literal>.</simpara>
+<simpara id="para_in_contrast_for_a_derived_cla">In contrast, for a derived class outside the same package, it has no access to any of the scoped private members of <literal>Class1</literal>.</simpara>
+<simpara id="para_however_all_the_scoped_protec">However, all the scoped protected members are visible in both derived classes.</simpara>
+<simpara id="para_we_ll_use_private_for_our_ex">We’ll use scoped private declarations for the rest of our examples and discussion, since use of scoped private is a little more common in the Scala library than scoped protected, when the previous inheritance scenarios aren’t a factor.</simpara>
+<simpara id="para_first_let_s_start_with_the_mo">First, let’s start with the most restrictive visibility, <literal>private[this]</literal>, as it affects type members.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-this-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  class PrivateClass1(private[this] val privateField1: Int) {
+    private[this] val privateField2 = 1
+
+    def equalFields(other: PrivateClass1) =
+      (privateField1 == other.privateField1) &amp;&amp; // ERROR
+      (privateField2 == other.privateField2) &amp;&amp;
+      (nested == other.nested)
+
+    class Nested {
+      private[this] val nestedField = 1
+    }
+
+    private[this] val nested = new Nested
+  }
+
+  class PrivateClass2 extends PrivateClass1(1) {
+    val field1 = privateField1  // ERROR
+    val field2 = privateField2  // ERROR
+    val nField = new Nested().nestedField  // ERROR
+  }
+
+  class PrivateClass3 {
+    val privateClass1 = new PrivateClass1(1)
+    val privateField1 = privateClass1.privateField1  // ERROR
+    val privateField2 = privateClass1.privateField2  // ERROR
+    val privateNField = privateClass1.nested.nestedField // ERROR
+  }
+}</programlisting>
+<simpara id="para_compiling_yields2">Compiling this file yields the following output.</simpara>
+<screen>5: error: value privateField1 is not a member of scopeA.PrivateClass1
+            (privateField1 == other.privateField1) &amp;&amp;
+                                    ^
+14: error: not found: value privateField1
+        val field1 = privateField1
+                     ^
+15: error: not found: value privateField2
+        val field2 = privateField2
+                     ^
+16: error: value nestedField is not a member of PrivateClass2.this.Nested
+        val nField = new Nested().nestedField
+                                  ^
+20: error: value privateField1 is not a member of scopeA.PrivateClass1
+        val privateField1 = privateClass1.privateField1
+                                          ^
+21: error: value privateField2 is not a member of scopeA.PrivateClass1
+        val privateField2 = privateClass1.privateField2
+                                          ^
+22: error: value nested is not a member of scopeA.PrivateClass1
+        val privateNField = privateClass1.nested.nestedField
+                                          ^
+7 errors found</screen>
+<note id="para_note_lines_6_8_also_won_t_par"><simpara>Lines 6-8 also won’t parse. Since they are part of the expression that started on line 5, the compiler stopped after the first error.</simpara></note>
+<simpara id="para_the_private_this_members_ar">The <literal>private[this]</literal> members are only visible to the same instance. An instance of the same class can’t see <literal>private[this]</literal> members of another instance, so the <literal>equalFields</literal> method won’t parse.</simpara>
+<simpara id="para_otherwise_the_visibility_of_c">Otherwise, the visibility of class members is the same as <literal>private</literal> without a scope specifier.</simpara>
+<simpara id="para_when_declaring_a_type_with_pr">When declaring a type with <literal>private[this]</literal>, use of <literal>this</literal> effectively binds to the enclosing package, as shown here.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-this-pkg-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  private[this] class PrivateClass1
+
+  package scopeA2 {
+    private[this] class PrivateClass2
+  }
+
+  class PrivateClass3 extends PrivateClass1  // ERROR
+  protected class PrivateClass4 extends PrivateClass1 // ERROR
+  private class PrivateClass5 extends PrivateClass1
+  private[this] class PrivateClass6 extends PrivateClass1
+
+  private[this] class PrivateClass7 extends scopeA2.PrivateClass2 // ERROR
+}
+
+package scopeB {
+  class PrivateClass1B extends scopeA.PrivateClass1 // ERROR
+}</programlisting>
+<simpara id="para_compiling_yields3">Compiling this file yields the following output.</simpara>
+<screen>8: error: private class PrivateClass1 escapes its defining scope as part
+of type scopeA.PrivateClass1
+    class PrivateClass3 extends PrivateClass1
+                                ^
+9: error: private class PrivateClass1 escapes its defining scope as part
+of type scopeA.PrivateClass1
+    protected class PrivateClass4 extends PrivateClass1
+                                          ^
+13: error: type PrivateClass2 is not a member of package scopeA.scopeA2
+    private[this] class PrivateClass7 extends scopeA2.PrivateClass2
+                                                      ^
+17: error: type PrivateClass1 is not a member of package scopeA
+    class PrivateClass1B extends scopeA.PrivateClass1
+                                        ^
+four errors found</screen>
+<simpara id="para_in_the_same_package_attemptin">In the same package, attempting to declare a <literal>public</literal> or <literal>protected</literal> subclass fails. Only <literal>private</literal> and <literal>private[this]</literal> subclasses are allowed. Also, <literal>PrivateClass2</literal> is scoped to <literal>scopeA2</literal>, so you can’t declare it outside <literal>scopeA2</literal>. Similarly an attempt to declare a class in unrelated <literal>scopeB</literal> using <literal>PrivateClass1</literal> also fails.</simpara>
+<simpara id="para_hence_when_applied_to_types_">Hence, when applied to types, <literal>private[this]</literal> is equivalent to Java’s <literal>package private</literal> visibility.</simpara>
+<simpara id="para_next_let_s_examine_type_level">Next, let’s examine type-level visibility, <literal>private[T]</literal>, where <literal>T</literal> is a type.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-type-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  class PrivateClass1(private[PrivateClass1] val privateField1: Int) {
+    private[PrivateClass1] val privateField2 = 1
+
+    def equalFields(other: PrivateClass1) =
+      (privateField1 == other.privateField1) &amp;&amp;
+      (privateField2 == other.privateField2) &amp;&amp;
+      (nested  == other.nested)
+
+    class Nested {
+      private[Nested] val nestedField = 1
+    }
+
+    private[PrivateClass1] val nested = new Nested
+    val nestedNested = nested.nestedField   // ERROR
+  }
+
+  class PrivateClass2 extends PrivateClass1(1) {
+    val field1 = privateField1  // ERROR
+    val field2 = privateField2  // ERROR
+    val nField = new Nested().nestedField  // ERROR
+  }
+
+  class PrivateClass3 {
+    val privateClass1 = new PrivateClass1(1)
+    val privateField1 = privateClass1.privateField1  // ERROR
+    val privateField2 = privateClass1.privateField2  // ERROR
+    val privateNField = privateClass1.nested.nestedField // ERROR
+  }
+}</programlisting>
+<simpara id="para_compiling_yields4">Compiling this file yields the following output.</simpara>
+<screen>12: error: value nestedField cannot be accessed in PrivateClass1.this.Nested
+        val nestedNested = nested.nestedField
+                                  ^
+15: error: not found: value privateField1
+        val field1 = privateField1
+                     ^
+16: error: not found: value privateField2
+        val field2 = privateField2
+                     ^
+17: error: value nestedField cannot be accessed in PrivateClass2.this.Nested
+        val nField = new Nested().nestedField
+                                  ^
+21: error: value privateField1 cannot be accessed in scopeA.PrivateClass1
+        val privateField1 = privateClass1.privateField1
+                                          ^
+22: error: value privateField2 cannot be accessed in scopeA.PrivateClass1
+        val privateField2 = privateClass1.privateField2
+                                          ^
+23: error: value nested cannot be accessed in scopeA.PrivateClass1
+        val privateNField = privateClass1.nested.nestedField
+                                          ^
+7 errors found</screen>
+<simpara id="para_a_private_privateclass1_mem">A <literal>private[PrivateClass1]</literal> member is visible to other instances, so the <literal>equalFields</literal> method now parses. Hence, <literal>private[T]</literal> is not as restrictive as <literal>private[this]</literal>. Note that <literal>PrivateClass1</literal> can’t see <literal>Nested.nestedField</literal>, because that field is declared <literal>private[Nested]</literal>.</simpara>
+<tip id="para_tip_when_members_of_t_are_d"><simpara>When members of <literal>T</literal> are declared <literal>private[T]</literal> the behavior is equivalent to <literal>private</literal>. It is not equivalent to <literal>private[this]</literal>, which is more restrictive.</simpara></tip>
+<simpara id="para_what_if_we_change_the_scope_of">What if we change the scope of <literal>Nested.nestedField</literal> to be <literal>private[PrivateClass1]</literal>? Let’s see see how <literal>private[T]</literal> affects nested types.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-type-nested-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  class PrivateClass1 {
+    class Nested {
+      private[PrivateClass1] val nestedField = 1
+    }
+
+    private[PrivateClass1] val nested = new Nested
+    val nestedNested = nested.nestedField
+  }
+
+  class PrivateClass2 extends PrivateClass1 {
+    val nField = new Nested().nestedField   // ERROR
+  }
+
+  class PrivateClass3 {
+    val privateClass1 = new PrivateClass1
+    val privateNField = privateClass1.nested.nestedField // ERROR
+  }
+}</programlisting>
+<simpara id="para_compiling_yields5">Compiling this file yields the following output.</simpara>
+<screen>10: error: value nestedField cannot be accessed in PrivateClass2.this.Nested
+        def nField = new Nested().nestedField
+                                  ^
+14: error: value nested cannot be accessed in scopeA.PrivateClass1
+        val privateNField = privateClass1.nested.nestedField
+                                          ^
+two errors found</screen>
+<simpara id="para_now_nestedfield_is_visible_t">Now <literal>nestedField</literal> is visible to <literal>PrivateClass1</literal>, but it is still invisible outside of <literal>PrivateClass1</literal>. This is how <literal>private</literal> works in Java.</simpara>
+<simpara id="para_let_s_examine_scoping_using_a_">Let’s examine scoping using a package name.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-pkg-type-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  private[scopeA] class PrivateClass1
+
+  package scopeA2 {
+    private [scopeA2] class PrivateClass2
+    private [scopeA]  class PrivateClass3
+  }
+
+  class PrivateClass4 extends PrivateClass1
+  protected class PrivateClass5 extends PrivateClass1
+  private class PrivateClass6 extends PrivateClass1
+  private[this] class PrivateClass7 extends PrivateClass1
+
+  private[this] class PrivateClass8 extends scopeA2.PrivateClass2 // ERROR
+  private[this] class PrivateClass9 extends scopeA2.PrivateClass3
+}
+
+package scopeB {
+  class PrivateClass1B extends scopeA.PrivateClass1 // ERROR
+}</programlisting>
+<simpara id="para_compiling_yields6">Compiling this file yields the following output.</simpara>
+<screen>14: error: class PrivateClass2 cannot be accessed in package scopeA.scopeA2
+    private[this] class PrivateClass8 extends scopeA2.PrivateClass2
+                                                      ^
+19: error: class PrivateClass1 cannot be accessed in package scopeA
+    class PrivateClass1B extends scopeA.PrivateClass1
+                                        ^
+two errors found</screen>
+<simpara id="para_note_that_privateclass2_can_">Note that <literal>PrivateClass2</literal> can’t be subclassed outside of <literal>scopeA2</literal>, but <literal>PrivateClass3</literal> can be subclassed in <literal>scopeA</literal>, because it is declared <literal>private[scopeA]</literal>.</simpara>
+<simpara id="para_finally_let_s_look_at_the_eff">Finally, let’s look at the effect of package-level scoping of type members.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-pkg-wont-compile.scala
+// WON'T COMPILE
+
+package scopeA {
+  class PrivateClass1 {
+    private[scopeA] val privateField = 1
+
+    class Nested {
+      private[scopeA] val nestedField = 1
+    }
+
+    private[scopeA] val nested = new Nested
+  }
+
+  class PrivateClass2 extends PrivateClass1 {
+    val field  = privateField
+    val nField = new Nested().nestedField
+  }
+
+  class PrivateClass3 {
+    val privateClass1 = new PrivateClass1
+    val privateField  = privateClass1.privateField
+    val privateNField = privateClass1.nested.nestedField
+  }
+
+  package scopeA2 {
+    class PrivateClass4 {
+      private[scopeA2] val field1 = 1
+      private[scopeA]  val field2 = 2
+    }
+  }
+
+  class PrivateClass5 {
+    val privateClass4 = new scopeA2.PrivateClass4
+    val field1 = privateClass4.field1  // ERROR
+    val field2 = privateClass4.field2
+  }
+}
+
+package scopeB {
+  class PrivateClass1B extends scopeA.PrivateClass1 {
+    val field1 = privateField   // ERROR
+    val privateClass1 = new scopeA.PrivateClass1
+    val field2 = privateClass1.privateField  // ERROR
+  }
+}</programlisting>
+<simpara id="para_compiling_yields7">Compiling this file yields the following output.</simpara>
+<screen>28: error: value field1 cannot be accessed in scopeA.scopeA2.PrivateClass4
+        val field1 = privateClass4.field1
+                                   ^
+35: error: not found: value privateField
+        val field1 = privateField
+                     ^
+37: error: value privateField cannot be accessed in scopeA.PrivateClass1
+        val field2 = privateClass1.privateField
+                                   ^
+three errors found</screen>
+<simpara id="para_the_only_errors_are_when_we_at">The only errors are when we attempt to access members scoped to <literal>scopeA</literal> from the unrelated package <literal>scopeB</literal> and when we attempt to access a member from a nested package <literal>scopeA2</literal> that is scoped to that package.</simpara>
+<tip id="para_tip_when_a_type_or_member_is_"><simpara>When a type or member is declared <literal>private[P]</literal>, where <literal>P</literal> is the enclosing package, then it is equivalent to Java’s <literal>package private</literal> visibility.</simpara></tip>
+</sect2>
+<sect2 id="FinalThoughtsVisibility">
+<title>Final Thoughts on Visibility</title>
+<simpara id="para_scala_visibility_declarations_">Scala visibility declarations are very flexible and they behave consistently. They provide fine-grained control over visibility at all possible scopes, from the instance level (<literal>private[this]</literal>) up to package-level visibility (<literal>private[P]</literal>, for a package <literal>P</literal>). For example, they make it easier to create “components” with types exposed outside of the component’s top-level package, while hiding implementation types and type members within the “component’s” packages.</simpara>
+<simpara id="para_finally_we_have_observed_a_po">Finally, we have observed a potential “gotcha” with hidden members of traits.</simpara>
+<tip id="para_tip_be_careful_when_choosing_"><simpara>Be careful when choosing the names of members of traits. If two traits have a member of the same name and the traits are used in the same instance, a name collision will occur even if both members are private.</simpara></tip>
+<simpara id="para_fortunately_the_parser_catche">Fortunately, the compiler catches this problem.</simpara>
+</sect2>
+</sect1>
+<sect1 id="BasicOOPRecapAndWhatsNext">
+<title>Recap and What’s Next</title>
+<simpara id="para_we_introduced_scala_s_object_m">We introduced the basics of Scala’s object model, including constructors, inheritance, nesting of classes, and rules for visibility.</simpara>
+<simpara id="para_in_the_next_chapter_we_round_">In the next chapter we’ll explore Scala’s more advanced OOP features, including overriding, <emphasis>companion objects</emphasis>, <emphasis>case classes</emphasis>, and rules for equality between objects.</simpara>
+</sect1>
+</chapter>

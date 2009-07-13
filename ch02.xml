@@ -1,0 +1,1163 @@
+<?xml version="1.0"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="TypeLessDoMore">
+<title>Type Less, Do More</title>
+<sect1 id="_in_this_chapter">
+<title>In This Chapter</title>
+<simpara id="para_we_ended_the_last_chapter_with">We ended the last chapter with a few “teaser” examples of Scala code. This chapter discusses uses of Scala that promote succinct, flexible code. We’ll discuss organization of files and packages, importing other types, variable declarations, miscellaneous syntax conventions and a few other concepts. We’ll emphasize how the concise syntax of Scala helps you work better and faster.</simpara>
+<simpara id="para_scala_s_syntax_is_especially_u">Scala’s syntax is especially useful when writing scripts. Separate compile and run steps aren’t required for simple programs that have no dependencies on libraries outside of what Scala provides. You compile and run such programs in one shot with the <userinput>scala</userinput> command. If you’ve downloaded the example code for the book, many of the smaller examples can be run using the <userinput>scala</userinput> command, <emphasis>e.g.</emphasis>, <literal>scala filename.scala</literal>. See the <literal>README.txt</literal> files in each chapter’s code examples for more details. See also <xref linkend="CommandLineTools"/> in <xref linkend="ScalaToolsLibs"/> for more information about using the <userinput>scala</userinput> command.</simpara>
+</sect1>
+<sect1 id="Semicolons">
+<title>Semicolons</title>
+<simpara id="para_you_may_have_already_noticed_t">You may have already noticed that there were very few semicolons in the code examples in the previous chapter. You can use semicolons to separate statements and expressions, as in Java, C, PHP, and similar languages. In most cases, though, Scala behaves like many scripting languages in treating the end of the line as the end of a statement or an expression.  When a statement or expression is too long for one line, Scala can usually infer when you are continuing on to the next line, as shown in this example.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/semicolon-example-script.scala
+
+// Trailing equals sign indicates more code on next line
+def equalsign = {
+  val reallySuperLongValueNameThatGoesOnForeverSoYouNeedANewLine =
+    "wow that was a long value name"
+
+  println(reallySuperLongValueNameThatGoesOnForeverSoYouNeedANewLine)
+}
+
+// Trailing opening curly brace indicates more code on next line
+def equalsign2(s: String) = {
+  println("equalsign2: " + s)
+}
+
+// Trailing comma, operator, etc. indicates more code on next line
+def commas(s1: String,
+           s2: String) = {
+  println("comma: " + s1 +
+          ", " + s2)
+}</programlisting>
+<simpara id="para_when_you_want_to_put_multiple_">When you want to put multiple statements or expressions on the same line, you can use semicolons to separate them. We used this technique in the <literal>ShapeDrawingActor</literal> example in <xref linkend="ATasteOfConcurrency"/> in <xref linkend="IntroducingScala"/>.</simpara>
+<programlisting linenumbering="unnumbered">case "exit" =&gt; println("exiting..."); exit</programlisting>
+<simpara id="para_this_line_could_also_be_writte">This code could also be written as follows.</simpara>
+<programlisting linenumbering="unnumbered">...
+case "exit" =&gt;
+        println("exiting...")
+        exit
+...</programlisting>
+<simpara id="para_why_no_curly_braces">You might wonder why you don’t need curly braces (<literal>{…}</literal>) around the two statements after the <literal>case … =&gt;</literal> line. You can put them in if you want, but the compiler knows when you’ve reached the end of the “block” when it finds the next <literal>case</literal> clause or the curly brace (<literal>}</literal>) that ends the enclosing block for all the <literal>case</literal> clauses.</simpara>
+<simpara id="para_omitting_optional_semicolons_m">Omitting optional semicolons means fewer characters to type and fewer characters to clutter your code. Breaking separate statements onto their own lines increases your code’s readability.</simpara>
+</sect1>
+<sect1 id="VariableDeclarationsAndDefinitions">
+<title>Variable Declarations</title>
+<simpara id="para_scala_allows_you_to_decide_whe">Scala allows you to decide whether a variable is immutable (read-only) or not (read-write) when you declare it. An immutable “variable” is declared with the keyword <literal>val</literal> (think <emphasis>value object</emphasis>).</simpara>
+<programlisting linenumbering="unnumbered">val array: Array[String] = new Array(5)</programlisting>
+<simpara id="para_immutable_precise">To be more precise, the <literal>array</literal> reference cannot be changed to point to a different <literal>Array</literal>, but the array itself can be modified, as shown in the following <userinput>scala</userinput> session.</simpara>
+<programlisting linenumbering="unnumbered">scala&gt; val array: Array[String] = new Array(5)
+array: Array[String] = Array(null, null, null, null, null)
+
+scala&gt; array = new Array(2)
+&lt;console&gt;:5: error: reassignment to val
+       array = new Array(2)
+             ^
+
+scala&gt; array(0) = "Hello"
+
+scala&gt; array
+res3: Array[String] = Array(Hello, null, null, null, null)
+
+scala&gt;</programlisting>
+<simpara id="para_an_immutable_object_must_be_in">An immutable <literal>val</literal> must be initialized, that is defined, when it is declared. Also, you will get a compilation error if you attempt to assign a new value to a <literal>val</literal>.</simpara>
+<simpara id="para_a_mutable_variable_is_declared">A mutable variable is declared with the keyword <literal>var</literal>.</simpara>
+<programlisting linenumbering="unnumbered">scala&gt; var stockPrice: Double = 100.
+stockPrice: Double = 100.0
+
+scala&gt; stockPrice = 10.
+stockPrice: Double = 10.0
+
+scala&gt;</programlisting>
+<simpara id="para_scala_also_requires_you_to_ini">Scala also requires you to initialize a <literal>var</literal> when it is declared. You can assign a new value to a <literal>var</literal> as often as you want. Again, to be precise, the <literal>stockPrice</literal> reference can be changed to point to a different <literal>Double</literal> object (<emphasis>e.g.</emphasis>, <literal>10.</literal>). In this case, the object that <literal>stockPrice</literal> refers to can’t be changed, because <literal>Doubles</literal> are immutable.</simpara>
+<simpara id="para_there_s_one_exception_to_the_r">There is one exception to the rule that you must initialize <literal>val</literal>'s and <literal>var</literal>'s when they are declared. Both keywords can be used with constructor parameters. When used as constructor parameters, the mutable or immutable variables specified will be initialized when an object is instantiated. Also, derived classes can override <literal>vals</literal> declared inside parent classes. We’ll discuss these exceptions in <xref linkend="BasicObjectOrientedProgramming"/>.</simpara>
+<simpara id="para_scala_encourages_you_to_use_im">Scala encourages you to use immutable values whenever possible. As we will see, this promotes better object-oriented design and it is consistent with the principles of “pure” functional programming. It may take some getting used to, but you’ll find a newfound confidence in your code when it is written in an immutable style.</simpara>
+<note id="para_note_the_var_and_val_keyw"><simpara>The <literal>var</literal> and <literal>val</literal> keywords only specify if the reference can be changed to refer to a different object (<literal>var</literal>) or not (<literal>val</literal>). They don’t specify whether or not the object they reference is mutability.</simpara></note>
+</sect1>
+<sect1 id="MethodDeclarationsAndDefinitions">
+<title>Method Declarations</title>
+<simpara id="para_method_declarations">We saw several examples in <xref linkend="IntroducingScala"/> of how to define <emphasis>methods</emphasis>, which are functions that are members of a class. Method <emphasis>definitions</emphasis> start with the <literal>def</literal> keyword, followed by optional argument lists, a colon character ‘:’ and the return type of the method, an equals sign ‘=’, and finally the method body. Methods are implicitly <emphasis>declared</emphasis> “abstract” if you leave off the equals sign and method body. The enclosing type is then itself abstract. We’ll discuss abstract types in more detail in <xref linkend="BasicObjectOrientedProgramming"/>.</simpara>
+<simpara id="para_multiple_arg_lists">We said “optional argument lists”, meaning more than one. Scala lets you define more than one argument list for a method. This is required for <emphasis>currying</emphasis> methods, which we’ll discuss in <xref linkend="Currying"/> in <xref linkend="FunctionalProgramming"/>. It is also very useful for defining your own domain-specific languages (DSLs), as we’ll see in <xref linkend="DomainSpecificLanguages"/>. Note that each argument is surrounded by parentheses and the arguments are separated by commas.</simpara>
+<simpara id="para_if_a_method_body_has_more_than">If a method body has more than one expression, you must surround it with curly braces <literal>{…}</literal>. You can omit the braces if the method body has just one expression.</simpara>
+<sect2 id="MethodDefaultAndNamedArguments">
+<title>Method Default and Named Arguments (Scala Version 2.8)</title>
+<simpara id="para_many_languages_let_you_define_">Many languages let you define default values for some or all of the arguments to a method. Consider the following script with a <literal>StringUtil</literal> object that lets you join a list of strings with a user-specified separator.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-v1-script.scala
+// Version 1 of "StringUtil".
+
+object StringUtil {
+  def joiner(strings: List[String], separator: String): String =
+    strings.mkString(separator)
+
+  def joiner(strings: List[String]): String = joiner(strings, " ")
+}
+import StringUtil._
+
+println( joiner(List("Programming", "Scala")) )</programlisting>
+<simpara id="para_there_are_actually_two_joiner">There are actually two, “overloaded” <literal>joiner</literal> methods. The second one uses a single space as the “default” separator. Having two methods seems a bit wasteful. It would be nice if we could eliminate the second <literal>joiner</literal> method and declare that the <literal>separator</literal> argument in the first <literal>joiner</literal> has a default value. In fact, in Scala version 2.8, you can now do this.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-v2-v28-script.scala
+// Version 2 of "StringUtil" for Scala v2.8 only.
+
+object StringUtil {
+  def joiner(strings: List[String], separator: String = " "): String =
+    strings.mkString(separator)
+}
+import StringUtil._
+
+println(joiner(List("Programming", "Scala")))</programlisting>
+<simpara id="para_there_are_two_workarounds_for_">There is another alternative for earlier versions of Scala. You can use <emphasis>implicit</emphasis> arguments, which we will discuss in <xref linkend="ImplicitFunctionParameters"/> in <xref linkend="FunctionalProgramming"/>.</simpara>
+<simpara id="para_scala_version_2_8_offers_anoth">Scala version 2.8 offers another enhancement for method argument lists, <emphasis>named arguments</emphasis>. We could actually write the last line of the previous example in several ways. All of the following <literal>println</literal> statements are functionally equivalent.</simpara>
+<programlisting linenumbering="unnumbered">println(joiner(List("Programming", "Scala")))
+println(joiner(strings = List("Programming", "Scala")))
+println(joiner(List("Programming", "Scala"), " "))   // #1
+println(joiner(List("Programming", "Scala"), separator = " ")) // #2
+println(joiner(strings = List("Programming", "Scala"), separator = " "))</programlisting>
+<simpara id="para_why_is_this_useful_first_if_">Why is this useful? First, if you choose good names for the method arguments, then your calls to those methods document each argument with a name. For example, compare the two lines with comments <literal>#1</literal> and <literal>#2</literal>. In the first line, it may not be obvious what the second, <literal>" "</literal> argument is for. In the second case, we supply the name <literal>separator</literal>, which suggests the purpose of the argument.</simpara>
+<simpara id="para_the_second_benefit_is_that_you">The second benefit is that you can specify the parameters in any order when you specify them by name. Combined with default values, you can write code like the following</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/user-profile-v28-script.scala
+// Scala v2.8 only.
+
+object OptionalUserProfileInfo {
+  val UnknownLocation = ""
+  val UnknownAge = -1
+  val UnknownWebSite = ""
+}
+
+case class OptionalUserProfileInfo(
+  location: String = OptionalUserProfileInfo.UnknownLocation,
+  age: Int         = OptionalUserProfileInfo.UnknownAge,
+  webSite: String  = OptionalUserProfileInfo.UnknownWebSite)
+
+println( new OptionalUserProfileInfo )
+println( new OptionalUserProfileInfo(age = 29) )
+println( new OptionalUserProfileInfo(age = 29, location="Earth") )</programlisting>
+<simpara id="para__optionaluserprofileinfo_repr"><literal>OptionalUserProfileInfo</literal> represents all the “optional” user profile data in your next Web 2.0, social networking site. It defines default values for all its fields. The script creates instances with zero or more named parameters. The order of those parameters is arbitrary.</simpara>
+<simpara id="para_the_examples_we_have_shown_use">The examples we have shown use constant values as the defaults. Most languages with default argument values only allow constants or other values that can be determined at parse-time. However, in Scala, any expression can be used as the default, as long as it can compile where used. For example, an expression could not refer to an instance field that will be computed inside the class or object body, but it could invoke a method on a singleton object.</simpara>
+<simpara id="para_a_related_limitation_is_that_a">A related limitation is that a default expression for one parameter can’t refer to another parameter in the list, unless the parameter that is referenced appears earlier in the list <emphasis>and</emphasis> the parameters are <emphasis>curried</emphasis>, a concept we’ll discuss in <xref linkend="Currying"/> in <xref linkend="FunctionalProgramming"/>.</simpara>
+<simpara id="para_finally_another_constraint_on">Finally, another constraint on named parameters is that once you provide a name for a parameter in a method invocation, then the rest of the parameters appearing after it must also be named. For example, <literal>   new OptionalUserProfileInfo(age = 29, "Earth")</literal> would not compile because the second argument is not invoked by name.</simpara>
+<simpara id="para_we_ll_see_another_useful_examp">We’ll see another useful example of named and default arguments when we discuss <emphasis>case classes</emphasis> in more detail in <xref linkend="CaseClasses"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>.</simpara>
+</sect2>
+<sect2 id="NestingMethodDefinitions">
+<title>Nesting Method Definitions</title>
+<simpara id="param_method_nesting">Method definitions can also be nested. Here is an implementation of a factorial calculator, where we use a conventional technique of calling a second, nested method to do the work.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/factorial-script.scala
+
+def factorial(i: Int): Int = {
+  def fact(i: Int, accumulator: Int): Int = {
+    if (i &lt;= 1)
+      accumulator
+    else
+      fact(i - 1, i * accumulator)
+  }
+
+  fact(i, 1)
+}
+
+println( factorial(0) )
+println( factorial(1) )
+println( factorial(2) )
+println( factorial(3) )
+println( factorial(4) )
+println( factorial(5) )</programlisting>
+<simpara id="para_the_second_method_is_nested_in">The second method calls itself recursively, passing an <literal>accumulator</literal> parameter, where the result of the calculation is “accumulated”. Note that we return the accumulated value when the counter <literal>i</literal> reaches 1. (We’re ignoring invalid negative integers. The function actually return 1 for <literal>i &lt; 0</literal>.) After the definition of the nested method, <literal>factorial</literal> calls it with the passed-in value <literal>i</literal> and the accumulator value of 1.</simpara>
+<simpara id="para_like_a_local_variable_declarat">Like a local variable declaration in many languages, a nested method is only visible inside the enclosing method. If you try to call <literal>fact</literal> outside of <literal>factorial</literal>, you will get a compiler error.</simpara>
+<simpara id="para_shadowing_variables">Did you notice that we use <literal>i</literal> as a parameter name twice, first in the <literal>factorial</literal> method and again in the nested <literal>fact</literal> method? As in many languages, the use of <literal>i</literal> as a parameter name for <literal>fact</literal> “shadows” the outer use of <literal>i</literal> as a parameter name for <literal>factorial</literal>. This is fine, because we don’t need the outer value of <literal>i</literal> inside <literal>fact</literal>. We only use it the first time we call <literal>fact</literal>, at the end of <literal>factorial</literal>.</simpara>
+<simpara id="para_what_if_we_need_to_use_a_varia">What if we need to use a variable that is defined outside a nested function. Consider this contrived example.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/count-to-script.scala
+
+def countTo(n: Int):Unit = {
+  def count(i: Int): Unit = {
+    if (i &lt;= n) {
+      println(i)
+      count(i + 1)
+    }
+  }
+  count(1)
+}
+
+countTo(5)</programlisting>
+<simpara id="para_note_that_the_nested_count_m">Note that the nested <literal>count</literal> method uses the <literal>n</literal> value that is passed as a parameter to <literal>countTo</literal>. There is no need to pass <literal>n</literal> as an argument to <literal>count</literal>. Because <literal>count</literal> is nested inside <literal>countTo</literal>, <literal>n</literal> is visible to it.</simpara>
+<simpara id="para_when_a_variable_or_method_defi">The declaration of a field (member variable) can be prefixed with keywords indicating the <emphasis>visibility</emphasis>, just as in languages like Java and C#. Similarly the declaration of a non-nested method can be prefixed with the same keywords. We will discuss the visibility rules and keywords in <xref linkend="VisibilityRules"/> in <xref linkend="BasicObjectOrientedProgramming"/>.</simpara>
+</sect2>
+</sect1>
+<sect1 id="InferringTypes">
+<title>Inferring Type Information</title>
+<simpara id="para_statically_typed_languages_can">Statically-typed languages can be very verbose. Consider this typical declaration in Java.</simpara>
+<programlisting linenumbering="unnumbered">import java.util.Map;
+import java.util.HashMap;
+...
+Map&lt;Integer, String&gt; intToStringMap = new HashMap&lt;Integer, String&gt;();</programlisting>
+<simpara id="para_we_have_to_specify_the_type_pa">We have to specify the type parameters <literal>&lt;Integer, String&gt;</literal> twice. (Scala uses the term <emphasis>type annotations</emphasis> for explicit type declarations like <literal>HashMap&lt;Integer, String&gt;</literal>.)</simpara>
+<simpara id="para_scala_supports__type_inferenci">Scala supports <emphasis>type inference</emphasis> (see, for example, <xref linkend="TypeInference" xrefstyle="select: title nopage"/> and <xref linkend="Pierce2002"/>). The language’s compiler can discern quite a bit of type information from the context, without explicit type annotations. Here’s the same declaration rewritten in Scala, with inferred type information.</simpara>
+<programlisting linenumbering="unnumbered">import java.util.Map
+import java.util.HashMap
+...
+val intToStringMap: Map[Integer, String] = new HashMap</programlisting>
+<simpara id="para_recall_from_chapter_1_that_sca">Recall from Chapter 1 that Scala uses square brackets (<literal>[…]</literal>) for generic type parameters. We specify <literal>Map[Integer, String]</literal> on the left-hand side of the equals sign. On the right-hand side, we instantiate the actual type we want, a <literal>HashMap</literal>, but we don’t have to repeat the <emphasis>type parameters</emphasis>.</simpara>
+<simpara id="para_for_completeness_suppose_we_d">For completeness, suppose we don’t actually care if the instance is of type <literal>Map</literal> (the Java interface type). It can be of type <literal>HashMap</literal> for all we care.</simpara>
+<programlisting linenumbering="unnumbered">import java.util.Map
+import java.util.HashMap
+...
+val intToStringMap2 = new HashMap[Integer, String]</programlisting>
+<simpara id="para_this_declaration_requires_no_t">This declaration requires no type annotations on the left-hand side because all of the type information needed is on the right-hand side. The compiler automatically makes <literal>intToStringMap2</literal> a <literal>HashMap[Integer,String]</literal>.</simpara>
+<simpara id="para_method_type_inference">Type inference is used for methods, too. In most cases, the return type of the method can be inferred, so the ‘:’ and return type can be omitted. However, type annotations are required for all method parameters.</simpara>
+<simpara id="para_functional_languages_like_hask">Pure functional languages like Haskell (see, <emphasis>e.g.,</emphasis> <xref linkend="OSullivan2009" xrefstyle="select: title nopage"/>) use type inference algorithms like <emphasis>Hindley-Milner</emphasis> (see <xref linkend="Spiewak2008" xrefstyle="select: title nopage"/> for an easily digested explanation). Code written in these languages require type annotations less often than in Scala, because Scala’s type inference algorithm has to support object-oriented typing as well as functional typing. So, Scala requires more type annotations than languages like Haskell. Here is a summary of the rules for when explicit type annotations are required in Scala.</simpara>
+<sidebar>
+<title>When Explicit Type Annotations Are Required.</title>
+<simpara id="para_in_practical_terms_you_have_t">In practical terms, you have to provide explicit type annotations for the following situations:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+A variable declaration, unless you assign a value to the variable. (<emphasis>e.g.,</emphasis> <literal>val name = "Programming Scala"</literal>)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+All method parameters. (<emphasis>e.g.,</emphasis> <literal>def deposit(amount: Money)…</literal>)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Method return values in the following cases:
+</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>
+When you explicitly call <literal>return</literal> in a method (even at the end).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+When a method is recursive.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+When a method is overloaded and one of the methods calls another. The <emphasis>calling</emphasis> method needs a return type annotation.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+When the inferred return type would be more general than you intended, <emphasis>e.g.,</emphasis> <literal>Any</literal>.
+</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+</orderedlist>
+</sidebar>
+<note id="para_note_the_any_type_is_the_su"><simpara>The <literal>Any</literal> type is the root of the Scala type hierarchy (see <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/> for more details). If a block of code returns a value of type <literal>Any</literal> unexpectedly, chances are good that the type inferencer couldn’t figure out what type to return, so it chose the most generic possible type.</simpara></note>
+<simpara id="para_method_return_value_cases">Let’s look at examples where explicit declarations of method return types are required. In the following script, the <literal>upCase</literal> method has a conditional return statement for zero-length strings.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-nested-return-script.scala
+// ERROR: Won't compile until you put a String return type on upCase.
+
+def upCase(s: String) = {
+  if (s.length == 0)
+    return s
+  else
+    s.toUpperCase()
+}
+
+println( upCase("") )
+println( upCase("Hello") )</programlisting>
+<simpara id="para_running_this_script_gives_you_">Running this script gives you the following error.</simpara>
+<screen>... 6: error: method upCase has return statement; needs result type
+        return s
+         ^</screen>
+<simpara>You can fix this error by changing the first line of the method to the following.</simpara>
+<programlisting linenumbering="unnumbered">def upCase(s: String): String = {</programlisting>
+<simpara id="para_actually_for_this_particular_">Actually, for this particular script, an alternative fix is to remove the <literal>return</literal> keyword from the line. It is not needed for the code to work properly, but it illustrates our point.</simpara>
+<simpara id="para_recursive_methods_require_a_re">Recursive methods also require an explicit return type. Recall our <literal>factorial</literal> method in <xref linkend="NestingMethodDefinitions"/>, previously in this chapter. Let’s remove the <literal>: Int</literal> return type on the nested <literal>fact</literal> method.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-recursive-return-script.scala
+// ERROR: Won't compile until you put an Int return type on "fact".
+
+def factorial(i: Int) = {
+  def fact(i: Int, accumulator: Int) = {
+    if (i &lt;= 1)
+      accumulator
+    else
+      fact(i - 1, i * accumulator)
+  }
+
+  fact(i, 1)
+}</programlisting>
+<simpara id="para_now_it_fails_to_compile_">Now it fails to compile.</simpara>
+<screen>... 9: error: recursive method fact needs result type
+            fact(i - 1, i * accumulator)
+             ^</screen>
+<simpara id="para_like_recursive_method_calls_w"><emphasis>Overloaded</emphasis> methods can sometimes require an explicit return type. When one such method calls another, we have to add a return type to the one doing the calling, as in this example.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-overloaded-return-script.scala
+// Version 1 of "StringUtil" (with a compilation error).
+// ERROR: Won't compile: needs a String return type on the second "joiner".
+
+object StringUtil {
+  def joiner(strings: List[String], separator: String): String =
+    strings.mkString(separator)
+
+  def joiner(strings: List[String]) = joiner(strings, " ")
+}
+import StringUtil._
+
+println( joiner(List("Programming", "Scala")) )</programlisting>
+<simpara id="para_the_two_joiner_methods_conca">The two <literal>joiner</literal> methods concatenate strings together, separated by a space. In the first method, the strings are specified as a list. In the second, they are specified as a variable length argument list. The second <literal>joiner</literal> method calls the first.</simpara>
+<simpara id="para_string_util_error">If you run this script, you get the following error.</simpara>
+<screen>... 9: error: overloaded method joiner needs result type
+    def joiner(strings: String*) = joiner(strings.toList)
+                                    ^</screen>
+<simpara id="para_the_second_joiner_method_calls_the_first">Since the <emphasis>second</emphasis> <literal>joiner</literal> method calls the first, it requires an explicit <literal>String</literal> return type. It should look like this.</simpara>
+<programlisting linenumbering="unnumbered">    def joiner(strings: String*): String = joiner(strings.toList)</programlisting>
+<simpara id="para_note_that_any_is_the_root_of">The final scenario can be subtle, when a more general return type is inferred than what you expected. You usually see this error when you assign a value returned from a function to a variable with a more specific type. For example, you were expecting a <literal>String</literal>, but the function inferred an <literal>Any</literal> for the returned object. Let’s see a contrived example that reflects a bug where this scenario can occur.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-broad-inference-return-script.scala
+// ERROR: Won't compile; needs a String return type on the second "joiner".
+
+def makeList(strings: String*) = {
+  if (strings.length == 0)
+    List(0)  // #1
+  else
+    strings.toList
+}
+
+val list: List[String] = makeList()</programlisting>
+<simpara id="para_script_return_error">Running this script returns the following error.</simpara>
+<screen>...11: error: type mismatch;
+ found   : List[Any]
+ required: List[String]
+val list: List[String] = makeList()
+                          ^</screen>
+<simpara id="para_we_intended_for_makelist_to_">We intended for <literal>makeList</literal> to return a <literal>List[String]</literal>, but the <literal>case 0</literal> expression actually returns a <literal>List[Int]</literal>, because we wrote <literal>List(0)</literal> when we should have written <literal>List()</literal>. Since the other case expression returns a <literal>List[String]</literal> (the result of <literal>strings.toList</literal>), the inferred return type is the closest common super type, <literal>List[Any]</literal>. Note that the compilation error doesn’t occur in the function definition. We only see it when we attempt to assign the value returned from <literal>makeList</literal> to a <literal>List[String]</literal> variable.</simpara>
+<simpara id="para_in_this_case_fixing_the_bug_i">In this case, fixing the bug is the solution. Alternatively, when there isn’t a bug, it may be that the compiler just needs the “help” of an explicit return type declaration. Investigate the method that appears to return the unexpected type. In our experience, you often find that you modified that method (or another one in the call path) in such a way that the compiler now infers a more general return type than necessary. Add the explicit return type in this case.</simpara>
+<simpara id="para_declare_method_returns">Another way to prevent these problems is to always declare return types for methods, especially when defining methods for a public API. Let’s revisit our <literal>StringUtil</literal> example and see why explicit declarations are a good idea (adapted from <xref linkend="Smith2009a" xrefstyle="select: title nopage"/>).</simpara>
+<simpara id="para_imagine_that_we_extend_our_na">Here is our <literal>StringUtil</literal> “API” again with a new method, <literal>toCollection</literal>.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-v3.scala
+// Version 3 of "StringUtil" (for all versions of Scala).
+
+object StringUtil {
+  def joiner(strings: List[String], separator: String): String =
+    strings.mkString(separator)
+
+  def joiner(strings: List[String]): String = strings.mkString(" ")
+
+  def toCollection(string: String) = string.split(' ')
+}</programlisting>
+<simpara id="para_the_pairsstringtomap_method_">The <literal>toCollection</literal> method splits a string on spaces and returns an <literal>Array</literal> containing the substrings. The return type is inferred, which is a potential problem, as we will see. The method is somewhat contrived, but it will illustrate our point. Here is a client of <literal>StringUtil</literal> that uses this method.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-client.scala
+
+import StringUtil._
+
+object StringUtilClient {
+  def main(args: Array[String]) = {
+    args foreach { s =&gt; toCollection(s).foreach { x =&gt; println(x) } }
+  }
+}</programlisting>
+<simpara id="para_if_you_compile_these_files_yo">If you compile these files with <userinput>scala</userinput>, you can run the client as follows.</simpara>
+<screen>$ scala -cp ... StringUtilClient "Programming Scala"
+Programming
+Scala</screen>
+<note id="para_cp_current_dir"><simpara>For the <literal>-cp …</literal> class path argument, use the directory where <userinput>scalac</userinput> wrote the class files, which defaults to the current directory (<emphasis>i.e.,</emphasis> use <literal>-cp .</literal>). If you used the build process in the downloaded code examples, the class files are written to the <literal>build</literal> directory (using <userinput>scalac -d build ...</userinput>). In this case, use <literal>-cp build</literal>.</simpara></note>
+<simpara id="para_everything_is_fine_at_this_poi">Everything is fine at this point, but now imagine that the code base has grown. <literal>StringUtil</literal> and its clients are now built separately and bundled into different jars. Imagine also that the maintainers of <literal>StringUtil</literal> decide to return a <literal>List</literal> instead of the default.</simpara>
+<programlisting linenumbering="unnumbered">object StringUtil {
+  ...
+
+  def toCollection(string: String) = string.split(' ').toList  // changed!
+}</programlisting>
+<simpara id="para_you_recompile_stringutil_and">The only difference is the final call to <literal>toList</literal> that converts the computed <literal>Array</literal> to a <literal>List</literal>. You recompile <literal>StringUtil</literal> and redeploy its jar. Then you run the same client, <emphasis>without</emphasis> recompiling it first.</simpara>
+<screen>$ scala -cp ... StringUtilClient "Programming Scala"
+java.lang.NoSuchMethodError: StringUtil$.toCollection(...
+  at StringUtilClient$$anonfun$main$1.apply(string-util-client.scala:6)
+  at StringUtilClient$$anonfun$main$1.apply(string-util-client.scala:6)
+...</screen>
+<simpara id="para_what_happened_when_the_client">What happened? When the client was compiled, <literal>StringUtil.toCollection</literal> returned an <literal>Array</literal>. Then <literal>toCollection</literal> was changed to return <literal>List</literal>. In both versions, the method return was inferred. Therefore, client should have been recompiled, too.</simpara>
+<simpara id="para_however_had_an_explicit_retur">However, had an explicit return type of <literal>Seq</literal> been declared, which is a parent for both <literal>Array</literal> and <literal>List</literal>, then the implementation change would not have forced a recompilation of the client.</simpara>
+<note id="para_note_when_developing_apis_tha"><simpara>When developing APIs that are built separately from their clients, declare method return types explicitly and use the most general return type you can. This is especially important when APIs declare <emphasis>abstract</emphasis> methods (see, <emphasis>e.g.,</emphasis> <xref linkend="Traits"/>).</simpara></note>
+<simpara id="para_another_scenario_to_watch_for_">There is another scenario to watch for when using declarations of collections like <literal>val map = Map()</literal>, as in this example.</simpara>
+<programlisting linenumbering="unnumbered">val map = Map()
+
+map.update("book", "Programming Scala")</programlisting>
+<screen>... 3: error: type mismatch;
+ found   : java.lang.String("book")
+ required: Nothing
+map.update("book", "Programming Scala")
+            ^</screen>
+<simpara id="para_what_happened_the__type_param">What happened? The <emphasis>type parameters</emphasis> of the generic type <literal>Map</literal> were inferred as <literal>[Nothing,Nothing]</literal> when the map was created. (We’ll discuss <literal>Nothing</literal> in <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/>, but its name is suggestive!) We attempted to insert an incompatible key, value pair of types <literal>String</literal> and <literal>String</literal>. Call it a <literal>Map</literal> to nowhere! The solution is to parameterize the initial map declaration, <emphasis>e.g.,</emphasis> <literal>val map = Map[String, String]()</literal> or to specify initial values so the map parameters are inferred, <emphasis>e.g.,</emphasis>  <literal>val map = Map("Programming" → "Scala")</literal></simpara>
+<simpara id="para_finally_there_is_a_subtle_beh">Finally, there is a subtle behavior with inferred return types that can cause unexpected and baffling results <xref linkend="ScalaTips" xrefstyle="select: title nopage"/>. Consider the following example <userinput>scala</userinput> session.</simpara>
+<screen>scala&gt; def double(i: Int) { 2 * i }
+double: (Int)Unit
+
+scala&gt; println(double(2))
+()</screen>
+<simpara id="para_why_did_the_second_command_pri">Why did the second command print <literal>()</literal> instead of <literal>4</literal>? Look carefully at what the <userinput>scala</userinput> interpreter said the first command returned, <literal>double (Int)Unit</literal>. We defined a method named <literal>double</literal> that takes an <literal>Int</literal> argument and returns <literal>Unit</literal>, which is a type that is roughly equivalent to <literal>null</literal> in Java, <literal>nil</literal> in Ruby, <emphasis>etc.</emphasis> (See <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/> for more details). The method doesn’t return an <literal>Int</literal> as we would expect.</simpara>
+<simpara id="para_the_cause_of_this_unexpected_b">The cause of this unexpected behavior is a missing equals sign in the method definition. Here is the definition we actually intended.</simpara>
+<screen>scala&gt; def double(i: Int) = { 2 * i }
+double: (Int)Int
+
+scala&gt; println(double(2))
+4</screen>
+<simpara id="para_note_the_equals_sign_before_th">Note the equals sign before the body of <literal>double</literal>. Now, the output says we have defined <literal>double</literal> to return an <literal>Int</literal> and the second command does what we expect it to do.</simpara>
+<simpara id="para_methods_with_without_equals">There is a reason for this behavior. Scala regards a method with the equals sign before the body as a function definition and a function always returns a value in functional programming. On the other hand, when Scala sees a method body without the leading equals sign, it assumes the programmer intended the method to be a “procedure” definition, intended for performing side effects only without a return value, <emphasis>i.e.</emphasis>, <literal>Unit</literal>. In practice, it is more likely that the programmer simply forget to insert the equals sign!</simpara>
+<warning id="para_warning_when_the_return_type_"><simpara>When the return type of a method is inferred and you don’t use an equals sign before the opening parenthesis for the method body, Scala infers a <literal>Unit</literal> return type, even when the last expression in the method is a value of another type.</simpara></warning>
+<simpara id="para_by_the_way_the_that_was_">By the way, where did that <literal>()</literal> come from that was printed before we fixed the bug? It is actually the real name of the <emphasis>singleton</emphasis> instance of the <literal>Unit</literal> type! (This name is a functional programming convention.)</simpara>
+</sect1>
+<sect1 id="Literals">
+<title>Literals</title>
+<simpara id="para_often_a_new_object_is_initial">Often, a new object is initialized with a <emphasis>literal</emphasis> value, such as <literal>val book = "Programming Scala"</literal>. Let’s discuss the kinds of literal values supported by Scala. Here, we’ll limit ourselves to lexical syntax literals. We’ll cover literal syntax for functions (used as <emphasis>values</emphasis>, not member methods), tuples, and certain types like <literal>Lists</literal> and <literal>Maps</literal>, as we come to them.</simpara>
+<sect2 id="IntegerLiterals">
+<title>Integer Literals</title>
+<simpara id="para_integer_literals_can_be_expres">Integer literals can be expresses in decimal, hexadecimal, or octal. The details are summarized in <xref linkend="integer-literals-table"/>.</simpara>
+<table id="integer-literals-table" frame="none" rowsep="1" colsep="1">
+<title>Integer literals.</title>
+<tgroup cols="3">
+<colspec colwidth="51pt" align="left"/>
+<colspec colwidth="237pt" align="left"/>
+<colspec colwidth="51pt" align="left"/>
+<thead valign="top">
+<row>
+<entry> Kind </entry>
+<entry> Format </entry>
+<entry> Examples</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara>Decimal</simpara></entry>
+<entry><simpara>0 <emphasis>or</emphasis> a nonzero digit followed zero or more digits (0-9)</simpara></entry>
+<entry><simpara>0, 1, 321</simpara></entry>
+</row>
+<row>
+<entry><simpara>Hexadecimal</simpara></entry>
+<entry><simpara>0x followed by one or more hexadecimal digits (0-9, A-F, a-f)</simpara></entry>
+<entry><simpara>0xFF, 0x1a3b</simpara></entry>
+</row>
+<row>
+<entry><simpara>Octal</simpara></entry>
+<entry><simpara>0 followed by one or more octal digits (0-7)</simpara></entry>
+<entry><simpara>013, 077</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara id="para_for_long_literals_it_is_nec">For <literal>Long</literal> literals, it is necessary to append the <literal>L</literal> or <literal>l</literal> character at the end of the literal. Otherwise, an <literal>Int</literal> is used.
+The valid values for an integer literal are bounded by the type of the variable to which the value will be assigned.
+<xref linkend="integer-boundaries-table"/> defines the limits, which are inclusive.</simpara>
+<table id="integer-boundaries-table" frame="none" rowsep="1" colsep="1">
+<title>Ranges of allowed values for integer literals (boundaries are inclusive).</title>
+<tgroup cols="3">
+<colspec colwidth="99pt" align="left"/>
+<colspec colwidth="99pt" align="left"/>
+<colspec colwidth="99pt" align="left"/>
+<thead valign="top">
+<row>
+<entry> Target Type </entry>
+<entry> Minimum (inclusive) </entry>
+<entry> Maximum (inclusive)</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara><literal>Long</literal></simpara></entry>
+<entry><simpara>−2<superscript>63</superscript></simpara></entry>
+<entry><simpara>2<superscript>63</superscript> - 1</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>Int</literal></simpara></entry>
+<entry><simpara>−2<superscript>31</superscript></simpara></entry>
+<entry><simpara>2<superscript>31</superscript> - 1</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>Short</literal></simpara></entry>
+<entry><simpara>−2<superscript>15</superscript></simpara></entry>
+<entry><simpara>2<superscript>15</superscript> - 1</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>Char</literal></simpara></entry>
+<entry><simpara>0</simpara></entry>
+<entry><simpara>2<superscript>16</superscript> - 1</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>Byte</literal></simpara></entry>
+<entry><simpara>−2<superscript>7</superscript></simpara></entry>
+<entry><simpara>2<superscript>7</superscript> - 1</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara id="para_a_compile_time_error_occurs_if">A compile-time error occurs if an integer literal number is specified that is outside these
+ranges, as in the following examples.</simpara>
+<screen>scala &gt; val i = 12345678901234567890
+&lt;console&gt;:1: error: integer number too large
+       val i = 12345678901234567890
+scala&gt; val b: Byte = 128
+&lt;console&gt;:4: error: type mismatch;
+ found   : Int(128)
+ required: Byte
+       val b: Byte = 128
+                     ^
+
+scala&gt; val b: Byte = 127
+b: Byte = 127</screen>
+</sect2>
+<sect2 id="FloatingPointLiterals">
+<title>Floating Point Literals</title>
+<simpara id="para_floating_point_literals_are_ex">Floating point literals are expresses with zero or more digits, followed by a period <literal>.</literal>, followed by zero or more digits. If there are no digits before the period, <emphasis>i.e.,</emphasis> the number is less than 1.0, then there must be one or more digits after the period. For <literal>Float</literal> literals, append the <literal>F</literal> or <literal>f</literal> character at the end of the literal. Otherwise, a <literal>Double</literal> is assumed. You can optionally append a <literal>D</literal> or <literal>d</literal> for a <literal>Double</literal>.</simpara>
+<simpara id="para_floating_point_literals_can_be">Floating point literals can be expressed with or without exponentials. The format of the exponential part is <literal>e</literal> or <literal>E</literal>, followed by an optional <literal>+</literal> or <literal>-</literal>, followed by one or more digits.</simpara>
+<simpara id="para_here_are_some_example_floating">Here are some example floating point literals.</simpara>
+<programlisting linenumbering="unnumbered">0.
+.0
+0.0
+3.
+3.14
+.14
+0.14
+3e5
+3E5
+3.E5
+3.e5
+3.e+5
+3.e-5
+3.14e-5
+3.14e-5f
+3.14e-5F
+3.14e-5d
+3.14e-5D</programlisting>
+<simpara id="para__float_consists_of_all_ieee_7"><literal>Float</literal> consists of all IEEE 754 32-bit, single-precision binary floating point values. <literal>Double</literal> consists
+of all IEEE 754 64-bit, double-precision binary floating point values.</simpara>
+<warning id="para_warning_to_avoid_parsing_ambi"><simpara>To avoid parsing ambiguities, you must have at least one space after a floating point literal, if it is followed by a token that starts with a letter. Also, the expression <literal>1.toString</literal> returns the integer value <literal>1</literal> as a string, while <literal>1. toString</literal> uses the <emphasis>operator notation</emphasis> to invoke <literal>toString</literal> on the floating point literal <literal>1.</literal>.</simpara></warning>
+</sect2>
+<sect2 id="BooleanLiterals">
+<title>Boolean Literals</title>
+<simpara id="para_the_boolean_literals_are_true">The boolean literals are <literal>true</literal> and <literal>false</literal>. The type of the variable to which they are assigned will be inferred to be <literal>Boolean</literal>.</simpara>
+<screen>scala&gt; val b1 = true
+b1: Boolean = true
+
+scala&gt; val b2 = false
+b2: Boolean = false</screen>
+</sect2>
+<sect2 id="CharacterLiterals">
+<title>Character Literals</title>
+<simpara id="para_a_character_literal_is_either_">A character literal is either a printable Unicode character or an escape sequence, written between single quotes. A character with Unicode value between 0 and 255 may also be represented by an octal escape, a backslash <literal>\</literal> followed by a sequence of up to three octal characters.
+It is a compile time error if a backslash character in a character or string literal does not start a valid escape sequence.</simpara>
+<simpara id="para_character_literal_examples_">Here are some examples.</simpara>
+<programlisting linenumbering="unnumbered">’A’
+’\u0041’  // 'A' in Unicode
+’\n’
+'\012'    // '\n' in octal
+’\t’</programlisting>
+<simpara id="para_the_valid_escape_sequences_are">The valid escape sequences are shown in <xref linkend="char-escape-sequences-table"/>.</simpara>
+<table id="char-escape-sequences-table" frame="none" rowsep="1" colsep="1">
+<title>Character escape sequences.</title>
+<tgroup cols="3">
+<colspec colwidth="99pt" align="left"/>
+<colspec colwidth="99pt" align="left"/>
+<colspec colwidth="99pt" align="left"/>
+<thead valign="top">
+<row>
+<entry> Sequence </entry>
+<entry> Unicode </entry>
+<entry> Meaning</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara><literal>\b</literal></simpara></entry>
+<entry><simpara><literal>\u0008</literal></simpara></entry>
+<entry><simpara>backspace BS</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>\t</literal></simpara></entry>
+<entry><simpara><literal>\u0009</literal></simpara></entry>
+<entry><simpara>horizontal tab HT</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>\n</literal></simpara></entry>
+<entry><simpara><literal>\u000a</literal></simpara></entry>
+<entry><simpara>linefeed LF</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>\f</literal></simpara></entry>
+<entry><simpara><literal>\u000c</literal></simpara></entry>
+<entry><simpara>form feed FF</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>\r</literal></simpara></entry>
+<entry><simpara><literal>\u000d</literal></simpara></entry>
+<entry><simpara>carriage return CR</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>\"</literal></simpara></entry>
+<entry><simpara><literal>\u0022</literal></simpara></entry>
+<entry><simpara>double quote <literal>"</literal></simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>\’</literal></simpara></entry>
+<entry><simpara><literal>\u0027</literal></simpara></entry>
+<entry><simpara>single quote <literal>’</literal></simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>\\</literal></simpara></entry>
+<entry><simpara><literal>\u0009</literal></simpara></entry>
+<entry><simpara>backslash \</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</sect2>
+<sect2 id="StringLiterals">
+<title>String Literals</title>
+<simpara id="para_a_string_literal_is_a_sequence">A string literal is a sequence of characters enclosed in double quotes or <emphasis>triples</emphasis> of double quotes, <emphasis>i.e.,</emphasis> <literal>"""…"""</literal>.</simpara>
+<simpara id="para_for_string_literals_in_double_">For string literals in double quotes, the allowed characters are the same as the character literals. However, if a double quote <literal>"</literal> character appears in the string, it must be “escaped” with a <literal>\</literal> character. Here are some examples.</simpara>
+<programlisting linenumbering="unnumbered">"Programming\nScala"
+"He exclaimed, \"Scala is great!\""
+"First\tSecond"</programlisting>
+<simpara id="para_the_string_literals_bounded_by">The string literals bounded by triples of double quotes are also called <emphasis>multi-line</emphasis> string literals. These strings can cover several lines; the line feeds will be part of the string. They can include any characters, including one or two double quotes together, but not three together. They are useful for strings with <literal>\</literal> characters that don’t form valid Unicode or escape sequences, like the valid sequences listed in <xref linkend="char-escape-sequences-table"/>. Regular expressions are a typical example, which we’ll discuss in <xref linkend="RoundingOutTheEssentials"/>. However, if escape sequences appear, they aren’t interpreted.</simpara>
+<simpara id="para_3quote_string_literal_examples_">Here are three example strings.</simpara>
+<programlisting linenumbering="unnumbered">"""Programming\nScala"""
+"""He exclaimed, "Scala is great!" """
+"""First line\n
+Second line\t
+
+Fourth line"""</programlisting>
+<simpara id="para_note_trailing_quotes">Note that we had to add a space before the trailing <literal>"""</literal> in the second example to prevent a parse error. Trying to escape the second <literal>"</literal> that ends the <literal>"Scala is great!"</literal> quote, <emphasis>i.e.,</emphasis> <literal>"Scala is great!\"</literal>, doesn’t work.</simpara>
+<simpara id="para_copy_and_past_these_strings_in">Copy and past these strings into the <userinput>scala</userinput> interpreter. Do the same for the previous string examples. How are they interpreted differently?</simpara>
+</sect2>
+<sect2 id="SymbolLiterals">
+<title>Symbol Literals</title>
+<simpara id="para_scala_supports_symbols_which_">Scala supports symbols, which are <emphasis>interned</emphasis> strings, meaning that two symbols with the same “name”, <emphasis>i.e.,</emphasis> the same character sequence, will actually refer to the same object in memory. Symbols are used less often in Scala than in some other languages, like Ruby, Smalltalk, and Lisp. They are useful as map keys instead of strings.</simpara>
+<simpara id="para_a_symbol_literal_is_a_single_q">A symbol literal is a single quote <literal>'</literal>, followed by a letter, followed by zero or more digits and letters. Note that an expression like <literal>'1</literal> is invalid, because the compiler thinks it is an incomplete character literal.</simpara>
+<simpara id="para_a_symbol_literal_id_is_a_sh">A symbol literal ’id is a shorthand for the expression <literal>scala.Symbol("id")</literal>.</simpara>
+<note id="para_note_if_you_want_to_create_a_"><simpara>If you want to create a symbol that contains whitespace, use <emphasis>e.g.</emphasis>, <literal>scala.Symbol(" Programming Scala ")</literal>. All the whitespace is preserved.</simpara></note>
+</sect2>
+</sect1>
+<sect1 id="TheTroubleWithTuples">
+<title>Tuples</title>
+<simpara id="para_how_many_times_have_you_wanted">How many times have you wanted to return <emphasis>two</emphasis> or more values from a method? In many languages, like Java, you only have a few options, none of which is very appealing. You could pass in parameters to the method that will be modified for all or some of the “return” values, which is ugly. Or, you could declare some small “structural” class that holds the two or more values, then return an instance of that class.</simpara>
+<simpara id="para_scala_supports__tuples__a_gr">Scala, supports <emphasis>tuples</emphasis>, a grouping of two or more items, usually created with the literal syntax of a comma-separated list of the items inside parentheses, <emphasis>e.g.,</emphasis> <literal>(x1, x2, …)</literal>. The types of the <literal>x</literal><subscript>i</subscript> elements are unrelated to each other, you can mix and match types. These literal “groupings” are instantiated as <literal>scala.TupleN</literal> instances, where the <literal>N</literal> is the number of items in the tuple. The Scala API defines separate <literal>TupleN</literal> classes for N between 1 and 22, inclusive. Tuple instances are immutable, <emphasis>first-class</emphasis> values, so you can assign them to variables, pass them as values, and return them from methods.</simpara>
+<simpara id="para_the_following_example_demonstr">The following example demonstrates the use of tuples.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/tuple-example-script.scala
+
+def tupleator(x1: Any, x2: Any, x3: Any) = (x1, x2, x3)
+
+val t = tupleator("Hello", 1, 2.3)
+println( "Print the whole tuple: " + t )
+println( "Print the first item:  " + t._1 )
+println( "Print the second item: " + t._2 )
+println( "Print the third item:  " + t._3 )
+
+val (t1, t2, t3) = tupleator("World", '!', 0x22)
+println( t1 + " " + t2 + " " + t3 )</programlisting>
+<simpara id="para_running2">Running this script with <userinput>scala</userinput> produces the following output.</simpara>
+<screen>Print the whole tuple: (Hello,1,2.3)
+Print the first item:  Hello
+Print the second item: 1
+Print the third item:  2.3
+World ! 34</screen>
+<simpara id="para_tupleator">The <literal>tupleator</literal> method simply returns a “3-tuple” with the input arguments. The first statement that uses this method assigns the returned tuple to a single variable <literal>t</literal>. The next four statements print <literal>t</literal> in various ways. The first print statement calls <literal>Tuple3.toString</literal>, which wraps parentheses around the item list. The following three statements print each item in <literal>t</literal> separately. The expression <literal>t._N</literal> retrieves the <literal>N</literal> item, starting at 1, <emphasis>not</emphasis> 0 (this choice follows functional programming conventions).</simpara>
+<simpara id="para_tupleator_one_lhs">The last two lines show that we can use a tuple expression on the left-hand side of the assignment. We declare three <literal>vals</literal>, <literal>t1</literal>, <literal>t2</literal>, and <literal>t3</literal>, to hold the individual items in the tuple. In essence, the tuple items are extracted automatically.</simpara>
+<simpara id="para_notice_how_we_mixed_types_in_t">Notice how we mixed types in the tuples. You can see the types more clearly if you use the interactive mode of the <userinput>scala</userinput> command, which we introduced in <xref linkend="IntroducingScala"/>.</simpara>
+<simpara id="para_try_typing_in_val_t_hello">Invoke the <userinput>scala</userinput> command with no script argument. At the <literal>scala&gt;</literal> prompt, enter <literal>val t = ("Hello",1,2.3)</literal> and see that you get the following result, which shows you the types of each element in the tuple.</simpara>
+<screen>scala&gt; val t = ("Hello",1,2.3)
+t: (java.lang.String, Int, Double) = (Hello,1,2.3)</screen>
+<simpara id="para_it_s_worth_noting_that_there_s">It’s worth noting that there’s more than one way to define a tuple. We’ve been using the more common parenthesized syntax, but you can also use the arrow operator between two values, as well as special factory methods on the tuple-related classes.</simpara>
+<screen>scala&gt; 1 -&gt; 2
+res0: (Int, Int) = (1,2)
+
+scala&gt; Tuple2(1, 2)
+res1: (Int, Int) = (1,2)
+
+scala&gt; Pair(1, 2)
+res2: (Int, Int) = (1,2)</screen>
+</sect1>
+<sect1 id="OptionSomeNone">
+<title>Option, Some, and None: Avoiding nulls</title>
+<simpara id="para_we_ll_discuss_the_standard_typ">We’ll discuss the standard type hierarchy for Scala in <xref linkend="ScalaTypeHierarchy"/> in <xref linkend="ScalaObjectSystem"/>. However, three useful classes to understand now are the <literal>Option</literal> class and its two subclasses, <literal>Some</literal> and <literal>None</literal>.</simpara>
+<simpara id="para_most_languages_have_a_special_">Most languages have a special keyword or object that’s assigned to reference variables when there’s nothing else for them to refer to. In Java, this is <literal>null</literal>; in Ruby, it’s <literal>nil</literal>. In Java, <literal>null</literal> is a keyword, not an object, and thus it’s illegal to call any methods on it. But this is a confusing choice on the language designer’s part. Why return a keyword when the programmer expects an object?</simpara>
+<simpara id="para_to_be_more_consistent_with_the">To be more consistent with the goal of making everything an object, as well as to conform with functional programming conventions, Scala encourages you to use the <literal>Option</literal> type for variables and function return values when they may or may not refer to a value. When there is no value, use <literal>None</literal>, an <literal>object</literal> that is a subclass of <literal>Option</literal>. When there is a value, use <literal>Some</literal>, which wraps the value. <literal>Some</literal> is also a subclass of <literal>Option</literal>.</simpara>
+<note id="para_note_none_is_declared_as_an"><simpara><literal>None</literal> is declared as an <literal>object</literal>, not a <literal>class</literal>, because we really only need one instance of it. In that sense, it’s like the <literal>null</literal> keyword, but it is a real object with methods.</simpara></note>
+<simpara id="para_you_can_see_option_some_">You can see <literal>Option</literal>, <literal>Some</literal>, and <literal>None</literal> in action in the following example, where we create a map of state capitals in the United States.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/state-capitals-subset-script.scala
+
+val stateCapitals = Map(
+  "Alabama" -&gt; "Montgomery",
+  "Alaska"  -&gt; "Juneau",
+  // ...
+  "Wyoming" -&gt; "Cheyenne")
+
+println( "Get the capitals wrapped in Options:" )
+println( "Alabama: " + stateCapitals.get("Alabama") )
+println( "Wyoming: " + stateCapitals.get("Wyoming") )
+println( "Unknown: " + stateCapitals.get("Unknown") )
+
+println( "Get the capitals themselves out of the Options:" )
+println( "Alabama: " + stateCapitals.get("Alabama").get )
+println( "Wyoming: " + stateCapitals.get("Wyoming").getOrElse("Oops!") )
+println( "Unknown: " + stateCapitals.get("Unknown").getOrElse("Oops2!") )</programlisting>
+<simpara id="para_the_convenient_gt_syntax_">The convenient <literal>-&gt;</literal> syntax for defining name-value pairs to initialize a <literal>Map</literal> will be discussed in <xref linkend="PredefObject"/> in <xref linkend="ScalaObjectSystem"/>. For now, we want to focus on the two groups of <literal>println</literal> statements, where we show what happens when you retrieve the values from the map. If you run this script with the <userinput>scala</userinput> command, you’ll get the following output.</simpara>
+<screen>Get the capitals wrapped in Options:
+Alabama: Some(Montgomery)
+Wyoming: Some(Cheyenne)
+Unknown: None
+Get the capitals themselves out of the Options:
+Alabama: Montgomery
+Wyoming: Cheyenne
+Unknown: Oops2!</screen>
+<simpara id="para_the_first_group_of_println_s">The first group of <literal>println</literal> statements invoke <literal>toString</literal> implicitly on the instances returned by <literal>get</literal>. We are calling <literal>toString</literal> on <literal>Some</literal> or <literal>None</literal> instances, because the values returned by <literal>Map.get</literal> are automatically wrapped in a <literal>Some</literal>, when there is a value in the map for the specified key. Note that the Scala library doesn’t store the <literal>Some</literal> in the map, it wraps the value in a <literal>Some</literal> upon retrieval. Conversely, when we ask for a map entry that doesn’t exist, the <literal>None</literal> object is returned, rather than <literal>null</literal>. This occurred in the last <literal>println</literal> of the three.</simpara>
+<simpara id="para_the_second_group_of_println_">The second group of <literal>println</literal> statements go a step further. After calling <literal>Map.get</literal>, they call <literal>get</literal> or <literal>getOrElse</literal> on each <literal>Option</literal> instance to retrieve the value it contains. <literal>Option.get</literal> requires that the <literal>Option</literal> is not empty, that is, the <literal>Option</literal> instance must actually be a <literal>Some</literal>. In this case, <literal>get</literal> returns the value wrapped by the <literal>Some</literal>, as demonstrated in the <literal>println</literal> where we print the capital of Alabama. However, if the <literal>Option</literal> is actually <literal>None</literal>, then <literal>None.get</literal> throws a <literal>NoSuchElementException</literal>.</simpara>
+<simpara id="para_we_also_show_the_alternative_m">We also show the alternative method, <literal>getOrElse</literal>, in the last two <literal>println</literal> statements. This method returns either the value in the <literal>Option</literal>, if it is a <literal>Some</literal> instance, or it returns the second argument we passed to <literal>getOrElse</literal>. The second argument methods' is the default return value.</simpara>
+<simpara id="para_we_ll_discuss_the_merits_of_al">So, <literal>getOrElse</literal> is the more defensive of the two methods. It avoids a potential thrown exception. We’ll discuss the merits of alternatives like <literal>get</literal> <emphasis>vs.</emphasis> <literal>getOrElse</literal> in <xref linkend="ExceptionsAndTheAlternatives"/> in <xref linkend="ApplicationDesign"/>.</simpara>
+<simpara id="para_note_that_because_the_map_get">Note that because the <literal>Map.get</literal> method returns an <literal>Option</literal>, it automatically documents the fact that there may not be an item matching the specified key. The map handles this situation by returning a <literal>None</literal>. Most languages would return <literal>null</literal> (or the equivalent) when there is no “real” value to return. You learn from experience to expect a possible <literal>null</literal>. Using <literal>Option</literal> makes the behavior more explicit in the method signature, so it’s more self-documenting.</simpara>
+<simpara id="para_also_thanks_to_scala_s_static">Also, thanks to Scala’s static typing, you can’t make the mistake of attempting to call a method on a value that might actually be  <literal>null</literal>. While this mistake is easy to do in Java, it won’t compile in Scala because you must first extract the value from the <literal>Option</literal>. So, the use of <literal>Option</literal> strongly encourages more resilient programming.</simpara>
+<simpara id="para_because_scala_runs_on_the_jvm_">Because Scala runs on the JVM and .NET and because it must interoperate with other libraries, Scala has to support <literal>null</literal>. Still, you should avoid using <literal>null</literal> in your code. Tony Hoare, who invented the null reference in 1965 while working on an object-oriented language called ALGOL W, called its invention his “billion dollar mistake” <xref linkend="Hoare2009" xrefstyle="select: title nopage"/>.  Don’t contribute to that figure.</simpara>
+<simpara id="para_so_how_would_you_write_a_func">So, how would you write a method that returns an <literal>Option</literal>? Here is a possible implementation of <literal>get</literal> that could be used by a concrete subclass of of <literal>Map</literal> (<literal>Map.get</literal> itself is <emphasis>abstract</emphasis>). For a more sophisticated version, see the implementation of <literal>get</literal> in <literal>scala.collection.immutable.HashMap</literal> in the Scala library source code distribution.</simpara>
+<programlisting linenumbering="unnumbered">def get(key: A): Option[B] = {
+  if (contains(key))
+    new Some(getValue(key))
+  else
+    None
+}</programlisting>
+<simpara id="para_the_contains_method_is_also_">The <literal>contains</literal> method is also defined for <literal>Map</literal>. It returns <literal>true</literal> if the map contains a value for the specified key. The <literal>getValue</literal> method is intended to be an internal method that retrieves the value from the underlying storage, whatever it is.</simpara>
+<simpara id="para_note_how_the_value_returned_by">Note how the value returned by <literal>getValue</literal> is wrapped in a <literal>Some[B]</literal>, where the type <literal>B</literal> is inferred. However, if the call to <literal>contains(key)</literal> returns <literal>false</literal>, then the <literal>object None</literal> is returned.</simpara>
+<simpara id="para_you_can_use_this_same_idiom_wh">You can use this same idiom when your methods return an <literal>Option</literal>. We’ll explore other uses for <literal>Option</literal> in subsequent sections. Its pervasive use in Scala code makes it an important concept to grasp.</simpara>
+</sect1>
+<sect1 id="Packages">
+<title>Organizing Code in Files and Namespaces</title>
+<simpara id="para_scala_adopts_the_package_conce">Scala adopts the package concept that Java uses for namespaces, but Scala offers a more flexible syntax. Just as file names don’t have to match the type names, the package structure does not have to match the directory structure. So, you can define packages in files independent of their “physical” location.</simpara>
+<simpara id="para_the_following_example_defines_">The following example defines a class <literal>MyClass</literal> in a package <literal>com.example.mypkg</literal> using the conventional Java syntax.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/package-example1.scala
+
+package com.example.mypkg
+
+class MyClass {
+  // ...
+}</programlisting>
+<simpara id="para_the_next_example_shows_a_contr">The next example shows a contrived example that defines packages using the nested package syntax in Scala, which is similar to the <literal>namespace</literal> syntax in C# and the use of <literal>modules</literal> as namespaces in Ruby.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/package-example2.scala
+
+package com {
+  package example {
+    package pkg1 {
+      class Class11 {
+        def m = "m11"
+      }
+      class Class12 {
+        def m = "m12"
+      }
+    }
+
+    package pkg2 {
+      class Class21 {
+        def m = "m21"
+        def makeClass11 = {
+          new pkg1.Class11
+        }
+        def makeClass12 = {
+          new pkg1.Class12
+        }
+      }
+    }
+
+    package pkg3.pkg31.pkg311 {
+      class Class311 {
+        def m = "m21"
+      }
+    }
+  }
+}</programlisting>
+<simpara id="para_two_packages_pkg1_and_pkg2_">Two packages <literal>pkg1</literal> and <literal>pkg2</literal> are defined under the <literal>com.example</literal> package.  A total of three classes are defined between the two packages.  The <literal>makeClass11</literal> and <literal>makeClass12</literal> methods in <literal>Class21</literal> illustrate how to reference a type in the “sibling” package, <literal>pkg1</literal>. You can also reference these classes by their full paths, <literal>com.example.pkg1.Class11</literal> and <literal>com.example.pkg1.Class12</literal>, respectively.</simpara>
+<simpara id="para_the_package_pkg3_pkg31_pkg311">The package <literal>pkg3.pkg31.pkg311</literal> shows that you can “chain” several packages together in one clause. It is not necessary to use a separate <literal>package</literal> clause for each package.</simpara>
+<simpara id="para_following_the_conventions_of_j">Following the conventions of Java, the root package for Scala’s library classes is named <literal>scala</literal>.</simpara>
+<warning id="para_note_scala_does_not_allow_pac"><simpara>Scala does not allow package declarations in scripts that are executed directly with the <userinput>scala</userinput> interpreter. The reason has to do with the way the interpreter converts statements in scripts to valid Scala code before compiling to byte code. See the <xref linkend="CommandLineToolScala"/> section in <xref linkend="ScalaToolsLibs"/> for more details.</simpara></warning>
+</sect1>
+<sect1 id="Importing">
+<title>Importing Types and Their Members</title>
+<simpara id="para_to_use_declarations_in_package">To use declarations in packages, you have to import them, just as you do in Java and similarly for other languages. However, compared to Java, Scala greatly expands your options. The following example illustrates several ways to import Java types.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/import-example1.scala
+
+import java.awt._
+import java.io.File
+import java.io.File._
+import java.util.{Map, HashMap}</programlisting>
+<simpara id="para_you_can_import_all_types_in_a_">You can import all types in a package, using the underscore _ as a wild card, as shown on the first line. You can also import individual Scala or Java types, as shown on the second line.</simpara>
+<simpara id="para_star_vs_underscore">Java uses the “star” character * as the wild card for matching all types in a package or all static members of a type when doing “static imports”. In Scala, this character is allowed in method names, so _ is reserved for use as a wild card, instead. We’ll see many other uses for _ as we go along.</simpara>
+<simpara id="para_as_shown_on_the_third_line_yo">As shown on the third line, you can import all the static methods and fields in Java types. If <literal>java.io.File</literal> were actually a Scala <literal>object</literal>, as discussed previously, then this line would import the fields and methods from the object.</simpara>
+<simpara id="para_finally_you_can_selectively_i">Finally, you can selectively import just the types you care about. On the fourth line, we import just the <literal>java.util.Map</literal> and <literal>java.util.HashMap</literal> types from the <literal>java.util</literal> package. Compare this one-line import statement with the two-line import statements we used in our first example in <xref linkend="InferringTypes"/>. They are functionally equivalent.</simpara>
+<simpara id="para_the_next_example_shows_more_ad">The next example shows more advanced options for import statements.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/import-example2-script.scala
+
+def writeAboutBigInteger() = {
+
+  import java.math.BigInteger.{
+    ONE =&gt; _,
+    TEN,
+    ZERO =&gt; JAVAZERO }
+
+  // ONE is effectively undefined
+  // println( "ONE: "+ONE )
+  println( "TEN: "+TEN )
+  println( "ZERO: "+JAVAZERO )
+}
+
+writeAboutBigInteger()</programlisting>
+<simpara id="para_this_example_demonstrates_two_">This example demonstrates two features. First, we can put import statements almost anywhere we want, not just at the top of the file, as required by Java. This feature allows us to scope the imports more narrowly. For example, we can’t reference the imported <literal>BigInteger</literal> definitions outside the scope of the method. Another advantage of this feature is that it puts an import statement closer to where the imported items are actually used.</simpara>
+<simpara id="para_the_second_feature_shown_is_th">The second feature shown is the ability to <emphasis>rename</emphasis> imported items. First, the <literal>java.math.BigInteger.ONE</literal> constant is renamed to the underscore wild card. This effectively makes it invisible and unavailable to the importing scope. This is a useful technique when you want to import everything <emphasis>except</emphasis> a few particular items.</simpara>
+<simpara id="para_next_the_java_math_bigintege">Next, the <literal>java.math.BigInteger.TEN</literal> constant is imported without renaming, so it can be referenced simply as <literal>TEN</literal>.</simpara>
+<simpara id="para_finally_the_java_math_bigint">Finally, the <literal>java.math.BigInteger.ZERO</literal> constant is renamed <literal>JAVAZERO</literal>.</simpara>
+<simpara id="para_renaming_is_useful_if_you_want">Renaming is useful if you want to give the item a more convenient name or you want to avoid ambiguities with other items in scope that have the same name.</simpara>
+<sect2 id="ImportsAreRelative">
+<title>Imports are Relative</title>
+<simpara id="para_there_s_one_other_important_th">There’s one other important thing to know about imports; they are <emphasis>relative</emphasis>. The following imports are all the same.</simpara>
+<programlisting linenumbering="unnumbered">import scala.collection.mutable._
+import collection.mutable._          // Since "scala" is already imported
+import _root_.scala.collection.mutable._ // full path from real "root"</programlisting>
+<simpara id="para_this_is_useful_for_importing_f">This is useful for importing from related packages, as in the following example.</simpara>
+<programlisting linenumbering="unnumbered">import collection._   // Everything from the "collection" package
+import mutable._      // Everything from the "collection.mutable" package</programlisting>
+<simpara id="para_the_scalawiki_has_other_ex">The <xref linkend="ScalaWiki" xrefstyle="select: title nopage"/> has other examples at <ulink url="http://scala.sygneca.com/faqs/language#how-do-i-import">http://scala.sygneca.com/faqs/language#how-do-i-import</ulink>.</simpara>
+<simpara id="para_it_s_fairly_rare_that_you_ll_h">It’s fairly rare that you’ll have problems with relative imports, but the problem with this convention is that they sometimes cause surprises, especially if you are accustomed to languages like Java, where imports are absolute. If you get a mystifying compiler error that a package wasn’t found, check that the statement is properly relative to the last the import statement or add the <literal>_root_.</literal> prefix. Also, you might see an IDE or other tool insert an <literal>import _root_…</literal> statement in your code. Now you know what it means.</simpara>
+<warning id="para_warning_remember_that_import_"><simpara>Remember that import statements are relative, not absolute. To create an absolute path, start with <literal>_root_</literal>.</simpara></warning>
+</sect2>
+</sect1>
+<sect1 id="AbstractTypesAndParameterizedTypes">
+<title>Abstract Types And Parameterized Types</title>
+<simpara id="para_we_mentioned_in_atasteofscal">We mentioned in <xref linkend="ATasteOfScala"/> in <xref linkend="IntroducingScala"/> that Scala supports <emphasis>parameterized types</emphasis>, which are very similar to <emphasis>generics</emphasis> in Java. (We could use the two terms interchangeably, but it’s more common to use “parameterized types” in the Scala community and “generics” in the Java community.) The most obvious difference is in the syntax, where Scala uses square brackets (<literal>[…]</literal>), while Java uses angle brackets (<literal>&lt;…&gt;</literal>).</simpara>
+<simpara id="para_for_example_a_list_of_strings">For example, a list of strings would be declared as follows.</simpara>
+<programlisting linenumbering="unnumbered">val languages: List[String] = ...</programlisting>
+<simpara id="para_there_are_other_important_diff">There are other important differences with Java’s generics, which we’ll explore in <xref linkend="ParameterizedTypes"/> in <xref linkend="ScalasTypeSystem"/>.</simpara>
+<simpara id="para_for_now_we_ll_mention_one_oth">For now, we’ll mention one other useful detail that you’ll encounter before we can explain it in depth in <xref linkend="ScalasTypeSystem"/>. If you look at the declaration of <literal>scala.List</literal> in the <emphasis>Scaladocs</emphasis>, you’ll see that the declaration is written as <literal>… class List[+A]</literal>. The ‘+’ in front of the <literal>A</literal> means that <literal>List[B]</literal> is a <emphasis>subtype</emphasis> of <literal>List[A]</literal> <emphasis>if</emphasis> <literal>B</literal> is a subtype of <literal>A</literal>. If there is a ‘-’ in front of a type parameter, then the relationship goes the other way, <literal>Foo[B]</literal> would be a <emphasis>supertype</emphasis> of <literal>Foo[A]</literal>, if the declaration is <literal>Foo[-A]</literal>.</simpara>
+<simpara id="para_scala_supports_another_type_ab">Scala supports another type abstraction mechanism called <emphasis>abstract types</emphasis>, used in many <emphasis>functional programming</emphasis> languages, such as Haskell. Abstract types were also considered for inclusion in Java when generics were adopted. We want to introduce them now, because you’ll see many examples of them before we dive into their details in <xref linkend="ScalasTypeSystem"/>. For a very detailed comparison of these two mechanisms, see <xref linkend="Bruce1998" xrefstyle="select: title nopage"/>.</simpara>
+<simpara id="para_abstract_types_can_be_applied_">Abstract types can be applied to many of the same design problems for which parameterized types are used. However, while the two mechanisms overlap, they are not redundant. Each has strengths and weaknesses for certain design problems.</simpara>
+<simpara id="para_here_is_an_example_that_uses_a">Here is an example that uses an abstract type.</simpara>
+<programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
+
+import java.io._
+
+abstract class BulkReader {
+  type In
+  val source: In
+  def read: String
+}
+
+class StringBulkReader(val source: String) extends BulkReader {
+  type In = String
+  def read = source
+}
+
+class FileBulkReader(val source: File) extends BulkReader {
+  type In = File
+  def read = {
+    val in = new BufferedInputStream(new FileInputStream(source))
+    val numBytes = in.available()
+    val bytes = new Array[Byte](numBytes)
+    in.read(bytes, 0, numBytes)
+    new String(bytes)
+  }
+}
+
+println( new StringBulkReader("Hello Scala!").read )
+println( new FileBulkReader(new File("abstract-types-script.scala")).read )</programlisting>
+<simpara id="para_running_1">Running this script with <userinput>scala</userinput> produces the following output.</simpara>
+<screen>Hello Scala!
+import java.io._
+
+abstract class BulkReader {
+...</screen>
+<simpara id="para_the_bulkreader__abstract__cl">The <literal>BulkReader</literal> <emphasis>abstract</emphasis> class declares three abstract members, a <literal>type</literal> named <literal>In</literal>, a <literal>val</literal> field <literal>source</literal>, and a <literal>read</literal> method. As in Java, instances in Scala can only be created from <emphasis>concrete</emphasis> classes, which must have definitions for all members.</simpara>
+<simpara id="para_the_derived_classes_stringbu">The derived classes, <literal>StringBulkReader</literal> and <literal>FileBulkReader</literal>, provide concrete definitions for these abstract members. We’ll cover the details of class declarations in <xref linkend="BasicObjectOrientedProgramming"/> and the particulars of overriding member declarations in <xref linkend="OverridingMembers"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>.</simpara>
+<simpara id="para_for_now_note_that_the_type_">For now, note that the <literal>type</literal> field works very much like a type parameter in a parameterized type. In fact, we could rewrite this example as follows, where we show only what would be different.</simpara>
+<programlisting linenumbering="unnumbered">abstract class BulkReader[In] {
+  val source: In
+  ...
+}
+
+class StringBulkReader(val source: String) extends BulkReader[String] {...}
+
+class FileBulkReader(val source: File) extends BulkReader[File] {...}</programlisting>
+<simpara id="para_just_as_for_parameterized_type">Just as for parameterized types, if we define the <literal>In</literal> type to be <literal>String</literal>, then the <literal>source</literal> field must also be defined as a <literal>String</literal>. Note that the <literal>StringBulkReader</literal>'s <literal>read</literal> method simply returns the <literal>source</literal> field, while the <literal>FileBulkReader</literal>'s <literal>read</literal> method reads the contents of the file.</simpara>
+<simpara id="para_as_demonstrated_by_bruce1998">As demonstrated by <xref linkend="Bruce1998" xrefstyle="select: title nopage"/>, parameterized types tend to be best for collections, which is how they are most often used in Java code, while abstract types are most useful for type “families” and other type scenarios.</simpara>
+<simpara id="para_we_ll_explore_the_details_of_s">We’ll explore the details of Scala’s abstract types in <xref linkend="ScalasTypeSystem"/>. For example, we’ll see how to constrain the possible concrete types that can be used.</simpara>
+</sect1>
+<sect1 id="ReservedWords">
+<title>Reserved Words</title>
+<simpara id="para_reserved_words_table_lists_the_reserved_words"><xref linkend="reserved-words-table"/> lists the reserved words in Scala, which we sometimes call “keywords”, and briefly describes how they are used <xref linkend="ScalaSpec2009" xrefstyle="select: title nopage"/>.</simpara>
+<table id="reserved-words-table" frame="none" rowsep="1" colsep="1">
+<title>Reserved Words.</title>
+<tgroup cols="3">
+<colspec colwidth="57pt" align="left"/>
+<colspec colwidth="172pt" align="left"/>
+<colspec colwidth="153pt" align="left"/>
+<thead valign="top">
+<row>
+<entry> <literal>Word</literal> </entry>
+<entry> Description </entry>
+<entry> See …</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara><literal>abstract</literal></simpara></entry>
+<entry><simpara>Makes a declaration abstract. Unlike Java, the keyword is usually not required for abstract members.</simpara></entry>
+<entry><simpara><xref linkend="ClassBasics"/>,  (<xref linkend="BasicObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>case</literal></simpara></entry>
+<entry><simpara>Start a case clause in a match expression.</simpara></entry>
+<entry><simpara><xref linkend="PatternMatching"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>catch</literal></simpara></entry>
+<entry><simpara>Start a clause for catching thrown exceptions.</simpara></entry>
+<entry><simpara><xref linkend="TryCatchFinally"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>class</literal></simpara></entry>
+<entry><simpara>Start a class declaration.</simpara></entry>
+<entry><simpara><xref linkend="ClassBasics"/> (<xref linkend="BasicObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>def</literal></simpara></entry>
+<entry><simpara>Start a method declaration.</simpara></entry>
+<entry><simpara><xref linkend="MethodDeclarationsAndDefinitions"/> (<xref linkend="TypeLessDoMore"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>do</literal></simpara></entry>
+<entry><simpara>Start a <literal>do … while</literal> loop.</simpara></entry>
+<entry><simpara><xref linkend="OtherLoopingConstructs"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>else</literal></simpara></entry>
+<entry><simpara>Start an <literal>else</literal> clause for an <literal>if</literal> clause.</simpara></entry>
+<entry><simpara><xref linkend="IfStatements"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>extends</literal></simpara></entry>
+<entry><simpara>Indicates that the class or trait that follows is the parent type of the class or trait being declared.</simpara></entry>
+<entry><simpara><xref linkend="ParentClasses"/> (<xref linkend="BasicObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>false</literal></simpara></entry>
+<entry><simpara><literal>Boolean</literal> <emphasis>false</emphasis>.</simpara></entry>
+<entry><simpara><xref linkend="ScalaTypeHierarchy"/> (<xref linkend="ScalaObjectSystem"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>final</literal></simpara></entry>
+<entry><simpara>Applied to a class or trait to prohibit deriving child types from it. Applied to a member to prohibit overriding it in a derived class or trait.</simpara></entry>
+<entry><simpara><xref linkend="FinalDeclarations"/> (<xref linkend="AdvancedObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>finally</literal></simpara></entry>
+<entry><simpara>Start a clause that is executed after the corresponding <literal>try</literal> clause, whether or not an exception is thrown by the <literal>try</literal> clause.</simpara></entry>
+<entry><simpara><xref linkend="TryCatchFinally"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>for</literal></simpara></entry>
+<entry><simpara>Start a <emphasis>for comprehension</emphasis> (loop).</simpara></entry>
+<entry><simpara><xref linkend="ForComprehensions"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>forSome</literal></simpara></entry>
+<entry><simpara>Used in <emphasis>existential type</emphasis> declarations to constrain the allowed concrete types that can be used.</simpara></entry>
+<entry><simpara><xref linkend="ExistentialTypes"/> (<xref linkend="ScalasTypeSystem"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>if</literal></simpara></entry>
+<entry><simpara>Start an <literal>if</literal> clause.</simpara></entry>
+<entry><simpara><xref linkend="IfStatements"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>implicit</literal></simpara></entry>
+<entry><simpara>Marks a method as eligible to be used as an <emphasis>implicit</emphasis> type converter. Marks a method parameter as optional, as long as a type-compatible substitute object is in the scope where the method is called.</simpara></entry>
+<entry><simpara><xref linkend="ImplicitConversions"/> (<xref linkend="FunctionalProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>import</literal></simpara></entry>
+<entry><simpara>Import one or more types or members of types into the current scope.</simpara></entry>
+<entry><simpara><xref linkend="Importing"/> (this chapter)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>lazy</literal></simpara></entry>
+<entry><simpara>Defer evaluation of a <literal>val</literal>.</simpara></entry>
+<entry><simpara><xref linkend="LazyVals"/> (<xref linkend="FunctionalProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>match</literal></simpara></entry>
+<entry><simpara>Start a pattern matching clause.</simpara></entry>
+<entry><simpara><xref linkend="PatternMatching"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>new</literal></simpara></entry>
+<entry><simpara>Create a new instance of a class.</simpara></entry>
+<entry><simpara><xref linkend="ClassBasics"/> (<xref linkend="BasicObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>null</literal></simpara></entry>
+<entry><simpara>Value of a reference variable that has not been assigned a value.</simpara></entry>
+<entry><simpara><xref linkend="ScalaTypeHierarchy"/> (<xref linkend="ScalaObjectSystem"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>object</literal></simpara></entry>
+<entry><simpara>Start a <emphasis>singleton</emphasis> declaration; a <literal>class</literal> with only one instance.</simpara></entry>
+<entry><simpara><xref linkend="ClassesAndObjects"/> (<xref linkend="BasicObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>override</literal></simpara></entry>
+<entry><simpara>Override a <emphasis>concrete</emphasis> member of a class or trait, as long as the original is not marked <literal>final</literal>.</simpara></entry>
+<entry><simpara><xref linkend="OverridingMembers"/> (<xref linkend="AdvancedObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>package</literal></simpara></entry>
+<entry><simpara>Start a package scope declaration.</simpara></entry>
+<entry><simpara><xref linkend="Packages"/> (<xref linkend="TypeLessDoMore"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>private</literal></simpara></entry>
+<entry><simpara>Restrict visibility of a declaration.</simpara></entry>
+<entry><simpara><xref linkend="VisibilityRules"/> (<xref linkend="BasicObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>protected</literal></simpara></entry>
+<entry><simpara>Restrict visibility of a declaration.</simpara></entry>
+<entry><simpara><xref linkend="VisibilityRules"/> (<xref linkend="BasicObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>requires</literal></simpara></entry>
+<entry><simpara>Deprecated. Was used for <emphasis>self typing</emphasis>.</simpara></entry>
+<entry><simpara><xref linkend="ScalaTypeHierarchy"/>  (<xref linkend="ScalaObjectSystem"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>return</literal></simpara></entry>
+<entry><simpara>Return from a function</simpara></entry>
+<entry><simpara><xref linkend="ATasteOfScala"/> (<xref linkend="IntroducingScala"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>sealed</literal></simpara></entry>
+<entry><simpara>Applied to a parent class to require all directly derived classes to be declared in the same source file.</simpara></entry>
+<entry><simpara><xref linkend="CaseClasses"/> (<xref linkend="AdvancedObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>super</literal></simpara></entry>
+<entry><simpara>Analogous to <literal>this</literal>, but binds to the parent type.</simpara></entry>
+<entry><simpara><xref linkend="OverridingMethods"/> (<xref linkend="AdvancedObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>this</literal></simpara></entry>
+<entry><simpara>How an object refers to itself. The method name for <emphasis>auxiliary constructors</emphasis>.</simpara></entry>
+<entry><simpara><xref linkend="ClassBasics"/> (<xref linkend="BasicObjectOrientedProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>throw</literal></simpara></entry>
+<entry><simpara>Throw an exception.</simpara></entry>
+<entry><simpara><xref linkend="TryCatchFinally"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>trait</literal></simpara></entry>
+<entry><simpara>A <emphasis>mixin module</emphasis> that adds additional state and behavior to an instance of a class</simpara></entry>
+<entry><simpara><xref linkend="Traits"/></simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>try</literal></simpara></entry>
+<entry><simpara>Start a block that may throw an exception.</simpara></entry>
+<entry><simpara><xref linkend="TryCatchFinally"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>true</literal></simpara></entry>
+<entry><simpara><literal>Boolean</literal> <emphasis>true</emphasis>.</simpara></entry>
+<entry><simpara><xref linkend="ScalaTypeHierarchy"/> (<xref linkend="ScalaObjectSystem"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>type</literal></simpara></entry>
+<entry><simpara>Start a <emphasis>type</emphasis> declaration</simpara></entry>
+<entry><simpara><xref linkend="AbstractTypesAndParameterizedTypes"/> (<xref linkend="TypeLessDoMore"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>val</literal></simpara></entry>
+<entry><simpara>Start a read-only “variable” declaration.</simpara></entry>
+<entry><simpara><xref linkend="VariableDeclarationsAndDefinitions"/> (<xref linkend="TypeLessDoMore"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>var</literal></simpara></entry>
+<entry><simpara>Start a read/write variable declaration.</simpara></entry>
+<entry><simpara><xref linkend="VariableDeclarationsAndDefinitions"/> (<xref linkend="TypeLessDoMore"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>while</literal></simpara></entry>
+<entry><simpara>Start a <literal>while</literal> loop.</simpara></entry>
+<entry><simpara><xref linkend="OtherLoopingConstructs"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>with</literal></simpara></entry>
+<entry><simpara>Include the trait that follows in the class being declared or the object being instantiated.</simpara></entry>
+<entry><simpara><xref linkend="Traits"/></simpara></entry>
+</row>
+<row>
+<entry><simpara><literal>yield</literal></simpara></entry>
+<entry><simpara>Return an element in a <emphasis>for comprehension</emphasis> that becomes part of a sequence.</simpara></entry>
+<entry><simpara><xref linkend="Yielding"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara>_</simpara></entry>
+<entry><simpara>A place holder, used in imports, function literals, <emphasis>etc.</emphasis></simpara></entry>
+<entry><simpara><emphasis>Many</emphasis></simpara></entry>
+</row>
+<row>
+<entry><simpara>:</simpara></entry>
+<entry><simpara>Separator between identifiers and type annotations.</simpara></entry>
+<entry><simpara><xref linkend="ATasteOfScala"/> (<xref linkend="IntroducingScala"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara>=</simpara></entry>
+<entry><simpara>Assignment</simpara></entry>
+<entry><simpara><xref linkend="ATasteOfScala"/> (<xref linkend="IntroducingScala"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara>=&gt;</simpara></entry>
+<entry><simpara>Used in <emphasis>function literals</emphasis> to separate the argument list from the function body.</simpara></entry>
+<entry><simpara><xref linkend="FunctionLiteralsAndClosures"/> (<xref linkend="FunctionalProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara>&lt;-</simpara></entry>
+<entry><simpara>Used in <emphasis>for comprehensions</emphasis> in <emphasis>generator</emphasis> expressions.</simpara></entry>
+<entry><simpara><xref linkend="ForComprehensions"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara>&lt;:</simpara></entry>
+<entry><simpara>Used in <emphasis>parameterized</emphasis> and <emphasis>abstract type</emphasis> declarations to constrain the allowed types.</simpara></entry>
+<entry><simpara><xref linkend="ScalasTypeSystem"/></simpara></entry>
+</row>
+<row>
+<entry><simpara>&lt;%</simpara></entry>
+<entry><simpara>Used in <emphasis>parameterized</emphasis> and <emphasis>abstract type</emphasis> “view bounds” declarations.</simpara></entry>
+<entry><simpara><xref linkend="ScalasTypeSystem"/></simpara></entry>
+</row>
+<row>
+<entry><simpara>&gt;:</simpara></entry>
+<entry><simpara>Used in <emphasis>parameterized</emphasis> and <emphasis>abstract type</emphasis> declarations to constrain the allowed types.</simpara></entry>
+<entry><simpara><xref linkend="ScalasTypeSystem"/></simpara></entry>
+</row>
+<row>
+<entry><simpara>#</simpara></entry>
+<entry><simpara>Used in <emphasis>type projections</emphasis></simpara></entry>
+<entry><simpara><xref linkend="ScalasTypeSystem"/></simpara></entry>
+</row>
+<row>
+<entry><simpara>@</simpara></entry>
+<entry><simpara>Marks an <emphasis>annotation</emphasis></simpara></entry>
+<entry><simpara><xref linkend="Annotations"/> (<xref linkend="ApplicationDesign"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara>⇒</simpara></entry>
+<entry><simpara>(Unicode \u21D2) same as =&gt;.</simpara></entry>
+<entry><simpara><xref linkend="FunctionLiteralsAndClosures"/> (<xref linkend="FunctionalProgramming"/>)</simpara></entry>
+</row>
+<row>
+<entry><simpara>←</simpara></entry>
+<entry><simpara>(Unicode \u2190) same as &lt;-.</simpara></entry>
+<entry><simpara><xref linkend="ForComprehensions"/> (<xref linkend="RoundingOutTheEssentials"/>)</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara id="para_no_break_and_continue">Notice that <literal>break</literal> and <literal>continue</literal> are not listed. These control keywords don’t exist in Scala. Instead, Scala encourages you to use functional programming idioms that are usually more succinct and less error prone. We’ll discuss alternative approaches when we discuss <literal>for</literal> loops (see <xref linkend="GeneratorExpressions"/> in <xref linkend="RoundingOutTheEssentials"/>).</simpara>
+<simpara id="para_some_java_methods_use_names_th">Some Java methods use names that are reserved by Scala, <emphasis>e.g.,</emphasis> <literal>java.util.Scanner.match</literal>. To avoid a compilation error, surround the name with single back quotes, <emphasis>e.g.,</emphasis> <literal>java.util.Scanner.‵match‵</literal>.</simpara>
+</sect1>
+<sect1 id="_recap_and_what_8217_s_next_2">
+<title>Recap and What’s Next</title>
+<simpara id="para_we_covered_several_ways_that_s">We covered several ways that Scala’s syntax is concise, flexible, and productive. We also described many Scala features. In the next chapter, we will round out some Scala essentials before we dive into Scala’s support for object-oriented programming and functional programming.</simpara>
+</sect1>
+</chapter>

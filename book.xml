@@ -1,0 +1,1705 @@
+<?xml version="1.0"?>
+<book lang="en">
+<title>Programming Scala</title>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bookinfo.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch00.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch01.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch02.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch03.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch04.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch05.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch06.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch07.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch08.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch09.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch10.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch11.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch12.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch13.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch14.xml"/>
+<glossary id="Glossary">
+<title>Glossary</title>
+<glossentry id="glossentry-tag">
+<glossterm>
+$tag
+</glossterm>
+<glossdef>
+<simpara>
+  A method declared by the <literal>ScalaObject</literal> trait and used internally by Scala. It takes no arguments and returns an integer. It is currently used to optimize pattern matching, but it may be removed in a future release of Scala. While normally invisible to Scala code (they are generated automatically by the compiler), Java code that extends some Scala traits and classes may need to implement this method.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-abstraction">
+<glossterm>
+Abstraction
+</glossterm>
+<glossdef>
+<simpara>
+  The outwardly visible state, state transformations, and other operations supported by a type. This is separate from the <emphasis>encapsulated</emphasis> implementation (fields and methods) of the abstraction. Scala <emphasis>traits</emphasis> and <emphasis>abstract classes</emphasis> are often used to define abstractions and optionally implement them. <emphasis>Concrete types</emphasis> provide complete implementations.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-abstract-type">
+<glossterm>
+Abstract Type
+</glossterm>
+<glossdef>
+<orderedlist id="glossary_abstract_type" numeration="lowerroman">
+<listitem>
+<simpara>
+A <emphasis>class</emphasis> or <emphasis>trait</emphasis> with one or more methods, fields, or types declared, but undefined. Abstract types can’t be instantiated. Contrast with <emphasis>concrete types</emphasis>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A <literal>type</literal> declaration within an <emphasis>class</emphasis> or <emphasis>trait</emphasis> that is abstract.
+</simpara>
+</listitem>
+</orderedlist>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-actor">
+<glossterm>
+Actor
+</glossterm>
+<glossdef>
+<simpara>
+  An autonomous sender and receiver of messages in the <emphasis>actor model of concurrency</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-actor-model-of-concurrency">
+<glossterm>
+Actor Model of Concurrency
+</glossterm>
+<glossdef>
+<simpara>
+  A concurrency model where autonomous <emphasis>actors</emphasis> coordinate work by exchanging  messages. An actor’s messages are stored in a <emphasis>mailbox</emphasis> until the actor processes them.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-annotated-type">
+<glossterm>
+Annotated Type
+</glossterm>
+<glossdef>
+<simpara>
+  Any type that has one or more “@” annotations applied to it.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-annotation">
+<glossterm>
+Annotation
+</glossterm>
+<glossdef>
+<simpara>
+  A way of attaching “metadata” to a declaration that can be exploited by the compiler and other tools for code generation, verification and validation, <emphasis>etc.</emphasis> In Scala (and Java) An annotation is a class. When used, it is prefixed with the @ character.
+</simpara>
+<simpara id="para_any_explicit_type_declarations">Any explicit type declarations are also called <emphasis>annotations</emphasis>.</simpara>
+<simpara id="para_one_or_more_additions_to_a_typ">One or more additions to a type declaration that specify behaviors like variance under inheritance, bounds, and views.</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-application">
+<glossterm>
+Application
+</glossterm>
+<glossdef>
+<simpara>
+  In Scala, any <literal>object</literal> with a <literal>main</literal> routine that is invoked by the JVM or .NET CLR at the start of a new process.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-arity">
+<glossterm>
+Arity
+</glossterm>
+<glossdef>
+<simpara>
+  The number of arguments to a function.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-aspect-oriented-programming">
+<glossterm>
+Aspect-Oriented Programming
+</glossterm>
+<glossdef>
+<simpara>
+  (Sometimes called <emphasis>Aspect-Oriented Software Development</emphasis>) An approach to <emphasis>cross-cutting concerns</emphasis>, where the concerns are designed and implemented in a “modular” way (that is, with appropriate encapsulation, lack of duplication, <emphasis>etc.</emphasis>), then integrated into all the relevant execution points in a succinct and robust way, <emphasis>e.g.</emphasis> through declarative or programmatic means. In AOP terms, the execution points are called <emphasis>join points</emphasis>, a particular set of them is called a <emphasis>pointcut</emphasis> and the new behavior that is executed before, after, or “around” a join point is called <emphasis>advice</emphasis>. <emphasis>AspectJ</emphasis> <xref linkend="AspectJ" xrefstyle="select: title nopage"/> is the best known AOP toolkit. Scala <emphasis>traits</emphasis> can be used to implement some aspect-like functionality.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-aspectj">
+<glossterm>
+AspectJ
+</glossterm>
+<glossdef>
+<simpara>
+  A extension of Java that supports <emphasis>aspect-oriented programming</emphasis>. AspectJ supports two forms of syntax, an extended Java-based syntax and a “pure” Java syntax that uses Java annotations to indicate the <emphasis>pointcuts</emphasis> and <emphasis>advices</emphasis> of an aspect. The aspect behaviors (advices) can be incorporated into the target code at compile time, as a post-compile “weaving” step, or at load time.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-attribute">
+<glossterm>
+Attribute
+</glossterm>
+<glossdef>
+<simpara>
+  Another name for a type <emphasis>field</emphasis>, used by convention in many object-oriented programming languages. Scala follows Java’s convention of preferring the term <emphasis>field</emphasis> over <emphasis>attribute</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-auxiliary-constructor">
+<glossterm>
+Auxiliary Constructor
+</glossterm>
+<glossdef>
+<simpara>
+  A secondary constructor of a class, declared as a method named <literal>this</literal> with no return type. An auxiliary constructor must invoke the <emphasis>primary constructor</emphasis> or a previously defined <emphasis>auxiliary constructor</emphasis> as the first or only statement in its method body.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-base-type">
+<glossterm>
+Base Type
+</glossterm>
+<glossdef>
+<simpara>
+  A synonym for <emphasis>parent type</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-behavior-driven-development">
+<glossterm>
+Behavior-Driven Development
+</glossterm>
+<glossdef>
+<simpara>
+  A style of <emphasis>test-driven development</emphasis> (TDD) that emphasizes TDD’s role in driving the understanding of requirements for the code. You follow the same process as in TDD, where the “tests” are written before the code. The difference is that the automated tests are written in a format that looks more like a requirements (or behavioral) specification and less like a test of the code’s conformance to the requirements. However, the specification format is still executable and it still provides the verification, validation and regression testing service that TDD tests provide.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-bound-variable">
+<glossterm>
+Bound Variable
+</glossterm>
+<glossdef>
+<simpara>
+  A <emphasis>variable</emphasis> that is declared as an argument to a <emphasis>function literal</emphasis>. It is “bound” to a value when the <emphasis>closure</emphasis> created from the function literal is invoked.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-by-name-parameter">
+<glossterm>
+By-Name Parameter
+</glossterm>
+<glossdef>
+<simpara>
+  A <emphasis>by-name</emphasis> parameter looks like a function value that takes no parameters, but rather than being declared with the signature <literal>p: () ⇒ R</literal>, where
+<literal>R</literal> is the return type, it is declared with the signature <literal>p: ⇒ R</literal>. By-name parameters are evaluated every time they are referenced in the function, rather than being evaluated <emphasis>once</emphasis> just before the function call, like a <emphasis>by-value parameter</emphasis>. For example, they are useful for a function that is designed to look like a control construct that takes a “block”, not a function with explicit parameter arguments, (think of how <emphasis>while loops</emphasis> look, for example). The function argument that has block-like behavior would be a by-name parameter.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-by-value-parameter">
+<glossterm>
+By-Value Parameter
+</glossterm>
+<glossdef>
+<simpara>
+  A <emphasis>by-value</emphasis> parameter is the usually kind of method parameter that is evaluated before it is passed to the method. Contrast with <emphasis>by-name parameter</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-call-by-name">
+<glossterm>
+Call By Name
+</glossterm>
+<glossdef>
+<simpara>
+  See <emphasis>by-name parameter</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-call-by-value">
+<glossterm>
+Call By Value
+</glossterm>
+<glossdef>
+<simpara>
+  See <emphasis>by-value parameter</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-call-site">
+<glossterm>
+Call Site
+</glossterm>
+<glossdef>
+<simpara>
+  See <emphasis>declaration site</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-case">
+<glossterm>
+Case
+</glossterm>
+<glossdef>
+<simpara>
+  The keyword used in <emphasis>pattern matching</emphasis> expressions for testing an object against an <emphasis>extractor</emphasis>, type check, <emphasis>etc.</emphasis>
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-case-class">
+<glossterm>
+Case Class
+</glossterm>
+<glossdef>
+<simpara>
+  A class declared with the keyword <literal>case</literal>. The Scala compiler automatically defines <emphasis>equals</emphasis>, <emphasis>hashCode</emphasis> and <emphasis>toString</emphasis> methods for the class and creates a <emphasis>companion object</emphasis> with an <emphasis>apply</emphasis> factory method and an <emphasis>unapply</emphasis> extractor method. Case classes are particularly convenient for use with <emphasis>pattern matching</emphasis> (<emphasis>case</emphasis>) expressions.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-child-type">
+<glossterm>
+Child Type
+</glossterm>
+<glossdef>
+<simpara>
+  A class or trait that inherits from a <emphasis>parent</emphasis> class or trait. Sometimes called a <emphasis>subtype</emphasis> or <emphasis>derived type</emphasis>. See <emphasis>inheritance</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-client">
+<glossterm>
+Client
+</glossterm>
+<glossdef>
+<simpara>
+  An informal term used throughout the book to indicate a section of software that uses another as an API, <emphasis>etc.</emphasis>
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-class">
+<glossterm>
+Class
+</glossterm>
+<glossdef>
+<simpara>
+  A template for <emphasis>instances</emphasis> that will have the same fields, representing state values, and the same methods. Scala classes support single <emphasis>inheritance</emphasis> and zero or more <emphasis>mixin</emphasis> traits. Contrast with <emphasis>type</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-closure">
+<glossterm>
+Closure
+</glossterm>
+<glossdef>
+<simpara>
+  In Scala, an instance that has been created from a <emphasis>function literal</emphasis> with all the <emphasis>free variables</emphasis> referenced in the function literal bound to variables of the same name in the enclosing scope where the function literal was used. In other words, the instance is “closed” in the sense that the free variables are bound. Because they are instances, closures are <emphasis>first-class</emphasis> values. They can be passed to other functions to customize their behavior. For example, <literal>List.foreach</literal> takes a closure that is applied to each element in the list. See also <emphasis>bound variables</emphasis> and <emphasis>function literals</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-comments">
+<glossterm>
+Comments
+</glossterm>
+<glossdef>
+<simpara>
+  Scala follows the same comment conventions as Java, C#, C++, <emphasis>etc.</emphasis> A <literal>// comment</literal> goes to the end of a line, while a <literal>/* comment */</literal> can cross line boundaries.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-companion-class">
+<glossterm>
+Companion Class
+</glossterm>
+<glossdef>
+<simpara>
+  An <literal>class</literal> declared with the same name as an object and defined in the same source file. See also <emphasis>companion object</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-companion-object">
+<glossterm>
+Companion Object
+</glossterm>
+<glossdef>
+<simpara>
+  An <literal>object</literal> declared with the same name as a class (called its <emphasis>companion class</emphasis>) and defined in the same source file. Companion objects are where methods and fields are defined that would be statics in Java classes, such as factory methods, <literal>apply</literal> and <literal>unapply</literal> for pattern matching, <emphasis>etc</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-component">
+<glossterm>
+Component
+</glossterm>
+<glossdef>
+<simpara>
+  For our purposes, an aggregation of cohesive types that expose services through well-defined abstractions, while encapsulating implementation details and minimizing coupling to other components. (There is a wide-range of definitions for <emphasis>component</emphasis> in computer science and industry.)
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-compound-type">
+<glossterm>
+Compound Type
+</glossterm>
+<glossdef>
+<simpara>
+  The actual type of a declaration of the form <literal>T1 extends T2 with T3 with … TN { R }</literal>, where <literal>R</literal> is the <emphasis>refinement</emphasis> (body). Definitions in <literal>R</literal> affect the type.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-concrete-type">
+<glossterm>
+Concrete Type
+</glossterm>
+<glossdef>
+<simpara>
+  A <emphasis>class</emphasis>, <emphasis>trait</emphasis>, or <emphasis>object</emphasis> with all methods, fields, and types defined. <emphasis>Instances</emphasis> can be created from concrete types. Contrast with <emphasis>abstract types</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-contract">
+<glossterm>
+Contract
+</glossterm>
+<glossdef>
+<simpara>
+  The protocol and requirements that exist between a module (<emphasis>e.g.,</emphasis> class, trait, object, or even function or method) and clients of the module. More specifically, see <emphasis>design by contract</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-context-free-grammar">
+<glossterm>
+Context Free Grammar
+</glossterm>
+<glossdef>
+<simpara>
+  A kind of language grammar for which each <emphasis>nonterminal</emphasis> can be specified as a <emphasis>production</emphasis> without reference to additional context information. That is, each nonterminal can appear by itself on the left-hand side of the production the specifies it.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-contravariance-or-contravariant">
+<glossterm>
+Contravariance or Contravariant
+</glossterm>
+<glossdef>
+<simpara>
+  In the context of the variance behavior of <emphasis>parameterized types</emphasis> under inheritance, if a parameter <literal>A</literal> is <emphasis>contravariant</emphasis> in a parameterized type <literal>T[-A]</literal>, then the <literal>-</literal> is the <emphasis>variance annotation</emphasis> and a type <literal>T[B]</literal> is a <emphasis>supertype</emphasis> of <literal>T[A]</literal> if <literal>B</literal> is a <emphasis>subtype</emphasis> of <literal>A</literal>. See also <emphasis>covariance</emphasis> and <emphasis>invariance</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-covariance-or-covariant">
+<glossterm>
+Covariance or Covariant
+</glossterm>
+<glossdef>
+<simpara>
+  In the context of the variance behavior of <emphasis>parameterized types</emphasis> under inheritance, if a parameter <literal>A</literal> is <emphasis>covariant</emphasis> in a parameterized type <literal>T[+A]</literal>, then the <literal>+</literal> is the <emphasis>variance annotation</emphasis> and a type <literal>T[B]</literal> is a <emphasis>subtype</emphasis> of <literal>T[A]</literal> if <literal>B</literal> is a <emphasis>subtype</emphasis> of <literal>A</literal>. See also <emphasis>contravariance</emphasis> and <emphasis>invariance</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-cross-cutting-concerns">
+<glossterm>
+Cross-Cutting Concerns
+</glossterm>
+<glossdef>
+<simpara>
+  “Concerns” (kinds of requirements, design or coding issues) that don’t fit in the same boundaries as the primary modularity decomposition. The same behaviors must be invoked consistently at specific execution points over a range of objects and functions. For example, the same ORM (Object-Relational Mapping) persistence strategy needs to be used consistently for a set of classes, not just a single class. Hence, such “concerns” are said to be “cross-cutting”. Supporting these concerns should not involve duplication of code, <emphasis>etc.</emphasis> See also <emphasis>Aspect-Oriented Programming</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-currying">
+<glossterm>
+Currying
+</glossterm>
+<glossdef>
+<simpara>
+  Converting an N argument function into a sequence of N functions of one argument, where each function except for the last returns a new function that takes a single argument that returns a new function, <emphasis>etc.</emphasis>, until the last function that takes a single argument and returns a value.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-declaration-site">
+<glossterm>
+Declaration Site
+</glossterm>
+<glossdef>
+<simpara>
+  In reference to how the <emphasis>variance</emphasis> behavior of parameterized types is specified, in Scala, this is done when types are <emphasis>declared</emphasis>, <emphasis>i.e.,</emphasis> at the <emphasis>declaration site</emphasis>. In Java, it is done when types are <emphasis>called</emphasis> (that is, used), <emphasis>i.e.,</emphasis> at the <emphasis>call site</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-declarative-programming">
+<glossterm>
+Declarative Programming
+</glossterm>
+<glossdef>
+<simpara>
+  The quality of many <emphasis>functional</emphasis> programs and <emphasis>Domain-Specific Languages</emphasis> where the code consists of statements that declare relationships between values and types, rather than directing the system to take a particular sequence of action. Contrast with <emphasis>imperative programming</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-default-argument-value">
+<glossterm>
+Default Argument Value
+</glossterm>
+<glossdef>
+<simpara>
+  (Scala version 2.8) The ability to define a default value for a method argument that will be used if the caller does not specify a value. See also <emphasis>implicit argument</emphasis> and <emphasis>named argument</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-dependency-injection">
+<glossterm>
+Dependency Injection
+</glossterm>
+<glossdef>
+<simpara>
+  A form of <emphasis>inversion of control</emphasis>, where an object’s external dependencies are given to it, either programmatically or through a DI framework that is driven by configuration information. Hence, the object remains “passive”, rather than taking an active role in resolving dependencies. The injection mechanism uses constructor arguments or field setters provided by the object. DI minimizes the coupling of objects. They only need to know about the abstractions of their dependencies.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-derived-type">
+<glossterm>
+Derived Type
+</glossterm>
+<glossdef>
+<simpara>
+  A synonym for <emphasis>child type</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-design-by-contract">
+<glossterm>
+Design By Contract
+</glossterm>
+<glossdef>
+<simpara>
+  An approach to class and module design invented by Bertrand Meyer for the Eiffel language. For each entry point, valid inputs are specified in a programmatic way, so they can be validated during testing. These specifications are called <emphasis>preconditions</emphasis>. Similarly, assuming the preconditions are specified, specifications on the guaranteed results are called <emphasis>postconditions</emphasis> and are also specified in an executable way. <emphasis>Invariants</emphasis> can also be specified that should be true on entry and on exit.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-design-pattern">
+<glossterm>
+Design Pattern
+</glossterm>
+<glossdef>
+<simpara>
+  A solution to a problem in a context. A code idiom or design structure that satisfies the needs of a frequently occurring problem, constraint, requirement, <emphasis>etc.</emphasis>
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-domain-specific-language">
+<glossterm>
+Domain-Specific Language
+</glossterm>
+<glossdef>
+<simpara>
+  A custom programming language that resembles the terms, idioms, and expressions of a particular domain. An <emphasis>internal</emphasis> DSL is an idiomatic form of a general-purpose programming language. That is, no special-purpose parser is created for the language. Instead, DSL code is written in the general-purpose language and parsed just like any other code. An <emphasis>external</emphasis> DSL is a language with its own grammar and parser.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-duck-typing">
+<glossterm>
+Duck Typing
+</glossterm>
+<glossdef>
+<simpara>
+  A term used in languages with <emphasis>dynamic typing</emphasis> for the way method resolution works. As long as an object accepts a method call (message send), the runtime is satisfied. “If it walks like a duck and talks like a duck, it’s a duck”. Contrast to the use of <emphasis>structural types</emphasis> in some <emphasis>statically-typed</emphasis> languages like Scala.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-dynamic-typing">
+<glossterm>
+Dynamic Typing
+</glossterm>
+<glossdef>
+<simpara>
+  Loosely speaking, late binding of type information, sometimes referred to as binding to the value a reference is assigned to, rather than to the reference itself. Contrast with <emphasis>static typing</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-encapsulation">
+<glossterm>
+Encapsulation
+</glossterm>
+<glossdef>
+<simpara>
+  Restricting the visibility of members of a type so they are not visible to clients of the type when they shouldn’t be. This is a way of exposing only the <emphasis>abstraction</emphasis> supported by the type, while hiding implementation details, which prevents unwanted access to them from clients and keeps the <emphasis>abstraction</emphasis> exposed by the type consistent and minimal.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-event">
+<glossterm>
+Event
+</glossterm>
+<glossdef>
+<simpara>
+  The notification of a state change in <emphasis>event-based concurrency</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-event-based-concurrency">
+<glossterm>
+Event-Based Concurrency
+</glossterm>
+<glossdef>
+<simpara>
+  A high-performance form of concurrency where events are used to signal important state changes and handlers are used to respond to the events.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-existential-types">
+<glossterm>
+Existential Types
+</glossterm>
+<glossdef>
+<simpara>
+  A way of expressing the presence of a type without knowing its concrete value, sometimes, because it can’t be known. It is used primarily to support aspects of Java’s type system within Scala’s type system, including <emphasis>type erasure</emphasis>, “raw” types (<emphasis>e.g.,</emphasis> pre-Java 5 collections), and <emphasis>call site</emphasis> <emphasis>type variance</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-extractor">
+<glossterm>
+Extractor
+</glossterm>
+<glossdef>
+<simpara>
+  An <literal>unapply</literal> method defined in a <emphasis>companion object</emphasis> that is used to extract the constituent values for fields in an object. They are most commonly used in <emphasis>pattern matching</emphasis> expressions.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-field">
+<glossterm>
+Field
+</glossterm>
+<glossdef>
+<simpara>
+  A <literal>val</literal> or <literal>var</literal> in a type that represents part, if not all of the state of a corresponding instance of the type.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-final">
+<glossterm>
+Final
+</glossterm>
+<glossdef>
+<simpara>
+  Keyword for declarations. For types, <literal>final</literal> prevents users from subclassing the type. For type members, <literal>final</literal> prevents users from overriding the members.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-first-class">
+<glossterm>
+First Class
+</glossterm>
+<glossdef>
+<simpara>
+  An adjective indicating that the applicable “thing” is a first-class value in the language, meaning you can assign instances to variables, pass them as function parameters, and return them from functions. Often used to refer to <emphasis>functions</emphasis>, which are first-class values in Scala and other <emphasis>functional programming</emphasis> languages.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-for-comprehension">
+<glossterm>
+For Comprehension
+</glossterm>
+<glossdef>
+<simpara>
+  Another name for Scala’s <literal>for</literal> expression.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-formal-parameter">
+<glossterm>
+Formal Parameter
+</glossterm>
+<glossdef>
+<simpara>
+  Another name for a function argument, used in the context of binding the <emphasis>free variables</emphasis> in the function.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-free-variable">
+<glossterm>
+Free Variable
+</glossterm>
+<glossdef>
+<simpara>
+  A <emphasis>variable</emphasis> that is referenced in a <emphasis>function literal</emphasis>, but is not passed in as an argument. Therefore, it must be “bound” to a defined variable of the same name in the context where the function literal is used, to form a <emphasis>closure</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-function">
+<glossterm>
+Function
+</glossterm>
+<glossdef>
+<simpara>
+  In Scala, the term <emphasis>function</emphasis> is used for a function that is not tied to a particular object or class. Contrast with <emphasis>method</emphasis>. Functions are instances of <literal>FunctionN</literal> types, where <literal>N</literal> is the <emphasis>arity</emphasis> of the function.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-function-literal">
+<glossterm>
+Function Literal
+</glossterm>
+<glossdef>
+<simpara>
+  Scala’s term for an anonymous <emphasis>function</emphasis> expression, from which <emphasis>closures</emphasis> are created.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-function-type">
+<glossterm>
+Function Type
+</glossterm>
+<glossdef>
+<simpara>
+  In Scala, all functions are instances of <literal>FunctionN[-T1, T2, …, TN, +R]</literal> types, where <literal>N</literal> is the number of arguments (0 through 22 are supported). The type signature syntax <literal>(T1, T2, …, TN) ⇒ R</literal> is used for declaring concrete instances, <emphasis>i.e.,</emphasis> function literals.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-functional-programming">
+<glossterm>
+Functional Programming
+</glossterm>
+<glossdef>
+<simpara>
+  A form of programming that mimics the way mathematical functions and variables work. Mathematical functions are <emphasis>side-effect free</emphasis> and they are composable from other functions. Variables are assigned once. Functions can be assigned to variables and returned from other functions.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-generator">
+<glossterm>
+Generator
+</glossterm>
+<glossdef>
+<simpara>
+  Expressions like <literal>i &lt;- listOfInts</literal> in for expressions. Each pass through the loop <emphasis>generates</emphasis> a new val <literal>i</literal> taken from the list <literal>listOfInts</literal>, in this example.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-generics">
+<glossterm>
+Generics
+</glossterm>
+<glossdef>
+<simpara>
+  Another term for <emphasis>parameterized types</emphasis>, used more often in Java than Scala.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-higher-order-functions">
+<glossterm>
+Higher Order Functions
+</glossterm>
+<glossdef>
+<simpara>
+  Functions that take other functions as arguments or return a function value.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-immutable-value">
+<glossterm>
+Immutable Value
+</glossterm>
+<glossdef>
+<simpara>
+  A value that can’t be changed after it has been initialized. Contrast with <emphasis>mutable value</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-imperative-programming">
+<glossterm>
+Imperative Programming
+</glossterm>
+<glossdef>
+<simpara>
+  The quality of many <emphasis>object-oriented</emphasis> and “procedural” programs where the code consists of statements directing the system to take a particular sequence of action. Contrast with <emphasis>declarative programming</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-implicit">
+<glossterm>
+Implicit
+</glossterm>
+<glossdef>
+<simpara>
+  A Scala keyword used to mark a method or function value as eligible for use as an <emphasis>implicit type conversion</emphasis>. The keyword is also used to mark an <emphasis>implicit argument</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-implicit-type-conversion">
+<glossterm>
+Implicit Type Conversion
+</glossterm>
+<glossdef>
+<simpara>
+  A method or function value that is marked with the <emphasis>implicit</emphasis> keyword, marking it as eligible for use as an <emphasis>implicit type conversion</emphasis>, whenever it is in scope and conversion is needed (<emphasis>e.g.,</emphasis> for the <emphasis>pimp my library</emphasis> pattern).
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-implicit-argument">
+<glossterm>
+Implicit Argument
+</glossterm>
+<glossdef>
+<simpara>
+  Method arguments that are optional for the user to specify and indicated with the <literal>implicit</literal> keyword. If the user does not specify a value for the argument, a default value is used instead, which is either an in-scope value of the same type or the result of calling an in-scope, no-argument method that returns an instance of the same type. See also <emphasis>default argument value</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-infinite-data-structure">
+<glossterm>
+Infinite Data Structure
+</glossterm>
+<glossdef>
+<simpara>
+  A data structure that represents a non-terminating collection of values, but which is capable of doing so without exhausting system resources. The values are not computed until the data structure is asked to produce them. As long as only a finite subset of the values are requested, resource exhaustion is avoided.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-infix-notation">
+<glossterm>
+Infix Notation
+</glossterm>
+<glossdef>
+<simpara>
+  A syntax supported by the compiler for methods with one argument. The method can be invoked without the period between the object and the method name and without the parentheses around the argument. When used for methods named with <emphasis>operator characters</emphasis>, the syntax provides a form of <emphasis>operator overloading</emphasis>. Sometimes also called <emphasis>operator notation</emphasis>. See also <emphasis>postfix notation</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-infix-type">
+<glossterm>
+Infix Type
+</glossterm>
+<glossdef>
+<simpara>
+  When a parameterized type of the form <literal>Op[A,B]</literal> is used to instantiate a type, it can also be written as <literal>A Op B</literal>. For example, <literal>Or[Throwable,Boolean]</literal> can be written <literal>Throwable Or Boolean</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-inheritance">
+<glossterm>
+Inheritance
+</glossterm>
+<glossdef>
+<simpara>
+  A strong relationship between one class or trait and another class or trait. The inheriting (<emphasis>derived</emphasis>) class or trait incorporates the members of the <emphasis>parent</emphasis> class or trait, as if they were defined within the derivative. The derivative may override inherited members (in most cases). Instances of a derivative are <emphasis>substitutable</emphasis> for instances of the parent.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-instance-or-instantiate">
+<glossterm>
+Instance or Instantiate
+</glossterm>
+<glossdef>
+<simpara>
+  An <emphasis>object</emphasis> created by invoking a <emphasis>class</emphasis> constructor. The word <emphasis>object</emphasis> is synonymous in most object-oriented languages, but we use the term <emphasis>object</emphasis> to refer to an explicitly-declared Scala <emphasis>object</emphasis> and we use the term <emphasis>instance</emphasis> (and the verb <emphasis>instantiate</emphasis>) for the more general case.
+</simpara>
+<simpara id="para_instantiation_can_also_refer_t">Instantiation can also refer to creating a <emphasis>concrete type</emphasis> from a <emphasis>parameterized type</emphasis> by specifying concrete types for the parameters.</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-invariance-and-invariant">
+<glossterm>
+Invariance and Invariant
+</glossterm>
+<glossdef>
+<simpara>
+  In the context of the variance behavior of <emphasis>parameterized types</emphasis> under inheritance, if a parameter <literal>A</literal> is <emphasis>invariant</emphasis> in a parameterized type <literal>T[A]</literal>, then there is no <emphasis>variance annotation</emphasis> and a type <literal>T[B]</literal> is a <emphasis>subtype</emphasis> of <literal>T[A]</literal> if and only if <literal>B</literal> equals <literal>A</literal>. That is, the type can’t be changed. See also <emphasis>covariance</emphasis> and <emphasis>contravariance</emphasis>.
+</simpara>
+<simpara id="para_in_the_context_of__design_by_c">In the context of <emphasis>design by contract</emphasis>, an assertion that should be true on exit from a method or other boundary point. See</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-inversion-of-control">
+<glossterm>
+Inversion of Control
+</glossterm>
+<glossdef>
+<simpara>
+  The idea that an object should not instantiate it’s own copies of external dependencies, but rather rely on other mechanisms to supply those dependencies. IoC promotes better decoupling and testability, as the object only knows about the abstractions of its dependencies, not specific concrete implementers of them. A weak form of IoC is when an object calls a factory, service locator, <emphasis>etc.</emphasis> to obtain the dependents. Hence, the object still has an active role and it has a dependency on the “provider”. The strongest form of IoC is <emphasis>dependency injection</emphasis>, where the object remains “passive”.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-lazy">
+<glossterm>
+Lazy
+</glossterm>
+<glossdef>
+<simpara>
+  Immutable variables (<literal>vals</literal>) can be declared <literal>lazy</literal>, meaning they will only be evaluated when they are read. This feature is useful for expensive evaluations that may not be needed.
+</simpara>
+<simpara id="para_lazy_data_structures_can_also_">Lazy data structures can also be used to define infinite data structures that won’t exhaust system resources as long as only a finite subset of the structure is evaluated. The <literal>Stream</literal> and <literal>Range</literal> classes are both lazy. Contrast with <emphasis>strict</emphasis>.</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-linearization">
+<glossterm>
+Linearization
+</glossterm>
+<glossdef>
+<simpara>
+  The algorithm used for a type to resolve member lookup, such as overridden methods, including calls to <literal>super</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-literal">
+<glossterm>
+Literal
+</glossterm>
+<glossdef>
+<simpara>
+  Used to refer to “literal” value expressions, such as numbers (<emphasis>e.g.,</emphasis> <literal>1</literal>, <literal>3.14</literal>), strings (<emphasis>e.g.,</emphasis> "Hello Scala!"), tuples (<emphasis>e.g.,</emphasis> <literal>(1, 2, 3)</literal>), and <emphasis>function literals</emphasis> (<emphasis>e.g.,</emphasis> <literal>(x) ⇒ x + x</literal>).
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-lower-type-bounds">
+<glossterm>
+Lower Type Bounds
+</glossterm>
+<glossdef>
+<simpara>
+  See <emphasis>type bounds</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-mailbox">
+<glossterm>
+Mailbox
+</glossterm>
+<glossdef>
+<simpara>
+  The queue were an <emphasis>actors</emphasis> messages are stored until the actor processes them in the <emphasis>actor model of concurrency</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-main">
+<glossterm>
+Main
+</glossterm>
+<glossdef>
+<simpara>
+  The entry function for an application that is invoked by the runtime is called <literal>main</literal>. The name dates back to the <emphasis>C</emphasis> language. In Scala, a <literal>main</literal> <emphasis>method</emphasis> must be defined in an <literal>object</literal>. Java, by way of contrast, requires a <literal>main</literal> method to be defined as a static method of a <literal>class</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-mapreduce">
+<glossterm>
+MapReduce
+</glossterm>
+<glossdef>
+<simpara>
+  A divide and conquer strategy for processing large data sets in parallel. In the “map” phase, the data sets are subdivided. The desired computation is performed on each subset. The “reduce” phase combines the results of the subset calculations into a final result. MapReduce frameworks handle the details of managing the operations and the nodes they run on, including restarting operations that fail for some reason. The user of the framework only has to write the algorithms for mapping and reducing the data sets and computing with the subsets.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-member">
+<glossterm>
+Member
+</glossterm>
+<glossdef>
+<simpara>
+  A generic term for a <emphasis>type</emphasis>, <emphasis>field</emphasis>, or <emphasis>method</emphasis> declared in a <emphasis>class</emphasis> or <emphasis>trait</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-memoization">
+<glossterm>
+Memoization
+</glossterm>
+<glossdef>
+<simpara>
+  A form of caching that optimizes function invocations. The results from a function’s invocations are saved so that when repeated invocations with the same inputs are made, the cached results can be returned instead of re-invoking the function again.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-message">
+<glossterm>
+Message
+</glossterm>
+<glossdef>
+<simpara>
+  In the <emphasis>actor model of concurrency</emphasis>, messages are exchanged between actors to coordinate their work.
+</simpara>
+<simpara id="para_in_object_oriented_programming">In object-oriented programming, method invocation is sometimes referred to as “sending a message to an object”, especially in certain languages, like Smalltalk and to some extent, Ruby.</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-method">
+<glossterm>
+Method
+</glossterm>
+<glossdef>
+<simpara>
+  A <emphasis>function</emphasis> that is associated exclusively with an instance, either defined in a <emphasis>class</emphasis>, <emphasis>trait</emphasis>, or <emphasis>object</emphasis> definition. Methods can only be invoked using the <literal>object.method</literal> syntax.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-mixin">
+<glossterm>
+Mixin
+</glossterm>
+<glossdef>
+<simpara>
+  A narrowly-focused encapsulation of state and behavior that is more useful as an adjunct to another object’s state and behavior, rather than standing on its own. Mixins in Scala are implemented using <emphasis>traits</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-multiple-inheritance">
+<glossterm>
+Multiple Inheritance
+</glossterm>
+<glossdef>
+<simpara>
+  In some languages, but not Scala, a type can extend more than one parent class. Compare to <emphasis>single inheritance</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-mutable-value">
+<glossterm>
+Mutable Value
+</glossterm>
+<glossdef>
+<simpara>
+  A value that can be changed after it has been initialized. Contrast with <emphasis>immutable value</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-named-argument">
+<glossterm>
+Named Argument
+</glossterm>
+<glossdef>
+<simpara>
+  (Scala version 2.8) The ability to refer to a method argument by name when calling it. useful in combination with <emphasis>default argument values</emphasis> for minimizing the number of arguments that have to be specified by the caller.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-nonterminal">
+<glossterm>
+Nonterminal
+</glossterm>
+<glossdef>
+<simpara>
+  An item in a grammar that requires further decomposition into one or more <emphasis>nonterminals</emphasis> (including possibly a recursive reference to itself) and <emphasis>terminals</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-object">
+<glossterm>
+Object
+</glossterm>
+<glossdef>
+<simpara>
+  An cohesive unit with a particular state, possible state transitions, and behaviors. In Scala, the keyword <literal>object</literal> is used to declare a <emphasis>singleton</emphasis> explicitly, using the same syntax as <emphasis>class</emphasis> declarations, except for the lack of constructor parameters and auxiliary parameters (because <literal>objects</literal> are instantiated by the Scala runtime, not by user code). To avoid confusion with <literal>objects</literal>, we use the term <emphasis>instance</emphasis> to refer to <emphasis>instances</emphasis> of <emphasis>classes</emphasis> and <literal>objects</literal> generically.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-object-oriented-programming">
+<glossterm>
+Object Oriented Programming
+</glossterm>
+<glossdef>
+<simpara>
+  A form of programming that encapsulates state values and operations on that state, exposing a cohesive abstraction to clients of the object while hiding internal implementation details. OOP also supports subtyping to define specializations and “family” relationships between types.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-operator-characters">
+<glossterm>
+Operator Characters
+</glossterm>
+<glossdef>
+<simpara>
+  Characters like ‘&lt;’, ‘*’, <emphasis>etc.</emphasis> that are not letters, digits, nor reserved characters, like left and right parentheses, “curly” braces, or “square” braces, the semicolon, colon, or comma. These characters can be used in method names to implement a form of <emphasis>operator overloading</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-operator-notation">
+<glossterm>
+Operator Notation
+</glossterm>
+<glossdef>
+<simpara>
+  See <emphasis>infix notation</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-operator-overloading">
+<glossterm>
+Operator Overloading
+</glossterm>
+<glossdef>
+<simpara>
+  The feature in some languages where standard mathematical operators, like ‘*’, ‘/’, ‘&lt;’, <emphasis>etc.</emphasis> can be defined by users for custom types. In Scala, a form of operator overloading is supported by allowing operator characters to be used as normal method names and by allowing methods with one argument to be invoked with <emphasis>infix notation</emphasis>. The “operator precedence” for these methods is determined by the first character, <emphasis>e.g.,</emphasis> method *&lt; will have higher precedence than method +&lt;.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-overloaded-functions">
+<glossterm>
+Overloaded Functions
+</glossterm>
+<glossdef>
+<simpara>
+  Two or more functions defined in the same scope (e.g., as methods in a type or as “bare” functions) that have the same name, but different <emphasis>signatures</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-package-objects">
+<glossterm>
+Package Objects
+</glossterm>
+<glossdef>
+<simpara>
+  A special kind of object declaration that declares members that should be visible at the scope of the named package. For example, for the declaration <literal>package object math { type Complex = … }</literal>, the <literal>Complex</literal> type can be referenced as <literal>math.Complex</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-packrat-parsers">
+<glossterm>
+Packrat Parsers
+</glossterm>
+<glossdef>
+<simpara>
+  Parsers for <emphasis>parsing expression grammars</emphasis> (PEGs) <xref linkend="Ford" xrefstyle="select: title nopage"/>. They have several benefits, such as lack of ambiguity and good performance characteristics. The forthcoming Scala version 2.8 parser combinator library will add support for creating packrat parsers.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-parameterized-types">
+<glossterm>
+Parameterized Types
+</glossterm>
+<glossdef>
+<simpara>
+  Scala’s analog of <emphasis>generics</emphasis> in Java. Parameterized types are defined with placeholder parameters for types they use. When an instance of a parameterized type is created, specific types must be specified to replace all the type parameters. See also <emphasis>type constructor</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-parent-type">
+<glossterm>
+Parent Type
+</glossterm>
+<glossdef>
+<simpara>
+  A class or trait from which another class or trait is <emphasis>derived</emphasis>. Also called a <emphasis>supertype</emphasis> or <emphasis>base type</emphasis>. See <emphasis>inheritance</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-parsing-expression-grammars-pegs">
+<glossterm>
+Parsing expression grammars (PEGs)
+</glossterm>
+<glossdef>
+<simpara>
+  An alternative to <emphasis>context-free grammars</emphasis> that provide guaranteed linear-time parsing using <emphasis>memoization</emphasis> and unambiguous grammars <xref linkend="PEG" xrefstyle="select: title nopage"/>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-partial-application">
+<glossterm>
+Partial Application
+</glossterm>
+<glossdef>
+<simpara>
+  Associated with <emphasis>currying</emphasis>, where a subset of a curried functions arguments are applied, yielding a new function that takes the remaining arguments.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-partial-function">
+<glossterm>
+Partial Function
+</glossterm>
+<glossdef>
+<simpara>
+  A function that is not valid over the whole range of its arguments. Pattern matching expressions can be converted to partial functions by the compiler in some contexts.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-path-dependent-type">
+<glossterm>
+Path-Dependent Type
+</glossterm>
+<glossdef>
+<simpara>
+  A nested type T is unique based on its “path”, the hierarchical, period-delimited list of the the enclosing packages, the enclosing types, and finally the type T itself. Instances of T can have different, incompatible types. For example, if T is nested in a trait and the trait appears in the <emphasis>linearizations</emphasis> of different types, then the instances in those Ts will have different types.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-pattern-matching">
+<glossterm>
+Pattern Matching
+</glossterm>
+<glossdef>
+<simpara>
+  Case expressions, usually in a match expression, that compare an object against possible types, type extractors, regular expressions, <emphasis>etc.</emphasis> to determine the appropriate handling.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-pimp-my-library">
+<glossterm>
+Pimp My Library
+</glossterm>
+<glossdef>
+<simpara>
+  The name of a design pattern that appears to add new methods to a type. It uses an <emphasis>implicit type conversion</emphasis> to automatically wrap the type in a wrapper type, where the wrapper type has the desired methods.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-precondition">
+<glossterm>
+Precondition
+</glossterm>
+<glossdef>
+<simpara>
+  An assertion that should be true on entry to a method or other entry point. See <emphasis>design by contract</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-postcondition">
+<glossterm>
+Postcondition
+</glossterm>
+<glossdef>
+<simpara>
+  An assertion that should be true on exit from a method or other boundary point. See <emphasis>design by contract</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-postfix-notation">
+<glossterm>
+Postfix Notation
+</glossterm>
+<glossdef>
+<simpara>
+  A syntax supported by the compiler for methods with no argument, sometimes called <emphasis>nullary</emphasis> methods. The method can be invoked without the period between the object and the method name. See also <emphasis>infix notation</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-primary-constructor">
+<glossterm>
+Primary Constructor
+</glossterm>
+<glossdef>
+<simpara>
+  The main constructor of a class, consisting of the class body with the parameter list specified after the name of the class. See also <emphasis>auxiliary constructor</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-primitive-type">
+<glossterm>
+Primitive Type
+</glossterm>
+<glossdef>
+<simpara>
+  A non-object type on the underlying runtime platform (<emphasis>e.g.,</emphasis> JVM and .NET). Scala does not have primitive types at the source code level. Rather, it uses <emphasis>value types</emphasis>, which are subclasses of <literal>AnyVal</literal>, to wrap runtime primitives, providing object semantics at the code level, while using boxing and unboxing of primitives at the byte code level to optimize performance.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-production">
+<glossterm>
+Production
+</glossterm>
+<glossdef>
+<simpara>
+  A term used for each part of a grammar that decomposes a specific <emphasis>nonterminal</emphasis> into other nonterminals (perhaps including a recursive reference to the original nonterminal) and <emphasis>terminals</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-pure">
+<glossterm>
+Pure
+</glossterm>
+<glossdef>
+<simpara>
+  Used in the context of functions to mean that they are <emphasis>side-effect free</emphasis>. See also <emphasis>referential transparency</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-recursion">
+<glossterm>
+Recursion
+</glossterm>
+<glossdef>
+<simpara>
+  When a function calls itself as part of its computation. A termination condition is required to prevent an infinite recursion. See also <emphasis>tail-call recursion</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-reference-type">
+<glossterm>
+Reference Type
+</glossterm>
+<glossdef>
+<simpara>
+  A type whose instances are implemented as objects on the runtime platform. All reference types subtype <literal>AnyRef</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-referential-transparency">
+<glossterm>
+Referential Transparency
+</glossterm>
+<glossdef>
+<simpara>
+  The property of an expression, such as a function, where it can be replaced with its value without changing the behavior of the code. This can be done with <emphasis>side-effect free</emphasis> functions when the inputs are the same. The primary benefit of referential transparency is that it is easy to reason about the behavior of a function, without having to understand the context in which it is invoked. That makes the function easier to test, refactor, and reuse.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-refinement">
+<glossterm>
+Refinement
+</glossterm>
+<glossdef>
+<simpara>
+  The term used for adding or overriding members in a type body for a <emphasis>compound type</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-reified-types">
+<glossterm>
+Reified Types
+</glossterm>
+<glossdef>
+<simpara>
+  Where the specific types used when instantiating a generic type are retained in the byte code, so the information is available at runtime. This is a property of .NET byte code, but not JVM byte code, which uses <emphasis>type erasure</emphasis>. To minimize incompatibilities, both the Java and .NET Scala versions use <emphasis>type erasure.</emphasis>
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-repl">
+<glossterm>
+REPL
+</glossterm>
+<glossdef>
+<simpara>
+  A name given to interactive language interpreters, like the <userinput>scala</userinput> command in interpreter mode. REPL is an acronym for <emphasis>Read, Evaluate, Print, Loop</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-scaladocs">
+<glossterm>
+Scaladocs
+</glossterm>
+<glossdef>
+<simpara>
+  The API documented generated form Scala source code using the <userinput>scaladoc</userinput> tool, analogous to Java’s <emphasis>Javadocs</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-scope">
+<glossterm>
+Scope
+</glossterm>
+<glossdef>
+<simpara>
+  A defined boundary of <emphasis>visibility</emphasis>, constraining what types and their members are visible within it.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-sealed">
+<glossterm>
+Sealed
+</glossterm>
+<glossdef>
+<simpara>
+  Keyword for parent classes when <emphasis>all</emphasis> the direct subclasses allowed are defined in the same source <emphasis>file</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-self-type-annotation">
+<glossterm>
+Self-Type Annotation
+</glossterm>
+<glossdef>
+<simpara>
+  A declaration in a trait or class that changes its type, sometimes with an alias for <literal>this</literal> defined (<literal>self</literal> is conventional). A self type can be used to indicate dependencies on other traits that will have to be mixed into a concrete instance to resolve the dependency. In some cases, these dependencies are used to ensure that an instance of the current type can be used as an instance of a dependent type in certain contexts (<emphasis>e.g.,</emphasis> as used in the Observer Pattern in <xref linkend="SelfTypeAnnotationsAndAbstractTypeMembers"/> in <xref linkend="ApplicationDesign"/>).
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-side-effect-free">
+<glossterm>
+Side-effect Free
+</glossterm>
+<glossdef>
+<simpara>
+  Functions or expressions that have no side effects, meaning they modify no global or “object” state.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-signature">
+<glossterm>
+Signature
+</glossterm>
+<glossdef>
+<simpara>
+  For a function, the name, parameter list types, and return value. For a <emphasis>method</emphasis>, also includes the type that defines the method.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-single-inheritance">
+<glossterm>
+Single Inheritance
+</glossterm>
+<glossdef>
+<simpara>
+  A class, object, or trait can extend one parent class. Compare to <emphasis>multiple inheritance</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-singleton">
+<glossterm>
+Singleton
+</glossterm>
+<glossdef>
+<simpara>
+  A class that has only one instance. In Scala, singletons are declared using the keyword <literal>object</literal> instead of <literal>class</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-singleton-types">
+<glossterm>
+Singleton Types
+</glossterm>
+<glossdef>
+<simpara>
+  The unique type designator that excludes path dependencies. If <literal>p1</literal> and <literal>p2</literal> are two different path dependent types, their singleton types are <literal>p1.type</literal> and <literal>p2.type</literal>, which may be the same. Contrast with <emphasis>singleton</emphasis> objects. Singleton types are not specifically the types of singleton objects, but singleton objects do have singleton types.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-stable-types">
+<glossterm>
+Stable Types
+</glossterm>
+<glossdef>
+<simpara>
+  Used in the context of <emphasis>path-dependent types</emphasis>, all but the last elements in the path must be <emphasis>stable</emphasis>, which roughly means that they are either packages, singleton objects, or type declarations that alias the same.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-state">
+<glossterm>
+State
+</glossterm>
+<glossdef>
+<simpara>
+  As in, “the state of an object”, where it informally means the set of all the current values of an object’s <emphasis>fields</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-static-typing">
+<glossterm>
+Static Typing
+</glossterm>
+<glossdef>
+<simpara>
+  Loosely speaking, early binding of type information, sometimes referred to as binding to a reference, rather than the value to which the reference is assigned.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-strict">
+<glossterm>
+Strict
+</glossterm>
+<glossdef>
+<simpara>
+  Used to refer to data structures that are not <emphasis>lazy</emphasis>, <emphasis>i.e.,</emphasis> they are defined “eagerly” by the expressions used to construct them.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-structural-type">
+<glossterm>
+Structural Type
+</glossterm>
+<glossdef>
+<simpara>
+  A <emphasis>structural type</emphasis> is like an anonymous type, where only the “structure” a candidate type must support is specified, such as <emphasis>members</emphasis> that must be present. Structural types do not name the candidate types that can match, nor do any matching types need to share a common <emphasis>parent trait</emphasis> or <emphasis>class</emphasis> with the structural type. Hence, structural types are a type-safe analog to <emphasis>duck typing</emphasis> in dynamically-typed languages, like Ruby.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-subtype">
+<glossterm>
+Subtype
+</glossterm>
+<glossdef>
+<simpara>
+  A synonym for <emphasis>derived type</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-supertype">
+<glossterm>
+Supertype
+</glossterm>
+<glossdef>
+<simpara>
+  A synonym for <emphasis>parent type</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-symbol">
+<glossterm>
+Symbol
+</glossterm>
+<glossdef>
+<simpara>
+  An interned string. Literal symbols are written starting with a single “right quote”, <emphasis>e.g.,</emphasis> <literal>'name</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-tail-call-recursion">
+<glossterm>
+Tail-Call Recursion
+</glossterm>
+<glossdef>
+<simpara>
+  A form of recursion where a function calls itself as the <emphasis>last</emphasis> thing it does, <emphasis>i.e.,</emphasis> it does no additional computations with the result of the recursive call. The Scala compiler will optimize <emphasis>tail-call</emphasis> recursions into a loop.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-test-driven-development">
+<glossterm>
+Test-Driven Development
+</glossterm>
+<glossdef>
+<simpara>
+  A development discipline where no new functionality is implemented until a test has been written that will pass once the functionality is implemented. See also <emphasis>behavior-driven development</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-terminal">
+<glossterm>
+Terminal
+</glossterm>
+<glossdef>
+<simpara>
+  A token in a grammar, such as a keyword, that requires no further decomposition. See also <emphasis>nonterminal</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-test-double">
+<glossterm>
+Test Double
+</glossterm>
+<glossdef>
+<simpara>
+  When testing the behavior of one object, a test double is another object that satisfies a dependency in the object under test. The test double may assist in the testing process, provide controlled test data and behaviors, and very aspects of the interaction between the object under test and the test double. Specific types of test doubles include “fakes”, “mocks”, and “stubs”.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-trait">
+<glossterm>
+Trait
+</glossterm>
+<glossdef>
+<simpara>
+  A class-like encapsulation of state (fields) and behavior (methods) that is used for <emphasis>mixin</emphasis> composition. Zero or more traits can be mixed into class declarations or when creating instances directly, effectively creating an anonymous class.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-trampoline">
+<glossterm>
+Trampoline
+</glossterm>
+<glossdef>
+<simpara>
+  A loop that iterates through a list of functions, invoking each in turn. The metaphor of bouncing the functions off a trampoline is the source of the name. It can be used to rewrite a form of recursion where a function doesn’t call itself, but rather calls a different function which invokes the original function, and so forth, back and forth. There is a proposal for the Scala version 2.8 compiler to include a trampoline implementation.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-tuple">
+<glossterm>
+Tuple
+</glossterm>
+<glossdef>
+<simpara>
+  A grouping of two or more items of arbitrary types into a “Cartesian product”, without first defining a class to hold them. Literal tuple values are written in parentheses and separated by commas, <emphasis>e.g.,</emphasis> <literal>(x1, x2, …)</literal>. They are <emphasis>first-class</emphasis> values, so you can assign them to variables, pass them as values, and return them from functions. Tuples are represented by <literal>TupleN</literal> classes, for N between 2 and 22, inclusive.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type">
+<glossterm>
+Type
+</glossterm>
+<glossdef>
+<simpara>
+  A categorization of allowed states and operations on those states, including transformations from one state to another. The type of an instance is the combination of its declared <emphasis>class</emphasis> (explicitly named or anonymous), mixed in <emphasis>traits</emphasis>, and the specific types used to resolve any parameters if the class or traits are <emphasis>parameterized types</emphasis>. In Scala, <literal>type</literal> is also a keyword. When indicated in the text, we sometimes use the term type to refer to a <emphasis>class</emphasis>, <emphasis>object</emphasis>, or <emphasis>trait</emphasis> generically.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-annotation">
+<glossterm>
+Type Annotation
+</glossterm>
+<glossdef>
+<simpara>
+  An explicit declaration of the type of a value, <emphasis>e.g.,</emphasis> <literal>count: Int</literal>, where <literal>Int</literal> is the <emphasis>type annotation</emphasis>. A type annotation is required when <emphasis>type inference</emphasis> can’t be used. In Scala, function parameters require type annotations and annotations are required in some other contexts where the type can’t be inferred, <emphasis>e.g.,</emphasis> for return values of some functions.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-bounds">
+<glossterm>
+Type Bounds
+</glossterm>
+<glossdef>
+<simpara>
+  Constraints on the allowed types that can be used for a parameter in a <emphasis>parameterized type</emphasis> or assigned to an <emphasis>abstract type</emphasis>. In Scala, the expression <literal>A &lt;: B</literal> defines an <emphasis>upper bound</emphasis> on <literal>A</literal>, it must be a <emphasis>subtype</emphasis> or the same as <literal>B</literal>. The expression <literal>A &gt;: B</literal> defines a <emphasis>lower bound</emphasis> on <literal>A</literal>, it must be a <emphasis>supertype</emphasis> or the same as <literal>B</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-constructor">
+<glossterm>
+Type Constructor
+</glossterm>
+<glossdef>
+<simpara>
+  Informally, a <emphasis>parameterized type</emphasis> is sometimes called a type constructor, although a “non-parameterized” type is really a type constructor, too, just with zero parameters! The analogy with an instance constructor is that you specify specific concrete types for the parameters to create a new concrete type, just as you specify values to an instance constructor to create an instance.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-designators">
+<glossterm>
+Type Designators
+</glossterm>
+<glossdef>
+<simpara>
+  The conventional type ids commonly used, <emphasis>e.g.,</emphasis> <literal>class Person</literal>, <literal>object O { type t }</literal>, <emphasis>etc.</emphasis>. They are actually a short hand syntax for <emphasis>type projections</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-erasure">
+<glossterm>
+Type Erasure
+</glossterm>
+<glossdef>
+<simpara>
+  A property of the generics type model on the JVM. When a type is created from a generic, the information about the specific types substituted for the type parameters is not stored in the byte code and is therefore not available at run time. Scala must follow the same model. So, for example, instances of <literal>List[String]</literal> and <literal>List[Int]</literal> are indistinguishable. Contrast with <emphasis>reified types</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-inference">
+<glossterm>
+Type Inference
+</glossterm>
+<glossdef>
+<simpara>
+  Inferring the type of a value based on the context in which it is used, rather than relying on explicit type <emphasis>annotations</emphasis>. Sometimes called <emphasis>implicit typing</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-projections">
+<glossterm>
+Type Projections
+</glossterm>
+<glossdef>
+<simpara>
+  A way to refer to a type nested within another type. For example, if a type <literal>t</literal> is declared in a class <literal>C</literal>, then the type projection for <literal>t</literal> is <literal>C#t</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-variance">
+<glossterm>
+Type Variance
+</glossterm>
+<glossdef>
+<simpara>
+  When a <emphasis>parameterized type</emphasis> is declared, the variance behavior under inheritance of each type parameter can be specified using a <emphasis>type variance annotation</emphasis> on the type symbol.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-type-variance-annotation">
+<glossterm>
+Type Variance Annotation
+</glossterm>
+<glossdef>
+<simpara>
+  On a type parameter in a parameterized types, a <literal>+</literal> prefixed to the type symbol is used to indicate <emphasis>covariance</emphasis>. A <literal>-</literal> prefix on the type symbol is used to indicate <emphasis>contravariance</emphasis>. No variance annotation is used to indicate <emphasis>invariance</emphasis> (the default).
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-upper-type-bounds">
+<glossterm>
+Upper Type Bounds
+</glossterm>
+<glossdef>
+<simpara>
+  See <emphasis>type bounds</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-value">
+<glossterm>
+Value
+</glossterm>
+<glossdef>
+<simpara>
+  The actual state of an instance, usually in the context of a variable that refers to the instance. See also <emphasis>value type</emphasis>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-value-object">
+<glossterm>
+Value Object
+</glossterm>
+<glossdef>
+<simpara>
+  An immutable instance or object.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-value-type">
+<glossterm>
+Value Type
+</glossterm>
+<glossdef>
+<simpara>
+  A subclass of <literal>AnyVal</literal> that wraps a corresponding non-object “primitive” type on the runtime platform (<emphasis>e.g.,</emphasis> JVM and .NET). The value types are <literal>Boolean</literal>, <literal>Char</literal>, <literal>Byte</literal>, <literal>Double</literal>, <literal>Float</literal>, <literal>Long</literal>, <literal>Int</literal>, and <literal>Short</literal>. All are declared <literal>abstract final</literal> so they can’t be used in <literal>new V</literal> expressions. Instead, programs specify literal values, <emphasis>e.g.,</emphasis> <literal>3.14</literal> for a <literal>Double</literal> or use methods that return new values. The Scala runtimes handles instantiation. All the instances of value types are immutable <emphasis>value objects</emphasis>.
+</simpara>
+<simpara id="para_the_term__value_type__is_also_">The term <emphasis>value type</emphasis> is also used to mean the categories of types for instances. That is, the type of every instance must fall into one of several categories: <emphasis>annotated types</emphasis>, <emphasis>compound types</emphasis>, <emphasis>function types</emphasis>, <emphasis>infix types</emphasis>, <emphasis>parameterized types</emphasis>, <emphasis>tuples</emphasis>, <emphasis>type designators</emphasis>, <emphasis>type projections</emphasis>, <emphasis>singleton types</emphasis>.</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-variable">
+<glossterm>
+Variable
+</glossterm>
+<glossdef>
+<simpara>
+  A named reference to a value. If the variable is declared with the <literal>val</literal> keyword, a new value can’t be assigned to the variable. If the variable is declared with the <literal>var</literal> keyword, a new value can be assigned to the variable. The value a variable references must be type compatible with the declared or inferred type of the variable.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-view">
+<glossterm>
+View
+</glossterm>
+<glossdef>
+<simpara>
+  An implicit value of function type that converts a type <literal>A</literal> to <literal>B</literal>. The function has the type <literal>A =&gt; B</literal> or <literal>(=&gt; A) =&gt; B</literal> (In the later case, the <literal>(=&gt; A)</literal> is a <emphasis>by-name parameter</emphasis>). An in-scope <emphasis>implicit type conversion</emphasis> method with the same signature can also be used as a view.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-view-bounds">
+<glossterm>
+View Bounds
+</glossterm>
+<glossdef>
+<simpara>
+  A type specification of the form <literal>A &lt;% B</literal>, which says that any type can be used for <literal>A</literal> as long as an in-scope <emphasis>view</emphasis> exists that can convert an <literal>A</literal> to a <literal>B</literal>.
+</simpara>
+</glossdef>
+</glossentry>
+<glossentry id="glossentry-visibility">
+<glossterm>
+Visibility
+</glossterm>
+<glossdef>
+<simpara>
+  The <emphasis>scope</emphasis> in which a declared <emphasis>type</emphasis> or type <emphasis>member</emphasis> is visible to other types and members.
+</simpara>
+</glossdef>
+</glossentry>
+</glossary>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appa.xml"/>
+<index id="Index">
+<title>Index</title>
+</index>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="colo.xml"/>
+</book>
