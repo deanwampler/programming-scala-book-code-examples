@@ -3,15 +3,12 @@
 "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <colophon id="colophon">
   <title>Colophon</title>
-  <para>Our look is the result of reader comments, our own experimentation,
-  and feedback from distribution channels. Distinctive covers complement our
-  distinctive approach to technical topics, breathing personality and life
-  into potentially dry subjects.</para>
-  <para>The animal on the cover of <emphasis>FILL IN TITLE</emphasis>
-  is FILL IN DESCRIPTION.
-  </para> 
-  <para>The cover image is FILL IN CREDITS. The cover font is Adobe ITC
-  Garamond. The text font is Linotype Birka; the heading font is Adobe
-  Myriad Condensed; and the code font is LucasFont’s TheSans Mono
-  Condensed.</para>
+
+  <para>The animal on the cover of <citetitle>Programming Scala</citetitle> is
+  a Malayan tapir. &lt;<emphasis>More info to come.</emphasis>&gt;</para>
+
+  <para>The cover image is from &lt;<emphasis>info to come</emphasis>&gt;. The
+  cover font is Adobe ITC Garamond. The text font is Linotype Birka; the
+  heading font is Adobe Myriad Condensed; and the code font is LucasFont’s
+  TheSans Mono Condensed.</para>
 </colophon>

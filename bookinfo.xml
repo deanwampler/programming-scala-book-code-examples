@@ -1,25 +1,30 @@
-<?xml version="1.0"?>
-<!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <bookinfo>
   <othercredit role="proofreader">
     <firstname>FIX</firstname>
-    <surname>ME!</surname>
+
+    <surname>ME</surname>
   </othercredit>
+
   <othercredit role="interiordesigner">
-    <firstname>FIX</firstname>
-    <surname>ME!</surname>
+    <firstname>David</firstname>
+
+    <surname>Futato</surname>
   </othercredit>
+
   <othercredit role="illustrator">
     <firstname>Robert</firstname>
+
     <surname>Romano</surname>
   </othercredit>
-  <othercredit role="illustrator">
-    <firstname>Jessamyn</firstname>
-    <surname>Read</surname>
-  </othercredit>
-<!-- All rights reserved. -->
+
+  <!-- All rights reserved. -->
+
   <publisher>
-    <publishername>O&#x2019;Reilly Media, Inc.    </publishername>
+    <publishername>O’Reilly Media, Inc.</publishername>
+
     <address format="linespecific">
       <street>1005 Gravenstein Highway North</street>
       <city>Sebastopol</city>
@@ -27,74 +32,121 @@
       <postcode>95472</postcode>
     </address>
   </publisher>
+
   <legalnotice role="printlocation">
     <para>Printed in the United States of America.</para>
   </legalnotice>
+
   <legalnotice role="printer">
     <para>[?]</para>
   </legalnotice>
+
   <legalnotice role="use">
-    <para>O&#x2019;Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most 
-          titles (<ulink role="orm:hideurl:ital" url="http://my.safaribooksonline.com/?portal=oreilly">http://my.safaribooksonline.com</ulink>). For more information, contact our corporate/institutional sales department:
-          (800) 998-9938 or <email>corporate@oreilly.com</email>.  </para>
+    <para>O’Reilly books may be purchased for educational, business, or sales
+    promotional use. Online editions are also available for most titles
+    (<ulink role="orm:hideurl:ital"
+    url="http://my.safaribooksonline.com/?portal=oreilly">http://my.safaribooksonline.com</ulink>).
+    For more information, contact our corporate/institutional sales
+    department: 800-998-9938 or <email>corporate@oreilly.com</email>.</para>
   </legalnotice>
+
   <legalnotice role="trademarks">
-    <para>Nutshell Handbook, the Nutshell Handbook logo, and the O&#x2019;Reilly logo
-          are registered trademarks of O&#x2019;Reilly Media, Inc. !!FILL THIS IN!!
-          and related trade dress are trademarks of O&#x2019;Reilly Media, Inc.    </para>
-    <para>Many of the designations used by manufacturers and sellers to distinguish
-          their products are claimed as trademarks. Where those designations appear
-          in this book, and O&#x2019;Reilly Media, Inc. was aware of a trademark claim,
-          the designations have been printed in caps or initial caps.    </para>
+    <para>O’Reilly and the O’Reilly logo are registered trademarks of O’Reilly
+    Media, Inc. <citetitle>Programming Scala</citetitle>, the image of a
+    Malayan tapir, and related trade dress are trademarks of O’Reilly Media,
+    Inc.</para>
+
+    <para>Many of the designations used by manufacturers and sellers to
+    distinguish their products are claimed as trademarks. Where those
+    designations appear in this book, and O’Reilly Media, Inc. was aware of a
+    trademark claim, the designations have been printed in caps or initial
+    caps.</para>
   </legalnotice>
+
   <legalnotice role="damages">
-    <para>While every precaution has been taken in the preparation of this book,
-        the publisher and authors assume no responsibility for errors or omissions, 
-        or for damages resulting from the use of the information contained herein.</para>
+    <para>While every precaution has been taken in the preparation of this
+    book, the publisher and authors assume no responsibility for errors or
+    omissions, or for damages resulting from the use of the information
+    contained herein.</para>
   </legalnotice>
+
   <isbn>9780596155957</isbn>
+
   <edition>1</edition>
+
   <author>
     <firstname>Dean</firstname>
+
     <surname>Wampler</surname>
+
     <authorblurb>
-      <para/>
+      <para><emphasis role="strong">Dean Wampler</emphasis> is a consultant,
+      trainer, and mentor with Object Mentor, Inc. He specializes in Scala,
+      Java, and Ruby. He works with clients on application design strategies
+      that combine object-oriented programming, functional programming, and
+      aspect-oriented programming. He also consults on Agile methods, such as
+      Lean and XP. Dean is a frequent speaker at industry and academic
+      conferences on these topics. He has a Ph.D. in physics from the
+      University of Washington.</para>
     </authorblurb>
   </author>
+
   <author>
     <firstname>Alex</firstname>
+
     <surname>Payne</surname>
+
     <authorblurb>
-      <para/>
+      <para><emphasis role="strong">Alex Payne</emphasis> currently works for
+      Twitter, Inc., a communications service that allows users to send short
+      one-to-many messages via a variety of media. His title at Twitter is API
+      Lead; his daily work is growing and supporting a collection of services
+      on which other developers can build. Alex has been working at Twitter
+      since the beginning of 2007, several months before the service began to
+      grow in popularity. Before working at Twitter, Alex worked in
+      information security, helped build web applications for political
+      campaigns, non-profits, and more. In his free time, Alex studies the
+      history, present use, and evolution of programming languages, as well as
+      minimalist art and design. Alex lives and works in San Francisco, where
+      he engages in an endless search for the perfect cocktail and cup of
+      coffee.</para>
     </authorblurb>
   </author>
+
   <editor>
     <firstname>Mike</firstname>
+
     <surname>Loukides</surname>
   </editor>
+
   <copyright>
     <year>2009</year>
+
     <holder>Dean Wampler and Alex Payne</holder>
   </copyright>
+
   <editor role="production">
-    <firstname/>
-    <surname/>
+    <firstname>Sarah</firstname>
+
+    <surname>Schneider</surname>
   </editor>
-  <editor role="copy">
-    <firstname/>
-    <surname/>
-  </editor>
+
   <othercredit role="indexer">
-    <firstname/>
-    <surname/>
+    <firstname>FIX</firstname>
+
+    <surname>ME</surname>
   </othercredit>
+
   <othercredit role="coverdesigner">
-    <firstname/>
-    <surname/>
+    <firstname>Karen</firstname>
+
+    <surname>Montgomery</surname>
   </othercredit>
+
   <printhistory>
     <formalpara>
       <title>First Edition</title>
+
       <para>September, 2009</para>
     </formalpara>
   </printhistory>
