@@ -1,60 +1,253 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="FunctionalProgramming">
-<title>Functional Programming in Scala</title>
-<para id="para_every_decade_or_two_a_major_c">Every decade or two, a major computing idea goes mainstream. These ideas may have lurked in the background of academic computer science research, or possibly in some lesser-known field of industry. The transition to mainstream acceptance comes in response to a perceived problem for which the idea is well suited. Object-oriented programming, which was invented in the 1960s, went mainstream in the 1980s, arguably in response to the emergence of graphical user interfaces, for which the OOP paradigm is a natural fit.</para>
-<para id="para_functional_programming_appears">Functional programming appears to be experiencing a similar break-out. Long the topic of computer science research and even older than object-oriented programming, functional programming offers effective techniques for concurrent programming, which is growing in importance.</para>
-<para id="para_because_functional_programming">Because functional programming is less widely understood than object-oriented programming, we won’t assume that you have prior experience with it. We’ll start this chapter with plenty of background information. As we’ll see, functional programming is not only a very effective way to approach concurrent programming, which we’ll explore in depth in <xref linkend="Concurrency"/>, but functional programming can also improve your objects, as well.</para>
-<para id="para_to_learn_more_about_functional">Of course, we can’t provide an exhaustive introduction to functional programming. To learn more about it, <link linkend="OSullivan2009" xrefstyle="select:nopage">[O'Sullivan2009]</link> has a more detailed introduction in the context of the Haskell language. <link linkend="Abelson1996" xrefstyle="select:nopage">[Abelson1996]</link>, <link linkend="VanRoy2004" xrefstyle="select:nopage">[VanRoy2004]</link>, and <link linkend="Turbak2008" xrefstyle="select:nopage">[Turbak2008]</link> offer thorough introductions to general programming approaches, including functional programming. Finally, <link linkend="Okasaki1998" xrefstyle="select:nopage">[Okasaki1998]</link> and <link linkend="Rabhi1999" xrefstyle="select:nopage">[Rabhi1999]</link> discuss functional data structures and algorithms in detail.</para>
-<sect1 id="WhatIsFunctionalProgramming">
-<title>What Is Functional Programming?</title>
-<para id="para_based_on_mathematics_">Don’t all programming languages have functions of some sort? Whether they are called methods, procedures, or <literal>GOTOs</literal>, programmers are always dealing in functions. Functional programming is based on the behavior of functions in the mathematical sense, with all the implications that starting point implies.</para>
-<sect2 id="FunctionsInMathematics">
-<title>Functions in Mathematics</title>
-<para id="para_fp_in_mathematics">In mathematics, functions have no <emphasis>side effects</emphasis>. Consider the classic function <literal>sin(x)</literal>.</para>
-<programlisting linenumbering="unnumbered">y = sin(x)</programlisting>
-<para id="para_no_matter_how_much_work_y_s">No matter how much work <literal>sin(x)</literal> does, all the results are returned and assigned to <literal>y</literal>. No global  state of any kind is modified internally by <literal>sin(x)</literal>. Hence, we say that such a function is free of <emphasis>side-effects</emphasis> or <emphasis>pure</emphasis>.</para>
-<para id="para_this_property_simplifies_enorm">This property simplifies enormously the challenge of analyzing, testing, and debugging a function. You can do these things without having to know anything about the context in which the function is invoked, except for any other functions it might call. However, you can analyze them in the same way, working bottom up to verify the whole “stack”.</para>
-<para id="para_the_obliviousness_to_the_surro">This obliviousness to the surrounding context is known as <emphasis>Referential Transparency</emphasis>. You can call such a function anywhere and be confident that it will always behave the same way. If no global state is modified, concurrent invocation of the function is straightforward and reliable.</para>
-<para id="para_in_functional_programming_the">In functional programming, the ability to compose functions from other functions extends to treating them as values. In other words, functions are <emphasis>first class</emphasis> values, just like data. You can assign functions to variables. You can pass functions to other functions. You can return functions as values from functions. In the functional paradigm, functions become a primitive type, a building block that’s just as essential to the work of programming as integers or strings.</para>
-<para id="para_when_a_function_takes_other_fu">When a function takes other functions as arguments or returns a function, it is called a <emphasis>higher-order function</emphasis>. In mathematics, two examples of higher-order functions from calculus are derivation and integration.</para>
-</sect2>
-<sect2 id="VariablesThatArent">
-<title>Variables that Aren’t</title>
-<para id="para_fp_variables_are_immutable">The word “variable” takes on a new meaning in functional programming. If you come from a procedural or object-oriented programming background, you are accustomed to variables that are <emphasis>mutable</emphasis>. In functional programming variables are <emphasis>immutable</emphasis>.</para>
-<para id="para_this_is_another_consequence_of">This is another consequence of the mathematical orientation. In the expression <literal>y = sin(x)</literal>, once you pick <literal>x</literal>, then <literal>y</literal> is fixed. As another example, if you increment the integer 3 by 1, you don’t “modify the 3 object”, you create a new value to represent 4.</para>
-<para id="para_to_be_more_precise_it_is_the_">To be more precise, it is the values that are immutable. Functional programming languages prevent you from assigning a new value to a variable that already has a value.</para>
-<para id="para_immutability_is_difficult_when">Immutability is difficult when you’re not used to it. If you can’t change a variable, then you can’t have loop counters, for example. We’re accustomed to objects that change their state when we call methods on them. Learning to think in immutable terms takes some effort.</para>
-<para id="para_however_immutability_has_enor">However, immutability has enormous benefits for concurrency. Almost all the difficulty of multithreaded programming lies in synchronizing access to shared, mutable state. If you remove mutability, then the problems essentially go away. It is the combination of referentially-transparent functions and immutable values that make functional programming compelling as a “better way” to write concurrent software.</para>
-<para id="para_these_qualities_benefit_progra">These qualities benefit programs in other ways. Almost all the constructs we have invented in sixty-odd years of computer programming have been attempts to manage complexity. Higher-order functions and referential transparency provide very flexible building blocks for composing programs.</para>
-<para id="para_immutability_greatly_reduces_r">Immutability greatly reduces regression bugs, many of which are caused by <emphasis>unintended</emphasis> state changes in one part of a program due to <emphasis>intended</emphasis> changes in another part. There are other contributers to such <emphasis>non-local</emphasis> effects, but mutability is one of the most important.</para>
-<para id="para_it_s_common_in_object_oriented">It’s common in object-oriented designs to encapsulate access to data structures in objects. If these structures are mutable, we can’t simply share them with clients. We have to add special accessor methods to control access, so clients can’t modify them outside our control. These additions increase code size, which increases the testing and maintenance burden, and they increase the effort required by clients to understand the <emphasis>ad hoc</emphasis> features of our APIs.</para>
-<para id="para_in_contrast_when_we_have_immu">In contrast, when we have immutable data structures, many of these problems simply go away. We can provide access to collections without fear of data loss or corruption. Of course, the general principles of minimal coupling still apply; should clients care if a <literal>Set</literal> or <literal>List</literal> is used, as long <literal>foreach</literal> is available?</para>
-<para id="para_immutable_data_also_implies_th">Immutable data also implies that lots of copies will be made, which can be expensive. Functional data structures optimize for this problem <link linkend="Okasaki1998" xrefstyle="select:nopage">[Okasaki1998]</link> and many of the built-in Scala types are efficient at creating new copies from existing copies.</para>
-<para id="para_we_ll_discuss_other_aspects_of">It’s time to dive into the practicalities of functional programming in Scala. We’ll discuss other aspects and benefits of the approach as we proceed.</para>
-</sect2>
-</sect1>
-<sect1 id="FunctionalProgrammingInScala">
-<title>Functional Programming in Scala</title>
-<para id="para_as_a_hybrid_object_functional_">As a hybrid object-functional language, Scala does not require functions to be pure, nor does it require variables to be immutable. It does, however, encourage you to write your code this way whenever possible. You have the freedom to use procedural or object-oriented techniques when and where they seem most appropriate.</para>
-<para id="para_if_you_think_about_what_we_sai">Though functional languages are all about eliminating side effects, a language that <emphasis>never</emphasis> allowed for side effects would be useless. Input and output (IO) is inherently about side effects, and IO is essential to many programming tasks. For this reason, all functional languages provide mechanisms for performing side effects in a controlled way.</para>
-<para id="para_scala_doesn_t_restrict_what_yo">Scala doesn’t restrict what you can do, but we encourage you to use immutable values and pure functions and methods whenever possible. When mutability and side effects are necessary, pursue them in a “principled” way, isolated in well-defined modules and focused on individual tasks.</para>
-<para id="para_however_if_you_are_new_to_fun">If you’re new to functional programming, keep in mind that it’s easy to fall back to old habits. We encourage you to master the functional side of Scala and to learn to use it effectively.</para>
-<tip id="para_tip_a_function_that_returns_"><para>A function that returns <literal>Unit</literal> implies that the function has pure side effects, meaning if it does any useful work, that work must be all side effects, since the function doesn’t return anything.</para></tip>
-<para id="para_we_ve_seen_many_examples_of_hi">We’ve seen many examples of higher-order functions and composability in Scala. For example, <literal>List.map</literal> takes a function to transform each element of the list to something else.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-map-example-script.scala
+  <title>Functional Programming in Scala</title>
+
+  <para id="para_every_decade_or_two_a_major_c">Every decade or two, a major
+  computing idea goes mainstream. These ideas may have lurked in the
+  background of academic computer science research, or possibly in some
+  lesser-known field of industry. The transition to mainstream acceptance
+  comes in response to a perceived problem for which the idea is well suited.
+  Object-oriented programming, which was invented in the 1960s, went
+  mainstream in the 1980s, arguably in response to the emergence of graphical
+  user interfaces, for which the OOP paradigm is a natural fit.</para>
+
+  <para id="para_functional_programming_appears">Functional programming
+  appears to be experiencing a similar break-out. Long the topic of computer
+  science research and even older than object-oriented programming, functional
+  programming offers effective techniques for concurrent programming, which is
+  growing in importance.</para>
+
+  <para id="para_because_functional_programming">Because functional
+  programming is less widely understood than object-oriented programming, we
+  won’t assume that you have prior experience with it. We’ll start this
+  chapter with plenty of background information. As we’ll see, functional
+  programming is not only a very effective way to approach concurrent
+  programming, which we’ll explore in depth in <xref linkend="Concurrency" />,
+  but functional programming can also improve your objects, as well.</para>
+
+  <para id="para_to_learn_more_about_functional">Of course, we can’t provide
+  an exhaustive introduction to functional programming. To learn more about
+  it, <link linkend="OSullivan2009"
+  xrefstyle="select:nopage">[O'Sullivan2009]</link> has a more detailed
+  introduction in the context of the Haskell language. <link
+  linkend="Abelson1996" xrefstyle="select:nopage">[Abelson1996]</link>, <link
+  linkend="VanRoy2004" xrefstyle="select:nopage">[VanRoy2004]</link>, and
+  <link linkend="Turbak2008" xrefstyle="select:nopage">[Turbak2008]</link>
+  offer thorough introductions to general programming approaches, including
+  functional programming. Finally, <link linkend="Okasaki1998"
+  xrefstyle="select:nopage">[Okasaki1998]</link> and <link linkend="Rabhi1999"
+  xrefstyle="select:nopage">[Rabhi1999]</link> discuss functional data
+  structures and algorithms in detail.</para>
+
+  <sect1 id="WhatIsFunctionalProgramming">
+    <title>What Is Functional Programming?</title>
+
+    <para id="para_based_on_mathematics_">Don’t all programming languages have
+    functions of some sort? Whether they are called methods, procedures, or
+    <literal>GOTOs</literal>, programmers are always dealing in functions.
+    Functional programming is based on the behavior of functions in the
+    mathematical sense, with all the implications that starting point
+    implies.</para>
+
+    <sect2 id="FunctionsInMathematics">
+      <title>Functions in Mathematics</title>
+
+      <para id="para_fp_in_mathematics">In mathematics, functions have no
+      <emphasis>side effects</emphasis>. Consider the classic function
+      <literal>sin(x)</literal>:</para>
+
+      <programlisting linenumbering="unnumbered">y = sin(x)</programlisting>
+
+      <para id="para_no_matter_how_much_work_y_s">No matter how much work
+      <literal>sin(x)</literal> does, all the results are returned and
+      assigned to <literal>y</literal>. No global state of any kind is
+      modified internally by <literal>sin(x)</literal>. Hence, we say that
+      such a function is free of <emphasis>side-effects</emphasis> or
+      <emphasis>pure</emphasis>.</para>
+
+      <para id="para_this_property_simplifies_enorm">This property simplifies
+      enormously the challenge of analyzing, testing, and debugging a
+      function. You can do these things without having to know anything about
+      the context in which the function is invoked, except for any other
+      functions it might call. However, you can analyze them in the same way,
+      working bottom up to verify the whole “stack”.</para>
+
+      <para id="para_the_obliviousness_to_the_surro">This obliviousness to the
+      surrounding context is known as <emphasis>Referential
+      Transparency</emphasis>. You can call such a function anywhere and be
+      confident that it will always behave the same way. If no global state is
+      modified, concurrent invocation of the function is straightforward and
+      reliable.</para>
+
+      <para id="para_in_functional_programming_the">In functional programming,
+      the ability to compose functions from other functions extends to
+      treating them as values. In other words, functions are <emphasis>first
+      class</emphasis> values, just like data. You can assign functions to
+      variables. You can pass functions to other functions. You can return
+      functions as values from functions. In the functional paradigm,
+      functions become a primitive type, a building block that’s just as
+      essential to the work of programming as integers or strings.</para>
+
+      <para id="para_when_a_function_takes_other_fu">When a function takes
+      other functions as arguments or returns a function, it is called a
+      <emphasis>higher-order function</emphasis>. In mathematics, two examples
+      of higher-order functions from calculus are derivation and
+      integration.</para>
+    </sect2>
+
+    <sect2 id="VariablesThatArent">
+      <title>Variables that Aren’t</title>
+
+      <para id="para_fp_variables_are_immutable">The word “variable” takes on
+      a new meaning in functional programming. If you come from a procedural
+      or object-oriented programming background, you are accustomed to
+      variables that are <emphasis>mutable</emphasis>. In functional
+      programming variables are <emphasis>immutable</emphasis>.</para>
+
+      <para id="para_this_is_another_consequence_of">This is another
+      consequence of the mathematical orientation. In the expression
+      <literal>y = sin(x)</literal>, once you pick <literal>x</literal>, then
+      <literal>y</literal> is fixed. As another example, if you increment the
+      integer 3 by 1, you don’t “modify the 3 object”, you create a new value
+      to represent 4.</para>
+
+      <para id="para_to_be_more_precise_it_is_the_">To be more precise, it is
+      the values that are immutable. Functional programming languages prevent
+      you from assigning a new value to a variable that already has a
+      value.</para>
+
+      <para id="para_immutability_is_difficult_when">Immutability is difficult
+      when you’re not used to it. If you can’t change a variable, then you
+      can’t have loop counters, for example. We’re accustomed to objects that
+      change their state when we call methods on them. Learning to think in
+      immutable terms takes some effort.</para>
+
+      <para id="para_however_immutability_has_enor">However, immutability has
+      enormous benefits for concurrency. Almost all the difficulty of
+      multithreaded programming lies in synchronizing access to shared,
+      mutable state. If you remove mutability, then the problems essentially
+      go away. It is the combination of referentially-transparent functions
+      and immutable values that make functional programming compelling as a
+      “better way” to write concurrent software.</para>
+
+      <para id="para_these_qualities_benefit_progra">These qualities benefit
+      programs in other ways. Almost all the constructs we have invented in
+      sixty-odd years of computer programming have been attempts to manage
+      complexity. Higher-order functions and referential transparency provide
+      very flexible building blocks for composing programs.</para>
+
+      <para id="para_immutability_greatly_reduces_r">Immutability greatly
+      reduces regression bugs, many of which are caused by
+      <emphasis>unintended</emphasis> state changes in one part of a program
+      due to <emphasis>intended</emphasis> changes in another part. There are
+      other contributers to such <emphasis>non-local</emphasis> effects, but
+      mutability is one of the most important.</para>
+
+      <para id="para_it_s_common_in_object_oriented">It’s common in
+      object-oriented designs to encapsulate access to data structures in
+      objects. If these structures are mutable, we can’t simply share them
+      with clients. We have to add special accessor methods to control access,
+      so clients can’t modify them outside our control. These additions
+      increase code size, which increases the testing and maintenance burden,
+      and they increase the effort required by clients to understand the
+      <emphasis>ad hoc</emphasis> features of our APIs.</para>
+
+      <para id="para_in_contrast_when_we_have_immu">In contrast, when we have
+      immutable data structures, many of these problems simply go away. We can
+      provide access to collections without fear of data loss or corruption.
+      Of course, the general principles of minimal coupling still apply;
+      should clients care if a <literal>Set</literal> or
+      <literal>List</literal> is used, as long <literal>foreach</literal> is
+      available?</para>
+
+      <para id="para_immutable_data_also_implies_th">Immutable data also
+      implies that lots of copies will be made, which can be expensive.
+      Functional data structures optimize for this problem <link
+      linkend="Okasaki1998" xrefstyle="select:nopage">[Okasaki1998]</link> and
+      many of the built-in Scala types are efficient at creating new copies
+      from existing copies.</para>
+
+      <para id="para_we_ll_discuss_other_aspects_of">It’s time to dive into
+      the practicalities of functional programming in Scala. We’ll discuss
+      other aspects and benefits of the approach as we proceed.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="FunctionalProgrammingInScala">
+    <title>Functional Programming in Scala</title>
+
+    <para id="para_as_a_hybrid_object_functional_">As a hybrid
+    object-functional language, Scala does not require functions to be pure,
+    nor does it require variables to be immutable. It does, however, encourage
+    you to write your code this way whenever possible. You have the freedom to
+    use procedural or object-oriented techniques when and where they seem most
+    appropriate.</para>
+
+    <para id="para_if_you_think_about_what_we_sai">Though functional languages
+    are all about eliminating side effects, a language that
+    <emphasis>never</emphasis> allowed for side effects would be useless.
+    Input and output (IO) is inherently about side effects, and IO is
+    essential to many programming tasks. For this reason, all functional
+    languages provide mechanisms for performing side effects in a controlled
+    way.</para>
+
+    <para id="para_scala_doesn_t_restrict_what_yo">Scala doesn’t restrict what
+    you can do, but we encourage you to use immutable values and pure
+    functions and methods whenever possible. When mutability and side effects
+    are necessary, pursue them in a “principled” way, isolated in well-defined
+    modules and focused on individual tasks.</para>
+
+    <para id="para_however_if_you_are_new_to_fun">If you’re new to functional
+    programming, keep in mind that it’s easy to fall back to old habits. We
+    encourage you to master the functional side of Scala and to learn to use
+    it effectively.</para>
+
+    <tip id="para_tip_a_function_that_returns_">
+      <para>A function that returns <literal>Unit</literal> implies that the
+      function has pure side effects, meaning if it does any useful work, that
+      work must be all side effects, since the function doesn’t return
+      anything.</para>
+    </tip>
+
+    <para id="para_we_ve_seen_many_examples_of_hi">We’ve seen many examples of
+    higher-order functions and composability in Scala. For example,
+    <literal>List.map</literal> takes a function to transform each element of
+    the list to something else:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-map-example-script.scala
 
 List(1, 2, 3, 4, 5).map { _ * 2 }</programlisting>
-<para id="para_recall_that_095_042_2_">Recall that <literal>_ * 2</literal> is a <emphasis>function literal</emphasis> that is shorthand for <literal>i =&gt; i * 2</literal>. For each argument to the function, you can use _ if the argument is used only once. Here’s an example that “reduces” the same list by multiplying all the elements together.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-reduceLeft-example-script.scala
+
+    <para id="para_recall_that_095_042_2_">Recall that <literal>_ *
+    2</literal> is a <emphasis>function literal</emphasis> that is shorthand
+    for <literal>i =&gt; i * 2</literal>. For each argument to the function,
+    you can use _ if the argument is used only once. Here’s an example that
+    “reduces” the same list by multiplying all the elements together:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-reduceLeft-example-script.scala
 
 List(1, 2, 3, 4, 5).reduceLeft { _ * _ }</programlisting>
-<para id="para_the_first_095_represents_th">The first _ represents the argument that is accumulating the value of the reduction and the second _ represents the current element of the list.</para>
-<para id="para_by_the_way_this_example_succe">Both examples successfully “looped” through the list without the use of a mutable counter to track iterations. Most containers in the Scala library provide functionally-pure iteration methods. In other cases, recursion is the preferred way to traverse a data structure or perform an algorithm. We’ll return to this topic in <xref linkend="Recursion"/>.</para>
-<sect2 id="FunctionLiteralsAndClosures">
-<title>Function Literals and Closures</title>
-<para id="para_let_s_expand_our_previous_exam">Let’s expand our previous <literal>map</literal> example a bit.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-map-closure-example-script.scala
+
+    <para id="para_the_first_095_represents_th">The first _ represents the
+    argument that is accumulating the value of the reduction and the second _
+    represents the current element of the list.</para>
+
+    <para id="para_by_the_way_this_example_succe">Both examples successfully
+    “looped” through the list without the use of a mutable counter to track
+    iterations. Most containers in the Scala library provide functionally-pure
+    iteration methods. In other cases, recursion is the preferred way to
+    traverse a data structure or perform an algorithm. We’ll return to this
+    topic in <xref linkend="Recursion" />.</para>
+
+    <sect2 id="FunctionLiteralsAndClosures">
+      <title>Function Literals and Closures</title>
+
+      <para id="para_let_s_expand_our_previous_exam">Let’s expand our previous
+      <literal>map</literal> example a bit:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-map-closure-example-script.scala
 
 var factor = 3
 val multiplier = (i:Int) =&gt; i * factor
@@ -66,26 +259,88 @@ val l2 = List(1, 2, 3, 4, 5) map multiplier
 
 println(l1)
 println(l2)</programlisting>
-<para id="para_we_defined_a_var_factor_to">We defined a variable, <literal>factor</literal>, to use as the multiplication factor and we pulled out the previous anonymous function into a value called <literal>multiplier</literal> that now uses <literal>factor</literal>. Then we map over a list of integers, as we did before. (Notice the infix operator notation for the calls to <literal>map</literal>.) After the first call to <literal>map</literal>, we change <literal>factor</literal> and map again. Here is the output.</para>
-<screen>List(3, 6, 9, 12, 15)
+
+      <para id="para_we_defined_a_var_factor_to">We defined a variable,
+      <literal>factor</literal>, to use as the multiplication factor and we
+      pulled out the previous anonymous function into a value called
+      <literal>multiplier</literal> that now uses <literal>factor</literal>.
+      Then we map over a list of integers, as we did before. (Notice the infix
+      operator notation for the calls to <literal>map</literal>.) After the
+      first call to <literal>map</literal>, we change
+      <literal>factor</literal> and map again. Here is the output:</para>
+
+      <screen>List(3, 6, 9, 12, 15)
 List(5, 10, 15, 20, 25)</screen>
-<para id="para_even_though_multiplier_was_a">Even though <literal>multiplier</literal> was an immutable function value, its behavior changed when <literal>factor</literal> changed.</para>
-<para id="para_there_are_two__free_variables_">There are two <emphasis>free variables</emphasis> in <literal>multiplier</literal>, <literal>i</literal> and <literal>factor</literal>. One of them, <literal>i</literal>, is a <emphasis>formal parameter</emphasis> to the function. Hence, it is <emphasis>bound</emphasis> to a new value each time <literal>multiplier</literal> is called.</para>
-<para id="para_however_factor_is_not_a_for">However, <literal>factor</literal> is not a formal parameter, but a reference to a variable in the enclosing scope. Hence, the compiler creates a <emphasis>closure</emphasis> that encompasses (or “closes over”) <literal>multiplier</literal> and the external context of the unbound variables <literal>multiplier</literal> references, thereby binding those variables as well.</para>
-<para id="para_this_is_why_the_behavior_of_m">This is why the behavior of <literal>multiplier</literal> changed after changing <literal>factor</literal>. It references <literal>factor</literal> and reads its current value each time. If a function has no external references, then it is trivially closed over itself. No external context is required.</para>
-</sect2>
-<sect2 id="PurityInsideVsOutside">
-<title>Purity Inside and Outside</title>
-<para id="para_if_we_called_sin_x_thousand">If we called <literal>sin(x)</literal> thousands of times with the same value of <literal>x</literal>, it would be wasteful if it calculated the same value every single time. Even in “pure” functional libraries, it is common to perform internal optimizations like caching previously-computed values (sometimes called <emphasis>memoization</emphasis>). Caching introduces side effects, as the state of the cache is modified.</para>
-<para id="para_however_this_lack_of_purity_s">However, this lack of purity should be opaque to the user (except perhaps in terms of the performance impact). If you are designing functional libraries, ensure that they preserve the purity of their abstractions, including the behavior of referential transparency and its implications for concurrency.</para>
-<para id="para_you_can_see_examples_of_this_i">You can see examples of functional libraries with mutable internals in the Scala library. The methods in <literal>List</literal> often use mutable local variables for efficient traversal. The local variables are thread safe, as are the traversals since <literal>Lists</literal> themselves are immutable.</para>
-</sect2>
-</sect1>
-<sect1 id="Recursion">
-<title>Recursion</title>
-<para id="para_recursion_plays_a_larger_role_">Recursion plays a larger role in pure functional programming than in imperative programming, in part because of the restriction that variables are immutable. For example, you can’t have loop counters, which would change on each pass through a loop. One way to implement looping in a purely functional way is with recursion.</para>
-<para id="para_loop_by_recursion_example_">Calculating factorials provides a good example. Here is an imperative loop implementation.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-loop-script.scala
+
+      <para id="para_even_though_multiplier_was_a">Even though
+      <literal>multiplier</literal> was an immutable function value, its
+      behavior changed when <literal>factor</literal> changed.</para>
+
+      <para id="para_there_are_two__free_variables_">There are two
+      <emphasis>free variables</emphasis> in <literal>multiplier</literal>,
+      <literal>i</literal> and <literal>factor</literal>. One of them,
+      <literal>i</literal>, is a <emphasis>formal parameter</emphasis> to the
+      function. Hence, it is <emphasis>bound</emphasis> to a new value each
+      time <literal>multiplier</literal> is called.</para>
+
+      <para id="para_however_factor_is_not_a_for">However,
+      <literal>factor</literal> is not a formal parameter, but a reference to
+      a variable in the enclosing scope. Hence, the compiler creates a
+      <emphasis>closure</emphasis> that encompasses (or “closes over”)
+      <literal>multiplier</literal> and the external context of the unbound
+      variables <literal>multiplier</literal> references, thereby binding
+      those variables as well.</para>
+
+      <para id="para_this_is_why_the_behavior_of_m">This is why the behavior
+      of <literal>multiplier</literal> changed after changing
+      <literal>factor</literal>. It references <literal>factor</literal> and
+      reads its current value each time. If a function has no external
+      references, then it is trivially closed over itself. No external context
+      is required.</para>
+    </sect2>
+
+    <sect2 id="PurityInsideVsOutside">
+      <title>Purity Inside and Outside</title>
+
+      <para id="para_if_we_called_sin_x_thousand">If we called
+      <literal>sin(x)</literal> thousands of times with the same value of
+      <literal>x</literal>, it would be wasteful if it calculated the same
+      value every single time. Even in “pure” functional libraries, it is
+      common to perform internal optimizations like caching
+      previously-computed values (sometimes called
+      <emphasis>memoization</emphasis>). Caching introduces side effects, as
+      the state of the cache is modified.</para>
+
+      <para id="para_however_this_lack_of_purity_s">However, this lack of
+      purity should be opaque to the user (except perhaps in terms of the
+      performance impact). If you are designing functional libraries, ensure
+      that they preserve the purity of their abstractions, including the
+      behavior of referential transparency and its implications for
+      concurrency.</para>
+
+      <para id="para_you_can_see_examples_of_this_i">You can see examples of
+      functional libraries with mutable internals in the Scala library. The
+      methods in <literal>List</literal> often use mutable local variables for
+      efficient traversal. The local variables are thread safe, as are the
+      traversals since <literal>Lists</literal> themselves are
+      immutable.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="Recursion">
+    <title>Recursion</title>
+
+    <para id="para_recursion_plays_a_larger_role_">Recursion plays a larger
+    role in pure functional programming than in imperative programming, in
+    part because of the restriction that variables are immutable. For example,
+    you can’t have loop counters, which would change on each pass through a
+    loop. One way to implement looping in a purely functional way is with
+    recursion.</para>
+
+    <para id="para_loop_by_recursion_example_">Calculating factorials provides
+    a good example. Here is an imperative loop implementation:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-loop-script.scala
 
 def factorial_loop(i: BigInt): BigInt = {
   var result = BigInt(1)
@@ -96,8 +351,13 @@ def factorial_loop(i: BigInt): BigInt = {
 
 for (i &lt;- 1 to 10)
   format("%s: %s\n", i, factorial_loop(i))</programlisting>
-<para id="para_both_the_loop_counter_j_and_">Both the loop counter <literal>j</literal> and the <literal>result</literal> are mutable variables. (For simplicity, we’re ignoring input numbers that are less than or equal to zero.) The output of the script is the following.</para>
-<screen>1: 1
+
+    <para id="para_both_the_loop_counter_j_and_">Both the loop counter
+    <literal>j</literal> and the <literal>result</literal> are mutable
+    variables. (For simplicity, we’re ignoring input numbers that are less
+    than or equal to zero.) The output of the script is the following:</para>
+
+    <screen>1: 1
 2: 2
 3: 6
 4: 24
@@ -107,8 +367,11 @@ for (i &lt;- 1 to 10)
 8: 40320
 9: 362880
 10: 3628800</screen>
-<para id="para_fact_recur1_impl">Here’s a first pass at a recursive implementation.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-recur1-script.scala
+
+    <para id="para_fact_recur1_impl">Here’s a first pass at a recursive
+    implementation:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-recur1-script.scala
 
 def factorial(i: BigInt): BigInt = i match {
   case _ if i == 1 =&gt; i
@@ -117,16 +380,54 @@ def factorial(i: BigInt): BigInt = i match {
 
 for (i &lt;- 1 to 10)
   format("%s: %s\n", i, factorial(i))</programlisting>
-<para id="para_the_output_is_the_same_but_no">The output is the same, but now there are no mutable variables. Recursion not only helps us avoid mutable variables, it is also the most natural way to express some functions, particularly mathematical functions. The recursive definition in our second <literal>factorial</literal> is structurally similar to a definition for factorials that you might see in a mathematics book.</para>
-<para id="para_two_potential_problems_with_re">However, there are two potential problems with recursion: the performance overhead of repeated function invocations and the risk of stack overflow.</para>
-<para id="para_performance_problems_in_a_recu">Performance problems in a recursive scenario can sometimes be addressed with <emphasis>memoization</emphasis>, but care should be taken that the space requirements of caching don’t outweigh the performance benefits.</para>
-<para id="para_stack_overflow_can_be_avoided_">Stack overflow can be avoided by converting the recursive invocation into a loop of some kind. In fact, the Scala compiler can do this conversion for you for some kinds of recursive invocations, which we describe next.</para>
-</sect1>
-<sect1 id="TailCalls">
-<title>Tail Calls and Tail-Call Optimization</title>
-<para id="para_a_particular_kind_of_recursion">A particular kind of recursion is called <emphasis>tail call</emphasis> recursion, which occurs when a function calls itself as its final operation. Tail call recursion is very important, because it is the easiest kind of recursion to optimize by conversion into a loop. Loops eliminate the potential of a stack overflow, and they improve performance by eliminating the recursive function call overhead. While tail recursion optimizations are not yet supported natively on the JVM, <userinput>scalac</userinput> can do them.</para>
-<para id="para_the_fact_example_above_is_not">However, our factorial example is not a tail recursion, because <literal>factorial</literal> calls itself and <emphasis>then</emphasis> does a multiplication with the results. There is a way to implement <literal>factorial</literal> in a tail recursive way. We actually saw an implementation in <xref linkend="NestingMethodDefinitions"/> in <xref linkend="TypeLessDoMore"/>. However, that example didn’t use some constructs we’ve learned about since, such as <literal>for</literal> comprehensions and pattern matching. So, here’s a new implementation of <literal>factorial</literal>, calculated with tail call recursion.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-recur2-script.scala
+
+    <para id="para_the_output_is_the_same_but_no">The output is the same, but
+    now there are no mutable variables. Recursion not only helps us avoid
+    mutable variables, it is also the most natural way to express some
+    functions, particularly mathematical functions. The recursive definition
+    in our second <literal>factorial</literal> is structurally similar to a
+    definition for factorials that you might see in a mathematics book.</para>
+
+    <para id="para_two_potential_problems_with_re">However, there are two
+    potential problems with recursion: the performance overhead of repeated
+    function invocations and the risk of stack overflow.</para>
+
+    <para id="para_performance_problems_in_a_recu">Performance problems in a
+    recursive scenario can sometimes be addressed with
+    <emphasis>memoization</emphasis>, but care should be taken that the space
+    requirements of caching don’t outweigh the performance benefits.</para>
+
+    <para id="para_stack_overflow_can_be_avoided_">Stack overflow can be
+    avoided by converting the recursive invocation into a loop of some kind.
+    In fact, the Scala compiler can do this conversion for you for some kinds
+    of recursive invocations, which we describe next.</para>
+  </sect1>
+
+  <sect1 id="TailCalls">
+    <title>Tail Calls and Tail-Call Optimization</title>
+
+    <para id="para_a_particular_kind_of_recursion">A particular kind of
+    recursion is called <emphasis>tail call</emphasis> recursion, which occurs
+    when a function calls itself as its final operation. Tail call recursion
+    is very important, because it is the easiest kind of recursion to optimize
+    by conversion into a loop. Loops eliminate the potential of a stack
+    overflow, and they improve performance by eliminating the recursive
+    function call overhead. While tail recursion optimizations are not yet
+    supported natively on the JVM, <userinput>scalac</userinput> can do
+    them.</para>
+
+    <para id="para_the_fact_example_above_is_not">However, our factorial
+    example is not a tail recursion, because <literal>factorial</literal>
+    calls itself and <emphasis>then</emphasis> does a multiplication with the
+    results. There is a way to implement <literal>factorial</literal> in a
+    tail recursive way. We actually saw an implementation in <xref
+    linkend="NestingMethodDefinitions" /> in <xref
+    linkend="TypeLessDoMore" />. However, that example didn’t use some
+    constructs we’ve learned about since, such as <literal>for</literal>
+    comprehensions and pattern matching. So, here’s a new implementation of
+    <literal>factorial</literal>, calculated with tail call recursion:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-recur2-script.scala
 
 def factorial(i: BigInt): BigInt = {
   def fact(i: BigInt, accumulator: BigInt): BigInt = i match {
@@ -138,66 +439,229 @@ def factorial(i: BigInt): BigInt = {
 
 for (i &lt;- 1 to 10)
   format("%s: %s\n", i, factorial(i))</programlisting>
-<para id="fact-script-output">This script produces the same output as before. Now, <literal>factorial</literal> does all the work with a nested method, <literal>fact</literal>, that is tail recursive because it passes an <literal>accumulator</literal> argument to hold the computation in progress. This argument is computed with a multiplication <emphasis>before</emphasis> the recursive call to <literal>fact</literal>, which is now the very last thing that is done. In our previous implementation, this multiplication was done <emphasis>after</emphasis> the call to <literal>fact</literal>. When we call <literal>fact(1)</literal>, we simply return the accumulated value.</para>
-<para id="para_calling_fact_not_tc_10000_r">If you call our original non-tail recursive implementation of <literal>factorial</literal> with a large number, say 10000, you’ll cause a stack overflow on a typical desktop computer. The tail-recursive implementation works successfully, returning a very large number.</para>
-<para id="para_this_idiom_of_nesting_a">This idiom of nesting a tail-recursive function that uses an accumulator is a very useful technique for converting many recursive algorithms into tail recursions that can be optimized into loops by <userinput>scalac</userinput>.</para>
-<sect2 id="TrampolineTailCalls">
-<title>Trampoline for Tail Calls</title>
-<para id="para_trampoline_and_recursion">A <emphasis>trampoline</emphasis> is a loop that works through a list of functions, calling each one in turn. The metaphor of bouncing the functions off a trampoline is the source of the name.</para>
-<para id="para_consider_a_kind_of_recursion_w">Consider a kind of recursion where a function <literal>A</literal> doesn’t call itself recursively, but instead it calls another function <literal>B</literal>, which calls <literal>A</literal>, which calls <literal>B</literal>, <emphasis>etc.</emphasis> This kind of back-and-forth recursion can also be converted into a loop using a trampoline. Note that trampolines impose a performance overhead, but they are ideal for pure functional recursions (<emphasis>vs.</emphasis> an imperative equivalent) that would otherwise exhaust the stack.</para>
-<para id="para_scala_version_2_8_will_support">Support for this optimization is planned for Scala version 2.8, although it has not yet been implemented at the time of this writing.</para>
-</sect2>
-</sect1>
-<sect1 id="FunctionalDataStructures">
-<title>Functional Data Structures</title>
-<para id="para_list_in_fp">There are several data structures that are common in functional programming, most of which are containers, like collections. Languages like Erlang rely on very few types, while other functional languages provide a richer type system.</para>
-<para id="para_the_common_data_structures_sup">The common data structures support the same subset of higher-order functions for read-only traversal and access to the elements in the data structures. These features make them suitable as “protocols” for minimizing the coupling between components, while supporting data exchange.</para>
-<para id="para_in_fact_these_data_structures">In fact, these data structures and their operations are so useful that many languages support them, including those that are not considered functional languages, like Java and Ruby. Java doesn’t support higher-order functions directly. Instead, function values have to be wrapped in objects. Ruby uses <literal>procs</literal> and <literal>lambdas</literal> as function values.</para>
-<sect2 id="ListsInFunctionalProgramming">
-<title>Lists in Functional Programming</title>
-<para id="para_lists_are_the_most_common_data">Lists are the most common data structure in functional programming. They are the core of the first functional programming language, Lisp.</para>
-<para id="para_supporting_immutability_when_">In the interest of immutability, a new list is created is when you add an element to a list. It is conventional to prepend the new element to the list, as we’ve seen before.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/list-script.scala
+
+    <para id="fact-script-output">This script produces the same output as
+    before. Now, <literal>factorial</literal> does all the work with a nested
+    method, <literal>fact</literal>, that is tail recursive because it passes
+    an <literal>accumulator</literal> argument to hold the computation in
+    progress. This argument is computed with a multiplication
+    <emphasis>before</emphasis> the recursive call to <literal>fact</literal>,
+    which is now the very last thing that is done. In our previous
+    implementation, this multiplication was done <emphasis>after</emphasis>
+    the call to <literal>fact</literal>. When we call
+    <literal>fact(1)</literal>, we simply return the accumulated value.</para>
+
+    <para id="para_calling_fact_not_tc_10000_r">If you call our original
+    non-tail recursive implementation of <literal>factorial</literal> with a
+    large number, say 10000, you’ll cause a stack overflow on a typical
+    desktop computer. The tail-recursive implementation works successfully,
+    returning a very large number.</para>
+
+    <para id="para_this_idiom_of_nesting_a">This idiom of nesting a
+    tail-recursive function that uses an accumulator is a very useful
+    technique for converting many recursive algorithms into tail recursions
+    that can be optimized into loops by <userinput>scalac</userinput>.</para>
+
+    <note id="para_note_the_tail_call_optimizati">
+      <simpara>The tail-call optimization won’t be applied when a method that
+      calls itself might be overridden in a derived type. The method must be
+      private or final, defined in an <literal>object</literal>, or nested in
+      another method (like <literal>fact</literal> above). The new
+      <literal>@tailrec</literal> annotation in version 2.8 will trigger an
+      error if the compiler can’t optimize the annotated method. (See <xref
+      linkend="Annotations" /> in <xref
+      linkend="ApplicationDesign" />.)</simpara>
+    </note>
+
+    <sect2 id="TrampolineTailCalls">
+      <title>Trampoline for Tail Calls</title>
+
+      <para id="para_trampoline_and_recursion">A
+      <emphasis>trampoline</emphasis> is a loop that works through a list of
+      functions, calling each one in turn. The metaphor of bouncing the
+      functions off a trampoline is the source of the name.</para>
+
+      <para id="para_consider_a_kind_of_recursion_w">Consider a kind of
+      recursion where a function <literal>A</literal> doesn’t call itself
+      recursively, but instead it calls another function <literal>B</literal>,
+      which calls <literal>A</literal>, which calls <literal>B</literal>, etc.
+      This kind of back-and-forth recursion can also be converted into a loop
+      using a trampoline. Note that trampolines impose a performance overhead,
+      but they are ideal for pure functional recursions (versus an imperative
+      equivalent) that would otherwise exhaust the stack.</para>
+
+      <para id="para_scala_version_2_8_will_support">Support for this
+      optimization is planned for Scala version 2.8, although it has not yet
+      been implemented at the time of this writing.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="FunctionalDataStructures">
+    <title>Functional Data Structures</title>
+
+    <para id="para_list_in_fp">There are several data structures that are
+    common in functional programming, most of which are containers, like
+    collections. Languages like Erlang rely on very few types, while other
+    functional languages provide a richer type system.</para>
+
+    <para id="para_the_common_data_structures_sup">The common data structures
+    support the same subset of higher-order functions for read-only traversal
+    and access to the elements in the data structures. These features make
+    them suitable as “protocols” for minimizing the coupling between
+    components, while supporting data exchange.</para>
+
+    <para id="para_in_fact_these_data_structures">In fact, these data
+    structures and their operations are so useful that many languages support
+    them, including those that are not considered functional languages, like
+    Java and Ruby. Java doesn’t support higher-order functions directly.
+    Instead, function values have to be wrapped in objects. Ruby uses
+    <literal>procs</literal> and <literal>lambdas</literal> as function
+    values.</para>
+
+    <sect2 id="ListsInFunctionalProgramming">
+      <title>Lists in Functional Programming</title>
+
+      <para id="para_lists_are_the_most_common_data">Lists are the most common
+      data structure in functional programming. They are the core of the first
+      functional programming language, Lisp.</para>
+
+      <para id="para_supporting_immutability_when_">In the interest of
+      immutability, a new list is created is when you add an element to a
+      list. It is conventional to prepend the new element to the list, as
+      we’ve seen before:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/list-script.scala
 
 val list1 = List("Programming", "Scala")
 val list2 = "People" :: "should" :: "read" :: list1
 println(list2)</programlisting>
-<para id="para_because_the_095_095_ope">Because the <literal>::</literal> operator binds to the right, the definition of <literal>list2</literal> is equivalent to both of the following variations.</para>
-<programlisting linenumbering="unnumbered">val list2 = ("People" :: ("should" :: ("read" :: list1)))
+
+      <para id="para_because_the_095_095_ope">Because the
+      <literal>::</literal> operator binds to the right, the definition of
+      <literal>list2</literal> is equivalent to both of the following
+      variations:</para>
+
+      <programlisting linenumbering="unnumbered">val list2 = ("People" :: ("should" :: ("read" :: list1)))
 val list2 = list1.::("read").::("should").::("People")</programlisting>
-<para id="para_in_terms_of_performance_prepe">In terms of performance, prepending is O(1). We’ll see why when we dive into Scala’s implementation of <literal>List</literal> in <xref linkend="ACloserLookAtLists"/> in <xref linkend="ScalasTypeSystem"/>, after we have learned more about <emphasis>parameterized types</emphasis> in Scala.</para>
-<para id="para_unlike_some_of_the_other_colle">Unlike some of the other collections, Scala only defines an immutable <literal>List</literal>. However, it also defines some mutable list types, such as <literal>ListBuffer</literal> and <literal>LinkedList</literal></para>
-</sect2>
-<sect2 id="MapsInFunctionalProgramming">
-<title>Maps in Functional Programming</title>
-<para id="para_perhaps_the_second_most_common">Perhaps the second most common data structure is the map, referred to as a <emphasis>hash</emphasis> or <emphasis>dictionary</emphasis> in other languages, and not to be confused with the <literal>map</literal> function we saw above. Maps are used to hold pairs of keys and values.</para>
-<para id="para_in_the_interest_of_minimalism_">In the interest of minimalism, maps could be implemented with lists. Every even element in the list (counting from zero) could be a key, followed by the value in the next odd position. In practice, maps are usually implemented in other ways for efficiency.</para>
-<para id="para_scala_supports_the_special_ini">Scala supports the special initialization syntax we saw previously.</para>
-<programlisting linenumbering="unnumbered">val stateCapitals = Map(
+
+      <para id="para_in_terms_of_performance_prepe">In terms of performance,
+      prepending is O(1). We’ll see why when we dive into Scala’s
+      implementation of <literal>List</literal> in <xref
+      linkend="ACloserLookAtLists" /> in <xref linkend="ScalasTypeSystem" />,
+      after we have learned more about <emphasis>parameterized
+      types</emphasis> in Scala.</para>
+
+      <para id="para_unlike_some_of_the_other_colle">Unlike some of the other
+      collections, Scala only defines an immutable <literal>List</literal>.
+      However, it also defines some mutable list types, such as
+      <literal>ListBuffer</literal> and <literal>LinkedList</literal></para>
+    </sect2>
+
+    <sect2 id="MapsInFunctionalProgramming">
+      <title>Maps in Functional Programming</title>
+
+      <para id="para_perhaps_the_second_most_common">Perhaps the second most
+      common data structure is the map, referred to as a
+      <emphasis>hash</emphasis> or <emphasis>dictionary</emphasis> in other
+      languages, and not to be confused with the <literal>map</literal>
+      function we saw above. Maps are used to hold pairs of keys and
+      values.</para>
+
+      <para id="para_in_the_interest_of_minimalism_">In the interest of
+      minimalism, maps could be implemented with lists. Every even element in
+      the list (counting from zero) could be a key, followed by the value in
+      the next odd position. In practice, maps are usually implemented in
+      other ways for efficiency.</para>
+
+      <para id="para_scala_supports_the_special_ini">Scala supports the
+      special initialization syntax we saw previously:</para>
+
+      <programlisting linenumbering="unnumbered">val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
   "Alaska"  -&gt; "Juneau",
   // ...
   "Wyoming" -&gt; "Cheyenne")</programlisting>
-<para id="para_the_scala_collection_map_a_">The <literal>scala.collection.Map[A,+B]</literal> trait only defines methods for reading the <literal>Map</literal>. There are derived traits for immutable and mutable maps, <literal>scala.collection.immutable.Map[A,+B]</literal> and <literal>scala.collection.mutable.Map[A,B]</literal>, respectively. They define <literal>+</literal> and <literal>-</literal> operators for adding and removing elements, and <literal>++</literal> and <literal>--</literal> operators for adding and removing elements defined in <literal>Iterators</literal> of <literal>Pairs</literal>, where each <literal>Pair</literal> is a key-value pair.</para>
-<note id="para_note_you_might_have_noticed_t"><para>You might have noticed that the + does not appear in front of the <literal>B</literal> type parameters for <literal>scala.collection.mutable.Map</literal>. You’ll see why in <xref linkend="VarianceOfMutableTypes"/> in <xref linkend="ScalasTypeSystem"/>.</para></note>
-</sect2>
-<sect2 id="SetsInFunctionalProgramming">
-<title>Sets in Functional Programming</title>
-<para id="para_sets_are_like_lists_but_they_">Sets are like lists, but they require each element to be unique. Sets could also be implemented using lists, as long as the equivalent of the list “cons” operator (<literal>::</literal>) first checks that the element doesn’t already exist in the storage list. This property means that element insertion would be O(N) if a storage list were used, and the order of the elements in the Set wouldn’t necessarily match the order of “insertion” operations. In practice, sets are usually implemented with maps, so the performance is more like O(log(N)).</para>
-<para id="para_just_as_for_map_the_scala_">Just as for <literal>Map</literal>, the <literal>scala.collection.Set[A]</literal> trait only defines methods for reading the <literal>Set</literal>. There are derived traits for immutable and mutable sets, <literal>scala.collection.immutable.Set[A]</literal> and <literal>scala.collection.mutable.Set[A]</literal>, respectively. They define <literal>+</literal> and <literal>-</literal> operators for adding and removing elements, and <literal>++</literal> and <literal>--</literal> operators for adding and removing elements defined in <literal>Iterators</literal> (which could be other sets, lists, <emphasis>etc.</emphasis>).</para>
-</sect2>
-<sect2 id="OtherDataStructuresInFunctionalProgramming">
-<title>Other Data Structures in Functional Programming</title>
-<para id="para_other_common_data_structures_">Other familiar data structures, like <literal>Tuples</literal> and <literal>Arrays</literal>, will appear in functional languages. Typically, they’re used to provide some convenient feature not supported by a more common functional type. In most cases they could be replaced with lists.</para>
-</sect2>
-</sect1>
-<sect1 id="TraversingMappingFilteringFolding">
-<title>Traversing, Mapping, Filtering, Folding, and Reducing</title>
-<para id="para_fundamental_operations_in_fp">The functional collections we just discussed, lists, maps, sets, as well as tuples and arrays, all support several common operations based on read-only traversal. In fact, this uniformity can be exploited if any “container” type also supports these operations. For example, an <literal>Option</literal> contains zero or one elements, if it is a <literal>None</literal> or <literal>Some</literal>, respectively.</para>
-<sect2 id="FunctionalTraversal">
-<title>Traversal</title>
-<para id="para_the_standard_traversal_method_">The standard traversal method for Scala containers is <literal>foreach</literal>, which is defined by the <literal>Iterable</literal> traits that the containers mixin. It is O(N) in the number of elements. Here is an example of its use for lists and maps.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foreach-script.scala
+
+      <para id="para_the_scala_collection_map_a_">The
+      <literal>scala.collection.Map[A,+B]</literal> trait only defines methods
+      for reading the <literal>Map</literal>. There are derived traits for
+      immutable and mutable maps,
+      <literal>scala.collection.immutable.Map[A,+B]</literal> and
+      <literal>scala.collection.mutable.Map[A,B]</literal>, respectively. They
+      define <literal>+</literal> and <literal>-</literal> operators for
+      adding and removing elements, and <literal>++</literal> and
+      <literal>--</literal> operators for adding and removing elements defined
+      in <literal>Iterators</literal> of <literal>Pairs</literal>, where each
+      <literal>Pair</literal> is a key-value pair.</para>
+
+      <note id="para_note_you_might_have_noticed_t">
+        <para>You might have noticed that the + does not appear in front of
+        the <literal>B</literal> type parameters for
+        <literal>scala.collection.mutable.Map</literal>. You’ll see why in
+        <xref linkend="VarianceOfMutableTypes" /> in <xref
+        linkend="ScalasTypeSystem" />.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="SetsInFunctionalProgramming">
+      <title>Sets in Functional Programming</title>
+
+      <para id="para_sets_are_like_lists_but_they_">Sets are like lists, but
+      they require each element to be unique. Sets could also be implemented
+      using lists, as long as the equivalent of the list “cons” operator
+      (<literal>::</literal>) first checks that the element doesn’t already
+      exist in the storage list. This property means that element insertion
+      would be O(N) if a storage list were used, and the order of the elements
+      in the Set wouldn’t necessarily match the order of “insertion”
+      operations. In practice, sets are usually implemented with more
+      efficient data structures.</para>
+
+      <para id="para_just_as_for_map_the_scala_">Just as for
+      <literal>Map</literal>, the <literal>scala.collection.Set[A]</literal>
+      trait only defines methods for reading the <literal>Set</literal>. There
+      are derived traits for immutable and mutable sets,
+      <literal>scala.collection.immutable.Set[A]</literal> and
+      <literal>scala.collection.mutable.Set[A]</literal>, respectively. They
+      define <literal>+</literal> and <literal>-</literal> operators for
+      adding and removing elements, and <literal>++</literal> and
+      <literal>--</literal> operators for adding and removing elements defined
+      in <literal>Iterators</literal> (which could be other sets, lists,
+      etc.).</para>
+    </sect2>
+
+    <sect2 id="OtherDataStructuresInFunctionalProgramming">
+      <title>Other Data Structures in Functional Programming</title>
+
+      <para id="para_other_common_data_structures_">Other familiar data
+      structures, like <literal>Tuples</literal> and
+      <literal>Arrays</literal>, will appear in functional languages.
+      Typically, they’re used to provide some convenient feature not supported
+      by a more common functional type. In most cases they could be replaced
+      with lists.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="TraversingMappingFilteringFolding">
+    <title>Traversing, Mapping, Filtering, Folding, and Reducing</title>
+
+    <para id="para_fundamental_operations_in_fp">The functional collections we
+    just discussed, lists, maps, sets, as well as tuples and arrays, all
+    support several common operations based on read-only traversal. In fact,
+    this uniformity can be exploited if any “container” type also supports
+    these operations. For example, an <literal>Option</literal> contains zero
+    or one elements, if it is a <literal>None</literal> or
+    <literal>Some</literal>, respectively.</para>
+
+    <sect2 id="FunctionalTraversal">
+      <title>Traversal</title>
+
+      <para id="para_the_standard_traversal_method_">The standard traversal
+      method for Scala containers is <literal>foreach</literal>, which is
+      defined by the <literal>Iterable</literal> traits that the containers
+      mixin. It is O(N) in the number of elements. Here is an example of its
+      use for lists and maps:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foreach-script.scala
 
 List(1, 2, 3, 4, 5) foreach { i =&gt; println("Int: " + i) }
 
@@ -207,26 +671,57 @@ val stateCapitals = Map(
   "Wyoming" -&gt; "Cheyenne")
 
 stateCapitals foreach { kv =&gt; println(kv._1 + ": " + kv._2) }</programlisting>
-<para id="para_the_signature_of_foreach_is_">The signature of <literal>foreach</literal> is the following.</para>
-<programlisting linenumbering="unnumbered">trait Iterable[+A] {
+
+      <para id="para_the_signature_of_foreach_is_">The signature of
+      <literal>foreach</literal> is the following:</para>
+
+      <programlisting linenumbering="unnumbered">trait Iterable[+A] {
   ...
   def foreach(f : (A) =&gt; Unit) : Unit = ...
   ...
 }</programlisting>
-<para id="para_it_is_a_higher_order_function_"><literal>foreach</literal> is a higher-order function that takes a function argument: the operation to perform on each element. Note that for a map, <literal>A</literal> is actually a tuple, as shown in the example. Also, <literal>foreach</literal> returns <literal>Unit</literal>. <literal>foreach</literal> is not intended to create new collections; we’ll see examples of operations that create collections shortly.</para>
-<para id="para_once_you_have_foreach_you_c">Once you have <literal>foreach</literal>, you can implement all the other traversal operations we’ll discuss next, and more. A look at <literal>Iterable</literal> will show that it supports methods for filtering collections, finding elements that match specified criteria, calculating the number of elements, and so forth.</para>
-<para id="para_the_methods_we_ll_discuss_next">The methods we’ll discuss next are hallmarks of functional programming: mapping, filtering, folding, and reducing.</para>
-</sect2>
-<sect2 id="FunctionalMapping">
-<title>Mapping</title>
-<para id="para_we_have_encountered_the_map_">We’ve encountered the <literal>map</literal> method before. It returns a new collection of the same size as the original collection. It is also a member of <literal>Iterable</literal> and its signature is</para>
-<programlisting linenumbering="unnumbered">trait Iterable[+A] {
+
+      <para
+      id="para_it_is_a_higher_order_function_"><literal>foreach</literal> is a
+      higher-order function that takes a function argument: the operation to
+      perform on each element. Note that for a map, <literal>A</literal> is
+      actually a tuple, as shown in the example. Also,
+      <literal>foreach</literal> returns <literal>Unit</literal>.
+      <literal>foreach</literal> is not intended to create new collections;
+      we’ll see examples of operations that create collections shortly.</para>
+
+      <para id="para_once_you_have_foreach_you_c">Once you have
+      <literal>foreach</literal>, you can implement all the other traversal
+      operations we’ll discuss next, and more. A look at
+      <literal>Iterable</literal> will show that it supports methods for
+      filtering collections, finding elements that match specified criteria,
+      calculating the number of elements, and so forth.</para>
+
+      <para id="para_the_methods_we_ll_discuss_next">The methods we’ll discuss
+      next are hallmarks of functional programming: mapping, filtering,
+      folding, and reducing.</para>
+    </sect2>
+
+    <sect2 id="FunctionalMapping">
+      <title>Mapping</title>
+
+      <para id="para_we_have_encountered_the_map_">We’ve encountered the
+      <literal>map</literal> method before. It returns a new collection of the
+      same size as the original collection. It is also a member of
+      <literal>Iterable</literal> and its signature is:</para>
+
+      <programlisting linenumbering="unnumbered">trait Iterable[+A] {
   ...
   def map[B](f : (A) =&gt; B) : Iterable[B] = ...
   ...
 }</programlisting>
-<para id="para_the_passed_in_function_can_tra">The passed-in function (<literal>f</literal>) can transform an original element of type <literal>A</literal> to a new type <literal>B</literal>. Here is an example.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/map-script.scala
+
+      <para id="para_the_passed_in_function_can_tra">The passed-in function
+      (<literal>f</literal>) can transform an original element of type
+      <literal>A</literal> to a new type <literal>B</literal>. Here is an
+      example:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/map-script.scala
 
 val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
@@ -235,13 +730,56 @@ val stateCapitals = Map(
 
 val lengths = stateCapitals map { kv =&gt; (kv._1, kv._2.length) }
 println(lengths)</programlisting>
-<para id="para_we_convert_the_pair_string_st">This script produces the output <literal>ArrayBuffer<indexterm><primary>Alabama</primary></indexterm>Alabama</literal>. That is, we convert the <literal>Pair[String,String]</literal> elements to an <literal>ArrayBuffer</literal> of <literal>Pair[String,Int]</literal> elements. Where did the <literal>ArrayBuffer</literal> come from? It turns out that <literal>Iterable.map</literal> creates and returns an <literal>ArrayBuffer</literal> as the new <literal>Iterable</literal> collection.</para>
-<para id="para_this_brings_up_a_general_confl">This brings up a general conflict between immutable types and object-oriented type hierarchies. If a base type creates a new instance on modification, how does it know what kind of type to create?</para>
-<para id="para_you_could_solve_this_problem_t">You could solve this problem two ways. First, you could have each type in the hierarchy override methods like <literal>map</literal> to return an instance of their own type. This approach is error prone, though, as it would be easy to forget to override all such methods when a new type is added.</para>
-<para id="para_even_if_you_always_remember_to">Even if you always remember to override each method, you have the dilemma of how to implement the override. Do you call the <literal>super</literal> method to reuse the algorithm, then iterate through the returned instance to create a new instance of the correct type? That would be inefficient. You could copy and paste the algorithm into each override, but that creates issues of code bloat, maintainability, and skew.</para>
-<para id="para_there_is_an_alternative_approa">There’s an alternative approach: don’t even try. How is the new instance that is returned actually used? Do we really care if it has the “wrong” type? Keep in mind that all we usually care about are the low-level abstractions like lists, maps, and sets. In the case of functional data structures, the derived types we might implement using object-oriented inheritance are most often implementation optimizations. The Scala type hierarchy for containers does have a few levels of abstractions at the bottom, <emphasis>e.g.,</emphasis> <literal>Collection</literal> extends <literal>Iterable</literal> extends <literal>AnyRef</literal>, but above <literal>Collection</literal> are <literal>Seq</literal> (parent of <literal>List</literal>), <literal>Map</literal>, <literal>Set</literal>, <emphasis>etc.</emphasis></para>
-<para id="para_however_if_you_really_need_a_">That said, if you really need a Map, you can create one easily enough.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/map2-script.scala
+
+      <para id="para_we_convert_the_pair_string_st">This script produces the
+      output <literal>ArrayBuffer<indexterm>
+          <primary>Alabama</primary>
+        </indexterm>Alabama</literal>. That is, we convert the
+      <literal>Pair[String,String]</literal> elements to an
+      <literal>ArrayBuffer</literal> of <literal>Pair[String,Int]</literal>
+      elements. Where did the <literal>ArrayBuffer</literal> come from? It
+      turns out that <literal>Iterable.map</literal> creates and returns an
+      <literal>ArrayBuffer</literal> as the new <literal>Iterable</literal>
+      collection.</para>
+
+      <para id="para_this_brings_up_a_general_confl">This brings up a general
+      conflict between immutable types and object-oriented type hierarchies.
+      If a base type creates a new instance on modification, how does it know
+      what kind of type to create?</para>
+
+      <para id="para_you_could_solve_this_problem_t">You could solve this
+      problem two ways. First, you could have each type in the hierarchy
+      override methods like <literal>map</literal> to return an instance of
+      their own type. This approach is error prone, though, as it would be
+      easy to forget to override all such methods when a new type is
+      added.</para>
+
+      <para id="para_even_if_you_always_remember_to">Even if you always
+      remember to override each method, you have the dilemma of how to
+      implement the override. Do you call the <literal>super</literal> method
+      to reuse the algorithm, then iterate through the returned instance to
+      create a new instance of the correct type? That would be inefficient.
+      You could copy and paste the algorithm into each override, but that
+      creates issues of code bloat, maintainability, and skew.</para>
+
+      <para id="para_there_is_an_alternative_approa">There’s an alternative
+      approach: don’t even try. How is the new instance that is returned
+      actually used? Do we really care if it has the “wrong” type? Keep in
+      mind that all we usually care about are the low-level abstractions like
+      lists, maps, and sets. In the case of functional data structures, the
+      derived types we might implement using object-oriented inheritance are
+      most often implementation optimizations. The Scala type hierarchy for
+      containers does have a few levels of abstractions at the bottom, e.g.,
+      <literal>Collection</literal> extends <literal>Iterable</literal>
+      extends <literal>AnyRef</literal>, but above
+      <literal>Collection</literal> are <literal>Seq</literal> (parent of
+      <literal>List</literal>), <literal>Map</literal>,
+      <literal>Set</literal>, etc.</para>
+
+      <para id="para_however_if_you_really_need_a_">That said, if you really
+      need a Map, you can create one easily enough:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/map2-script.scala
 
 val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
@@ -254,16 +792,41 @@ val map2 = stateCapitals map { kv =&gt; (kv._1, kv._2.length) }
 val lengths = Map[String,Int]() ++ map2
 
 println(lengths)</programlisting>
-<para id="para_the_line_that_is_commented_out">The commented-out line suggests that it would be nice if you could simply pass the new <literal>Iterable</literal> to <literal>Map.apply</literal>, but this doesn’t work. Here is the signature of <literal>Map.apply</literal>.</para>
-<programlisting linenumbering="unnumbered">object Map {
+
+      <para id="para_the_line_that_is_commented_out">The commented-out line
+      suggests that it would be nice if you could simply pass the new
+      <literal>Iterable</literal> to <literal>Map.apply</literal>, but this
+      doesn’t work. Here is the signature of
+      <literal>Map.apply</literal>:</para>
+
+      <programlisting linenumbering="unnumbered">object Map {
   ...
   def apply[A, B](elems : (A, B)*) : Map[A, B] = ...
   ...
 }</programlisting>
-<para id="para_it_expects_a_variable_argument">It expects a variable argument list, not an <literal>Iterable</literal>. However, we can create an empty map of the right type and then add the new <literal>Iterable</literal> to it, using the <literal>++</literal> method, which returns a new <literal>Map</literal>.</para>
-<para id="para_so_we_get_the_map_the_want_">So, we can get the <literal>Map</literal> we want when we must have one. While it would be nice if methods like <literal>map</literal> returned the same collection type, we saw that there is no easy way to do this. Instead, we accept that <literal>map</literal> and similar methods return an abstraction like <literal>Iterable</literal> and then rely on the specific subtypes to take <literal>Iterables</literal> as input arguments for populating the collection.</para>
-<para id="para_a_related_map_operation_is_">A related <literal>Map</literal> operation is <literal>flatMap</literal>, which can be used to “flatten” a hierarchical data structure, remove “empty” elements, <emphasis>etc.</emphasis> Hence, unlike <literal>map</literal>, it may not return a new collection of the same size as the original collection.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/flatmap-script.scala
+
+      <para id="para_it_expects_a_variable_argument">It expects a variable
+      argument list, not an <literal>Iterable</literal>. However, we can
+      create an empty map of the right type and then add the new
+      <literal>Iterable</literal> to it, using the <literal>++</literal>
+      method, which returns a new <literal>Map</literal>.</para>
+
+      <para id="para_so_we_get_the_map_the_want_">So, we can get the
+      <literal>Map</literal> we want when we must have one. While it would be
+      nice if methods like <literal>map</literal> returned the same collection
+      type, we saw that there is no easy way to do this. Instead, we accept
+      that <literal>map</literal> and similar methods return an abstraction
+      like <literal>Iterable</literal> and then rely on the specific subtypes
+      to take <literal>Iterables</literal> as input arguments for populating
+      the collection.</para>
+
+      <para id="para_a_related_map_operation_is_">A related
+      <literal>Map</literal> operation is <literal>flatMap</literal>, which
+      can be used to “flatten” a hierarchical data structure, remove “empty”
+      elements, etc. Hence, unlike <literal>map</literal>, it may not return a
+      new collection of the same size as the original collection:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/flatmap-script.scala
 
 val graph = List(
   "a", List("b1", "b2", "b3"), List("c1", List("c21", Nil, "c22"), Nil, "e")
@@ -278,20 +841,43 @@ def flatten(list: List[_]): List[_] = list flatMap {
 }
 
 println(flatten(graph))</programlisting>
-<para id="para_this_script_reduces_the_hierar">This script reduces the hierarchical <literal>graph</literal> to <literal>List(a, b1, b2, b3, c1, c21, c22, e)</literal>. Notice that the <literal>Nil</literal> elements have been removed. We used <literal>List[_]</literal> because we won’t know what the type parameters are for any embedded lists when we’re traversing the outer list, due to <emphasis>type erasure</emphasis>.</para>
-<para id="para_here_is_the_signature_for_fla">Here is the signature for <literal>flatMap</literal>, along with <literal>map</literal>, for comparison.</para>
-<programlisting linenumbering="unnumbered">trait Iterable[+A] {
+
+      <para id="para_this_script_reduces_the_hierar">This script reduces the
+      hierarchical <literal>graph</literal> to <literal>List(a, b1, b2, b3,
+      c1, c21, c22, e)</literal>. Notice that the <literal>Nil</literal>
+      elements have been removed. We used <literal>List[_]</literal> because
+      we won’t know what the type parameters are for any embedded lists when
+      we’re traversing the outer list, due to <emphasis>type
+      erasure</emphasis>.</para>
+
+      <para id="para_here_is_the_signature_for_fla">Here is the signature for
+      <literal>flatMap</literal>, along with <literal>map</literal>, for
+      comparison:</para>
+
+      <programlisting linenumbering="unnumbered">trait Iterable[+A] {
   ...
   def map[B]    (f : (A) =&gt; B) : Iterable[B] = ...
   def flatMap[B](f : (A) =&gt; Iterable[B]) : Iterable[B]
   ...
 }</programlisting>
-<para id="para_each_pass_must_return_an_iter">Each pass must return an <literal>Iterable[B]</literal>, not a <literal>B</literal>. After going through the collection, <literal>flatMap</literal> will “flatten” all those <literal>Iterables</literal> into one collection. Note that <literal>flatMap</literal> won’t flatten elements beyond one level. If our function literal leaves nested lists intact, they won’t be flattened for us.</para>
-</sect2>
-<sect2 id="FunctionalFiltering">
-<title>Filtering</title>
-<para id="para_it_is_common_to_traverse_a_col">It is common to traverse a collection and extract a new collection from it with elements that match certain criteria.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/filter-script.scala
+
+      <para id="para_each_pass_must_return_an_iter">Each pass must return an
+      <literal>Iterable[B]</literal>, not a <literal>B</literal>. After going
+      through the collection, <literal>flatMap</literal> will “flatten” all
+      those <literal>Iterables</literal> into one collection. Note that
+      <literal>flatMap</literal> won’t flatten elements beyond one level. If
+      our function literal leaves nested lists intact, they won’t be flattened
+      for us.</para>
+    </sect2>
+
+    <sect2 id="FunctionalFiltering">
+      <title>Filtering</title>
+
+      <para id="para_it_is_common_to_traverse_a_col">It is common to traverse
+      a collection and extract a new collection from it with elements that
+      match certain criteria:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/filter-script.scala
 
 val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
@@ -301,8 +887,13 @@ val stateCapitals = Map(
 val map2 = stateCapitals filter { kv =&gt; kv._1 startsWith "A" }
 
 println( map2 )</programlisting>
-<para id="para_there_are_several_different_ki">There are several different kinds of methods defined in <literal>Iterable</literal> for filtering or otherwise returning part of the original collection. (Comments adapted from the <emphasis>Scaladocs</emphasis>.)</para>
-<screen>trait Iterable[+A] {
+
+      <para id="para_there_are_several_different_ki">There are several
+      different kinds of methods defined in <literal>Iterable</literal> for
+      filtering or otherwise returning part of the original collection.
+      (Comments adapted from the <emphasis>Scaladocs</emphasis>.)</para>
+
+      <screen>trait Iterable[+A] {
   ...
   // Returns this iterable without its n first elements. If this iterable
   // has less than n elements, the empty iterable is returned.
@@ -349,28 +940,62 @@ println( map2 )</programlisting>
   // predicate p.
   def takeWhile (p : (A) =&gt; Boolean) : Iterable[A] = ...
 }</screen>
-<para id="para_types_like_map_and_set_hav">Types like <literal>Map</literal> and <literal>Set</literal> have additional methods.</para>
-</sect2>
-<sect2 id="FunctionalFoldingAndReducing">
-<title>Folding and Reducing</title>
-<para id="para_we_ll_discuss_folding_and_redu">We’ll discuss folding and reducing in the same section, as they’re similar. Both are operations for “shrinking” a collection down to a smaller collection or a single value.</para>
-<para id="para_folding_starts_with_an_initial">Folding starts with an initial “seed” value and processes each element in the context of that value. In contrast, reducing doesn’t start with a user-supplied initial value. Rather, it uses the first element as the initial value.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldreduce-script.scala
+
+      <para id="para_types_like_map_and_set_hav">Types like
+      <literal>Map</literal> and <literal>Set</literal> have additional
+      methods.</para>
+    </sect2>
+
+    <sect2 id="FunctionalFoldingAndReducing">
+      <title>Folding and Reducing</title>
+
+      <para id="para_we_ll_discuss_folding_and_redu">We’ll discuss folding and
+      reducing in the same section, as they’re similar. Both are operations
+      for “shrinking” a collection down to a smaller collection or a single
+      value.</para>
+
+      <para id="para_folding_starts_with_an_initial">Folding starts with an
+      initial “seed” value and processes each element in the context of that
+      value. In contrast, reducing doesn’t start with a user-supplied initial
+      value. Rather, it uses the first element as the initial value:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldreduce-script.scala
 
 List(1,2,3,4,5,6) reduceLeft(_ + _)
 
 List(1,2,3,4,5,6).foldLeft(10)(_ * _)</programlisting>
-<para id="para_this_script_reduces_the_list_o">This script reduces the list of integers by adding them together, returning 21. It then folds the same list using multiplication with a seed of 10, returning 7200.</para>
-<para id="para_reducing_can_t_work_on_an_empt">Reducing can’t work on an empty collection, since there would be nothing to return. In this case, an exception is thrown. Folding on an empty collection will simply return the seed value.</para>
-<para id="para_folding_also_offers_more_optio">Folding also offers more options for the final result. Here is a “fold” operation that is really a map operation.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldleft-map-script.scala
+
+      <para id="para_this_script_reduces_the_list_o">This script reduces the
+      list of integers by adding them together, returning 21. It then folds
+      the same list using multiplication with a seed of 10, returning
+      7200.</para>
+
+      <para id="para_reducing_can_t_work_on_an_empt">Reducing can’t work on an
+      empty collection, since there would be nothing to return. In this case,
+      an exception is thrown. Folding on an empty collection will simply
+      return the seed value.</para>
+
+      <para id="para_folding_also_offers_more_optio">Folding also offers more
+      options for the final result. Here is a “fold” operation that is really
+      a map operation:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldleft-map-script.scala
 
 List(1, 2, 3, 4, 5, 6).foldLeft(List[String]()) {
   (list, x) =&gt; ("&lt;" + x + "&gt;") :: list
 }.reverse</programlisting>
-<para id="para_it_returns_list_1_2_3_">It returns <literal>List(&lt;1&gt;, &lt;2&gt;, &lt;3&gt;, &lt;4&gt;, &lt;5&gt;, &lt;6&gt;)</literal>. Note that we had to call <literal>reverse</literal> on the result to get back a list in the same order as the input list.</para>
-<para id="para_here_are_the_signatures_for_th">Here are the signatures for the various fold and reduce operations in <literal>Iterable</literal>.</para>
-<programlisting linenumbering="unnumbered">trait Iterable[+A] {
+
+      <para id="para_it_returns_list_1_2_3_">It returns
+      <literal>List(&lt;1&gt;, &lt;2&gt;, &lt;3&gt;, &lt;4&gt;, &lt;5&gt;,
+      &lt;6&gt;)</literal>. Note that we had to call
+      <literal>reverse</literal> on the result to get back a list in the same
+      order as the input list.</para>
+
+      <para id="para_here_are_the_signatures_for_th">Here are the signatures
+      for the various fold and reduce operations in
+      <literal>Iterable</literal>:</para>
+
+      <programlisting linenumbering="unnumbered">trait Iterable[+A] {
   ...
   // Combines the elements of this iterable object together using the
   // binary function op, from left to right, and starting with the value z.
@@ -395,44 +1020,104 @@ List(1, 2, 3, 4, 5, 6).foldLeft(List[String]()) {
   // Combines the elements of this iterable object together using the
   // binary operator op, from right to left
   def reduceRight [B &gt;: A](op : (A, B) =&gt; B) : B</programlisting>
-<para id="para_many_people_consider_the_opera">Many people consider the operator forms, <literal>:\</literal> for <literal>foldRight</literal> and <literal>/:</literal> for <literal>foldLeft</literal>, to be a little too obscure and hard to remember. Don’t forget the importance of communicating with your readers when writing code.</para>
-<para id="para_why_are_their_left_and_right_f">Why are their left and right forms of fold and reduce? For the first examples  we showed, adding and multiplying a list of integers, they would return the same result. Consider a <literal>foldRight</literal> version of our last example that used fold to map the integers to strings.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldright-map-script.scala
+
+      <para id="para_many_people_consider_the_opera">Many people consider the
+      operator forms, <literal>:\</literal> for <literal>foldRight</literal>
+      and <literal>/:</literal> for <literal>foldLeft</literal>, to be a
+      little too obscure and hard to remember. Don’t forget the importance of
+      communicating with your readers when writing code.</para>
+
+      <para id="para_why_are_their_left_and_right_f">Why are their left and
+      right forms of fold and reduce? For the first examples we showed, adding
+      and multiplying a list of integers, they would return the same result.
+      Consider a <literal>foldRight</literal> version of our last example that
+      used fold to map the integers to strings:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldright-map-script.scala
 
 List(1, 2, 3, 4, 5, 6).foldRight(List[String]()) {
   (x, list) =&gt; ("&lt;" + x + "&gt;") :: list
 }</programlisting>
-<para id="para_this_script_produces_list_1_">This script produces <literal>List(&lt;1&gt;, &lt;2&gt;, &lt;3&gt;, &lt;4&gt;, &lt;5&gt;, &lt;6&gt;)</literal>, without having to call <literal>reverse</literal>, as we did before. Note also that the arguments to the function literal are reversed compared to the arguments for <literal>foldLeft</literal>, as required by the definition of <literal>foldRight</literal>.</para>
-<para id="para_both_foldleft_and_reducelef">Both <literal>foldLeft</literal> and <literal>reduceLeft</literal> process the elements from left to right. Here is the <literal>foldLeft</literal> sequence for <literal>List(1,2,3,4,5,6).foldLeft(10)(_ * _)</literal>.</para>
-<screen>((((((10 * 1) * 2) * 3) * 4) * 5) * 6)
+
+      <para id="para_this_script_produces_list_1_">This script produces
+      <literal>List(&lt;1&gt;, &lt;2&gt;, &lt;3&gt;, &lt;4&gt;, &lt;5&gt;,
+      &lt;6&gt;)</literal>, without having to call <literal>reverse</literal>,
+      as we did before. Note also that the arguments to the function literal
+      are reversed compared to the arguments for <literal>foldLeft</literal>,
+      as required by the definition of <literal>foldRight</literal>.</para>
+
+      <para id="para_both_foldleft_and_reducelef">Both
+      <literal>foldLeft</literal> and <literal>reduceLeft</literal> process
+      the elements from left to right. Here is the <literal>foldLeft</literal>
+      sequence for <literal>List(1,2,3,4,5,6).foldLeft(10)(_ *
+      _)</literal>:</para>
+
+      <screen>((((((10 * 1) * 2) * 3) * 4) * 5) * 6)
 ((((((10) * 2) * 3) * 4) * 5) * 6)
 (((((20) * 3) * 4) * 5) * 6)
 ((((60) * 4) * 5) * 6)
 (((240) * 5) * 6)
 ((1200) * 6)
 (7200)</screen>
-<para id="para_here_is_the_foldright_sequen">Here is the <literal>foldRight</literal> sequence.</para>
-<screen>(1 * (2 * (3 * (4 * (5 * (6 * 10))))))
+
+      <para id="para_here_is_the_foldright_sequen">Here is the
+      <literal>foldRight</literal> sequence:</para>
+
+      <screen>(1 * (2 * (3 * (4 * (5 * (6 * 10))))))
 (1 * (2 * (3 * (4 * (5 * (60))))))
 (1 * (2 * (3 * (4 * (300)))))
 (1 * (2 * (3 * (1200))))
 (1 * (2 * (3600)))
 (1 * (7200))
 (7200)</screen>
-<para id="para_it_turns_out_that_foldleft_a">It turns out that <literal>foldLeft</literal> and <literal>reduceLeft</literal> have one very important advantage over their “right-handed” brethren: they are tail-call recursive, and as such they can benefit from tail-call optimization.</para>
-<para id="para_if_you_stare_at_the_previous_b">If you stare at the previous breakdowns for multiplying the integers, you can probably see why they are tail-call recursive. Recall that a tail call must be the last operation in an iteration. For each line in the <literal>foldRight</literal> sequence, the outer-most multiplication can’t be done until the inner-most multiplications all complete, so the operation isn’t tail recursive.</para>
-<para id="para_in_the_following_script_the_f">In the following script, the first lines prints 1784293664, while the second line causes a stack overflow.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/reduceleftright-script.scala
+
+      <para id="para_it_turns_out_that_foldleft_a">It turns out that
+      <literal>foldLeft</literal> and <literal>reduceLeft</literal> have one
+      very important advantage over their “right-handed” brethren: they are
+      tail-call recursive, and as such they can benefit from tail-call
+      optimization.</para>
+
+      <para id="para_if_you_stare_at_the_previous_b">If you stare at the
+      previous breakdowns for multiplying the integers, you can probably see
+      why they are tail-call recursive. Recall that a tail call must be the
+      last operation in an iteration. For each line in the
+      <literal>foldRight</literal> sequence, the outer-most multiplication
+      can’t be done until the inner-most multiplications all complete, so the
+      operation isn’t tail recursive.</para>
+
+      <para id="para_in_the_following_script_the_f">In the following script,
+      the first lines prints 1784293664, while the second line causes a stack
+      overflow:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/reduceleftright-script.scala
 
 println((1 to 1000000) reduceLeft(_ + _))
 println((1 to 1000000) reduceRight(_ + _))</programlisting>
-<para id="para_so_why_have_both_kinds_of_recu">So why have both kinds of recursion? If you’re not worried about overflow, a right recursion might be the most natural fit for the operation you are doing. Recall that when we used <literal>foldLeft</literal> to map integers to strings, we had to reverse the result. That was easy enough to do in that case, but in general, the result of a left recursion might not always be easy to convert to the right form.</para>
-</sect2>
-<sect2 id="OptionsAndOtherContainers">
-<title>Functional Options</title>
-<para id="para_you_ll_find_the_functional_ope">You’ll find the functional operations we’ve explored throughout the Scala library, and not exclusively on collection classes. The always handy <literal>Option</literal> container supports filter, map, flatMap, and other functionally-oriented methods that are only applied if the <literal>Option</literal> isn’t empty (that is, if it’s a <literal>Some</literal> and not a <literal>None</literal>).</para>
-<para id="para_let_s_see_this_in_practice_">Let’s see this in practice.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/option-script.scala
+
+      <para id="para_so_why_have_both_kinds_of_recu">So why have both kinds of
+      recursion? If you’re not worried about overflow, a right recursion might
+      be the most natural fit for the operation you are doing. Recall that
+      when we used <literal>foldLeft</literal> to map integers to strings, we
+      had to reverse the result. That was easy enough to do in that case, but
+      in general, the result of a left recursion might not always be easy to
+      convert to the right form.</para>
+    </sect2>
+
+    <sect2 id="OptionsAndOtherContainers">
+      <title>Functional Options</title>
+
+      <para id="para_you_ll_find_the_functional_ope">You’ll find the
+      functional operations we’ve explored throughout the Scala library, and
+      not exclusively on collection classes. The always handy
+      <literal>Option</literal> container supports filter, map, flatMap, and
+      other functionally-oriented methods that are only applied if the
+      <literal>Option</literal> isn’t empty (that is, if it’s a
+      <literal>Some</literal> and not a <literal>None</literal>).</para>
+
+      <para id="para_let_s_see_this_in_practice_">Let’s see this in
+      practice:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/option-script.scala
 
 val someNumber = Some(5)
 val noneNumber = None
@@ -440,25 +1125,93 @@ val noneNumber = None
 for (option &lt;- List(noneNumber, someNumber)) {
   option.map(n =&gt; println(n * 5))
 }</programlisting>
-<para id="para_in_this_example_we_attempt_to">In this example, we attempt to multiply the contents of two <literal>Options</literal> by five. Normally, trying to multiply a <literal>null</literal> value would result in an error. But because the implementation of <literal>map</literal> on <literal>Option</literal> only applies the passed-in function when it’s non-empty, we don’t have to worry about testing for the presence of a value or handling an exception when we map over the <literal>None</literal>.</para>
-<para id="para_functional_operations_on_opti">Functional operations on <literal>Options</literal> save us from extra conditional expressions or pattern matching. Pattern matching, though, is a powerful tool within the context of functional programming, as we’ll explore in the next section.</para>
-</sect2>
-</sect1>
-<sect1 id="_pattern_matching">
-<title>Pattern Matching</title>
-<para id="para_fp_pattern_matching">We’ve seen many examples of pattern matching throughout the book. We got our first taste in <xref linkend="ATasteOfConcurrency"/> in <xref linkend="IntroducingScala"/>, where we used pattern matching in our Actor that drew geometric shapes. We discussed pattern matching in depth in <xref linkend="PatternMatching"/> in <xref linkend="RoundingOutTheEssentials"/>.</para>
-<para id="para_pattern_matching_is_a_fundamen">Pattern matching is a fundamental tool in functional programming. It’s just as important as polymorphism is in object-oriented programming, although the goals of the two techniques are very different.</para>
-<para id="para_pattern_matching_is_an_elegant">Pattern matching is an elegant way to decompose objects into their constituent parts for processing. On the face of it, pattern matching for this purpose seems to violate the goal of encapsulation that objects provide. Immutability, though, rectifies this conflict. The risk that the parts of an object might be changed outside of the control of the enclosing object is avoided.</para>
-<para id="para_for_example_if_we_have_a_per">For example, if we have a <literal>Person</literal> class that contains a list of addresses, we don’t mind exposing that list to clients if the list is immutable. They can’t unexpectedly change the list.</para>
-<para id="para_however_the_other_problem_wit">However, exposing constituent parts potentially couples clients to the <emphasis>types</emphasis> of those parts. we can’t change how the parts are implemented without breaking the clients. A way to minimize this risk is to expose the lowest-level abstractions you can. When clients access a person’s addresses, do they really need to know that they are stored in a <literal>List</literal> or is it sufficient to know that they are stored in an <literal>Iterable</literal> or <literal>Seq</literal>? If so, then we can change the implementation of the addresses as long as they still support those abstractions. Of course, we’ve known for a long time in object-oriented programming that you should only couple to abstractions, not concrete details (see <emphasis>e.g.,</emphasis> <link linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>).</para>
-<para id="para_functional_pattern_matching_an">Functional pattern matching and object-oriented polymorphism are powerful complements to each other. We saw this in the Actor example in <xref linkend="ATasteOfConcurrency"/>, where we matched on the <literal>Shape</literal> abstraction, but called the polymorphic <literal>draw</literal> operation.</para>
-</sect1>
-<sect1 id="PartialFunctions">
-<title>Partial Functions</title>
-<para id="para_you_ve_seen__partially_applied">You’ve seen <emphasis>partially applied</emphasis> functions, or partial functions, throughout this book. When you’ve seen an underscore passed to a method, you’ve probably seen partial application at work.</para>
-<para id="para_partial_functions_are_expressi">Partial functions are expressions in which not all of the arguments defined in a function are supplied as parameters to the function. In Scala, partial functions are used to bundle up a function, including its parameters and return type, and assign that function to a variable or pass it as an argument to another function.</para>
-<para id="para_this_is_a_bit_confusing_until_">This is a bit confusing until we see it in practice.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/partial/partial-script.scala
+
+      <para id="para_in_this_example_we_attempt_to">In this example, we
+      attempt to multiply the contents of two <literal>Options</literal> by
+      five. Normally, trying to multiply a <literal>null</literal> value would
+      result in an error. But because the implementation of
+      <literal>map</literal> on <literal>Option</literal> only applies the
+      passed-in function when it’s non-empty, we don’t have to worry about
+      testing for the presence of a value or handling an exception when we map
+      over the <literal>None</literal>.</para>
+
+      <para id="para_functional_operations_on_opti">Functional operations on
+      <literal>Options</literal> save us from extra conditional expressions or
+      pattern matching. Pattern matching, though, is a powerful tool within
+      the context of functional programming, as we’ll explore in the next
+      section.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="_pattern_matching">
+    <title>Pattern Matching</title>
+
+    <para id="para_fp_pattern_matching">We’ve seen many examples of pattern
+    matching throughout the book. We got our first taste in <xref
+    linkend="ATasteOfConcurrency" /> in <xref linkend="IntroducingScala" />,
+    where we used pattern matching in our Actor that drew geometric shapes. We
+    discussed pattern matching in depth in <xref linkend="PatternMatching" />
+    in <xref linkend="RoundingOutTheEssentials" />.</para>
+
+    <para id="para_pattern_matching_is_a_fundamen">Pattern matching is a
+    fundamental tool in functional programming. It’s just as important as
+    polymorphism is in object-oriented programming, although the goals of the
+    two techniques are very different.</para>
+
+    <para id="para_pattern_matching_is_an_elegant">Pattern matching is an
+    elegant way to decompose objects into their constituent parts for
+    processing. On the face of it, pattern matching for this purpose seems to
+    violate the goal of encapsulation that objects provide. Immutability,
+    though, rectifies this conflict. The risk that the parts of an object
+    might be changed outside of the control of the enclosing object is
+    avoided.</para>
+
+    <para id="para_for_example_if_we_have_a_per">For example, if we have a
+    <literal>Person</literal> class that contains a list of addresses, we
+    don’t mind exposing that list to clients if the list is immutable. They
+    can’t unexpectedly change the list.</para>
+
+    <para id="para_however_the_other_problem_wit">However, exposing
+    constituent parts potentially couples clients to the
+    <emphasis>types</emphasis> of those parts. we can’t change how the parts
+    are implemented without breaking the clients. A way to minimize this risk
+    is to expose the lowest-level abstractions possible. When clients access a
+    person’s addresses, do they really need to know that they are stored in a
+    <literal>List</literal> or is it sufficient to know that they are stored
+    in an <literal>Iterable</literal> or <literal>Seq</literal>? If so, then
+    we can change the implementation of the addresses as long as they still
+    support those abstractions. Of course, we’ve known for a long time in
+    object-oriented programming that you should only couple to abstractions,
+    not concrete details (see e.g., <link linkend="Martin2003"
+    xrefstyle="select:nopage">[Martin2003]</link>).</para>
+
+    <para id="para_functional_pattern_matching_an">Functional pattern matching
+    and object-oriented polymorphism are powerful complements to each other.
+    We saw this in the Actor example in <xref
+    linkend="ATasteOfConcurrency" />, where we matched on the
+    <literal>Shape</literal> abstraction, but called the polymorphic
+    <literal>draw</literal> operation.</para>
+  </sect1>
+
+  <sect1 id="PartialFunctions">
+    <title>Partial Functions</title>
+
+    <para id="para_you_ve_seen__partially_applied">You’ve seen
+    <emphasis>partially applied</emphasis> functions, or partial functions,
+    throughout this book. When you’ve seen an underscore passed to a method,
+    you’ve probably seen partial application at work.</para>
+
+    <para id="para_partial_functions_are_expressi">Partial functions are
+    expressions in which not all of the arguments defined in a function are
+    supplied as parameters to the function. In Scala, partial functions are
+    used to bundle up a function, including its parameters and return type,
+    and assign that function to a variable or pass it as an argument to
+    another function.</para>
+
+    <para id="para_this_is_a_bit_confusing_until_">This is a bit confusing
+    until we see it in practice:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/partial/partial-script.scala
 
 def concatUpper(s1: String, s2: String): String = (s1 + " " + s2).toUpperCase
 
@@ -467,14 +1220,50 @@ println(c("short", "pants"))
 
 val c2 = concatUpper("short", _: String)
 println(c2("pants"))</programlisting>
-<para id="para_calling_concatupper_with_an_">Calling <literal>concatUpper</literal> with an underscore (<literal>_</literal>) turns the method into a function value. In the first part of the above example, we’ve assigned a partially applied version of <literal>concatUpper</literal> to the value <literal>c</literal>. We then <emphasis>apply</emphasis> it, implicitly calling the <literal>apply</literal> method on <literal>c</literal> by passing parameters to it directly. The returned value is then printed.</para>
-<para id="para_in_the_second_part_we_ve_spec">In the second part, we’ve specified the first parameter to <literal>concatUpper</literal> but not the second, although we have specified the type of the second parameter. We’ve assigned this variant to a second value, <literal>c2</literal>. To produce the same output as we saw above, we need only pass in a single value when we apply <literal>c2</literal>. We’ve applied part of the function in the assignment to <literal>c2</literal>, and we “fill in the blanks” when we call <literal>c2</literal> on the next line.</para>
-<para id="para_we_ve_seen_partially_applied_f">We’ve seen partially applied functions without the underscore syntax, as well.</para>
-<programlisting linenumbering="unnumbered">List("short", "pants").map(println)</programlisting>
-<para id="para_in_this_example_println_is_">In this example, <literal>println</literal> is the partially applied function. It’s applied when invoked by mapping over each element in the list. Because the map operation expects a function as an argument, we don’t need to write <literal>map(println _)</literal>. The trailing underscore is that turns <literal>println</literal> into a function value is implied, in this context.</para>
-<para id="para_another_way_of_thinking_of_par">Another way of thinking of partial functions is as functions that will inform you when you supply them with parameters that are out of their domain. Every partial function is, as you might guess, of  the type <literal>PartialFunction</literal>. This trait defines a method <literal>orElse</literal> that takes another <literal>PartialFunction</literal>. Should the first partial function not apply, the second will be invoked.</para>
-<para id="para_again_this_is_easier_understo">Again, this is easier understood in practice.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/partial/orelse-script.scala
+
+    <para id="para_calling_concatupper_with_an_">Calling
+    <literal>concatUpper</literal> with an underscore (<literal>_</literal>)
+    turns the method into a function value. In the first part of the above
+    example, we’ve assigned a partially applied version of
+    <literal>concatUpper</literal> to the value <literal>c</literal>. We then
+    <emphasis>apply</emphasis> it, implicitly calling the
+    <literal>apply</literal> method on <literal>c</literal> by passing
+    parameters to it directly. The returned value is then printed.</para>
+
+    <para id="para_in_the_second_part_we_ve_spec">In the second part, we’ve
+    specified the first parameter to <literal>concatUpper</literal> but not
+    the second, although we have specified the type of the second parameter.
+    We’ve assigned this variant to a second value, <literal>c2</literal>. To
+    produce the same output as we saw above, we need only pass in a single
+    value when we apply <literal>c2</literal>. We’ve applied part of the
+    function in the assignment to <literal>c2</literal>, and we “fill in the
+    blanks” when we call <literal>c2</literal> on the next line.</para>
+
+    <para id="para_we_ve_seen_partially_applied_f">We’ve seen partially
+    applied functions without the underscore syntax, as well:</para>
+
+    <programlisting linenumbering="unnumbered">List("short", "pants").map(println)</programlisting>
+
+    <para id="para_in_this_example_println_is_">In this example,
+    <literal>println</literal> is the partially applied function. It’s applied
+    when invoked by mapping over each element in the list. Because the map
+    operation expects a function as an argument, we don’t need to write
+    <literal>map(println _)</literal>. The trailing underscore is that turns
+    <literal>println</literal> into a function value is implied, in this
+    context.</para>
+
+    <para id="para_another_way_of_thinking_of_par">Another way of thinking of
+    partial functions is as functions that will inform you when you supply
+    them with parameters that are out of their domain. Every partial function
+    is, as you might guess, of the type <literal>PartialFunction</literal>.
+    This trait defines a method <literal>orElse</literal> that takes another
+    <literal>PartialFunction</literal>. Should the first partial function not
+    apply, the second will be invoked.</para>
+
+    <para id="para_again_this_is_easier_understo">Again, this is easier
+    understood in practice:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/partial/orelse-script.scala
 
 val truthier: PartialFunction[Boolean, String] = { case true =&gt; "truthful" }
 val fallback: PartialFunction[Boolean, String] = { case x =&gt; "sketchy" }
@@ -482,9 +1271,24 @@ val tester = truthier orElse fallback
 
 println(tester(1 == 1))
 println(tester(2 + 2 == 5))</programlisting>
-<para id="para_in_this_example_tester_is_a">In this example, <literal>tester</literal> is a partial function composed of two other partial functions, <literal>truthier</literal> and <literal>fallback</literal>. In the first <literal>println</literal> statement, <literal>truthier</literal> is executed because the partial function’s internal case matches. In the second, <literal>fallback</literal> is executed because the value of the expression is outside of the domain of <literal>truthier</literal>.</para>
-<para id="para_the_case_statements_we_ve_se">The <literal>case</literal> statements we’ve seen through our exploration of Scala are expanded internally to partially applied functions. The functions provide the abstract method <literal>isDefinedAt</literal>, a feature of the <literal>PartialFunction</literal> trait used to specify the boundaries of a partial function’s domain.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/partial/isdefinedat-script.scala
+
+    <para id="para_in_this_example_tester_is_a">In this example,
+    <literal>tester</literal> is a partial function composed of two other
+    partial functions, <literal>truthier</literal> and
+    <literal>fallback</literal>. In the first <literal>println</literal>
+    statement, <literal>truthier</literal> is executed because the partial
+    function’s internal case matches. In the second,
+    <literal>fallback</literal> is executed because the value of the
+    expression is outside of the domain of <literal>truthier</literal>.</para>
+
+    <para id="para_the_case_statements_we_ve_se">The <literal>case</literal>
+    statements we’ve seen through our exploration of Scala are expanded
+    internally to partially applied functions. The functions provide the
+    abstract method <literal>isDefinedAt</literal>, a feature of the
+    <literal>PartialFunction</literal> trait used to specify the boundaries of
+    a partial function’s domain:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/partial/isdefinedat-script.scala
 
 val pantsTest: PartialFunction[String, String] = {
   case "pants" =&gt; "yes, we have pants!"
@@ -492,21 +1296,53 @@ val pantsTest: PartialFunction[String, String] = {
 
 println(pantsTest.isDefinedAt("pants"))
 println(pantsTest.isDefinedAt("skort"))</programlisting>
-<para id="para_here_our_partial_function_is_">Here, our partial function is a test for the string “pants”. When we inquire as to whether the string “pants” is defined for this function, the result is <literal>true</literal>. But for the string “skort”, the result is <literal>false</literal>. Were we defining our own partial function, we could provide an implementation of <literal>isDefinedAt</literal> that performs any arbitrary test for the boundaries of our function.</para>
-</sect1>
-<sect1 id="Currying">
-<title>Currying</title>
-<para id="para_just_as_you_encountered_partia">Just as you encountered partially applied functions before we defined them, you’ve also seen <emphasis>curried</emphasis> functions. Named after mathematician Haskell Curry (from whom the Haskell language also get its name), currying transforms a function that takes multiple parameters into a chain of functions, each taking a single parameter.</para>
-<para id="para_in_scala_curried_functions_ar">In Scala, curried functions are defined with multiple parameter lists, as below.</para>
-<programlisting linenumbering="unnumbered">def cat(s1: String)(s2: String) = s1 + s2</programlisting>
-<para id="para_of_course_we_could_define_mor">Of course, we could define more than two parameters on a curried function, if we like.</para>
-<para id="para_you_also_use_the_syntax_below_">You also use the syntax below to define a curried function. While the above syntax is, in our estimation, more readable, the below omits the requirement of a trailing underscore when treating the curried function as a partially applied function.</para>
-<programlisting linenumbering="unnumbered">def cat(s1: String) = (s2: String) =&gt; s1 + s2</programlisting>
-<para id="para_calling_our_curried_string_con">Calling our curried string concatenation function looks like this in the Scala REPL.</para>
-<screen>scala&gt; cat("foo")("bar")
+
+    <para id="para_here_our_partial_function_is_">Here, our partial function
+    is a test for the string “pants”. When we inquire as to whether the string
+    “pants” is defined for this function, the result is
+    <literal>true</literal>. But for the string “skort”, the result is
+    <literal>false</literal>. Were we defining our own partial function, we
+    could provide an implementation of <literal>isDefinedAt</literal> that
+    performs any arbitrary test for the boundaries of our function.</para>
+  </sect1>
+
+  <sect1 id="Currying">
+    <title>Currying</title>
+
+    <para id="para_just_as_you_encountered_partia">Just as you encountered
+    partially applied functions before we defined them, you’ve also seen
+    <emphasis>curried</emphasis> functions. Named after mathematician Haskell
+    Curry (from whom the Haskell language also get its name), currying
+    transforms a function that takes multiple parameters into a chain of
+    functions, each taking a single parameter.</para>
+
+    <para id="para_in_scala_curried_functions_ar">In Scala, curried functions
+    are defined with multiple parameter lists, as below:</para>
+
+    <programlisting linenumbering="unnumbered">def cat(s1: String)(s2: String) = s1 + s2</programlisting>
+
+    <para id="para_of_course_we_could_define_mor">Of course, we could define
+    more than two parameters on a curried function, if we like.</para>
+
+    <para id="para_you_also_use_the_syntax_below_">You also use the syntax
+    below to define a curried function. While the above syntax is, in our
+    estimation, more readable, the below omits the requirement of a trailing
+    underscore when treating the curried function as a partially applied
+    function:</para>
+
+    <programlisting linenumbering="unnumbered">def cat(s1: String) = (s2: String) =&gt; s1 + s2</programlisting>
+
+    <para id="para_calling_our_curried_string_con">Calling our curried string
+    concatenation function looks like this in the Scala REPL:</para>
+
+    <screen>scala&gt; cat("foo")("bar")
 res1: java.lang.String = foobar</screen>
-<para id="para_we_can_also_convert_methods_th">We can also convert methods that take multiple parameters into a curried form with the <literal>Function.curried</literal> method.</para>
-<screen>scala&gt; def cat(s1: String, s2: String) = s1 + s2
+
+    <para id="para_we_can_also_convert_methods_th">We can also convert methods
+    that take multiple parameters into a curried form with the
+    <literal>Function.curried</literal> method:</para>
+
+    <screen>scala&gt; def cat(s1: String, s2: String) = s1 + s2
 cat: (String,String)java.lang.String
 
 scala&gt; val curryCat = Function.curried(cat _)
@@ -514,75 +1350,181 @@ curryCat: (String) =&gt; (String) =&gt; java.lang.String = &lt;function&gt;
 
 scala&gt; cat("foo", "bar") == curryCat("foo")("bar")
 res2: Boolean = true</screen>
-<para id="para_in_this_example_we_transform_">In this example, we transform a function that takes two arguments, <literal>cat</literal>, into its curried equivalent that takes multiple parameter lists. If <literal>cat</literal> had taken three parameters, its curried equivalent would take three lists of arguments, and so on. The two forms are functionally equivalent, as demonstrated by the equality test, but <literal>curryCat</literal> can now be used as the basis of a partially applied function as well.</para>
-<screen>scala&gt; val partialCurryCat = curryCat("foo")(_)
+
+    <para id="para_in_this_example_we_transform_">In this example, we
+    transform a function that takes two arguments, <literal>cat</literal>,
+    into its curried equivalent that takes multiple parameter lists. If
+    <literal>cat</literal> had taken three parameters, its curried equivalent
+    would take three lists of arguments, and so on. The two forms are
+    functionally equivalent, as demonstrated by the equality test, but
+    <literal>curryCat</literal> can now be used as the basis of a partially
+    applied function as well:</para>
+
+    <screen>scala&gt; val partialCurryCat = curryCat("foo")(_)
 partialCurryCat: (String) =&gt; java.lang.String = &lt;function&gt;
 
 scala&gt; partialCurryCat("bar")
 res3: java.lang.String = foobar</screen>
-<para id="para_in_practice_the_primary_use_f">In practice, the primary use for currying is to specialize functions for particular types of data. You can start with an extremely general case, and use the curried form of a function to narrow down to particular cases.</para>
-<para id="para_as_a_simple_example_of_this_ap">As a simple example of this approach, the following code provides specialized forms of a base function that handles multiplication.</para>
-<programlisting linenumbering="unnumbered">def multiplier(i: Int)(factor: Int) = i * factor
+
+    <para id="para_in_practice_the_primary_use_f">In practice, the primary use
+    for currying is to specialize functions for particular types of data. You
+    can start with an extremely general case, and use the curried form of a
+    function to narrow down to particular cases.</para>
+
+    <para id="para_as_a_simple_example_of_this_ap">As a simple example of this
+    approach, the following code provides specialized forms of a base function
+    that handles multiplication:</para>
+
+    <programlisting linenumbering="unnumbered">def multiplier(i: Int)(factor: Int) = i * factor
 val byFive = multiplier(5) _
 val byTen = multiplier(10) _</programlisting>
-<para id="para_we_start_with_multiplier_wh">We start with <literal>multiplier</literal>, which takes two parameters: an integer, and another integer to multiply the first one by. We then curry two special cases of <literal>multiplier</literal> into function values. Note the trailing underscores, which indicate to the compiler that the preceding expression is to be curried.</para>
-<para id="para_in_the_scala_console_we_get_p">In the Scala console, we get predictable output when calling our curried functions.</para>
-<screen>scala&gt; byFive(2)
+
+    <para id="para_we_start_with_multiplier_wh">We start with
+    <literal>multiplier</literal>, which takes two parameters: an integer, and
+    another integer to multiply the first one by. We then curry two special
+    cases of <literal>multiplier</literal> into function values. Note the
+    trailing underscores, which indicate to the compiler that the preceding
+    expression is to be curried.</para>
+
+    <para id="para_in_the_scala_console_we_get_p">In the Scala console, we get
+    predictable output when calling our curried functions:</para>
+
+    <screen>scala&gt; byFive(2)
 res4: Int = 10
 
 scala&gt; byTen(2)
 res5: Int = 20</screen>
-<para id="para_we_ll_revisit_the_curry_meth">We’ll revisit the <literal>curry</literal> method in <xref linkend="FunctionTypes"/> in <xref linkend="ScalasTypeSystem"/>.</para>
-<para id="para_as_you_can_see_currying_and_p">As you can see, currying and partially applied functions are closely related concepts. You may see them referred to almost interchangeably, but what’s important is their application (no pun intended).</para>
-</sect1>
-<sect1 id="Implicits">
-<title>Implicits</title>
-<para id="para_there_are_times_when_you_have_">There are times when you have an instance of one type and you need to use it in a context where a different, but perhaps similar type is required. For the “one-off” case, you might create an instance of the required type using the state of the instance you already have. However, for the general case, if there are many such occurrences in the code, you would rather have an automated conversion mechanism.</para>
-<para id="para_a_similar_problem_occurs_when_">A similar problem occurs when you call one or more functions repeatedly and have to pass the same value to all the invocations. You might like a way of specifying a default value for that parameter, so it is not necessary to specify it explicit all the time.</para>
-<para id="para_the_scala_keyword_implicit_c">The Scala keyword <literal>implicit</literal> can be used to support both needs.</para>
-<sect2 id="ImplicitConversions">
-<title>Implicit Conversions</title>
-<para id="para_consider_the_following_code_fr">Consider the following code fragment.</para>
-<programlisting linenumbering="unnumbered">val name: String = "scala"
+
+    <para id="para_we_ll_revisit_the_curry_meth">We’ll revisit the
+    <literal>curry</literal> method in <xref linkend="FunctionTypes" /> in
+    <xref linkend="ScalasTypeSystem" />.</para>
+
+    <para id="para_as_you_can_see_currying_and_p">As you can see, currying and
+    partially applied functions are closely related concepts. You may see them
+    referred to almost interchangeably, but what’s important is their
+    application (no pun intended).</para>
+  </sect1>
+
+  <sect1 id="Implicits">
+    <title>Implicits</title>
+
+    <para id="para_there_are_times_when_you_have_">There are times when you
+    have an instance of one type and you need to use it in a context where a
+    different, but perhaps similar type is required. For the “one-off” case,
+    you might create an instance of the required type using the state of the
+    instance you already have. However, for the general case, if there are
+    many such occurrences in the code, you would rather have an automated
+    conversion mechanism.</para>
+
+    <para id="para_a_similar_problem_occurs_when_">A similar problem occurs
+    when you call one or more functions repeatedly and have to pass the same
+    value to all the invocations. You might like a way of specifying a default
+    value for that parameter, so it is not necessary to specify it explicit
+    all the time.</para>
+
+    <para id="para_the_scala_keyword_implicit_c">The Scala keyword
+    <literal>implicit</literal> can be used to support both needs.</para>
+
+    <sect2 id="ImplicitConversions">
+      <title>Implicit Conversions</title>
+
+      <para id="para_consider_the_following_code_fr">Consider the following
+      code fragment:</para>
+
+      <programlisting linenumbering="unnumbered">val name: String = "scala"
 println(name.capitalize.reverse)</programlisting>
-<para id="para_it_prints_the_following_">It prints the following.</para>
-<screen>alacS</screen>
-<para id="para_how_work_capitalize_string">We saw in <xref linkend="PredefObject"/> in <xref linkend="ScalaObjectSystem"/> that <literal>Predef</literal> defines the <literal>String</literal> type to be <literal>java.lang.String</literal>, yet the methods <literal>capitalize</literal> and <literal>reverse</literal> aren’t defined on <literal>java.lang.String</literal>. How did this code work?</para>
-<para id="para_the_scala_library_defines_a_">The Scala library defines a “wrapper” class called <literal>scala.runtime.RichString</literal> and the compiler converted the <literal>name</literal> string to it implicitly using a special method defined in <literal>Predef</literal> called <literal>stringWrapper</literal>.</para>
-<programlisting linenumbering="unnumbered">implicit def stringWrapper(x: String) = new runtime.RichString(x)</programlisting>
-<para id="para_the_implicit_keyword_tells_t">The <literal>implicit</literal> keyword tells the compiler it can use this method for an “implicit” conversion from a <literal>String</literal> to a <literal>RichString</literal>, whenever the latter is required. The compiler detected an attempt to call a <literal>capitalize</literal> method and it determined that <literal>RichString</literal> has such a method. Then it looked within the applicable scope for an <literal>implicit</literal> method that converts <literal>String</literal> to <literal>RichString</literal>, finding <literal>stringWrapper</literal>.</para>
-<para id="para_as_we_ll_see_in_viewsandview">As we’ll see in <xref linkend="ViewsAndViewBounds"/> in <xref linkend="ScalasTypeSystem"/>, these conversion methods are sometimes called <emphasis>views</emphasis>, in the sense that our <literal>stringWrapper</literal> conversion provides a view from <literal>String</literal> to <literal>RichString</literal>.</para>
-<para id="para__predef_defines_many_other_im"><literal>Predef</literal> defines many other implicit conversion methods, most of which follow the naming convention <literal>old2New</literal>, where <literal>old</literal> is the type of object available and <literal>New</literal> is the desired type. However, there is no restriction on the names of conversion methods. There are also a number of other “Rich” wrapper classes defined in the <literal>scala.runtime</literal> package.</para>
-<para id="para_here_is_a_summary_of_the_looku">Here is a summary of the lookup rules used by the compiler to find and apply conversion methods. For more details, see <link linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>.</para>
-<orderedlist numeration="arabic">
-<listitem>
-<para>
-No conversion will be attempted if the object and method combination type check successfully.
-</para>
-</listitem>
-<listitem>
-<para>
-Only methods with the <literal>implicit</literal> keyword are considered.
-</para>
-</listitem>
-<listitem>
-<para>
-Only implicit methods in the current scope are considered, as well as implicit methods defined in the <emphasis>companion object</emphasis> of the <emphasis>target</emphasis> type.
-</para>
-</listitem>
-<listitem>
-<para>
-Implicit methods aren’t chained to get from the available type, through intermediate types, to the <literal>target</literal> type. Only a method that takes a single available type instance and returns a target type instance will be considered.
-</para>
-</listitem>
-<listitem>
-<para>
-No conversion is attempted if there are more than one possible conversion methods that could be applied. There must be one and only one possibility.
-</para>
-</listitem>
-</orderedlist>
-<para id="para_what_if_can_t_define_a_convers">What if you can’t define a conversion method in a companion object, to satisfy the third rule, perhaps because you can’t modify or create the companion object? In this case, define the method somewhere else and import it. Normally, you will define an <literal>object</literal> with just the conversion method(s) needed. Here is an example.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/implicits/implicit-conversion-script.scala
+
+      <para id="para_it_prints_the_following_">It prints the following:</para>
+
+      <screen>alacS</screen>
+
+      <para id="para_how_work_capitalize_string">We saw in <xref
+      linkend="PredefObject" /> in <xref linkend="ScalaObjectSystem" /> that
+      <literal>Predef</literal> defines the <literal>String</literal> type to
+      be <literal>java.lang.String</literal>, yet the methods
+      <literal>capitalize</literal> and <literal>reverse</literal> aren’t
+      defined on <literal>java.lang.String</literal>. How did this code
+      work?</para>
+
+      <para id="para_the_scala_library_defines_a_">The Scala library defines a
+      “wrapper” class called <literal>scala.runtime.RichString</literal> and
+      the compiler converted the <literal>name</literal> string to it
+      implicitly using a special method defined in <literal>Predef</literal>
+      called <literal>stringWrapper</literal>:</para>
+
+      <programlisting linenumbering="unnumbered">implicit def stringWrapper(x: String) = new runtime.RichString(x)</programlisting>
+
+      <para id="para_the_implicit_keyword_tells_t">The
+      <literal>implicit</literal> keyword tells the compiler it can use this
+      method for an “implicit” conversion from a <literal>String</literal> to
+      a <literal>RichString</literal>, whenever the latter is required. The
+      compiler detected an attempt to call a <literal>capitalize</literal>
+      method and it determined that <literal>RichString</literal> has such a
+      method. Then it looked within the applicable scope for an
+      <literal>implicit</literal> method that converts
+      <literal>String</literal> to <literal>RichString</literal>, finding
+      <literal>stringWrapper</literal>.</para>
+
+      <para id="para_as_we_ll_see_in_viewsandview">As we’ll see in <xref
+      linkend="ViewsAndViewBounds" /> in <xref linkend="ScalasTypeSystem" />,
+      these conversion methods are sometimes called
+      <emphasis>views</emphasis>, in the sense that our
+      <literal>stringWrapper</literal> conversion provides a view from
+      <literal>String</literal> to <literal>RichString</literal>.</para>
+
+      <para id="para__predef_defines_many_other_im"><literal>Predef</literal>
+      defines many other implicit conversion methods, most of which follow the
+      naming convention <literal>old2New</literal>, where
+      <literal>old</literal> is the type of object available and
+      <literal>New</literal> is the desired type. However, there is no
+      restriction on the names of conversion methods. There are also a number
+      of other “Rich” wrapper classes defined in the
+      <literal>scala.runtime</literal> package.</para>
+
+      <para id="para_here_is_a_summary_of_the_looku">Here is a summary of the
+      lookup rules used by the compiler to find and apply conversion methods.
+      For more details, see <link linkend="ScalaSpec2009"
+      xrefstyle="select:nopage">[ScalaSpec2009]</link>:</para>
+
+      <orderedlist numeration="arabic">
+        <listitem>
+          <para>No conversion will be attempted if the object and method
+          combination type check successfully.</para>
+        </listitem>
+
+        <listitem>
+          <para>Only methods with the <literal>implicit</literal> keyword are
+          considered.</para>
+        </listitem>
+
+        <listitem>
+          <para>Only implicit methods in the current scope are considered, as
+          well as implicit methods defined in the <emphasis>companion
+          object</emphasis> of the <emphasis>target</emphasis> type.</para>
+        </listitem>
+
+        <listitem>
+          <para>Implicit methods aren’t chained to get from the available
+          type, through intermediate types, to the <literal>target</literal>
+          type. Only a method that takes a single available type instance and
+          returns a target type instance will be considered.</para>
+        </listitem>
+
+        <listitem>
+          <para>No conversion is attempted if there are more than one possible
+          conversion methods that could be applied. There must be one and only
+          one possibility.</para>
+        </listitem>
+      </orderedlist>
+
+      <para id="para_what_if_can_t_define_a_convers">What if you can’t define
+      a conversion method in a companion object, to satisfy the third rule,
+      perhaps because you can’t modify or create the companion object? In this
+      case, define the method somewhere else and import it. Normally, you will
+      define an <literal>object</literal> with just the conversion method(s)
+      needed. Here is an example:</para>
+
+      <programlisting linenumbering="unnumbered">// code-examples/FP/implicits/implicit-conversion-script.scala
 import scala.runtime.RichString
 
 class FancyString(val str: String)
@@ -596,16 +1538,40 @@ import FancyUser2RichString._
 
 val fs = new FancyString("scala")
 println(fs.capitalize.reverse)</programlisting>
-<para id="para_we_can_t_modify_richstring_o">We can’t modify <literal>RichString</literal> or <literal>Predef</literal> to add an implicit conversion method for our custom <literal>FancyString</literal> class. Instead, we define an <literal>object</literal> named <literal>FancyUser2RichString</literal> and define the conversion method in it. We then import the contents of this object and the converter gets invoked implicitly in the last line. The output of this script is the following.</para>
-<screen>alacS</screen>
-<para id="para_pimp_my_library">This pattern for effectively adding new methods to classes has been called <emphasis>pimp my library</emphasis> <link linkend="Odersky2006" xrefstyle="select:nopage">[Odersky2006]</link>.</para>
-</sect2>
-</sect1>
-<sect1 id="ImplicitFunctionParameters">
-<title>Implicit Function Parameters</title>
-<para id="para_one_possible_mechanism_is_to_u">We saw in <xref linkend="TypeLessDoMore"/> that Scala version 2.8 adds support for default argument values, like you find in other languages like Ruby and C++. There are two other ways to achieve the same effect in all versions of Scala. The first is to use function currying, as we have seen. The second way is to define <emphasis>implicit</emphasis> values, using the <literal>implicit</literal> keyword.</para>
-<para id="para_let_s_examine_how_implicit_val">Let’s examine how implicit values work.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/implicits/implicit-parameter-script.scala
+
+      <para id="para_we_can_t_modify_richstring_o">We can’t modify
+      <literal>RichString</literal> or <literal>Predef</literal> to add an
+      implicit conversion method for our custom <literal>FancyString</literal>
+      class. Instead, we define an <literal>object</literal> named
+      <literal>FancyUser2RichString</literal> and define the conversion method
+      in it. We then import the contents of this object and the converter gets
+      invoked implicitly in the last line. The output of this script is the
+      following:</para>
+
+      <screen>alacS</screen>
+
+      <para id="para_pimp_my_library">This pattern for effectively adding new
+      methods to classes has been called <emphasis>pimp my library</emphasis>
+      <link linkend="Odersky2006"
+      xrefstyle="select:nopage">[Odersky2006]</link>.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ImplicitFunctionParameters">
+    <title>Implicit Function Parameters</title>
+
+    <para id="para_one_possible_mechanism_is_to_u">We saw in <xref
+    linkend="TypeLessDoMore" /> that Scala version 2.8 adds support for
+    default argument values, like you find in other languages like Ruby and
+    C++. There are two other ways to achieve the same effect in all versions
+    of Scala. The first is to use function currying, as we have seen. The
+    second way is to define <emphasis>implicit</emphasis> values, using the
+    <literal>implicit</literal> keyword.</para>
+
+    <para id="para_let_s_examine_how_implicit_val">Let’s examine how implicit
+    values work:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/implicits/implicit-parameter-script.scala
 import scala.runtime.RichString
 
 def multiplier(i: Int)(implicit factor: Int) {
@@ -616,27 +1582,94 @@ implicit val factor = 2
 
 multiplier(2)
 multiplier(2)(3)</programlisting>
-<para id="para_our_multiplier_takes_two_lists">Our multiplier takes two lists of parameters. The latter includes an integer value, <literal>factor</literal>, marked <literal>implicit</literal>. This keywords informs the compiler to seek the value for <literal>factor</literal> from the surrounding scope, if available, or to use whatever parameter has been explicitly supplied to the function.</para>
-<para id="para_we_ve_defined_our_own_factor_">We’ve defined our own <literal>factor</literal> value in scope, and that value is used in the first called to <literal>multiplier</literal>. In the second call, we’re explicitly passing in a value for <literal>factor</literal>, and it overrides the value in the surrounding scope.</para>
-<para id="para_essentially_implicit_function">Essentially, implicit function parameters behave as parameters with a default value, with the key difference being that the value comes from the surrounding scope. Had our <literal>factor</literal> value resided in a class or object, we would have had to import it into the local scope. If the compiler can’t determine the value to use for an implicit parameter, an error of “no implicit argument matching parameter” will occur.</para>
-<sect2 id="FinalThoughtsOnImplicits">
-<title>Final Thoughts on Implicits</title>
-<para id="para_implicits_can_be_perilously_cl">Implicits can be perilously close to “magic”. When used excessively, they obfuscate the code’s behavior for the reader. Also, be careful about the implementation of a conversion method, especially if the return type is not explicitly declared. If a future change to the method also changes the return type in some subtle way, the conversion may suddenly fail to work. In general, implicits can cause mysterious behavior that is hard to debug!</para>
-<para id="para_the_advantage_of_this_approach">When deciding how to implement “default” values for method arguments, a major advantage of using default argument values (in Scala version 2.8) is that the method maintainer decides what to use as the default value. The implementation is more straightforward and you avoid the “magic” of implicit methods. However, a disadvantage of using default argument values is that it might be desirable to use a different “default” value based on the context in which the method is being called. Scala version 2.8 provides some flexibility, as you can use some expressions for an argument, not just constants. However, that flexibility might not be enough, in which case implicits are a very flexible and powerful alternative.</para>
-<tip id="para_tip_use_implicits_sparingly_a"><para>Use implicits sparingly and cautiously. Also, consider adding an explicit return type to “nontrivial” conversion methods.</para></tip>
-</sect2>
-</sect1>
-<sect1 id="_call_by_name_call_by_value">
-<title>Call by Name, Call by Value</title>
-<para id="para_typically_parameters_to_funct">Typically, parameters to functions are <emphasis>by-value</emphasis> parameters; that is, the value of the parameter is determined before it is passed to the function. In most circumstances, this is the behavior we want and expect.</para>
-<para id="para_but_what_if_we_need_to_write_a">But what if we need to write a function that accepts as a parameter an expression that we don’t want evaluated until it’s called within our function? For this circumstance, Scala offers <emphasis>by-name</emphasis> parameters.</para>
-<para id="para_a_by_name_parameter_is_specifi">A by-name parameter is specified by omitting the parentheses that normally accompany a function parameter, as below.</para>
-<programlisting linenumbering="unnumbered">def myCallByNameFunction(callByNameParameter: =&gt; ReturnType)</programlisting>
-<para id="para_without_this_syntactic_shortcu">Without this syntactic shortcut, the above method definition would look like the below.</para>
-<programlisting linenumbering="unnumbered">def myCallByNameFunction(callByNameParameter: () =&gt; ReturnType)</programlisting>
-<para id="para_and_what_s_more_we_d_have_to_">And what’s more, we would have to include those unsightly, empty parenthesis in every call to that method. Use of by-name parameters removes that requirement.</para>
-<para id="para_we_can_use_by_name_parameters_">We can use by-name parameters to implement powerful looping constructs, amongst other things. Let’s go crazy and implement our own while loop, throwing currying into the mix.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/overrides/call-by-name-script.scala
+
+    <para id="para_our_multiplier_takes_two_lists">Our multiplier takes two
+    lists of parameters. The latter includes an integer value,
+    <literal>factor</literal>, marked <literal>implicit</literal>. This
+    keywords informs the compiler to seek the value for
+    <literal>factor</literal> from the surrounding scope, if available, or to
+    use whatever parameter has been explicitly supplied to the
+    function.</para>
+
+    <para id="para_we_ve_defined_our_own_factor_">We’ve defined our own
+    <literal>factor</literal> value in scope, and that value is used in the
+    first called to <literal>multiplier</literal>. In the second call, we’re
+    explicitly passing in a value for <literal>factor</literal>, and it
+    overrides the value in the surrounding scope.</para>
+
+    <para id="para_essentially_implicit_function">Essentially, implicit
+    function parameters behave as parameters with a default value, with the
+    key difference being that the value comes from the surrounding scope. Had
+    our <literal>factor</literal> value resided in a class or object, we would
+    have had to import it into the local scope. If the compiler can’t
+    determine the value to use for an implicit parameter, an error of “no
+    implicit argument matching parameter” will occur.</para>
+
+    <sect2 id="FinalThoughtsOnImplicits">
+      <title>Final Thoughts on Implicits</title>
+
+      <para id="para_implicits_can_be_perilously_cl">Implicits can be
+      perilously close to “magic”. When used excessively, they obfuscate the
+      code’s behavior for the reader. Also, be careful about the
+      implementation of a conversion method, especially if the return type is
+      not explicitly declared. If a future change to the method also changes
+      the return type in some subtle way, the conversion may suddenly fail to
+      work. In general, implicits can cause mysterious behavior that is hard
+      to debug!</para>
+
+      <para id="para_the_advantage_of_this_approach">When deciding how to
+      implement “default” values for method arguments, a major advantage of
+      using default argument values (in Scala version 2.8) is that the method
+      maintainer decides what to use as the default value. The implementation
+      is more straightforward and you avoid the “magic” of implicit methods.
+      However, a disadvantage of using default argument values is that it
+      might be desirable to use a different “default” value based on the
+      context in which the method is being called. Scala version 2.8 provides
+      some flexibility, as you can use some expressions for an argument, not
+      just constants. However, that flexibility might not be enough, in which
+      case implicits are a very flexible and powerful alternative.</para>
+
+      <tip id="para_tip_use_implicits_sparingly_a">
+        <para>Use implicits sparingly and cautiously. Also, consider adding an
+        explicit return type to “nontrivial” conversion methods.</para>
+      </tip>
+    </sect2>
+  </sect1>
+
+  <sect1 id="_call_by_name_call_by_value">
+    <title>Call by Name, Call by Value</title>
+
+    <para id="para_typically_parameters_to_funct">Typically, parameters to
+    functions are <emphasis>by-value</emphasis> parameters; that is, the value
+    of the parameter is determined before it is passed to the function. In
+    most circumstances, this is the behavior we want and expect.</para>
+
+    <para id="para_but_what_if_we_need_to_write_a">But what if we need to
+    write a function that accepts as a parameter an expression that we don’t
+    want evaluated until it’s called within our function? For this
+    circumstance, Scala offers <emphasis>by-name</emphasis> parameters.</para>
+
+    <para id="para_a_by_name_parameter_is_specifi">A by-name parameter is
+    specified by omitting the parentheses that normally accompany a function
+    parameter, as below:</para>
+
+    <programlisting linenumbering="unnumbered">def myCallByNameFunction(callByNameParameter: =&gt; ReturnType)</programlisting>
+
+    <para id="para_without_this_syntactic_shortcu">Without this syntactic
+    shortcut, the above method definition would look like the below:</para>
+
+    <programlisting linenumbering="unnumbered">def myCallByNameFunction(callByNameParameter: () =&gt; ReturnType)</programlisting>
+
+    <para id="para_and_what_s_more_we_d_have_to_">And what’s more, we would
+    have to include those unsightly, empty parenthesis in every call to that
+    method. Use of by-name parameters removes that requirement.</para>
+
+    <para id="para_we_can_use_by_name_parameters_">We can use by-name
+    parameters to implement powerful looping constructs, amongst other things.
+    Let’s go crazy and implement our own while loop, throwing currying into
+    the mix:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/overrides/call-by-name-script.scala
 
 def whileAwesome(conditional: =&gt; Boolean)(f: =&gt; Unit) {
   if (conditional) {
@@ -651,13 +1684,32 @@ whileAwesome(count &lt; 5) {
   println("still awesome")
   count += 1
 }</programlisting>
-<para id="para_what_would_happen_if_we_remove">What would happen if we removed the arrow between <literal>conditional:</literal> and <literal>Boolean</literal>? The expression <literal>count &lt; 5</literal> would be evaluated to <literal>true</literal> before being passed into our custom while loop, and the message “still awesome” would be printed to the console indefinitely. By delaying evaluation until <literal>conditional</literal> is called inside our function with a by-name parameter, we get the behavior we expect.</para>
-</sect1>
-<sect1 id="LazyVals">
-<title>Lazy Vals</title>
-<para id="para_in_overridingfieldsintraits_">In <xref linkend="OverridingFieldsInTraits"/> in <xref linkend="AdvancedObjectOrientedProgramming"/>, we showed several scenarios where the order of initialization for fields in override scenarios can be problematic. We discussed one solution, <emphasis>pre-initialized fields</emphasis>. Now we discuss the other solution we mentioned previously, <literal>lazy vals</literal>.</para>
-<para id="para_here_is_ui3_vetoable_clicks_">Here is that example rewritten with a <literal>lazy val</literal>.</para>
-<programlisting linenumbering="unnumbered">// code-examples/FP/overrides/trait-lazy-init-val-script.scala
+
+    <para id="para_what_would_happen_if_we_remove">What would happen if we
+    removed the arrow between <literal>conditional:</literal> and
+    <literal>Boolean</literal>? The expression <literal>count &lt; 5</literal>
+    would be evaluated to <literal>true</literal> before being passed into our
+    custom while loop, and the message “still awesome” would be printed to the
+    console indefinitely. By delaying evaluation until
+    <literal>conditional</literal> is called inside our function with a
+    by-name parameter, we get the behavior we expect.</para>
+  </sect1>
+
+  <sect1 id="LazyVals">
+    <title>Lazy Vals</title>
+
+    <para id="para_in_overridingfieldsintraits_">In <xref
+    linkend="OverridingFieldsInTraits" /> in <xref
+    linkend="AdvancedObjectOrientedProgramming" />, we showed several
+    scenarios where the order of initialization for fields in override
+    scenarios can be problematic. We discussed one solution,
+    <emphasis>pre-initialized fields</emphasis>. Now we discuss the other
+    solution we mentioned previously, <literal>lazy vals</literal>.</para>
+
+    <para id="para_here_is_ui3_vetoable_clicks_">Here is that example
+    rewritten with a <literal>lazy val</literal>:</para>
+
+    <programlisting linenumbering="unnumbered">// code-examples/FP/overrides/trait-lazy-init-val-script.scala
 
 trait AbstractT2 {
   println("In AbstractT2:")
@@ -673,37 +1725,133 @@ val c2d = new AbstractT2 {
 
 println("Using c2d:")
 println("c2d.value = "+c2d.value+", inverse = "+c2d.inverse)</programlisting>
-<para id="para_the_is_the_output_of_the_scrip">The is the output of the script.</para>
-<screen>In AbstractT2:
+
+    <para id="para_the_is_the_output_of_the_scrip">The is the output of the
+    script:</para>
+
+    <screen>In AbstractT2:
 In c2d:
 Using c2d:
 initializing inverse:
 c2d.value = 10, inverse = 0.1</screen>
-<para id="para_as_before_we_are_using_an_ano">As before, we are using an anonymous inner class that implicitly extends the trait. The body of the class, which initializes <literal>value</literal>, is evaluated <emphasis>after</emphasis> the trait’s body. However, note that <literal>inverse</literal> is declared <literal>lazy</literal>, which means that the right-hand side will be evaluated only when <literal>inverse</literal> is actually <emphasis>used</emphasis>. In this case, that happens in the last <literal>println</literal> statement. Only then is <literal>inverse</literal> initialized, using <literal>value</literal>, which is properly initialized at this point.</para>
-<para id="para_try_uncommenting_the_println_">Try uncommenting the <literal>println</literal> statement at the end of the <literal>AbstractT2</literal> body. What happens now?</para>
-<screen>In AbstractT2:
+
+    <para id="para_as_before_we_are_using_an_ano">As before, we are using an
+    anonymous inner class that implicitly extends the trait. The body of the
+    class, which initializes <literal>value</literal>, is evaluated
+    <emphasis>after</emphasis> the trait’s body. However, note that
+    <literal>inverse</literal> is declared <literal>lazy</literal>, which
+    means that the right-hand side will be evaluated only when
+    <literal>inverse</literal> is actually <emphasis>used</emphasis>. In this
+    case, that happens in the last <literal>println</literal> statement. Only
+    then is <literal>inverse</literal> initialized, using
+    <literal>value</literal>, which is properly initialized at this
+    point.</para>
+
+    <para id="para_try_uncommenting_the_println_">Try uncommenting the
+    <literal>println</literal> statement at the end of the
+    <literal>AbstractT2</literal> body. What happens now?</para>
+
+    <screen>In AbstractT2:
 initializing inverse:
 AbstractT2: value = 0, inverse = Infinity
 In c2d:
 Using c2d:
 c2d.value = 10, inverse = Infinity</screen>
-<para id="para_this_println_forces_inverse">This <literal>println</literal> forces <literal>inverse</literal> to be evaluated inside the body of <literal>AbstractT2</literal>, before <literal>value</literal> is initialized by the class body, thereby reproducing the problem we had before.</para>
-<para id="para_this_example_raises_an_importa">This example raises an important point; if other <literal>val</literal>’s use the <literal>lazy val</literal> in the same class or trait body, they should be declared <literal>lazy</literal>, too. Also, watch out for function calls in the body that use the <literal>lazy val</literal>.</para>
-<tip id="para_tip_if_a_val_is_lazy_mak"><para>If a <literal>val</literal> is <literal>lazy</literal>, make sure all uses of the <literal>val</literal> are also lazy!</para></tip>
-<para id="para_so_how_is_a_lazy_val_differ">So, how is a <literal>lazy val</literal> different from a method call? In a method call, the body is executed <emphasis>every</emphasis> time the method in invoked. For a <literal>lazy val</literal>, the initialization “body” is evaluated only once, when the variable is used for the first time. This one-time evaluation makes little sense for a mutable field. Therefore, the <literal>lazy</literal> keyword is not allowed on <literal>var</literal>’s. (They can’t really make use of it anyway.)</para>
-<para id="para_use_lazy_val_s_for_costly_co">You can also use <literal>lazy val</literal>’s to avoid costly initializations that you may not actually need and to defer initializations that slow down application startup. They work well in constructors, where it’s clear to other programmers that all the one-time heavy lifting for initializing an instance is done in one place.</para>
-<para id="para_another_use_for_laziness_i">Another use for “laziness” is to manage potentially infinite data structures where only a manageable subset of the data will actually be used. In fact, mathematic notation is inherently lazy. When we write the Fibonacci sequence, for example, we might write it as an infinite sequence, something like this.</para>
-<screen>Fib = 1, 1, 2, 6, 24, 120, ...</screen>
-<para id="para_some_pure_functional_languages">Some pure functional languages are lazy by default, so they mimic this behavior as closely as possible. This can work without exhausting resources if the user never tries to use more than a finite subset of these values. Scala is not lazy by default, but it does offer support for working with infinite data structures. We’ll address this topic in <xref linkend="InfiniteDataStructuresAndLaziness"/> in <xref linkend="ScalasTypeSystem"/>.</para>
-</sect1>
-<sect1 id="FunctionalComponentAbstractions">
-<title>Recap: Functional Component Abstractions</title>
-<para id="para_when_object_oriented_programmi">When object-oriented programming went mainstream in the late 80’s and early 90’s, there was great hope that it would usher in an era of reusable software components. It didn’t really work out that way, except in some rare cases, like the windowing API’s of various platforms.</para>
-<para id="para_why_did_this_not_happen_there">Why did this not happen? There are certainly many reasons, but a likely source is the fact that simple, source or binary interoperability protocols never materialized that would glue these components together. The richness of object APIs was the very factor that undermined componentization.</para>
-<para id="para_component_models_that_have_suc">Component models that have succeeded are all based on very simple foundations. Integrated circuits (ICs) in electronics plug into buses with 2<superscript>n</superscript> signaling wires that are boolean, either on or off. From that very simple protocol, the most explosive growth of any industry in human history was born.</para>
-<para id="para_http_is_another_good_example_">HTTP is another good example. With a handful of message types and a very simple standard for message content, it set the stage for the Internet revolution. RESTful web services built on top of HTTP are also proving successful as components, but they are just complex enough that care is required to ensure that they work successful.</para>
-<para id="para_so_is_there_hope_for_a_binary">So, is there hope for a binary or source-level component model? It probably won’t be object-oriented, as we’ve seen. Rather, it could be more functional.</para>
-<para id="para_components_should_interoperate">Components should interoperate by exchanging a few immutable data structures, <emphasis>e.g.,</emphasis> lists and maps, that carry both data and “commands”. Such a component model would have the simplicity necessary for success, but the richness required to perform real work. Notice how that sounds a lot like HTTP and REST.</para>
-<para id="para_in_fact_the_actor_model_has_m">In fact, the Actor model has many of these qualities, as we’ll explore in the next chapter.</para>
-</sect1>
+
+    <para id="para_this_println_forces_inverse">This
+    <literal>println</literal> forces <literal>inverse</literal> to be
+    evaluated inside the body of <literal>AbstractT2</literal>, before
+    <literal>value</literal> is initialized by the class body, thereby
+    reproducing the problem we had before.</para>
+
+    <para id="para_this_example_raises_an_importa">This example raises an
+    important point; if other <literal>val</literal>’s use the <literal>lazy
+    val</literal> in the same class or trait body, they should be declared
+    <literal>lazy</literal>, too. Also, watch out for function calls in the
+    body that use the <literal>lazy val</literal>.</para>
+
+    <tip id="para_tip_if_a_val_is_lazy_mak">
+      <para>If a <literal>val</literal> is <literal>lazy</literal>, make sure
+      all uses of the <literal>val</literal> are also lazy!</para>
+    </tip>
+
+    <para id="para_so_how_is_a_lazy_val_differ">So, how is a <literal>lazy
+    val</literal> different from a method call? In a method call, the body is
+    executed <emphasis>every</emphasis> time the method in invoked. For a
+    <literal>lazy val</literal>, the initialization “body” is evaluated only
+    once, when the variable is used for the first time. This one-time
+    evaluation makes little sense for a mutable field. Therefore, the
+    <literal>lazy</literal> keyword is not allowed on
+    <literal>var</literal>’s. (They can’t really make use of it
+    anyway.)</para>
+
+    <para id="para_use_lazy_val_s_for_costly_co">You can also use
+    <literal>lazy val</literal>’s to avoid costly initializations that you may
+    not actually need and to defer initializations that slow down application
+    startup. They work well in constructors, where it’s clear to other
+    programmers that all the one-time heavy lifting for initializing an
+    instance is done in one place.</para>
+
+    <para id="para_another_use_for_laziness_i">Another use for “laziness” is
+    to manage potentially infinite data structures where only a manageable
+    subset of the data will actually be used. In fact, mathematic notation is
+    inherently lazy. When we write the Fibonacci sequence, for example, we
+    might write it as an infinite sequence, something like this:</para>
+
+    <screen>Fib = 1, 1, 2, 6, 24, 120, ...</screen>
+
+    <para id="para_some_pure_functional_languages">Some pure functional
+    languages are lazy by default, so they mimic this behavior as closely as
+    possible. This can work without exhausting resources if the user never
+    tries to use more than a finite subset of these values. Scala is not lazy
+    by default, but it does offer support for working with infinite data
+    structures. We’ll address this topic in <xref
+    linkend="InfiniteDataStructuresAndLaziness" /> in <xref
+    linkend="ScalasTypeSystem" />.</para>
+  </sect1>
+
+  <sect1 id="FunctionalComponentAbstractions">
+    <title>Recap: Functional Component Abstractions</title>
+
+    <para id="para_when_object_oriented_programmi">When object-oriented
+    programming went mainstream in the late 80’s and early 90’s, there was
+    great hope that it would usher in an era of reusable software components.
+    It didn’t really work out that way, except in some rare cases, like the
+    windowing API’s of various platforms.</para>
+
+    <para id="para_why_did_this_not_happen_there">Why did this not happen?
+    There are certainly many reasons, but a likely source is the fact that
+    simple, source or binary interoperability protocols never materialized
+    that would glue these components together. The richness of object APIs was
+    the very factor that undermined componentization.</para>
+
+    <para id="para_component_models_that_have_suc">Component models that have
+    succeeded are all based on very simple foundations. Integrated circuits
+    (ICs) in electronics plug into buses with 2<superscript>n</superscript>
+    signaling wires that are boolean, either on or off. From that very simple
+    protocol, the most explosive growth of any industry in human history was
+    born.</para>
+
+    <para id="para_http_is_another_good_example_">HTTP is another good
+    example. With a handful of message types and a very simple standard for
+    message content, it set the stage for the Internet revolution. RESTful web
+    services built on top of HTTP are also proving successful as components,
+    but they are just complex enough that care is required to ensure that they
+    work successful.</para>
+
+    <para id="para_so_is_there_hope_for_a_binary">So, is there hope for a
+    binary or source-level component model? It probably won’t be
+    object-oriented, as we’ve seen. Rather, it could be more
+    functional.</para>
+
+    <para id="para_components_should_interoperate">Components should
+    interoperate by exchanging a few immutable data structures, e.g., lists
+    and maps, that carry both data and “commands”. Such a component model
+    would have the simplicity necessary for success, but the richness required
+    to perform real work. Notice how that sounds a lot like HTTP and
+    REST.</para>
+
+    <para id="para_in_fact_the_actor_model_has_m">In fact, the Actor model has
+    many of these qualities, as we’ll explore in the next chapter.</para>
+  </sect1>
 </chapter>

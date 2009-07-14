@@ -85,10 +85,10 @@
       powerful metaprogramming, and elegance.</para>
 
       <sidebar>
-        <title>Statically Typed vs. Dynamically Typed Languages</title>
+        <title>Statically Typed Versus Dynamically Typed Languages</title>
 
         <para id="para_one_of_the_fundamental_languag">One of the fundamental
-        language design choices is <emphasis>static vs. dynamic</emphasis>
+        language design choices is <emphasis>static versus dynamic</emphasis>
         typing.</para>
 
         <para id="para_the_word_typing_is_used_in">The word “typing” is used
@@ -96,8 +96,8 @@
         definition that is useful for our purposes.</para>
 
         <blockquote>
-          <attribution>Benjamin C. Pierce <citetitle>Types and Programming
-          Languages (2002)</citetitle></attribution>
+          <attribution>Benjamin C. Pierce, <citetitle>Types and Programming
+          Languages</citetitle> (MIT Press, 2002)</attribution>
 
           <para>A type system is a tractable syntactic method for preserving
           the absence of certain program behaviors by classifying phrases
@@ -110,8 +110,8 @@
         than trying to determine the set of all allowed possibilities. A type
         system is used to catch various errors, like unsupported operations on
         particular data structures, attempting to combine data in an undefined
-        way (<emphasis>e.g.</emphasis>, trying to add an integer to a string),
-        breaking abstractions, <emphasis>etc.</emphasis></para>
+        way (e.g., trying to add an integer to a string), breaking
+        abstractions, etc.</para>
 
         <para id="para_informally_in_static_typing_">Informally, in static
         typing, a <emphasis>variable</emphasis> is bound to a particular type
@@ -151,11 +151,11 @@
 
         <para id="para_an__orthogonal__design_conside">An
         <emphasis>orthogonal</emphasis> design consideration is
-        <emphasis>strong vs. weak</emphasis> typing. In strong typing, every
-        variable (for static typing) or value (for dynamic typing) must have
-        an unambiguous type. In weak typing, a specific type is not required.
-        While most languages allow some mixture of strong
-        <emphasis>vs.</emphasis> weak typing, Scala, Java, and Ruby are
+        <emphasis>strong versus weak</emphasis> typing. In strong typing,
+        every variable (for static typing) or value (for dynamic typing) must
+        have an unambiguous type. In weak typing, a specific type is not
+        required. While most languages allow some mixture of strong versus
+        weak typing, Scala, Java, and Ruby are
         <emphasis>predominantly</emphasis> strongly-typed languages. Some
         languages, like C and Perl, are more weakly typed.</para>
       </sidebar>
@@ -165,10 +165,9 @@
       be the best choices for all applications, particularly for very large
       code bases and high-performance applications. There is a longstanding,
       spirited debate in the programming community about the relative merits
-      of dynamic <emphasis>vs.</emphasis> static typing. Many of the points of
-      comparison are somewhat subjective. We won’t go through all the
-      arguments here, but we will offer a few thoughts for
-      consideration.</para>
+      of dynamic versus static typing. Many of the points of comparison are
+      somewhat subjective. We won’t go through all the arguments here, but we
+      will offer a few thoughts for consideration.</para>
 
       <para id="para_optimizing_the_performance_of_">Optimizing the
       performance of a dynamic language is more challenging than for a static
@@ -233,16 +232,16 @@
       and flexible syntax, a sophisticated type system, and idioms that
       promote scalability from small, interpreted scripts to large,
       sophisticated applications. That’s a mouthful, so let’s look at each of
-      those ideas in more detail.</para>
+      those ideas in more detail:</para>
 
       <variablelist id="para_scala_characteristics">
         <varlistentry id="varlistentry-statically-typed">
-          <term>Statically Typed</term>
+          <term>Statically typed</term>
 
           <listitem>
             <para>As we described in the previous section, a statically typed
             language binds the type to a <emphasis>variable</emphasis> for the
-            lifetime of that variable. In contrast <emphasis>dynamically
+            lifetime of that variable. In contrast, <emphasis>dynamically
             typed</emphasis> languages bind the type to the actual
             <emphasis>value</emphasis> referenced by a variable, meaning that
             the type of a <emphasis>variable</emphasis> can change along with
@@ -255,10 +254,10 @@
         </varlistentry>
 
         <varlistentry id="varlistentry-mixed-paradigm-object-oriented-programming">
-          <term>Mixed Paradigm - Object Oriented Programming</term>
+          <term>Mixed paradigm—Object-Oriented Programming</term>
 
           <listitem>
-            <para>Scala fully supports <emphasis>Object Oriented
+            <para>Scala fully supports <emphasis>Object-Oriented
             Programming</emphasis> (OOP). Scala improves upon Java’s support
             for OOP with the addition of <emphasis>traits</emphasis>, a clean
             way of implementing classes using <emphasis>mixin
@@ -280,7 +279,7 @@
         </varlistentry>
 
         <varlistentry id="varlistentry-mixed-paradigm-functional-programming">
-          <term>Mixed Paradigm - Functional Programming</term>
+          <term>Mixed paradigm—Functional Programming</term>
 
           <listitem>
             <para>Scala fully supports <emphasis>Functional
@@ -298,12 +297,11 @@
 
             <para id="para_functions_are_first_class_">Functions are
             “first-class” citizens in FP, meaning they can be assigned to
-            variables, passed to other functions, <emphasis>etc.</emphasis>,
-            just like other values. This feature promotes composition of
-            advanced behavior using primitive operations. Because Scala
-            adheres to the dictum that <emphasis>everything is an
-            object</emphasis>, functions are themselves objects in
-            Scala.</para>
+            variables, passed to other functions, etc., just like other
+            values. This feature promotes composition of advanced behavior
+            using primitive operations. Because Scala adheres to the dictum
+            that <emphasis>everything is an object</emphasis>, functions are
+            themselves objects in Scala.</para>
 
             <para id="para_scala_also_offers__closures__">Scala also offers
             <emphasis>closures</emphasis>, a feature that dynamic languages
@@ -321,7 +319,7 @@
         </varlistentry>
 
         <varlistentry id="varlistentry-a-jvm-and-net-language">
-          <term>A JVM and .NET Language</term>
+          <term>A JVM and .NET language</term>
 
           <listitem>
             <para>While Scala is primarily known as a JVM language, meaning
@@ -336,15 +334,15 @@
             uses clever techniques to map Scala extensions to valid byte-code
             idioms. From Scala, you can easily invoke byte code that
             originated as Java source (for the JVM) or C# source (for .NET).
-            Conversely, you can invoke Scala code from Java, C#,
-            <emphasis>etc.</emphasis>. Running on the JVM and CLR allows the
-            Scala developer to leverage available libraries and to
-            interoperate with other languages hosted on those runtimes.</para>
+            Conversely, you can invoke Scala code from Java, C#, etc.. Running
+            on the JVM and CLR allows the Scala developer to leverage
+            available libraries and to interoperate with other languages
+            hosted on those runtimes.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry id="varlistentry-a-succinct-elegant-and-flexible-syntax">
-          <term>A Succinct, Elegant, and Flexible Syntax</term>
+          <term>A succinct, elegant, and flexible syntax</term>
 
           <listitem>
             <para>Java syntax can be verbose. Scala uses a number of
@@ -364,7 +362,7 @@
         </varlistentry>
 
         <varlistentry id="varlistentry-a-sophisticated-type-system">
-          <term>A Sophisticated Type System</term>
+          <term>A sophisticated type system</term>
 
           <listitem>
             <para>Scala extends the type system of Java with more flexible
@@ -380,7 +378,7 @@
         </varlistentry>
 
         <varlistentry id="varlistentry-scalable-architectures">
-          <term>Scalable - Architectures</term>
+          <term>Scalable—architectures</term>
 
           <listitem>
             <para>Scala is designed to scale from small, interpreted scripts
@@ -401,19 +399,19 @@
         </varlistentry>
 
         <varlistentry id="varlistentry-scalable-performance">
-          <term>Scalable - Performance</term>
+          <term>Scalable—performance</term>
 
           <listitem>
             <para>Because Scala code runs on the JVM and the CLR, it benefits
             from all the performance optimizations provided by those runtimes
             and all the third-party tools that support performance and
             scalability, such as profilers, distributed cache libraries,
-            clustering mechanisms, <emphasis>etc.</emphasis> If you trust
-            Java’s and C#’s performance, you can trust Scala’s performance. Of
-            course, some particular constructs in the language and some parts
-            of the library may perform significantly better or worse than
-            alternative options in other languages. As always, you should
-            profile your code and optimize it when necessary.</para>
+            clustering mechanisms, etc. If you trust Java’s and C#’s
+            performance, you can trust Scala’s performance. Of course, some
+            particular constructs in the language and some parts of the
+            library may perform significantly better or worse than alternative
+            options in other languages. As always, you should profile your
+            code and optimize it when necessary.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -502,14 +500,13 @@
       favorite dynamically-typed language.</para>
 
       <para id="para_an_alternative_strategy_is_to_">An alternative strategy
-      is to combine several, simpler languages, <emphasis>e.g.</emphasis>,
-      Java for object-oriented code and Erlang for functional, concurrent
-      code. Such a decomposition can work, but only if your system decomposes
-      cleanly into such discrete parts and your team can manage a
-      heterogeneous environment. Scala is attractive for situations where a
-      single, all-in-one language is preferred. That said, Scala code can
-      happily coexist with other languages, especially on the JVM or
-      .NET.</para>
+      is to combine several, simpler languages, e.g., Java for object-oriented
+      code and Erlang for functional, concurrent code. Such a decomposition
+      can work, but only if your system decomposes cleanly into such discrete
+      parts and your team can manage a heterogeneous environment. Scala is
+      attractive for situations where a single, all-in-one language is
+      preferred. That said, Scala code can happily coexist with other
+      languages, especially on the JVM or .NET.</para>
     </sect2>
   </sect1>
 
@@ -552,7 +549,7 @@
     in a terminal window, and install Scala with the
     <userinput>java</userinput> command. Assuming you downloaded
     <literal>scala-2.8.0.final-installer.jar</literal>, run the following
-    command, which will guide you through the process.</para>
+    command, which will guide you through the process:</para>
 
     <screen>java -jar scala-2.8.0.final-installer.jar</screen>
 
@@ -571,13 +568,12 @@
       <para>On Unix, Linux, and Mac OS X systems, you will need to run this
       command as the <literal>root</literal> user or using the
       <literal>sudo</literal> command if you want to install Scala under a
-      system directory, <emphasis>e.g.</emphasis>,
-      <replaceable>scala-home</replaceable> <literal>=
+      system directory, e.g., <replaceable>scala-home</replaceable> <literal>=
       /usr/local/scala-2.8.0.final</literal>.</para>
     </note>
 
     <para id="para_as_an_alternative_you_can_dow">As an alternative, you can
-    download and expand the compressed tar file (<emphasis>e.g.,</emphasis>
+    download and expand the compressed tar file (e.g.,
     <literal>scala-2.8.0.final.tgz</literal>) or zip file
     (<literal>scala-2.8.0.final.zip</literal>). On Unix-like systems, expand
     the compressed file into a location of your choosing. Afterwards, add the
@@ -588,7 +584,7 @@
     <literal>PATH</literal>.</para>
 
     <para id="para_to_test_your_installation_run">To test your installation,
-    run the following command on a command line.</para>
+    run the following command on a command line:</para>
 
     <screen>scala -version</screen>
 
@@ -643,7 +639,7 @@
     compressed file of the API documentation for local browsing using the
     appropriate link on the downloads page, <ulink
     url="http://www.scala-lang.org/downloads"></ulink>, or you can install it
-    with the <userinput>sbaz</userinput> package tool, as follows.</para>
+    with the <userinput>sbaz</userinput> package tool, as follows:</para>
 
     <screen>sbaz install scala-devel-docs</screen>
 
@@ -689,13 +685,13 @@ scala&gt;</screen>
     Loop</emphasis>.</para>
 
     <para id="para_type_in_the_following_two_line">Type in the following two
-    lines of code.</para>
+    lines of code:</para>
 
     <screen>val book = "Programming Scala"
 println(book)</screen>
 
     <para id="para_the_actual_input_and_output_sh">The actual input and output
-    should look like the following.</para>
+    should look like the following:</para>
 
     <screen>scala&gt; val book = "Programming Scala"
 book: java.lang.String = Programming Scala
@@ -729,7 +725,7 @@ scala&gt;</screen>
     <para id="para_in_your_text_editor_of_choice_">In your text editor of
     choice, save the Scala code in the following example to a file named
     <replaceable>upper1-script.scala</replaceable> in a directory of your
-    choosing.</para>
+    choosing:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/upper1-script.scala
 
@@ -747,14 +743,13 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_by_the_way_that_s_a_comment_o">By the way, that’s a comment
     on the first line (with the name of the source file for the code example).
-    Scala follows the same comment conventions as Java, C#, C++,
-    <emphasis>etc</emphasis>. A <literal>// comment</literal> goes to the end
-    of a line, while a <literal>/* comment */</literal> can cross line
-    boundaries.</para>
+    Scala follows the same comment conventions as Java, C#, C++, etc. A
+    <literal>// comment</literal> goes to the end of a line, while a
+    <literal>/* comment */</literal> can cross line boundaries.</para>
 
     <para id="para_to_run_this_script_go_to_a_co">To run this script, go to a
     command window, change to the same directory and run the following
-    command.</para>
+    command:</para>
 
     <screen>scala upper1-script.scala</screen>
 
@@ -765,7 +760,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <programlisting linenumbering="unnumbered">Array(A, FIRST, SCALA, PROGRAM)</programlisting>
 
     <sidebar>
-      <title>Interpreting vs. Compiling and Running Scala Code</title>
+      <title>Interpreting Versus Compiling and Running Scala Code</title>
 
       <para id="para_to_summarize_if_you_type_sca">To summarize, if you type
       <userinput>scala</userinput> on the command line without a file
@@ -781,9 +776,9 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
 
       <para id="para_there_are_some_subtleties_you_">There are some subtleties
       you’ll need to understand about the limitations of using the interpreter
-      modes <emphasis>vs.</emphasis> separate compilation and execution steps.
-      We discuss these subtleties in <xref linkend="CommandLineTools" /> in
-      <xref linkend="ScalaToolsLibs" />.</para>
+      modes versus separate compilation and execution steps. We discuss these
+      subtleties in <xref linkend="CommandLineTools" /> in <xref
+      linkend="ScalaToolsLibs" />.</para>
 
       <para id="para_whenever_we_refer_to__executin">Whenever we refer to
       <emphasis>executing a script</emphasis>, we mean running a Scala source
@@ -824,10 +819,10 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <note id="para_note_when_explicit_type_infor">
       <para>When explicit type information for variables is written in the
       code, these <emphasis>type annotations</emphasis> follow the colon after
-      the item name (<emphasis>i.e.,</emphasis> Pascal-like syntax). Why
-      doesn’t Scala follow Java conventions? Recall that type information is
-      often <emphasis>inferred</emphasis> in Scala (unlike Java), meaning we
-      don’t always show type annotations explicitly. Compared to Java’s
+      the item name (i.e., Pascal-like syntax). Why doesn’t Scala follow Java
+      conventions? Recall that type information is often
+      <emphasis>inferred</emphasis> in Scala (unlike Java), meaning we don’t
+      always show type annotations explicitly. Compared to Java’s
       <literal>type item</literal> convention, the <literal>item:
       type</literal> convention is easier for the compiler to analyze
       unambiguously when you omit the colon and the type annotation and just
@@ -844,13 +839,12 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     uses angle brackets <literal>&lt;…&gt;</literal>.</para>
 
     <note id="para_note_scala_allows_angle_brack">
-      <para>Scala allows angle brackets to be used in method names,
-      <emphasis>e.g.,</emphasis> naming a “less than” method
-      <literal>&lt;</literal> is common. So, to avoid ambiguities, Scala uses
-      square brackets instead for parameterized types. They can’t be used in
-      method names. Allowing <literal>&lt;</literal> and
-      <literal>&gt;</literal> in method names is why Scala doesn’t follow
-      Java’s convention for angle brackets.</para>
+      <para>Scala allows angle brackets to be used in method names, e.g.,
+      naming a “less than” method <literal>&lt;</literal> is common. So, to
+      avoid ambiguities, Scala uses square brackets instead for parameterized
+      types. They can’t be used in method names. Allowing
+      <literal>&lt;</literal> and <literal>&gt;</literal> in method names is
+      why Scala doesn’t follow Java’s convention for angle brackets.</para>
     </note>
 
     <para id="para_the_body_of_the_upper_method">The body of the
@@ -871,11 +865,10 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <emphasis>lambdas</emphasis>, <emphasis>closures</emphasis>,
     <emphasis>blocks</emphasis>, or <emphasis>procs</emphasis> in other
     languages. In Java, you would have to use an anonymous inner class here
-    that implements a method defined by an interface,
-    <emphasis>etc.</emphasis></para>
+    that implements a method defined by an interface, etc.</para>
 
     <para id="para_in_this_case_the_function_lit">In this case, we passed in
-    the following function literal.</para>
+    the following function literal:</para>
 
     <programlisting linenumbering="unnumbered">(s:String) =&gt; s.toUpperCase()</programlisting>
 
@@ -888,8 +881,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <emphasis>expression</emphasis> in a function is the return value,
     although you can have <literal>return</literal> statements elsewhere, too.
     The <literal>return</literal> keyword is optional here and it is rarely
-    used, except when returning out of the middle of a block
-    (<emphasis>e.g.,</emphasis> in an <literal>if</literal> statement).</para>
+    used, except when returning out of the middle of a block (e.g., in an
+    <literal>if</literal> statement).</para>
 
     <note id="para_note_the_value_of_the_last_ex">
       <para>The value of the last expression is the default return value of a
@@ -915,7 +908,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_we_can_actually_simplify_this_">We can actually simplify
     our script even further. Consider this simplified version of the
-    script.</para>
+    script:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/upper2-script.scala
 
@@ -962,12 +955,12 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_we_have_also_exploited_a_short">We have also exploited a
     short-hand for the function literal. Previously we wrote it as
-    follows.</para>
+    follows:</para>
 
     <programlisting linenumbering="unnumbered">(s:String) =&gt; s.toUpperCase()</programlisting>
 
     <para id="para_we_can_shorten_it_to_the_follo">We can shorten it to the
-    following expression.</para>
+    following expression:</para>
 
     <programlisting linenumbering="unnumbered">_.toUpperCase()</programlisting>
 
@@ -999,7 +992,7 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_let_s_do_one_last__refactoring">Let’s do one last
     <emphasis>refactoring</emphasis>; let’s convert the script into a
-    compiled, command-line tool.</para>
+    compiled, command-line tool:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/upper3.scala
 
@@ -1022,14 +1015,13 @@ object Upper {
       <literal>object</literal>. (In Java, <literal>main</literal> must be a
       <literal>static</literal> method in a <literal>class</literal>.) The
       command line arguments for the application are passed to
-      <literal>main</literal> in an array of strings,
-      <emphasis>e.g.</emphasis>, <literal>args:
+      <literal>main</literal> in an array of strings, e.g., <literal>args:
       Array[String]</literal>.</para>
     </note>
 
     <para id="para_the_first_line_inside_the_mai">The first line inside the
     <literal>main</literal> method uses the same short-hand notation for
-    <literal>map</literal> that we just examined.</para>
+    <literal>map</literal> that we just examined:</para>
 
     <programlisting linenumbering="unnumbered">args.map(_.toUpperCase())...</programlisting>
 
@@ -1038,7 +1030,7 @@ object Upper {
     with <literal>foreach</literal>. We use a <literal>_</literal> placeholder
     shortcut again in another <emphasis>function literal</emphasis> that we
     pass to <literal>foreach</literal>. In this case, each string in the
-    collection is passed as an argument to <literal>printf</literal>.</para>
+    collection is passed as an argument to <literal>printf</literal>:</para>
 
     <programlisting linenumbering="unnumbered">...foreach(printf("%s ",_))</programlisting>
 
@@ -1053,7 +1045,7 @@ object Upper {
 
     <para id="para_this_time_you_must_first_comp">This time, you must first
     compile the code to a JVM <literal>.class</literal> file using
-    <userinput>scalac</userinput>.</para>
+    <userinput>scalac</userinput>:</para>
 
     <screen>scalac upper3.scala</screen>
 
@@ -1076,13 +1068,13 @@ object Upper {
     </note>
 
     <para id="para_now_you_can_execute_this_comm">Now, you can execute this
-    command for any list of strings. Here is an example.</para>
+    command for any list of strings. Here is an example:</para>
 
     <screen>scala -cp . Upper Hello World!</screen>
 
     <para id="para_the_cp_option_adds_he_cur">The <userinput>-cp .</userinput>
     option adds the current directory to the search “class path”. You should
-    get the following output.</para>
+    get the following output:</para>
 
     <screen> HELLO WORLD!</screen>
 
@@ -1117,7 +1109,7 @@ object Upper {
     an actor for a display subsystem.</para>
 
     <para id="para_to_begin_we_define_a_shape_">To begin, we define a
-    <literal>Shape</literal> class hierarchy.</para>
+    <literal>Shape</literal> class hierarchy:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes.scala
 
@@ -1143,7 +1135,7 @@ package shapes {
   }
 
   class Triangle(val point1: Point, val point2: Point, val point3: Point)
-        extends Shape() {
+        extends Shape {
     def draw() = println("Triangle.draw: " + this)
     override def toString() =
       "Triangle(" + point1 + "," + point2 + "," + point3 + ")"
@@ -1169,12 +1161,12 @@ package shapes {
     <literal>val</literal> keyword before each parameter declaration, they are
     automatically converted to read-only fields with the same names with
     public reader methods of the same name. That is, when you instantiate a
-    <literal>Point</literal> instance, <emphasis>e.g.</emphasis>,
-    <literal>point</literal>, you can read the fields using
-    <literal>point.x</literal> and <literal>point.y</literal>. If you want
-    <emphasis>mutable</emphasis> fields, then use the keyword
-    <literal>var</literal>. We’ll explore variable declarations and the
-    <literal>val</literal> and <literal>var</literal> keywords in <xref
+    <literal>Point</literal> instance, e.g., <literal>point</literal>, you can
+    read the fields using <literal>point.x</literal> and
+    <literal>point.y</literal>. If you want <emphasis>mutable</emphasis>
+    fields, then use the keyword <literal>var</literal>. We’ll explore
+    variable declarations and the <literal>val</literal> and
+    <literal>var</literal> keywords in <xref
     linkend="VariableDeclarationsAndDefinitions" /> in <xref
     linkend="TypeLessDoMore" />.</para>
 
@@ -1201,6 +1193,12 @@ package shapes {
     abstract methods in Java and C#. (See <xref linkend="OverridingMembers" />
     in <xref linkend="AdvancedObjectOrientedProgramming" /> for more
     details.)</para>
+
+    <para>The <literal>draw</literal> method returns <literal>Unit</literal>,
+    which is a type that is roughly equivalent to <literal>void</literal> in
+    C-derived languages like Java, etc. (See <xref
+    linkend="ScalaTypeHierarchy" /> in <xref linkend="ScalaObjectSystem" />
+    for more details.)</para>
 
     <para id="para__circle_is_declared_as_a_conc"><literal>Circle</literal> is
     declared as a concrete subclass of <literal>Shape</literal>. It defines
@@ -1230,15 +1228,15 @@ package shapes {
     <note id="para_note_of_course_in_a_real_app">
       <para>Of course, in a real application, you would not implement drawing
       in “domain model” classes like this, since the implementations would
-      depend on details like the operating system platform, graphics API,
-      <emphasis>etc.</emphasis> We will see a better design approach when we
-      discuss <emphasis>traits</emphasis> in <xref linkend="Traits" />.</para>
+      depend on details like the operating system platform, graphics API, etc.
+      We will see a better design approach when we discuss
+      <emphasis>traits</emphasis> in <xref linkend="Traits" />.</para>
     </note>
 
     <para id="para_now_that_we_have_defined_our_s">Now that we have defined
     our shapes types, let’s return to actors. We define an
     <literal>Actor</literal> that receives “messages” that are shapes to
-    draw.</para>
+    draw:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes-actor.scala
 
@@ -1338,7 +1336,7 @@ package shapes {
     polymorphic operation.</para>
 
     <sidebar>
-      <title>Pattern Matching vs. Polymorphism</title>
+      <title>Pattern Matching versus Polymorphism</title>
 
       <para id="para__pattern_matching__plays_a_cen"><emphasis>Pattern
       matching</emphasis> plays a central role in functional programming just
@@ -1354,7 +1352,7 @@ package shapes {
     </sidebar>
 
     <para id="para_finally_here_is_a_script_that">Finally, here is a script
-    that uses the <literal>ShapeDrawingActor</literal> actor.</para>
+    that uses the <literal>ShapeDrawingActor</literal> actor:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes-actor-script.scala
 
@@ -1397,7 +1395,7 @@ ShapeDrawingActor ! "exit"</programlisting>
     details) or you can create them yourself.</para>
 
     <para id="para_use_the_following_command_to_c">Use the following command
-    to compile the files.</para>
+    to compile the files:</para>
 
     <screen> scalac shapes.scala shapes-actor.scala</screen>
 
@@ -1408,12 +1406,12 @@ ShapeDrawingActor ! "exit"</programlisting>
     file names and locations must conform to the JVM requirements.</para>
 
     <para id="para_now_you_can_run_the_script_to_">Now you can run the script
-    to see the actor in action.</para>
+    to see the actor in action:</para>
 
     <screen> scala -cp . shapes-actor-script.scala</screen>
 
     <para id="para_you_should_see_the_following_o">You should see the
-    following output.</para>
+    following output:</para>
 
     <screen>Circle.draw: Circle(Point(0.0,0.0),1.0)
 Rectangle.draw: Rectangle(Point(0.0,0.0),2.0,5.0)

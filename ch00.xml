@@ -105,9 +105,8 @@
 
           <listitem>
             <para>Files that end in <literal>-script.scala</literal> can be
-            run on a command line using <userinput>scala</userinput>,
-            <emphasis>e.g.,</emphasis> <userinput>scala
-            foo-script.scala</userinput>. You can also start
+            run on a command line using <userinput>scala</userinput>, e.g.,
+            <userinput>scala foo-script.scala</userinput>. You can also start
             <userinput>scala</userinput> in the interpreter mode (when you
             don’t specify a script file) and load any script file in the
             interpreter using the <literal>:load filename</literal>
