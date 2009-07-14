@@ -60,4 +60,13 @@ Tools, Libraries:
 - Example command line starting "java -classpath .:aspectj-home/lib/aspectjrt.jar:../lib/scala-library.jar " doesn't wrap properly.
 - Same problem several sections later. 
 - IntelliJ Section. Delete last sentence in "To use the plugin, you must use IntelliJ 8.0.X or later. Consider using the most recent "EAP" build for the latest feature updates. You must also have the Scala command-line SDK installed, as discussed in Section 1.2 in Chapter 1." That is, "You must also ..."
-- 
+
+
+sent on 7/14
+
+Chapter 2, "Type Less, Do More": Last word in the following callout Note:
+
+The var and val keywords only specify if the reference can be changed to refer to a different object (var) or not (val). They don't specify whether or not the object they reference is mutability.
+
+The var and val keywords only specify if the reference can be changed to refer to a different object (var) or not (val). They don't specify whether or not the object they reference is mutable.
+
