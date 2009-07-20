@@ -44,14 +44,18 @@
     for method and type names, variables, etc. For the precise details, see
     <link linkend="ScalaSpec2009"
     xrefstyle="select:nopage">[ScalaSpec2009]</link>. Scala allows all the
-    printable ASCII characters, such as letters, digits, the underscore ‘_’,
-    and the dollar sign ‘$’, with the exceptions of the “parenthetical”
-    characters, ‘(’, ‘)’, ‘[’, ‘]’, ‘{’, ‘}’, and the “delimiter” characters
-    ‘`’, ‘’’, ‘'’, ‘"’, ‘.’, ‘;’, and ‘,’. Scala allows the other characters
-    between \u0020-\u007F that are not in the sets above, such as mathematical
-    symbols and “other” symbols. These remaining characters are called
+    printable ASCII characters, such as letters, digits, the underscore
+    <literal>_</literal>, and the dollar sign <literal>$</literal>, with the
+    exceptions of the “parenthetical” characters, <literal>(</literal>,
+    <literal>)</literal>, <literal>[</literal>, <literal>]</literal>,
+    <literal>{</literal>, <literal>}</literal>, and the “delimiter” characters
+    <literal>`</literal>, <literal>’</literal>, <literal>'</literal>,
+    <literal>"</literal>, <literal>.</literal>, <literal>;</literal>, and
+    <literal>,</literal>. Scala allows the other characters between
+    \u0020–\u007F that are not in the sets above, such as mathematical symbols
+    and “other” symbols. These remaining characters are called
     <emphasis>operator characters</emphasis> and they include characters such
-    as ‘/’, ‘&lt;’, etc.</para>
+    as <literal>/</literal>, <literal>&lt;</literal>, etc.</para>
 
     <variablelist id="para_identifier_rules">
       <varlistentry id="varlistentry-reserved-words-can-8217-t-be-used">
@@ -62,14 +66,14 @@
           identifiers. We listed the reserved words in <xref
           linkend="ReservedWords" /> in <xref linkend="TypeLessDoMore" />.
           Recall that some of them are combinations of operator and
-          punctuation characters. For example, a single underscore (‘_’) is a
-          reserved word!</para>
+          punctuation characters. For example, a single underscore
+          (<literal>_</literal>) is a reserved word!</para>
         </listitem>
       </varlistentry>
 
       <varlistentry id="varlistentry-plain-identifiers-combinations-of-letters-digits-8216-8217-8216-_-8217-and-operators">
-        <term>Plain identifiers—combinations of letters, digits, ‘$’, ‘_’, and
-        operators</term>
+        <term>Plain identifiers—combinations of letters, digits,
+        <literal>$</literal>, <literal>_</literal>, and operators</term>
 
         <listitem>
           <para>Like Java and many languages, a <emphasis>plain
@@ -240,35 +244,35 @@ List(1, 2, 3, 4) filter isEven foreach println</programlisting>
         </listitem>
 
         <listitem>
-          <para>|</para>
+          <para><literal>|</literal></para>
         </listitem>
 
         <listitem>
-          <para>^</para>
+          <para><literal>^</literal></para>
         </listitem>
 
         <listitem>
-          <para>&amp;</para>
+          <para><literal>&amp;</literal></para>
         </listitem>
 
         <listitem>
-          <para>&lt; &gt;</para>
+          <para><literal>&lt; &gt;</literal></para>
         </listitem>
 
         <listitem>
-          <para>= !</para>
+          <para><literal>= !</literal></para>
         </listitem>
 
         <listitem>
-          <para>:</para>
+          <para><literal>:</literal></para>
         </listitem>
 
         <listitem>
-          <para>+ -</para>
+          <para><literal>+ -</literal></para>
         </listitem>
 
         <listitem>
-          <para>* / %</para>
+          <para><literal>* / %</literal></para>
         </listitem>
 
         <listitem>
@@ -282,7 +286,7 @@ List(1, 2, 3, 4) filter isEven foreach println</programlisting>
 
       <para id="para_since_042_and_have_the_sa">Since * and / have the same
       precedence, the two lines in the following <userinput>scala</userinput>
-      session behave the same.</para>
+      session behave the same:</para>
 
       <programlisting linenumbering="unnumbered">scala&gt; 2.0 * 4.0 / 3.0 * 5.0
 res2: Double = 13.333333333333332
@@ -296,7 +300,7 @@ res3: Double = 13.333333333333332</programlisting>
       ends with a colon ‘:’ actually binds to the <emphasis>right</emphasis>,
       while all other methods bind to the left. For example, you can prepend
       an element to a <literal>List</literal> using the <literal>::</literal>
-      method (called “cons”, short for “constructor”).</para>
+      method (called “cons”, short for “constructor”):</para>
 
       <programlisting linenumbering="unnumbered">scala&gt; val list = List('b', 'c', 'd')
 list: List[Char] = List(b, c, d)
@@ -358,7 +362,7 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     test writing called <emphasis>Behavior-Driven Development</emphasis> <link
     linkend="BDD" xrefstyle="select:nopage">[BDD]</link> using the
     <emphasis>Specs</emphasis> library (see <xref
-    linkend="ScalaSpecs" />).</para>
+    linkend="ScalaSpecs" />):</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Rounding/specs-script.scala
 
@@ -441,7 +445,7 @@ val configFilePath = if (configFile.exists()) {
     <para id="para_what_if_we_forget_the_els">What if we omit the
     <literal>else</literal> clause in the previous example? Typing the code in
     the <userinput>scala</userinput> interpreter will tell us what
-    happens.</para>
+    happens:</para>
 
     <programlisting linenumbering="unnumbered">scala&gt; val configFile = new java.io.File("~/.myapprc")
 configFile: java.io.File = ~/.myapprc
@@ -853,9 +857,10 @@ for (bool &lt;- bools) {
 
       <para id="para_it_looks_just_like_a_c_style_">It looks just like a
       C-style <literal>case</literal> statement, right? The only difference is
-      the last <literal>case</literal> with the underscore ‘_’ wild card. It
-      matches anything not defined in the cases above it, so it serves the
-      same purpose as the <literal>default</literal> keyword in Java and C#
+      the last <literal>case</literal> with the underscore
+      <literal>_</literal> wild card. It matches anything not defined in the
+      cases above it, so it serves the same purpose as the
+      <literal>default</literal> keyword in Java and C#
       <literal>switch</literal> statements.</para>
 
       <para id="para_pattern_matching_is__eager__t">Pattern matching is

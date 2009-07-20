@@ -21,7 +21,7 @@
     shot with the <userinput>scala</userinput> command. If you’ve downloaded
     the example code for the book, many of the smaller examples can be run
     using the <userinput>scala</userinput> command, e.g., <literal>scala
-    filename.scala</literal>. See the <literal>README.txt</literal> files in
+    filename.scala</literal>. See the <filename>README.txt</filename> files in
     each chapter’s code examples for more details. See also <xref
     linkend="CommandLineTools" /> in <xref linkend="ScalaToolsLibs" /> for
     more information about using the <userinput>scala</userinput>
@@ -183,11 +183,11 @@ scala&gt;</programlisting>
     <emphasis>methods</emphasis>, which are functions that are members of a
     class. Method <emphasis>definitions</emphasis> start with the
     <literal>def</literal> keyword, followed by optional argument lists, a
-    colon character ‘:’ and the return type of the method, an equals sign ‘=’,
-    and finally the method body. Methods are implicitly
-    <emphasis>declared</emphasis> “abstract” if you leave off the equals sign
-    and method body. The enclosing type is then itself abstract. We’ll discuss
-    abstract types in more detail in <xref
+    colon character (<literal>:</literal>) and the return type of the method,
+    an equals sign (<literal>=</literal>), and finally the method body.
+    Methods are implicitly <emphasis>declared</emphasis> “abstract” if you
+    leave off the equals sign and method body. The enclosing type is then
+    itself abstract. We’ll discuss abstract types in more detail in <xref
     linkend="BasicObjectOrientedProgramming" />.</para>
 
     <para id="para_multiple_arg_lists">We said “optional argument lists”,
@@ -482,8 +482,8 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
 
     <para id="para_method_type_inference">Type inference is used for methods,
     too. In most cases, the return type of the method can be inferred, so the
-    ‘:’ and return type can be omitted. However, type annotations are required
-    for all method parameters.</para>
+    <literal>:</literal> and return type can be omitted. However, type
+    annotations are required for all method parameters.</para>
 
     <para id="para_functional_languages_like_hask">Pure functional languages
     like Haskell (see, e.g., <link linkend="OSullivan2009"
@@ -762,7 +762,7 @@ Scala</screen>
       directory where <userinput>scalac</userinput> wrote the class files,
       which defaults to the current directory (i.e., use <literal>-cp
       .</literal>). If you used the build process in the downloaded code
-      examples, the class files are written to the <literal>build</literal>
+      examples, the class files are written to the <filename>build</filename>
       directory (using <userinput>scalac -d build ...</userinput>). In this
       case, use <literal>-cp build</literal>.</para>
     </note>
@@ -839,7 +839,7 @@ map.update("book", "Programming Scala")
     The solution is to parameterize the initial map declaration, e.g.,
     <literal>val map = Map[String, String]()</literal> or to specify initial
     values so the map parameters are inferred, e.g., <literal>val map =
-    Map("Programming" → "Scala")</literal></para>
+    Map("Programming" → "Scala")</literal>.</para>
 
     <para id="para_finally_there_is_a_subtle_beh">Finally, there is a subtle
     behavior with inferred return types that can cause unexpected and baffling
@@ -937,7 +937,7 @@ scala&gt; println(double(2))
               <entry><para>Decimal</para></entry>
 
               <entry><para>0 <emphasis>or</emphasis> a nonzero digit followed
-              zero or more digits (0-9)</para></entry>
+              zero or more digits (0–9)</para></entry>
 
               <entry><para>0, 1, 321</para></entry>
             </row>
@@ -945,8 +945,8 @@ scala&gt; println(double(2))
             <row>
               <entry><para>Hexadecimal</para></entry>
 
-              <entry><para>0x followed by one or more hexadecimal digits (0-9,
-              A-F, a-f)</para></entry>
+              <entry><para>0x followed by one or more hexadecimal digits (0–9,
+              A–F, a–f)</para></entry>
 
               <entry><para>0xFF, 0x1a3b</para></entry>
             </row>
@@ -955,7 +955,7 @@ scala&gt; println(double(2))
               <entry><para>Octal</para></entry>
 
               <entry><para>0 followed by one or more octal digits
-              (0-7)</para></entry>
+              (0–7)</para></entry>
 
               <entry><para>013, 077</para></entry>
             </row>
@@ -1991,7 +1991,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             keyword is usually not required for abstract
             members.</para></entry>
 
-            <entry><para><xref linkend="ClassBasics" />, (<xref
+            <entry><para><xref linkend="ClassBasics" /> (<xref
             linkend="BasicObjectOrientedProgramming" />)</para></entry>
           </row>
 
@@ -2383,7 +2383,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>_</para></entry>
+            <entry><para><literal>_</literal></para></entry>
 
             <entry><para>A place holder, used in imports, function literals,
             etc.</para></entry>
@@ -2392,7 +2392,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>:</para></entry>
+            <entry><para><literal>:</literal></para></entry>
 
             <entry><para>Separator between identifiers and type
             annotations.</para></entry>
@@ -2402,7 +2402,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>=</para></entry>
+            <entry><para><literal>=</literal></para></entry>
 
             <entry><para>Assignment.</para></entry>
 
@@ -2411,7 +2411,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>=&gt;</para></entry>
+            <entry><para><literal>=&gt;</literal></para></entry>
 
             <entry><para>Used in <emphasis>function literals</emphasis> to
             separate the argument list from the function body.</para></entry>
@@ -2421,7 +2421,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>&lt;-</para></entry>
+            <entry><para><literal>&lt;-</literal></para></entry>
 
             <entry><para>Used in <emphasis>for comprehensions</emphasis> in
             <emphasis>generator</emphasis> expressions.</para></entry>
@@ -2431,7 +2431,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>&lt;:</para></entry>
+            <entry><para><literal>&lt;:</literal></para></entry>
 
             <entry><para>Used in <emphasis>parameterized</emphasis> and
             <emphasis>abstract type</emphasis> declarations to constrain the
@@ -2441,7 +2441,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>&lt;%</para></entry>
+            <entry><para><literal>&lt;%</literal></para></entry>
 
             <entry><para>Used in <emphasis>parameterized</emphasis> and
             <emphasis>abstract type</emphasis> “view bounds”
@@ -2451,7 +2451,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>&gt;:</para></entry>
+            <entry><para><literal>&gt;:</literal></para></entry>
 
             <entry><para>Used in <emphasis>parameterized</emphasis> and
             <emphasis>abstract type</emphasis> declarations to constrain the
@@ -2461,7 +2461,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>#</para></entry>
+            <entry><para><literal>#</literal></para></entry>
 
             <entry><para>Used in <emphasis>type
             projections.</emphasis></para></entry>
@@ -2470,7 +2470,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>@</para></entry>
+            <entry><para><literal>@</literal></para></entry>
 
             <entry><para>Marks an
             <emphasis>annotation.</emphasis></para></entry>
@@ -2480,7 +2480,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>⇒</para></entry>
+            <entry><para><literal>⇒</literal></para></entry>
 
             <entry><para>(Unicode \u21D2) same as =&gt;.</para></entry>
 
@@ -2489,7 +2489,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           </row>
 
           <row>
-            <entry><para>←</para></entry>
+            <entry><para><literal>←</literal></para></entry>
 
             <entry><para>(Unicode \u2190) same as &lt;-.</para></entry>
 

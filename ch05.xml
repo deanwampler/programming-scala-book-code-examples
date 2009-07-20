@@ -1090,7 +1090,7 @@ package scopeA {
 7 errors found</screen>
 
       <note id="para_note_lines_6_8_also_won_t_par">
-        <para>Lines 6-8 also won’t parse. Since they are part of the
+        <para>Lines 6–8 also won’t parse. Since they are part of the
         expression that started on line 5, the compiler stopped after the
         first error.</para>
       </note>

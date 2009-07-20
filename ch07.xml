@@ -452,7 +452,7 @@ object Pair {
       Despite the change, <literal>List</literal> is made visible in the
       <literal>scala</literal> package using <literal>package object
       scala</literal>, found in the
-      <literal>src/library/scala/package.scala</literal> file in the version
+      <filename>src/library/scala/package.scala</filename> file in the version
       2.8 source code distribution. Note the file name. It’s not required, but
       it’s a useful convention for package objects. Here is the full package
       object definition (at the time of this writing; it could change before

@@ -1043,10 +1043,11 @@ doubleNumber = ...</screen>
       <para id="para_we_ll_see_that_most_of_the_tok">We can see that most of
       the <emphasis>terminals</emphasis> (the literal strings
       <literal>paycheck</literal>, <literal>for</literal>,
-      <literal>employee</literal>, the characters ‘{’ and ‘}’, etc.) will be
-      “bubble” words, as defined in the previous section. We’ll ignore these
-      after parsing. The ϵ is used to indicate an empty production for
-      <literal>deductItems</literal>, although there may not be any.</para>
+      <literal>employee</literal>, the characters <literal>{</literal> and
+      <literal>}</literal>, etc.) will be “bubble” words, as defined in the
+      previous section. We’ll ignore these after parsing. The ϵ is used to
+      indicate an empty production for <literal>deductItems</literal>,
+      although there may not be any.</para>
 
       <para id="para_we_didn_t_spell_out_the_detail">We didn’t spell out the
       details for decimal numbers, double numbers, and allowed letters in the
@@ -1091,11 +1092,12 @@ doubleNumber = ...</screen>
       how to specify optional (zero or more) repetitions. This expression
       matches a literal ‘{’ character, followed by a
       <literal>deductItem</literal> (another production), followed by zero or
-      more expressions consisting of a literal comma ‘,’ and another
-      <literal>deductItem</literal>, and finally ending with a literal ‘}’
-      character. Sometimes an asterisk is used to indicate repetition zero or
-      more times, e.g., <literal>prod *</literal>. For repetition at least
-      once, <literal>prod +</literal> is sometimes used.</para>
+      more expressions consisting of a literal comma <literal>,</literal> and
+      another <literal>deductItem</literal>, and finally ending with a literal
+      <literal>}</literal> character. Sometimes an asterisk is used to
+      indicate repetition zero or more times, e.g., <literal>prod *</literal>.
+      For repetition at least once, <literal>prod +</literal> is sometimes
+      used.</para>
 
       <para id="para_finally_if_we_had_optional_te">Finally, if we had
       optional items in our grammar, we would enclose them in square brackets,
@@ -1370,17 +1372,17 @@ p.parseAll(p.paycheck, input) match {
       what is the result of a successful parse?</para>
 
       <para id="para_to_see_what_s_returned_compil">To see what’s returned,
-      compile the <literal>PayrollParserCombinatorsV1</literal> file listed at
-      the beginning of this section and invoke the
+      compile the <filename>PayrollParserCombinatorsV1</filename> file listed
+      at the beginning of this section and invoke the
       <userinput>scala</userinput> interpreter with the <literal>-cp</literal>
       option to include the directory where the class files were written (it
-      will be <literal>build</literal> if you used the build process for the
+      will be <filename>build</filename> if you used the build process for the
       code example distribution).</para>
 
       <para id="para_once_in_the_interpreter_enter">Once in the interpreter,
       enter the following expressions after the <literal>scala&gt;</literal>
       prompt. (You can also find this input the
-      <literal>payroll-parser-comb-script.scala</literal> file in the code
+      <filename>payroll-parser-comb-script.scala</filename> file in the code
       example distribution.)</para>
 
       <screen>scala&gt; import scala.util.parsing.combinator._
@@ -1518,9 +1520,9 @@ scala&gt;</screen>
       <literal>toString</literal> returns <literal>List()</literal>.
       Therefore, calling <literal>p.∼.toString</literal> on our outer-most
       type, the one that parameterizes <literal>p.Parser</literal>, returns
-      the string <literal><indexterm>
+      the string<indexterm>
           <primary>"Buck Trends"∼(2∼weeks</primary>
-        </indexterm>"Buck Trends"∼(2∼weeks∼List())</literal>. We’re
+        </indexterm> <literal>"Buck Trends"∼(2∼weeks∼List())</literal>. We’re
       done!</para>
 
       <para id="para_well_not_quite_we_re_still_n">Well, not quite. We’re

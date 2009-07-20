@@ -639,7 +639,13 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
       example below, retrieving a value from a <literal>Future</literal> is as
       straightforward as invoking its <literal>apply</literal> method. Note
       that retrieving a value from a <literal>Future</literal> is a blocking
-      operation.</para>
+      operation:</para>
+
+      <programlisting>// code-examples/Concurrency/future-script.scala 
+import scala.actors.Futures._ 
+
+val eventually = future(5 * 42) 
+println(eventually())</programlisting>
 
       <para id="para_each_actor_in_your_system_shou">Each Actor in your system
       should have clear responsibilities. Don’t use Actors for

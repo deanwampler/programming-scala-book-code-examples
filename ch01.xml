@@ -534,7 +534,7 @@
     to <ulink url="http://www.java.com/en/download/manual.jsp"></ulink> and
     follow the instructions to install Java on your machine.</para>
 
-    <para id="para_the_official_scala_web_site_is">The official Scala web site
+    <para id="para_the_official_scala_web_site_is">The official Scala website
     is <ulink url="http://www.scala-lang.org/"></ulink>. To install Scala, go
     to the downloads page, <ulink
     url="http://www.scala-lang.org/downloads"></ulink>. Download the installer
@@ -543,12 +543,13 @@
 
     <para id="para_the_easiest_installer_to_use_f">The easiest cross-platform
     installer is the <emphasis>IzPack</emphasis> installer. Download the Scala
-    jar file, either <literal>scala-2.7.5.final-installer.jar</literal> or
-    <literal>scala-2.8.0.N-installer.jar</literal>, where <literal>N</literal>
-    is the latest release of the 2.8.0 version. Go to the download directory
-    in a terminal window, and install Scala with the
+    JAR file, either <filename>scala-2.7.5.final-installer.jar</filename> or
+    <filename>scala-2.8.0.N-installer.jar</filename>, where
+    <literal>N</literal> is the latest release of the 2.8.0 version. Go to the
+    download directory in a terminal <phrase
+    role="keep-together">window</phrase>, and install Scala with the
     <userinput>java</userinput> command. Assuming you downloaded
-    <literal>scala-2.8.0.final-installer.jar</literal>, run the following
+    <filename>scala-2.8.0.final-installer.jar</filename>, run the following
     command, which will guide you through the process:</para>
 
     <screen>java -jar scala-2.8.0.final-installer.jar</screen>
@@ -568,19 +569,20 @@
       <para>On Unix, Linux, and Mac OS X systems, you will need to run this
       command as the <literal>root</literal> user or using the
       <literal>sudo</literal> command if you want to install Scala under a
-      system directory, e.g., <replaceable>scala-home</replaceable> <literal>=
-      /usr/local/scala-2.8.0.final</literal>.</para>
+      system directory, e.g., <replaceable>scala-home</replaceable>
+      <filename>= /usr/local/scala-2.8.0.final</filename>.</para>
     </note>
 
     <para id="para_as_an_alternative_you_can_dow">As an alternative, you can
-    download and expand the compressed tar file (e.g.,
-    <literal>scala-2.8.0.final.tgz</literal>) or zip file
-    (<literal>scala-2.8.0.final.zip</literal>). On Unix-like systems, expand
+    download and expand the compressed TAR file (e.g.,
+    <filename>scala-2.8.0.final.tgz</filename>) or ZIP file
+    (<filename>scala-2.8.0.final.zip</filename>). On Unix-like systems, expand
     the compressed file into a location of your choosing. Afterwards, add the
-    <replaceable>scala-home</replaceable><literal>/bin</literal> subdirectory
-    in the new directory to your <literal>PATH</literal>. For example, if you
-    installed into <literal>/usr/local/scala-2.8.0.final</literal>, then add
-    <literal>/usr/local/scala-2.8.0.final/bin</literal> to your
+    <replaceable>scala-home</replaceable><filename>/bin</filename>
+    subdirectory in the new directory to your <literal>PATH</literal>. For
+    example, if you installed into
+    <filename>/usr/local/scala-2.8.0.final</filename>, then add
+    <filename>/usr/local/scala-2.8.0.final/bin</filename> to your
     <literal>PATH</literal>.</para>
 
     <para id="para_to_test_your_installation_run">To test your installation,
@@ -603,7 +605,7 @@
     you have installed Scala! If you get an error message along the lines of
     <literal>scala: command not found</literal>, make sure your environment’s
     <literal>PATH</literal> is set properly to include the correct
-    <literal>bin</literal> directory.</para>
+    <filename>bin</filename> directory.</para>
 
     <note id="para_note_scala_versions_2_7_x_and">
       <para>Scala versions 2.7.X and earlier are compatible with JDK 1.4 and
@@ -637,14 +639,15 @@
 
     <para id="para_you_can_also_download_a_compre">You can also download a
     compressed file of the API documentation for local browsing using the
-    appropriate link on the downloads page, <ulink
-    url="http://www.scala-lang.org/downloads"></ulink>, or you can install it
-    with the <userinput>sbaz</userinput> package tool, as follows:</para>
+    appropriate link on the <ulink
+    url="http://www.scala-lang.org/downloads">downloads page</ulink>, or you
+    can install it with the <userinput>sbaz</userinput> package tool, as
+    follows:</para>
 
     <screen>sbaz install scala-devel-docs</screen>
 
     <para id="para__sbaz_is_installed_in_the_sam"><userinput>sbaz</userinput>
-    is installed in the same <literal>bin</literal> directory as the
+    is installed in the same <filename>bin</filename> directory as the
     <userinput>scala</userinput> and <userinput>scalac</userinput>
     command-line tools. The installed documentation also includes details on
     the scala tool chain (including <userinput>sbaz</userinput>) and code
@@ -724,7 +727,7 @@ scala&gt;</screen>
 
     <para id="para_in_your_text_editor_of_choice_">In your text editor of
     choice, save the Scala code in the following example to a file named
-    <replaceable>upper1-script.scala</replaceable> in a directory of your
+    <filename>upper1-script.scala</filename> in a directory of your
     choosing:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/upper1-script.scala
@@ -768,7 +771,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
       definitions and statements that are evaluated on the fly. If you give
       the command a scala source file argument, it compiles and runs the file
       as a script, as in our <userinput>scala upper1-script.scala</userinput>
-      example. Finally, you can compile scala files separately and execute the
+      example. Finally, you can compile Scala files separately and execute the
       <literal>class</literal> file, as long as it has a
       <literal>main</literal> method, just as you would normally do with the
       <userinput>java</userinput> command. (We’ll show an example
@@ -805,7 +808,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <para id="para_the_upper_method_definition_">The <literal>upper</literal>
     method definition begins on the second line with the
     <literal>def</literal> keyword, followed by an argument list, the return
-    type of the method, an equals sign ‘=’, then the method body.</para>
+    type of the method, an equals sign <literal>=</literal>, then the method
+    body.</para>
 
     <para id="para_the_argument_list_in_parenthes">The argument list in
     parentheses is actually a <emphasis>variable length argument
@@ -848,15 +852,15 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     </note>
 
     <para id="para_the_body_of_the_upper_method">The body of the
-    <literal>upper</literal> method comes after the equals sign ‘=’. Why an
-    equals sign? Why not just curly braces <literal>{…}</literal>, like in
-    Java? Because semicolons, function return types, method arguments lists,
-    and even the curly braces are sometimes omitted, using an equals sign
-    prevents several possible parsing ambiguities. Using an equals sign also
-    reminds us that even functions are values in Scala, which is consistent
-    with Scala’s support of <emphasis>functional programming</emphasis>,
-    described in more detail in <xref
-    linkend="FunctionalProgramming" />.</para>
+    <literal>upper</literal> method comes after the equals sign
+    <literal>=</literal>. Why an equals sign? Why not just curly braces
+    <literal>{…}</literal>, like in Java? Because semicolons, function return
+    types, method arguments lists, and even the curly braces are sometimes
+    omitted, using an equals sign prevents several possible parsing
+    ambiguities. Using an equals sign also reminds us that even functions are
+    values in Scala, which is consistent with Scala’s support of
+    <emphasis>functional programming</emphasis>, described in more detail in
+    <xref linkend="FunctionalProgramming" />.</para>
 
     <para id="para_the_method_body_calls_the_map">The method body calls the
     <literal>map</literal> method on the <literal>strings</literal> array,
@@ -966,11 +970,12 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_because_map_takes_one_argume">Because
     <literal>map</literal> takes one argument, a function, we can use the
-    “placeholder” indicator _ instead of a named parameter. That is, the _
-    acts like an anonymous variable, to which each string will be assigned
-    before <literal>toUpperCase</literal> is called. Note that the
-    <literal>String</literal> type is inferred for us, too. As we will see,
-    Scala uses _ as a “wild card” in several contexts.</para>
+    “placeholder” indicator <literal>_</literal> instead of a named parameter.
+    That is, the <literal>_</literal> acts like an anonymous variable, to
+    which each string will be assigned before <literal>toUpperCase</literal>
+    is called. Note that the <literal>String</literal> type is inferred for
+    us, too. As we will see, Scala uses <literal>_</literal> as a “wild card”
+    in several contexts.</para>
 
     <para id="para_you_can_also_use_this_short_ha">You can also use this
     short-hand syntax in some more complex function literals, as we will see
@@ -1044,18 +1049,18 @@ object Upper {
     <literal>main</literal> adds a final linefeed to the output.</para>
 
     <para id="para_this_time_you_must_first_comp">This time, you must first
-    compile the code to a JVM <literal>.class</literal> file using
+    compile the code to a JVM <filename>.class</filename> file using
     <userinput>scalac</userinput>:</para>
 
     <screen>scalac upper3.scala</screen>
 
     <para id="para_you_should_now_have_a_file_nam">You should now have a file
-    named <literal>Upper.class</literal>, just as if you had just compiled a
+    named <filename>Upper.class</filename>, just as if you had just compiled a
     Java class.</para>
 
     <note id="para_note_you_may_have_noticed_tha">
       <para>You may have noticed that the compiler did not complain when the
-      file was named <literal>upper3.scala</literal> and the
+      file was named <filename>upper3.scala</filename> and the
       <literal>object</literal> was named <literal>Upper</literal>. Unlike
       Java, the file name doesn’t have to match the name of the type with
       <literal>public</literal> scope. (We’ll explore the visibility rules in
@@ -1178,7 +1183,7 @@ package shapes {
     override a concrete method. Unlike C#, you don’t have to use a
     <literal>virtual</literal> keyword on the original concrete method. In
     fact, there is no <literal>virtual</literal> keyword in Scala. As before,
-    we omit the curly braces “{…}” around the body of
+    we omit the curly braces “<literal>{…}</literal>” around the body of
     <literal>toString</literal>, since it has only one expression.</para>
 
     <para id="para__shape_is_an_abstract_class_"><literal>Shape</literal> is
@@ -1263,12 +1268,13 @@ package shapes {
 
     <para id="para_the_first_import_statement_imp">The first import statement
     imports all the types in the <literal>scala.actors</literal> package. In
-    Scala, the underscore _ is used the way the star * is used in Java.</para>
+    Scala, the underscore <literal>_</literal> is used the way the star
+    <literal>*</literal> is used in Java.</para>
 
     <note id="para_note_because_is_a_valid_cha">
-      <para>Because * is a valid character for a function name, it can’t be
-      used as the <literal>import</literal> wild card. Instead, _ is reserved
-      for this purpose.</para>
+      <para>Because <literal>*</literal> is a valid character for a function
+      name, it can’t be used as the <literal>import</literal> wild card.
+      Instead, <literal>_</literal> is reserved for this purpose.</para>
     </note>
 
     <para id="para_all_the_methods_and_public_fie">All the methods and public
@@ -1336,7 +1342,7 @@ package shapes {
     polymorphic operation.</para>
 
     <sidebar>
-      <title>Pattern Matching versus Polymorphism</title>
+      <title>Pattern Matching Versus Polymorphism</title>
 
       <para id="para__pattern_matching__plays_a_cen"><emphasis>Pattern
       matching</emphasis> plays a central role in functional programming just
@@ -1401,7 +1407,7 @@ ShapeDrawingActor ! "exit"</programlisting>
 
     <para id="para_while_the_source_file_names_an">While the source file names
     and locations don’t have to match the file contents, you will notice that
-    the generated class files are written to a <literal>shapes</literal>
+    the generated class files are written to a <filename>shapes</filename>
     directory and there is one class file for each class we defined. The class
     file names and locations must conform to the JVM requirements.</para>
 

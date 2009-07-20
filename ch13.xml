@@ -852,7 +852,7 @@ public class FilePrinterMain {
     <para id="para_these_classes_compile_without_">These classes compile
     without error. You can try them out with the following command (which
     assumes that <literal>FilePrinterMain.java</literal> is in the
-    <literal>annotations</literal> directory, as in the example code
+    <filename>annotations</filename> directory, as in the example code
     distribution):</para>
 
     <screen>scala -cp build FilePrinterMain annotations/FilePrinterMain.java</screen>
@@ -1347,7 +1347,7 @@ stateCapitals.get("North Hinterlandia") match {
     our previous file printing example in <xref linkend="Annotations" />.
     We’ll refactor our <literal>FilePrinter</literal> class and the Java
     driver into a combined script. We’ll address two issues: 1) wrap
-    LineNumberReader.readLine+ with a method that returns an
+    <literal>LineNumberReader.readLine</literal> with a method that returns an
     <literal>Option</literal> instead of <literal>null</literal> and 2) wrap
     checked <literal>IOExceptions</literal> in our own unchecked exception,
     called <literal>ScalaIOException</literal>:</para>
@@ -1402,10 +1402,11 @@ args.foreach { fileName =&gt;
 
     <para id="para_the_scalabufferedreader_clas">The
     <literal>ScalaLineNumberReader</literal> class defines a new method
-    <literal>inputLine</literal> that calls LineNumberReader.readLine+ and
-    pattern matches the result. If <literal>null</literal>, then
-    <literal>None</literal> is returned. Otherwise the line is returned
-    wrapped in a <literal>Some[String]</literal>.</para>
+    <literal>inputLine</literal> that calls
+    <literal>LineNumberReader.readLine</literal> and pattern matches the
+    result. If <literal>null</literal>, then <literal>None</literal> is
+    returned. Otherwise the line is returned wrapped in a
+    <literal>Some[String]</literal>.</para>
 
     <para
     id="para__scalaioexception_is_a_subcla"><literal>ScalaIOException</literal>

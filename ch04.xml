@@ -242,8 +242,8 @@ trait Subject {
       <literal>observers</literal>, using the <literal>foreach</literal>
       method and calls <literal>receiveUpdate</literal> on each one. (Note
       that we are using the “infix” operator notation instead of
-      <literal>observers.foreach</literal>.) We use the placeholder ‘_’ to
-      shorten the following expression:</para>
+      <literal>observers.foreach</literal>.) We use the placeholder
+      ‘<literal>_</literal>’ to shorten the following expression:</para>
 
       <programlisting linenumbering="unnumbered">(obs) =&gt; obs.receiveUpdate(this)</programlisting>
 
@@ -302,9 +302,9 @@ class ObservableButton(name: String) extends Button(name) with Subject {
 }</programlisting>
 
       <para id="para_we_start_by_importing_everythi">We start by importing
-      everything in the <literal>observer</literal> package, using the ‘_’
-      wild card. Actually, we have only defined the <literal>Subject</literal>
-      trait in the package.</para>
+      everything in the <literal>observer</literal> package, using the
+      ‘<literal>_</literal>’ wild card. Actually, we have only defined the
+      <literal>Subject</literal> trait in the package.</para>
 
       <para id="para_the_new_class_uses_the_with_">The new class uses the
       <literal>with</literal> keyword to add the <literal>Subject</literal>
@@ -395,7 +395,7 @@ object ButtonObserverSpec extends Specification {
 
       <para id="para_if_you_downloaded_the_code_exa">If you downloaded the
       code examples from the O’Reilly site, then you can follow the directions
-      in its <literal>README</literal> files for building and running the
+      in its <filename>README</filename> files for building and running the
       examples in this chapter. The output of the <literal>specs</literal>
       “target” of the build should include the following text:</para>
 

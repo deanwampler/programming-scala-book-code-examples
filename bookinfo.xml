@@ -3,9 +3,9 @@
 "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <bookinfo>
   <othercredit role="proofreader">
-    <firstname>FIX</firstname>
+    <firstname>Sarah</firstname>
 
-    <surname>ME</surname>
+    <surname>Schneider</surname>
   </othercredit>
 
   <othercredit role="interiordesigner">
@@ -38,7 +38,7 @@
   </legalnotice>
 
   <legalnotice role="printer">
-    <para>[?]</para>
+    <para>[M]</para>
   </legalnotice>
 
   <legalnotice role="use">
@@ -67,7 +67,9 @@
     <para>While every precaution has been taken in the preparation of this
     book, the publisher and authors assume no responsibility for errors or
     omissions, or for damages resulting from the use of the information
-    contained herein.</para>
+    contained herein. This work has been released under the <ulink
+    url="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons
+    Attribution-Noncommercial license</ulink>.</para>
   </legalnotice>
 
   <isbn>9780596155957</isbn>

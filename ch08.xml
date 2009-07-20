@@ -223,16 +223,18 @@ List(1, 2, 3, 4, 5).map { _ * 2 }</programlisting>
     <para id="para_recall_that_095_042_2_">Recall that <literal>_ *
     2</literal> is a <emphasis>function literal</emphasis> that is shorthand
     for <literal>i =&gt; i * 2</literal>. For each argument to the function,
-    you can use _ if the argument is used only once. Here’s an example that
-    “reduces” the same list by multiplying all the elements together:</para>
+    you can use <literal>_</literal> if the argument is used only once. Here’s
+    an example that “reduces” the same list by multiplying all the elements
+    together:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-reduceLeft-example-script.scala
 
 List(1, 2, 3, 4, 5).reduceLeft { _ * _ }</programlisting>
 
-    <para id="para_the_first_095_represents_th">The first _ represents the
-    argument that is accumulating the value of the reduction and the second _
-    represents the current element of the list.</para>
+    <para id="para_the_first_095_represents_th">The first <literal>_</literal>
+    represents the argument that is accumulating the value of the reduction
+    and the second <literal>_</literal> represents the current element of the
+    list.</para>
 
     <para id="para_by_the_way_this_example_succe">Both examples successfully
     “looped” through the list without the use of a mutable counter to track
@@ -732,9 +734,9 @@ val lengths = stateCapitals map { kv =&gt; (kv._1, kv._2.length) }
 println(lengths)</programlisting>
 
       <para id="para_we_convert_the_pair_string_st">This script produces the
-      output <literal>ArrayBuffer<indexterm>
+      output <literal>ArrayBufferAlabama</literal><indexterm>
           <primary>Alabama</primary>
-        </indexterm>Alabama</literal>. That is, we convert the
+        </indexterm>. That is, we convert the
       <literal>Pair[String,String]</literal> elements to an
       <literal>ArrayBuffer</literal> of <literal>Pair[String,Int]</literal>
       elements. Where did the <literal>ArrayBuffer</literal> come from? It

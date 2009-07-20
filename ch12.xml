@@ -180,8 +180,9 @@ res1: java.lang.Class[_] = class C</screen>
     <para id="para_to_recap_a_declaration_like_">To recap, a declaration like
     <literal>class List[+A]</literal> means that <literal>List</literal> is
     parameterized by a single type, represented by <literal>A</literal>. The
-    ‘+’ is called a <emphasis>variance annotation</emphasis>. We’ll come back
-    to it in <xref linkend="VarianceUnderInheritance" /> below.</para>
+    <literal>+</literal> is called a <emphasis>variance annotation</emphasis>.
+    We’ll come back to it in <xref linkend="VarianceUnderInheritance" />
+    below.</para>
 
     <para id="para_a_declaration_like_list_043">Sometimes, a
     <emphasis>parameterized type</emphasis> like <literal>List</literal> is
@@ -313,11 +314,11 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
     <emphasis>contravariant</emphasis> or <emphasis>invariant</emphasis>
     behavior, which we’ll describe shortly.</para>
 
-    <para id="para_in_scala_the_type_designer_sp">In scala, the variance
+    <para id="para_in_scala_the_type_designer_sp">In Scala, the variance
     behavior is defined at the <emphasis>declaration site</emphasis> using
-    <emphasis>variance annotations</emphasis>, ‘+’, ‘-’, or nothing. In other
-    words, the type designer decides how the type should vary under
-    inheritance.</para>
+    <emphasis>variance annotations</emphasis>, <literal>+</literal>,
+    <literal>-</literal>, or nothing. In other words, the type designer
+    decides how the type should vary under inheritance.</para>
 
     <para id="para_let_s_examine_the_three_kinds_">Let’s examine the three
     kinds of variance, summarized in <xref
@@ -389,7 +390,7 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
     <literal>List[AnyRef]</literal>, so <literal>Lists</literal> are covariant
     in the type parameter <literal>A</literal>. (When a type like
     <literal>List</literal> has only one covariant type parameter, you’ll
-    often here the shorthand expression “Lists are covariant” and similarly
+    often hear the shorthand expression “Lists are covariant” and similarly
     for types with a single contravariant type parameter.)</para>
 
     <para id="para_the_declarations_function__n_">The traits
@@ -400,9 +401,10 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
 
     <para id="para_the_043_r_is_the_return_ty">The <literal>+R</literal> is
     the return type and it has the covariant annotation ‘+’. The type for the
-    single argument has the <emphasis>contravariant</emphasis> annotation ‘-’.
-    For functions with more than one argument all the argument types have the
-    contravariant annotation. So, for example, using our <literal>T</literal>,
+    single argument has the <emphasis>contravariant</emphasis> annotation
+    <literal>-</literal>. For functions with more than one argument all the
+    argument types have the contravariant annotation. So, for example, using
+    our <literal>T</literal>,
     <literal>T</literal><superscript>sup</superscript>, and
     <literal>T</literal><subscript>sub</subscript> types, the following
     definition would be legal.</para>
@@ -491,10 +493,10 @@ var f: C =&gt; C = (c: C)      =&gt; new C       // #1
     contravariant position. We’re also attempting to use a contravariant
     return value where only covariant values are allowed.</para>
 
-    <para id="para_okay_but__why__is_all_this_co">Why is the correct behavior
-    correct in these cases? Here’s where <emphasis>Design by
-    Contract</emphasis> thinking comes in handy. Let’s see how a client might
-    use use some of these definitions of <literal>f</literal>:</para>
+    <para id="para_okay_but__why__is_all_this_co">Why is the behavior correct
+    in these cases? Here’s where <emphasis>Design by Contract</emphasis>
+    thinking comes in handy. Let’s see how a client might use use some of
+    these definitions of <literal>f</literal>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/func2-script.scala
 // WON'T COMPILE
@@ -575,11 +577,11 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
     them might be subtyped.</para>
 
     <note id="para_note_the_8216_043_8217_">
-      <para>The ‘+’ <emphasis>variance annotation</emphasis> means the
-      parameterized type is <emphasis>covariant</emphasis> in the type
-      parameter. The ‘-’ variance annotation means the parameterized type is
-      <emphasis>contravariant</emphasis> in the type parameter. No variance
-      annotation means the parameterized type is
+      <para>The <literal>+</literal> <emphasis>variance annotation</emphasis>
+      means the parameterized type is <emphasis>covariant</emphasis> in the
+      type parameter. The <literal>-</literal> variance annotation means the
+      parameterized type is <emphasis>contravariant</emphasis> in the type
+      parameter. No variance annotation means the parameterized type is
       <emphasis>invariant</emphasis> in the type parameter.</para>
     </note>
 
@@ -684,9 +686,9 @@ two errors found</screen>
       <emphasis>type bounds</emphasis>, which we’ll discuss below.</para>
 
       <para id="para_in_java_variance_specification">In Java variance
-      specifications, a wild card ‘?’ always appears before the
-      <literal>super</literal> or <literal>extends</literal> keyword, as shown
-      in the previous table. When we said after the table that the “Java
+      specifications, a wild card <literal>?</literal> always appears before
+      the <literal>super</literal> or <literal>extends</literal> keyword, as
+      shown in the previous table. When we said after the table that the “Java
       Equivalent” column is a bit misleading, we were referring to the
       differences between declaration versus call site specifications. There
       is another way in which the Scala and Java behaviors differ, which we’ll
@@ -932,12 +934,14 @@ Unknown? None</screen>
 
       <para id="para_the_type_parameter_a_anyre">The type parameter <literal>A
       &lt;: AnyRef</literal> means “any type <literal>A</literal> that is a
-      <emphasis>subtype</emphasis> of <literal>AnyRef</literal> (including
-      <literal>AnyRef</literal> itself)”. So the <literal>&lt;:</literal>
-      operator indicates that the type to the left must be derived from the
-      type to the right, or that they must be the same types. As we said in
-      <xref linkend="ReservedWords" /> in <xref linkend="TypeLessDoMore" />,
-      this operator is actually a reserved word in the language.</para>
+      <emphasis>subtype</emphasis> of <literal>AnyRef</literal>.” Note that a
+      type is always a subtype and a supertype of itself, so
+      <literal>A</literal> could also equal <literal>AnyRef</literal>. So the
+      <literal>&lt;:</literal> operator indicates that the type to the left
+      must be derived from the type to the right, or that they must be the
+      same types. As we said in <xref linkend="ReservedWords" /> in <xref
+      linkend="TypeLessDoMore" />, this operator is actually a reserved word
+      in the language.</para>
 
       <para id="para_these_bounds_are_called__upper">These bounds are called
       <emphasis>upper type bounds</emphasis>, following the <emphasis>de
@@ -955,12 +959,11 @@ Unknown? None</screen>
       <note id="para_note_the_type_signature_a_">
         <para>The type signature <literal>A &lt;: B</literal> says that
         <literal>A</literal> must be a <emphasis>subtype</emphasis> of
-        <literal>B</literal> or the same as <literal>B</literal>. In Java,
-        this would be expressed as <literal>A extends B</literal> in a type
-        declaration. This is different than <emphasis>instantiating</emphasis>
-        a type at a call site, where the syntax <literal>? extends B</literal>
-        is used in Java, indicating the <emphasis>variance</emphasis>
-        behavior.</para>
+        <literal>B</literal>. In Java, this would be expressed as <literal>A
+        extends B</literal> in a type declaration. This is different than
+        <emphasis>instantiating</emphasis> a type at a call site, where the
+        syntax <literal>? extends B</literal> is used in Java, indicating the
+        <emphasis>variance</emphasis> behavior.</para>
       </note>
 
       <para id="para_keep_in_mind_the_distinction_b">Keep in mind the
@@ -985,10 +988,10 @@ Unknown? None</screen>
 
       <para id="para_similarly_there_are_circumsta">Similarly, there are
       circumstances when we might want to express that only
-      <literal>supertypes</literal> of a particular type are allowed. We call
-      these <emphasis>lower type bounds</emphasis>, again because the allowed
-      type would be above the boundary in a typical type hierarchy
-      diagram.</para>
+      <literal>supertypes</literal> of a particular type are allowed. (Recall
+      that a type is also a supertype of itself.) We call these
+      <emphasis>lower type bounds</emphasis>, again because the allowed type
+      would be above the boundary in a typical type hierarchy diagram.</para>
 
       <para id="para_in_fact_any_method_can_be_par">A particularly interesting
       example is the <literal>::</literal> (“cons”) method in class
@@ -1040,8 +1043,8 @@ println(list)</programlisting>
       <note id="para_note_the_type_signature_b_">
         <para>The type signature <literal>B :&gt; A</literal> says that
         <literal>B</literal> must be a <emphasis>supertype</emphasis> of
-        <literal>A</literal> or the same as <literal>A</literal>. There is no
-        analog in Java; <literal>B super A</literal> is not supported.</para>
+        <literal>A</literal>. There is no analog in Java; <literal>B super
+        A</literal> is not supported.</para>
       </note>
     </sect2>
 
@@ -1057,8 +1060,8 @@ println(list)</programlisting>
       methods in the <literal>List</literal> class, and the comments that are
       used to generate the <emphasis>Scaladocs</emphasis>. We encourage you to
       look at the complete implementation of <literal>List</literal>, either
-      by downloading the source distribution from the Scala web site [Scala]
-      or by browsing to the implementation through the
+      by downloading the source distribution from the Scala website [Scala] or
+      by browsing to the implementation through the
       <emphasis>Scaladocs</emphasis> page for <literal>List</literal>. To
       avoid confusion with <literal>scala.List</literal>, we’ll use our own
       package and name, <literal>AbbrevList</literal>:</para>
@@ -1196,7 +1199,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       <emphasis>view</emphasis> is an implicit value of function type that
       converts a type <literal>A</literal> to <literal>B</literal>. The
       function has the type <literal>A =&gt; B</literal> or <literal>(=&gt; A)
-      =&gt; B</literal> (recall that <literal>(=&gt; A)</literal> would a
+      =&gt; B</literal> (recall that <literal>(=&gt; A)</literal> is a
       <emphasis>by-name parameter</emphasis>). An in-scope implicit method
       with the same signature can also be used as a view, e.g., an implicit
       method imported from an <literal>object</literal>. The term
@@ -1350,7 +1353,7 @@ println(list3)
 println(list4)</programlisting>
 
       <para id="para_it_starts_with_a_definition_of">It starts with a
-      definition of a a parameterized implicit method,
+      definition of a parameterized implicit method,
       <literal>any2Node</literal>, that converts <literal>A</literal> to
       <literal>Node[A]</literal>. It will be used as the implicit view
       argument when we work with <literal>LinkedLists</literal>. It creates a
@@ -1474,7 +1477,9 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
     <literal>Null</literal> is a subtype of all <literal>AnyRef</literal>
     types, you can always assign <literal>null</literal> as an instance of any
     of those types. Java, in contrast, simply treats <literal>null</literal>
-    as a keyword with special handling by the compiler.</para>
+    as a keyword with special handling by the compiler. However, Java’s
+    <literal>null</literal> actually behaves as if it were a subtype of all
+    reference types, just like Scala’s <literal>Null</literal>.</para>
 
     <para id="para_null_not_subtype_of_anyval">On the other hand, since
     <literal>Null</literal> is not a subtype of <literal>AnyVal</literal>, it
@@ -1561,7 +1566,7 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
 
     <para id="para_we_can_also_have__lower_bounds">We can also have
     <emphasis>lower type bounds</emphasis> (subclasses) and we can use most of
-    the <emphasis>value type</emphasis> (see <xref linkend="ValueTypes" />
+    the <emphasis>value type</emphasis>s (see <xref linkend="ValueTypes" />
     below) in the bounds expressions. Here is an example illustrating the most
     common options:</para>
 
@@ -2019,7 +2024,7 @@ class C8 {
       we commonly use are called <emphasis>type designators</emphasis>:</para>
 
       <programlisting linenumbering="unnumbered">class Person              // "Person" is a type designator
-object O { type t }       // "O"
+object O { type t }       // "O" and "t" are type designators
 ...</programlisting>
 
       <para id="para_they_are_actually_a_short_hand">They are actually a short
@@ -2044,7 +2049,7 @@ object O { type t }       // "O"
       <literal>List[String]</literal> from <literal>List[A]</literal>, the
       types <literal>List[Int]</literal> and <literal>List[String]</literal>
       are value types, because they are associated with declared values, e.g.,
-      <literal>val names = List[String]</literal>.</para>
+      <literal>val names = List[String]()</literal>.</para>
     </sect2>
 
     <sect2 id="_annotated_types">
@@ -2277,7 +2282,7 @@ println( answer3 + " == " + answer2 + "? " + (answer3 == answer2))</programlisti
       are instances of traits, you can use the traits as parents of other
       types. In the Scala library, <literal>Seq[+A]</literal> is a subclass of
       <literal>PartialFunction[Int,A]</literal>, which is a subclass of
-      <literal>(Int) = A</literal>, i.e.,
+      <literal>(Int) =&gt; A</literal>, i.e.,
       <literal>Function1[Int,A]</literal>.</para>
     </sect2>
 
@@ -2443,7 +2448,7 @@ MyApp.run</programlisting>
     UI.</para>
 
     <para id="para_the_app_traits_wires_the_tie">The <literal>App</literal>
-    traits wires the tiers together. For example, it does the work of starting
+    trait wires the tiers together. For example, it does the work of starting
     the tiers in the <literal>run</literal> method.</para>
 
     <para id="para_note_the_self_type_annotation_">Note the self-type
@@ -2831,9 +2836,9 @@ evens.take(10).print</programlisting>
 
     <para id="para_returning_to_the_fibonacci_seq">Returning to the Fibonacci
     sequence, there is a famous definition using infinite, lazy sequences that
-    exploits the “zip” operation (see, e.g., <link linkend="Abelson1996"
-    xrefstyle="select:nopage">[Abelson1996]</link>). Our discussion for Scala
-    is adapted from <link linkend="Ortiz2007"
+    exploits the “<literal>zip</literal>” operation (see, e.g., <link
+    linkend="Abelson1996" xrefstyle="select:nopage">[Abelson1996]</link>). Our
+    discussion for Scala is adapted from <link linkend="Ortiz2007"
     xrefstyle="select:nopage">[Ortiz2007]</link>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/lazy/lazy-fibonacci-script.scala

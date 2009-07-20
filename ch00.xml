@@ -4,6 +4,20 @@
 <preface id="Preface">
   <title>Preface</title>
 
+  <para><citetitle>Programming Scala</citetitle> introduces an exciting new
+  language that offers all the benefits of a modern object model, functional
+  programming, and an advanced type system. Packed with code examples, this
+  comprehensive book teaches you how to be productive with Scala quickly, and
+  explains what makes this language ideal for today’s highly scalable,
+  component-based applications that support concurrency and distribution.
+  You’ll also learn the advantages that Scala offers as a language for the
+  Java Virtual Machine.</para>
+
+  <para>Learn more at <ulink role="orm:hideurl:ital"
+  url="http://programmingscala.com">programmingscala.com</ulink> or at the
+  book’s <ulink url="http://oreilly.com/catalog/9780596155957/">catalog
+  page</ulink>.</para>
+
   <sect1 id="_conventions_used_in_this_book">
     <title>Conventions Used in This Book</title>
 
@@ -15,7 +29,7 @@
         <term><emphasis>Italic</emphasis></term>
 
         <listitem>
-          <para>Indicates new terms, URLs, email addresses, filenames, and
+          <para>Indicates new terms, URLs, email addresses, file names, and
           file extensions. Many italicized terms are defined in the <xref
           linkend="Glossary" />.</para>
         </listitem>
@@ -89,8 +103,8 @@
 
       <para id="para_you_can_download_the_code_exam">You can download the code
       examples from TODO. Unzip the files to a convenient location. See the
-      <literal>README.txt</literal> file in the distribution for instructions
-      on building and using the examples.</para>
+      <filename>README.txt</filename> file in the distribution for
+      instructions on building and using the examples.</para>
 
       <para id="para_file_name_conventions">Some of the example files can be
       run as scripts using the <userinput>scala</userinput> command. Others
@@ -101,10 +115,10 @@
 
       <variablelist id="para_script_file_convention">
         <varlistentry id="varlistentry-script-scala">
-          <term><literal>*-script.scala</literal></term>
+          <term><filename>*-script.scala</filename></term>
 
           <listitem>
-            <para>Files that end in <literal>-script.scala</literal> can be
+            <para>Files that end in <filename>-script.scala</filename> can be
             run on a command line using <userinput>scala</userinput>, e.g.,
             <userinput>scala foo-script.scala</userinput>. You can also start
             <userinput>scala</userinput> in the interpreter mode (when you
@@ -115,10 +129,10 @@
         </varlistentry>
 
         <varlistentry id="varlistentry-wont-compile-scala">
-          <term><literal>*-wont-compile.scala</literal></term>
+          <term><filename>*-wont-compile.scala</filename></term>
 
           <listitem>
-            <para>Files that end in <literal>-wont-compile.scala</literal>
+            <para>Files that end in <filename>-wont-compile.scala</filename>
             contain deliberate errors that will cause them to fail to compile.
             We use this naming convention, along with one or more embedded
             comments about the errors, so it will be clear that they are
@@ -128,17 +142,17 @@
         </varlistentry>
 
         <varlistentry id="varlistentry-sake-scala">
-          <term><literal>sake.scala</literal></term>
+          <term><filename>sake.scala</filename></term>
 
           <listitem>
-            <para>Files named <literal>sake.scala</literal> are used by our
+            <para>Files named <filename>sake.scala</filename> are used by our
             build tool, called <userinput>sake</userinput>. The
-            <literal>README.txt</literal> file describes this tool.</para>
+            <filename>README.txt</filename> file describes this tool.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry id="varlistentry-scala">
-          <term><literal>*.scala</literal></term>
+          <term><filename>*.scala</filename></term>
 
           <listitem>
             <para>All other Scala files must be compiled using
