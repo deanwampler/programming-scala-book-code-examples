@@ -435,8 +435,8 @@ you want, you must write the annotation class in Java.
             <entry><para><literal>cloneable</literal></para></entry>
 
             <entry><para><literal
-            role="keep-together">java.lang.Cloneable</literal>
-            (interface)</para></entry>
+            role="keep-together">java.lang.Cloneable</literal> (<phrase
+            role="keep-together">interface</phrase>)</para></entry>
 
             <entry><para>A class marker indicating that a class can be
             cloned.</para></entry>
@@ -506,8 +506,8 @@ you want, you must write the annotation class in Java.
             <entry><para><literal>serializable</literal></para></entry>
 
             <entry><para><literal
-            role="keep-together">java.io.Serializable</literal>
-            (interface)</para></entry>
+            role="keep-together">java.io.Serializable</literal> (<phrase
+            role="keep-together">interface</phrase>)</para></entry>
 
             <entry><para>A class marker indicating that the class can be
             serialized.</para></entry>
@@ -518,7 +518,8 @@ you want, you must write the annotation class in Java.
             role="keep-together">SerialVersionUID</literal></para></entry>
 
             <entry><para><literal>serialVersionUID</literal>
-            <emphasis>static</emphasis> field in a class</para></entry>
+            <emphasis>static</emphasis> <phrase role="keep-together">field in
+            a class</phrase></para></entry>
 
             <entry><para>Defines a globally-unique ID for serialization
             purposes. The annotation’s constructor takes a

@@ -187,7 +187,7 @@
     you’ll get an error. However, the <literal>length</literal> method for
     <literal>String</literal> does have parentheses in its definition, so both
     <literal>"hello".length()</literal> and <literal>"hello".length</literal>
-    will compile.</para>
+    will <phrase role="keep-together">compile</phrase>.</para>
 
     <para id="para_the_convention_in_the_scala_co">The convention in the Scala
     community is to omit parentheses when calling a method that has no
@@ -1524,8 +1524,8 @@ Main$$anon$1$WeekDay(4)</screen>
     explored Scala’s enhancements to looping constructs and conditional
     expressions. We experimented with different uses for pattern matching, a
     powerful improvement on the familiar <literal>case-switch</literal>
-    statement. Finally, we learned how to encapsulate values in
-    enumerations.</para>
+    statement. Finally, we learned how to encapsulate values in <phrase
+    role="keep-together">enumerations</phrase>.</para>
 
     <para>You should now be prepared to read a fair bit of Scala code, but
     there’s plenty more about the language to put in your tool belt. In the

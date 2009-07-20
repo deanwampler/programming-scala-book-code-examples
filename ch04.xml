@@ -283,11 +283,11 @@ trait Subject {
       </note>
 
       <para id="para_once_again_we_learned_a_lot_o">Once again, we learned a
-      lot of Scala from a small example. Now let’s put our
-      <literal>Subject</literal> trait to use. Here is
+      lot of Scala from a small example. Now let’s put our <literal
+      role="keep-together">Subject</literal> trait to use. Here is
       <literal>ObservableButton</literal>, which subclasses
-      <literal>Button</literal> and mixes in
-      <literal>Subject</literal>:</para>
+      <literal>Button</literal> and mixes in <literal
+      role="keep-together">Subject</literal>:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/observable-button.scala
 

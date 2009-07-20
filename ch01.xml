@@ -213,7 +213,8 @@
       context. For example, the compiler will recognize that <literal>x = 1 +
       3</literal> means that <literal>x</literal> must be an integer. Type
       inference reduces verbosity significantly, making the code feel more
-      like code written in a dynamic language.</para>
+      like code written in a dynamic <phrase
+      role="keep-together">language</phrase>.</para>
 
       <para id="para_we_have_worked_with_both_stati">We have worked with both
       static and dynamic languages, at various times. We find both kinds of
@@ -549,9 +550,10 @@
     <literal>N</literal> is the latest release of the 2.8.0 version. Go to the
     download directory in a terminal <phrase
     role="keep-together">window</phrase>, and install Scala with the
-    <userinput>java</userinput> command. Assuming you downloaded
-    <filename>scala-2.8.0.final-installer.jar</filename>, run the following
-    command, which will guide you through the process:</para>
+    <userinput>java</userinput> command. Assuming you downloaded <filename
+    role="keep-together">scala-2.8.0.final-</filename><filename>installer.jar</filename>,
+    run the following command, which will guide you through the
+    process:</para>
 
     <screen>java -jar scala-2.8.0.final-installer.jar</screen>
 

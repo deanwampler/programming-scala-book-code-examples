@@ -2725,7 +2725,7 @@ object ProcessList {
           </row>
 
           <row>
-            <entry><para><literal>List[_ &lt;:
+            <entry><para><literal role="keep-together">List[_ &lt;:
             scala.actors.AbstractActor]</literal></para></entry>
 
             <entry><para><literal>List[T] forSome { type T &lt;:

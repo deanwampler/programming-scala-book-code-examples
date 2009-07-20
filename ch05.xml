@@ -49,7 +49,7 @@
 
     <para id="para_an_instance_can_refer_to_itsel">An instance can refer to
     itself using the <literal>this</literal> keyword, just as in Java and
-    similar languages.</para>
+    similar <phrase role="keep-together">languages</phrase>.</para>
 
     <para id="para_following_scala_s_convention_">Following Scala’s
     convention, we use the term <emphasis>method</emphasis> for a function
@@ -238,8 +238,8 @@ class ButtonWithCallbacks(val label: String,
     with a public reader method that has the same name as the parameter.
     “Private” and “public” have the same meaning here as in most
     object-oriented languages. We’ll discuss the various visibility rules and
-    the keywords that control them in <xref linkend="VisibilityRules" />
-    below.</para>
+    the keywords that control them in <xref
+    linkend="VisibilityRules" />.</para>
 
     <para id="para_if_a_parameter_has_the_var_k">If a parameter has the
     <literal>var</literal> keyword, a public writer method is also generated
@@ -634,9 +634,11 @@ abstract class Widget {
           </row>
 
           <row>
-            <entry><para>scoped protected</para></entry>
+            <entry><para><phrase role="keep-together">scoped
+            protected</phrase></para></entry>
 
-            <entry><para><literal>protected[scope]</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">protected[scope]</literal></para></entry>
 
             <entry><para>Visibility is limited to <literal>scope</literal>,
             which can be a package, type, or <literal>this</literal> (meaning
@@ -646,9 +648,11 @@ abstract class Widget {
           </row>
 
           <row>
-            <entry><para>scoped private</para></entry>
+            <entry><para><phrase role="keep-together">scoped
+            private</phrase></para></entry>
 
-            <entry><para><literal>private[scope]</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">private[scope]</literal></para></entry>
 
             <entry><para>Synonymous with scoped protected visibility, except
             under inheritance (discussed below).</para></entry>

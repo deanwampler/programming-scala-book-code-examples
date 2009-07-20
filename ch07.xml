@@ -51,7 +51,8 @@
             <literal>Function</literal>, <literal>Integer</literal>,
             <literal>Map</literal>, <literal>Pair</literal>,
             <literal>Runnable</literal>, <literal>Set</literal>,
-            <literal>String</literal>, <literal>Throwable</literal>,
+            <literal>String</literal>, <literal
+            role="keep-together">Throwable</literal>,
             <literal>Triple</literal>.</para></entry>
           </row>
 
@@ -61,8 +62,8 @@
 
             <entry><para><literal>Exception</literal>,
             <literal>ArrayIndexOutOfBoundsException</literal>,
-            <literal>ClassCastException</literal>,
-            <literal>IllegalArgumentException</literal>,
+            <literal>ClassCastException</literal>, <literal
+            role="keep-together">IllegalArgumentException</literal>,
             <literal>IndexOutOfBoundsException</literal>,
             <literal>NoSuchElementException</literal>,
             <literal>NullPointerException</literal>,
@@ -758,7 +759,7 @@ body length? 13</screen>
     structure of the hierarchy, as illustrated in <xref
     linkend="scalas-type-hierarchy" />.</para>
 
-    <figure float="none" id="scalas-type-hierarchy">
+    <figure id="scalas-type-hierarchy">
       <title>Scala’s type hierarchy</title>
 
       <mediaobject>
@@ -973,10 +974,11 @@ body length? 13</screen>
           </row>
 
           <row>
-            <entry><para><literal>FunctionN[-T</literal><subscript>1</subscript><literal>,
+            <entry><para><phrase
+            role="keep-together"><literal>FunctionN[-T</literal><subscript>1</subscript><literal>,
             -T</literal><subscript>2</subscript><literal>, …,
             -T</literal><subscript>N</subscript><literal>,
-            +R]</literal></para></entry>
+            +R]</literal></phrase></para></entry>
 
             <entry><para><literal>AnyRef</literal></para></entry>
 

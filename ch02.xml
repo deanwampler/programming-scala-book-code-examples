@@ -760,11 +760,11 @@ Scala</screen>
     <note id="para_cp_current_dir">
       <para>For the <literal>-cp ...</literal> class path argument, use the
       directory where <userinput>scalac</userinput> wrote the class files,
-      which defaults to the current directory (i.e., use <literal>-cp
-      .</literal>). If you used the build process in the downloaded code
-      examples, the class files are written to the <filename>build</filename>
-      directory (using <userinput>scalac -d build ...</userinput>). In this
-      case, use <literal>-cp build</literal>.</para>
+      which defaults to the current directory (i.e., use <literal
+      role="keep-together">-cp .</literal>). If you used the build process in
+      the downloaded code examples, the class files are written to the
+      <filename>build</filename> directory (using <userinput>scalac -d build
+      ...</userinput>). In this case, use <literal>-cp build</literal>.</para>
     </note>
 
     <para id="para_everything_is_fine_at_this_poi">Everything is fine at this
@@ -1258,8 +1258,9 @@ b2: Boolean = false</screen>
       sequences, like the valid sequences listed in <xref
       linkend="char-escape-sequences-table" />. Regular expressions are a
       typical example, which we’ll discuss in <xref
-      linkend="RoundingOutTheEssentials" />. However, if escape sequences
-      appear, they aren’t interpreted.</para>
+      linkend="RoundingOutTheEssentials" />. However, if escape <phrase
+      role="keep-together">sequences</phrase> appear, they aren’t
+      interpreted.</para>
 
       <para id="para_3quote_string_literal_examples_">Here are three example
       strings:</para>
@@ -1299,9 +1300,9 @@ Fourth line"""</programlisting>
       <literal>'1</literal> is invalid, because the compiler thinks it is an
       incomplete character literal.</para>
 
-      <para id="para_a_symbol_literal_id_is_a_sh">A symbol literal ’id is a
-      shorthand for the expression
-      <literal>scala.Symbol("id")</literal>.</para>
+      <para id="para_a_symbol_literal_id_is_a_sh">A symbol literal
+      <literal>'</literal><replaceable>id</replaceable> is a shorthand for the
+      expression <literal>scala.Symbol("id")</literal>.</para>
 
       <note id="para_note_if_you_want_to_create_a_">
         <para>If you want to create a symbol that contains whitespace, use
@@ -1677,9 +1678,9 @@ package com {
       <para>Scala does not allow package declarations in scripts that are
       executed directly with the <userinput>scala</userinput> interpreter. The
       reason has to do with the way the interpreter converts statements in
-      scripts to valid Scala code before compiling to byte code. See the <xref
-      linkend="CommandLineToolScala" /> section in <xref
-      linkend="ScalaToolsLibs" /> for more details.</para>
+      scripts to valid Scala code before compiling to byte code. See <xref
+      linkend="CommandLineToolScala" /> in <xref linkend="ScalaToolsLibs" />
+      for more details.</para>
     </warning>
   </sect1>
 
@@ -2190,7 +2191,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>object</literal></para></entry>
 
             <entry><para>Start a <emphasis>singleton</emphasis> declaration; a
-            <literal>class</literal> with only one instance.</para></entry>
+            <literal>class</literal> with only one <phrase
+            role="keep-together">instance</phrase>.</para></entry>
 
             <entry><para><xref linkend="ClassesAndObjects" /> (<xref
             linkend="BasicObjectOrientedProgramming" />)</para></entry>
@@ -2434,8 +2436,9 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>&lt;:</literal></para></entry>
 
             <entry><para>Used in <emphasis>parameterized</emphasis> and
-            <emphasis>abstract type</emphasis> declarations to constrain the
-            allowed types.</para></entry>
+            <emphasis>abstract type</emphasis> declarations to <phrase
+            role="keep-together">constrain</phrase> the allowed
+            types.</para></entry>
 
             <entry><para><xref linkend="ScalasTypeSystem" /></para></entry>
           </row>
@@ -2444,8 +2447,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>&lt;%</literal></para></entry>
 
             <entry><para>Used in <emphasis>parameterized</emphasis> and
-            <emphasis>abstract type</emphasis> “view bounds”
-            declarations.</para></entry>
+            <emphasis>abstract type</emphasis> “view bounds” <phrase
+            role="keep-together">declarations</phrase>.</para></entry>
 
             <entry><para><xref linkend="ScalasTypeSystem" /></para></entry>
           </row>
@@ -2454,8 +2457,9 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>&gt;:</literal></para></entry>
 
             <entry><para>Used in <emphasis>parameterized</emphasis> and
-            <emphasis>abstract type</emphasis> declarations to constrain the
-            allowed types.</para></entry>
+            <emphasis>abstract type</emphasis> declarations to <phrase
+            role="keep-together">constrain</phrase> the allowed
+            types.</para></entry>
 
             <entry><para><xref linkend="ScalasTypeSystem" /></para></entry>
           </row>
