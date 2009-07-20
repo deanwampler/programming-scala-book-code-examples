@@ -2,7 +2,8 @@
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
 "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="Concurrency">
-  <title>Robust, Scalable Concurrency with Actors</title>
+  <title>Robust, Scalable Concurrency <phrase role="keep-together">with
+  Actors</phrase></title>
 
   <sect1 id="ProblemsOfSharedSynchronizedState">
     <title>The Problems of Shared, Synchronized State</title>
@@ -581,22 +582,27 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
               <entry><para><literal>Unit</literal></para></entry>
 
               <entry><para>Abstract, top-level method for an Actor. Typically
-              contains one of the following methods inside it.</para></entry>
+              contains one of the <phrase
+              role="keep-together">following</phrase> methods inside
+              it.</para></entry>
             </row>
 
             <row>
               <entry><para><literal>receive</literal></para></entry>
 
-              <entry><para>Result of processing message</para></entry>
+              <entry><para>Result of processing <phrase
+              role="keep-together">message</phrase></para></entry>
 
               <entry><para>Blocks until a message of matched type is
               received.</para></entry>
             </row>
 
             <row>
-              <entry><para><literal>receiveWithin</literal></para></entry>
+              <entry><para><literal
+              role="keep-together">receiveWithin</literal></para></entry>
 
-              <entry><para>Result of processing message</para></entry>
+              <entry><para>Result of processing <phrase
+              role="keep-together">message</phrase></para></entry>
 
               <entry><para>Like <literal>receive</literal> but unblocks after
               specified number of milliseconds.</para></entry>
@@ -612,7 +618,8 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
             </row>
 
             <row>
-              <entry><para><literal>reactWithin</literal></para></entry>
+              <entry><para><literal
+              role="keep-together">reactWithin</literal></para></entry>
 
               <entry><para><literal>Nothing</literal></para></entry>
 

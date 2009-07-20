@@ -261,7 +261,7 @@ you want, you must write the annotation class in Java.
     nested. This causes problems when using JPA annotations in Scala code, for
     example, as discussed in <link linkend="JPAScala"
     xrefstyle="select:nopage">[JPAScala]</link>. However, Scala version 2.8
-    removes this limitation.</para>
+    removes this <phrase role="keep-together">limitation</phrase>.</para>
 
     <warning id="para_warning_annotations_can_only_">
       <para>Annotations can only be nested in Scala version 2.8.</para>
@@ -291,10 +291,11 @@ you want, you must write the annotation class in Java.
 
         <tbody valign="top">
           <row>
-            <entry><para><literal>ClassfileAnnotation</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">ClassfileAnnotation</literal></para></entry>
 
-            <entry><para>Annotate with
-            <literal>@Retention(RetentionPolicy.RUNTIME)</literal></para></entry>
+            <entry><para>Annotate with <literal
+            role="keep-together">@Retention(RetentionPolicy.RUNTIME)</literal></para></entry>
 
             <entry><para>The parent trait for annotations that should be
             retained in the class file for runtime access, but it doesn’t
@@ -304,7 +305,8 @@ you want, you must write the annotation class in Java.
           <row>
             <entry><para><literal>BeanDescription</literal></para></entry>
 
-            <entry><para><literal>BeanDescriptor</literal>
+            <entry><para><literal
+            role="keep-together">BeanDescriptor</literal>
             (class)</para></entry>
 
             <entry><para>An annotation for <emphasis>JavaBean</emphasis> types
@@ -349,8 +351,8 @@ you want, you must write the annotation class in Java.
           <row>
             <entry><para><literal>StaticAnnotation</literal></para></entry>
 
-            <entry><para>Static fields,
-            <literal>@Target(ElementType.TYPE)</literal></para></entry>
+            <entry><para>Static fields, <literal
+            role="keep-together">@Target(ElementType.TYPE)</literal></para></entry>
 
             <entry><para>The parent trait of annotations that should be
             visible across compilation units and define “static”
@@ -432,7 +434,8 @@ you want, you must write the annotation class in Java.
           <row>
             <entry><para><literal>cloneable</literal></para></entry>
 
-            <entry><para><literal>java.lang.Cloneable</literal>
+            <entry><para><literal
+            role="keep-together">java.lang.Cloneable</literal>
             (interface)</para></entry>
 
             <entry><para>A class marker indicating that a class can be
@@ -451,7 +454,8 @@ you want, you must write the annotation class in Java.
           <row>
             <entry><para><literal>deprecated</literal></para></entry>
 
-            <entry><para><literal>java.lang.Deprecated</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">java.lang.Deprecated</literal></para></entry>
 
             <entry><para>A marker for any definition indicating that the
             defined “item” is obsolete. The compiler will issue a warning when
@@ -501,7 +505,8 @@ you want, you must write the annotation class in Java.
           <row>
             <entry><para><literal>serializable</literal></para></entry>
 
-            <entry><para><literal>java.io.Serializable</literal>
+            <entry><para><literal
+            role="keep-together">java.io.Serializable</literal>
             (interface)</para></entry>
 
             <entry><para>A class marker indicating that the class can be
@@ -509,7 +514,8 @@ you want, you must write the annotation class in Java.
           </row>
 
           <row>
-            <entry><para><literal>SerialVersionUID</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">SerialVersionUID</literal></para></entry>
 
             <entry><para><literal>serialVersionUID</literal>
             <emphasis>static</emphasis> field in a class</para></entry>
@@ -590,7 +596,8 @@ you want, you must write the annotation class in Java.
           </row>
 
           <row>
-            <entry><para><literal>uncheckedVariance</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">uncheckedVariance</literal></para></entry>
 
             <entry><para><emphasis>N.A.</emphasis></para></entry>
 
@@ -902,9 +909,11 @@ thrown in body of corresponding try statement
 
     <tip id="para_tip_in_a_mixed_java_scala_env">
       <para>In a mixed Java-Scala environment, consider adding the
-      <literal>@throws</literal> annotation for all your Scala methods that
+      <literal>@throws</literal> <phrase
+      role="keep-together">annotation</phrase> for all your Scala methods that
       can throw Java checked exceptions. Eventually, some Java code will
-      probably call one of those methods.</para>
+      probably call one of those <phrase
+      role="keep-together">methods</phrase>.</para>
     </tip>
   </sect1>
 
@@ -972,7 +981,8 @@ methods.foreach { method =&gt; handle(method) }</programlisting>
     had a <literal>body</literal> attribute for the message body. We’ll assume
     here that the body is handled through other means and we only care about
     identifying the kind of HTTP method. So, here is a Scala
-    <literal>Enumeration</literal> class for the HTTP 1.1 methods:</para>
+    <literal>Enumeration</literal> class for the HTTP 1.1 <phrase
+    role="keep-together">methods</phrase>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/enumerations/http-enum-script.scala
 
@@ -1186,9 +1196,8 @@ println( HttpMethod )</programlisting>
     <para id="para_some_use_cases_for_the_mor">Some “use cases” for the more
     advanced features of Java annotations can be implemented more elegantly
     with “normal” Scala code, as we will discuss in <xref
-    linkend="DesignPatterns" /> below. For enumerations, sealed case classes
-    and pattern matching provide a more flexible solution, in many
-    cases.</para>
+    linkend="DesignPatterns" />. For enumerations, sealed case classes and
+    pattern matching provide a more flexible solution, in many cases.</para>
 
     <sect2 id="EnumerationsVsCaseClassesAndPatternMatching">
       <title>Enumerations Versus Case Classes and Pattern Matching</title>
@@ -2326,7 +2335,7 @@ object ButtonObserver3Spec extends Specification {
     the those problems is the so-called <emphasis>diamond of death</emphasis>,
     which is illustrated in <xref linkend="diamond-of-death" />.</para>
 
-    <figure id="diamond-of-death">
+    <figure float="none" id="diamond-of-death">
       <title>Diamond of death in languages with multiple inheritance</title>
 
       <mediaobject>

@@ -81,8 +81,9 @@
 
       <para id="para__dynamically_typed__languages_"><emphasis>Dynamically
       typed</emphasis> languages like Ruby, Python, Groovy, JavaScript, and
-      Smalltalk offer very high productivity due to their flexibility,
-      powerful metaprogramming, and elegance.</para>
+      Smalltalk <phrase role="keep-together">offer</phrase> very high
+      productivity due to their flexibility, powerful metaprogramming, and
+      <phrase role="keep-together">elegance</phrase>.</para>
 
       <sidebar>
         <title>Statically Typed Versus Dynamically Typed Languages</title>

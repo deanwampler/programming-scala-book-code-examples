@@ -2,7 +2,7 @@
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
 "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <chapter id="ScalaToolsLibs">
-  <title>Scala Tools, Libraries and IDE Support</title>
+  <title>Scala Tools, Libraries, and IDE Support</title>
 
   <para id="para_in_the_last_chapter_applica">In the last chapter, <xref
   linkend="ApplicationDesign" />, we looked at how to design scalable
@@ -129,7 +129,8 @@
               <replaceable>file</replaceable></para></entry>
 
               <entry><para>Specify the file in which dependencies are tracked.
-              (version 2.8)</para></entry>
+              (<phrase role="keep-together">version</phrase>
+              2.8)</para></entry>
             </row>
 
             <row>
@@ -184,7 +185,8 @@
               <entry><para>Specify recompilation detection strategy:
               <literal>all</literal>, <literal>changed</literal>,
               <literal>immediate</literal>, <literal>transitive</literal>.
-              (version 2.8)</para></entry>
+              (<phrase role="keep-together">version</phrase>
+              2.8)</para></entry>
             </row>
 
             <row>
@@ -352,7 +354,7 @@
 
       <note id="para_note_the_version_2_8_repl_add">
         <para>The version 2.8 REPL adds many enhancements, including code
-        completion.</para>
+        <phrase role="keep-together">completion</phrase>.</para>
       </note>
 
       <para id="para_if_you_specify_a_fully_qualifi">Our
@@ -549,8 +551,8 @@ g
 
       <para id="para_power_user_mode">The new “power user mode” adds
       additional commands for viewing in-memory data, such as the abstract
-      syntax tree and interpreter properties, and for doing other
-      operations.</para>
+      syntax tree and interpreter properties, and for doing other <phrase
+      role="keep-together">operations</phrase>.</para>
 
       <para id="para_for__batch_mode__invocation_u">For
       <emphasis>batch-mode</emphasis> invocation, use the
@@ -1094,7 +1096,7 @@ case class Complex(real: Double, imaginary: Double) {
         button on the right hand side. You will see the dialog shown in <xref
         linkend="eclipse-add-site" />.</para>
 
-        <figure id="eclipse-add-site">
+        <figure float="none" id="eclipse-add-site">
           <title>The add site Eclipse dialog</title>
 
           <mediaobject>
@@ -1126,7 +1128,7 @@ case class Complex(real: Double, imaginary: Double) {
         role="strong">Don’t</emphasis> click the “default”
         <emphasis>Close</emphasis> button!</para>
 
-        <figure id="eclipse-install-scala2">
+        <figure float="none" id="eclipse-install-scala2">
           <title>The Software Updates and Add-ons dialog</title>
 
           <mediaobject>
@@ -1199,7 +1201,7 @@ case class Complex(real: Double, imaginary: Double) {
         <emphasis>Plugins</emphasis> item, as shown in <xref
         linkend="idea-settings-plugins" />.</para>
 
-        <figure id="idea-settings-plugins">
+        <figure float="none" id="idea-settings-plugins">
           <title>IntelliJ IDEA Settings → Plugins</title>
 
           <mediaobject>
@@ -1220,7 +1222,7 @@ case class Complex(real: Double, imaginary: Double) {
         to the <emphasis>Scala</emphasis> plugin, as shown in <xref
         linkend="idea-settings-plugins-scala" />.</para>
 
-        <figure id="idea-settings-plugins-scala">
+        <figure float="none" id="idea-settings-plugins-scala">
           <title>Available IntelliJ IDEA Scala plugins</title>
 
           <mediaobject>
@@ -1250,7 +1252,7 @@ case class Complex(real: Double, imaginary: Double) {
         boxes next to them should be checked, as seen in <xref
         linkend="idea-settings-plugins-confirm" />.</para>
 
-        <figure id="idea-settings-plugins-confirm">
+        <figure float="none" id="idea-settings-plugins-confirm">
           <title>Installed IntelliJ IDEA Scala plugins</title>
 
           <mediaobject>
@@ -1285,7 +1287,7 @@ case class Complex(real: Double, imaginary: Double) {
         information. An example is shown in <xref
         linkend="idea-new-project1a" />.</para>
 
-        <figure id="idea-new-project1a">
+        <figure float="none" id="idea-new-project1a">
           <title>Specifying IntelliJ IDEA Scala project details</title>
 
           <mediaobject>
@@ -1310,7 +1312,7 @@ case class Complex(real: Double, imaginary: Double) {
         specify the SDK the first time you create a project or when you
         install a new SDK in a different location.</para>
 
-        <figure id="idea-new-project1b">
+        <figure float="none" id="idea-new-project1b">
           <title>Adding Scala to the IntelliJ IDEA project</title>
 
           <mediaobject>
@@ -1373,7 +1375,7 @@ case class Complex(real: Double, imaginary: Double) {
         files, as shown in <xref linkend="netbeans-add-plugins" />. Click
         <emphasis>Open</emphasis>.</para>
 
-        <figure id="netbeans-add-plugins">
+        <figure float="none" id="netbeans-add-plugins">
           <title>Adding the Scala plugins to be installed</title>
 
           <mediaobject>
@@ -1411,7 +1413,7 @@ case class Complex(real: Double, imaginary: Double) {
         linkend="netbeans-new-project1" />. Click
         <emphasis>Next</emphasis>.</para>
 
-        <figure id="netbeans-new-project1">
+        <figure float="none" id="netbeans-new-project1">
           <title>Creating a new NetBeans Scala project</title>
 
           <mediaobject>

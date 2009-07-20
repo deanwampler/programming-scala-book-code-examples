@@ -758,7 +758,7 @@ body length? 13</screen>
     structure of the hierarchy, as illustrated in <xref
     linkend="scalas-type-hierarchy" />.</para>
 
-    <figure id="scalas-type-hierarchy">
+    <figure float="none" id="scalas-type-hierarchy">
       <title>Scala’s type hierarchy</title>
 
       <mediaobject>

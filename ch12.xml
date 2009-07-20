@@ -2552,9 +2552,10 @@ public abstract class JavaApp {
 
     <para id="para_in_selftypeannotationsandabs">We will return to self-type
     annotations as a component composition model in <xref
-    linkend="ApplicationDesign" />. See the <xref
+    linkend="ApplicationDesign" />. See <xref
     linkend="SelfTypeAnnotationsAndAbstractTypeMembers" /> and <xref
-    linkend="DependencyInjectionInScala" /> sections in that chapter.</para>
+    linkend="DependencyInjectionInScala" /> in that <phrase
+    role="keep-together">chapter</phrase>.</para>
   </sect1>
 
   <sect1 id="StructuralTypes">
@@ -2730,8 +2731,8 @@ object ProcessList {
             <entry><para><literal>List[T] forSome { type T &lt;:
             scala.actors.AbstractActor }</literal></para></entry>
 
-            <entry><para>T can be any subtype of
-            <literal>AbstractActor</literal>.</para></entry>
+            <entry><para>T can be any subtype of <literal
+            role="keep-together">AbstractActor</literal>.</para></entry>
           </row>
 
           <row>
@@ -2741,9 +2742,9 @@ object ProcessList {
             <entry><para><literal>List[T] forSome { type T &gt;: MyFancyActor
             &lt;: scala.actors.AbstractActor }</literal></para></entry>
 
-            <entry><para>T can be any subtype of
-            <literal>AbstractActor</literal> up to and including the subtype
-            <literal>MyFancyActor</literal>.</para></entry>
+            <entry><para>T can be any subtype of <literal
+            role="keep-together">AbstractActor</literal> up to and including
+            the subtype <literal>MyFancyActor</literal>.</para></entry>
           </row>
         </tbody>
       </tgroup>
