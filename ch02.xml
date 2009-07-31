@@ -38,7 +38,11 @@
     though, Scala behaves like many scripting languages in treating the end of
     the line as the end of a statement or an expression. When a statement or
     expression is too long for one line, Scala can usually infer when you are
-    continuing on to the next line, as shown in this example:</para>
+    continuing on to the next line, as shown in this example:<indexterm>
+        <primary>; (semicolon)</primary>
+
+        <secondary>ending statements in Scala code</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/semicolon-example-script.scala
 
@@ -86,7 +90,11 @@ case "exit" =&gt;
     the compiler knows when you’ve reached the end of the “block” when it
     finds the next <literal>case</literal> clause or the curly brace
     (<literal>}</literal>) that ends the enclosing block for all the
-    <literal>case</literal> clauses.</para>
+    <literal>case</literal> clauses.<indexterm>
+        <primary>{ } (curly braces)</primary>
+
+        <secondary>{ indicating more code on next line</secondary>
+      </indexterm></para>
 
     <para id="para_omitting_optional_semicolons_m">Omitting optional
     semicolons means fewer characters to type and fewer characters to clutter
@@ -100,7 +108,20 @@ case "exit" =&gt;
     <para id="para_scala_allows_you_to_decide_whe">Scala allows you to decide
     whether a variable is immutable (read-only) or not (read-write) when you
     declare it. An immutable “variable” is declared with the keyword
-    <literal>val</literal> (think <emphasis>value object</emphasis>):</para>
+    <literal>val</literal> (think <emphasis>value
+    object</emphasis>):<indexterm>
+        <primary>val keyword</primary>
+
+        <secondary>using in declaration of immutable variable</secondary>
+      </indexterm><indexterm>
+        <primary>immutable varaibles</primary>
+
+        <secondary>declaring</secondary>
+      </indexterm><indexterm>
+        <primary>variables</primary>
+
+        <secondary>declarations</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">val array: Array[String] = new Array(5)</programlisting>
 
@@ -188,7 +209,15 @@ scala&gt;</programlisting>
     Methods are implicitly <emphasis>declared</emphasis> “abstract” if you
     leave off the equals sign and method body. The enclosing type is then
     itself abstract. We’ll discuss abstract types in more detail in <xref
-    linkend="BasicObjectOrientedProgramming" />.</para>
+    linkend="BasicObjectOrientedProgramming" />.<indexterm>
+        <primary>def keyword</primary>
+      </indexterm><indexterm>
+        <primary>definitions, method</primary>
+      </indexterm><indexterm class="startofrange" id="ch02_methodsdeclare">
+        <primary>methods</primary>
+
+        <secondary>declarations</secondary>
+      </indexterm></para>
 
     <para id="para_multiple_arg_lists">We said “optional argument lists”,
     meaning more than one. Scala lets you define more than one argument list
@@ -203,7 +232,12 @@ scala&gt;</programlisting>
     <para id="para_if_a_method_body_has_more_than">If a method body has more
     than one expression, you must surround it with curly braces
     <literal>{…}</literal>. You can omit the braces if the method body has
-    just one expression.</para>
+    just one expression.<indexterm>
+        <primary>{ } (curly braces)</primary>
+
+        <secondary sortas="method declarations">in method
+        declarations</secondary>
+      </indexterm></para>
 
     <sect2 id="MethodDefaultAndNamedArguments">
       <title>Method Default and Named Arguments (Scala Version 2.8)</title>
@@ -212,7 +246,13 @@ scala&gt;</programlisting>
       define default values for some or all of the arguments to a method.
       Consider the following script with a <literal>StringUtil</literal>
       object that lets you join a list of strings with a user-specified
-      separator:</para>
+      separator:<indexterm>
+          <primary>methods</primary>
+
+          <secondary>declarations</secondary>
+
+          <tertiary>default and named arguments</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-v1-script.scala
 // Version 1 of "StringUtil".
@@ -258,7 +298,9 @@ println(joiner(List("Programming", "Scala")))</programlisting>
       arguments</emphasis>. We could actually write the last line of the
       previous example in several ways. All of the following
       <literal>println</literal> statements are functionally
-      equivalent:</para>
+      equivalent:<indexterm>
+          <primary>named arguments</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">println(joiner(List("Programming", "Scala")))
 println(joiner(strings = List("Programming", "Scala")))
@@ -341,7 +383,13 @@ println( new OptionalUserProfileInfo(age = 29, location="Earth") )</programlisti
       <para id="param_method_nesting">Method definitions can also be nested.
       Here is an implementation of a factorial calculator, where we use a
       conventional technique of calling a second, nested method to do the
-      work:</para>
+      work:<indexterm>
+          <primary>methods</primary>
+
+          <secondary>declarations</secondary>
+
+          <tertiary>nesting method definitions</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/factorial-script.scala
 
@@ -421,7 +469,8 @@ countTo(5)</programlisting>
       Similarly the declaration of a non-nested method can be prefixed with
       the same keywords. We will discuss the visibility rules and keywords in
       <xref linkend="VisibilityRules" /> in <xref
-      linkend="BasicObjectOrientedProgramming" />.</para>
+      linkend="BasicObjectOrientedProgramming" />.<indexterm
+      class="endofrange" startref="ch02_methodsdeclare"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -429,7 +478,14 @@ countTo(5)</programlisting>
     <title>Inferring Type Information</title>
 
     <para id="para_statically_typed_languages_can">Statically-typed languages
-    can be very verbose. Consider this typical declaration in Java.</para>
+    can be very verbose. Consider this typical declaration in Java.<indexterm
+        class="startofrange" id="ch02_typeinfer">
+        <primary>type inference</primary>
+      </indexterm><indexterm class="startofrange" id="ch02_datatypesinfer">
+        <primary>data types</primary>
+
+        <secondary>inferring type information</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">import java.util.Map;
 import java.util.HashMap;
@@ -462,7 +518,11 @@ val intToStringMap: Map[Integer, String] = new HashMap</programlisting>
     equals sign. (We are sticking with Java types for the example.) On the
     right-hand side, we instantiate the actual type we want, a
     <literal>HashMap</literal>, but we don’t have to repeat the <emphasis>type
-    parameters</emphasis>.</para>
+    parameters</emphasis>.<indexterm>
+        <primary>[ ] (square brackets)</primary>
+
+        <secondary>enclosing generic type parameters</secondary>
+      </indexterm></para>
 
     <para id="para_for_completeness_suppose_we_d">For completeness, suppose we
     don’t actually care if the instance is of type <literal>Map</literal> (the
@@ -483,7 +543,14 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
     <para id="para_method_type_inference">Type inference is used for methods,
     too. In most cases, the return type of the method can be inferred, so the
     <literal>:</literal> and return type can be omitted. However, type
-    annotations are required for all method parameters.</para>
+    annotations are required for all method parameters.<indexterm
+        class="startofrange" id="cg02_returntype">
+        <primary>return type for methods</primary>
+      </indexterm><indexterm>
+        <primary>parameters, method</primary>
+
+        <secondary>required return type annotations</secondary>
+      </indexterm></para>
 
     <para id="para_functional_languages_like_hask">Pure functional languages
     like Haskell (see, e.g., <link linkend="OSullivan2009"
@@ -502,7 +569,11 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
 
       <para id="para_in_practical_terms_you_have_t">In practical terms, you
       have to provide explicit type annotations for the following
-      situations:</para>
+      situations:<indexterm>
+          <primary>type annotations</primary>
+
+          <secondary>required explicit type annotations</secondary>
+        </indexterm></para>
 
       <orderedlist numeration="arabic">
         <listitem>
@@ -556,7 +627,11 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
     <para id="para_method_return_value_cases">Let’s look at examples where
     explicit declarations of method return types are required. In the
     following script, the <literal>upCase</literal> method has a conditional
-    return statement for zero-length strings:</para>
+    return statement for zero-length strings:<indexterm>
+        <primary>return type for methods</primary>
+
+        <secondary>required explicit declarations of</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-nested-return-script.scala
 // ERROR: Won't compile until you put a String return type on upCase.
@@ -586,13 +661,19 @@ println( upCase("Hello") )</programlisting>
     <para id="para_actually_for_this_particular_">Actually, for this
     particular script, an alternative fix is to remove the
     <literal>return</literal> keyword from the line. It is not needed for the
-    code to work properly, but it illustrates our point.</para>
+    code to work properly, but it illustrates our point.<indexterm>
+        <primary>return keyword</primary>
+      </indexterm></para>
 
     <para id="para_recursive_methods_require_a_re">Recursive methods also
     require an explicit return type. Recall our <literal>factorial</literal>
     method in <xref linkend="NestingMethodDefinitions" />, previously in this
     chapter. Let’s remove the <literal>: Int</literal> return type on the
-    nested <literal>fact</literal> method:</para>
+    nested <literal>fact</literal> method:<indexterm>
+        <primary>recursive methods</primary>
+
+        <secondary>explicit return type requirement</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-recursive-return-script.scala
 // ERROR: Won't compile until you put an Int return type on "fact".
@@ -618,7 +699,11 @@ def factorial(i: Int) = {
     id="para_like_recursive_method_calls_w"><emphasis>Overloaded</emphasis>
     methods can sometimes require an explicit return type. When one such
     method calls another, we have to add a return type to the one doing the
-    calling, as in this example:</para>
+    calling, as in this example:<indexterm>
+        <primary>overloaded methods</primary>
+
+        <secondary>explicit return type requirement</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-overloaded-return-script.scala
 // Version 1 of "StringUtil" (with a compilation error).
@@ -863,7 +948,13 @@ scala&gt; println(double(2))
 
     <para id="para_the_cause_of_this_unexpected_b">The cause of this
     unexpected behavior is a missing equals sign in the method definition.
-    Here is the definition we actually intended:</para>
+    Here is the definition we actually intended:<indexterm>
+        <primary>= (equals sign)</primary>
+
+        <secondary>in method definition</secondary>
+
+        <tertiary>missing</tertiary>
+      </indexterm></para>
 
     <screen>scala&gt; def double(i: Int) = { 2 * i }
 double: (Int)Int
@@ -896,7 +987,10 @@ scala&gt; println(double(2))
     <literal>()</literal> come from that was printed before we fixed the bug?
     It is actually the real name of the <emphasis>singleton</emphasis>
     instance of the <literal>Unit</literal> type! (This name is a functional
-    programming convention.)</para>
+    programming convention.)<indexterm class="endofrange"
+    startref="cg02_returntype"></indexterm><indexterm class="endofrange"
+    startref="ch02_datatypesinfer"></indexterm><indexterm class="endofrange"
+    startref="ch02_typeinfer"></indexterm></para>
   </sect1>
 
   <sect1 id="Literals">
@@ -909,14 +1003,28 @@ scala&gt; println(double(2))
     lexical syntax literals. We’ll cover literal syntax for functions (used as
     <emphasis>values</emphasis>, not member methods), tuples, and certain
     types like <literal>Lists</literal> and <literal>Maps</literal>, as we
-    come to them.</para>
+    come to them.<indexterm class="startofrange" id="ch02_literals">
+        <primary>literals</primary>
+      </indexterm></para>
 
     <sect2 id="IntegerLiterals">
       <title>Integer Literals</title>
 
       <para id="para_integer_literals_can_be_expres">Integer literals can be
       expresses in decimal, hexadecimal, or octal. The details are summarized
-      in <xref linkend="integer-literals-table" />.</para>
+      in <xref linkend="integer-literals-table" />.<indexterm>
+          <primary>octal integer literals</primary>
+        </indexterm><indexterm>
+          <primary>hexadecimal integer literals</primary>
+        </indexterm><indexterm>
+          <primary>decimal integer literals</primary>
+        </indexterm><indexterm>
+          <primary>integer literals</primary>
+        </indexterm><indexterm>
+          <primary>literals</primary>
+
+          <secondary>integer</secondary>
+        </indexterm></para>
 
       <table id="integer-literals-table">
         <title>Integer literals</title>
@@ -1060,13 +1168,21 @@ b: Byte = 127</screen>
       <literal>f</literal> character at the end of the literal. Otherwise, a
       <literal>Double</literal> is assumed. You can optionally append a
       <literal>D</literal> or <literal>d</literal> for a
-      <literal>Double</literal>.</para>
+      <literal>Double</literal>.<indexterm>
+          <primary>floating point literals</primary>
+        </indexterm><indexterm>
+          <primary>literals</primary>
+
+          <secondary>floating point</secondary>
+        </indexterm></para>
 
       <para id="para_floating_point_literals_can_be">Floating point literals
       can be expressed with or without exponentials. The format of the
       exponential part is <literal>e</literal> or <literal>E</literal>,
       followed by an optional <literal>+</literal> or <literal>-</literal>,
-      followed by one or more digits.</para>
+      followed by one or more digits.<indexterm>
+          <primary>exponentials with floating point literals</primary>
+        </indexterm></para>
 
       <para id="para_here_are_some_example_floating">Here are some example
       floating point literals:</para>
@@ -1113,7 +1229,13 @@ b: Byte = 127</screen>
       <para id="para_the_boolean_literals_are_true">The boolean literals are
       <literal>true</literal> and <literal>false</literal>. The type of the
       variable to which they are assigned will be inferred to be
-      <literal>Boolean</literal>:</para>
+      <literal>Boolean</literal>:<indexterm>
+          <primary>literals</primary>
+
+          <secondary>boolean</secondary>
+        </indexterm><indexterm>
+          <primary>boolean literals</primary>
+        </indexterm></para>
 
       <screen>scala&gt; val b1 = true
 b1: Boolean = true
@@ -1132,7 +1254,30 @@ b2: Boolean = false</screen>
       <literal>\</literal> followed by a sequence of up to three octal
       characters. It is a compile time error if a backslash character in a
       character or string literal does not start a valid escape
-      sequence.</para>
+      sequence.<indexterm>
+          <primary>" " (quotation marks, double)</primary>
+
+          <secondary>escaping in character literals</secondary>
+        </indexterm><indexterm>
+          <primary>\ (backslash)</primary>
+
+          <secondary sortas="character escape sequences">in character escape
+          sequences</secondary>
+        </indexterm><indexterm>
+          <primary>' ' (quotation marks, single)</primary>
+
+          <secondary>enclosing character literals</secondary>
+        </indexterm><indexterm>
+          <primary>Unicode characters</primary>
+
+          <secondary>character literals</secondary>
+        </indexterm><indexterm>
+          <primary>literals</primary>
+
+          <secondary>character</secondary>
+        </indexterm><indexterm>
+          <primary>character literals</primary>
+        </indexterm></para>
 
       <para id="para_character_literal_examples_">Here are some
       examples:</para>
@@ -1236,13 +1381,27 @@ b2: Boolean = false</screen>
       <para id="para_a_string_literal_is_a_sequence">A string literal is a
       sequence of characters enclosed in double quotes or
       <emphasis>triples</emphasis> of double quotes, i.e.,
-      <literal>"""…"""</literal>.</para>
+      <literal>"""…"""</literal>.<indexterm>
+          <primary>" " (quotation marks, double)</primary>
+
+          <secondary>enclosing string literals</secondary>
+        </indexterm><indexterm>
+          <primary>string literals</primary>
+        </indexterm><indexterm>
+          <primary>literals</primary>
+
+          <secondary>string</secondary>
+        </indexterm></para>
 
       <para id="para_for_string_literals_in_double_">For string literals in
       double quotes, the allowed characters are the same as the character
       literals. However, if a double quote <literal>"</literal> character
       appears in the string, it must be “escaped” with a <literal>\</literal>
-      character. Here are some examples:</para>
+      character. Here are some examples:<indexterm>
+          <primary>\ (backslash)</primary>
+
+          <secondary>escaping double quotes in string literals</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">"Programming\nScala"
 "He exclaimed, \"Scala is great!\""
@@ -1260,7 +1419,12 @@ b2: Boolean = false</screen>
       typical example, which we’ll discuss in <xref
       linkend="RoundingOutTheEssentials" />. However, if escape <phrase
       role="keep-together">sequences</phrase> appear, they aren’t
-      interpreted.</para>
+      interpreted.<indexterm>
+          <primary>" " (quotation marks, double)</primary>
+
+          <secondary>triples of double quotes, bounding multi-line string
+          literals</secondary>
+        </indexterm></para>
 
       <para id="para_3quote_string_literal_examples_">Here are three example
       strings:</para>
@@ -1292,7 +1456,15 @@ Fourth line"""</programlisting>
       symbols with the same “name”, i.e., the same character sequence, will
       actually refer to the same object in memory. Symbols are used less often
       in Scala than in some other languages, like Ruby, Smalltalk, and Lisp.
-      They are useful as map keys instead of strings.</para>
+      They are useful as map keys instead of strings.<indexterm>
+          <primary>interned strings</primary>
+        </indexterm><indexterm>
+          <primary>symbol literals</primary>
+        </indexterm><indexterm>
+          <primary>literals</primary>
+
+          <secondary>symbol</secondary>
+        </indexterm></para>
 
       <para id="para_a_symbol_literal_is_a_single_q">A symbol literal is a
       single quote <literal>'</literal>, followed by a letter, followed by
@@ -1302,12 +1474,17 @@ Fourth line"""</programlisting>
 
       <para id="para_a_symbol_literal_id_is_a_sh">A symbol literal
       <literal>'</literal><replaceable>id</replaceable> is a shorthand for the
-      expression <literal>scala.Symbol("id")</literal>.</para>
+      expression <literal>scala.Symbol("id")</literal>.<indexterm>
+          <primary>' ' (quotation marks, single)</primary>
+
+          <secondary sortas="symbol literals">in symbol literals</secondary>
+        </indexterm></para>
 
       <note id="para_note_if_you_want_to_create_a_">
         <para>If you want to create a symbol that contains whitespace, use
         e.g., <literal>scala.Symbol(" Programming Scala ")</literal>. All the
-        whitespace is preserved.</para>
+        whitespace is preserved.<indexterm class="endofrange"
+        startref="ch02_literals"></indexterm></para>
       </note>
     </sect2>
   </sect1>
@@ -1321,7 +1498,9 @@ Fourth line"""</programlisting>
     very appealing. You could pass in parameters to the method that will be
     modified for all or some of the “return” values, which is ugly. Or, you
     could declare some small “structural” class that holds the two or more
-    values, then return an instance of that class.</para>
+    values, then return an instance of that class.<indexterm>
+        <primary>tuples</primary>
+      </indexterm></para>
 
     <para id="para_scala_supports__tuples__a_gr">Scala, supports
     <emphasis>tuples</emphasis>, a grouping of two or more items, usually
@@ -1417,7 +1596,18 @@ res2: (Int, Int) = (1,2)</screen>
     type hierarchy for Scala in <xref linkend="ScalaTypeHierarchy" /> in <xref
     linkend="ScalaObjectSystem" />. However, three useful classes to
     understand now are the <literal>Option</literal> class and its two
-    subclasses, <literal>Some</literal> and <literal>None</literal>.</para>
+    subclasses, <literal>Some</literal> and <literal>None</literal>.<indexterm
+        class="startofrange" id="ch02_nullsavoid">
+        <primary>nulls</primary>
+
+        <secondary>avoiding using Option, Some, and None classes</secondary>
+      </indexterm><indexterm>
+        <primary>None class</primary>
+      </indexterm><indexterm>
+        <primary>Some class</primary>
+      </indexterm><indexterm class="startofrange" id="ch02_Optionclass">
+        <primary>Option class</primary>
+      </indexterm></para>
 
     <para id="para_most_languages_have_a_special_">Most languages have a
     special keyword or object that’s assigned to reference variables when
@@ -1436,7 +1626,11 @@ res2: (Int, Int) = (1,2)</screen>
     <literal>None</literal>, an <literal>object</literal> that is a subclass
     of <literal>Option</literal>. When there is a value, use
     <literal>Some</literal>, which wraps the value. <literal>Some</literal> is
-    also a subclass of <literal>Option</literal>.</para>
+    also a subclass of <literal>Option</literal>.<indexterm>
+        <primary>return type for methods</primary>
+
+        <secondary>using Option, Some, and None types</secondary>
+      </indexterm></para>
 
     <note id="para_note_none_is_declared_as_an">
       <para><literal>None</literal> is declared as an
@@ -1592,7 +1786,9 @@ Unknown: Oops2!</screen>
     <para id="para_you_can_use_this_same_idiom_wh">You can use this same idiom
     when your methods return an <literal>Option</literal>. We’ll explore other
     uses for <literal>Option</literal> in subsequent sections. Its pervasive
-    use in Scala code makes it an important concept to grasp.</para>
+    use in Scala code makes it an important concept to grasp.<indexterm
+    class="endofrange" startref="ch02_Optionclass"></indexterm><indexterm
+    class="endofrange" startref="ch02_nullsavoid"></indexterm></para>
   </sect1>
 
   <sect1 id="Packages">
@@ -1602,12 +1798,21 @@ Unknown: Oops2!</screen>
     concept that Java uses for namespaces, but Scala offers a more flexible
     syntax. Just as file names don’t have to match the type names, the package
     structure does not have to match the directory structure. So, you can
-    define packages in files independent of their “physical” location.</para>
+    define packages in files independent of their “physical”
+    location.<indexterm>
+        <primary>codes</primary>
+
+        <secondary>organizing in files and namespaces</secondary>
+      </indexterm></para>
 
     <para id="para_the_following_example_defines_">The following example
     defines a class <literal>MyClass</literal> in a package
     <literal>com.example.mypkg</literal> using the conventional Java
-    syntax:</para>
+    syntax:<indexterm>
+        <primary>classes</primary>
+
+        <secondary>defining using Java syntax</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/package-example1.scala
 
@@ -1620,7 +1825,15 @@ class MyClass {
     <para id="para_the_next_example_shows_a_contr">The next example shows a
     contrived example that defines packages using the nested package syntax in
     Scala, which is similar to the <literal>namespace</literal> syntax in C#
-    and the use of <literal>modules</literal> as namespaces in Ruby:</para>
+    and the use of <literal>modules</literal> as namespaces in Ruby:<indexterm>
+        <primary>namespaces</primary>
+
+        <secondary>similarity of Scala's nested package syntax to</secondary>
+      </indexterm><indexterm>
+        <primary>packages</primary>
+
+        <secondary>defining using nested package syntax in Scala</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/package-example2.scala
 
@@ -1672,7 +1885,11 @@ package com {
 
     <para id="para_following_the_conventions_of_j">Following the conventions
     of Java, the root package for Scala’s library classes is named
-    <literal>scala</literal>.</para>
+    <literal>scala</literal>.<indexterm>
+        <primary>packages</primary>
+
+        <secondary>root package for Scala library classes</secondary>
+      </indexterm></para>
 
     <warning id="para_note_scala_does_not_allow_pac">
       <para>Scala does not allow package declarations in scripts that are
@@ -1691,7 +1908,19 @@ package com {
     packages, you have to import them, just as you do in Java and similarly
     for other languages. However, compared to Java, Scala greatly expands your
     options. The following example illustrates several ways to import Java
-    types:</para>
+    types:<indexterm>
+        <primary>import statements</primary>
+
+        <secondary>importing Java types and their members</secondary>
+      </indexterm><indexterm>
+        <primary>Java</primary>
+
+        <secondary>importation of data types into Scala</secondary>
+      </indexterm><indexterm>
+        <primary>data types</primary>
+
+        <secondary>importing types and their members</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/import-example1.scala
 
@@ -1703,7 +1932,11 @@ import java.util.{Map, HashMap}</programlisting>
     <para id="para_you_can_import_all_types_in_a_">You can import all types in
     a package, using the underscore <literal>_</literal> as a wild card, as
     shown on the first line. You can also import individual Scala or Java
-    types, as shown on the second line.</para>
+    types, as shown on the second line.<indexterm>
+        <primary>_ (underscore)</primary>
+
+        <secondary>use in Scala as wildcard</secondary>
+      </indexterm></para>
 
     <para id="para_star_vs_underscore">Java uses the “star” character
     <literal>*</literal> as the wild card for matching all types in a package
@@ -1780,7 +2013,13 @@ writeAboutBigInteger()</programlisting>
       <para id="para_there_s_one_other_important_th">There’s one other
       important thing to know about imports; they are
       <emphasis>relative</emphasis>. The following imports are all the
-      same:</para>
+      same:<indexterm>
+          <primary>import statements</primary>
+
+          <secondary>relative path used in</secondary>
+        </indexterm><indexterm>
+          <primary>relative imports</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">import scala.collection.mutable._
 import collection.mutable._          // Since "scala" is already imported
@@ -1825,7 +2064,19 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     in the Scala community and “generics” in the Java community.) The most
     obvious difference is in the syntax, where Scala uses square brackets
     (<literal>[...]</literal>), while Java uses angle brackets
-    (<literal>&lt;...&gt;</literal>).</para>
+    (<literal>&lt;...&gt;</literal>).<indexterm>
+        <primary>generics (Java)</primary>
+      </indexterm><indexterm>
+        <primary>[ ] (square brackets)</primary>
+
+        <secondary>use with parameterized types</secondary>
+      </indexterm><indexterm>
+        <primary>parmeterized types</primary>
+      </indexterm><indexterm>
+        <primary>data types</primary>
+
+        <secondary>parameterized types</secondary>
+      </indexterm></para>
 
     <para id="para_for_example_a_list_of_strings">For example, a list of
     strings would be declared as follows:</para>
@@ -1860,7 +2111,13 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     many examples of them before we dive into their details in <xref
     linkend="ScalasTypeSystem" />. For a very detailed comparison of these two
     mechanisms, see <link linkend="Bruce1998"
-    xrefstyle="select:nopage">[Bruce1998]</link>.</para>
+    xrefstyle="select:nopage">[Bruce1998]</link>.<indexterm>
+        <primary>data types</primary>
+
+        <secondary>abstract</secondary>
+      </indexterm><indexterm>
+        <primary>abstract types</primary>
+      </indexterm></para>
 
     <para id="para_abstract_types_can_be_applied_">Abstract types can be
     applied to many of the same design problems for which parameterized types
@@ -1916,7 +2173,11 @@ abstract class BulkReader {
     <literal>source</literal>, and a <literal>read</literal> method. As in
     Java, instances in Scala can only be created from
     <emphasis>concrete</emphasis> classes, which must have definitions for all
-    members.</para>
+    members.<indexterm>
+        <primary>classes</primary>
+
+        <secondary>abstract</secondary>
+      </indexterm></para>
 
     <para id="para_the_derived_classes_stringbu">The derived classes,
     <literal>StringBulkReader</literal> and <literal>FileBulkReader</literal>,
@@ -1968,7 +2229,11 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
     linkend="reserved-words-table" /> lists the reserved words in Scala, which
     we sometimes call “keywords”, and briefly describes how they are used
     <link linkend="ScalaSpec2009"
-    xrefstyle="select:nopage">[ScalaSpec2009]</link>.</para>
+    xrefstyle="select:nopage">[ScalaSpec2009]</link>.<indexterm>
+        <primary>reserved words</primary>
+
+        <secondary>listing of reserved words in Scala</secondary>
+      </indexterm></para>
 
     <table id="reserved-words-table">
       <title>Reserved words</title>
@@ -2510,7 +2775,52 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
     programming idioms that are usually more succinct and less error prone.
     We’ll discuss alternative approaches when we discuss
     <literal>for</literal> loops (see <xref linkend="GeneratorExpressions" />
-    in <xref linkend="RoundingOutTheEssentials" />).</para>
+    in <xref linkend="RoundingOutTheEssentials" />).<indexterm>
+        <primary>@ (at sign)</primary>
+
+        <secondary>marking annotations</secondary>
+      </indexterm><indexterm>
+        <primary># (pound sign)</primary>
+
+        <secondary>use in type projections</secondary>
+      </indexterm><indexterm>
+        <primary>&lt; &gt; (angle brackets)</primary>
+
+        <secondary>&gt;:, constraining allowed types in parameterized and
+        abstract type declarations</secondary>
+      </indexterm><indexterm>
+        <primary>&lt; &gt; (angle brackets)</primary>
+
+        <secondary>&lt;%, use in parameterized and abstract type view bounds
+        declarations</secondary>
+      </indexterm><indexterm>
+        <primary>&lt; &gt; (angle brackets)</primary>
+
+        <secondary>&lt;:, use in parameterized and abstract type
+        declarations</secondary>
+      </indexterm><indexterm>
+        <primary>&lt; &gt; (angle brackets)</primary>
+
+        <secondary>&lt;-, use in comprehensions in generator
+        expressions</secondary>
+      </indexterm><indexterm>
+        <primary>= (equals sign)</primary>
+
+        <secondary>=&gt; in function literals</secondary>
+      </indexterm><indexterm>
+        <primary>= (equals sign)</primary>
+
+        <secondary>assignment operator</secondary>
+      </indexterm><indexterm>
+        <primary>: (colon)</primary>
+
+        <secondary>separator between identifiers and type
+        annotations</secondary>
+      </indexterm><indexterm>
+        <primary>_ underscore</primary>
+
+        <secondary>placeholder in imports, function literals, etc.</secondary>
+      </indexterm></para>
 
     <para id="para_some_java_methods_use_names_th">Some Java methods use names
     that are reserved by Scala, e.g.,
