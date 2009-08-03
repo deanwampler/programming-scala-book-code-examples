@@ -11,7 +11,9 @@
     object-oriented programming, there’s one more essential feature of Scala
     that you should get acquainted with: <emphasis>traits</emphasis>.
     Understanding the value of this feature requires a little
-    backstory.</para>
+    backstory.<indexterm class="startofrange" id="ch04_traits">
+        <primary>traits</primary>
+      </indexterm></para>
 
     <para id="para_a_java_class_can__implement__a">In Java, a class can
     implement an arbitrary number of <emphasis>interfaces</emphasis>. This
@@ -30,7 +32,9 @@
     an interface has members that are unrelated (“orthogonal”) to the rest of
     the instance’s members. The term <emphasis>mixin</emphasis> is often used
     for such focused and potentially reusable parts of an instance that could
-    be independently maintained.</para>
+    be independently maintained.<indexterm>
+        <primary>mixins</primary>
+      </indexterm></para>
 
     <para id="para_look_at_gui_text_field_class">Have a look at the following
     code for a button in a graphical user interface, which uses callbacks for
@@ -73,7 +77,9 @@ class ButtonWithCallbacks(val label: String,
     of <emphasis>separation of concerns</emphasis>. We would like to separate
     the button-specific logic from the callback logic, such that each logical
     component becomes simpler, more modular, and more reusable. The callback
-    logic is a good example of a <emphasis>mixin</emphasis>.</para>
+    logic is a good example of a <emphasis>mixin</emphasis>.<indexterm>
+        <primary>Single Responsibility Principle</primary>
+      </indexterm></para>
 
     <para id="para_this_separation_is_difficult_t">This separation is
     difficult to do in Java, even if we define an interface for the callback
@@ -87,7 +93,13 @@ class ButtonWithCallbacks(val label: String,
     that are repeated throughout an application. It seeks to modularize these
     concerns, yet enable the fine-grained “mixing” of their behaviors with
     other concerns, including the core domain logic of the application, either
-    at build or run time.</para>
+    at build or run time.<indexterm>
+        <primary>Java</primary>
+
+        <secondary>aspect oriented programming, AspectJ</secondary>
+      </indexterm><indexterm>
+        <primary>aspect-oriented programming (AOP)</primary>
+      </indexterm></para>
 
     <sect2 id="TraitsAsMixins">
       <title>Traits as Mixins</title>
@@ -102,7 +114,15 @@ class ButtonWithCallbacks(val label: String,
       create instances. That is, we don’t have to declare a class first that
       mixes in all the traits we want. So, Scala traits preserve separation of
       concerns while giving us the ability to compose behavior on
-      demand.</para>
+      demand.<indexterm class="startofrange" id="ch04_traitsmixins">
+          <primary>traits</primary>
+
+          <secondary sortas="mixins">as mixins</secondary>
+        </indexterm><indexterm class="startofrange" id="ch04_mixinstraits">
+          <primary>mixins</primary>
+
+          <secondary>traits as</secondary>
+        </indexterm></para>
 
       <para id="para_if_you_come_from_a_java_background">If you come from a
       Java background, you can think of traits as interfaces
@@ -152,7 +172,9 @@ abstract class Widget</programlisting>
 
       <para id="para_here_is_a__trait__that_impleme">Here is a
       <emphasis>trait</emphasis> that implements the logic of the
-      <emphasis>Observer Pattern</emphasis>:</para>
+      <emphasis>Observer Pattern</emphasis>:<indexterm>
+          <primary>Observer Pattern, trait implementing logic of</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Traits/observer/observer.scala
 
@@ -174,14 +196,22 @@ trait Subject {
       <xref linkend="OverridingMembers" /> in <xref
       linkend="AdvancedObjectOrientedProgramming" /> for more details). Also
       like classes, traits can contain nested trait and class definitions and
-      classes can contain nested trait definitions.</para>
+      classes can contain nested trait definitions.<indexterm>
+          <primary>trait keyword</primary>
+        </indexterm></para>
 
       <para id="para_the_first_line_defines_a_type">The first line defines a
       <literal>type</literal> for an <literal>Observer</literal>. This is a
       <emphasis>structural type</emphasis> of the form <literal>{ def
       receiveUpdate(subject:Any) }</literal>. Structural types specify only
       the structure a subtype must support; you could think of them as
-      “anonymous” types.</para>
+      “anonymous” types.<indexterm>
+          <primary>data types</primary>
+
+          <secondary>structural types</secondary>
+        </indexterm><indexterm>
+          <primary>structural types</primary>
+        </indexterm></para>
 
       <para id="para_in_this_case_the_structural_t">In this case, the
       structural type is defined by a method with a particular signature. Any
@@ -213,7 +243,7 @@ trait Subject {
       <literal>addObserver</literal> method.</para>
 
       <para id="para_we_ll_discuss_scala_list_s_m">We’ll discuss Scala
-      <literal>List</literal>’s more in <xref linkend="ScalaTypeHierarchy" />
+      <literal>List</literal>s more in <xref linkend="ScalaTypeHierarchy" />
       in <xref linkend="ScalaObjectSystem" /> and also in <xref
       linkend="FunctionalProgramming" />. For now, notice that
       <literal>addObserver</literal> uses the the list
@@ -258,7 +288,9 @@ trait Subject {
       languages. Function literals and the related concept of a
       <emphasis>closure</emphasis> are discussed in <xref
       linkend="FunctionLiteralsAndClosures" /> in <xref
-      linkend="FunctionalProgramming" />.</para>
+      linkend="FunctionalProgramming" />.<indexterm>
+          <primary>function literals</primary>
+        </indexterm></para>
 
       <para id="para_in_java_the_foreach_method_">In Java, the
       <literal>foreach</literal> method would probably take an interface and
@@ -271,7 +303,9 @@ trait Subject {
       instance of type <literal>A</literal>, where A represents the type of
       the elements of the list (<literal>Observer</literal>, in this case),
       and returning <literal>Unit</literal> (like <literal>void</literal> in
-      Java).</para>
+      Java).<indexterm>
+          <primary>foreach method</primary>
+        </indexterm></para>
 
       <note id="para_note_we_chose_to_use_a_var_">
         <para>We chose to use a <literal>var</literal> with immutable
@@ -315,7 +349,11 @@ class ObservableButton(name: String) extends Button(name) with Subject {
       “superclass” method, <literal>Button.click</literal>, then it notifies
       the observers. Since the new <literal>click</literal> method overrides
       <literal>Button</literal>’s concrete implementation, the
-      <literal>override</literal> keyword is required.</para>
+      <literal>override</literal> keyword is required.<indexterm>
+          <primary>with keyword</primary>
+        </indexterm><indexterm>
+          <primary>override keyword</primary>
+        </indexterm></para>
 
       <para id="para_the_with_keyword_is_analogou">The <literal>with</literal>
       keyword is analogous to Java’s <literal>implements</literal> keyword for
@@ -325,7 +363,9 @@ class ObservableButton(name: String) extends Button(name) with Subject {
       <para id="para_a_class_can_extend_a_trait_and">A class can extend a
       trait and a trait can extend a class. In fact, our
       <literal>Widget</literal> class above could have been declared to be a
-      trait.</para>
+      trait.<indexterm>
+          <primary>extends keyword</primary>
+        </indexterm></para>
 
       <note id="para_note_if_you_declare_a_class_t">
         <para>If you declare a class that uses one or more traits and it
@@ -372,7 +412,17 @@ class ButtonCountObserver {
       write a <emphasis>Behavior-Driven Development</emphasis> (<link
       linkend="BDD" xrefstyle="select:nopage">[BDD]</link>) “specification”
       that exercises the combined <literal>Button</literal> and
-      <literal>Subject</literal> types:</para>
+      <literal>Subject</literal> types:<indexterm>
+          <primary>BDD (behavior-driven development)</primary>
+
+          <secondary>specification exercising combined Button and Subject
+          types</secondary>
+        </indexterm><indexterm>
+          <primary>Specs library</primary>
+
+          <secondary>using for BDD specification exercising combined Button
+          and Subject types</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-observer-spec.scala
 
@@ -426,7 +476,11 @@ Finished in 0 second, 10 ms
       xrefstyle="select:nopage">[ScalaTestTool]</link> (see also <xref
       linkend="ScalaTest" /> in <xref linkend="ScalaToolsLibs" />), then the
       last line is equivalent to the following <literal>JUnit</literal>
-      assertion:</para>
+      assertion:<indexterm>
+          <primary>JUnit</primary>
+        </indexterm><indexterm>
+          <primary>TDD (test-driven development)</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">assertEquals(3, buttonObserver.count)</programlisting>
 
@@ -482,7 +536,13 @@ object ButtonObserverAnonSpec extends Specification {
       in which we override the <literal>click</literal> method, as before. The
       main difference with creating anonymous classes in Java is that we can
       incorporate traits in this process. Java does not let you implement a
-      new interface while instantiating a class.</para>
+      new interface while instantiating a class.<indexterm>
+          <primary>anonymous classes</primary>
+
+          <secondary>creating</secondary>
+        </indexterm><indexterm class="endofrange"
+      startref="ch04_traitsmixins"></indexterm><indexterm class="endofrange"
+      startref="ch04_mixinstraits"></indexterm></para>
 
       <para id="para_finally_note_that_the_inherit">Finally, note that the
       inheritance hierarchy for an instance can be complex if it mixes in
@@ -498,11 +558,17 @@ object ButtonObserverAnonSpec extends Specification {
     <para id="para_there_are_a_couple_of_refineme">There are a couple of
     refinements we can do to improve the reusability of our work and to make
     it easier to use more than one trait at a time, i.e., to “stack”
-    them.</para>
+    them.<indexterm>
+        <primary>traits</primary>
+
+        <secondary>stacking</secondary>
+      </indexterm></para>
 
     <para id="para_first_let_s_introduce_a_new_t">First, let’s introduce a new
     trait, <literal>Clickable</literal>, an abstraction for any widget that
-    responds to clicks:</para>
+    responds to clicks:<indexterm>
+        <primary>Clickable trait</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/clickable.scala
 
@@ -576,7 +642,11 @@ trait ObservableClicks extends Clickable with Subject {
     then overrides the <literal>click</literal> method with an implementation
     that looks almost the same as the overridden method shown in <xref
     linkend="TraitsAsMixins" />. The important difference is the
-    <literal>abstract</literal> keyword.</para>
+    <literal>abstract</literal> keyword.<indexterm>
+        <primary>abstract keyword</primary>
+      </indexterm><indexterm>
+        <primary>ObservableClicks trait (example)</primary>
+      </indexterm></para>
 
     <para id="para_look_closely_at_this_method_i">Look closely at this method.
     It calls <literal>super.click()</literal>, but what is
@@ -643,7 +713,17 @@ object ButtonClickableObserverSpec extends Specification {
     xrefstyle="select:nopage">[JavaBeansSpec]</link> has the idea of
     “vetoable” events, where listeners for changes to a JavaBean can veto the
     change. Let’s implement something similar with a trait that vetoes more
-    than a set number of clicks:</para>
+    than a set number of clicks:<indexterm>
+        <primary>traits</primary>
+
+        <secondary sortas="mixins">as mixins</secondary>
+
+        <tertiary>vetoing click events</tertiary>
+      </indexterm><indexterm>
+        <primary>JavaBeans</primary>
+
+        <secondary>vetoable events</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/vetoable-clicks.scala
 
@@ -678,7 +758,9 @@ trait VetoableClicks extends Clickable {
     linkend="BasicObjectOrientedProgramming" />). The overridden
     <literal>click</literal> method increments <literal>count</literal>. It
     only calls the <literal>super.click()</literal> method if the count is
-    less than or equal to the <literal>maxAllowed</literal> count.</para>
+    less than or equal to the <literal>maxAllowed</literal> count.<indexterm>
+        <primary>VetoableClicks trait (example)</primary>
+      </indexterm></para>
 
     <para id="para_specs_object_for_obs_clicks">Here is a
     <emphasis>Specs</emphasis> object that demonstrates
@@ -686,7 +768,11 @@ trait VetoableClicks extends Clickable {
     working together. Note that a separate <literal>with</literal> keyword is
     required for each trait, as opposed to using one keyword and separating
     the names with commas, as Java does for <literal>implements</literal>
-    clauses:</para>
+    clauses:<indexterm>
+        <primary>ObservableClicks trait (example)</primary>
+
+        <secondary>working with VetoableClicks trait (example)</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button-clickable-observer-vetoable-spec.scala
 
@@ -757,7 +843,11 @@ object ButtonVetoableClickableObserverSpec extends Specification {
     matters, which is important to remember for preventing unexpected behavior
     when traits impact each other. Perhaps another lesson to note is that
     splitting objects into too many fine-grained traits can obscure the order
-    of execution in your code!</para>
+    of execution in your code!<indexterm>
+        <primary>declarations</primary>
+
+        <secondary>order of declaration, traits and</secondary>
+      </indexterm></para>
 
     <para id="para_breaking_up_your_application_i">Breaking up your
     application into small, focused traits is a powerful way to create
@@ -765,7 +855,9 @@ object ButtonVetoableClickableObserverSpec extends Specification {
     built up through <emphasis>declarative composition</emphasis> of traits.
     We will explore this idea in greater detail in <xref
     linkend="ScalableAbstractions" /> in <xref
-    linkend="ApplicationDesign" />.</para>
+    linkend="ApplicationDesign" />.<indexterm>
+        <primary>declarative composition of traits</primary>
+      </indexterm></para>
   </sect1>
 
   <sect1 id="ConstructingTraits">
@@ -776,7 +868,11 @@ object ButtonVetoableClickableObserverSpec extends Specification {
     primary constructor, the body of a trait. Traits can extend classes or
     other traits. However, they can’t pass arguments to the parent class
     constructor (even literal values), so traits can only extend classes that
-    have a no-argument primary or auxiliary constructor.</para>
+    have a no-argument primary or auxiliary constructor.<indexterm>
+        <primary>traits</primary>
+
+        <secondary>constructing</secondary>
+      </indexterm></para>
 
     <para id="para_however_like_classes_the_bod">However, like classes, the
     body of a trait is executed every time an instance is created that uses
@@ -831,7 +927,13 @@ After Creating C12</screen>
     and <literal>T2</literal>, and ending with the <literal>C12</literal>
     constructor body. (For constructing arbitrarily-complex hierarchies, see
     <xref linkend="Linearization" /> in <xref
-    linkend="ScalaObjectSystem" />.)</para>
+    linkend="ScalaObjectSystem" />.)<indexterm>
+        <primary>traits</primary>
+
+        <secondary>constructing</secondary>
+
+        <tertiary>initializing values in traits</tertiary>
+      </indexterm></para>
 
     <para id="para_so_while_you_can_t_pass_const">So, while you can’t pass
     construction parameters to traits, you can initialize fields with default
@@ -870,7 +972,23 @@ After Creating C12</screen>
       is the more precise definition of inheritance, based on the
       <emphasis>Liskov Substitution Principle</emphasis>—see <link
       linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>, for
-      example.)</para>
+      example.)<indexterm>
+          <primary>Liskov Substitution Principle</primary>
+        </indexterm><indexterm>
+          <primary>inheritance</primary>
+
+          <secondary>definition, behaves as versus is a</secondary>
+        </indexterm><indexterm>
+          <primary>classes</primary>
+
+          <secondary>traits versus</secondary>
+        </indexterm><indexterm>
+          <primary>traits</primary>
+
+          <secondary>constructing</secondary>
+
+          <tertiary>class or trait</tertiary>
+        </indexterm></para>
 
       <tip id="para_tip_avoid_fields_in_traits_th">
         <para>Avoid concrete fields in traits that can’t be initialized to
@@ -904,6 +1022,7 @@ After Creating C12</screen>
     explore how the fundamentals of object-oriented programming work in Scala.
     Even if you’re an old hand at object-oriented programming, you’ll want to
     read the next several chapters to understand the particulars of Scala’s
-    approach to OOP.</para>
+    approach to OOP.<indexterm class="endofrange"
+    startref="ch04_traits"></indexterm></para>
   </sect1>
 </chapter>

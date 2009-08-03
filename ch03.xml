@@ -518,9 +518,9 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     building blocks of a language.<indexterm>
         <primary>testing</primary>
 
-        <secondary>BDD (Behavior-Driven Development)</secondary>
+        <secondary>BDD (behavior-driven development)</secondary>
       </indexterm><indexterm>
-        <primary>BDD (Behavior-Driven Development) testing</primary>
+        <primary>BDD (behavior-driven development)</primary>
       </indexterm><indexterm>
         <primary>Specs library</primary>
       </indexterm></para>
