@@ -14,7 +14,13 @@
 
     <para id="para_an_important_fundamental_conce">An important fundamental
     concept in Scala is that all operators are actually methods. Consider this
-    most basic of examples:</para>
+    most basic of examples:<indexterm>
+        <primary>methods</primary>
+
+        <secondary>operators as</secondary>
+      </indexterm><indexterm>
+        <primary>operators</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Rounding/one-plus-two-script.scala
 
@@ -28,11 +34,26 @@
     Scala lets you drop both the period and the parentheses, so the method
     invocation looks like an operator invocation. This is called “infix”
     notation, where the operator is between the instance and the argument.
-    We’ll find out more about this shortly.</para>
+    We’ll find out more about this shortly.<indexterm>
+        <primary>symbolsl in method names and other identifiers</primary>
+      </indexterm><indexterm>
+        <primary>infix notation</primary>
+      </indexterm><indexterm>
+        <primary>( ) (parentheses)</primary>
+
+        <secondary sortas="method invocations">in method invocations,
+        dropping</secondary>
+      </indexterm></para>
 
     <para id="para_similarly_a_method_with_no_ar">Similarly, a method with no
     arguments can be invoked without the period. This is called “postfix”
-    notation.</para>
+    notation.<indexterm>
+        <primary>. (dot)</primary>
+
+        <secondary>omitting in method invocations</secondary>
+      </indexterm><indexterm>
+        <primary>postfix notation</primary>
+      </indexterm></para>
 
     <para id="para_ruby_and_smalltalk_programmers">Ruby and Smalltalk
     programmers should now feel right at home. As users of those languages
@@ -55,7 +76,17 @@
     \u0020–\u007F that are not in the sets above, such as mathematical symbols
     and “other” symbols. These remaining characters are called
     <emphasis>operator characters</emphasis> and they include characters such
-    as <literal>/</literal>, <literal>&lt;</literal>, etc.</para>
+    as <literal>/</literal>, <literal>&lt;</literal>, etc.<indexterm>
+        <primary>characters</primary>
+
+        <secondary>used in identifiers</secondary>
+      </indexterm><indexterm>
+        <primary>identifiers</primary>
+
+        <secondary>characters allowed in</secondary>
+      </indexterm><indexterm>
+        <primary>operator characters</primary>
+      </indexterm></para>
 
     <variablelist id="para_identifier_rules">
       <varlistentry id="varlistentry-reserved-words-can-8217-t-be-used">
@@ -67,7 +98,11 @@
           linkend="ReservedWords" /> in <xref linkend="TypeLessDoMore" />.
           Recall that some of them are combinations of operator and
           punctuation characters. For example, a single underscore
-          (<literal>_</literal>) is a reserved word!</para>
+          (<literal>_</literal>) is a reserved word!<indexterm>
+              <primary>reserved words</primary>
+
+              <secondary>not allowed in identifiers</secondary>
+            </indexterm></para>
         </listitem>
       </varlistentry>
 
@@ -95,7 +130,13 @@
           them with letters and digits. This restriction prevents ambiguous
           expressions like this: <literal>abc_=123</literal>. Is that an
           identifier <literal>abc_=123</literal> or an assignment of the value
-          <literal>123</literal> to <literal>abc_</literal>?</para>
+          <literal>123</literal> to <literal>abc_</literal>?<indexterm>
+              <primary>$ (dollar sign)</primary>
+
+              <secondary>in identifiers</secondary>
+            </indexterm><indexterm>
+              <primary>plain identifiers</primary>
+            </indexterm></para>
         </listitem>
       </varlistentry>
 
@@ -118,7 +159,9 @@
           World!"</literal>. Recall that this syntax is also the way to invoke
           a method on a Java or .NET class when the method’s name is identical
           to a Scala reserved word, e.g.,
-          <literal>java.net.Proxy.‵type‵()</literal>.</para>
+          <literal>java.net.Proxy.‵type‵()</literal>.<indexterm>
+              <primary>- - (back quotes) in literals</primary>
+            </indexterm></para>
         </listitem>
       </varlistentry>
 
@@ -132,7 +175,11 @@
           letter are parsed as <emphasis>constant identifiers</emphasis>. This
           restriction prevents some ambiguities because of the very succinct
           variable syntax that is used, e.g., no <literal>val</literal>
-          keyword is present.</para>
+          keyword is present.<indexterm>
+              <primary>pattern matching identifiers</primary>
+            </indexterm><indexterm>
+              <primary>variable identifiers</primary>
+            </indexterm></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -151,7 +198,23 @@
       can use to talk to Actors. Similarly, Scala’s XML library provides the
       <literal>\</literal> and <literal>\\</literal> operators to dive into
       document structures. These are just methods on the
-      <literal>scala.xml.NodeSeq</literal> class.</para>
+      <literal>scala.xml.NodeSeq</literal> class.<indexterm>
+          <primary>Actors</primary>
+
+          <secondary>shortcut operators used with</secondary>
+        </indexterm><indexterm>
+          <primary>NodeSeq class</primary>
+
+          <secondary>\ and \\ methods</secondary>
+        </indexterm><indexterm>
+          <primary>\ (backslash)</primary>
+
+          <secondary>\ and \\ operators for document structures</secondary>
+        </indexterm><indexterm>
+          <primary>! (exclamation point)</primary>
+
+          <secondary>use with Actors</secondary>
+        </indexterm></para>
 
       <para id="para_this_flexible_method_naming_gi">This flexible method
       naming gives you the power to write libraries that feel like a natural
@@ -187,7 +250,12 @@
     you’ll get an error. However, the <literal>length</literal> method for
     <literal>String</literal> does have parentheses in its definition, so both
     <literal>"hello".length()</literal> and <literal>"hello".length</literal>
-    will <phrase role="keep-together">compile</phrase>.</para>
+    will <phrase role="keep-together">compile</phrase>.<indexterm>
+        <primary>methods</primary>
+
+        <secondary sortas="parentheses and dots">without parentheses and
+        dots</secondary>
+      </indexterm></para>
 
     <para id="para_the_convention_in_the_scala_co">The convention in the Scala
     community is to omit parentheses when calling a method that has no
@@ -195,7 +263,15 @@
     is fine without parentheses, but defining a method that transforms the
     elements in the sequence should be written with parentheses. This
     convention signals a potentially tricky method for users of your
-    code.</para>
+    code.<indexterm>
+        <primary>. (dot)</primary>
+
+        <secondary>omitting in method calls</secondary>
+      </indexterm><indexterm>
+        <primary>( ) (parentheses)</primary>
+
+        <secondary>omitting in method invocations</secondary>
+      </indexterm></para>
 
     <para id="para_it_s_also_possible_to_omit_the">It’s also possible to omit
     the dot (period) when calling a parameterless method or one that takes
@@ -236,7 +312,66 @@ List(1, 2, 3, 4) filter isEven foreach println</programlisting>
       calls on <literal>Doubles</literal>, what are the <emphasis>operator
       precedence</emphasis> rules? Here they are in order from lowest to
       highest precedence <link linkend="ScalaSpec2009"
-      xrefstyle="select:nopage">[ScalaSpec2009]</link>.</para>
+      xrefstyle="select:nopage">[ScalaSpec2009]</link>.<indexterm>
+          <primary>methods</primary>
+
+          <secondary sortas="parentheses and dots">without parentheses and
+          dots</secondary>
+
+          <tertiary>operator precedence</tertiary>
+        </indexterm><indexterm>
+          <primary>% (percent sign)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>/ (slash)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>* (asterisk)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>- (minus sign)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>+ (plus sign)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>: (colon)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>! (exclamation point)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>= (equals sign)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>&lt; &gt; (angle brackets)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>&amp; (ampersand)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>^ (caret)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>| (vertical bar)</primary>
+
+          <secondary>operator precedence</secondary>
+        </indexterm><indexterm>
+          <primary>precedence, operator</primary>
+        </indexterm><indexterm>
+          <primary>operator precedence</primary>
+        </indexterm></para>
 
       <itemizedlist>
         <listitem>
@@ -300,7 +435,22 @@ res3: Double = 13.333333333333332</programlisting>
       ends with a colon ‘:’ actually binds to the <emphasis>right</emphasis>,
       while all other methods bind to the left. For example, you can prepend
       an element to a <literal>List</literal> using the <literal>::</literal>
-      method (called “cons”, short for “constructor”):</para>
+      method (called “cons”, short for “constructor”):<indexterm>
+          <primary>right-associative method invocations</primary>
+        </indexterm><indexterm>
+          <primary>: (colon)</primary>
+
+          <secondary>:: (constructor) method</secondary>
+
+          <tertiary>prepending to a list</tertiary>
+        </indexterm><indexterm>
+          <primary>: (colon)</primary>
+
+          <secondary>methods ending in, right-associative
+          invocation</secondary>
+        </indexterm><indexterm>
+          <primary>left-associative method invocations</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">scala&gt; val list = List('b', 'c', 'd')
 list: List[Char] = List(b, c, d)
@@ -323,7 +473,11 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
       <replaceable>f</replaceable>)</literal>, then
       <literal><replaceable>a</replaceable></literal> is prepended to create
       the final list. It’s usually better to add parentheses to remove any
-      potential uncertainty.</para>
+      potential uncertainty.<indexterm>
+          <primary>+ (plus sign)</primary>
+
+          <secondary>++ method, appending to lists</secondary>
+        </indexterm></para>
 
       <tip id="para_tip_any_method_whose_name_end">
         <para>Any method whose name ends with a <literal>:</literal> binds to
@@ -348,14 +502,28 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     Languages</emphasis>, or DSLs, provide a convenient syntactical means for
     expressing goals in a given problem domain. For example, SQL provides just
     enough of a programming language to handle the problems of working with
-    databases, making it a domain-specific language.</para>
+    databases, making it a domain-specific language.<indexterm>
+        <primary>Domain-Specific Languaages</primary>
+
+        <see>DSLs</see>
+      </indexterm><indexterm>
+        <primary>DSLs (Domain-Specific Languages)</primary>
+      </indexterm></para>
 
     <para id="para_while_some_dsls_like_sql_are_s">While some DSLs like SQL
     are self-contained, it’s become popular to implement DSLs as subsets of
     full-fledged programming languages. This allows programmers to leverage
     the entirety of the host language for edge cases that the DSL does not
     cover, and saves the work of writing lexers, parsers, and the other
-    building blocks of a language.</para>
+    building blocks of a language.<indexterm>
+        <primary>testing</primary>
+
+        <secondary>BDD (Behavior-Driven Development)</secondary>
+      </indexterm><indexterm>
+        <primary>BDD (Behavior-Driven Development) testing</primary>
+      </indexterm><indexterm>
+        <primary>Specs library</primary>
+      </indexterm></para>
 
     <para id="para_scala_s_rich_flexible_syntax_">Scala’s rich, flexible
     syntax makes writing DSLs a breeze. Consider this example of a style of
@@ -399,7 +567,9 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     <literal>if</literal> evaluates a conditional expression, then proceeds to
     a block if the result is <literal>true</literal> or branches to an
     alternate block if the result is <literal>false</literal>. A simple
-    example:</para>
+    example:<indexterm>
+        <primary>if statements</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Rounding/if-script.scala
 
@@ -414,7 +584,11 @@ if (2 + 2 == 5) {
     <para id="para_what_s_different_in_scala_is_t">What’s different in Scala
     is that <literal>if</literal> and almost all other statements are actually
     expressions themselves. So, we can assign the result of an
-    <literal>if</literal> expression, as shown in this example:</para>
+    <literal>if</literal> expression, as shown in this example:<indexterm>
+        <primary>expressions</primary>
+
+        <secondary>if statements as</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Rounding/assigned-if-script.scala
 
@@ -440,7 +614,9 @@ val configFilePath = if (configFile.exists()) {
     statements are expressions in Scala, there is no need for the special-case
     ternary conditional expressions that exists in C-derived languages. You
     won’t see <literal>x ? doThis() : doThat()</literal> in Scala. Scala
-    provides a mechanism that’s just as powerful and more readable.</para>
+    provides a mechanism that’s just as powerful and more readable.<indexterm>
+        <primary>else clause (if statements)</primary>
+      </indexterm></para>
 
     <para id="para_what_if_we_forget_the_els">What if we omit the
     <literal>else</literal> clause in the previous example? Typing the code in
@@ -473,18 +649,35 @@ scala&gt;</programlisting>
     <literal>for</literal> <emphasis>comprehension</emphasis> or
     <literal>for</literal> <emphasis>expression</emphasis>. This corner of the
     language deserves at least one fancy name, because it can do some great
-    party tricks.</para>
+    party tricks.<indexterm class="startofrange" id="ch03_loopsfor">
+        <primary>loops</primary>
+
+        <secondary>for loops or comprehensions</secondary>
+      </indexterm><indexterm>
+        <primary>expressions</primary>
+
+        <secondary>for expression</secondary>
+      </indexterm><indexterm class="startofrange" id="ch03_forcomps">
+        <primary>for comprehensions</primary>
+      </indexterm></para>
 
     <para id="para_comprehension_description">Actually, the term
     <literal>comprehension</literal> comes from functional programming. It
     expresses the idea that we are traversing a set of some kind,
-    “comprehending” what we find, and computing something new from it.</para>
+    “comprehending” what we find, and computing something new from
+    it.<indexterm>
+        <primary>comprehensions</primary>
+      </indexterm></para>
 
     <sect2 id="_a_dog_simple_example">
       <title>A Dog-Simple Example</title>
 
       <para id="para_let_s_start_with_a_basic_for_">Let’s start with a basic
-      <literal>for</literal> expression:</para>
+      <literal>for</literal> expression:<indexterm>
+          <primary>for comprehensions</primary>
+
+          <secondary>simple example</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/basic-for-script.scala
 
@@ -503,7 +696,19 @@ for (breed &lt;- dogBreeds)
       them inside the <literal>for</literal> expression. The left-arrow
       operator is called a <emphasis>generator</emphasis>, so named because
       it’s <emphasis>generating</emphasis> individual values from a collection
-      for use in an expression.</para>
+      for use in an expression.<indexterm>
+          <primary>arrow operator (&lt;-)</primary>
+        </indexterm><indexterm>
+          <primary>&lt; &gt; (angle brackets)</primary>
+
+          <secondary>&lt;- arrow) operator</secondary>
+
+          <tertiary>using in for expressions</tertiary>
+        </indexterm><indexterm>
+          <primary>generators</primary>
+
+          <secondary>&lt;- (left-arrow) operator</secondary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="_filtering">
@@ -513,7 +718,16 @@ for (breed &lt;- dogBreeds)
       more granular? Scala’s <literal>for</literal> expressions allow for
       <emphasis>filters</emphasis> that let us specify which elements of a
       collection we want to work with. So to find all Terriers in our list of
-      dog breeds, we could modify the above example to the following:</para>
+      dog breeds, we could modify the above example to the
+      following:<indexterm>
+          <primary>filtering</primary>
+
+          <secondary sortas="for expressions">in for expressions</secondary>
+        </indexterm><indexterm>
+          <primary>for comprehensions</primary>
+
+          <secondary>filters in</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/filtered-for-script.scala
 
@@ -546,7 +760,17 @@ for (breed &lt;- dogBreeds
       ticket to generating new collections with <literal>for</literal>
       expressions. In the following example, note that we’re wrapping up the
       <literal>for</literal> expression in curly braces, as we would when
-      defining any block.</para>
+      defining any block.<indexterm>
+          <primary>{ } (curly braces)</primary>
+
+          <secondary>enclosing for expressions</secondary>
+        </indexterm><indexterm>
+          <primary>for comprehensions</primary>
+
+          <secondary>yielding collections</secondary>
+        </indexterm><indexterm>
+          <primary>yieid keyword</primary>
+        </indexterm></para>
 
       <tip id="para_tip_for_expressions_may_be_">
         <para><literal>for</literal> expressions may be defined with
@@ -585,7 +809,19 @@ val filteredBreeds = for {
       of Scala’s <literal>for</literal> comprehensions is the ability to
       define variables inside the first part of your <literal>for</literal>
       expressions that can be used in the latter part. This is best
-      illustrated with an example:</para>
+      illustrated with an example:<indexterm>
+          <primary>variables</primary>
+
+          <secondary>expanded scope in for expressions</secondary>
+        </indexterm><indexterm>
+          <primary>scope</primary>
+
+          <secondary>expanded variable scope in for comprehensions</secondary>
+        </indexterm><indexterm>
+          <primary>for comprehensions</primary>
+
+          <secondary>expanded variable scope</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/scoped-for-script.scala
 
@@ -605,7 +841,9 @@ for {
       linkend="ApplicationDesign" />, we’ll see how using
       <literal>Options</literal> with <literal>for</literal> comprehensions
       can greatly reduce code size by eliminating unnecessary “null” and
-      “missing” checks.</para>
+      “missing” checks.<indexterm class="endofrange"
+      startref="ch03_loopsfor"></indexterm><indexterm class="endofrange"
+      startref="ch03_forcomps"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -619,7 +857,13 @@ for {
       languages, the <literal>while</literal> loop executes a block of code as
       long as a condition is true. For example, the following code prints out
       a complaint once a day until the next Friday the 13th has
-      arrived:</para>
+      arrived:<indexterm>
+          <primary>while loops</primary>
+        </indexterm><indexterm>
+          <primary>loops</primary>
+
+          <secondary>while</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/while-script.scala
 // WARNING: This script runs for a LOOOONG time!
@@ -653,7 +897,13 @@ while (!isFridayThirteen(Calendar.getInstance())) {
       executes some code while a conditional expression is true. The only
       difference that a <literal>do-while</literal> checks to see if the
       condition is true <emphasis>after</emphasis> running the block. To count
-      up to ten, we could write this:</para>
+      up to ten, we could write this:<indexterm>
+          <primary>loops</primary>
+
+          <secondary>do-while</secondary>
+        </indexterm><indexterm>
+          <primary>do-while loops</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/do-while-script.scala
 
@@ -675,7 +925,21 @@ do {
       <para id="para_remember_the_arrow_operator_">Remember the arrow operator
       (<literal>&lt;-</literal>) from the discussion above about
       <literal>for</literal> loops? We can put it to work here, too. Let’s
-      clean up the <literal>do-while</literal> example above:</para>
+      clean up the <literal>do-while</literal> example above:<indexterm>
+          <primary>loops</primary>
+
+          <secondary>generator expressions in</secondary>
+        </indexterm><indexterm>
+          <primary>&lt; &gt; (angle brackets)</primary>
+
+          <secondary>&lt;- (arrow) operator</secondary>
+
+          <tertiary>using in generator expressions</tertiary>
+        </indexterm><indexterm>
+          <primary>generator expressions</primary>
+        </indexterm><indexterm>
+          <primary>arrow operator (&lt;-)</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/generator-script.scala
 
@@ -698,7 +962,15 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
       This subclass of the <emphasis>class</emphasis> <literal>Range</literal>
       inherits a number of methods for working with sequences and iterable
       data structures, including those necessary to use it in a
-      <literal>for</literal> loop.</para>
+      <literal>for</literal> loop.<indexterm>
+          <primary>Range.Inclusive class</primary>
+        </indexterm><indexterm>
+          <primary>RichInt class</primary>
+        </indexterm><indexterm>
+          <primary>implicit conversions</primary>
+
+          <secondary>Int into RichInt</secondary>
+        </indexterm></para>
 
       <para id="para_by_the_way_if_you_wanted_to_c">By the way, if you wanted
       to count from 1 up to, but not including 10, you could use
@@ -722,7 +994,9 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
       <para id="para_however_because_of_demand_for">However, because of demand
       for it, Scala version 2.8 includes support for <literal>break</literal>,
       implemented as a library method, rather than a built-in break
-      keyword.</para>
+      keyword.<indexterm>
+          <primary>break method</primary>
+        </indexterm></para>
     </sect2>
   </sect1>
 
@@ -733,7 +1007,43 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
     conditional operators from Java and its predecessors. You’ll find the ones
     listed in <xref linkend="conditional-operators" /> in
     <literal>if</literal> statements, <literal>while</literal> loops, and
-    everywhere else conditions apply.</para>
+    everywhere else conditions apply.<indexterm>
+        <primary>! (exclamation point)</primary>
+
+        <secondary>!= (not equal) operator</secondary>
+      </indexterm><indexterm>
+        <primary>equals operator (==)</primary>
+      </indexterm><indexterm>
+        <primary>= (equals sign)</primary>
+
+        <secondary>== (equals) operator</secondary>
+      </indexterm><indexterm>
+        <primary>&lt; &gt; (angle brackets)</primary>
+
+        <secondary>&lt; (less than) operator</secondary>
+      </indexterm><indexterm>
+        <primary>&lt; &gt; (angle brackets)</primary>
+
+        <secondary>&gt; (greater than) operator</secondary>
+      </indexterm><indexterm>
+        <primary>and operator (&amp;&amp;)</primary>
+      </indexterm><indexterm>
+        <primary>or operator (||)</primary>
+      </indexterm><indexterm>
+        <primary>| (vertical bar)</primary>
+
+        <secondary>|| (or) operator</secondary>
+      </indexterm><indexterm>
+        <primary>&amp; (ampersand)</primary>
+
+        <secondary>&amp;&amp; (and) operator</secondary>
+      </indexterm><indexterm>
+        <primary>operators</primary>
+
+        <secondary>conditional</secondary>
+      </indexterm><indexterm>
+        <primary>conditional operators</primary>
+      </indexterm></para>
 
     <table id="conditional-operators">
       <title>Conditional operators</title>
@@ -812,7 +1122,9 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
 
     <para id="para_note_that_and_are_">Note that <literal>&amp;&amp;</literal>
     and <literal>||</literal> are “short-circuiting” operators. They stop
-    evaluating expressions as soon as the answer is known.</para>
+    evaluating expressions as soon as the answer is known.<indexterm>
+        <primary>short-circuiting operators (&amp;&amp; and ||)</primary>
+      </indexterm></para>
 
     <para id="para_we_ll_discuss_object_equality_">We’ll discuss object
     equality in more detail in <xref linkend="EqualityOfObjects" /> in <xref
@@ -835,13 +1147,20 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
     case that <literal>i</literal> is 5, print a message; in the case that
     <literal>i</literal> is 6, exit the program”. With Scala’s pattern
     matching, your cases can include types, wild-cards, sequences, and even
-    deep inspections of an object’s variables.</para>
+    deep inspections of an object’s variables.<indexterm class="startofrange"
+        id="ch03_patternmatching">
+        <primary>pattern matching</primary>
+      </indexterm></para>
 
     <sect2 id="ASimpleMatch">
       <title>A Simple Match</title>
 
       <para id="para_to_begin_with_let_s_simulate_">To begin with, let’s
-      simulate flipping a coin by matching the value of a boolean:</para>
+      simulate flipping a coin by matching the value of a boolean:<indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary>simple match of boolean values</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-boolean-script.scala
 
@@ -861,14 +1180,24 @@ for (bool &lt;- bools) {
       <literal>_</literal> wild card. It matches anything not defined in the
       cases above it, so it serves the same purpose as the
       <literal>default</literal> keyword in Java and C#
-      <literal>switch</literal> statements.</para>
+      <literal>switch</literal> statements.<indexterm>
+          <primary>case statements</primary>
+
+          <secondary>pattern matching versus</secondary>
+        </indexterm></para>
 
       <para id="para_pattern_matching_is__eager__t">Pattern matching is
       <emphasis>eager</emphasis>; the first match wins. So, if you try to put
       a <literal>case _</literal> clause before any other
       <literal>case</literal> clauses, the compiler will throw an “unreachable
       code” error on the next clause, because nothing will get past the
-      default clause!</para>
+      default clause!<indexterm>
+          <primary>cases in pattern matching</primary>
+
+          <secondary>unreachable case</secondary>
+        </indexterm><indexterm>
+          <primary>eager matching</primary>
+        </indexterm></para>
 
       <tip id="para_tip_use_case___for_the_defa">
         <para>Use <literal>case _</literal> for the default, “catch-all”
@@ -897,7 +1226,15 @@ randomInt match {
       the wild card case to a variable called <literal>otherNumber</literal>,
       then print it in the subsequent expression. If we generate a seven,
       we’ll extoll that number’s virtues. Otherwise, we’ll curse fate for
-      making us suffer an unlucky number.</para>
+      making us suffer an unlucky number.<indexterm>
+          <primary>variables</primary>
+
+          <secondary sortas="matches">in matches</secondary>
+        </indexterm><indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary>variables in matches</secondary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="MatchingOnType">
@@ -905,7 +1242,15 @@ randomInt match {
 
       <para id="para_these_simple_examples_don_t_ev">These simple examples
       don’t even begin to scratch the surface of Scala’s pattern matching
-      features. Let’s try matching based on type:</para>
+      features. Let’s try matching based on type:<indexterm>
+          <primary>data types</primary>
+
+          <secondary>pattern matching on type</secondary>
+        </indexterm><indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary sortas="type">on type</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-type-script.scala
 
@@ -940,7 +1285,15 @@ for (sundry &lt;- sundries) {
       match against the length and contents of lists and arrays? The following
       example does just that, testing two lists to see if they contain four
       elements, the second of which is the integer
-      <literal>3</literal>:</para>
+      <literal>3</literal>:<indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary sortas="sequences">on sequences</secondary>
+        </indexterm><indexterm>
+          <primary>sequences</primary>
+
+          <secondary>matching on</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-seq-script.scala
 
@@ -959,7 +1312,13 @@ for (l &lt;- List(willWork, willNotWork, empty)) {
       <literal>case</literal> of we’ve used a special wild card pattern to
       match a <literal>List</literal> of any size, even zero elements, and any
       element values. You can use this pattern at the end of any sequence
-      match to remove length as a condition.</para>
+      match to remove length as a condition.<indexterm>
+          <primary>: (colon)</primary>
+
+          <secondary>:: (constructor) method</secondary>
+
+          <tertiary>extracting head and tail of list</tertiary>
+        </indexterm></para>
 
       <para id="para_recall_that_we_mentioned_the_">Recall that we mentioned
       the “cons” method for List, <literal>::</literal>. The expression
@@ -1017,7 +1376,15 @@ for (l &lt;- List(willWork, willNotWork, empty)) {
 
       <para id="para_alternately_if_we_just_wanted">Alternately, if we just
       wanted to test that we have a tuple of two items, we could do a tuple
-      match:</para>
+      match:<indexterm>
+          <primary>tuples</primary>
+
+          <secondary>pattern matching on</secondary>
+        </indexterm><indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary>matching on tuples and guards</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-tuple-script.scala
 
@@ -1045,7 +1412,13 @@ for (tup &lt;- List(tupA, tupB)) {
       preceding part of the case. Guards provide additional granularity when
       constructing cases. In this example, the only difference between the two
       patterns is the guard expression, but that’s enough for the compiler to
-      differentiate them.</para>
+      differentiate them.<indexterm>
+          <primary>cases in pattern matching</primary>
+        </indexterm><indexterm>
+          <primary>guards</primary>
+
+          <secondary>pattern matching on</secondary>
+        </indexterm></para>
 
       <tip id="para_tip_the_cases_in_a_pattern_ma">
         <simpara>Recall that the cases in a pattern match are evaluated in
@@ -1066,7 +1439,21 @@ for (tup &lt;- List(tupA, tupB)) {
 
       <para id="para_finally_let_s_try_a__deep_mat">Let’s try a <emphasis>deep
       match</emphasis>, examining the contents of objects in our pattern
-      match:</para>
+      match:<indexterm>
+          <primary>objects</primary>
+
+          <secondary>deep matching on contents</secondary>
+        </indexterm><indexterm>
+          <primary>case classes</primary>
+
+          <secondary>pattern matching on</secondary>
+        </indexterm><indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary sortas="case classes">on case classes</secondary>
+        </indexterm><indexterm>
+          <primary>deep matching</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-deep-script.scala
 
@@ -1102,7 +1489,11 @@ Who are you, 32 year-old person named Charlie?</screen>
       <literal>Person</literal> case class. Charlie falls through to the
       catch-all case; even though he has the same <literal>age</literal> value
       as Bob, we’re matching on the <literal>name</literal> property as
-      well.</para>
+      well.<indexterm>
+          <primary>case classes</primary>
+
+          <secondary>defining for pattern matching</secondary>
+        </indexterm></para>
 
       <para id="para_this_type_pattern_match_become">This type of pattern
       match becomes extremely useful when working with Actors, as we’ll see
@@ -1121,7 +1512,16 @@ Who are you, 32 year-old person named Charlie?</screen>
       <emphasis>regexes</emphasis>, regular expressions are a feature of
       nearly all modern programming languages. They provide a terse syntax for
       specifying complex matches, one which is typically translated into a
-      state machine behind the scenes for optimum performance.</para>
+      state machine behind the scenes for optimum performance.<indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary sortas="regular expressions">on regular
+          expressions</secondary>
+        </indexterm><indexterm>
+          <primary>regular expressions</primary>
+
+          <secondary>matching on</secondary>
+        </indexterm></para>
 
       <para id="para_regexes_in_scala_should_contai">Regexes in Scala should
       contain no surprises if you’ve used them in other programming languages.
@@ -1158,7 +1558,11 @@ for (item &lt;- catalog) {
       <literal>.r</literal> transformation method on strings unclear, you can
       also define regexes by creating new instances of the
       <literal>Regex</literal> class, as in: <literal>new
-      Regex("""\W""")</literal>.</para>
+      Regex("""\W""")</literal>.<indexterm>
+          <primary>raw strings</primary>
+
+          <secondary>using in regular expression pattern matching</secondary>
+        </indexterm></para>
 
       <para id="para_notice_that_each_of_our_regexe">Notice that each of our
       regexes defines two <emphasis>capture groups</emphasis>, connoted by
@@ -1166,7 +1570,17 @@ for (item &lt;- catalog) {
       record, such as a book’s title or author. Regexes in Scala translate
       those capture groups to <emphasis>extractors</emphasis>. Every match
       sets a field to the captured result; every miss is set to
-      <literal>null</literal>.</para>
+      <literal>null</literal>.<indexterm>
+          <primary>extractors</primary>
+
+          <secondary>translating regex capture groups to</secondary>
+        </indexterm><indexterm>
+          <primary>( ) (parentheses)</primary>
+
+          <secondary>capture groups in regexes</secondary>
+        </indexterm><indexterm>
+          <primary>capture groups, defining in regexes</primary>
+        </indexterm></para>
 
       <para id="para_the_case_clauses_look_similar_">What does this mean in
       practice? If the text fed to the regular expression matches,
@@ -1183,14 +1597,24 @@ for (item &lt;- catalog) {
       in nutshell. The <literal>scala.util.matching.Regex</literal> class
       supplies several handy methods for finding and replacing matches in
       strings, both all occurrences of a match and just the first occurrence,
-      so be sure to make use of them.</para>
+      so be sure to make use of them.<indexterm>
+          <primary>Regex class</primary>
+        </indexterm></para>
 
       <para id="para_we_won_t_cover_the_details_of_">What we won’t cover in
       this section is the details of writing regular expressions. Scala’s
       <literal>Regex</literal> class uses the underlying platform’s regular
       expression APIs (that is, Java’s or .NET’s). Consult references on those
       APIs for the hairy details, as they may be subtly different than the
-      regex support in your language of choice.</para>
+      regex support in your language of choice.<indexterm>
+          <primary sortas="NET">.NET</primary>
+
+          <secondary>regular expressions</secondary>
+        </indexterm><indexterm>
+          <primary>Java</primary>
+
+          <secondary>regular expressions</secondary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="BindingNestedVariablesInCaseClauses">
@@ -1203,7 +1627,17 @@ for (item &lt;- catalog) {
       We’ll store our same <literal>Person</literal> objects as the values and
       use an employee id as the key. We’ll also add another attribute to
       <literal>Person</literal>, a <literal>role</literal> field that points
-      to an instance from a type hierarchy:</para>
+      to an instance from a type hierarchy:<indexterm>
+          <primary>variables</primary>
+
+          <secondary>binding nested variables in case clauses</secondary>
+        </indexterm><indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary>binding nested variables in case clauses</secondary>
+        </indexterm><indexterm>
+          <primary>case clauses, binding nested variables in</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-deep-pair-script.scala
 
@@ -1263,7 +1697,20 @@ Person(Charlie,32,Developer) is underpaid.</screen>
       <para id="para_through_its_use_of_functional_">Through its use of
       functional constructs and strong typing, Scala encourages a coding style
       that lessens the need for exceptions and exception handling. But where
-      Scala interacts with Java, exceptions are still prevalent.</para>
+      Scala interacts with Java, exceptions are still prevalent.<indexterm>
+          <primary>exception handling</primary>
+
+          <secondary>pattern matching using try, catch, and finally
+          clauses</secondary>
+        </indexterm><indexterm>
+          <primary>try, catch, and finally clauses</primary>
+
+          <secondary>pattern matching in</secondary>
+        </indexterm><indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary>using try, catch, and finally clauses</secondary>
+        </indexterm></para>
 
       <note id="para_note_scala_does_not_have_chec">
         <para>Scala does not have checked exceptions, like Java. Even Java’s
@@ -1318,7 +1765,11 @@ try {
       Scala’s treatment of exception handling should be familiar to those
       fluent in Java, Ruby, Python, and most other mainstream languages. And
       yes, you throw an exception by writing <literal>throw new
-      MyBadException(…)</literal>. That’s all there is to it.</para>
+      MyBadException(…)</literal>. That’s all there is to it.<indexterm>
+          <primary>exceptions</primary>
+
+          <secondary>throwing</secondary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="ConcludingRemarksOnPatternMatching">
@@ -1364,7 +1815,8 @@ try {
       learn one technique that helps when we discuss
       <emphasis>sealed</emphasis> class hierarchies in <xref
       linkend="SealedClassHierarchies" /> in <xref
-      linkend="ScalaObjectSystem" />.</para>
+      linkend="ScalaObjectSystem" />.<indexterm class="endofrange"
+      startref="ch03_patternmatching"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -1376,7 +1828,11 @@ try {
     programs, we might want a top-level <literal>Breed</literal> type that
     keeps track of a number of breeds. Such a type is called an
     <emphasis>enumerated type</emphasis>, and the values it contains are
-    called <emphasis>enumerations</emphasis>.</para>
+    called <emphasis>enumerations</emphasis>.<indexterm>
+        <primary>enumerated types</primary>
+      </indexterm><indexterm>
+        <primary>enumerations</primary>
+      </indexterm></para>
 
     <para id="para_while_enumerations_are_a_built">While enumerations are a
     built-in part of many programming languages, Scala takes a different route
@@ -1385,7 +1841,9 @@ try {
     Instead, you just define an object that extends the
     <literal>Enumeration</literal> class. Hence, at the byte code level, there
     is no connection between Scala enumerations and the
-    <literal>enum</literal> constructs in Java and C#.</para>
+    <literal>enum</literal> constructs in Java and C#.<indexterm>
+        <primary>Enumeration class</primary>
+      </indexterm></para>
 
     <para id="para_enumeration_example">Here is in example:</para>
 
@@ -1432,7 +1890,9 @@ Scottish Terrier</screen>
     that takes a string argument. We use this method to assign a long-form
     breed name to each enumeration value, which is what the
     <literal>Value.toString</literal> method returned in the output
-    above.</para>
+    above.<indexterm>
+        <primary>Value.toString method</primary>
+      </indexterm></para>
 
     <para id="para_value_methods_for_enumerations">Note that there is no name
     space collision between the type and method that both have the name
@@ -1496,7 +1956,9 @@ Main$$anon$1$WeekDay(4)</screen>
     in scope, which we used as the type for the argument for the
     <literal>isWorkingDay</literal> method. If you don’t define a type alias
     like this, then you would declare the method as <literal>def
-    isWorkingDay(d: WeekDay.Value)</literal>.</para>
+    isWorkingDay(d: WeekDay.Value)</literal>.<indexterm>
+        <primary>type alias</primary>
+      </indexterm></para>
 
     <para id="para_enumerations_vs_objects_with_vals">Since Scala enumerations
     are just regular objects, you could use any object with
