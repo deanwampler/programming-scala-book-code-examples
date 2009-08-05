@@ -5,7 +5,12 @@
   <title>Advanced Object-Oriented Programming In Scala</title>
 
   <para id="para_we_finish_our_survey_of_scala_">We’ve got the basics of OOP
-  in Scala under our belt, but there’s plenty more to learn.</para>
+  in Scala under our belt, but there’s plenty more to learn.<indexterm
+      class="startofrange" id="ch06_OOPoverriding">
+      <primary>object-oriented programming (OOP)</primary>
+
+      <secondary>overriding members of classes and traits</secondary>
+    </indexterm></para>
 
   <sect1 id="OverridingMembers">
     <title>Overriding Members of Classes and Traits</title>
@@ -16,7 +21,13 @@
     <emphasis>types</emphasis>. These members must be defined by a derived
     class or trait before an instance can be created. Most object-oriented
     languages support abstract methods and some also support abstract fields
-    and types.</para>
+    and types.<indexterm>
+        <primary>abstract members</primary>
+      </indexterm><indexterm class="startofrange" id="ch06_overriding">
+        <primary>overriding class and trait members</primary>
+      </indexterm><indexterm>
+        <primary>override keyword</primary>
+      </indexterm></para>
 
     <note id="para_note_when_overriding_a__concr">
       <para>When overriding a concrete member, Scala requires the
@@ -65,7 +76,13 @@
       declaration is prohibited. In the following example, the
       <literal>fixedMethod</literal> is declared <literal>final</literal> in
       the parent class. Attempting to compile the example will result in a
-      compilation error:</para>
+      compilation error:<indexterm>
+          <primary>final declarations, attempting to override</primary>
+        </indexterm><indexterm>
+          <primary>overriding class and trait members</primary>
+
+          <secondary>final declarations</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/final-member-wont-compile.scala
 // WON'T COMPILE.
@@ -114,7 +131,19 @@ class Changeable1 extends Fixed     // ERROR</programlisting>
       web page, etc. We’ll also override a concrete method familiar to any
       Java programmer, <literal>toString()</literal>, using an <emphasis>ad
       hoc</emphasis> format. As before, we will use a new package,
-      <literal>ui3</literal>.</para>
+      <literal>ui3</literal>.<indexterm>
+          <primary>classes</primary>
+
+          <secondary>overriding abstract and concrete methods</secondary>
+        </indexterm><indexterm>
+          <primary>methods</primary>
+
+          <secondary>overriding</secondary>
+        </indexterm><indexterm>
+          <primary>overriding class and trait members</primary>
+
+          <secondary>abstract and concrete methods</secondary>
+        </indexterm></para>
 
       <note id="para_note_drawing_is_actually_a__c">
         <para>Drawing is actually a <emphasis>cross-cutting
@@ -148,7 +177,11 @@ abstract class Widget {
       subclass of <literal>Widget</literal> will have to implement
       <literal>draw</literal> or rely on a parent class that implements it. We
       don’t need to return anything from <literal>draw</literal>, so its
-      return value is <literal>Unit</literal>.</para>
+      return value is <literal>Unit</literal>.<indexterm>
+          <primary>abstract members</primary>
+
+          <secondary>overriding abstract methods</secondary>
+        </indexterm></para>
 
       <para id="para_the_tostring_method_is_str">The
       <literal>toString()</literal> method is straightforward. Since
@@ -194,7 +227,13 @@ class Button(val label: String) extends Widget with Clickable {
       (see <xref linkend="Linearization" /> in <xref
       linkend="ScalaObjectSystem" />). In this case, since
       <literal>Clickable</literal> doesn’t define <literal>toString</literal>,
-      <literal>Widget.toString</literal> will be called.</para>
+      <literal>Widget.toString</literal> will be called.<indexterm>
+          <primary>this keyword</primary>
+
+          <secondary>super versus</secondary>
+        </indexterm><indexterm>
+          <primary>super keyword</primary>
+        </indexterm></para>
 
       <tip id="para_tip_overriding_a_concrete_met">
         <para>Overriding a concrete method should be done rarely, because it
@@ -217,7 +256,15 @@ class Button(val label: String) extends Widget with Clickable {
       override concrete immutable fields (<literal>val</literal>). For
       example, it’s common for a base class constructor to initialize a
       mutable field and for a derived class constructor to change its
-      value.</para>
+      value.<indexterm>
+          <primary>overriding class and trait members</primary>
+
+          <secondary>abstract and concrete fields</secondary>
+        </indexterm><indexterm>
+          <primary>fields</primary>
+
+          <secondary>overriding abstract and concrete fields</secondary>
+        </indexterm></para>
 
       <para id="para_we_ll_discuss_overriding_field">We’ll discuss overriding
       fields in traits and classes separately, as traits have some particular
@@ -232,7 +279,27 @@ class Button(val label: String) extends Widget with Clickable {
       linkend="StackableTraits" />. It defines a <literal>val</literal> named
       <literal>maxAllowed</literal> and initializes it to
       <literal>1</literal>. We would like the ability to override the value in
-      a class that mixes in this trait.</para>
+      a class that mixes in this trait.<indexterm class="startofrange"
+          id="ch06_traitsoverridefields">
+          <primary>traits</primary>
+
+          <secondary>overriding members of</secondary>
+
+          <tertiary>abstract and concrete fields</tertiary>
+        </indexterm><indexterm class="startofrange" id="ch06_fieldstrait">
+          <primary>fields</primary>
+
+          <secondary>overriding abstract and concrete fields</secondary>
+
+          <tertiary>in traits</tertiary>
+        </indexterm><indexterm class="startofrange"
+          id="ch06_overridingfieldstrait">
+          <primary>overriding class and trait members</primary>
+
+          <secondary>abstract and concrete fields</secondary>
+
+          <tertiary>overriding in traits</tertiary>
+        </indexterm></para>
 
       <para id="para_unfortunately_in_the_v2_7_x_v">Unfortunately, in the
       version 2.7.X version of Scala, it is not possible to override a
@@ -407,7 +474,11 @@ c2b.value = 10, inverse = Infinity</screen>
       discuss in <xref linkend="LazyVals" /> in <xref
       linkend="FunctionalProgramming" />, and <emphasis>pre-initialized
       fields</emphasis>, which is demonstrated in the following refinement to
-      the previous example:</para>
+      the previous example:<indexterm>
+          <primary>pre-initialized fields</primary>
+        </indexterm><indexterm>
+          <primary>lazy values</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/trait-pre-init-val-script.scala
 
@@ -524,7 +595,11 @@ object ButtonClickableObserverVetoableSpec2 extends Specification {
       change and if a change will invalidate the state of the instance. This
       issue is especially pernicious in multithreaded systems (see <xref
       linkend="ProblemsOfSharedSynchronizedState" /> in <xref
-      linkend="Concurrency" />).</para>
+      linkend="Concurrency" />).<indexterm class="endofrange"
+      startref="ch06_traitsoverridefields"></indexterm><indexterm
+      class="endofrange"
+      startref="ch06_overridingfieldstrait"></indexterm><indexterm
+      class="endofrange" startref="ch06_fieldstrait"></indexterm></para>
 
       <tip id="para_tip_avoid_var_fields_when_p">
         <para>Avoid <literal>var</literal> fields when possible (in classes as
@@ -539,7 +614,20 @@ object ButtonClickableObserverVetoableSpec2 extends Specification {
       <para id="para_in_contrast_to_traits_overrid">In contrast to traits,
       overriding a <literal>val</literal> declared in a class works as
       expected. Here is an example with both a <literal>val</literal> override
-      and a <literal>var</literal> reassignment in a derived class:</para>
+      and a <literal>var</literal> reassignment in a derived class:<indexterm>
+          <primary>overriding class and trait members</primary>
+
+          <secondary>abstract and concrete fields in classes</secondary>
+        </indexterm><indexterm>
+          <primary>classes</primary>
+
+          <secondary>overriding abstract and concrete fields in</secondary>
+        </indexterm><indexterm>
+          <primary>fields</primary>
+
+          <secondary>overriding abstract and concrete fields in
+          classes</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/class-field-script.scala
 
@@ -608,7 +696,12 @@ println(c.count)</programlisting>
       Java class, <literal>String name;</literal> would declare a concrete
       field with the default value (<literal>null</literal> in this case).
       Java doesn’t support abstract fields or types (as we’ll discuss next),
-      only methods.</para>
+      only methods.<indexterm class="startofrange"
+          id="ch06_overrideabstracttypes">
+          <primary>overriding class and trait members</primary>
+
+          <secondary>abstract types</secondary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="OverridingAbstractTypes">
@@ -618,7 +711,12 @@ println(c.count)</programlisting>
       type declarations in <xref
       linkend="AbstractTypesAndParameterizedTypes" /> in <xref
       linkend="TypeLessDoMore" />. Recall the <literal>BulkReader</literal>
-      example from that section:</para>
+      example from that section:<indexterm class="startofrange"
+          id="ch06_abstracttypeoverride">
+          <primary>abstract types</primary>
+
+          <secondary>overriding</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
@@ -805,7 +903,10 @@ object ButtonObserver2Spec extends Specification {
       <para id="para_but_wait_there_s_more_we_ll_">But wait, there’s more!
       We’ll revisit the use of abstract types and the observer pattern in
       <xref linkend="ScalableAbstractions" /> in <xref
-      linkend="ApplicationDesign" />.</para>
+      linkend="ApplicationDesign" />.<indexterm class="endofrange"
+      startref="ch06_overrideabstracttypes"></indexterm><indexterm
+      class="endofrange"
+      startref="ch06_abstracttypeoverride"></indexterm></para>
     </sect2>
 
     <sect2 id="UniformAccessPrinciple">
@@ -815,7 +916,23 @@ object ButtonObserver2Spec extends Specification {
       <para id="para_suppose_a_user_of_buttoncount">Suppose a user of
       <literal>ButtonCountObserver</literal> from <xref
       linkend="TraitsAsMixins" /> in <xref linkend="Traits" /> accesses the
-      <literal>count</literal> member:</para>
+      <literal>count</literal> member:<indexterm class="startofrange"
+          id="ch06_overridemethodsfields">
+          <primary>overriding class and trait members</primary>
+
+          <secondary>accessor methods indistinguishable from
+          fields</secondary>
+        </indexterm><indexterm class="startofrange" id="ch06_methodsaccessor">
+          <primary>methods</primary>
+
+          <secondary>overriding accessor methods indistinguishable from
+          fields</secondary>
+        </indexterm><indexterm class="startofrange" id="ch06_fieldsaccessor">
+          <primary>fields</primary>
+
+          <secondary>indistinguishable from accessor methods,
+          overriding</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-count-observer-script.scala
 
@@ -850,7 +967,9 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
       read and write field values as if they are publicly accessible, even
       though in some case they are actually calling methods. The maintainer of
       <literal>ButtonCountObserver</literal> has the freedom to change the
-      implementation without forcing users to make code changes.</para>
+      implementation without forcing users to make code changes.<indexterm>
+          <primary>Uniform Access Principle</primary>
+        </indexterm></para>
 
       <para id="para_the_reader_method_in_the_secon">The reader method in the
       second version does not have parentheses. Recall that consistency in the
@@ -858,7 +977,11 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
       This is only possible if the method takes no arguments. For the uniform
       access principle to work, we want to define field reader methods without
       parentheses. (Contrast with Ruby where method parentheses are always
-      optional, as long as the parse is unambiguous.)</para>
+      optional, as long as the parse is unambiguous.)<indexterm>
+          <primary>( ) (parentheses)</primary>
+
+          <secondary>omitting in method definitions</secondary>
+        </indexterm></para>
 
       <para id="para_the_writer_method_has_the_form">The writer method has the
       format <literal>count_=(…)</literal>. As a bit of syntactic sugar, the
@@ -930,7 +1053,13 @@ class ConcreteChild extends AbstractParent {
 println(new ConcreteChild().name)   // =&gt; "Child"</programlisting>
 
       <para id="para_this_also_works_for_traits_if">This also works for
-      Traits. If the trait’s method is concrete, we have the following:</para>
+      Traits. If the trait’s method is concrete, we have the
+      following:<indexterm>
+          <primary>traits</primary>
+
+          <secondary>overriding accessor methods indistinguishable from
+          fields</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/method-field-trait-script.scala
 
@@ -1003,7 +1132,14 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       with <literal>val</literal> semantics. That issue doesn’t exist with a
       <literal>var</literal>, of course, but you would have to override the
       <literal>var</literal> with two methods, a reader and a writer. The
-      Scala compiler doesn’t support that substitution.</para>
+      Scala compiler doesn’t support that substitution.<indexterm
+      class="endofrange" startref="ch06_fieldsaccessor"></indexterm><indexterm
+      class="endofrange"
+      startref="ch06_methodsaccessor"></indexterm><indexterm
+      class="endofrange"
+      startref="ch06_overridemethodsfields"></indexterm><indexterm
+      class="endofrange" startref="ch06_overriding"></indexterm><indexterm
+      class="endofrange" startref="ch06_OOPoverriding"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -1015,7 +1151,14 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
     “static” fields and methods serve in languages like Java. When
     <literal>object</literal>-based fields and methods are closely associated
     with a particular <literal>class</literal>, they are normally defined in a
-    <emphasis>companion object</emphasis>.</para>
+    <emphasis>companion object</emphasis>.<indexterm class="startofrange"
+        id="ch06_companionobj">
+        <primary>companion objects</primary>
+      </indexterm><indexterm class="startofrange" id="ch06_OOPcompanionobjs">
+        <primary>object-oriented programming (OOP)</primary>
+
+        <secondary>companion objects</secondary>
+      </indexterm></para>
 
     <para id="para_we_mentioned_companion_objects">We mentioned companion
     objects briefly in <xref linkend="IntroducingScala" /> and we discussed
@@ -1051,14 +1194,23 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       method for that instance. This is true for an <literal>object</literal>
       with a defined <literal>apply</literal> method (such as a companion
       object), as well as an instance of a <literal>class</literal> that
-      defines an <literal>apply</literal> method.</para>
+      defines an <literal>apply</literal> method.<indexterm
+          class="startofrange" id="ch06_applymethod">
+          <primary>apply method</primary>
+        </indexterm><indexterm class="startofrange" id="ch06_companionapply">
+          <primary>companion objects</primary>
+
+          <secondary>apply method</secondary>
+        </indexterm></para>
 
       <para id="para_in_the_case_of_an_object_a">In the case of an
       <literal>object</literal>, <literal>apply</literal> is conventionally
       used as a <emphasis>factory</emphasis> method, returning a new instance.
       This is what <literal>Pair.apply</literal> does in the Scala library, as
       we saw before. Here is <literal>Pair:</literal> from the standard
-      library:</para>
+      library:<indexterm>
+          <primary>factory methods, apply method as</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">type Pair[+A, +B] = Tuple2[A, B]
 object Pair {
@@ -1225,7 +1377,9 @@ println(a(2))  // =&gt; 3</programlisting>
       <para id="para_finally_as_a_reminder_althou">Finally, as a reminder,
       although <literal>apply</literal> is handled specially by the compiler,
       it is otherwise no different than any other method. You can overload it,
-      you can invoke it directly, etc.</para>
+      you can invoke it directly, etc.<indexterm class="endofrange"
+      startref="ch06_companionapply"></indexterm><indexterm class="endofrange"
+      startref="ch06_applymethod"></indexterm></para>
     </sect2>
 
     <sect2 id="UnapplyMethod">
@@ -1239,7 +1393,17 @@ println(a(2))  // =&gt; 3</programlisting>
       in companion objects and it is used to extract the field values from
       instances of the corresponding companion types. For this reason,
       <literal>unapply</literal> methods are called
-      <emphasis>extractors</emphasis>.</para>
+      <emphasis>extractors</emphasis>.<indexterm>
+          <primary>extractors</primary>
+
+          <secondary>unapply methods</secondary>
+        </indexterm><indexterm class="startofrange" id="ch06_companionunapply">
+          <primary>companion objects</primary>
+
+          <secondary>unapply method</secondary>
+        </indexterm><indexterm class="startofrange" id="ch06_unapply">
+          <primary>unapply method</primary>
+        </indexterm></para>
 
       <para id="para_here_is_an_expanded_button_sc">Here is an expanded
       <literal>button.scala</literal> with a <literal>Button</literal>
@@ -1417,7 +1581,9 @@ object RadioButtonUnapplySpec extends Specification {
 
       <para id="para_the_apply_and_unapply_meth">The <literal>apply</literal>
       and <literal>unapply</literal> methods provide an elegant, yet type-safe
-      way to construct and “deconstruct” instances.</para>
+      way to construct and “deconstruct” instances.<indexterm
+      class="endofrange" startref="ch06_unapply"></indexterm><indexterm
+      class="endofrange" startref="ch06_companionunapply"></indexterm></para>
     </sect2>
 
     <sect2 id="UnapplySeqMethod">
@@ -1427,12 +1593,30 @@ object RadioButtonUnapplySpec extends Specification {
       a collection from a variable argument list passed to
       <literal>apply</literal>? What if you want to extract the first few
       elements from a collection and you don’t care about the rest of
-      it?</para>
+      it?<indexterm>
+          <primary>apply method</primary>
+
+          <secondary>for collections</secondary>
+        </indexterm><indexterm>
+          <primary>companion objects</primary>
+
+          <secondary>apply and unapplySeq methods for collections</secondary>
+        </indexterm><indexterm>
+          <primary>collections</primary>
+
+          <secondary>apply and unapplySeq methods</secondary>
+        </indexterm></para>
 
       <para id="para_in_this_case_you_define_appl">In this case, you define
       <literal>apply</literal> and <literal>unapplySeq</literal> (“unapply
       sequence”) methods. Here are those methods from Scala’s own
-      <literal>List</literal> class:</para>
+      <literal>List</literal> class:<indexterm>
+          <primary>List class</primary>
+
+          <secondary>apply and unapplySeq methods</secondary>
+        </indexterm><indexterm>
+          <primary>unapplySeq method for collections</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">def apply[A](xs: A*): List[A] = xs.toList
 
@@ -1477,7 +1661,9 @@ println("3: "+list3)</programlisting>
       is a <emphasis>symbol</emphasis>, essentially an interned string.
       Symbols are more commonly used in Ruby, for example, where the same
       symbol would be written as <literal>:four</literal>. Symbols are useful
-      for representing identities consistently.</para>
+      for representing identities consistently.<indexterm>
+          <primary>symbols</primary>
+        </indexterm></para>
 
       <para id="para_this_script_yields_the_followi">This script yields the
       following output:</para>
@@ -1531,7 +1717,24 @@ list match {
       object (i.e., a “non-companion” object) <link linkend="ScalaTips"
       xrefstyle="select:nopage">[ScalaTips]</link>. Consider the following
       example of a simple <literal>Person</literal> class and companion object
-      that attempts to define <literal>main</literal>:</para>
+      that attempts to define <literal>main</literal>:<indexterm
+          class="startofrange" id="ch06_Javamethods">
+          <primary>Java</primary>
+
+          <secondary>static methods, companion objects and</secondary>
+        </indexterm><indexterm>
+          <primary>singleton objects</primary>
+        </indexterm><indexterm class="startofrange"
+          id="ch06_methodsJavastatic">
+          <primary>methods</primary>
+
+          <secondary>Java static methods and companion objects</secondary>
+        </indexterm><indexterm class="startofrange"
+          id="ch06_companionobjsJava">
+          <primary>companion objects</primary>
+
+          <secondary>Java static methods and</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/person.scala
 
@@ -1665,7 +1868,14 @@ public class PersonUser {
       no other choice but to call a method in a companion object from Java,
       you can explicitly create an instance of the object with
       <literal>new</literal>, since the object is a “regular” Java class in
-      the byte code, and call the method on the instance.</para>
+      the byte code, and call the method on the instance.<indexterm
+      class="endofrange" startref="ch06_Javamethods"></indexterm><indexterm
+      class="startofrange"
+      startref="ch06_companionobjsJava"></indexterm><indexterm
+      class="endofrange"
+      startref="ch06_methodsJavastatic"></indexterm><indexterm
+      class="endofrange" startref="ch06_companionobj"></indexterm><indexterm
+      class="endofrange" startref="ch06_OOPcompanionobjs"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -1676,7 +1886,14 @@ public class PersonUser {
     linkend="MatchingOnCaseClasses" /> in <xref
     linkend="RoundingOutTheEssentials" />, we briefly introduced you to
     <emphasis>case classes</emphasis>. Case classes have several useful
-    features, but also some drawbacks.</para>
+    features, but also some drawbacks.<indexterm class="startofrange"
+        id="ch06_caseclasses">
+        <primary>case classes</primary>
+      </indexterm><indexterm class="startofrange" id="ch06_OOPcaseclasses">
+        <primary>object-oriented programming (OOP)</primary>
+
+        <secondary>case classes</secondary>
+      </indexterm></para>
 
     <para id="para_let_s_rewrite_the_shape_exam">Let’s rewrite the
     <literal>Shape</literal> example we used in <xref
@@ -1715,7 +1932,11 @@ package shapes {
 }</programlisting>
 
     <para id="para_here_is_the_example_rewritten_">Here is the example
-    rewritten using the <literal>case</literal> keyword:</para>
+    rewritten using the <literal>case</literal> keyword:<indexterm>
+        <primary>case keyword</primary>
+
+        <secondary>case class example</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case.scala
 
@@ -1794,7 +2015,11 @@ shape2: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0)). 1 == 2 ? false</
 
     <para id="para_as_we_ll_see_in_equalityofob">As we’ll see in <xref
     linkend="EqualityOfObjects" /> below, the <literal>==</literal> method
-    actually invokes the <literal>equals</literal> method.</para>
+    actually invokes the <literal>equals</literal> method.<indexterm>
+        <primary>= (equals sign)</primary>
+
+        <secondary>== (equals) operator</secondary>
+      </indexterm></para>
 
     <para id="para_even_outside_of_case_express">Even outside of
     <literal>case</literal> expressions, automatic generation of these three
@@ -1811,7 +2036,15 @@ shape2: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0)). 1 == 2 ? false</
     also the <literal>List</literal> itself. That’s why we don’t need
     <literal>new</literal>; we’re actually calling
     <literal>apply(x,y)</literal> in the <literal>Point</literal> companion
-    object, for example.</para>
+    object, for example.<indexterm>
+        <primary>companion objects</primary>
+
+        <secondary>creation for case classes</secondary>
+      </indexterm><indexterm>
+        <primary>constructors</primary>
+
+        <secondary>case class</secondary>
+      </indexterm></para>
 
     <note id="para_note_you_can_have__secondary_">
       <para>You can have <emphasis>secondary</emphasis> constructors in case
@@ -1825,7 +2058,16 @@ shape2: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0)). 1 == 2 ? false</
     gets an <literal>unapply</literal> method, called an
     <emphasis>extractor</emphasis>. Extractors are used to extract the parts
     of an object in an elegant fashion. The following script demonstrates the
-    extractors in pattern matching <literal>case</literal> statements:</para>
+    extractors in pattern matching <literal>case</literal>
+    statements:<indexterm>
+        <primary>pattern matching</primary>
+
+        <secondary>extractors in case statements</secondary>
+      </indexterm><indexterm>
+        <primary>extractors</primary>
+
+        <secondary>use in pattern matching case statements</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example2-script.scala
 
@@ -1865,7 +2107,11 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
       <para id="para_by_the_way_remember_in_matc">By the way, remember in
       <xref linkend="MatchingOnSequences" /> in <xref
       linkend="RoundingOutTheEssentials" /> when we discussed matching on
-      lists? We wrote this <literal>case</literal> expression:</para>
+      lists? We wrote this <literal>case</literal> expression:<indexterm>
+          <primary>case classes</primary>
+
+          <secondary>binary operations</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">def processList(l: List[Any]): Unit = l match {
   case head :: tail =&gt; ...
@@ -1918,7 +2164,13 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
       another instance method is automatically generated, called
       <literal>copy</literal>. This method is useful when you want to make a
       new instance of a case class that is identical to another instance with
-      a few fields changed. Consider the following example script:</para>
+      a few fields changed. Consider the following example script:<indexterm>
+          <primary>copy method (Scala 2.8)</primary>
+        </indexterm><indexterm>
+          <primary>case classes</primary>
+
+          <secondary>copy method in Scala 2.8</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example3-v28-script.scala
 // Scala version 2.8 only.
@@ -1965,7 +2217,15 @@ println(circle2)</programlisting>
       <literal>Shape</literal> a case class. Suppose we want to add a string
       field to all shapes representing an “id” that the user wants to set. It
       makes sense to define this field in <literal>Shape</literal>. Let’s make
-      these two changes to <literal>Shape</literal>:</para>
+      these two changes to <literal>Shape</literal>:<indexterm>
+          <primary>inheritance</primary>
+
+          <secondary>case class</secondary>
+        </indexterm><indexterm>
+          <primary>case classes</primary>
+
+          <secondary>inheritance</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">abstract case class Shape(id: String) {
   def draw(): Unit
@@ -2030,7 +2290,11 @@ package shapesid {
       inheritance, the <literal>equals</literal> methods don’t obey all the
       standard rules for robust object equality. We’ll discuss those rules
       below in <xref linkend="EqualityOfObjects" />. For now, consider the
-      following example:</para>
+      following example:<indexterm>
+          <primary>equals method</primary>
+
+          <secondary>case class comparisons</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case-equals-ambiguity-script.scala
 
@@ -2072,7 +2336,9 @@ Circle == FancyCircle? true</screen>
 
       <para id="para_because_of_these_issues_it_is">Because of these issues,
       it is possible that case class inheritance will be deprecated and
-      removed in future versions of Scala.</para>
+      removed in future versions of Scala.<indexterm class="endofrange"
+      startref="ch06_caseclasses"></indexterm><indexterm class="endofrange"
+      startref="ch06_OOPcaseclasses"></indexterm></para>
 
       <warning id="para_warning_avoid_inheriting_a_ca">
         <para>Avoid inheriting a case class from another case class.</para>
@@ -2098,7 +2364,13 @@ Circle == FancyCircle? true</screen>
     xrefstyle="select:nopage">[Odersky2008]</link>. Consult these references
     when you need to implement your own <literal>equals</literal> and
     <literal>hashCode</literal> methods. Recall that these methods are created
-    automatically for <literal>case</literal> classes.</para>
+    automatically for <literal>case</literal> classes.<indexterm>
+        <primary>object-oriented programming (OOP)</primary>
+
+        <secondary>equality of objects</secondary>
+      </indexterm><indexterm>
+        <primary>equality of objects</primary>
+      </indexterm></para>
 
     <para id="para_here_we_focus_on_the_different">Here we focus on the
     different equality methods available in Scala and their meanings. There
@@ -2121,7 +2393,9 @@ Circle == FancyCircle? true</screen>
       <literal>equals</literal> method tests for <emphasis>value</emphasis>
       equality. That is, <literal>obj1 equals obj2</literal> is true if both
       <literal>obj1</literal> and <literal>obj2</literal> have the same value.
-      They do not need to refer to the same instance.</para>
+      They do not need to refer to the same instance.<indexterm>
+          <primary>equals method</primary>
+        </indexterm></para>
 
       <para id="para_hence_equals_behaves_like_t">Hence,
       <literal>equals</literal> behaves like the <literal>equals</literal>
@@ -2139,24 +2413,44 @@ Circle == FancyCircle? true</screen>
       <literal>obj1</literal> and <literal>obj2</literal> have the same value.
       In fact, <literal>==</literal> delegates to <literal>equals</literal>.
       Here is part of the <emphasis>Scaladoc</emphasis> entry for
-      <literal>Any.==</literal>:</para>
+      <literal>Any.==</literal>:<indexterm>
+          <primary>= (equals sign)</primary>
+
+          <secondary>== (equals) method</secondary>
+        </indexterm><indexterm>
+          <primary>Any class</primary>
+
+          <secondary>== (equals) method</secondary>
+        </indexterm></para>
 
       <screen>o == arg0 is the same as o.equals(arg0).</screen>
 
       <para id="para_here_is_the_corresponding_part">Here is the corresponding
       part of the <emphasis>Scaladoc</emphasis> entry for
-      <literal>AnyRef.==</literal>:</para>
+      <literal>AnyRef.==</literal>:<indexterm>
+          <primary>AnyRef class</primary>
+
+          <secondary>== (equals) method</secondary>
+        </indexterm></para>
 
       <screen>o == arg0 is the same as if (o eq null) arg0 eq null else o.equals(arg0).</screen>
 
       <para id="para_as_you_would_expect_is_th">As you would expect
       <literal>!=</literal> is the negation, i.e., it is equivalent to
-      <literal>!(obj1 == obj2)</literal>.</para>
+      <literal>!(obj1 == obj2)</literal>.<indexterm>
+          <primary>! (exclamation point)</primary>
+
+          <secondary>!= (not equal) method</secondary>
+        </indexterm></para>
 
       <para id="para_since_and_are_declar">Since <literal>==</literal> and
       <literal>!=</literal> are declared <literal>final</literal> in
       <literal>Any</literal>, you can’t override them, but you don’t need to,
-      since they delegate to <literal>equals</literal>.</para>
+      since they delegate to <literal>equals</literal>.<indexterm>
+          <primary>Any class</primary>
+
+          <secondary>!= (not equal) method</secondary>
+        </indexterm></para>
 
       <note id="para_note_that_in_java_c_043">
         <para>In Java, C++, and C# the <literal>==</literal> operator tests
@@ -2175,7 +2469,15 @@ Circle == FancyCircle? true</screen>
       method tests for <emphasis>reference</emphasis> equality. That is,
       <literal>obj1 eq obj2</literal> is true if both <literal>obj1</literal>
       and <literal>obj2</literal> point to the same location in memory. These
-      methods are only defined for <literal>AnyRef</literal>.</para>
+      methods are only defined for <literal>AnyRef</literal>.<indexterm>
+          <primary>AnyRef class</primary>
+
+          <secondary>eq and ne methods</secondary>
+        </indexterm><indexterm>
+          <primary>eq method (AnyRef)</primary>
+        </indexterm><indexterm>
+          <primary>reference equality, testing for</primary>
+        </indexterm></para>
 
       <para id="para_hence_eq_behave_like_the_">Hence, <literal>eq</literal>
       behave like the <literal>==</literal> operator in Java, C++, and C#, but
@@ -2183,21 +2485,31 @@ Circle == FancyCircle? true</screen>
 
       <para id="para_the_ne_method_is_the_negatio">The <literal>ne</literal>
       method is the negation of <literal>eq</literal>, i.e., it is equivalent
-      to <literal>!(obj1 eq obj2)</literal>.</para>
+      to <literal>!(obj1 eq obj2)</literal>.<indexterm>
+          <primary>ne method (AnyRef)</primary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="_array_equality_and_the_sameelements_method">
       <title>Array Equality and the sameElements Method</title>
 
       <para id="para_comparing_the_contents_of_two_">Comparing the contents of
-      two Arrays doesn’t have an obvious result in Scala:</para>
+      two Arrays doesn’t have an obvious result in Scala:<indexterm>
+          <primary>arrays</primary>
+
+          <secondary>comparing for equality</secondary>
+        </indexterm></para>
 
       <screen>scala&gt; Array(1, 2) == Array(1, 2)
 res0: Boolean = false</screen>
 
       <para id="para_that_s_a_surprise_thankfully_">That’s a surprise!
       Thankfully, there’s a simple solution in the form of the
-      <literal>sameElements</literal> method:</para>
+      <literal>sameElements</literal> method:<indexterm>
+          <primary>Array class</primary>
+
+          <secondary>sameElements method</secondary>
+        </indexterm></para>
 
       <screen>scala&gt; Array(1, 2).sameElements(Array(1, 2))
 res1: Boolean = true</screen>
