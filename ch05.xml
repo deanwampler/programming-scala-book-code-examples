@@ -8,7 +8,10 @@
   <para id="para_scala_is_an_object_oriented_la">Scala is an object-oriented
   language like Java, Python, Ruby, Smalltalk, and others. If you’re coming
   from the Java world, you’ll notice some notable improvements over the
-  limitations of Java’s object model.</para>
+  limitations of Java’s object model.<indexterm class="startofrange"
+      id="ch05_OOP">
+      <primary>object-oriented programming (OOP)</primary>
+    </indexterm></para>
 
   <para id="para_we_assume_you_have_some_prior_">We assume you have some prior
   experience with object-oriented programming (OOP), so we will not discuss
@@ -21,7 +24,19 @@
   linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link> to learn about
   <emphasis>design patterns</emphasis>, and see <link linkend="WirfsBrock2003"
   xrefstyle="select:nopage">[WirfsBrock2003]</link> for a discussion of
-  object-oriented design concepts.</para>
+  object-oriented design concepts.<indexterm>
+      <primary>object-oriented programming (OOP)</primary>
+
+      <secondary>classes and objects, basics of</secondary>
+    </indexterm><indexterm>
+      <primary>objects</primary>
+
+      <secondary>basics of</secondary>
+    </indexterm><indexterm>
+      <primary>classes</primary>
+
+      <secondary>basics of</secondary>
+    </indexterm></para>
 
   <sect1 id="ClassBasics">
     <title>Class and Object Basics</title>
@@ -45,24 +60,34 @@
     creation of <emphasis>derived</emphasis> classes and
     <literal>abstract</literal> to indicate that the class can’t be
     instantiated, usually because it contains or inherits member declarations
-    without providing concrete definitions for them.</para>
+    without providing concrete definitions for them.<indexterm>
+        <primary>class keyword</primary>
+      </indexterm></para>
 
     <para id="para_an_instance_can_refer_to_itsel">An instance can refer to
     itself using the <literal>this</literal> keyword, just as in Java and
-    similar <phrase role="keep-together">languages</phrase>.</para>
+    similar <phrase role="keep-together">languages</phrase>.<indexterm>
+        <primary>this keyword</primary>
+      </indexterm></para>
 
     <para id="para_following_scala_s_convention_">Following Scala’s
     convention, we use the term <emphasis>method</emphasis> for a function
     that is tied to an instance. Some other object-oriented languages use the
     term “member function”. Method definitions start with the
-    <literal>def</literal> keyword.</para>
+    <literal>def</literal> keyword.<indexterm>
+        <primary>methods</primary>
+      </indexterm></para>
 
     <para id="para_like_java_but_unlike_ruby_sc">Like Java, but unlike Ruby
     and Python, Scala allows <emphasis>overloaded methods</emphasis>. Two or
     more methods can have the same name as long as their full
     <emphasis>signatures</emphasis> are unique. The
     <emphasis>signature</emphasis> includes the type name, the list of
-    parameters with types, and the method’s return value.</para>
+    parameters with types, and the method’s return value.<indexterm>
+        <primary>overloaded methods</primary>
+      </indexterm><indexterm>
+        <primary>signature, method</primary>
+      </indexterm></para>
 
     <para id="para_type_erasure_method_overloading">However, there is an
     exception to this rule due to <emphasis>type erasure</emphasis>, which is
@@ -70,7 +95,9 @@
     platforms, to minimize incompatibilities. Suppose two methods are
     identical except that one takes a parameter of type
     <literal>List[String]</literal> while the other takes a parameter of type
-    <literal>List[Int]</literal>, as in the the following example:</para>
+    <literal>List[Int]</literal>, as in the the following example:<indexterm>
+        <primary>type erasure</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/type-erasure-wont-compile.scala
 // WON'T COMPILE
@@ -99,7 +126,11 @@ object Foo {
     the term <emphasis>field</emphasis> for a variable that is tied to an
     instance. The term <emphasis>attribute</emphasis> is often used in other
     languages (like Ruby). Note that the state of an instance is the union of
-    all the values currently represented by the instance’s fields.</para>
+    all the values currently represented by the instance’s fields.<indexterm>
+        <primary>fields</primary>
+      </indexterm><indexterm>
+        <primary>attributes</primary>
+      </indexterm></para>
 
     <para id="para_as_we_discussed_in_variabled">As we discussed in <xref
     linkend="VariableDeclarationsAndDefinitions" /> in <xref
@@ -117,7 +148,9 @@ object Foo {
     generic way. Note that field and method members (but not type members)
     share the same <emphasis>namespace</emphasis>, unlike Java. We’ll discuss
     this more in <xref linkend="UniformAccessPrinciple" /> in <xref
-    linkend="AdvancedObjectOrientedProgramming" />.</para>
+    linkend="AdvancedObjectOrientedProgramming" />.<indexterm>
+        <primary>member</primary>
+      </indexterm></para>
 
     <para id="para_new_instances_of_reference_types">Finally, new instances of
     <emphasis>reference types</emphasis> are created from a class using the
@@ -126,7 +159,9 @@ object Foo {
     <emphasis>default</emphasis> constructor (i.e., one that takes no
     arguments). In some cases, literal values can be used instead, e.g.,
     <literal>val name = "Programming Scala"</literal> is equivalent to
-    <literal>val name = new String("Programming Scala")</literal>.</para>
+    <literal>val name = new String("Programming Scala")</literal>.<indexterm>
+        <primary>reference types</primary>
+      </indexterm></para>
 
     <para id="para_new_instances_of_value_types">Instances of <emphasis>value
     types</emphasis> (e.g., <literal>Int</literal>, <literal>Double</literal>,
@@ -134,11 +169,21 @@ object Foo {
     always created using literal values, e.g., <literal>1</literal>,
     <literal>3.14</literal>, etc. In fact, there are no public constructors
     for these types, so an expression like <literal>val i = new
-    Int(1)</literal> won’t compile.</para>
+    Int(1)</literal> won’t compile.<indexterm>
+        <primary>value types</primary>
+      </indexterm></para>
 
     <para id="para_we_ll_discuss__reference__vs_">We’ll discuss the difference
     between reference and value types in <xref
-    linkend="ScalaTypeHierarchy" />.</para>
+    linkend="ScalaTypeHierarchy" />.<indexterm>
+        <primary>classes</primary>
+
+        <secondary>parent</secondary>
+      </indexterm><indexterm>
+        <primary>object-oriented programming (OOP)</primary>
+
+        <secondary>parent classes</secondary>
+      </indexterm></para>
   </sect1>
 
   <sect1 id="ParentClasses">
@@ -147,7 +192,13 @@ object Foo {
     <para id="para_scala_supports__single_inherit">Scala supports single
     inheritance, not multiple inheritance. A child (or derived) class can have
     one and only one parent (or base) class. The sole exception is the root of
-    the Scala class hierarchy, <literal>Any</literal>.</para>
+    the Scala class hierarchy, <literal>Any</literal>.<indexterm>
+        <primary>Any class</primary>
+      </indexterm><indexterm>
+        <primary>parent classes</primary>
+      </indexterm><indexterm>
+        <primary>base classes</primary>
+      </indexterm></para>
 
     <para id="para_here_is_a_simple_example_from_">We’ve seen several examples
     of parent and child classes already. Here are snippets of one of the first
@@ -176,7 +227,9 @@ class FileBulkReader(val source: File) extends BulkReader {
     its parent (even when it mixes in other traits using the
     <literal>with</literal> keyword). Also, <literal>extends</literal> is used
     when one trait is the child of another trait or class. Yes, traits can
-    inherit classes.</para>
+    inherit classes.<indexterm>
+        <primary>extends keyword</primary>
+      </indexterm></para>
 
     <para id="para_if_you_don_t_extend_a_parent">If you don’t
     <literal>extend</literal> a parent class, the default parent is
@@ -195,7 +248,17 @@ class FileBulkReader(val source: File) extends BulkReader {
     constructor is the entire body of the class. Any parameters that the
     constructor requires are listed after the class name. We’ve seen many
     examples of this already, as in the <literal>ButtonWithCallbacks</literal>
-    example we used in <xref linkend="Traits" />:</para>
+    example we used in <xref linkend="Traits" />:<indexterm>
+        <primary>auxiliary constructors</primary>
+      </indexterm><indexterm>
+        <primary>primary constructor</primary>
+      </indexterm><indexterm class="startofrange" id="ch05_OOPconstructors">
+        <primary>object-oriented programming (OOP)</primary>
+
+        <secondary>constructors</secondary>
+      </indexterm><indexterm class="startofrange" id="ch05_constructors">
+        <primary>constructors</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-callbacks.scala
 
@@ -255,7 +318,9 @@ class ButtonWithCallbacks(val label: String,
     <literal>private</literal> keyword before the <literal>val</literal> or
     <literal>var</literal> keyword and the accessor methods won’t be
     generated. (See <xref linkend="VisibilityRules" /> below for more
-    details.)</para>
+    details.)<indexterm>
+        <primary>private keyword</primary>
+      </indexterm></para>
 
     <note id="para_note_scala_doesn_t_follow_the">
       <para>For you Java programmers, Scala doesn’t follow the
@@ -355,7 +420,11 @@ object ButtonWithCallbacksSpec extends Specification {
     </note>
 
     <para id="para_there_are_a_few_advantages_of_">There are a few advantages
-    of Scala’s constraints on constructors:</para>
+    of Scala’s constraints on constructors:<indexterm>
+        <primary>constructors</primary>
+
+        <secondary>constraints on, advantages and disadvantage of</secondary>
+      </indexterm></para>
 
     <variablelist id="para_advantages_of_ctor_constraints_">
       <varlistentry id="varlistentry-elimination-of-duplication">
@@ -409,7 +478,11 @@ object ButtonWithCallbacksSpec extends Specification {
       <literal>ButtonWithCallbacks</literal>, called
       <literal>RadioButtonWithCallbacks</literal>, invokes the primary
       <literal>ButtonWithCallbacks</literal> constructor. “Radio” buttons can
-      be either on or off:</para>
+      be either on or off:<indexterm>
+          <primary>constructors</primary>
+
+          <secondary>parent class constructors, calling</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/ui/radio-button-callbacks.scala
 
@@ -447,7 +520,9 @@ class RadioButtonWithCallbacks(
       They can’t invoke a <literal>ButtonWithCallbacks</literal> constructor
       directly. Declaring all these constructors in each class could get
       tedious after a while, but we explored techniques in <xref
-      linkend="Traits" /> that can eliminate repetition.</para>
+      linkend="Traits" /> that can eliminate repetition.<indexterm
+      class="endofrange" startref="ch05_constructors"></indexterm><indexterm
+      class="endofrange" startref="ch05_OOPconstructors"></indexterm></para>
 
       <note id="para_cant_super_class_constructor">
         <para>While <literal>super</literal> is used to invoke overridden
@@ -466,7 +541,17 @@ class RadioButtonWithCallbacks(
     could be size, color, whether or not the widget is visible, etc. We might
     use a simple <literal>map</literal> to hold the properties, but let’s
     assume that we also want to control access to the properties, and to
-    perform other operations when they change.</para>
+    perform other operations when they change.<indexterm>
+        <primary>object-oriented programming (OOP)</primary>
+
+        <secondary>nested classes</secondary>
+      </indexterm><indexterm>
+        <primary>nested classes</primary>
+      </indexterm><indexterm>
+        <primary>classes</primary>
+
+        <secondary>nested</secondary>
+      </indexterm></para>
 
     <para id="para_here_is_one_way_way_we_might_e">Here is one way we might
     expand our original <literal>Widget</literal> example from <xref
@@ -535,12 +620,27 @@ abstract class Widget {
     and type-member declarations. These constructs support the object-oriented
     form of encapsulation, where only the essential public abstraction of a
     class or trait is exposed and implementation information is hidden from
-    view.</para>
+    view.<indexterm>
+        <primary>encapsulation</primary>
+
+        <secondary>visibility rules and</secondary>
+      </indexterm><indexterm class="startofrange" id="ch05_visibility">
+        <primary>visibility</primary>
+      </indexterm><indexterm class="startofrange" id="ch05_OOPvisibility">
+        <primary>object-oriented programming (OOP)</primary>
+
+        <secondary>visibility rules</secondary>
+      </indexterm></para>
 
     <para id="para_you_ll_want_to_use_public_visi">You’ll want to use public
     visibility for anything that users of your classes and objects should see
     and use. Keep in mind that the set of publicly visible members form the
-    abstraction exposed by the type, along with the type’s name itself.</para>
+    abstraction exposed by the type, along with the type’s name
+    itself.<indexterm>
+        <primary>fields</primary>
+
+        <secondary>visibility and access to</secondary>
+      </indexterm></para>
 
     <para id="para_the_conventional_wisdom_in_obj">The conventional wisdom in
     object-oriented design is that fields should be private or protected. If
@@ -549,7 +649,9 @@ abstract class Widget {
     Access Principle</emphasis> (see <xref
     linkend="UniformAccessPrinciple" />) is that we can give the user the
     semantics of public field access via either a method or direct access to a
-    field, whichever is appropriate for the task.</para>
+    field, whichever is appropriate for the task.<indexterm>
+        <primary>Uniform Access Principle</primary>
+      </indexterm></para>
 
     <tip id="para_tip_the_art_of_good_object_or">
       <para>The art of good object-oriented design includes defining minimal,
@@ -567,7 +669,9 @@ abstract class Widget {
     <literal>private</literal> member, the enclosing class can see it. In
     Scala, the enclosing class can’t see a <literal>private</literal> member,
     but Scala provides another way to declare it visible to the enclosing
-    class.</para>
+    class.<indexterm>
+        <primary>access modifier keywords</primary>
+      </indexterm></para>
 
     <para id="para_also_like_java_and_c_the_vis">As in Java and C#, the
     keywords that modify visibility, such as <literal>private</literal> and
@@ -575,7 +679,15 @@ abstract class Widget {
     You’ll find them before the <literal>class</literal> or
     <literal>trait</literal> keywords for types, before the
     <literal>val</literal> or <literal>var</literal> for fields, and before
-    the <literal>def</literal> for methods.</para>
+    the <literal>def</literal> for methods.<indexterm>
+        <primary>declarations</primary>
+
+        <secondary>visibility modifiers in</secondary>
+      </indexterm><indexterm>
+        <primary>protected keyword</primary>
+      </indexterm><indexterm>
+        <primary>private keyword</primary>
+      </indexterm></para>
 
     <note id="para_note_you_can_also_use_an_acce">
       <para>You can also use an access modifier keyword on the primary
@@ -587,7 +699,11 @@ abstract class Widget {
     <para
     id="para_visibility_scopes_table_summarizes_the_visibility_scopes"><xref
     linkend="visibility-scopes-table" /> summarizes the visibility
-    scopes.</para>
+    scopes.<indexterm>
+        <primary>visibility</primary>
+
+        <secondary>summary of visibility scopes</secondary>
+      </indexterm></para>
 
     <table id="visibility-scopes-table">
       <title>Visibility scopes</title>
@@ -680,7 +796,13 @@ abstract class Widget {
       is no <literal>public</literal> keyword in Scala. This is in contrast to
       Java, which defaults to public visibility only within the enclosing
       package (i.e., “package private”). Other object-oriented languages, like
-      Ruby, also default to public visibility:</para>
+      Ruby, also default to public visibility:<indexterm>
+          <primary>public visibility</primary>
+        </indexterm><indexterm>
+          <primary>visibility</primary>
+
+          <secondary>public</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/public.scala
 
@@ -731,7 +853,13 @@ package scopeB {
       the <literal>protected</literal> keyword is visible only to the defining
       type, including other instances of the same type and any derived types.
       When applied to a type, <literal>protected</literal> limits visibility
-      to the enclosing package.</para>
+      to the enclosing package.<indexterm>
+          <primary>protected visibility</primary>
+        </indexterm><indexterm>
+          <primary>visibility</primary>
+
+          <secondary>protected</secondary>
+        </indexterm></para>
 
       <para id="para_java_in_contrast_makes_prote">Java, in contrast, makes
       protected members visible throughout the enclosing package. Scala
@@ -827,7 +955,13 @@ package scopeB {
       derived classes. Any member declared with the <literal>private</literal>
       keyword is visible only to the defining type, including other instances
       of the same type. When applied to a type, <literal>private</literal>
-      limits visibility to the enclosing package:</para>
+      limits visibility to the enclosing package:<indexterm>
+          <primary>visibility</primary>
+
+          <secondary>private</secondary>
+        </indexterm><indexterm>
+          <primary>private visibility</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-wont-compile.scala
 // WON'T COMPILE
@@ -943,7 +1077,32 @@ of type scopeA.PrivateClass4
       declarations. Note that using <literal>private</literal> or
       <literal>protected</literal> in a scoped declaration is interchangeable,
       as they behave identically, except under inheritance when applied to
-      members.</para>
+      members.<indexterm class="startofrange" id="ch05_protectedscope">
+          <primary>protected visibility</primary>
+
+          <secondary>scoped</secondary>
+        </indexterm><indexterm class="startofrange" id="ch05_privatescoped">
+          <primary>private visibility</primary>
+
+          <secondary>scoped</secondary>
+        </indexterm><indexterm class="startofrange" id="ch05_scopevisibility">
+          <primary>scope</primary>
+
+          <secondary sortas="private and protected">of private and protected
+          visibility</secondary>
+        </indexterm><indexterm>
+          <primary>protected visibility</primary>
+
+          <secondary>scoped</secondary>
+        </indexterm><indexterm>
+          <primary>private visibility</primary>
+
+          <secondary>scoped</secondary>
+        </indexterm><indexterm class="startofrange" id="ch05_visibilityscoped">
+          <primary>visibility</primary>
+
+          <secondary>scoped private and protected visibility</secondary>
+        </indexterm></para>
 
       <tip id="para_tip_while_either_choice_is_fi">
         <para>While either choice behaves the same in most scenarios, it is
@@ -1406,7 +1565,11 @@ three errors found</screen>
       we attempt to access members scoped to <literal>scopeA</literal> from
       the unrelated package <literal>scopeB</literal> and when we attempt to
       access a member from a nested package <literal>scopeA2</literal> that is
-      scoped to that package.</para>
+      scoped to that package.<indexterm class="endofrange"
+      startref="ch05_protectedscope"></indexterm><indexterm class="endofrange"
+      startref="ch05_privatescoped"></indexterm><indexterm class="endofrange"
+      startref="ch05_visibilityscoped"></indexterm><indexterm
+      class="endofrange" startref="ch05_scopevisibility"></indexterm></para>
 
       <tip id="para_tip_when_a_type_or_member_is_">
         <para>When a type or member is declared <literal>private[P]</literal>,
@@ -1440,7 +1603,9 @@ three errors found</screen>
       </tip>
 
       <para id="para_fortunately_the_parser_catche">Fortunately, the compiler
-      catches this problem.</para>
+      catches this problem.<indexterm class="endofrange"
+      startref="ch05_OOPvisibility"></indexterm><indexterm class="endofrange"
+      startref="ch05_visibility"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -1454,6 +1619,7 @@ three errors found</screen>
     <para id="para_in_the_next_chapter_we_round_">In the next chapter we’ll
     explore Scala’s more advanced OOP features, including overriding,
     <emphasis>companion objects</emphasis>, <emphasis>case classes</emphasis>,
-    and rules for equality between objects.</para>
+    and rules for equality between objects.<indexterm
+    class="endofrange"></indexterm></para>
   </sect1>
 </chapter>
