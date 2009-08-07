@@ -19,7 +19,15 @@
     types are made available without qualification, such as
     <literal>List</literal>. Where there are Java and Scala type names that
     overlap, like <literal>List</literal>, the Scala version is imported last,
-    so it “wins”.</para>
+    so it “wins”.<indexterm>
+        <primary>object system (Scala)</primary>
+
+        <secondary>Predef object</secondary>
+      </indexterm><indexterm>
+        <primary>Predef object</primary>
+      </indexterm><indexterm class="startofrange" id="ch07_objectsys">
+        <primary>object system (Scala)</primary>
+      </indexterm></para>
 
     <para id="para_the_parser_also_automatically_">The compiler also
     automatically imports the <literal>Predef</literal> object, which defines
@@ -35,7 +43,11 @@
 
     <para id="para_here_is_a_partial_list_of_the_"><xref
     linkend="table_7-1" /> shows a partial list of the items imported or
-    defined by <literal>Predef</literal> on the Java platform.</para>
+    defined by <literal>Predef</literal> on the Java platform.<indexterm>
+        <primary>Predef object</primary>
+
+        <secondary>items imported or defined by</secondary>
+      </indexterm></para>
 
     <table id="table_7-1">
       <title>Items imported or defined by Predef</title>
@@ -122,7 +134,9 @@
     linkend="TypeLessDoMore" /> that Scala supports the concept of declaring
     “types” using the <literal>type</literal> keyword. This mechanism is
     common in functional programming languages and it has many similarities to
-    <emphasis>parameterized types</emphasis>, as we saw before.</para>
+    <emphasis>parameterized types</emphasis>, as we saw before.<indexterm>
+        <primary>type keyword</primary>
+      </indexterm></para>
 
     <para id="para__predef_declares_the_types_an"><literal>Predef</literal>
     declares the types and exceptions listed in the table using the
@@ -130,7 +144,11 @@
     corresponding <literal>scala.&lt;Type&gt;</literal> or
     <literal>java.lang.&lt;Type&gt;</literal> classes, so they behave like
     “aliases” or imports for the corresponding classes. For example,
-    <literal>String</literal> is declared as follows:</para>
+    <literal>String</literal> is declared as follows:<indexterm>
+        <primary>Predef object</primary>
+
+        <secondary>declaring types and exceptions</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">type String = java.lang.String</programlisting>
 
@@ -146,7 +164,9 @@
 
     <para id="para_the_type_pair_is_an_alias_">The type
     <literal>Pair</literal> is an “alias” for
-    <literal>Tuple2</literal>:</para>
+    <literal>Tuple2</literal>:<indexterm>
+        <primary>Pair class</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">type Pair[+A, +B] = Tuple2[A, B]</programlisting>
 
@@ -165,7 +185,13 @@
     <literal>A1</literal> and <literal>B2</literal> is a subtype of
     <literal>B1</literal>. In <xref linkend="ParameterizedTypes" /> in <xref
     linkend="ScalasTypeSystem" />, we’ll discuss ‘+’ and other type qualifiers
-    in more detail.</para>
+    in more detail.<indexterm>
+        <primary>Pair object</primary>
+      </indexterm><indexterm>
+        <primary>companion objects</primary>
+
+        <secondary>Pair object for Pair class</secondary>
+      </indexterm></para>
 
     <para id="para_the_pair_class_also_has_a__c">The <literal>Pair</literal>
     class also has a <emphasis>companion object</emphasis>
@@ -192,7 +218,17 @@
     <literal>Pair</literal> and <literal>Triple</literal> are defined in
     <literal>Predef</literal> itself. The types <literal>Map</literal> and
     <literal>Set</literal> are assigned the corresponding immutable
-    classes.</para>
+    classes.<indexterm>
+        <primary>companion objects</primary>
+
+        <secondary>Map and Set</secondary>
+      </indexterm><indexterm>
+        <primary>Set values</primary>
+      </indexterm><indexterm>
+        <primary>Map values</primary>
+      </indexterm><indexterm>
+        <primary>ArrowAssoc class</primary>
+      </indexterm></para>
 
     <para id="para_the_arrowassoc_class_defines">The
     <literal>ArrowAssoc</literal> class defines two methods,
@@ -214,14 +250,20 @@
     convenient <literal>Map</literal> initialization syntax possible. First,
     when Scala sees <literal>Map(…)</literal> it calls the
     <literal>apply</literal> method on the <literal>Map</literal> companion
-    object, just as we discussed for <literal>Pair</literal>.</para>
+    object, just as we discussed for <literal>Pair</literal>.<indexterm>
+        <primary>Set companion object</primary>
+      </indexterm><indexterm>
+        <primary>Map companion object</primary>
+      </indexterm></para>
 
     <para id="para__map_apply_expects_zero_or_mo"><literal>Map.apply</literal>
     expects zero or more <literal>Pairs</literal> (e.g., <literal>(a1, b2),
     (a2, b2), …</literal>), where each tuple holds a name and value. In the
     example, the tuple types are all inferred to be of type
     <literal>Pair[String,String]</literal>. The declaration of
-    <literal>Map.apply</literal> is as follows:</para>
+    <literal>Map.apply</literal> is as follows:<indexterm>
+        <primary>Map.apply method</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">object Map {
   ...
@@ -242,11 +284,17 @@
     (Usually, it will be an <literal>Array[X]</literal>.) So, for
     <literal>Map.apply</literal>, <literal>elems</literal> is of type
     <literal>Seq[(A,B)]</literal> or <literal>Seq[Tuple2[A,B]]</literal>, if
-    you prefer.</para>
+    you prefer.<indexterm>
+        <primary>variable-length argument lists</primary>
+      </indexterm></para>
 
     <para id="para_so_now_that_we_know_what_map">So, now that we know what
     <literal>Map.apply</literal> expects, how do we get from <literal>a -&gt;
-    b</literal> to <literal>(a, b)</literal>?</para>
+    b</literal> to <literal>(a, b)</literal>?<indexterm>
+        <primary>implicit type conversions</primary>
+
+        <secondary>Predef.any2ArrowAssoc method</secondary>
+      </indexterm></para>
 
     <para id="para__predef_also_defines_an__impl"><literal>Predef</literal>
     also defines an <emphasis>implicit</emphasis> type conversion method
@@ -256,7 +304,11 @@
     <emphasis>in scope</emphasis> to a type that defines such a method, such
     as <literal>ArrowAssoc</literal>. The <literal>any2ArrowAssoc</literal>
     method performs that conversion. It has the following
-    implementation:</para>
+    implementation:<indexterm>
+        <primary>Predef object</primary>
+
+        <secondary>any2ArrowAssoc method</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">implicit def any2ArrowAssoc[A](x: A): ArrowAssoc[A] = new ArrowAssoc(x)</programlisting>
 
@@ -323,7 +375,15 @@
     <para id="para_for_the_full_list_of_features_">For the full list of
     features defined by <literal>Predef</literal>, see the corresponding
     <emphasis>Scaladoc</emphasis> entry in <link linkend="ScalaAPI2008"
-    xrefstyle="select:nopage">[ScalaAPI2008]</link>.</para>
+    xrefstyle="select:nopage">[ScalaAPI2008]</link>.<indexterm>
+        <primary>tuples</primary>
+
+        <secondary>ways to create two-item tuple</secondary>
+      </indexterm><indexterm>
+        <primary>Predef object</primary>
+
+        <secondary>documentation</secondary>
+      </indexterm></para>
 
     <sidebar>
       <title>Four Ways to Create a Two-item Tuple</title>
@@ -358,19 +418,33 @@
     languages allow classes to have class-level constants, fields, and
     methods, called “static” members in Java, C# and C++. These constants,
     fields, and methods are not associated with any
-    <emphasis>instances</emphasis> of the class.</para>
+    <emphasis>instances</emphasis> of the class.<indexterm>
+        <primary>static members, Scala and</primary>
+      </indexterm><indexterm>
+        <primary>object system (Scala)</primary>
+
+        <secondary>classes and objects</secondary>
+      </indexterm></para>
 
     <para id="para_an_example_of_a_class_level_fi">An example of a class-level
     field is a shared logging instance used by all instances of a class for
     logging messages. An example of a class-level constant is the default
-    logging “threshold” level.</para>
+    logging “threshold” level.<indexterm>
+        <primary>fields</primary>
+
+        <secondary>class-level</secondary>
+      </indexterm></para>
 
     <para id="para_an_example_of_a_class_level_me">An example of a class-level
     method is a “finder” method that locates all instances of the class in
     some repository that match user-specified criteria. Another example is a
     <emphasis>factory</emphasis> method, as used in one of the factory-related
     design patterns <link linkend="GOF1995"
-    xrefstyle="select:nopage">[GOF1995]</link>.</para>
+    xrefstyle="select:nopage">[GOF1995]</link>.<indexterm>
+        <primary>methods</primary>
+
+        <secondary>class-level</secondary>
+      </indexterm></para>
 
     <para id="para_in_order_to_remain_consistent_">In order to remain
     consistent with the goal that “everything is an object” in Scala,
@@ -379,7 +453,15 @@
     the <literal>object</literal> keyword instead of the
     <literal>class</literal> keyword. The <literal>objects</literal> provide
     an object-oriented approach to “static” data and methods. Hence, Scala
-    does not even have a <literal>static</literal> keyword.</para>
+    does not even have a <literal>static</literal> keyword.<indexterm>
+        <primary>singletons</primary>
+
+        <secondary>Scala classes declared as</secondary>
+      </indexterm><indexterm>
+        <primary>classes</primary>
+
+        <secondary>declaration of classes as singletons</secondary>
+      </indexterm></para>
 
     <para id="para__objects_are_instantiated_aut"><literal>Objects</literal>
     are instantiated automatically and lazily by the runtime system (see
@@ -390,7 +472,11 @@
     specify a parameter list for the constructor, so they aren’t supported.
     Any data defined in the object has to be initialized with default values.
     For the same reasons, auxiliary constructors can’t be used and are not
-    supported.</para>
+    supported.<indexterm>
+        <primary>objects</primary>
+
+        <secondary>instantiation in Scala</secondary>
+      </indexterm></para>
 
     <para id="para_we_ve_already_seen_some_exampl">We’ve already seen some
     examples of objects, such as the “specs” objects previously in this
@@ -410,7 +496,15 @@ object Pair {
     or method, you use the syntax <literal>object_name.field</literal> or
     <literal>object_name.method(…)</literal>, respectively. For example,
     <literal>Pair.apply(…)</literal>. Note that this is the same syntax that
-    is commonly used in languages with static fields and methods.</para>
+    is commonly used in languages with static fields and methods.<indexterm>
+        <primary>fields</primary>
+
+        <secondary>referencing object field</secondary>
+      </indexterm><indexterm>
+        <primary>methods</primary>
+
+        <secondary>referencing object method</secondary>
+      </indexterm></para>
 
     <tip id="para_tip_when_an_object_named_m">
       <para>When an object named <literal>MyObject</literal> is compiled to a
@@ -423,7 +517,11 @@ object Pair {
     static</literal> fields. (C# also has a <literal>constant</literal>
     keyword for simple fields, like <literal>ints</literal> and
     <literal>strings</literal>.) In Scala, the convention is to use
-    <literal>val</literal> fields in objects.</para>
+    <literal>val</literal> fields in objects.<indexterm>
+        <primary>constants</primary>
+
+        <secondary>defining</secondary>
+      </indexterm></para>
 
     <para id="para_finally_the_convention_for_de">Finally, recall from <xref
     linkend="NestedClasses" /> that class definitions can be nested within
@@ -444,7 +542,19 @@ object Pair {
       The Scala team faced a dilemma. They wanted to move types to new
       packages, but avoid breaking backwards compatibility. The
       <literal>package object</literal> construct provided a solution, along
-      with other benefits.</para>
+      with other benefits.<indexterm>
+          <primary>scope</primary>
+
+          <secondary>package objects</secondary>
+        </indexterm><indexterm>
+          <primary>package objects</primary>
+        </indexterm><indexterm>
+          <primary>object system (Scala)</primary>
+
+          <secondary>classes and objects</secondary>
+
+          <tertiary>package objects</tertiary>
+        </indexterm></para>
 
       <para id="para_for_example_the_immutable_li">For example, the immutable
       <literal>List</literal> is defined in the <literal>scala</literal>
@@ -553,7 +663,21 @@ import scala.toplevel._
     <literal>match</literal> statement, a runtime
     <literal>scala.MatchError</literal> will be thrown, because the new shape
     won’t match the shapes covered in the match statement. However, it’s not
-    always possible to define reasonable behavior for the default case.</para>
+    always possible to define reasonable behavior for the default
+    case.<indexterm class="startofrange" id="ch07_sealedclass">
+        <primary>sealed class hierarchies</primary>
+      </indexterm><indexterm class="startofrange" id="ch07_classessealed">
+        <primary>classes</primary>
+
+        <secondary>sealed class hierarchies</secondary>
+      </indexterm><indexterm>
+        <primary>MatchError object</primary>
+      </indexterm><indexterm class="startofrange"
+        id="ch07_objectsyssealedclass">
+        <primary>object system (Scala)</primary>
+
+        <secondary>sealed class hierarchies</secondary>
+      </indexterm></para>
 
     <para id="para_there_is_an_alternative_soluti">There is an alternative
     solution if you know that the case class hierarchy is unlikely to change
@@ -647,7 +771,9 @@ def handle (method: HttpMethod) = method match {
     “costly” if you can extend the system by adding new derived types in
     <emphasis>separate</emphasis> source files. This is why we picked the HTTP
     method hierarchy for the example. The list of methods is very
-    stable.</para>
+    stable.<indexterm>
+        <primary>Open-Closed Principle</primary>
+      </indexterm></para>
 
     <tip id="para_tip_avoid_sealed_case_class">
       <para>Avoid <literal>sealed</literal> case class hierarchies if the
@@ -748,7 +874,11 @@ body length? 13</screen>
 
     <para id="para_as_always_every_feature_has_p">As always, every feature has
     pluses and minuses. Case classes and sealed class hierarchies have very
-    useful properties, but they aren’t suitable for all situations.</para>
+    useful properties, but they aren’t suitable for all situations.<indexterm
+    class="endofrange" startref="ch07_sealedclass"></indexterm><indexterm
+    class="endofrange"
+    startref="ch07_objectsyssealedclass"></indexterm><indexterm
+    class="endofrange" startref="ch07_classessealed"></indexterm></para>
   </sect1>
 
   <sect1 id="ScalaTypeHierarchy">
@@ -757,7 +887,15 @@ body length? 13</screen>
     <para id="para_we_have_mentioned_a_number_of_">We have mentioned a number
     of types in Scala’s type hierarchy already. Let’s look at the general
     structure of the hierarchy, as illustrated in <xref
-    linkend="scalas-type-hierarchy" />.</para>
+    linkend="scalas-type-hierarchy" />.<indexterm>
+        <primary>data types</primary>
+
+        <secondary>type hierarchy in Scala</secondary>
+      </indexterm><indexterm>
+        <primary>object system (Scala)</primary>
+
+        <secondary>type hierarchy</secondary>
+      </indexterm></para>
 
     <figure id="scalas-type-hierarchy">
       <title>Scala’s type hierarchy</title>
@@ -781,7 +919,13 @@ body length? 13</screen>
     the types shown in <xref linkend="scalas-type-hierarchy" />, as well as
     some other important types that aren’t shown. Some details are omitted for
     clarity. When the underlying “runtime” is discussed, the points made apply
-    equally to the JVM and the .NET CLR, except where noted.</para>
+    equally to the JVM and the .NET CLR, except where noted.<indexterm>
+        <primary>AnyRef object</primary>
+      </indexterm><indexterm>
+        <primary>AnyVal object</primary>
+      </indexterm><indexterm>
+        <primary>Any object</primary>
+      </indexterm></para>
 
     <table id="any-anyval-anyref">
       <title>Any, AnyVal, and AnyRef</title>
@@ -849,7 +993,15 @@ body length? 13</screen>
     </table>
 
     <para id="para_the__value_types__are_children">The <emphasis>value
-    types</emphasis> are children of <literal>AnyVal</literal>.</para>
+    types</emphasis> are children of <literal>AnyVal</literal>.<indexterm>
+        <primary>value types</primary>
+
+        <secondary>listed</secondary>
+      </indexterm><indexterm>
+        <primary>AnyVal object</primary>
+
+        <secondary>direct subtypes</secondary>
+      </indexterm></para>
 
     <table id="AnyVal-value-types">
       <title>Direct subtypes of AnyVal, the value types</title>
@@ -930,7 +1082,15 @@ body length? 13</screen>
     <literal>AnyRef</literal>. <xref linkend="AnyRef-reference-types" /> lists
     are some of the more commonly-used reference types. Note that there are
     some significant differences between the version 2.7.X and 2.8
-    collections.</para>
+    collections.<indexterm>
+        <primary>AnyRef object</primary>
+
+        <secondary>direct and indirect subtypes</secondary>
+      </indexterm><indexterm>
+        <primary>reference types</primary>
+
+        <secondary>listed</secondary>
+      </indexterm></para>
 
     <table id="AnyRef-reference-types">
       <title>Direct and indirect subtypes of AnyRef, the reference
@@ -1127,7 +1287,11 @@ body length? 13</screen>
     would normally not use any types defined in this package. We’ll explore
     some of these of these collections in greater detail in <xref
     linkend="FunctionalDataStructures" /> in <xref
-    linkend="FunctionalProgramming" />.</para>
+    linkend="FunctionalProgramming" />.<indexterm>
+        <primary>collections</primary>
+
+        <secondary>mutable and immutable</secondary>
+      </indexterm></para>
 
     <para id="para_consistent_with_its_emphasis_o">Consistent with its
     emphasis on <emphasis>functional programming</emphasis> (see <xref
@@ -1156,14 +1320,24 @@ body length? 13</screen>
     more detail in <xref linkend="ImplicitConversions" /> in <xref
     linkend="FunctionalProgramming" />. We explored <literal>Predef</literal>
     in <xref linkend="PredefObject" /> at the beginning of this
-    chapter.</para>
+    chapter.<indexterm>
+        <primary>value types</primary>
+
+        <secondary>implicit conversions by Predef object methods</secondary>
+      </indexterm><indexterm>
+        <primary>Predef object</primary>
+
+        <secondary>implicit conversion methods for value types</secondary>
+      </indexterm></para>
 
     <para id="para_either_example">There are several examples of
     <literal>Option</literal> elsewhere, e.g., <xref
     linkend="OptionSomeNone" /> in <xref linkend="TypeLessDoMore" />. Here is
     a script that illustrates using an <literal>Either</literal> return value
     to handle a thrown exception or successful result (adapted from <ulink
-    url="http://dcsobral.blogspot.com/2009/06/catching-exceptions.html"></ulink>):</para>
+    url="http://dcsobral.blogspot.com/2009/06/catching-exceptions.html"></ulink>):<indexterm>
+        <primary>Either object</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/typehierarchy/either-script.scala
 
@@ -1201,7 +1375,9 @@ Oops, got exception java.lang.RuntimeException: 3 is odd!</screen>
     <para id="para_a_function__n__trait_where__">A
     <literal>FunctionN</literal> trait, where <literal>N</literal> is 0 to 22,
     is instantiated for an anonymous function with <literal>N</literal>
-    arguments. So, consider the following anonymous function:</para>
+    arguments. So, consider the following anonymous function:<indexterm>
+        <primary>FunctionN object</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">(t1: T1, ..., tN: TN) =&gt; new R(...)</programlisting>
 
@@ -1232,7 +1408,19 @@ Oops, got exception java.lang.RuntimeException: 3 is odd!</screen>
     <emphasis>linearization</emphasis> refers to the algorithm used to
     “flatten” this graph for the purposes of resolving method lookup
     priorities, constructor invocation order, binding of
-    <literal>super</literal>, etc.</para>
+    <literal>super</literal>, etc.<indexterm class="startofrange"
+        id="ch07_inheritlinearization">
+        <primary>inheritance</primary>
+
+        <secondary>linearization of object hierarchy</secondary>
+      </indexterm><indexterm class="startofrange" id="ch07_linearization">
+        <primary>linearization of object hierarchy</primary>
+      </indexterm><indexterm class="startofrange"
+        id="ch07_ojectsyslinearization">
+        <primary>object system (Scala)</primary>
+
+        <secondary>linearization of object hierarchy</secondary>
+      </indexterm></para>
 
     <para id="para_informally_we_saw_in_stacka">Informally, we saw in <xref
     linkend="StackableTraits" /> in <xref linkend="Traits" /> that when an
@@ -1320,7 +1508,11 @@ println(clist.reverse)</programlisting>
     linearization for reference types actually ends with
     <literal>ScalaObject</literal>, <literal>AnyRef</literal>, and
     <literal>Any</literal>. So the linearization for <literal>C2</literal> is
-    actually:</para>
+    actually:<indexterm>
+        <primary>reference types</primary>
+
+        <secondary>linearization for</secondary>
+      </indexterm></para>
 
     <screen>List(C2, T3, T2, T1, C1, ScalaObject, AnyRef, Any)</screen>
 
@@ -1389,12 +1581,20 @@ println(c2.m(""))</programlisting>
 
     <para id="para_it_s_the_last_one_t1_we_mi">It’s the last one,
     <literal>T1</literal>. We might have expected <literal>T3</literal> from a
-    “naïve” application of breadth-first traversal.</para>
+    “naïve” application of breadth-first traversal.<indexterm>
+        <primary>linearization of object hierarchy</primary>
+
+        <secondary>algorithm for reference types</secondary>
+      </indexterm></para>
 
     <para id="para_here_is_the_actual_algorithm_f">Here is the actual
     algorithm for calculating the linearization. A more formal definition is
     given in <link linkend="ScalaSpec2009"
-    xrefstyle="select:nopage">[ScalaSpec2009]</link>.</para>
+    xrefstyle="select:nopage">[ScalaSpec2009]</link>.<indexterm>
+        <primary>reference types</primary>
+
+        <secondary>linearization algorithm for</secondary>
+      </indexterm></para>
 
     <sidebar>
       <title>Linearization Algorithm for Reference Types</title>
@@ -1491,7 +1691,12 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
     <literal>Any</literal> to remind ourselves that they should also be there.
     We also removed the logic to pass the caller’s name to
     <literal>m</literal>. That caller of <literal>C1</literal> will
-    <emphasis>always</emphasis> be the element to its immediate left.</para>
+    <emphasis>always</emphasis> be the element to its immediate
+    left.<indexterm>
+        <primary>linearization of object hierarchy</primary>
+
+        <secondary>hand calculation for C2 (example)</secondary>
+      </indexterm></para>
 
     <para id="para_so_let_s_work_through_the_alg">So, let’s work through the
     algorithm for <literal>C2</literal> and confirm our results. We’ll
@@ -1600,7 +1805,11 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
 
     <para id="para_try_modifying_the_last_script_">Try modifying the last
     script with different hierarchies and see if you can reproduce the results
-    using the algorithm.</para>
+    using the algorithm.<indexterm class="endofrange"
+    startref="ch07_ojectsyslinearization"></indexterm><indexterm
+    class="endofrange" startref="ch07_linearization"></indexterm><indexterm
+    class="endofrange"
+    startref="ch07_inheritlinearization"></indexterm></para>
 
     <tip id="para_tip_overly_complex_type_hiera">
       <para>Overly complex type hierarchies can result in method lookup
@@ -1625,6 +1834,7 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
     said, a guiding principle behind Scala is that these two paradigms
     complement each other more than they conflict. Combined, they give you
     more options for building robust, scalable software. Scala lets you choose
-    the techniques that work best for your needs.</para>
+    the techniques that work best for your needs.<indexterm class="endofrange"
+    startref="ch07_objectsys"></indexterm></para>
   </sect1>
 </chapter>
