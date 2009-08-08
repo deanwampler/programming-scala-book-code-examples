@@ -9,7 +9,10 @@
   the Internet. The format’s combination of human readability,
   standardization, and tool support has made working with XML an inevitability
   for programmers. Yet, writing code that deals in XML is an unpleasant chore
-  in most programming languages. Scala improves this situation.</para>
+  in most programming languages. Scala improves this situation.<indexterm
+      class="startofrange" id="ch10_XML">
+      <primary>XML</primary>
+    </indexterm></para>
 
   <para id="para_as_with_the_actor_library_we_l">As with the Actor
   functionality we learned about in <xref linkend="Concurrency" />, Scala’s
@@ -35,7 +38,11 @@
 
     <para id="para_we_ll_start_with_the_basics_h">We’ll start with the basics:
     how to turn a string full of XML into a data structure we can work
-    with:</para>
+    with:<indexterm>
+        <primary>XML</primary>
+
+        <secondary>reading</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/XML/reading/from-string.scala
 
@@ -59,7 +66,9 @@ assert(someXML.isInstanceOf[scala.xml.Elem])</programlisting>
     transformed the string into a <literal>NodeSeq</literal>, Scala’s type for
     storing a sequence of XML nodes. Were our XML document in a file on disk,
     we could have used the <literal>loadFile</literal> method from the same
-    package.</para>
+    package.<indexterm>
+        <primary>NodeSeq object</primary>
+      </indexterm></para>
 
     <para id="para_since_we_re_supplying_the_xml_">Since we’re supplying the
     XML ourselves, we can skip the <literal>XML.loadString</literal> step and
@@ -87,7 +96,11 @@ assert(someXML.isInstanceOf[scala.xml.Elem])</programlisting>
 
       <para id="para_if_we_paste_the_above_into_the">If we paste the previous
       example into the interpreter, we can explore our sandwich using some
-      handy tools provided by <literal>NodeSeq</literal>:</para>
+      handy tools provided by <literal>NodeSeq</literal>:<indexterm>
+          <primary>XML</primary>
+
+          <secondary>exploring using NodeSeq tools</secondary>
+        </indexterm></para>
 
       <screen>scala&gt; someXML \ "bread"
 res2: scala.xml.NodeSeq = &lt;bread&gt;wheat&lt;/bread&gt;</screen>
@@ -97,7 +110,13 @@ res2: scala.xml.NodeSeq = &lt;bread&gt;wheat&lt;/bread&gt;</screen>
       “find me elements named <replaceable>bread</replaceable>”. We’ll always
       get a <literal>NodeSeq</literal> back when using a projection function.
       If we’re only interested in what’s between the tags, we can use the
-      <literal>text</literal> method:</para>
+      <literal>text</literal> method:<indexterm>
+          <primary>\ (backslash)</primary>
+
+          <secondary>projection function</secondary>
+        </indexterm><indexterm>
+          <primary>projection functions</primary>
+        </indexterm></para>
 
       <screen>scala&gt; (someXML \ "bread").text
 res3: String = wheat</screen>
@@ -119,7 +138,11 @@ res4: scala.xml.NodeSeq =</screen>
       <para id="para_what_went_wrong_the_funct">What went wrong? The
       <literal>\</literal> function doesn’t descend into child elements of an
       XML structure. To do that, we use its sister function,
-      <literal>\\</literal> (two backslashes):</para>
+      <literal>\\</literal> (two backslashes):<indexterm>
+          <primary>\ (backslash)</primary>
+
+          <secondary>\\ projection function</secondary>
+        </indexterm></para>
 
       <screen>scala&gt; someXML \\ "condiment"
 res5: scala.xml.NodeSeq = &lt;condiment expired="true"&gt;mayo&lt;/condiment&gt;
@@ -132,7 +155,11 @@ res5: scala.xml.NodeSeq = &lt;condiment expired="true"&gt;mayo&lt;/condiment&gt;
       condiments has gone bad, though. We can find out if any of the
       condiments has expired by extracting its <literal>expired</literal>
       attribute. All it takes is an <literal>@</literal> before the attribute
-      name:</para>
+      name:<indexterm>
+          <primary>@ (at sign)</primary>
+
+          <secondary>extracting value of XML attributes</secondary>
+        </indexterm></para>
 
       <screen>scala&gt; (someXML \\ "condiment")(0) \ "@expired"
 res6: scala.xml.NodeSeq = true</screen>
@@ -150,7 +177,15 @@ res6: scala.xml.NodeSeq = true</screen>
       <literal>expired</literal> attribute (<literal>true</literal>, in this
       case), but it didn’t tell us which condiment is expired. If we were
       handed an arbitrary XML sandwich, how would we identify the expired
-      condiments? We can loop through the XML:</para>
+      condiments? We can loop through the XML:<indexterm>
+          <primary>loops</primary>
+
+          <secondary>looping through and matching XML</secondary>
+        </indexterm><indexterm>
+          <primary>XML</primary>
+
+          <secondary>looping through and matching</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/XML/reading/for-loop.scala
 
@@ -178,7 +213,11 @@ for (condiment &lt;- (someXML \\ "condiment")) {
       match, use a underscore (wildcard) followed by a asterisk
       (<literal>_*</literal>). To bind what you’ve matched on to a variable,
       prefix the match with the variable name and an <literal>@</literal>
-      sign.</para>
+      sign.<indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary>using on XML structures</secondary>
+        </indexterm></para>
 
       <para id="para_let_s_put_all_that_together_in">Let’s put all that
       together into one example. We’ll include the original XML document again
@@ -231,7 +270,11 @@ someXML match {
     support for XML literals makes writing XML far simpler. Essentially, when
     you want XML, just write XML. To interpolate variables and expressions,
     escape out to Scala with curly braces, as we did in the pattern matching
-    examples above:</para>
+    examples above:<indexterm>
+        <primary>XML</primary>
+
+        <secondary>writing</secondary>
+      </indexterm></para>
 
     <screen>scala&gt; var name = "Bob"
 name: java.lang.String = Bob
@@ -258,7 +301,17 @@ bobXML: scala.xml.Elem =
       <para id="para_for_a_more_complete_example_l">For a more complete
       example, let’s say we’re designing that favorite latter-day “hello
       world”, a blogging system. We’ll start with a class to represent an
-      Atom-friendly blog post:</para>
+      Atom-friendly blog post:<indexterm class="startofrange"
+          id="ch10_blogsys">
+          <primary>blogging system (example)</primary>
+        </indexterm><indexterm class="startofrange"
+          id="ch10_XMLwritingexample">
+          <primary>XML</primary>
+
+          <secondary>writing</secondary>
+
+          <tertiary>blogging system (example)</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/XML/writing/post.scala
 
@@ -287,11 +340,21 @@ class Post(val title: String, val body: String, val updated: Date) {
       into an Atom feed, the standard way to syndicate blogs between computers
       on the Web. Atom documents are a flavor of XML, and a perfect
       application for demonstrating the process of outputting XML with
-      Scala.</para>
+      Scala.<indexterm>
+          <primary>lazy vals</primary>
+
+          <secondary>Post class (example)</secondary>
+        </indexterm></para>
 
       <para id="para_we_ll_define_an_atomfeed_cla">We’ll define an
       <literal>AtomFeed</literal> class that takes a sequence of
-      <literal>Post</literal> objects as its sole argument:</para>
+      <literal>Post</literal> objects as its sole argument:<indexterm>
+          <primary>AtomFeed class (example)</primary>
+        </indexterm><indexterm>
+          <primary>blogging system (example)</primary>
+
+          <secondary>AtomFeed class</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/XML/writing/atom-feed.scala
 
@@ -335,7 +398,12 @@ class AtomFeed(posts: Seq[Post]) {
       escape out and write Scala as we normally would. In the latter half of
       the <literal>&lt;feed&gt;</literal> element, we use a
       <literal>for</literal> comprehension to <literal>yield</literal>
-      successive blocks of dynamically formatted XML.</para>
+      successive blocks of dynamically formatted XML.<indexterm>
+          <primary>for comprehensions</primary>
+
+          <secondary>yielding successive blocks of dynamically formatted
+          XML</secondary>
+        </indexterm></para>
 
       <para id="para_the_write_method_of_atomfee">The <literal>write</literal>
       method of <literal>AtomFeed</literal> demonstrates the use of the
@@ -351,7 +419,9 @@ class AtomFeed(posts: Seq[Post]) {
       straightforward: construct the document you need with inline XML, use
       interpolation where dynamic content is to be substituted, and make use
       of the handy convenience methods to write your completed documents to
-      disk or to other output streams.</para>
+      disk or to other output streams.<indexterm class="endofrange"
+      startref="ch10_blogsys"></indexterm><indexterm class="endofrange"
+      startref="ch10_XMLwritingexample"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -365,6 +435,7 @@ class AtomFeed(posts: Seq[Post]) {
 
     <para id="para_in_the_next_chapter_we_ll_lea">In the next chapter, we’ll
     learn how Scala provides rich support for creating your own
-    Domain-Specific Languages (DSLs).</para>
+    Domain-Specific Languages (DSLs).<indexterm class="endofrange"
+    startref="ch10_XML"></indexterm></para>
   </sect1>
 </chapter>
