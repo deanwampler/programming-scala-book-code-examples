@@ -17,7 +17,11 @@
     then, that concurrent programming is a task most programmers dread, or
     avoid altogether by retreating to multiple independent processes that
     share data externally (for example, through a database or message
-    queue).</para>
+    queue).<indexterm>
+        <primary>concurrency</primary>
+
+        <secondary>problems of shared, synchronized state</secondary>
+      </indexterm></para>
 
     <para id="para_a_large_part_of_the_difficulty">A large part of the
     difficulty of concurrent programming comes down to state: how do you know
@@ -44,7 +48,14 @@
     the idea of Actors have appeared in a number of programming languages,
     most notably in Erlang and Io. As an abstraction, Actors are general
     enough that they can be implemented as a library (as in Scala), or as the
-    fundamental unit of a computational system.</para>
+    fundamental unit of a computational system.<indexterm class="startofrange"
+        id="ch09_concurrentActors">
+        <primary>concurrency</primary>
+
+        <secondary>using Actors</secondary>
+      </indexterm><indexterm class="startofrange" id="ch09_Actors">
+        <primary>Actors</primary>
+      </indexterm></para>
 
     <sect2 id="_actors_in_abstract">
       <title>Actors in Abstract</title>
@@ -55,7 +66,17 @@
       Actor implementations (such as Scala’s) queue messages in order. An
       Actor might handle a message internally, or it might send a message to
       another Actor, or it might create another Actor to take action based on
-      the message. Actors are a very high-level abstraction.</para>
+      the message. Actors are a very high-level abstraction.<indexterm>
+          <primary>Actors</primary>
+
+          <secondary sortas="abstract">in abstract</secondary>
+        </indexterm><indexterm>
+          <primary>concurrency</primary>
+
+          <secondary>using Actors</secondary>
+
+          <tertiary>Actors in abstract</tertiary>
+        </indexterm></para>
 
       <para id="para_unlike_traditional_object_syst">Unlike traditional object
       systems (which, you might be thinking to yourself, have many of the same
@@ -76,7 +97,20 @@
 
     <para id="para_at_their_most_basic_actors_in">At their most basic, Actors
     in Scala are objects that inherit from
-    <literal>scala.actors.Actor</literal>:</para>
+    <literal>scala.actors.Actor</literal>:<indexterm>
+        <primary>Actors</primary>
+
+        <secondary>Actor class</secondary>
+      </indexterm><indexterm>
+        <primary>scala.actors.Actor class</primary>
+      </indexterm><indexterm class="startofrange"
+        id="ch09_concurrentActorsScala">
+        <primary>concurrency</primary>
+
+        <secondary>using Actors</secondary>
+
+        <tertiary>Actors in Scala</tertiary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Concurrency/simple-actor.scala
 
@@ -105,7 +139,11 @@ robert.start</programlisting>
     creating Actors that avoids much of the setup in the above example. We can
     import this method and other convenience methods from
     <literal>scala.actors.Actors._</literal>. Here is a factory-made
-    Actor:</para>
+    Actor:<indexterm>
+        <primary>Actors</primary>
+
+        <secondary>factory method for creating</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Concurrency/factory-actor.scala
 
@@ -134,7 +172,11 @@ val paulNewman = actor {
       Actors and pattern matching go hand in hand. An Actor should only act on
       messages of familiar types; a pattern match on the class and/or contents
       of a message is good defensive programming, and increases the
-      readability of Actor code:</para>
+      readability of Actor code:<indexterm>
+          <primary>Actors</primary>
+
+          <secondary>sending messages to</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Concurrency/pattern-match-actor.scala
 
@@ -186,7 +228,13 @@ I have no idea what I just got.</screen>
       <para id="para_every_actor_has_a__mailbox__in">Every Actor has a
       <emphasis>mailbox</emphasis> in which messages sent to that Actor are
       queued. Let’s see an example where we inspect the size of an Actor’s
-      mailbox:</para>
+      mailbox:<indexterm>
+          <primary>mailbox for Actors</primary>
+        </indexterm><indexterm>
+          <primary>Actors</primary>
+
+          <secondary>mailbox</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Concurrency/actor-mailbox.scala
 
@@ -243,7 +291,14 @@ I've got 4 messages in my mailbox.</screen>
       linkend="SleepingBarberProblem"
       xrefstyle="select:nopage">[SleepingBarberProblem]</link>) is one of a
       popular set of computer science hypotheticals designed to demonstrate
-      issues of concurrency and synchronization.</para>
+      issues of concurrency and synchronization.<indexterm
+          class="startofrange" id="ch09_sleepingbarber">
+          <primary>sleeping barber problem (demonstrating Actors)</primary>
+        </indexterm><indexterm class="startofrange" id="ch09_Actorsexample">
+          <primary>Actors</primary>
+
+          <secondary>example using sleeping barber problem</secondary>
+        </indexterm></para>
 
       <para id="para_the_problem_is_this_a_hypothe">The problem is this: a
       hypothetical barber shop has just one barber with one barber chair, and
@@ -255,7 +310,7 @@ I've got 4 messages in my mailbox.</screen>
 
       <para id="para_strait_away_we_see_several_ob">The sleeping barber
       problem is usually solved with semaphores and mutexes, but we’ve got
-      better tools at our disposal. Strait away, we see several things to
+      better tools at our disposal. Straight away, we see several things to
       model as Actors: the barber is clearly one, as are the customers. The
       barbershop itself could be modeled as an Actor, too; there need not be a
       real-world parallel to verbal communication in an Actor system, even
@@ -302,7 +357,9 @@ class Customer(val id: Int) extends Actor {
       wanted to include, say, the time at which the haircut was completed,
       we’d use a <literal>case class</literal> instead. We declare
       <literal>Haircut</literal> here because it’s a message type that will be
-      sent solely to customers.</para>
+      sent solely to customers.<indexterm>
+          <primary>case objects</primary>
+        </indexterm></para>
 
       <para id="para_note_as_well_that_we_re_storin">Note as well that we’re
       storing one bit of mutable state in each <literal>Customer</literal>:
@@ -549,7 +606,9 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
       programmer, you might try writing your own sleeping barber
       implementation just to compare and contrast. We’re willing to bet that
       an implementation in Scala with Actors will be terser and easier to
-      maintain.</para>
+      maintain.<indexterm class="endofrange"
+      startref="ch09_sleepingbarber"></indexterm><indexterm class="endofrange"
+      startref="ch09_Actorsexample"></indexterm></para>
     </sect2>
 
     <sect2 id="_effective_actors">
@@ -559,7 +618,11 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
       out of Actors, there are few things to remember. First off, note that
       there are several methods you can use to get different types of behavior
       out of your Actors. <xref linkend="actor-methods" /> should help clarify
-      when to use each method.</para>
+      when to use each method.<indexterm>
+          <primary>Actors</primary>
+
+          <secondary>methods, listed</secondary>
+        </indexterm></para>
 
       <table id="actor-methods">
         <title>Actor methods</title>
@@ -635,7 +698,11 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
       of processing a message (that is, you need a synchronous response from
       sending a message to an Actor), use the <literal>receiveWithin</literal>
       variant to reduce your chances of blocking indefinitely on an Actor
-      that’s gotten wedged.</para>
+      that’s gotten wedged.<indexterm>
+          <primary>Actors</primary>
+
+          <secondary>effective use of</secondary>
+        </indexterm></para>
 
       <para>Another strategy to keep your Actor-based code asynchronous is the
       use of <emphasis>futures</emphasis>. A future is a placeholder object
@@ -646,7 +713,13 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
       example below, retrieving a value from a <literal>Future</literal> is as
       straightforward as invoking its <literal>apply</literal> method. Note
       that retrieving a value from a <literal>Future</literal> is a blocking
-      operation:</para>
+      operation:<indexterm>
+          <primary>! (exclamation point)</primary>
+
+          <secondary>!! method, sending messages to Actors</secondary>
+        </indexterm><indexterm>
+          <primary>futures</primary>
+        </indexterm></para>
 
       <programlisting>// code-examples/Concurrency/future-script.scala 
 import scala.actors.Futures._ 
@@ -681,7 +754,11 @@ println(eventually())</programlisting>
       incur too much overhead. In our experience, you can use a purely
       Actor-based design to prototype a concurrent solution, then use
       profiling tools to suss out parts of your application that might benefit
-      from a different approach.</para>
+      from a different approach.<indexterm class="endofrange"
+      startref="ch09_concurrentActors"></indexterm><indexterm
+      class="endofrange"
+      startref="ch09_concurrentActorsScala"></indexterm><indexterm
+      class="endofrange" startref="ch09_Actors"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -691,13 +768,30 @@ println(eventually())</programlisting>
     <para id="para_while_actors_are_a_great_way_t">While Actors are a great
     way to handle concurrent operations, they’re not the only way to do so in
     Scala. As Scala is interoperable with Java, the concurrency concepts that
-    you may be familiar with on the JVM still apply.</para>
+    you may be familiar with on the JVM still apply.<indexterm>
+        <primary>threading in Scala</primary>
+      </indexterm><indexterm class="startofrange"
+        id="ch09_concurrenttraditional">
+        <primary>concurrency</primary>
+
+        <secondary>traditional, using threading and events</secondary>
+      </indexterm></para>
 
     <sect2 id="_one_off_threads">
       <title>One-Off Threads</title>
 
       <para id="para_for_starters_scala_provides_a">For starters, Scala
-      provides a handy way to run a block of code in a new thread:</para>
+      provides a handy way to run a block of code in a new thread:<indexterm>
+          <primary>threading in Scala</primary>
+
+          <secondary>one-off threads</secondary>
+        </indexterm><indexterm>
+          <primary>concurrency</primary>
+
+          <secondary>traditional, using threads and events</secondary>
+
+          <tertiary>one-off threads</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/by-block.scala
 
@@ -733,7 +827,19 @@ object SpawnExample {
       pool of threads. We’ll use the thread pool to run a simple class,
       implementing Java’s <literal>Runnable</literal> interface for
       thread-friendly classes, that identifies which thread it’s running
-      on:</para>
+      on:<indexterm>
+          <primary>concurrency</primary>
+
+          <secondary>traditional, using threads and events</secondary>
+
+          <tertiary>using java.util.concurrent</tertiary>
+        </indexterm><indexterm>
+          <primary>java.util.concurrent package</primary>
+        </indexterm><indexterm>
+          <primary>threading in Scala</primary>
+
+          <secondary>using java.util.concurrent</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/util-concurrent.scala
 
@@ -790,7 +896,29 @@ hello from Thread 13</screen>
       concurrency exposes events that occur when particular conditions are met
       (for example, when data is received from a client over a network
       socket.) Typically, the programmer will associate a callback method with
-      each event that’s relevant to her program.</para>
+      each event that’s relevant to her program.<indexterm
+          class="startofrange" id="ch09_ActorsMINANagatti">
+          <primary>Actors</primary>
+
+          <secondary>using with MINA NIO and Nagatti library for SMTP
+          server</secondary>
+        </indexterm><indexterm>
+          <primary>I/O (input/output)</primary>
+
+          <secondary>NIO (non-blocking I/O)</secondary>
+        </indexterm><indexterm>
+          <primary>NIO (non-blocking I/O)</primary>
+        </indexterm><indexterm class="startofrange" id="ch09_events">
+          <primary>events</primary>
+
+          <secondary>using for concurrency</secondary>
+        </indexterm><indexterm class="startofrange" id="ch09_concurrentevents">
+          <primary>concurrency</primary>
+
+          <secondary>traditional, using threads and events</secondary>
+
+          <tertiary>events</tertiary>
+        </indexterm></para>
 
       <para id="para_while_the_java_nio_package_p">While the
       <literal>java.nio</literal> package provides a variety of useful
@@ -800,7 +928,13 @@ hello from Thread 13</screen>
       described on its homepage as “a network application framework which
       helps users develop high performance and high scalability network
       applications easily” (see <link linkend="MINA"
-      xrefstyle="select:nopage">[MINA]</link>).</para>
+      xrefstyle="select:nopage">[MINA]</link>).<indexterm>
+          <primary>MINA (Apache)</primary>
+        </indexterm><indexterm>
+          <primary>Apache MINA</primary>
+        </indexterm><indexterm>
+          <primary>java.nio package</primary>
+        </indexterm></para>
 
       <para id="para_while_mina_may_be_easier_to_us">While MINA may be easier
       to use than Java’s built-in NIO libraries, we’ve gotten used to some
@@ -810,13 +944,18 @@ hello from Thread 13</screen>
       atop MINA that, according to its author, “makes it easy to build
       protocol filters [using a] sequential style”. Essentially, Naggati is a
       DSL for parsing network protocols, with MINA’s powerful NIO abilities
-      under the hood.</para>
+      under the hood.<indexterm>
+          <primary>Naggati library</primary>
+        </indexterm></para>
 
       <para id="para_let_s_use_naggati_to_write_the">Let’s use Naggati to
       write the foundations of an SMTP email server. To keep things simple,
       we’re only dealing with two SMTP commands: <literal>HELO</literal> and
       <literal>QUIT</literal>. The former command identifies a client, and the
-      latter ends the client’s session.</para>
+      latter ends the client’s session.<indexterm class="startofrange"
+          id="ch09_SMTPserver">
+          <primary>SMTP mail server (example)</primary>
+        </indexterm></para>
 
       <para id="para_we_ll_drive_our_experiment_wit">We’ll keep ourselves
       honest with a test suite, facilitated by the <emphasis>Specs</emphasis>
@@ -884,7 +1023,14 @@ object SmtpDecoderSpec extends Specification {
       check that <literal>data</literal> is <literal>null</literal>.</para>
 
       <para id="para_with_our_tests_in_place_let_s">With our tests in place,
-      let’s implement a basic codec (an encoder and decoder) for SMTP:</para>
+      let’s implement a basic codec (an encoder and decoder) for
+      SMTP:<indexterm>
+          <primary>SMTP mail server (example)</primary>
+
+          <secondary>codec for SMTP</secondary>
+        </indexterm><indexterm>
+          <primary>codec for SMTP (example)</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Concurrency/smtpd/src/main/scala/com/programmingscala/smtpd/Codec.scala
 
@@ -926,7 +1072,9 @@ object Codec {
       <literal>encoder</literal> portion of our codec, which exists simply to
       write data out. A <literal>dispose</literal> method is defined (but not
       fleshed out) to fulfill the contract of the
-      <literal>ProtocolEncoder</literal> trait.</para>
+      <literal>ProtocolEncoder</literal> trait.<indexterm>
+          <primary>Request case class</primary>
+        </indexterm></para>
 
       <para id="para_the_decoder_is_what_we_re_real">The decoder is what we’re
       really interested in. <literal>readRequest</literal> reads a line, picks
@@ -943,7 +1091,11 @@ object Codec {
       MINA with Actors to wire up a server.</para>
 
       <para id="para_first_a_few_lines_of_setup_gr">First, a few lines of
-      setup grunt work to get things going for our SMTP server:</para>
+      setup grunt work to get things going for our SMTP server:<indexterm>
+          <primary>SMTP mail server (example)</primary>
+
+          <secondary>setup</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Concurrency/smtpd/src/main/scala/com/programmingscala/smtpd/Main.scala
 
@@ -996,7 +1148,11 @@ object Main {
       configuration are critical, as they put our codec to work, tell the
       acceptor to handle requests with a special object, and start the server
       listening for new connections on port 2525 (real SMTP servers run on the
-      privileged port 25).</para>
+      privileged port 25).<indexterm>
+          <primary>actors.maxPoolSize system property</primary>
+        </indexterm><indexterm>
+          <primary>NioSocketAcceptor object</primary>
+        </indexterm></para>
 
       <para id="para_the_aforementioned_special_obj">The aforementioned
       special object is an Actor wrapped in an
@@ -1004,7 +1160,13 @@ object Main {
       Actors and MINA that’s provided by Naggati. This is the piece of our
       server that talks back to the client. Now that we know what the client
       is saying, thanks to the decoder, we actually know what to say
-      back!</para>
+      back!<indexterm>
+          <primary>SMTP mail server (example)</primary>
+
+          <secondary>SmtpHandler class</secondary>
+        </indexterm><indexterm>
+          <primary>IOHandlerActorAdapter object</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Concurrency/smtpd/src/main/scala/com/programmingscala/smtpd/SmtpHandler.scala
 
@@ -1071,10 +1233,19 @@ class SmtpHandler(val session: IoSession) extends Actor {
       <literal>command</literal> field to take appropriate action. When the
       client says <literal>HELO</literal>, we can reply with an
       acknowledgement. When the client says <literal>QUIT</literal>, we say
-      goodbye and disconnect him.</para>
+      goodbye and disconnect him.<indexterm>
+          <primary>MINA (Apache)</primary>
+
+          <secondary>events provided by</secondary>
+        </indexterm></para>
 
       <para id="para_now_that_we_ve_got_all_the_pie">Now that we’ve got all
-      the pieces in place, let’s have a conversation with our server:</para>
+      the pieces in place, let’s have a conversation with our
+      server:<indexterm>
+          <primary>SMTP mail server (example)</primary>
+
+          <secondary>conversation with server</secondary>
+        </indexterm></para>
 
       <screen>[al3x@jaya ~]$ telnet localhost 2525
 Trying ::1...
@@ -1112,7 +1283,16 @@ Connection closed by foreign host.</screen>
       conversation. As an exercise, try filling out the rest of the commands.
       Or, to skip ahead to something very much akin to what we’ve built here,
       check out the open source Mailslot project on GitHub (see <link
-      linkend="Mailslot" xrefstyle="select:nopage">[Mailslot]</link>).</para>
+      linkend="Mailslot"
+      xrefstyle="select:nopage">[Mailslot]</link>).<indexterm
+      class="endofrange"
+      startref="ch09_ActorsMINANagatti"></indexterm><indexterm
+      class="endofrange" startref="ch09_SMTPserver"></indexterm><indexterm
+      class="endofrange" startref="ch09_events"></indexterm><indexterm
+      class="endofrange"
+      startref="ch09_concurrentevents"></indexterm><indexterm
+      class="endofrange"
+      startref="ch09_concurrenttraditional"></indexterm></para>
     </sect2>
   </sect1>
 
