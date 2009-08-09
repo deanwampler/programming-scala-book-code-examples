@@ -10,7 +10,9 @@
   structured prose for the domain. Ideally, a domain expert with little
   experience in programming can read, understand, and validate this code.
   Sometimes, a domain expert might be able to write DSL code, even if he isn’t
-  a professional programmer.</para>
+  a professional programmer.<indexterm class="startofrange" id="ch11_DSLs">
+      <primary>DSLs (Domain-Specific Languages)</primary>
+    </indexterm></para>
 
   <para id="para_dsls_are_a_large_topic_we_ll_">DSLs are a large topic. We’ll
   only touch the surface of DSLs and Scala’s impressive support for them. For
@@ -31,7 +33,11 @@
   useful for analysis, optimization, composition, etc.</para>
 
   <para id="para_well_crafted_dsls_offer_severa">Well-crafted DSLs offer
-  several benefits:</para>
+  several benefits:<indexterm>
+      <primary>DSLs (Domain-Specific Languages)</primary>
+
+      <secondary>benefits and drawbacks of</secondary>
+    </indexterm></para>
 
   <variablelist id="para_dsl_benefits_">
     <varlistentry id="varlistentry-encapsulation">
@@ -117,7 +123,11 @@
   programming language, like Scala. No special-purpose parser is necessary for
   internal DSLs. Instead, they are parsed just like any other code written in
   the language. In contrast, an <emphasis>external</emphasis> DSL is a
-  language with its own custom grammar and parser.</para>
+  language with its own custom grammar and parser.<indexterm>
+      <primary>external DSLs</primary>
+    </indexterm><indexterm>
+      <primary>internal DSLs</primary>
+    </indexterm></para>
 
   <para id="para_internal_dsls_are_easier_to_cr">Internal DSLs are easier to
   create because they don’t require a special purpose parser. On the other
@@ -143,12 +153,23 @@
     <emphasis>net</emphasis> salary, which is the <emphasis>gross</emphasis>
     salary minus the <emphasis>deductions</emphasis> for taxes, insurance
     premiums (at least in some countries), retirement fund contributions,
-    etc.</para>
+    etc.<indexterm class="startofrange" id="ch11_DSLinternal">
+        <primary>DSLs (Domain-Specific Languages)</primary>
+
+        <secondary>internal DSL for payroll application (example)</secondary>
+      </indexterm></para>
 
     <para id="para_assuming_we_have_a_conventiona">To better understand the
     constrasts between code that makes use of DSLs and code that does not,
     let’s try both techniques on the same problem. Here’s how the paycheck
-    might be calculated for two employees, without the help of a DSL:</para>
+    might be calculated for two employees, without the help of a
+    DSL:<indexterm class="startofrange" id="ch11_DSLinternalpayrollAPI">
+        <primary>DSLs (Domain-Specific Languages)</primary>
+
+        <secondary>internal DSL for payroll application (example)</secondary>
+
+        <tertiary>payroll API</tertiary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/api/payroll-api-script.scala
 
@@ -293,7 +314,9 @@ object Type2Money {
     <para id="para_note_that_it_uses_scala_bigde">Note that we use
     <literal>scala.BigDecimal</literal>, which wraps
     <literal>java.math.BigDecimal</literal>, as the storage type for financial
-    figures.</para>
+    figures.<indexterm>
+        <primary>BigDecimal class</primary>
+      </indexterm></para>
 
     <para id="para_the_deductions_are_calculated_">Deductions are calculated
     using four helper methods in
@@ -337,7 +360,17 @@ Jane Doe: Paycheck($3461.54,$1576.92,$1884.62)</screen>
       needs to be customized for different employee types (salaried, hourly,
       etc.) or to modify the deduction calculations. Ideally, we would like to
       enable the accountants to do these customizations themselves, without
-      our help.</para>
+      our help.<indexterm>
+          <primary>payroll internal DSL (example)</primary>
+        </indexterm><indexterm class="endofrange"
+      startref="ch11_DSLinternalpayrollAPI"></indexterm><indexterm>
+          <primary>DSLs (Domain-Specific Languages)</primary>
+
+          <secondary>internal DSL for payroll application
+          (example)</secondary>
+
+          <tertiary>payroll internal DSL</tertiary>
+        </indexterm></para>
 
       <para id="para_we_might_achieve_these_goals_i">We might achieve these
       goals if we can express the logic in a DSL that is sufficiently
@@ -410,7 +443,20 @@ List(buck, jane).foreach { employee =&gt;
       <title>Infix Operator Notation</title>
 
       <para id="para_definition_of_payrollCalculator">Consider this line in
-      the definition of <literal>payrollCalculator</literal>:</para>
+      the definition of <literal>payrollCalculator</literal>:<indexterm>
+          <primary>DSLs (Domain-Specific Languages)</primary>
+
+          <secondary>internal DSL for payroll application
+          (example)</secondary>
+
+          <tertiary>infix operator notation</tertiary>
+        </indexterm><indexterm>
+          <primary>. (dot)</primary>
+
+          <secondary>infix operator notation</secondary>
+        </indexterm><indexterm>
+          <primary>infix operator notation</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">employee salary_for 2.weeks minus_deductions_for { gross =&gt;</programlisting>
 
@@ -435,7 +481,9 @@ List(buck, jane).foreach { employee =&gt;
       different instance. For example, if
       <literal>minus_deductions_for</literal> must be called after
       <literal>salary_for</literal>, then <literal>salary_for</literal> should
-      return a new instance.</para>
+      return a new instance.<indexterm>
+          <primary>method chaining</primary>
+        </indexterm></para>
 
       <para id="para_because_chaining_is_so_easy_w">Because chaining is so
       easy, we could have created separate methods for
@@ -461,7 +509,18 @@ List(buck, jane).foreach { employee =&gt;
       <literal>2.weeks</literal>, since <literal>Int</literal> doesn’t have a
       <literal>weeks</literal> method, we use an implicit conversion to a
       <literal>Duration</literal> instance that wraps an
-      <literal>Int</literal> specifying an amount:</para>
+      <literal>Int</literal> specifying an amount:<indexterm>
+          <primary>implicit conversions</primary>
+
+          <secondary>in internal DSL payroll implementation</secondary>
+        </indexterm><indexterm>
+          <primary>DSLs (Domain-Specific Languages)</primary>
+
+          <secondary>internal DSL for payroll application
+          (example)</secondary>
+
+          <tertiary>implicit conversions and user defined types</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/duration.scala
 
@@ -498,7 +557,14 @@ case class Duration(val amount: Int) {
       The <literal>rules</literal> object encapsulates the process of building
       the rules for payroll calculation. Its <literal>apply</literal> method
       takes a function literal, <literal>Employee =&gt;
-      Paycheck</literal>.</para>
+      Paycheck</literal>.<indexterm>
+          <primary>DSLs (Domain-Specific Languages)</primary>
+
+          <secondary>internal DSL for payroll application
+          (example)</secondary>
+
+          <tertiary>apply methods</tertiary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="_payroll_rules_dsl_implementation">
@@ -506,7 +572,15 @@ case class Duration(val amount: Int) {
 
       <para id="para_now_lets_explore_the_implement">Now let’s explore the
       implementation, starting with the <literal>rules</literal> object and
-      working our way down:</para>
+      working our way down:<indexterm class="startofrange"
+          id="ch11_DLSinternalpayrollrules">
+          <primary>DSLs (Domain-Specific Languages)</primary>
+
+          <secondary>internal DSL for payroll application
+          (example)</secondary>
+
+          <tertiary>payroll rules DSL implementation</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/payroll.scala
 
@@ -655,7 +729,9 @@ protected[dsl] class PayrollBuilderRules(rules: Employee =&gt; Paycheck) {
       We opted for a more readable style, with the penalty of a harder
       implementation. You’ll sometimes hear the phrase <emphasis>fluent
       interface</emphasis> used to refer to DSLs that emphasize
-      readability.</para>
+      readability.<indexterm>
+          <primary>fluent interface</primary>
+        </indexterm></para>
 
       <para id="para_here_is_grosspaybuilder_">Here is
       <literal>GrossPayBuilder</literal>:</para>
@@ -844,7 +920,8 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       <para id="para_so_deductioncalculator_apply_">So
       <literal>DeductionCalculator.apply</literal> does nothing, because all
       the work is already done by the time <literal>apply</literal> is
-      called.</para>
+      called.<indexterm class="endofrange"
+      startref="ch11_DLSinternalpayrollrules"></indexterm></para>
     </sect2>
 
     <sect2 id="InternalDSLsFinalThoughts">
@@ -875,7 +952,9 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       problem</emphasis> <link linkend="Ford2009"
       xrefstyle="select:nopage">[Ford2009]</link>. How do you know when you’ve
       finished building up the state of an instance and it’s ready to
-      use?</para>
+      use?<indexterm>
+          <primary>finishing problem (in DSL design)</primary>
+        </indexterm></para>
 
       <para id="para_we_solved_this_problem_in_two_">We solved this problem in
       two ways. First, we nested the calculation steps in a function literal.
@@ -897,7 +976,8 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       case, it doesn’t matter when you stop calling chained methods. If you
       chain methods that build up state, you’ll have to add some some sort of
       <literal>done</literal> method and trust the users to always use it at
-      the end.</para>
+      the end.<indexterm class="endofrange"
+      startref="ch11_DSLinternal"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -912,7 +992,13 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
     attractive feature of this library is the way it defines an internal DSL
     that makes parser definitions look very similar to familiar grammar
     notations, like EBNF (Extended Backus-Naur Form—<link linkend="EBNF"
-    xrefstyle="select:nopage">[BNF]</link>).</para>
+    xrefstyle="select:nopage">[BNF]</link>).<indexterm>
+        <primary>EBNF (Extended Backus-Naur Form) grammar notation</primary>
+      </indexterm><indexterm class="startofrange" id="ch11_DSLexternal">
+        <primary>DSLs (Domain-specific Languages)</primary>
+
+        <secondary>external DSLs with parser combinators</secondary>
+      </indexterm></para>
 
     <sect2 id="_about_parser_combinators">
       <title>About Parser Combinators</title>
@@ -923,7 +1009,15 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       together to form other parser combinators for larger expressions. A
       combinator framework makes it easy to combine parsers to handle
       sequential and alternative cases, repetition, optional terms,
-      etc.</para>
+      etc.<indexterm>
+          <primary>DSLs (Domain-specific Languages)</primary>
+
+          <secondary>external DSLs with parser combinators</secondary>
+
+          <tertiary>parser combinators</tertiary>
+        </indexterm><indexterm>
+          <primary>parser combinators</primary>
+        </indexterm></para>
 
       <para id="para_other_references">We’ll learn more about parsing
       techniques and terminology as we proceed. A complete exposition of
@@ -943,7 +1037,17 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       we’ll reuse the example we just discussed for internal DSLs. We’ll
       modify the grammar slightly, since our external DSL does not have to be
       valid Scala syntax. Other changes will make parser construction easier.
-      Here’s an example written in the external DSL:</para>
+      Here’s an example written in the external DSL:<indexterm
+          class="startofrange" id="ch11_payrollexternalDSL">
+          <primary>payroll external DSL (example)</primary>
+        </indexterm><indexterm class="startofrange"
+          id="ch11_DSLexternalpayroll">
+          <primary>DSLs (Domain-specific Languages)</primary>
+
+          <secondary>external DSLs with parser combinators</secondary>
+
+          <tertiary>payroll external DSL</tertiary>
+        </indexterm></para>
 
       <screen>paycheck for employee "Buck Trends" is salary for 2 weeks minus deductions for {
   federal income tax            is  25.  percent of gross,
@@ -996,7 +1100,15 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       internal DSL for Scala’s parser combinator library resembles the
       context-free grammar, let’s start with the grammar itself, written in a
       variation of EBNF. We’ll omit commas to separate sequences, for
-      clarity:</para>
+      clarity:<indexterm>
+          <primary>EBNF (Extended Backus-Naur Form) grammar notation</primary>
+
+          <secondary>external payroll DSL grammar</secondary>
+        </indexterm><indexterm>
+          <primary>parsers</primary>
+
+          <secondary>grammar for payroll external DSL</secondary>
+        </indexterm></para>
 
       <screen>paycheck = empl gross deduct;
 
@@ -1047,7 +1159,9 @@ doubleNumber = ...</screen>
       <literal>}</literal>, etc.) will be “bubble” words, as defined in the
       previous section. We’ll ignore these after parsing. The ϵ is used to
       indicate an empty production for <literal>deductItems</literal>,
-      although there may not be any.</para>
+      although there may not be any.<indexterm>
+          <primary>terminals</primary>
+        </indexterm></para>
 
       <para id="para_we_didn_t_spell_out_the_detail">We didn’t spell out the
       details for decimal numbers, double numbers, and allowed letters in the
@@ -1064,7 +1178,11 @@ doubleNumber = ...</screen>
       reference to the left-hand side nonterminal), and operators that express
       relationships between the items. Notice that the grammar forms have a
       hierarchical decomposition; although not a directed acyclic graph, as
-      generally speaking, these grammars can have cycles.</para>
+      generally speaking, these grammars can have cycles.<indexterm>
+          <primary>nonterminals</primary>
+        </indexterm><indexterm>
+          <primary>production rules</primary>
+        </indexterm></para>
 
       <para id="para_we_have_a_context_free_grammar">We have a context-free
       grammar because every production rule has a single nonterminal on the
@@ -1076,7 +1194,9 @@ doubleNumber = ...</screen>
       <literal>toBe = "is" | "are"</literal> mean the <literal>is</literal>
       production (a terminal in this case) <emphasis>or</emphasis> the
       <literal>are</literal> production will match. This is an example of an
-      <emphasis>alternative composition</emphasis>.</para>
+      <emphasis>alternative composition</emphasis>.<indexterm>
+          <primary>alternative composition</primary>
+        </indexterm></para>
 
       <para id="para_when_productions_are_separated">When productions are
       separated by white space on the right-hand side of another production,
@@ -1085,7 +1205,9 @@ doubleNumber = ...</screen>
       comma to separate these items.) Hence, these expressions are more like
       “and” expressions, but <emphasis>sequential composition</emphasis> is so
       common that no <literal>&amp;</literal> operator is used, the analog of
-      <literal>|</literal> for alternative composition.</para>
+      <literal>|</literal> for alternative composition.<indexterm>
+          <primary>sequential composition</primary>
+        </indexterm></para>
 
       <para id="para_the_production_deductitem">The production rule with
       <literal>"{" deductItem { "," deductItem } "}"</literal> demonstrates
@@ -1097,7 +1219,16 @@ doubleNumber = ...</screen>
       <literal>}</literal> character. Sometimes an asterisk is used to
       indicate repetition zero or more times, e.g., <literal>prod *</literal>.
       For repetition at least once, <literal>prod +</literal> is sometimes
-      used.</para>
+      used.<indexterm>
+          <primary>+ (plus sign)</primary>
+
+          <secondary>specifying at least one repetition in production
+          rule</secondary>
+        </indexterm><indexterm>
+          <primary>* (asterisk)</primary>
+
+          <secondary>zero or more repetitions in production rule</secondary>
+        </indexterm></para>
 
       <para id="para_finally_if_we_had_optional_te">Finally, if we had
       optional items in our grammar, we would enclose them in square brackets,
@@ -1105,7 +1236,18 @@ doubleNumber = ...</screen>
       possible (and supported in the Scala library), a few of which we’ll
       discuss below. See the <link linkend="ScalaAPI2008"
       xrefstyle="select:nopage">[ScalaAPI2008]</link> entry for
-      <literal>Parsers</literal> for more details.</para>
+      <literal>Parsers</literal> for more details.<indexterm>
+          <primary>Parsers object</primary>
+
+          <secondary>documentation of composition operators</secondary>
+        </indexterm><indexterm>
+          <primary>[ ] (square brackets)</primary>
+
+          <secondary>enclosing optional items in parser grammar</secondary>
+        </indexterm><indexterm class="endofrange"
+      startref="ch11_payrollexternalDSL"></indexterm><indexterm
+      class="endofrange"
+      startref="ch11_DSLexternalpayroll"></indexterm></para>
     </sect2>
 
     <sect2 id="AScalaImplementationExternalDSLGrammar">
@@ -1114,7 +1256,18 @@ doubleNumber = ...</screen>
       <para id="para_here_is_the_parser_written_usi">Here is the parser
       written using Scala’s parser combinators. At this point, we won’t do
       anything to actually calculate an employee’s paycheck, so we’ll append
-      <literal>V1</literal> to the class name:</para>
+      <literal>V1</literal> to the class name:<indexterm class="startofrange"
+          id="ch11_parsersScala">
+          <primary>parsers</primary>
+
+          <secondary>Scala implementation of external DSL grammar</secondary>
+        </indexterm><indexterm class="startofrange" id="ch11_DSLsparser">
+          <primary>DSLs (Domain-specific Languages)</primary>
+
+          <secondary>external DSLs with parser combinators</secondary>
+
+          <tertiary>Scala implementation of external DSL grammar</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-v1.scala
 
@@ -1184,7 +1337,15 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       <literal>paycheck</literal> production, we want to keep all three
       results from <literal>empl</literal>, <literal>gross</literal>, and
       <literal>deduct</literal>. Hence we use two <literal>∼</literal>
-      operators:</para>
+      operators:<indexterm>
+          <primary>sequential composition</primary>
+
+          <secondary>combinator operators</secondary>
+        </indexterm><indexterm>
+          <primary>~ (tilde)</primary>
+
+          <secondary>~, ~&gt;, and &lt;~ combinator operators</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">def paycheck = empl ~ gross ~ deduct</programlisting>
 
@@ -1217,7 +1378,11 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       way?</para>
 
       <para id="para_the_or_case_is_expressed_w">The “or” case is expressed
-      with the <literal>|</literal> method, just as in the grammar:</para>
+      with the <literal>|</literal> method, just as in the grammar:<indexterm>
+          <primary>| (vertical bar)</primary>
+
+          <secondary>or case in parser grammar</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">def weeksDays = "weeks" | "week" | "days" | "day"</programlisting>
 
@@ -1246,7 +1411,15 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       terms inside a parsing framework can be very effective. In our example,
       we exploit the productions in <literal>JavaTokenParsers</literal> to
       parse quoted strings (for the employee’s name), decimal literals, and
-      floating-point literals.</para>
+      floating-point literals.<indexterm>
+          <primary>Parsers object</primary>
+        </indexterm><indexterm>
+          <primary>JavaTokenParsers</primary>
+        </indexterm><indexterm>
+          <primary>regular expressions</primary>
+
+          <secondary>use in parsing</secondary>
+        </indexterm></para>
 
       <para id="para_let_s_try_it_out_here_is_a_sp">Let’s try it out! Here is
       a specification that exercises the parser for two cases, without and
@@ -1326,7 +1499,11 @@ p.parseAll(p.paycheck, input) match {
       <literal>MyOtherParser</literal>, then
       <literal>p2.Success[String]</literal> would be different from
       <literal>p.Success[String]</literal> and one could not be substituted
-      for the other.</para>
+      for the other.<indexterm>
+          <primary>path-dependent types</primary>
+
+          <secondary>p.Success case class (example)</secondary>
+        </indexterm></para>
 
       <para id="para_the_success_object_contains_">The
       <literal>Success</literal> instance contains two fields, the result of
@@ -1465,7 +1642,16 @@ scala&gt;</screen>
 
       <para id="para_the_parser_trait_also_define">The
       <literal>Parsers</literal> trait also defines a case class named
-      <literal>∼</literal> that represents a pair of sequential rules:</para>
+      <literal>∼</literal> that represents a pair of sequential
+      rules:<indexterm>
+          <primary>Parsers object</primary>
+
+          <secondary>~ case class</secondary>
+        </indexterm><indexterm>
+          <primary>~ (tilde)</primary>
+
+          <secondary>case class defined by Parsers trait</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">case class ~[+a, +b](_1: a, _2: b) {
   override def toString = "("+ _1 +"~"+ _2 +")"
@@ -1482,9 +1668,7 @@ scala&gt;</screen>
       <literal>p.∼</literal>. We’ll start with the inner-most type,
       <literal>p.∼[String,String]</literal>, and map the type declaration to
       the output we saw in the <userinput>scala</userinput> session
-      <literal><indexterm>
-          <primary>"Buck Trends"∼(2∼weeks</primary>
-        </indexterm>"Buck Trends"∼(2∼weeks∼List())</literal>.</para>
+      <literal>"Buck Trends"∼(2∼weeks∼List())</literal>.</para>
 
       <para id="para_the_p_string_string_corre">The
       <literal>p.∼[String,String]</literal> corresponds to the parser that
@@ -1520,14 +1704,14 @@ scala&gt;</screen>
       <literal>toString</literal> returns <literal>List()</literal>.
       Therefore, calling <literal>p.∼.toString</literal> on our outer-most
       type, the one that parameterizes <literal>p.Parser</literal>, returns
-      the string<indexterm>
-          <primary>"Buck Trends"∼(2∼weeks</primary>
-        </indexterm> <literal>"Buck Trends"∼(2∼weeks∼List())</literal>. We’re
+      the string <literal>"Buck Trends"∼(2∼weeks∼List())</literal>. We’re
       done!</para>
 
       <para id="para_well_not_quite_we_re_still_n">Well, not quite. We’re
       still not calculating an actual paycheck for ol’ Buck. Let’s complete
-      our implementation.</para>
+      our implementation.<indexterm class="endofrange"
+      startref="ch11_DSLsparser"></indexterm><indexterm class="endofrange"
+      startref="ch11_parsersScala"></indexterm></para>
     </sect2>
 
     <sect2 id="_generating_paychecks_with_the_external_dsl">
@@ -1539,7 +1723,20 @@ scala&gt;</screen>
       When the parser returned by <literal>paycheck</literal> finishes, we
       want to return a <literal>Pair</literal> with the
       <literal>Employee</literal> instance and the completed
-      <literal>Paycheck</literal>.</para>
+      <literal>Paycheck</literal>.<indexterm class="startofrange"
+          id="ch11_parsersfinal">
+          <primary>parsers</primary>
+
+          <secondary>generating paychecks with
+          PayrollParserCombinators</secondary>
+        </indexterm><indexterm class="startofrange"
+          id="ch11_DSLexternalpaycheck">
+          <primary>DSLs (Domain-specific Languages)</primary>
+
+          <secondary>external DSLs with parser combinators</secondary>
+
+          <tertiary>generating paychecks with external DSL</tertiary>
+        </indexterm></para>
 
       <para id="para_we_will_reuse_domain_class">We will reuse “domain”
       classes like <literal>Employee</literal>, <literal>Money</literal>,
@@ -1682,7 +1879,13 @@ class PayrollParserCombinators(val employees: Map[Name, Employee])
       make it clear what they are now returning. In some cases, the
       productions are unchanged, as the original parser instances are fine as
       is. Most of the changes reflect our desire to calculate the paycheck as
-      we go.</para>
+      we go.<indexterm>
+          <primary>@ (at sign)</primary>
+
+          <secondary>@return annotations</secondary>
+        </indexterm><indexterm>
+          <primary>Javadoc-style @return annotations</primary>
+        </indexterm></para>
 
       <para id="para_consider_the_new_paycheck_pr">Consider the new
       <literal>paycheck</literal> production:</para>
@@ -1859,7 +2062,10 @@ object PayrollParserCombinatorsSpec
       like we did before, but we chose a simpler approach to focus on the
       construction of the parser itself. Also, as we discussed above, we
       weren’t as careful about thread-safety and other issues in the
-      implementation.</para>
+      implementation.<indexterm class="endofrange"
+      startref="ch11_parsersfinal"></indexterm><indexterm class="endofrange"
+      startref="ch11_DSLexternalpaycheck"></indexterm><indexterm
+      class="endofrange" startref="ch11_DSLexternal"></indexterm></para>
     </sect2>
 
     <sect2 id="ExternalDSLsFinalThoughts">
@@ -1870,7 +2076,11 @@ object PayrollParserCombinatorsSpec
       non-trivial DSL can be a challenge to implement and debug. For the
       examples in this chapter, the parser combinators implementation was
       easier to design and write than the implementation for the internal DSL.
-      However, we found that debugging the internal DSL was easier.</para>
+      However, we found that debugging the internal DSL was easier.<indexterm>
+          <primary>DSLs (Domain-Specific Languages)</primary>
+
+          <secondary>internal versus external</secondary>
+        </indexterm></para>
 
       <para id="para_another_problem_you_must_consi">You must also consider
       how robust the parser must be when handling invalid input. Depending on
@@ -1887,7 +2097,13 @@ object PayrollParserCombinatorsSpec
       parsers also supports <emphasis>memoization</emphasis>, which helps
       improve performance, among other benefits. If you need a fast parser, a
       packrat parser will take you further before you need to consider more
-      specialized tools, like parser generators.</para>
+      specialized tools, like parser generators.<indexterm>
+          <primary>PEGs (parsing expression grammars)</primary>
+        </indexterm><indexterm>
+          <primary>parsing expression grammars (PEGs)</primary>
+        </indexterm><indexterm>
+          <primary>packrat parsers</primary>
+        </indexterm></para>
     </sect2>
   </sect1>
 
@@ -1918,6 +2134,7 @@ object PayrollParserCombinatorsSpec
     <para id="para_so_far_we_have_only_hinted_at">In the next chapter, we’ll
     explore the richness of Scala’s type system. We’ve learned many of its
     features already. Now, we’ll explore the type system in full
-    detail.</para>
+    detail.<indexterm class="endofrange"
+    startref="ch11_DSLs"></indexterm></para>
   </sect1>
 </chapter>
