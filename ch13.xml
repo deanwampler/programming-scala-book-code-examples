@@ -8,7 +8,10 @@
   pragmatic look at developing applications in Scala. We discuss a few
   language and API features that we haven’t covered before, examine common
   design patterns and idioms, and revisit <emphasis>traits</emphasis> with an
-  eye towards structuring our code effectively.</para>
+  eye towards structuring our code effectively.<indexterm class="startofrange"
+      id="ch13_appdesign">
+      <primary>application design</primary>
+    </indexterm></para>
 
   <sect1 id="Annotations">
     <title>Annotations</title>
@@ -23,7 +26,23 @@
     uses for annotations in the Java and .NET worlds can be accomplished
     through other means in Scala, annotations can be essential for
     interoperating with Java and .NET libraries that rely heavily on them.
-    Fortunately, Java and .NET annotations can be used in Scala code.</para>
+    Fortunately, Java and .NET annotations can be used in Scala
+    code.<indexterm class="startofrange" id="ch13_declarationsannotations">
+        <primary>declarations</primary>
+
+        <secondary>annotations in</secondary>
+      </indexterm><indexterm class="startofrange"
+        id="ch13_appdesignannotations">
+        <primary>application design</primary>
+
+        <secondary>annotations</secondary>
+      </indexterm><indexterm>
+        <primary>metadata</primary>
+
+        <secondary>adding to declarations</secondary>
+      </indexterm><indexterm class="startofrange" id="ch13_annotations">
+        <primary>annotations</primary>
+      </indexterm></para>
 
     <para id="para_the_interpretation_of_scala_an">The interpretation of Scala
     annotations depends on the runtime environment. In this section, we will
@@ -37,7 +56,14 @@
     <link linkend="Contract4J" xrefstyle="select:nopage">[Contract4J]</link>
     that uses annotations to support <emphasis>design by contract</emphasis>
     programming in Java (see also <xref linkend="DesignByContractExample" />
-    below). Some of the comments have been removed for clarity:</para>
+    below). Some of the comments have been removed for clarity:<indexterm>
+        <primary sortas="interface keyword">@interface keyword
+        (Java)</primary>
+      </indexterm><indexterm>
+        <primary>Java</primary>
+
+        <secondary>annotations</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/annotations/Pre.java
 
@@ -75,7 +101,9 @@ public @interface Pre {
     supported for these snippets are scripting languages like Groovy and
     JRuby. The name of the variable for this string, <literal>value</literal>,
     is a conventional name for the most important field in the
-    annotation.</para>
+    annotation.<indexterm>
+        <primary sortas="Pre annotation">@Pre annotation</primary>
+      </indexterm></para>
 
     <para id="para_the_other_field_is_an_optional">The other field is an
     optional <literal>message</literal> to use when reporting failures.</para>
@@ -84,7 +112,9 @@ public @interface Pre {
     annotations applied to it, for example the <literal>@Retention</literal>
     annotation with the value <literal>RetentionPolicy.RUNTIME</literal> means
     that when <literal>@Pre</literal> is used, its information will be
-    retained in the class file for runtime use.</para>
+    retained in the class file for runtime use.<indexterm>
+        <primary sortas="Retention annotation">@Retention annotation</primary>
+      </indexterm></para>
 
     <para id="para_here_is_a_scala_example_that_u">Here is a Scala example
     that uses <literal>@Pre</literal> and shows several ways to specify the
@@ -168,7 +198,10 @@ class SerialVersionUID(uid: Long) extends StaticAnnotation</programlisting>
     annotation serves the same purpose as a <literal>static</literal> field
     named <literal>serialVersionUID</literal> in a Java class. This is one
     example of a Scala annotation that maps to a “non-annotation” construct in
-    Java.</para>
+    Java.<indexterm>
+        <primary sortas="serialVersionUID">@serialVersionUID
+        annotation</primary>
+      </indexterm></para>
 
     <para id="para_the_parent_of_serialversionui">The parent of
     <literal>SerialVersionUID</literal> is the trait
@@ -177,7 +210,11 @@ class SerialVersionUID(uid: Long) extends StaticAnnotation</programlisting>
     compilation units. The parent class of
     <literal>scala.StaticAnnotation</literal> is
     <literal>scala.Annotation</literal>, which is the parent of all Scala
-    annotations.</para>
+    annotations.<indexterm>
+        <primary>Annotation class</primary>
+      </indexterm><indexterm>
+        <primary>StaticAnnotation class</primary>
+      </indexterm></para>
 
     <para id="para_did_you_notice_that_there_is_n">Did you notice that there
     is no <literal>val</literal> on <literal>uid</literal>? Why isn’t
@@ -228,7 +265,9 @@ class Account(val balance: Double)</programlisting>
     <literal>ArrowAssoc</literal> that we discussed in <xref
     linkend="PredefObject" /> in <xref linkend="ScalaObjectSystem" /> isn’t
     invoked. Instead, you have to use a list of <literal>Tuples</literal>,
-    which <literal>Map.apply</literal> actually expects.</para>
+    which <literal>Map.apply</literal> actually expects.<indexterm>
+        <primary>ClassfileAnnotation class</primary>
+      </indexterm></para>
 
     <para id="para_another_child_of_scala_annota">Another child of
     <literal>scala.Annotation</literal> that is intended to be a parent of
@@ -261,7 +300,11 @@ you want, you must write the annotation class in Java.
     nested. This causes problems when using JPA annotations in Scala code, for
     example, as discussed in <link linkend="JPAScala"
     xrefstyle="select:nopage">[JPAScala]</link>. However, Scala version 2.8
-    removes this <phrase role="keep-together">limitation</phrase>.</para>
+    removes this <phrase role="keep-together">limitation</phrase>.<indexterm>
+        <primary>annotations</primary>
+
+        <secondary>nesting</secondary>
+      </indexterm></para>
 
     <warning id="para_warning_annotations_can_only_">
       <para>Annotations can only be nested in Scala version 2.8.</para>
@@ -273,7 +316,11 @@ you want, you must write the annotation class in Java.
     describe all the annotations defined in the Scala library (adapted and
     expanded from <ulink url="http://www.scala-lang.org/node/106"></ulink>).
     We start with the direct children of <literal>Annotation</literal>,
-    followed by the children of <literal>StaticAnnotation</literal>.</para>
+    followed by the children of <literal>StaticAnnotation</literal>.<indexterm>
+        <primary>annotations</primary>
+
+        <secondary>Scala annotations derived from Annotation</secondary>
+      </indexterm></para>
 
     <table id="scala-annotations">
       <title>Scala annotations derived from Annotation</title>
@@ -417,7 +464,16 @@ you want, you must write the annotation class in Java.
 
         <tbody valign="top">
           <row>
-            <entry><para><literal>BeanProperty</literal></para></entry>
+            <entry><para><literal>BeanProperty<indexterm>
+                <primary>StaticAnnotation class</primary>
+
+                <secondary>annotations derived from</secondary>
+              </indexterm><indexterm>
+                <primary>annotations</primary>
+
+                <secondary>Scala annotations derived from
+                StaticAnnotation</secondary>
+              </indexterm></literal></para></entry>
 
             <entry><para><emphasis>JavaBean</emphasis>
             convention</para></entry>
@@ -623,7 +679,11 @@ you want, you must write the annotation class in Java.
 
     <para id="para_28_annotations">The annotations marked with “(version 2.8)”
     are only available in Scala version 2.8 or later. Consider
-    <literal>@tailrec</literal>, as used in the following example:</para>
+    <literal>@tailrec</literal>, as used in the following example:<indexterm>
+        <primary>annotations</primary>
+
+        <secondary>available only in Scala version 2.8 or later</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">import scala.annotation.tailrec
 
@@ -642,7 +702,13 @@ println(fib(5))</programlisting>
     this method. When the compiler sees the <literal>@tailrec</literal>
     annotation, it throws an error if it can’t apply the tail-call
     optimization. Attempting to run this script produces the following
-    error:</para>
+    error:<indexterm>
+        <primary>tail calls</primary>
+
+        <secondary>@tailRec annotation and</secondary>
+      </indexterm><indexterm>
+        <primary sortas="tailRec annotation">@tailRec annotation</primary>
+      </indexterm></para>
 
     <screen>... 4: error: could not optimize @tailrec annotated method
 def fib(i: Int): Int = i match {
@@ -651,7 +717,9 @@ one error found</screen>
 
     <para id="para_switch_annotation">We can also use the same method to
     demonstrate the new <literal>@switch</literal> annotation available in
-    version 2.8:</para>
+    version 2.8:<indexterm>
+        <primary sortas="switch annotation">@switch annotation</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">import scala.annotation.switch
 
@@ -681,7 +749,13 @@ one error found</screen>
     <para id="para_let_s_look_at_an_example_of_">Let’s look at an example of
     <literal>@unchecked</literal> in use (adapted from the
     <emphasis>Scaladoc</emphasis> entry for <literal>@unchecked</literal>).
-    Consider the following code fragement:</para>
+    Consider the following code fragement:<indexterm>
+        <primary>exceptions</primary>
+
+        <secondary>@unchecked annotation and</secondary>
+      </indexterm><indexterm>
+        <primary sortas="unchecked annotation">@unchecked annotation</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">...
 def process(x: Option[int]) = x match {
@@ -726,7 +800,14 @@ def process(x: Option[int]) = (x: @unchecked) match {
     used. The C++ approach has the advantage of allowing optimized
     implementations to be generated for primitive types, while it has the
     disadvantage of resulting in code bloat from all the instantiations of
-    templates.</para>
+    templates.<indexterm>
+        <primary sortas="specialized annotation">@specialized
+        annotation</primary>
+      </indexterm><indexterm>
+        <primary>C++</primary>
+
+        <secondary>templates</secondary>
+      </indexterm></para>
 
     <para id="para_in_jvm_related_languages_the_">In JVM-related languages,
     the “on-demand” generation of implementations isn’t suitable, primarily
@@ -777,7 +858,10 @@ def process(x: Option[int]) = (x: @unchecked) match {
     default stack frame byte code. The annotation will have no effect unless
     the corresponding <userinput>scalac</userinput> plugin is used. Consult
     the release documentation for more information on this feature, when it
-    becomes available.</para>
+    becomes available.<indexterm>
+        <primary sortas="cps">@cps (continual passing style)
+        annotation</primary>
+      </indexterm></para>
 
     <para id="para_to_understand_the_throws_an">To understand the
     <literal>@throws</literal> annotation, it’s important to remember that
@@ -787,12 +871,20 @@ def process(x: Option[int]) = (x: @unchecked) match {
     that is declared to throw a checked exception. The exception is treated as
     unchecked in Scala. However, suppose the Scala method in question doesn’t
     catch the exception, but lets it pass through. What if this Scala method
-    is called by other Java code?</para>
+    is called by other Java code?<indexterm>
+        <primary>exceptions</primary>
+
+        <secondary>@throws annotation and</secondary>
+      </indexterm><indexterm>
+        <primary sortas="throws annotation">@throws annotation</primary>
+      </indexterm></para>
 
     <para id="para_let_s_look_at_an_example_invol">Let’s look at an example
     involving <literal>java.io.IOException</literal>, which is a checked
     exception. The following Scala class prints out the contents of a
-    <literal>java.io.File</literal>:</para>
+    <literal>java.io.File</literal>:<indexterm>
+        <primary>java.io.IOException class</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/annotations/file-printer.scala
 
@@ -906,7 +998,11 @@ thrown in body of corresponding try statement
     <para id="para_so_the_purpose_of_throws_i">So, the purpose of
     <literal>@throws</literal> is to insert the information on thrown checked
     exceptions into the byte code that <userinput>javac</userinput> will
-    read.</para>
+    read.<indexterm class="endofrange"
+    startref="ch13_declarationsannotations"></indexterm><indexterm
+    class="endofrange"
+    startref="ch13_appdesignannotations"></indexterm><indexterm
+    class="endofrange" startref="ch13_annotations"></indexterm></para>
 
     <tip id="para_tip_in_a_mixed_java_scala_env">
       <para>In a mixed Java-Scala environment, consider adding the
@@ -924,7 +1020,17 @@ thrown in body of corresponding try statement
     <para id="para_enumerations_are_a_way_of_defi">Enumerations are a way of
     defining a finite set of constant values. They are a lightweight
     alternative to case classes. You can reference the values directly,
-    iterate through them, index into them with integer indices, etc.</para>
+    iterate through them, index into them with integer indices, etc.<indexterm>
+        <primary>case classes</primary>
+
+        <secondary>enumerations as alternative to</secondary>
+      </indexterm><indexterm class="startofrange" id="ch13_enumerations">
+        <primary>enumerations</primary>
+      </indexterm><indexterm class="startofrange" id="ch13_appdesignenumvpm">
+        <primary>application design</primary>
+
+        <secondary>enumerations versus pattern matching</secondary>
+      </indexterm></para>
 
     <para id="para_just_as_for_annotations_scala">Just as for annotations,
     Scala’s form of enumerations are class-based, with a particular set of
@@ -936,7 +1042,11 @@ thrown in body of corresponding try statement
     defined by subclassing the abstract <literal>scala.Enumeration</literal>
     class. There are several ways to construct and use an enumeration. We’ll
     demonstrate one idiom that most closely matches the Java and .NET forms
-    you may already know.</para>
+    you may already know.<indexterm>
+        <primary>enumerations</primary>
+
+        <secondary>scala.Enumeration class</secondary>
+      </indexterm></para>
 
     <para id="para_recall_http_methods_script_">Recall the HTTP methods
     scripts we wrote in <xref linkend="SealedClassHierarchies" /> in <xref
@@ -983,7 +1093,12 @@ methods.foreach { method =&gt; handle(method) }</programlisting>
     here that the body is handled through other means and we only care about
     identifying the kind of HTTP method. So, here is a Scala
     <literal>Enumeration</literal> class for the HTTP 1.1 <phrase
-    role="keep-together">methods</phrase>:</para>
+    role="keep-together">methods</phrase>:<indexterm class="startofrange"
+        id="ch13_enumsHttpMethod">
+        <primary>enumerations</primary>
+
+        <secondary>HttpMethod object (example)</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/enumerations/http-enum-script.scala
 
@@ -1026,18 +1141,23 @@ Main$$anon$1$HttpMethod(6), Main$$anon$1$HttpMethod(7)}</screen>
 
     <para>(We wrapped the lines for the output between the
     <literal>{…}</literal>.) There are two uses of <literal>Value</literal> in
-    the definition of <literal>HttpMethod</literal>. The first usage is actual
-    a reference to an abstract class, <literal>Enumeration.Value</literal>,
-    which encapsulates some useful operations for the “values” in the
-    enumeration. We define a new <literal>type</literal>,
-    <literal>Method</literal>, that functions as an alias for
-    <literal>Value</literal>. We see it used in the type of the argument
-    passed to the <literal>handle</literal> method, which demonstrates
-    <literal>HttpMethod</literal> in use. <literal>HttpMethod.Method</literal>
-    is a more meaningful name to the reader than the generic
-    <literal>HttpMethod.Value</literal>. Note that one of the fields in
-    <literal>Enumeration.Value</literal> is <literal>id</literal>, which we
-    also use in <literal>handle</literal>.</para>
+    the definition of <literal>HttpMethod</literal>. The first usage is
+    actually a reference to an abstract class,
+    <literal>Enumeration.Value</literal>, which encapsulates some useful
+    operations for the “values” in the enumeration. We define a new
+    <literal>type</literal>, <literal>Method</literal>, that functions as an
+    alias for <literal>Value</literal>. We see it used in the type of the
+    argument passed to the <literal>handle</literal> method, which
+    demonstrates <literal>HttpMethod</literal> in use.
+    <literal>HttpMethod.Method</literal> is a more meaningful name to the
+    reader than the generic <literal>HttpMethod.Value</literal>. Note that one
+    of the fields in <literal>Enumeration.Value</literal> is
+    <literal>id</literal>, which we also use in
+    <literal>handle</literal>.<indexterm>
+        <primary>Value class</primary>
+      </indexterm><indexterm>
+        <primary>Enumeration.Value class</primary>
+      </indexterm></para>
 
     <para id="para_the_second_use_of_value_is_a">The second use of
     <literal>Value</literal> is actually a call to a method. There is no
@@ -1058,7 +1178,11 @@ Main$$anon$1$HttpMethod(6), Main$$anon$1$HttpMethod(7)}</screen>
     that all the possible values are covered, in contrast to a sealed case
     class hierarchy. If you comment out one of the case statements in
     <literal>handle</literal>, you will get no warnings, but you will get a
-    <literal>MatchError</literal>.</para>
+    <literal>MatchError</literal>.<indexterm>
+        <primary>pattern matching</primary>
+
+        <secondary sortas="enumerations">on enumerations</secondary>
+      </indexterm></para>
 
     <warning id="para_warning_when_pattern_matching">
       <para>When pattern matching on enumeration values, the compiler can’t
@@ -1170,7 +1294,10 @@ println( HttpMethod )</programlisting>
     <literal>toString</literal> returns the name. In fact, our final two
     examples have become quite artificial because we now have identical
     statements for each case clause! Of course, in a real implementation, you
-    would handle the different HTTP methods differently.</para>
+    would handle the different HTTP methods differently.<indexterm
+    class="endofrange" startref="ch13_enumerations"></indexterm><indexterm
+    class="endofrange" startref="ch13_enumsHttpMethod"></indexterm><indexterm
+    class="endofrange" startref="ch13_appdesignenumvpm"></indexterm></para>
   </sect1>
 
   <sect1 id="ThoughtsOnAnnotationsAndEnumerations">
@@ -1185,7 +1312,15 @@ println( HttpMethod )</programlisting>
     need to understand and use <emphasis>ad hoc</emphasis> conventions which
     are not always as convenient to use as the custom syntax mechanisms
     required in Java and .NET. Also, Scala’s implementations are not as
-    full-featured.</para>
+    full-featured.<indexterm>
+        <primary>enumerations</primary>
+
+        <secondary>advantages and disadvantages of</secondary>
+      </indexterm><indexterm>
+        <primary>annotations</primary>
+
+        <secondary>advantages and disadvantages of</secondary>
+      </indexterm></para>
 
     <para id="para_so_should_the_scala_community">So, should the Scala
     community relent and implement <emphasis>ad hoc</emphasis>, but more
@@ -1198,7 +1333,25 @@ println( HttpMethod )</programlisting>
     advanced features of Java annotations can be implemented more elegantly
     with “normal” Scala code, as we will discuss in <xref
     linkend="DesignPatterns" />. For enumerations, sealed case classes and
-    pattern matching provide a more flexible solution, in many cases.</para>
+    pattern matching provide a more flexible solution, in many
+    cases.<indexterm>
+        <primary>pattern matching</primary>
+
+        <secondary>using with case classes, enumerations versus</secondary>
+      </indexterm><indexterm>
+        <primary>case classes</primary>
+
+        <secondary>enumerations versus</secondary>
+      </indexterm><indexterm>
+        <primary>application design</primary>
+
+        <secondary>enumerations vs. case classes and pattern
+        matching</secondary>
+      </indexterm><indexterm>
+        <primary>enumerations</primary>
+
+        <secondary>case classes and pattern matching versus</secondary>
+      </indexterm></para>
 
     <sect2 id="EnumerationsVsCaseClassesAndPatternMatching">
       <title>Enumerations Versus Case Classes and Pattern Matching</title>
@@ -1303,7 +1456,19 @@ Main$$anon$1$Trace$: 7</screen>
     avoiding <literal>null</literal> references in your code, which Tony
     Hoare, who introduced the concept of <literal>null</literal> in 1965,
     called his “billion dollar mistake” <link linkend="Hoare2009"
-    xrefstyle="select:nopage">[Hoare2009]</link>.</para>
+    xrefstyle="select:nopage">[Hoare2009]</link>.<indexterm>
+        <primary>Option class</primary>
+
+        <secondary>nulls versus</secondary>
+      </indexterm><indexterm>
+        <primary>nulls</primary>
+
+        <secondary>Options versus</secondary>
+      </indexterm><indexterm>
+        <primary>application design</primary>
+
+        <secondary>nulls versus Options</secondary>
+      </indexterm></para>
 
     <para id="para_scala_has_to_support_null_b">Scala has to support
     <literal>null</literal>, because <literal>null</literal> is supported on
@@ -1455,7 +1620,15 @@ args.foreach { fileName =&gt;
       linkend="Spiewak2009c" xrefstyle="select:nopage">[Spiewak2009c]</link>.
       Consider this first version of script that uses
       <literal>Options</literal> in a <literal>for</literal>
-      comprehension:</para>
+      comprehension:<indexterm>
+          <primary>for comprehensions</primary>
+
+          <secondary>using Options with</secondary>
+        </indexterm><indexterm>
+          <primary>Option class</primary>
+
+          <secondary>using with for comprehensions</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AppDesign/options-nulls/option-for-comp-v1-script.scala
 
@@ -1531,7 +1704,12 @@ validUsers.foreach (user =&gt; println(user))</programlisting>
       <link linkend="ScalaSpec2009"
       xrefstyle="select:nopage">[ScalaSpec2009]</link>. First, we’ll look at a
       single <emphasis>generator</emphasis> with a
-      <literal>yield</literal>:</para>
+      <literal>yield</literal>:<indexterm>
+          <primary>generators</primary>
+
+          <secondary sortas="for comprehensions">in for
+          comprehensions</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">for (p1 &lt;- e1) yield e2          // for comprehension
 
@@ -1646,7 +1824,15 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     <emphasis>separate the concerns</emphasis> of normal program flow from
     “exceptional” program flow. The divide isn’t always clear cut. For
     example, if a user mistypes his user name, is that normal or
-    exceptional?</para>
+    exceptional?<indexterm>
+        <primary>application design</primary>
+
+        <secondary>exceptions and alternatives</secondary>
+      </indexterm><indexterm>
+        <primary>exceptions</primary>
+
+        <secondary>and alternatives to</secondary>
+      </indexterm></para>
 
     <para id="para_another_question_is_where_shou">Another question is where
     should the exception be caught and handled? Java’s checked exceptions were
@@ -1693,17 +1879,29 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     Ruby the keywords <literal>throw</literal> and <literal>catch</literal>
     are actually reserved for this purpose, while <literal>raise</literal> and
     <literal>rescue</literal> are the keywords for raising an exception and
-    handling it.</para>
+    handling it.<indexterm>
+        <primary>Ruby</primary>
+
+        <secondary>exceptions</secondary>
+      </indexterm></para>
 
     <para id="para_whatever_your_view_on_the_prop">Whatever your view on the
     proper use of exceptions, when you design APIs, minimizing the possibility
     of raising an exception will benefit your users. This is the flip side of
     an exception handling strategy, preventing them in the first place.
-    <literal>Option</literal> can help.</para>
+    <literal>Option</literal> can help.<indexterm>
+        <primary>Option class</primary>
+
+        <secondary>alternatives to exceptions</secondary>
+      </indexterm></para>
 
     <para id="para_consider_two_methods_on_seq_">Consider two methods on
     <literal>Seq</literal>, <literal>first</literal> and
-    <literal>firstOption</literal>:</para>
+    <literal>firstOption</literal>:<indexterm>
+        <primary>Seq class</primary>
+
+        <secondary>first and firstOption methods</secondary>
+      </indexterm></para>
 
     <screen>trait Seq[+A] {
   ...
@@ -1774,7 +1972,19 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     <emphasis>component</emphasis>). Proposed definitions usually start with
     assumptions about the platform, granularity, deployment and configuration
     scenarios, versioning issues, etc. <link linkend="Szyperski1998"
-    xrefstyle="select:nopage">[Szyperski1998]</link>.</para>
+    xrefstyle="select:nopage">[Szyperski1998]</link>.<indexterm>
+        <primary>modules</primary>
+
+        <secondary>components and</secondary>
+      </indexterm><indexterm>
+        <primary>components</primary>
+
+        <secondary>defined</secondary>
+      </indexterm><indexterm>
+        <primary>application design</primary>
+
+        <secondary>scalable abstractions</secondary>
+      </indexterm></para>
 
     <para id="para_we_ll_avoid_that_discussion_an">We’ll avoid that discussion
     and use the term <emphasis>component</emphasis> informally to refer to a
@@ -1814,7 +2024,15 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
       linkend="BasicObjectOrientedProgramming" /> that Scala provides more
       fine-grained visibility rules than most other languages. You can control
       the visibility of types and methods outside type and package
-      boundaries.</para>
+      boundaries.<indexterm>
+          <primary>components</primary>
+
+          <secondary>fine-grained visibility rules in Scala</secondary>
+        </indexterm><indexterm>
+          <primary>visibility</primary>
+
+          <secondary>fine-grained rules for in Scala</secondary>
+        </indexterm></para>
 
       <para id="para_consider_the_following_encodedstring_component">Consider
       the following example of a <emphasis>component</emphasis> in package
@@ -1991,7 +2209,13 @@ scala&gt;</screen>
       focus on its <emphasis>primary domain</emphasis> and other
       responsibilities can be implemented separately in traits. When instances
       are constructed, classes and traits can be combined to compose the full
-      range of required behaviors.</para>
+      range of required behaviors.<indexterm>
+          <primary>traits</primary>
+
+          <secondary>promotion of mixin composition</secondary>
+        </indexterm><indexterm>
+          <primary>mixin composition</primary>
+        </indexterm></para>
 
       <para id="para_in_overridingabstracttypes_">For example, in <xref
       linkend="OverridingAbstractTypes" /> in <xref
@@ -2028,7 +2252,20 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
       observe button “clicks” in a UI. Let’s revisit this implementation and
       resolve a few limitations, using our next tool for scalable
       abstractions, <emphasis>self-type annotations</emphasis> combined with
-      abstract type members.</para>
+      abstract type members.<indexterm>
+          <primary>abstract types</primary>
+
+          <secondary>combined with self-type annotations</secondary>
+        </indexterm><indexterm>
+          <primary>self-type annotations</primary>
+
+          <secondary>and abstract type members</secondary>
+        </indexterm><indexterm>
+          <primary>scalable abstractions</primary>
+
+          <secondary>self-type annotations and abstract type
+          members</secondary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="SelfTypeAnnotationsAndAbstractTypeMembers">
@@ -2052,7 +2289,11 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
       argument to the function to be something more specific than
       <literal>AbstractSubject</literal>. Perhaps this drawback wasn’t so
       evident before, because our simple examples never needed to access
-      <literal>Button</literal> state information or methods.</para>
+      <literal>Button</literal> state information or methods.<indexterm>
+          <primary>family polymorphism</primary>
+        </indexterm><indexterm>
+          <primary>covariant specialization</primary>
+        </indexterm></para>
 
       <para id="para_in_fact_we_expect_the_actual_">In fact, we expect the
       actual types of the subject and observer to be specialized
@@ -2170,7 +2411,11 @@ abstract class SubjectObserver {
       whenever it appears, the type will be assumed to be
       <literal>S</literal>, not <literal>Subject</literal>. It is as if we’re
       telling <literal>Subject</literal> to impersonate another type, but in a
-      type-safe way, as we’ll see.</para>
+      type-safe way, as we’ll see.<indexterm>
+          <primary>this keyword</primary>
+
+          <secondary>self versus, in self-type annotations</secondary>
+        </indexterm></para>
 
       <para id="para_actually_we_could_have_used_">Actually, we could have
       used <literal>this</literal> instead of <literal>self</literal> in the
@@ -2334,7 +2579,26 @@ object ButtonObserver3Spec extends Specification {
     many languages (like Java) do not implement multiple inheritance is
     because of the problems observed with multiple inheritance in C++. One of
     the those problems is the so-called <emphasis>diamond of death</emphasis>,
-    which is illustrated in <xref linkend="diamond-of-death" />.</para>
+    which is illustrated in <xref linkend="diamond-of-death" />.<indexterm>
+        <primary>C++</primary>
+
+        <secondary>multiple inheritance</secondary>
+      </indexterm><indexterm>
+        <primary>inheritance</primary>
+
+        <secondary>multiple, problems with</secondary>
+      </indexterm><indexterm>
+        <primary>diamond of death (problem with multiple
+        inheritance)</primary>
+      </indexterm><indexterm class="startofrange" id="ch13_appdesigntraits">
+        <primary>application design</primary>
+
+        <secondary>effective trait design</secondary>
+      </indexterm><indexterm class="startofrange" id="ch13_traitseffective">
+        <primary>traits</primary>
+
+        <secondary>effective design of</secondary>
+      </indexterm></para>
 
     <figure float="none" id="diamond-of-death">
       <title>Diamond of death in languages with multiple inheritance</title>
@@ -2379,7 +2643,13 @@ object ButtonObserver3Spec extends Specification {
     initializing <literal>vals</literal> in a trait in <xref
     linkend="FineGrainedVisibilityRules" /> above. There we defined concrete
     classes that overrode the definitions of the two abstract fields in the
-    <literal>EncodedString</literal> trait.</para>
+    <literal>EncodedString</literal> trait.<indexterm>
+        <primary>inheritance</primary>
+
+        <secondary>single inheritance plus traits in Scala</secondary>
+      </indexterm><indexterm>
+        <primary>mixin composition</primary>
+      </indexterm></para>
 
     <para id="para_however_since_a_trait_can_con">So, Scala handles many
     potential issues that arise when mixing the contributions of different
@@ -2521,7 +2791,11 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     just <literal>0</literal> and <literal>1</literal>. Therefore, one trait
     affects the <emphasis>behavior</emphasis> of another. We might say that
     <literal>VetoableClicks</literal> is <emphasis>invasive</emphasis>,
-    because it changes the behavior of other mixins.</para>
+    because it changes the behavior of other mixins.<indexterm>
+        <primary>mixins</primary>
+
+        <secondary>invasive</secondary>
+      </indexterm></para>
 
     <para id="para_why_is_all_this_important_whi">Why is all this important?
     While the problems of multiple-inheritance are eliminated in Scala’s model
@@ -2550,7 +2824,9 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
 
     <para id="para_this_does_not_mean_that__invas">This does not mean that
     <emphasis>invasive</emphasis> mixins are bad, just that they should be
-    used wisely. The “vetoable events” pattern can be very useful.</para>
+    used wisely. The “vetoable events” pattern can be very useful.<indexterm
+    class="endofrange" startref="ch13_appdesigntraits"></indexterm><indexterm
+    class="endofrange" startref="ch13_traitseffective"></indexterm></para>
   </sect1>
 
   <sect1 id="DesignPatterns">
@@ -2563,14 +2839,26 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     really needed in Scala, as native features provide better substitutes.
     Other patterns are part of the language itself, so no special coding is
     needed. Of course, patterns are frequently misused, but that’s not the
-    fault of the patterns themselves.</para>
+    fault of the patterns themselves.<indexterm>
+        <primary>Gang of Four (GOF) patterns</primary>
+      </indexterm><indexterm class="startofrange" id="ch13_designpatterns">
+        <primary>design patterns</primary>
+      </indexterm><indexterm class="startofrange" id="ch13_appsdesignpatterns">
+        <primary>application design</primary>
+
+        <secondary>design patterns</secondary>
+      </indexterm></para>
 
     <para id="para_we_think_the_criticisms_often_">We think the criticisms
     often overlook an important point, the distinction between an idea and how
     it is implemented and used in a particular situation. Design patterns
     document recurring, widely-useful ideas. These ideas are part of the
     <emphasis>vocabulary</emphasis> that software developers use to describe
-    their designs.</para>
+    their designs.<indexterm>
+        <primary>singleton objects</primary>
+
+        <secondary>eliminating need for Singleton Pattern</secondary>
+      </indexterm></para>
 
     <para id="para_pattern_ideas_language_features">Some common patterns are
     native language features in Scala, like <emphasis>singleton</emphasis>
@@ -2585,7 +2873,9 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     that most languages include iteration mechanisms for any type that can be
     treated like a collection. For example, in Scala you can iterate through
     the characters in a <literal>String</literal> with
-    <literal>foreach</literal>:</para>
+    <literal>foreach</literal>:<indexterm>
+        <primary>Iterator Pattern</primary>
+      </indexterm></para>
 
     <screen>"Programming Scala".foreach {c =&gt; println(c)}</screen>
 
@@ -2607,7 +2897,9 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     <emphasis>Observer Pattern</emphasis> that we discussed earlier in this
     chapter and in <xref linkend="Traits" /> is a very useful pattern for many
     design problems. It can be implemented very elegantly using mixin
-    composition.</para>
+    composition.<indexterm>
+        <primary>Observer Pattern</primary>
+      </indexterm></para>
 
     <para id="para_wont_discuss_all_patterns">We won’t discuss all the well
     known patterns, such as those in <link linkend="GOF1995"
@@ -2630,7 +2922,14 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
       a new operation to a class hierarchy without editing the source code for
       the classes in the hierarchy. For a number of practical reasons, it may
       not be feasible or desirable to edit the hierarchy to support the new
-      operation.</para>
+      operation.<indexterm class="startofrange" id="ch13_VisitorPattern">
+          <primary>Visitor Pattern, alternative to</primary>
+        </indexterm><indexterm class="startofrange"
+          id="ch13_designpatternVisitor">
+          <primary>design patterns</primary>
+
+          <secondary>alternative to Visitor Pattern</secondary>
+        </indexterm></para>
 
       <para id="para_let_s_look_at_an_example_of_th">Let’s look at an example
       of the pattern using the <literal>Shape</literal> class hierarchy we
@@ -2779,7 +3078,11 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))</screen>
       redeploy) <emphasis>all</emphasis> the visitors for that hierarchy. Note
       that every <literal>ShapeVisitor</literal> trait has methods that
       hard-code information about every <literal>Shape</literal> derived type.
-      These kinds of changes are also error prone.</para>
+      These kinds of changes are also error prone.<indexterm>
+          <primary>Open-Closed Principle (OCP)</primary>
+
+          <secondary>violation by Visitor Pattern</secondary>
+        </indexterm></para>
 
       <para id="para_visitor_pattern_alt_ruby_open_types">In languages with
       “open types”, like Ruby, an alternative to the visitor pattern is to
@@ -3125,7 +3428,11 @@ scala&gt;</screen>
       class inheritance should be avoided.) So, our common super type is an
       anonymous class that incorporates <literal>Shape</literal>,
       <literal>Product</literal>, and the <literal>Drawing</literal>
-      trait.</para>
+      trait.<indexterm>
+          <primary>case classes</primary>
+
+          <secondary>inheritance</secondary>
+        </indexterm></para>
 
       <para id="para_if_you_want_to_assign_one_of_t">If you want to assign one
       of these drawable shapes to a variable and still be able to invoke
@@ -3151,7 +3458,16 @@ scala&gt;</screen>
       dependencies between “components” in larger applications. It supports
       minimizing the coupling between these components, so it is relatively
       easy to substitute different components for different
-      circumstances.</para>
+      circumstances.<indexterm class="startofrange" id="ch13_DICakePattern">
+          <primary>Dependency Injection (DI), using Cake Pattern</primary>
+        </indexterm><indexterm>
+          <primary>design patterns</primary>
+
+          <secondary>Dependency Injection (DI) implementation, Cake
+          Pattern</secondary>
+        </indexterm><indexterm class="endofrange"
+      startref="ch13_designpatternVisitor"></indexterm><indexterm
+      class="endofrange" startref="ch13_VisitorPattern"></indexterm></para>
 
       <para id="para_it_used_to_be_that_when_a_clie">It used to be that when a
       client object needed a database “accessor” object, for example, it would
@@ -3196,7 +3512,11 @@ scala&gt;</screen>
       equivalent, like Google’s Guice API <link linkend="Guice"
       xrefstyle="select:nopage">[Guice]</link>. These options can be used with
       Scala code, especially when you are introducing Scala into a mature Java
-      environment.</para>
+      environment.<indexterm>
+          <primary>Java</primary>
+
+          <secondary>DI (Dependency Injection)</secondary>
+        </indexterm></para>
 
       <para id="para_the_cake_pattern_">However, Scala offers some unique
       options for implementing DI in Scala code, which are discussed by <link
@@ -3209,7 +3529,10 @@ scala&gt;</screen>
       was described by <link linkend="Odersky2005"
       xrefstyle="select:nopage">[Odersky2005]</link>, although it was given
       that name after that paper was published. <xref linkend="Boner2008b"
-      xrefstyle="select: title nopage" /> also discusses alternatives.</para>
+      xrefstyle="select: title nopage" /> also discusses
+      alternatives.<indexterm class="startofrange" id="ch12_CakePattern">
+          <primary>Cake Pattern</primary>
+        </indexterm></para>
 
       <para id="para_let_s_build_a_simple_component">Let’s build a simple
       component model for an overly-simplified Twitter client. We want a
@@ -3219,7 +3542,10 @@ scala&gt;</screen>
       that will function as the “middleware” that ties the application
       together. The client component will depend on the other components. When
       we create a concrete client, we’ll configure in the concrete pieces of
-      the other components that we need:</para>
+      the other components that we need:<indexterm class="startofrange"
+          id="ch13_Twitterclient">
+          <primary>Twitter client, component model for (example)</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AppDesign/dep-injection/twitter-client.scala
 
@@ -3311,7 +3637,15 @@ trait TwitterClientComponent {
       defined next in the file.</para>
 
       <para id="para_there_are_four_components_">There are four “components”.
-      Note that they are implemented as traits:</para>
+      Note that they are implemented as traits:<indexterm>
+          <primary>traits</primary>
+
+          <secondary>implementing components with</secondary>
+        </indexterm><indexterm>
+          <primary>components</primary>
+
+          <secondary>implementing as traits</secondary>
+        </indexterm></para>
 
       <itemizedlist>
         <listitem>
@@ -3390,7 +3724,12 @@ trait TwitterClientComponent {
 
       <para
       id="para__twitterclientcomponent_also_"><literal>TwitterClientComponent</literal>
-      also has the following <emphasis>self-type annotation</emphasis>:</para>
+      also has the following <emphasis>self-type
+      annotation</emphasis>:<indexterm>
+          <primary>self-type annotations</primary>
+
+          <secondary>TwitterClientComponent (example)</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">self: TwitterClientUIComponent with
       TwitterLocalCacheComponent with
@@ -3474,7 +3813,11 @@ class TextClient(userProfile: TwitterUserProfile)
       <literal>TwitterClientUIComponent</literal>, a
       <literal>TwitterLocalCacheComponent</literal>, and a
       <literal>TwitterServiceComponent</literal>, in addition to being a
-      <literal>TwitterClientComponent</literal>.</para>
+      <literal>TwitterClientComponent</literal>.<indexterm>
+          <primary>mixins</primary>
+
+          <secondary>Twitter client component model</secondary>
+        </indexterm></para>
 
       <para id="para_the_textclient_constructor_t">The
       <literal>TextClient</literal> constructor takes one argument, a user
@@ -3552,7 +3895,13 @@ Chat history:
       of components, a flexible component model, and we did it all in Scala
       code! There are alternatives to the cake pattern for implementing
       dependency injection in Scala. See <link linkend="Boner2008b"
-      xrefstyle="select:nopage">[Bonér2008b]</link> for other examples.</para>
+      xrefstyle="select:nopage">[Bonér2008b]</link> for other
+      examples.<indexterm class="endofrange"
+      startref="ch13_Twitterclient"></indexterm><indexterm class="endofrange"
+      startref="ch13_DICakePattern"></indexterm><indexterm class="endofrange"
+      startref="ch12_CakePattern"></indexterm><indexterm class="endofrange"
+      startref="ch13_appsdesignpatterns"></indexterm><indexterm
+      class="endofrange" startref="ch13_designpatterns"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -3568,7 +3917,17 @@ Chat history:
     linkend="Hunt2000" xrefstyle="select:nopage">[Hunt2000]</link>, <xref
     linkend="Traits" />.). Design by Contract has been around for about twenty
     years. It has fallen somewhat out of favor, but it is still very useful
-    for thinking about design.</para>
+    for thinking about design.<indexterm>
+        <primary>Meyer, Bertrand</primary>
+      </indexterm><indexterm>
+        <primary>Eiffel language</primary>
+      </indexterm><indexterm>
+        <primary>Design by Contract</primary>
+      </indexterm><indexterm>
+        <primary>application design</primary>
+
+        <secondary>Design by Contract</secondary>
+      </indexterm></para>
 
     <para id="para_when_considering_the_contract">When considering the
     “contract” of a module, you can specify three types of conditions. First,
@@ -3576,16 +3935,28 @@ Chat history:
     service (e.g., when a method is called) These constraints are called
     <emphasis>preconditions</emphasis>. They can also include system
     requirements, e.g., global data (which you should normally avoid, of
-    course).</para>
+    course).<indexterm>
+        <primary>contractual constraints in Design by Contract</primary>
+      </indexterm><indexterm>
+        <primary>modules</primary>
+
+        <secondary>contract of</secondary>
+      </indexterm><indexterm>
+        <primary>preconditions</primary>
+      </indexterm></para>
 
     <para id="para_you_can_also_specify_the_resul">You can also specify the
     results the module guarantees to deliver, the
     <emphasis>postconditions</emphasis>, if the preconditions were
-    satisfied.</para>
+    satisfied.<indexterm>
+        <primary>postconditions</primary>
+      </indexterm></para>
 
     <para id="para_finally_you_can_specify__inva">Finally, you can specify
     <emphasis>invariants</emphasis> that must be true before and after an
-    invocation of a service.</para>
+    invocation of a service.<indexterm>
+        <primary>invariants</primary>
+      </indexterm></para>
 
     <para id="para_the_specific_addition_that_des">The specific addition that
     Design by Contract brings is the idea that these contractual constraints
@@ -3600,7 +3971,12 @@ Chat history:
     explicit support for Design by Contract, but there are several methods in
     <literal>Predef</literal> that can be used for this purpose. The following
     example shows how to use <literal>require</literal> and
-    <literal>assume</literal> for contract enforcement:</para>
+    <literal>assume</literal> for contract enforcement:<indexterm>
+        <primary>Predef object</primary>
+
+        <secondary>require and assume methods, using for contract
+        enforcement</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/design-by-contract/bank-account.scala
 
@@ -3626,7 +4002,11 @@ class BankAccount(val balance: Double) {
 
     <para id="para_the_following_specification_co">The specification in <xref
     linkend="design-by-contract-example-spec" /> confirms that the “contract”
-    is obeyed.</para>
+    is obeyed.<indexterm>
+        <primary>Design by Contract</primary>
+
+        <secondary>BankAccountSpec object (example)</secondary>
+      </indexterm></para>
 
     <example id="design-by-contract-example-spec">
       <title>design-by-contract/bank-account-spec.scala: Testing the
@@ -3689,7 +4069,9 @@ object BankAccountSpec extends Specification {
     also defines an <literal>Ensuring</literal> class that can be used to
     generalize the capabilities of these methods. <literal>Ensuring</literal>
     has one overloaded method, <literal>ensure</literal>, some versions of
-    which take a function literal as a “predicate”.</para>
+    which take a function literal as a “predicate”.<indexterm>
+        <primary>Ensuring class</primary>
+      </indexterm></para>
 
     <para id="para_a_drawback_of_using_these_meth">A drawback of using these
     methods and <literal>Ensuring</literal> is that you can’t disable these
@@ -3704,7 +4086,11 @@ object BankAccountSpec extends Specification {
     However, thinking in terms of Design by Contract will complement the
     design benefits of TDD. If you decide to use Design by Contract in your
     code, consider creating a custom module that lets you disable the tests
-    for production code.</para>
+    for production code.<indexterm>
+        <primary>TDD (Test-Driven Development)</primary>
+
+        <secondary>Design by Contract and</secondary>
+      </indexterm></para>
   </sect1>
 
   <sect1 id="_recap_and_what_s_next_4">
@@ -3718,6 +4104,7 @@ object BankAccountSpec extends Specification {
     are important for building applications in any language. The next chapter
     provides more details about Scala’s command-line tools, describes the
     state of Scala IDE support, and introduces you to some important Scala
-    libraries.</para>
+    libraries.<indexterm class="endofrange"
+    startref="ch13_appdesign"></indexterm></para>
   </sect1>
 </chapter>
