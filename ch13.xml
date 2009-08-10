@@ -3458,7 +3458,11 @@ scala&gt;</screen>
       dependencies between “components” in larger applications. It supports
       minimizing the coupling between these components, so it is relatively
       easy to substitute different components for different
-      circumstances.<indexterm class="startofrange" id="ch13_DICakePattern">
+      circumstances.<indexterm>
+          <primary>IoC (inversion of control)</primary>
+        </indexterm><indexterm>
+          <primary>inversion of control (IoC)</primary>
+        </indexterm><indexterm class="startofrange" id="ch13_DICakePattern">
           <primary>Dependency Injection (DI), using Cake Pattern</primary>
         </indexterm><indexterm>
           <primary>design patterns</primary>

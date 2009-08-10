@@ -14,7 +14,13 @@
       in a future release of Scala. While normally invisible to Scala code
       (they are generated automatically by the compiler), Java code that
       extends some Scala traits and classes may need to implement this
-      method.</para>
+      method.<indexterm>
+          <primary sortas="tag method">$tag method (ScalaObject)</primary>
+        </indexterm><indexterm>
+          <primary>ScalaObject class</primary>
+
+          <secondary>$tag method</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -28,7 +34,9 @@
       the abstraction. Scala <emphasis>traits</emphasis> and
       <emphasis>abstract classes</emphasis> are often used to define
       abstractions and optionally implement them. <emphasis>Concrete
-      types</emphasis> provide complete implementations.</para>
+      types</emphasis> provide complete implementations.<indexterm>
+          <primary>abstraction</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -41,7 +49,11 @@
           <para>A <emphasis>class</emphasis> or <emphasis>trait</emphasis>
           with one or more methods, fields, or types declared, but undefined.
           Abstract types can’t be instantiated. Contrast with
-          <emphasis>concrete types</emphasis>.</para>
+          <emphasis>concrete types</emphasis>.<indexterm>
+              <primary>abstract types</primary>
+
+              <secondary>defined</secondary>
+            </indexterm></para>
         </listitem>
 
         <listitem>
@@ -58,7 +70,11 @@
 
     <glossdef>
       <para>An autonomous sender and receiver of messages in the
-      <emphasis>actor model of concurrency</emphasis>.</para>
+      <emphasis>actor model of concurrency</emphasis>.<indexterm>
+          <primary>Actors</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -68,7 +84,14 @@
     <glossdef>
       <para>A concurrency model where autonomous <emphasis>actors</emphasis>
       coordinate work by exchanging messages. An actor’s messages are stored
-      in a <emphasis>mailbox</emphasis> until the actor processes them.</para>
+      in a <emphasis>mailbox</emphasis> until the actor processes
+      them.<indexterm>
+          <primary>concurrency</primary>
+
+          <secondary>Actor model of</secondary>
+        </indexterm><indexterm>
+          <primary>Actor Model of Concurrency</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -77,7 +100,9 @@
 
     <glossdef>
       <para>Any type that has one or more “<literal>@</literal> annotations
-      applied to it.</para>
+      applied to it.<indexterm>
+          <primary>annotated types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -89,7 +114,11 @@
       exploited by the compiler and other tools for code generation,
       verification and validation, etc. In Scala (and Java) An annotation is a
       class. When used, it is prefixed with the <literal>@</literal>
-      character.</para>
+      character.<indexterm>
+          <primary>annotations</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
 
       <para id="para_any_explicit_type_declarations">Any explicit type
       declarations are also called <emphasis>annotations</emphasis>.</para>
@@ -106,7 +135,9 @@
     <glossdef>
       <para>In Scala, any <literal>object</literal> with a
       <literal>main</literal> routine that is invoked by the JVM or .NET CLR
-      at the start of a new process.</para>
+      at the start of a new process.<indexterm>
+          <primary>applications</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -114,7 +145,9 @@
     <glossterm>Arity</glossterm>
 
     <glossdef>
-      <para>The number of arguments to a function.</para>
+      <para>The number of arguments to a function.<indexterm>
+          <primary>arity</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -135,7 +168,11 @@
       <emphasis>advice</emphasis>. <emphasis>AspectJ</emphasis> <link
       linkend="AspectJ" xrefstyle="select:nopage">[AspectJ]</link> is the best
       known AOP toolkit. Scala <emphasis>traits</emphasis> can be used to
-      implement some aspect-like functionality.</para>
+      implement some aspect-like functionality.<indexterm>
+          <primary>aspect-oriented programming (AOP)</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -149,7 +186,9 @@
       annotations to indicate the <emphasis>pointcuts</emphasis> and
       <emphasis>advices</emphasis> of an aspect. The aspect behaviors
       (advices) can be incorporated into the target code at compile time, as a
-      post-compile “weaving” step, or at load time.</para>
+      post-compile “weaving” step, or at load time.<indexterm>
+          <primary>AspectJ library</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -160,7 +199,9 @@
       <para>Another name for a type <emphasis>field</emphasis>, used by
       convention in many object-oriented programming languages. Scala follows
       Java’s convention of preferring the term <emphasis>field</emphasis> over
-      <emphasis>attribute</emphasis>.</para>
+      <emphasis>attribute</emphasis>.<indexterm>
+          <primary>attributes</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -172,7 +213,9 @@
       <literal>this</literal> with no return type. An auxiliary constructor
       must invoke the <emphasis>primary constructor</emphasis> or a previously
       defined <emphasis>auxiliary constructor</emphasis> as the first or only
-      statement in its method body.</para>
+      statement in its method body.<indexterm>
+          <primary>auxiliary constructors</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -180,7 +223,9 @@
     <glossterm>Base Type</glossterm>
 
     <glossdef>
-      <para>A synonym for <emphasis>parent type</emphasis>.</para>
+      <para>A synonym for <emphasis>parent type</emphasis>.<indexterm>
+          <primary>base type</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -196,7 +241,11 @@
       specification and less like a test of the code’s conformance to the
       requirements. However, the specification format is still executable and
       it still provides the verification, validation and regression testing
-      service that TDD tests provide.</para>
+      service that TDD tests provide.<indexterm>
+          <primary>BDD (Behavior-Driven Development)</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -207,7 +256,9 @@
       <para>A <emphasis>variable</emphasis> that is declared as an argument to
       a <emphasis>function literal</emphasis>. It is “bound” to a value when
       the <emphasis>closure</emphasis> created from the function literal is
-      invoked.</para>
+      invoked.<indexterm>
+          <primary>bound variables</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -227,7 +278,11 @@
       takes a “block”, not a function with explicit parameter arguments,
       (think of how <emphasis>while loops</emphasis> look, for example). The
       function argument that has block-like behavior would be a by-name
-      parameter.</para>
+      parameter.<indexterm>
+          <primary>by-name parameters</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -237,7 +292,11 @@
     <glossdef>
       <para>A <emphasis>by-value</emphasis> parameter is the usually kind of
       method parameter that is evaluated before it is passed to the method.
-      Contrast with <emphasis>by-name parameter</emphasis>.</para>
+      Contrast with <emphasis>by-name parameter</emphasis>.<indexterm>
+          <primary>by-value parameters</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -261,7 +320,11 @@
     <glossterm>Call Site</glossterm>
 
     <glossdef>
-      <para>See <emphasis>declaration site</emphasis>.</para>
+      <para>See <emphasis>declaration site</emphasis>.<indexterm>
+          <primary>call site</primary>
+
+          <see>declaration site</see>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -271,7 +334,9 @@
     <glossdef>
       <para>The keyword used in <emphasis>pattern matching</emphasis>
       expressions for testing an object against an
-      <emphasis>extractor</emphasis>, type check, etc.</para>
+      <emphasis>extractor</emphasis>, type check, etc.<indexterm>
+          <primary>case keyword</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -286,7 +351,11 @@
       an <emphasis>apply</emphasis> factory method and an
       <emphasis>unapply</emphasis> extractor method. Case classes are
       particularly convenient for use with <emphasis>pattern
-      matching</emphasis> (<emphasis>case</emphasis>) expressions.</para>
+      matching</emphasis> (<emphasis>case</emphasis>) expressions.<indexterm>
+          <primary>case classes</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -297,7 +366,13 @@
       <para>A class or trait that inherits from a <emphasis>parent</emphasis>
       class or trait. Sometimes called a <emphasis>subtype</emphasis> or
       <emphasis>derived type</emphasis>. See
-      <emphasis>inheritance</emphasis>.</para>
+      <emphasis>inheritance</emphasis>.<indexterm>
+          <primary>derived types</primary>
+        </indexterm><indexterm>
+          <primary>subtypes</primary>
+        </indexterm><indexterm>
+          <primary>child types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -306,7 +381,9 @@
 
     <glossdef>
       <para>An informal term used throughout the book to indicate a section of
-      software that uses another as an API, etc.</para>
+      software that uses another as an API, etc.<indexterm>
+          <primary>clients</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -318,7 +395,11 @@
       same fields, representing state values, and the same methods. Scala
       classes support single <emphasis>inheritance</emphasis> and zero or more
       <emphasis>mixin</emphasis> traits. Contrast with
-      <emphasis>type</emphasis>.</para>
+      <emphasis>type</emphasis>.<indexterm>
+          <primary>classes</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -336,7 +417,11 @@
       functions to customize their behavior. For example,
       <literal>List.foreach</literal> takes a closure that is applied to each
       element in the list. See also <emphasis>bound variables</emphasis> and
-      <emphasis>function literals</emphasis>.</para>
+      <emphasis>function literals</emphasis>.<indexterm>
+          <primary>closures</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -346,7 +431,9 @@
     <glossdef>
       <para>Scala follows the same comment conventions as Java, C#, C++, etc.
       A <literal>// comment</literal> goes to the end of a line, while a
-      <literal>/* comment */</literal> can cross line boundaries.</para>
+      <literal>/* comment */</literal> can cross line boundaries.<indexterm>
+          <primary>comments</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -356,7 +443,11 @@
     <glossdef>
       <para>An <literal>class</literal> declared with the same name as an
       object and defined in the same source file. See also <emphasis>companion
-      object</emphasis>.</para>
+      object</emphasis>.<indexterm>
+          <primary>companion classes</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -369,7 +460,11 @@
       the same source file. Companion objects are where methods and fields are
       defined that would be statics in Java classes, such as factory methods,
       <literal>apply</literal> and <literal>unapply</literal> for pattern
-      matching, etc.</para>
+      matching, etc.<indexterm>
+          <primary>companion objects</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -381,7 +476,11 @@
       services through well-defined abstractions, while encapsulating
       implementation details and minimizing coupling to other components.
       (There is a wide-range of definitions for <emphasis>component</emphasis>
-      in computer science and industry.)</para>
+      in computer science and industry.)<indexterm>
+          <primary>components</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -392,7 +491,11 @@
       <para>The actual type of a declaration of the form <literal>T1 extends
       T2 with T3 with … TN { R }</literal>, where <literal>R</literal> is the
       <emphasis>refinement</emphasis> (body). Definitions in
-      <literal>R</literal> affect the type.</para>
+      <literal>R</literal> affect the type.<indexterm>
+          <primary>compound types</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -403,7 +506,9 @@
       <para>A <emphasis>class</emphasis>, <emphasis>trait</emphasis>, or
       <emphasis>object</emphasis> with all methods, fields, and types defined.
       <emphasis>Instances</emphasis> can be created from concrete types.
-      Contrast with <emphasis>abstract types</emphasis>.</para>
+      Contrast with <emphasis>abstract types</emphasis>.<indexterm>
+          <primary>concrete types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -414,7 +519,11 @@
       <para>The protocol and requirements that exist between a module (e.g.,
       class, trait, object, or even function or method) and clients of the
       module. More specifically, see <emphasis>design by
-      contract</emphasis>.</para>
+      contract</emphasis>.<indexterm>
+          <primary>contract</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -426,7 +535,13 @@
       <emphasis>nonterminal</emphasis> can be specified as a
       <emphasis>production</emphasis> without reference to additional context
       information. That is, each nonterminal can appear by itself on the
-      left-hand side of the production the specifies it.</para>
+      left-hand side of the production the specifies it.<indexterm>
+          <primary>grammars</primary>
+
+          <secondary>context-free</secondary>
+        </indexterm><indexterm>
+          <primary>context-free grammars</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -443,7 +558,9 @@
       <literal>T[A]</literal> if <literal>B</literal> is a
       <emphasis>subtype</emphasis> of <literal>A</literal>. See also
       <emphasis>covariance</emphasis> and
-      <emphasis>invariance</emphasis>.</para>
+      <emphasis>invariance</emphasis>.<indexterm>
+          <primary>contravariance or contravariant</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -460,7 +577,9 @@
       <literal>T[A]</literal> if <literal>B</literal> is a
       <emphasis>subtype</emphasis> of <literal>A</literal>. See also
       <emphasis>contravariance</emphasis> and
-      <emphasis>invariance</emphasis>.</para>
+      <emphasis>invariance</emphasis>.<indexterm>
+          <primary>covariance or covariant</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -476,7 +595,9 @@
       needs to be used consistently for a set of classes, not just a single
       class. Hence, such “concerns” are said to be “cross-cutting”. Supporting
       these concerns should not involve duplication of code, etc. See also
-      <emphasis>Aspect-Oriented Programming</emphasis>.</para>
+      <emphasis>Aspect-Oriented Programming</emphasis>.<indexterm>
+          <primary>cross-cutting concerns</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -488,7 +609,9 @@
       of one argument, where each function except for the last returns a new
       function that takes a single argument that returns a new function, etc.,
       until the last function that takes a single argument and returns a
-      value.</para>
+      value.<indexterm>
+          <primary>currying</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -501,7 +624,9 @@
       <emphasis>declared</emphasis>, i.e., at the <emphasis>declaration
       site</emphasis>. In Java, it is done when types are
       <emphasis>called</emphasis> (that is, used), i.e., at the <emphasis>call
-      site</emphasis>.</para>
+      site</emphasis>.<indexterm>
+          <primary>declaration site</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -514,7 +639,9 @@
       of statements that declare relationships between values and types,
       rather than directing the system to take a particular sequence of
       action. Contrast with <emphasis>imperative
-      programming</emphasis>.</para>
+      programming</emphasis>.<indexterm>
+          <primary>declarative programming</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -525,7 +652,9 @@
       <para>(Scala version 2.8) The ability to define a default value for a
       method argument that will be used if the caller does not specify a
       value. See also <emphasis>implicit argument</emphasis> and
-      <emphasis>named argument</emphasis>.</para>
+      <emphasis>named argument</emphasis>.<indexterm>
+          <primary>default argument value</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -540,7 +669,11 @@
       in resolving dependencies. The injection mechanism uses constructor
       arguments or field setters provided by the object. DI minimizes the
       coupling of objects. They only need to know about the abstractions of
-      their dependencies.</para>
+      their dependencies.<indexterm>
+          <primary>dependency injection (DI)</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -564,7 +697,11 @@
       preconditions are specified, specifications on the guaranteed results
       are called <emphasis>postconditions</emphasis> and are also specified in
       an executable way. <emphasis>Invariants</emphasis> can also be specified
-      that should be true on entry and on exit.</para>
+      that should be true on entry and on exit.<indexterm>
+          <primary>Design by Contract</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -574,7 +711,9 @@
     <glossdef>
       <para>A solution to a problem in a context. A code idiom or design
       structure that satisfies the needs of a frequently occurring problem,
-      constraint, requirement, etc.</para>
+      constraint, requirement, etc.<indexterm>
+          <primary>design patterns</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -588,7 +727,11 @@
       is, no special-purpose parser is created for the language. Instead, DSL
       code is written in the general-purpose language and parsed just like any
       other code. An <emphasis>external</emphasis> DSL is a language with its
-      own grammar and parser.</para>
+      own grammar and parser.<indexterm>
+          <primary>DSLs (Domain-Specific Languages)</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -601,7 +744,11 @@
       method call (message send), the runtime is satisfied. “If it walks like
       a duck and talks like a duck, it’s a duck”. Contrast to the use of
       <emphasis>structural types</emphasis> in some
-      <emphasis>statically-typed</emphasis> languages like Scala.</para>
+      <emphasis>statically-typed</emphasis> languages like Scala.<indexterm>
+          <primary>duck typing</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -612,7 +759,9 @@
       <para>Loosely speaking, late binding of type information, sometimes
       referred to as binding to the value a reference is assigned to, rather
       than to the reference itself. Contrast with <emphasis>static
-      typing</emphasis>.</para>
+      typing</emphasis>.<indexterm>
+          <primary>dynamic typing</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -626,7 +775,11 @@
       type, while hiding implementation details, which prevents unwanted
       access to them from clients and keeps the
       <emphasis>abstraction</emphasis> exposed by the type consistent and
-      minimal.</para>
+      minimal.<indexterm>
+          <primary>encapsulation</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -635,7 +788,9 @@
 
     <glossdef>
       <para>The notification of a state change in <emphasis>event-based
-      concurrency</emphasis>.</para>
+      concurrency</emphasis>.<indexterm>
+          <primary>events</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -645,7 +800,13 @@
     <glossdef>
       <para>A high-performance form of concurrency where events are used to
       signal important state changes and handlers are used to respond to the
-      events.</para>
+      events.<indexterm>
+          <primary>event-based concurrency</primary>
+        </indexterm><indexterm>
+          <primary>concurrency</primary>
+
+          <secondary>event-based</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -658,7 +819,11 @@
       primarily to support aspects of Java’s type system within Scala’s type
       system, including <emphasis>type erasure</emphasis>, “raw” types (e.g.,
       pre-Java 5 collections), and <emphasis>call site</emphasis>
-      <emphasis>type variance</emphasis>.</para>
+      <emphasis>type variance</emphasis>.<indexterm>
+          <primary>existential types</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -669,7 +834,9 @@
       <para>An <literal>unapply</literal> method defined in a
       <emphasis>companion object</emphasis> that is used to extract the
       constituent values for fields in an object. They are most commonly used
-      in <emphasis>pattern matching</emphasis> expressions.</para>
+      in <emphasis>pattern matching</emphasis> expressions.<indexterm>
+          <primary>extractors</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -679,7 +846,11 @@
     <glossdef>
       <para>A <literal>val</literal> or <literal>var</literal> in a type that
       represents part, if not all of the state of a corresponding instance of
-      the type.</para>
+      the type.<indexterm>
+          <primary>fields</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -690,7 +861,9 @@
       <para>Keyword for declarations. For types, <literal>final</literal>
       prevents users from subclassing the type. For type members,
       <literal>final</literal> prevents users from overriding the
-      members.</para>
+      members.<indexterm>
+          <primary>final keyword</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -703,7 +876,9 @@
       variables, pass them as function parameters, and return them from
       functions. Often used to refer to <emphasis>functions</emphasis>, which
       are first-class values in Scala and other <emphasis>functional
-      programming</emphasis> languages.</para>
+      programming</emphasis> languages.<indexterm>
+          <primary>first class</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -720,7 +895,10 @@
 
     <glossdef>
       <para>Another name for a function argument, used in the context of
-      binding the <emphasis>free variables</emphasis> in the function.</para>
+      binding the <emphasis>free variables</emphasis> in the
+      function.<indexterm>
+          <primary>formal parameters</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -732,7 +910,9 @@
       <emphasis>function literal</emphasis>, but is not passed in as an
       argument. Therefore, it must be “bound” to a defined variable of the
       same name in the context where the function literal is used, to form a
-      <emphasis>closure</emphasis>.</para>
+      <emphasis>closure</emphasis>.<indexterm>
+          <primary>free variables</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -744,7 +924,11 @@
       function that is not tied to a particular object or class. Contrast with
       <emphasis>method</emphasis>. Functions are instances of
       <literal>FunctionN</literal> types, where <literal>N</literal> is the
-      <emphasis>arity</emphasis> of the function.</para>
+      <emphasis>arity</emphasis> of the function.<indexterm>
+          <primary>functions</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -753,7 +937,12 @@
 
     <glossdef>
       <para>Scala’s term for an anonymous <emphasis>function</emphasis>
-      expression, from which <emphasis>closures</emphasis> are created.</para>
+      expression, from which <emphasis>closures</emphasis> are
+      created.<indexterm>
+          <primary>function literals</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -765,7 +954,11 @@
       T2, …, TN, +R]</literal> types, where <literal>N</literal> is the number
       of arguments (0 through 22 are supported). The type signature syntax
       <literal>(T1, T2, …, TN) ⇒ R</literal> is used for declaring concrete
-      instances, i.e., function literals.</para>
+      instances, i.e., function literals.<indexterm>
+          <primary>function types</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -777,7 +970,11 @@
       and variables work. Mathematical functions are <emphasis>side-effect
       free</emphasis> and they are composable from other functions. Variables
       are assigned once. Functions can be assigned to variables and returned
-      from other functions.</para>
+      from other functions.<indexterm>
+          <primary>functional programming</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -788,7 +985,11 @@
       <para>Expressions like <literal>i &lt;- listOfInts</literal> in for
       expressions. Each pass through the loop <emphasis>generates</emphasis> a
       new val <literal>i</literal> taken from the list
-      <literal>listOfInts</literal>, in this example.</para>
+      <literal>listOfInts</literal>, in this example.<indexterm>
+          <primary>generators</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -797,7 +998,11 @@
 
     <glossdef>
       <para>Another term for <emphasis>parameterized types</emphasis>, used
-      more often in Java than Scala.</para>
+      more often in Java than Scala.<indexterm>
+          <primary>generics</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -806,7 +1011,13 @@
 
     <glossdef>
       <para>Functions that take other functions as arguments or return a
-      function value.</para>
+      function value.<indexterm>
+          <primary>functions</primary>
+
+          <secondary>higher order</secondary>
+        </indexterm><indexterm>
+          <primary>higher order functions</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -815,7 +1026,9 @@
 
     <glossdef>
       <para>A value that can’t be changed after it has been initialized.
-      Contrast with <emphasis>mutable value</emphasis>.</para>
+      Contrast with <emphasis>mutable value</emphasis>.<indexterm>
+          <primary>immutable values</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -826,7 +1039,9 @@
       <para>The quality of many <emphasis>object-oriented</emphasis> and
       “procedural” programs where the code consists of statements directing
       the system to take a particular sequence of action. Contrast with
-      <emphasis>declarative programming</emphasis>.</para>
+      <emphasis>declarative programming</emphasis>.<indexterm>
+          <primary>imperative programming</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -837,7 +1052,11 @@
       <para>A Scala keyword used to mark a method or function value as
       eligible for use as an <emphasis>implicit type conversion</emphasis>.
       The keyword is also used to mark an <emphasis>implicit
-      argument</emphasis>.</para>
+      argument</emphasis>.<indexterm>
+          <primary>implicit keyword</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -849,7 +1068,11 @@
       <emphasis>implicit</emphasis> keyword, marking it as eligible for use as
       an <emphasis>implicit type conversion</emphasis>, whenever it is in
       scope and conversion is needed (e.g., for the <emphasis>pimp my
-      library</emphasis> pattern).</para>
+      library</emphasis> pattern).<indexterm>
+          <primary>implicit conversions</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -862,7 +1085,10 @@
       not specify a value for the argument, a default value is used instead,
       which is either an in-scope value of the same type or the result of
       calling an in-scope, no-argument method that returns an instance of the
-      same type. See also <emphasis>default argument value</emphasis>.</para>
+      same type. See also <emphasis>default argument
+      value</emphasis>.<indexterm>
+          <primary>implicit arguments</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -874,7 +1100,9 @@
       values, but which is capable of doing so without exhausting system
       resources. The values are not computed until the data structure is asked
       to produce them. As long as only a finite subset of the values are
-      requested, resource exhaustion is avoided.</para>
+      requested, resource exhaustion is avoided.<indexterm>
+          <primary>infinite data structures</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -888,7 +1116,13 @@
       for methods named with <emphasis>operator characters</emphasis>, the
       syntax provides a form of <emphasis>operator overloading</emphasis>.
       Sometimes also called <emphasis>operator notation</emphasis>. See also
-      <emphasis>postfix notation</emphasis>.</para>
+      <emphasis>postfix notation</emphasis>.<indexterm>
+          <primary>operator notation</primary>
+        </indexterm><indexterm>
+          <primary>infix notation</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -899,7 +1133,9 @@
       <para>When a parameterized type of the form <literal>Op[A,B]</literal>
       is used to instantiate a type, it can also be written as <literal>A Op
       B</literal>. For example, <literal>Or[Throwable,Boolean]</literal> can
-      be written <literal>Throwable Or Boolean</literal>.</para>
+      be written <literal>Throwable Or Boolean</literal>.<indexterm>
+          <primary>infix types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -913,7 +1149,11 @@
       trait, as if they were defined within the derivative. The derivative may
       override inherited members (in most cases). Instances of a derivative
       are <emphasis>substitutable</emphasis> for instances of the
-      parent.</para>
+      parent.<indexterm>
+          <primary>inheritance</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -927,7 +1167,11 @@
       languages, but we use the term <emphasis>object</emphasis> to refer to
       an explicitly-declared Scala <emphasis>object</emphasis> and we use the
       term <emphasis>instance</emphasis> (and the verb
-      <emphasis>instantiate</emphasis>) for the more general case.</para>
+      <emphasis>instantiate</emphasis>) for the more general case.<indexterm>
+          <primary>instantiate</primary>
+        </indexterm><indexterm>
+          <primary>instance</primary>
+        </indexterm></para>
 
       <para id="para_instantiation_can_also_refer_t">Instantiation can also
       refer to creating a <emphasis>concrete type</emphasis> from a
@@ -948,7 +1192,9 @@
       <emphasis>subtype</emphasis> of <literal>T[A]</literal> if and only if
       <literal>B</literal> equals <literal>A</literal>. That is, the type
       can’t be changed. See also <emphasis>covariance</emphasis> and
-      <emphasis>contravariance</emphasis>.</para>
+      <emphasis>contravariance</emphasis>.<indexterm>
+          <primary>invariance and invariant</primary>
+        </indexterm></para>
 
       <para id="para_in_the_context_of__design_by_c">In the context of
       <emphasis>design by contract</emphasis>, an assertion that should be
@@ -968,7 +1214,11 @@
       object calls a factory, service locator, etc. to obtain the dependents.
       Hence, the object still has an active role and it has a dependency on
       the “provider”. The strongest form of IoC is <emphasis>dependency
-      injection</emphasis>, where the object remains “passive”.</para>
+      injection</emphasis>, where the object remains “passive”.<indexterm>
+          <primary>IoC (inversion of control)</primary>
+        </indexterm><indexterm>
+          <primary>inversion of control (IoC)</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -979,7 +1229,9 @@
       <para>Immutable variables (<literal>vals</literal>) can be declared
       <literal>lazy</literal>, meaning they will only be evaluated when they
       are read. This feature is useful for expensive evaluations that may not
-      be needed.</para>
+      be needed.<indexterm>
+          <primary>lazy, defined</primary>
+        </indexterm></para>
 
       <para id="para_lazy_data_structures_can_also_">Lazy data structures can
       also be used to define infinite data structures that won’t exhaust
@@ -994,7 +1246,12 @@
 
     <glossdef>
       <para>The algorithm used for a type to resolve member lookup, such as
-      overridden methods, including calls to <literal>super</literal>.</para>
+      overridden methods, including calls to
+      <literal>super</literal>.<indexterm>
+          <primary>linearization</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1006,7 +1263,11 @@
       (e.g., <literal>1</literal>, <literal>3.14</literal>), strings (e.g.,
       “Hello Scala!”), tuples (e.g., <literal>(1, 2, 3)</literal>), and
       <emphasis>function literals</emphasis> (e.g., <literal>(x) ⇒ x +
-      x</literal>).</para>
+      x</literal>).<indexterm>
+          <primary>literals</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1024,7 +1285,9 @@
     <glossdef>
       <para>The queue were an <emphasis>actors</emphasis> messages are stored
       until the actor processes them in the <emphasis>actor model of
-      concurrency</emphasis>.</para>
+      concurrency</emphasis>.<indexterm>
+          <primary>mailbox for actors</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1038,7 +1301,9 @@
       <emphasis>method</emphasis> must be defined in an
       <literal>object</literal>. Java, by way of contrast, requires a
       <literal>main</literal> method to be defined as a static method of a
-      <literal>class</literal>.</para>
+      <literal>class</literal>.<indexterm>
+          <primary>main function or main method</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1053,7 +1318,9 @@
       frameworks handle the details of managing the operations and the nodes
       they run on, including restarting operations that fail for some reason.
       The user of the framework only has to write the algorithms for mapping
-      and reducing the data sets and computing with the subsets.</para>
+      and reducing the data sets and computing with the subsets.<indexterm>
+          <primary>MapReduce</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1063,7 +1330,9 @@
     <glossdef>
       <para>A generic term for a <emphasis>type</emphasis>,
       <emphasis>field</emphasis>, or <emphasis>method</emphasis> declared in a
-      <emphasis>class</emphasis> or <emphasis>trait</emphasis>.</para>
+      <emphasis>class</emphasis> or <emphasis>trait</emphasis>.<indexterm>
+          <primary>members</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1074,7 +1343,9 @@
       <para>A form of caching that optimizes function invocations. The results
       from a function’s invocations are saved so that when repeated
       invocations with the same inputs are made, the cached results can be
-      returned instead of re-invoking the function again.</para>
+      returned instead of re-invoking the function again.<indexterm>
+          <primary>memoization</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1083,7 +1354,9 @@
 
     <glossdef>
       <para>In the <emphasis>actor model of concurrency</emphasis>, messages
-      are exchanged between actors to coordinate their work.</para>
+      are exchanged between actors to coordinate their work.<indexterm>
+          <primary>messages</primary>
+        </indexterm></para>
 
       <para id="para_in_object_oriented_programming">In object-oriented
       programming, method invocation is sometimes referred to as “sending a
@@ -1100,7 +1373,11 @@
       with an instance, either defined in a <emphasis>class</emphasis>,
       <emphasis>trait</emphasis>, or <emphasis>object</emphasis> definition.
       Methods can only be invoked using the <literal>object.method</literal>
-      syntax.</para>
+      syntax.<indexterm>
+          <primary>methods</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1111,7 +1388,11 @@
       <para>A narrowly-focused encapsulation of state and behavior that is
       more useful as an adjunct to another object’s state and behavior, rather
       than standing on its own. Mixins in Scala are implemented using
-      <emphasis>traits</emphasis>.</para>
+      <emphasis>traits</emphasis>.<indexterm>
+          <primary>mixins</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1120,7 +1401,10 @@
 
     <glossdef>
       <para>In some languages, but not Scala, a type can extend more than one
-      parent class. Compare to <emphasis>single inheritance</emphasis>.</para>
+      parent class. Compare to <emphasis>single
+      inheritance</emphasis>.<indexterm>
+          <primary>multiple inheritance</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1129,7 +1413,9 @@
 
     <glossdef>
       <para>A value that can be changed after it has been initialized.
-      Contrast with <emphasis>immutable value</emphasis>.</para>
+      Contrast with <emphasis>immutable value</emphasis>.<indexterm>
+          <primary>mutable values</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1140,7 +1426,9 @@
       <para>(Scala version 2.8) The ability to refer to a method argument by
       name when calling it. useful in combination with <emphasis>default
       argument values</emphasis> for minimizing the number of arguments that
-      have to be specified by the caller.</para>
+      have to be specified by the caller.<indexterm>
+          <primary>named arguments</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1151,7 +1439,9 @@
       <para>An item in a grammar that requires further decomposition into one
       or more <emphasis>nonterminals</emphasis> (including possibly a
       recursive reference to itself) and
-      <emphasis>terminals</emphasis>.</para>
+      <emphasis>terminals</emphasis>.<indexterm>
+          <primary>nonterminals</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1169,7 +1459,11 @@
       user code). To avoid confusion with <literal>objects</literal>, we use
       the term <emphasis>instance</emphasis> to refer to
       <emphasis>instances</emphasis> of <emphasis>classes</emphasis> and
-      <literal>objects</literal> generically.</para>
+      <literal>objects</literal> generically.<indexterm>
+          <primary>objects</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1181,7 +1475,11 @@
       operations on that state, exposing a cohesive abstraction to clients of
       the object while hiding internal implementation details. OOP also
       supports subtyping to define specializations and “family” relationships
-      between types.</para>
+      between types.<indexterm>
+          <primary>object-oriented programming (OOP)</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1193,7 +1491,12 @@
       etc. that are not letters, digits, nor reserved characters, like left
       and right parentheses, “curly” braces, or “square” braces, the
       semicolon, colon, or comma. These characters can be used in method names
-      to implement a form of <emphasis>operator overloading</emphasis>.</para>
+      to implement a form of <emphasis>operator
+      overloading</emphasis>.<indexterm>
+          <primary>operator characters</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1217,7 +1520,10 @@
       methods with one argument to be invoked with <emphasis>infix
       notation</emphasis>. The “operator precedence” for these methods is
       determined by the first character, e.g., method <literal>*&lt;</literal>
-      will have higher precedence than method <literal>+&lt;</literal>.</para>
+      will have higher precedence than method
+      <literal>+&lt;</literal>.<indexterm>
+          <primary>operator overloading</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1227,7 +1533,13 @@
     <glossdef>
       <para>Two or more functions defined in the same scope (e.g., as methods
       in a type or as “bare” functions) that have the same name, but different
-      <emphasis>signatures</emphasis>.</para>
+      <emphasis>signatures</emphasis>.<indexterm>
+          <primary>functions</primary>
+
+          <secondary>overloaded</secondary>
+        </indexterm><indexterm>
+          <primary>overloaded functions</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1239,7 +1551,9 @@
       should be visible at the scope of the named package. For example, for
       the declaration <literal>package object math { type Complex = …
       }</literal>, the <literal>Complex</literal> type can be referenced as
-      <literal>math.Complex</literal>.</para>
+      <literal>math.Complex</literal>.<indexterm>
+          <primary>package objects</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1251,7 +1565,10 @@
       (PEGs) <link linkend="Ford" xrefstyle="select:nopage">[Ford]</link>.
       They have several benefits, such as lack of ambiguity and good
       performance characteristics. The forthcoming Scala version 2.8 parser
-      combinator library will add support for creating packrat parsers.</para>
+      combinator library will add support for creating packrat
+      parsers.<indexterm>
+          <primary>packrat parsers</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1263,7 +1580,11 @@
       Parameterized types are defined with placeholder parameters for types
       they use. When an instance of a parameterized type is created, specific
       types must be specified to replace all the type parameters. See also
-      <emphasis>type constructor</emphasis>.</para>
+      <emphasis>type constructor</emphasis>.<indexterm>
+          <primary>parameterized types</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1274,7 +1595,9 @@
       <para>A class or trait from which another class or trait is
       <emphasis>derived</emphasis>. Also called a
       <emphasis>supertype</emphasis> or <emphasis>base type</emphasis>. See
-      <emphasis>inheritance</emphasis>.</para>
+      <emphasis>inheritance</emphasis>.<indexterm>
+          <primary>parent type</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1285,7 +1608,13 @@
       <para>An alternative to <emphasis>context-free grammars</emphasis> that
       provide guaranteed linear-time parsing using
       <emphasis>memoization</emphasis> and unambiguous grammars <link
-      linkend="PEG" xrefstyle="select:nopage">[PEG]</link>.</para>
+      linkend="PEG" xrefstyle="select:nopage">[PEG]</link>.<indexterm>
+          <primary>grammars</primary>
+
+          <secondary>parsing expression grammars (PEGs)</secondary>
+        </indexterm><indexterm>
+          <primary>parsing expression grammars (PEGs)</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1295,7 +1624,9 @@
     <glossdef>
       <para>Associated with <emphasis>currying</emphasis>, where a subset of a
       curried functions arguments are applied, yielding a new function that
-      takes the remaining arguments.</para>
+      takes the remaining arguments.<indexterm>
+          <primary>partial application</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1305,7 +1636,9 @@
     <glossdef>
       <para>A function that is not valid over the whole range of its
       arguments. Pattern matching expressions can be converted to partial
-      functions by the compiler in some contexts.</para>
+      functions by the compiler in some contexts.<indexterm>
+          <primary>partial functions</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1318,7 +1651,9 @@
       types, and finally the type T itself. Instances of T can have different,
       incompatible types. For example, if T is nested in a trait and the trait
       appears in the <emphasis>linearizations</emphasis> of different types,
-      then the instances in those Ts will have different types.</para>
+      then the instances in those Ts will have different types.<indexterm>
+          <primary>path-dependent types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1328,7 +1663,11 @@
     <glossdef>
       <para>Case expressions, usually in a match expression, that compare an
       object against possible types, type extractors, regular expressions,
-      etc. to determine the appropriate handling.</para>
+      etc. to determine the appropriate handling.<indexterm>
+          <primary>pattern matching</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1339,7 +1678,9 @@
       <para>The name of a design pattern that appears to add new methods to a
       type. It uses an <emphasis>implicit type conversion</emphasis> to
       automatically wrap the type in a wrapper type, where the wrapper type
-      has the desired methods.</para>
+      has the desired methods.<indexterm>
+          <primary>Pimp My Library design pattern</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1348,7 +1689,9 @@
 
     <glossdef>
       <para>An assertion that should be true on entry to a method or other
-      entry point. See <emphasis>design by contract</emphasis>.</para>
+      entry point. See <emphasis>design by contract</emphasis>.<indexterm>
+          <primary>preconditions</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1357,7 +1700,9 @@
 
     <glossdef>
       <para>An assertion that should be true on exit from a method or other
-      boundary point. See <emphasis>design by contract</emphasis>.</para>
+      boundary point. See <emphasis>design by contract</emphasis>.<indexterm>
+          <primary>postconditions</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1368,7 +1713,9 @@
       <para>A syntax supported by the compiler for methods with no argument,
       sometimes called <emphasis>nullary</emphasis> methods. The method can be
       invoked without the period between the object and the method name. See
-      also <emphasis>infix notation</emphasis>.</para>
+      also <emphasis>infix notation</emphasis>.<indexterm>
+          <primary>postfix notation</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1378,7 +1725,9 @@
     <glossdef>
       <para>The main constructor of a class, consisting of the class body with
       the parameter list specified after the name of the class. See also
-      <emphasis>auxiliary constructor</emphasis>.</para>
+      <emphasis>auxiliary constructor</emphasis>.<indexterm>
+          <primary>primary constructor</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1391,7 +1740,9 @@
       Rather, it uses <emphasis>value types</emphasis>, which are subclasses
       of <literal>AnyVal</literal>, to wrap runtime primitives, providing
       object semantics at the code level, while using boxing and unboxing of
-      primitives at the byte code level to optimize performance.</para>
+      primitives at the byte code level to optimize performance.<indexterm>
+          <primary>primitive data types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1402,7 +1753,9 @@
       <para>A term used for each part of a grammar that decomposes a specific
       <emphasis>nonterminal</emphasis> into other nonterminals (perhaps
       including a recursive reference to the original nonterminal) and
-      <emphasis>terminals</emphasis>.</para>
+      <emphasis>terminals</emphasis>.<indexterm>
+          <primary>production</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1412,7 +1765,9 @@
     <glossdef>
       <para>Used in the context of functions to mean that they are
       <emphasis>side-effect free</emphasis>. See also <emphasis>referential
-      transparency</emphasis>.</para>
+      transparency</emphasis>.<indexterm>
+          <primary>pure</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1422,7 +1777,9 @@
     <glossdef>
       <para>When a function calls itself as part of its computation. A
       termination condition is required to prevent an infinite recursion. See
-      also <emphasis>tail-call recursion</emphasis>.</para>
+      also <emphasis>tail-call recursion</emphasis>.<indexterm>
+          <primary>recursion</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1431,7 +1788,10 @@
 
     <glossdef>
       <para>A type whose instances are implemented as objects on the runtime
-      platform. All reference types subtype <literal>AnyRef</literal>.</para>
+      platform. All reference types subtype
+      <literal>AnyRef</literal>.<indexterm>
+          <primary>reference types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1445,7 +1805,9 @@
       the inputs are the same. The primary benefit of referential transparency
       is that it is easy to reason about the behavior of a function, without
       having to understand the context in which it is invoked. That makes the
-      function easier to test, refactor, and reuse.</para>
+      function easier to test, refactor, and reuse.<indexterm>
+          <primary>referential transparency</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1454,7 +1816,9 @@
 
     <glossdef>
       <para>The term used for adding or overriding members in a type body for
-      a <emphasis>compound type</emphasis>.</para>
+      a <emphasis>compound type</emphasis>.<indexterm>
+          <primary>refinement</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1467,7 +1831,9 @@
       runtime. This is a property of .NET byte code, but not JVM byte code,
       which uses <emphasis>type erasure</emphasis>. To minimize
       incompatibilities, both the Java and .NET Scala versions use
-      <emphasis>type erasure.</emphasis></para>
+      <emphasis>type erasure.<indexterm>
+          <primary>reified types</primary>
+        </indexterm></emphasis></para>
     </glossdef>
   </glossentry>
 
@@ -1477,7 +1843,9 @@
     <glossdef>
       <para>A name given to interactive language interpreters, like the
       <userinput>scala</userinput> command in interpreter mode. REPL is an
-      acronym for <emphasis>Read, Evaluate, Print, Loop</emphasis>.</para>
+      acronym for <emphasis>Read, Evaluate, Print, Loop</emphasis>.<indexterm>
+          <primary>REPL (Read, Evaluate, Print, Loop)</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1487,7 +1855,9 @@
     <glossdef>
       <para>The API documented generated form Scala source code using the
       <userinput>scaladoc</userinput> tool, analogous to Java’s
-      <emphasis>Javadocs</emphasis>.</para>
+      <emphasis>Javadocs</emphasis>.<indexterm>
+          <primary>Scaladocs</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1496,7 +1866,12 @@
 
     <glossdef>
       <para>A defined boundary of <emphasis>visibility</emphasis>,
-      constraining what types and their members are visible within it.</para>
+      constraining what types and their members are visible within
+      it.<indexterm>
+          <primary>scope</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1506,7 +1881,9 @@
     <glossdef>
       <para>Keyword for parent classes when <emphasis>all</emphasis> the
       direct subclasses allowed are defined in the same source
-      <emphasis>file</emphasis>.</para>
+      <emphasis>file</emphasis>.<indexterm>
+          <primary>sealed keyword</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1523,7 +1900,11 @@
       be used as an instance of a dependent type in certain contexts (e.g., as
       used in the Observer Pattern in <xref
       linkend="SelfTypeAnnotationsAndAbstractTypeMembers" /> in <xref
-      linkend="ApplicationDesign" />).</para>
+      linkend="ApplicationDesign" />).<indexterm>
+          <primary>self-type annotations</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1532,7 +1913,9 @@
 
     <glossdef>
       <para>Functions or expressions that have no side effects, meaning they
-      modify no global or “object” state.</para>
+      modify no global or “object” state.<indexterm>
+          <primary>side-effect free</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1542,7 +1925,9 @@
     <glossdef>
       <para>For a function, the name, parameter list types, and return value.
       For a <emphasis>method</emphasis>, also includes the type that defines
-      the method.</para>
+      the method.<indexterm>
+          <primary>signature</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1551,7 +1936,9 @@
 
     <glossdef>
       <para>A class, object, or trait can extend one parent class. Compare to
-      <emphasis>multiple inheritance</emphasis>.</para>
+      <emphasis>multiple inheritance</emphasis>.<indexterm>
+          <primary>single inheritance</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1561,7 +1948,9 @@
     <glossdef>
       <para>A class that has only one instance. In Scala, singletons are
       declared using the keyword <literal>object</literal> instead of
-      <literal>class</literal>.</para>
+      <literal>class</literal>.<indexterm>
+          <primary>singletons</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1575,7 +1964,9 @@
       and <literal>p2.type</literal>, which may be the same. Contrast with
       <emphasis>singleton</emphasis> objects. Singleton types are not
       specifically the types of singleton objects, but singleton objects do
-      have singleton types.</para>
+      have singleton types.<indexterm>
+          <primary>singleton types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1587,7 +1978,9 @@
       all but the last elements in the path must be
       <emphasis>stable</emphasis>, which roughly means that they are either
       packages, singleton objects, or type declarations that alias the
-      same.</para>
+      same.<indexterm>
+          <primary>stable types</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1597,7 +1990,9 @@
     <glossdef>
       <para>As in, “the state of an object”, where it informally means the set
       of all the current values of an object’s
-      <emphasis>fields</emphasis>.</para>
+      <emphasis>fields</emphasis>.<indexterm>
+          <primary>state</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1607,7 +2002,9 @@
     <glossdef>
       <para>Loosely speaking, early binding of type information, sometimes
       referred to as binding to a reference, rather than the value to which
-      the reference is assigned.</para>
+      the reference is assigned.<indexterm>
+          <primary>static typing</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1617,7 +2014,9 @@
     <glossdef>
       <para>Used to refer to data structures that are not
       <emphasis>lazy</emphasis>, i.e., they are defined “eagerly” by the
-      expressions used to construct them.</para>
+      expressions used to construct them.<indexterm>
+          <primary>strict</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1632,7 +2031,11 @@
       matching types need to share a common <emphasis>parent trait</emphasis>
       or <emphasis>class</emphasis> with the structural type. Hence,
       structural types are a type-safe analog to <emphasis>duck
-      typing</emphasis> in dynamically-typed languages, like Ruby.</para>
+      typing</emphasis> in dynamically-typed languages, like Ruby.<indexterm>
+          <primary>structural types</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1640,7 +2043,9 @@
     <glossterm>Subtype</glossterm>
 
     <glossdef>
-      <para>A synonym for <emphasis>derived type</emphasis>.</para>
+      <para>A synonym for <emphasis>derived type</emphasis>.<indexterm>
+          <primary>subtypes</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1648,7 +2053,9 @@
     <glossterm>Supertype</glossterm>
 
     <glossdef>
-      <para>A synonym for <emphasis>parent type</emphasis>.</para>
+      <para>A synonym for <emphasis>parent type</emphasis>.<indexterm>
+          <primary>supertype</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1657,7 +2064,11 @@
 
     <glossdef>
       <para>An interned string. Literal symbols are written starting with a
-      single “right quote”, e.g., <literal>'name</literal>.</para>
+      single “right quote”, e.g., <literal>'name</literal>.<indexterm>
+          <primary>symbols</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1669,7 +2080,9 @@
       <emphasis>last</emphasis> thing it does, i.e., it does no additional
       computations with the result of the recursive call. The Scala compiler
       will optimize <emphasis>tail-call</emphasis> recursions into a
-      loop.</para>
+      loop.<indexterm>
+          <primary>tail-call recursion</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1680,7 +2093,11 @@
       <para>A development discipline where no new functionality is implemented
       until a test has been written that will pass once the functionality is
       implemented. See also <emphasis>behavior-driven
-      development</emphasis>.</para>
+      development</emphasis>.<indexterm>
+          <primary>TDD (Test-Driven Development)</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1689,7 +2106,9 @@
 
     <glossdef>
       <para>A token in a grammar, such as a keyword, that requires no further
-      decomposition. See also <emphasis>nonterminal</emphasis>.</para>
+      decomposition. See also <emphasis>nonterminal</emphasis>.<indexterm>
+          <primary>terminals</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1702,7 +2121,9 @@
       double may assist in the testing process, provide controlled test data
       and behaviors, and very aspects of the interaction between the object
       under test and the test double. Specific types of test doubles include
-      “fakes”, “mocks”, and “stubs”.</para>
+      “fakes”, “mocks”, and “stubs”.<indexterm>
+          <primary>test double</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1713,7 +2134,11 @@
       <para>A class-like encapsulation of state (fields) and behavior
       (methods) that is used for <emphasis>mixin</emphasis> composition. Zero
       or more traits can be mixed into class declarations or when creating
-      instances directly, effectively creating an anonymous class.</para>
+      instances directly, effectively creating an anonymous class.<indexterm>
+          <primary>traits</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1727,7 +2152,9 @@
       a function doesn’t call itself, but rather calls a different function
       which invokes the original function, and so forth, back and forth. There
       is a proposal for the Scala version 2.8 compiler to include a trampoline
-      implementation.</para>
+      implementation.<indexterm>
+          <primary>trampoline</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1742,7 +2169,11 @@
       <emphasis>first-class</emphasis> values, so you can assign them to
       variables, pass them as values, and return them from functions. Tuples
       are represented by <literal>TupleN</literal> classes, for N between 2
-      and 22, inclusive.</para>
+      and 22, inclusive.<indexterm>
+          <primary>tuples</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1759,7 +2190,15 @@
       <literal>type</literal> is also a keyword. When indicated in the text,
       we sometimes use the term type to refer to a <emphasis>class</emphasis>,
       <emphasis>object</emphasis>, or <emphasis>trait</emphasis>
-      generically.</para>
+      generically.<indexterm>
+          <primary>types</primary>
+
+          <secondary>defined</secondary>
+        </indexterm><indexterm>
+          <primary>data types</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1773,7 +2212,11 @@
       <emphasis>type inference</emphasis> can’t be used. In Scala, function
       parameters require type annotations and annotations are required in some
       other contexts where the type can’t be inferred, e.g., for return values
-      of some functions.</para>
+      of some functions.<indexterm>
+          <primary>type annotations</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1789,7 +2232,11 @@
       same as <literal>B</literal>. The expression <literal>A &gt;:
       B</literal> defines a <emphasis>lower bound</emphasis> on
       <literal>A</literal>, it must be a <emphasis>supertype</emphasis> or the
-      same as <literal>B</literal>.</para>
+      same as <literal>B</literal>.<indexterm>
+          <primary>type bounds</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1802,7 +2249,9 @@
       a type constructor, too, just with zero parameters! The analogy with an
       instance constructor is that you specify specific concrete types for the
       parameters to create a new concrete type, just as you specify values to
-      an instance constructor to create an instance.</para>
+      an instance constructor to create an instance.<indexterm>
+          <primary>type constructors</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1813,7 +2262,9 @@
       <para>The conventional type ids commonly used, e.g., <literal>class
       Person</literal>, <literal>object O { type t }</literal>, etc. They are
       actually a short hand syntax for <emphasis>type
-      projections</emphasis>.</para>
+      projections</emphasis>.<indexterm>
+          <primary>type designators</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1827,7 +2278,11 @@
       is therefore not available at run time. Scala must follow the same
       model. So, for example, instances of <literal>List[String]</literal> and
       <literal>List[Int]</literal> are indistinguishable. Contrast with
-      <emphasis>reified types</emphasis>.</para>
+      <emphasis>reified types</emphasis>.<indexterm>
+          <primary>type erasure</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1838,7 +2293,11 @@
       <para>Inferring the type of a value based on the context in which it is
       used, rather than relying on explicit type
       <emphasis>annotations</emphasis>. Sometimes called <emphasis>implicit
-      typing</emphasis>.</para>
+      typing</emphasis>.<indexterm>
+          <primary>implicit typing</primary>
+        </indexterm><indexterm>
+          <primary>type inference</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1849,7 +2308,9 @@
       <para>A way to refer to a type nested within another type. For example,
       if a type <literal>t</literal> is declared in a class
       <literal>C</literal>, then the type projection for <literal>t</literal>
-      is <literal>C#t</literal>.</para>
+      is <literal>C#t</literal>.<indexterm>
+          <primary>type projections</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1860,7 +2321,9 @@
       <para>When a <emphasis>parameterized type</emphasis> is declared, the
       variance behavior under inheritance of each type parameter can be
       specified using a <emphasis>type variance annotation</emphasis> on the
-      type symbol.</para>
+      type symbol.<indexterm>
+          <primary>type variance</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1873,7 +2336,9 @@
       <emphasis>covariance</emphasis>. A <literal>-</literal> prefix on the
       type symbol is used to indicate <emphasis>contravariance</emphasis>. No
       variance annotation is used to indicate <emphasis>invariance</emphasis>
-      (the default).</para>
+      (the default).<indexterm>
+          <primary>type variance annotations</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1891,7 +2356,9 @@
     <glossdef>
       <para>The actual state of an instance, usually in the context of a
       variable that refers to the instance. See also <emphasis>value
-      type</emphasis>.</para>
+      type</emphasis>.<indexterm>
+          <primary>values</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1899,7 +2366,9 @@
     <glossterm>Value Object</glossterm>
 
     <glossdef>
-      <para>An immutable instance or object.</para>
+      <para>An immutable instance or object.<indexterm>
+          <primary>Value object</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1919,7 +2388,11 @@
       <literal>3.14</literal> for a <literal>Double</literal> or use methods
       that return new values. The Scala runtimes handles instantiation. All
       the instances of value types are immutable <emphasis>value
-      objects</emphasis>.</para>
+      objects</emphasis>.<indexterm>
+          <primary>value types</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
 
       <para id="para_the_term__value_type__is_also_">The term <emphasis>value
       type</emphasis> is also used to mean the categories of types for
@@ -1942,7 +2415,11 @@
       variable. If the variable is declared with the <literal>var</literal>
       keyword, a new value can be assigned to the variable. The value a
       variable references must be type compatible with the declared or
-      inferred type of the variable.</para>
+      inferred type of the variable.<indexterm>
+          <primary>variables</primary>
+
+          <secondary>defined</secondary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1956,7 +2433,9 @@
       the later case, the <literal>(=&gt; A)</literal> is a <emphasis>by-name
       parameter</emphasis>). An in-scope <emphasis>implicit type
       conversion</emphasis> method with the same signature can also be used as
-      a view.</para>
+      a view.<indexterm>
+          <primary>views and view bounds</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 
@@ -1977,7 +2456,9 @@
     <glossdef>
       <para>The <emphasis>scope</emphasis> in which a declared
       <emphasis>type</emphasis> or type <emphasis>member</emphasis> is visible
-      to other types and members.</para>
+      to other types and members.<indexterm>
+          <primary>visibility</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 </glossary>
