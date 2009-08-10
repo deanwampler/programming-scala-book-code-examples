@@ -30,7 +30,9 @@
     <literal>scala-devel-docs</literal>, as described in <xref
     linkend="ForMoreInformation" /> in <xref linkend="IntroducingScala" />,
     and also in the <xref linkend="CommandLineToolSbaz" /> section
-    below.</para>
+    below.<indexterm class="startofrange" id="ch14_commandlinetools">
+        <primary>command-line tools</primary>
+      </indexterm></para>
 
     <para id="para_all_the_command_line_tools_are">All the command-line tools
     are installed in the
@@ -47,7 +49,17 @@
       source file name doesn’t have to match the public class name in the
       file. In fact, you can define as many public classes in the file as you
       want. You can also use arbitrary package declarations without putting
-      the files in corresponding directories.</para>
+      the files in corresponding directories.<indexterm>
+          <primary>compilers</primary>
+
+          <secondary>scalac</secondary>
+        </indexterm><indexterm>
+          <primary>command-line tools</primary>
+
+          <secondary>scalac</secondary>
+        </indexterm><indexterm>
+          <primary>scalac compiler</primary>
+        </indexterm></para>
 
       <para id="para_however_in_order_to_conform_t">However, in order to
       conform to JVM requirements, a separate class file will be generated for
@@ -63,7 +75,9 @@
       around the <userinput>java</userinput> command, passing it the name of
       the Scala compiler’s “Main” object. It adds Scala JAR files to the
       <literal>CLASSPATH</literal> and it defines several Scala-related system
-      properties. You invoke the command as follows:</para>
+      properties. You invoke the command as follows:<indexterm>
+          <primary>java command</primary>
+        </indexterm></para>
 
       <screen><userinput>scalac</userinput> <replaceable>[options …] [source-files]</replaceable></screen>
 
@@ -78,7 +92,11 @@
       <para id="para_options_for_scalac"><xref
       linkend="scalac-command-options" /> shows the list of the
       <userinput>scalac</userinput> <replaceable>options</replaceable>, as
-      reported by <userinput>scalac -help</userinput>.</para>
+      reported by <userinput>scalac -help</userinput>.<indexterm>
+          <primary>scalac compiler</primary>
+
+          <secondary>command options</secondary>
+        </indexterm></para>
 
       <table id="scalac-command-options">
         <title>The scalac command options</title>
@@ -273,7 +291,11 @@
       compiler behavior, including use of experimental extensions and plugins,
       etc. We’ll discuss the <literal>-Xscript</literal> option when we
       discuss the <userinput>scala</userinput> command in the next
-      section.</para>
+      section.<indexterm>
+          <primary>scalac compiler</primary>
+
+          <secondary><literal>-X</literal> options</secondary>
+        </indexterm></para>
 
       <para id="para_two_other_advanced_options">A few other advanced options,
       <literal>-Xfuture</literal> and <literal>-Xcheckinit</literal>, are
@@ -296,7 +318,11 @@
       not variables are modified, etc. Finally, the preliminary
       <literal>sxr</literal> documentation tool <link linkend="SXR"
       xrefstyle="select:nopage">[SXR]</link> uses a compiler plugin to
-      generate hyperlinked documentation of Scala code.</para>
+      generate hyperlinked documentation of Scala code.<indexterm>
+          <primary>scalac compiler</primary>
+
+          <secondary>plugin architecture</secondary>
+        </indexterm></para>
 
       <para id="para_scalac_docs">You can read more information about
       <userinput>scalac</userinput> in the developer tools documentation that
@@ -321,7 +347,14 @@
       <userinput>scala</userinput> command is also a shell-script wrapper
       around the <userinput>java</userinput> command. It adds Scala JAR files
       to the <literal>CLASSPATH</literal> and it defines several Scala-related
-      system properties. You invoke the command as follows:</para>
+      system properties. You invoke the command as follows:<indexterm
+          class="startofrange" id="ch14_commandlinescala">
+          <primary>command-line tools</primary>
+
+          <secondary>scala</secondary>
+        </indexterm><indexterm class="startofrange" id="ch14_scalacommand">
+          <primary>scala command</primary>
+        </indexterm></para>
 
       <screen><userinput>scala</userinput> <replaceable>[options …] [script-or-object] [arguments]</replaceable></screen>
 
@@ -339,7 +372,11 @@
       <literal>Upper</literal> is the class name with a
       <literal>main</literal> method to run. <literal>Hello World</literal>
       are arguments passed to <literal>Upper</literal>. This command produces
-      the following output:</para>
+      the following output:<indexterm>
+          <primary>scala command</primary>
+
+          <secondary>-cp . option</secondary>
+        </indexterm></para>
 
       <screen> HELLO WORLD!</screen>
 
@@ -350,7 +387,11 @@
       type in code that is evaluated on the fly, a setup sometimes referred to
       as a REPL (Read, Evaluate, Print, Loop). There are a few special
       commands available in the interactive mode. Type
-      <userinput>:help</userinput> to see a list of them.</para>
+      <userinput>:help</userinput> to see a list of them.<indexterm>
+          <primary>scala command</primary>
+
+          <secondary>script or object specified for</secondary>
+        </indexterm></para>
 
       <note id="para_note_the_version_2_8_repl_add">
         <para>The version 2.8 REPL adds many enhancements, including code
@@ -390,7 +431,11 @@ println("")</programlisting>
       <para id="para_interactive_mode_invocation">Finally, if you invoke
       <userinput>scala</userinput> without a script file or object name
       argument, <userinput>scala</userinput> runs in interpreted mode. Here is
-      an example interactive session:</para>
+      an example interactive session:<indexterm>
+          <primary>scala command</primary>
+
+          <secondary>running in interpreted mode</secondary>
+        </indexterm></para>
 
       <screen>$ scala
 Welcome to Scala version 2.8.0.final (Java ...).
@@ -408,7 +453,11 @@ g
       <userinput>scala</userinput> command accepts all the
       <replaceable>options</replaceable> that <userinput>scalac</userinput>
       accepts (see <xref linkend="scalac-command-options" />), plus the
-      options listed in <xref linkend="scala-command-options" />.</para>
+      options listed in <xref linkend="scala-command-options" />.<indexterm>
+          <primary>scala command</primary>
+
+          <secondary>options</secondary>
+        </indexterm></para>
 
       <table id="scala-command-options">
         <title>The scala command options (in additions to the scalac
@@ -497,7 +546,11 @@ g
       <replaceable>filename</replaceable>. <xref
       linkend="scala-interactive-special-commands" /> lists the special
       <literal>:X</literal> commands available within the interactive
-      mode.</para>
+      mode.<indexterm>
+          <primary>scala command</primary>
+
+          <secondary>commands available in scala interactive mode</secondary>
+        </indexterm></para>
 
       <table id="scala-interactive-special-commands">
         <title>Commands available within the scala interactive mode</title>
@@ -583,7 +636,11 @@ commands | scala</programlisting>
       frequently. On Windows and UNIX-like systems, you can create stand-alone
       Scala scripts that don’t require you to use the
       <userinput>scala</userinput> <replaceable>script-file-name</replaceable>
-      invocation.</para>
+      invocation.<indexterm>
+          <primary>scala command</primary>
+
+          <secondary>invoking scripts</secondary>
+        </indexterm></para>
 
       <para id="para_for_unix_like_systems_the_fol">For UNIX-like systems, the
       following example demonstrates how to make an executable script.
@@ -618,7 +675,11 @@ println</programlisting>
       <para id="para_see_the_scala_man_page_in_th">See the
       <userinput>scala</userinput> man page in the developer documentation
       package <literal>scala-devel-docs</literal> to find out more about all
-      the command-line options for <userinput>scala</userinput>,</para>
+      the command-line options for <userinput>scala</userinput>,<indexterm>
+          <primary>scala command</primary>
+
+          <secondary>documentation</secondary>
+        </indexterm></para>
 
       <sect3 id="LimitationsOfScalaVsScalac">
         <title>Limitations of scala versus scalac</title>
@@ -626,7 +687,15 @@ println</programlisting>
         <para id="para_there_are_some_limitations_when_running">There are some
         limitations when running a source file with
         <userinput>scala</userinput> versus compiling it with
-        <userinput>scalac</userinput>.</para>
+        <userinput>scalac</userinput>.<indexterm>
+            <primary>scalac compiler</primary>
+
+            <secondary>scala command versus</secondary>
+          </indexterm><indexterm>
+            <primary>scala command</primary>
+
+            <secondary>limitations of, versus scalac</secondary>
+          </indexterm></para>
 
         <para id="para_any_scripts_executed_with_scala">Any scripts executed
         with <userinput>scala</userinput> are wrapped in an anonymous
@@ -685,7 +754,11 @@ printMessage(new Message(
         <para id="para_however_if_you_try_to_compile">However, if you try to
         compile the script with <userinput>scalac</userinput> (without the
         <literal>-Xscript</literal> option), you get the following
-        errors:</para>
+        errors:<indexterm>
+            <primary>scalac compiler</primary>
+
+            <secondary><literal>-Xscript</literal> option</secondary>
+          </indexterm></para>
 
         <screen>example-script.scala:3: error: expected class or object definition
 def printMessage(msg: Message) = {
@@ -741,7 +814,9 @@ MessagePrinter.class</screen>
         that are declared in the script. They are nested inside the generated
         class <literal>MessagePrinter$$anon$1</literal> for the whole script.
         If you want to see what’s inside these class files, use one of the
-        decompilers, which we describe next.</para>
+        decompilers, which we describe next.<indexterm class="endofrange"
+        startref="ch14_scalacommand"></indexterm><indexterm class="endofrange"
+        startref="ch14_commandlinescala"></indexterm></para>
       </sect3>
     </sect2>
 
@@ -754,7 +829,15 @@ MessagePrinter.class</screen>
       especially useful when you need to invoke Scala code from Java and you
       want to know how Scala names are <emphasis>mangled</emphasis> into
       JVM-compatible names or you want to understand how the scala compiler
-      translates Scala features into valid byte code.</para>
+      translates Scala features into valid byte code.<indexterm>
+          <primary>decompilers (scalap, javap, and jad)</primary>
+        </indexterm><indexterm>
+          <primary>scalap tool</primary>
+        </indexterm><indexterm>
+          <primary>command-line tools</primary>
+
+          <secondary>scalap, javap, and jad</secondary>
+        </indexterm></para>
 
       <para id="para_let_s_discuss_three_decompiler">Let’s discuss three
       decompilers and the benefits they offer. Since the class files generated
@@ -773,7 +856,9 @@ MessagePrinter.class</screen>
           outputs declarations as they would appear in Java source code.
           Therefore, running <userinput>javap</userinput> on Scala-generated
           class files is a good way to see how Scala definitions are mapped to
-          valid byte code.</para>
+          valid byte code.<indexterm>
+              <primary>javap tool</primary>
+            </indexterm></para>
         </listitem>
 
         <listitem>
@@ -781,7 +866,9 @@ MessagePrinter.class</screen>
           <link linkend="JAD" xrefstyle="select:nopage">[JAD]</link>. It
           attempts to reconstruct an entire Java source file from the class
           file, including method definitions, as well as the
-          declarations.</para>
+          declarations.<indexterm>
+              <primary>jad tool</primary>
+            </indexterm></para>
         </listitem>
       </itemizedlist>
 
@@ -807,7 +894,11 @@ object MessagePrinter {
       generates implementations for concrete types. The
       <literal>$tag</literal> method was originally introduced to optimize
       pattern matching, but it is now deprecated and it may be removed in a
-      forthcoming release of Scala.</para>
+      forthcoming release of Scala.<indexterm>
+          <primary>ScalaObject class</primary>
+
+          <secondary>&amp; tag method</secondary>
+        </indexterm></para>
 
       <para id="para_javap_output">Let’s compare the
       <userinput>scalap</userinput> output to what we get when we run
@@ -890,7 +981,13 @@ case class Complex(real: Double, imaginary: Double) {
       <userinput>scaladoc</userinput> parser supports the same
       <literal>@</literal> annotations that <userinput>javadoc</userinput>
       supports, such as <literal>@author</literal>, <literal>@param</literal>,
-      etc.</para>
+      etc.<indexterm>
+          <primary>command-line tools</primary>
+
+          <secondary>scaladoc</secondary>
+        </indexterm><indexterm>
+          <primary>scaladoc tool</primary>
+        </indexterm></para>
 
       <para id="para_if_you_use_scaladoc_for_your">If you use
       <userinput>scaladoc</userinput> for your documentation, you might want
@@ -909,7 +1006,13 @@ case class Complex(real: Double, imaginary: Double) {
       (<userinput>sbaz</userinput>) is a packaging system that helps automate
       maintenance of a Scala installation. It is analogous to the
       <emphasis>gem</emphasis> packaging system for Ruby,
-      <emphasis>CPAN</emphasis> for Perl, etc.</para>
+      <emphasis>CPAN</emphasis> for Perl, etc.<indexterm>
+          <primary>sbaz tool</primary>
+        </indexterm><indexterm>
+          <primary>command-line tools</primary>
+
+          <secondary>sbaz</secondary>
+        </indexterm></para>
 
       <para id="para_there_is_a_nice_summary_of_how">There is a nice summary
       of how to use <userinput>sbaz</userinput> on the scala-lang.org website,
@@ -984,7 +1087,9 @@ case class Complex(real: Double, imaginary: Double) {
 
       <para id="para_note_that_a_remote_repository_">Note that a remote
       repository used by <userinput>sbaz</userinput> is called a
-      “universe”.</para>
+      “universe”.<indexterm>
+          <primary>universe (sbaz remote repository)</primary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="CommandLineToolFsc">
@@ -997,7 +1102,10 @@ case class Complex(real: Double, imaginary: Double) {
       example, when re-running a test suite until a bug can be reproduced). In
       fact, <userinput>fsc</userinput> is invoked automatically by the
       <userinput>scala</userinput> command. You can also invoke it
-      directly.</para>
+      directly.<indexterm>
+          <primary>fsc (fast scala compiler) tool</primary>
+        </indexterm><indexterm class="endofrange"
+      startref="ch14_commandlinetools"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -1013,7 +1121,9 @@ case class Complex(real: Double, imaginary: Double) {
     several build tools written in Scala and aimed specifically at Scala
     development. Perhaps the best known example of these tools is
     <emphasis>sbt</emphasis> (“Simple Build Tool”—<link linkend="SBT"
-    xrefstyle="select:nopage">[SBT]</link>).</para>
+    xrefstyle="select:nopage">[SBT]</link>).<indexterm>
+        <primary>build tools</primary>
+      </indexterm></para>
 
     <para id="para_build_tools_documented_on_sites">These plugins and tools
     are documented very well on their respective websites, so we refer you to
