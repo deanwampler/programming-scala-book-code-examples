@@ -1122,12 +1122,18 @@ case class Complex(real: Double, imaginary: Double) {
     development. Perhaps the best known example of these tools is
     <emphasis>sbt</emphasis> (“Simple Build Tool”—<link linkend="SBT"
     xrefstyle="select:nopage">[SBT]</link>).<indexterm>
+        <primary>sbt (simple build tool)</primary>
+      </indexterm><indexterm>
+        <primary>maven build tool</primary>
+      </indexterm><indexterm>
         <primary>build tools</primary>
       </indexterm></para>
 
     <para id="para_build_tools_documented_on_sites">These plugins and tools
     are documented very well on their respective websites, so we refer you to
-    those sites for details.</para>
+    those sites for details.<indexterm>
+        <primary>ant build tools</primary>
+      </indexterm></para>
 
     <para id="para_ant_support">The Scala distribution includes
     <emphasis>ant</emphasis> tasks for <userinput>scalac</userinput>,
@@ -1147,12 +1153,15 @@ case class Complex(real: Double, imaginary: Double) {
     is aimed at JVM applications written in any language, with built-in
     support for Scala and Groovy, as well as Java. It is compatible with maven
     repositories and project layouts. Since build scripts are written in Ruby,
-    they tend to be much more succinct that corresponding
+    they tend to be much more succinct than corresponding
     <emphasis>maven</emphasis> files. Buildr is also useful for testing JVM
     applications with Ruby testing tools, like <emphasis><ulink
     url="http://rspec.info">RSpec</ulink></emphasis> and <ulink
     url="http://cukes.info">Cucumber</ulink>, if you use <ulink
-    url="http://jruby.codehaus.org/">JRuby</ulink> to run your builds.</para>
+    url="http://jruby.codehaus.org/">JRuby</ulink> to run your
+    builds.<indexterm>
+        <primary>buildr tool</primary>
+      </indexterm></para>
 
     <para id="para_sbt_support">The Scala-oriented <emphasis>sbt</emphasis>
     (simple-build-tool), available at <ulink
@@ -1175,7 +1184,10 @@ case class Complex(real: Double, imaginary: Double) {
     management, and limited support for automated refactorings, etc. While
     each of the plugins has particular advantages over the others, they are
     all close enough in functionality that you will probably find it
-    acceptable to adopt the plugin for the IDE that you already prefer.</para>
+    acceptable to adopt the plugin for the IDE that you already
+    prefer.<indexterm class="startofrange" id="ch14_IDEs">
+        <primary>IDEs (interated development environments)</primary>
+      </indexterm></para>
 
     <para id="para_this_section_describes_how_to_">This section describes how
     to use the Scala support available in Eclipse, IntelliJ IDEA, and
@@ -1193,7 +1205,17 @@ case class Complex(real: Double, imaginary: Double) {
         url="http://www.scala-lang.org/node/94"></ulink>. If you are
         interested in contributing to the development of the plugin, see this
         web page, <ulink
-        url="http://lampsvn.epfl.ch/trac/scala/wiki/EclipsePlugin"></ulink>.</para>
+        url="http://lampsvn.epfl.ch/trac/scala/wiki/EclipsePlugin"></ulink>.<indexterm>
+            <primary>Eclipse IDE</primary>
+
+            <secondary>installing Scala plugin</secondary>
+          </indexterm><indexterm>
+            <primary>IDEs (interated development environments)</primary>
+
+            <secondary>Eclipse</secondary>
+
+            <tertiary>installing Scala plugin</tertiary>
+          </indexterm></para>
 
         <para id="para_the_plugin_requires_jdk_5_or_h">The plugin requires JDK
         5 or higher (JDK 6 is recommended) and Eclipse 3.3 or higher (Eclipse
@@ -1274,7 +1296,17 @@ case class Complex(real: Double, imaginary: Double) {
         New → Other …</emphasis> menu item. You will find a <emphasis>Scala
         Wizards</emphasis> folder that contains a wizard called
         <emphasis>Scala Project</emphasis>. This wizard works just like the
-        familiar <emphasis>Java Project</emphasis> wizard.</para>
+        familiar <emphasis>Java Project</emphasis> wizard.<indexterm>
+            <primary>Eclipse IDE</primary>
+
+            <secondary>developing Scala applications</secondary>
+          </indexterm><indexterm>
+            <primary>IDEs (integrated development environments)</primary>
+
+            <secondary>Eclipse</secondary>
+
+            <tertiary>developing Scala applications</tertiary>
+          </indexterm></para>
 
         <para id="para_you_can_work_with_your_scala_p">You can work with your
         Scala project using most of the same commands you would use with a
@@ -1298,7 +1330,17 @@ case class Complex(real: Double, imaginary: Double) {
         <emphasis>IDEA</emphasis> team provides a
         <emphasis>beta</emphasis>-quality Scala plugin. Start here for
         details: <ulink
-        url="http://www.jetbrains.net/confluence/display/SCA/Scala+Plugin+for+IntelliJ+IDEA"></ulink>.</para>
+        url="http://www.jetbrains.net/confluence/display/SCA/Scala+Plugin+for+IntelliJ+IDEA"></ulink>.<indexterm>
+            <primary>IntelliJ IDEA</primary>
+
+            <secondary>installing Scala plugins</secondary>
+          </indexterm><indexterm>
+            <primary>IDEs (integrated development environments)</primary>
+
+            <secondary>IntelliJ</secondary>
+
+            <tertiary>installing Scala plugins</tertiary>
+          </indexterm></para>
 
         <para id="para_to_use_the_plugin_you_must_us">To use the plugin, you
         must use IntelliJ 8.0.X or later. Consider using the most recent “EAP”
@@ -1380,7 +1422,11 @@ case class Complex(real: Double, imaginary: Double) {
 
         <para id="para_if_the_font_is_red_or_the_chec">If the font is red or
         the check boxes are not checked, refer to the Scala Plugin web page
-        above for debugging help.</para>
+        above for debugging help.<indexterm>
+            <primary>IntelliJ IDEA</primary>
+
+            <secondary>developing Scala applications</secondary>
+          </indexterm></para>
       </sect3>
 
       <sect3 id="_developing_scala_applications_2">
@@ -1395,7 +1441,13 @@ case class Complex(real: Double, imaginary: Double) {
         <para id="para_on_the_next_screen_select__ja">On the next screen,
         select <emphasis>Java Module</emphasis> and fill in the usual project
         information. An example is shown in <xref
-        linkend="idea-new-project1a" />.</para>
+        linkend="idea-new-project1a" />.<indexterm>
+            <primary>IDEs (integrated development environments)</primary>
+
+            <secondary>IntelliJ</secondary>
+
+            <tertiary>developing Scala applications</tertiary>
+          </indexterm></para>
 
         <figure float="none" id="idea-new-project1a">
           <title>Specifying IntelliJ IDEA Scala project details</title>
@@ -1470,7 +1522,17 @@ case class Complex(real: Double, imaginary: Double) {
         url="http://wiki.netbeans.org/Scala"></ulink>. NetBeans 6.5 or a more
         recent nightly build is required. The Scala plugin contains a version
         of the Scala SDK. The wiki page provides instructions for using a
-        different SDK, when desired.</para>
+        different SDK, when desired.<indexterm>
+            <primary>NetBeans</primary>
+
+            <secondary>installing Scala plugins</secondary>
+          </indexterm><indexterm>
+            <primary>IDEs (integrated development environments)</primary>
+
+            <secondary>NetBeans</secondary>
+
+            <tertiary>installing Scala plugins</tertiary>
+          </indexterm></para>
 
         <para id="para_to_install_the_plugin_downloa">To install the plugin,
         download the plugins ZIP file from <ulink
@@ -1521,7 +1583,17 @@ case class Complex(real: Double, imaginary: Double) {
         <emphasis>Scala Application</emphasis> under
         <emphasis>Projects</emphasis>, as shown in <xref
         linkend="netbeans-new-project1" />. Click
-        <emphasis>Next</emphasis>.</para>
+        <emphasis>Next</emphasis>.<indexterm>
+            <primary>IDEs (integrated development environments)</primary>
+
+            <secondary>NetBeans</secondary>
+
+            <tertiary>developing Scala applications</tertiary>
+          </indexterm><indexterm>
+            <primary>NetBeans</primary>
+
+            <secondary>developing Scala applications</secondary>
+          </indexterm></para>
 
         <figure float="none" id="netbeans-new-project1">
           <title>Creating a new NetBeans Scala project</title>
@@ -1571,12 +1643,27 @@ case class Complex(real: Double, imaginary: Double) {
       <replaceable>scala-home</replaceable><filename>/misc/scala-tool-support</filename>
       for the supported editors. Most of the editor-specific directories
       contain instructions for installing the plugin. In other cases, consult
-      your editor’s instructions for installing third-party plugins.</para>
+      your editor’s instructions for installing third-party plugins.<indexterm>
+          <primary>Vim editor</primary>
+        </indexterm><indexterm>
+          <primary>Emacs editor</primary>
+        </indexterm><indexterm>
+          <primary>TextMate editor</primary>
+        </indexterm><indexterm>
+          <primary>scala-tool-support package</primary>
+        </indexterm><indexterm>
+          <primary>text editors</primary>
+        </indexterm><indexterm>
+          <primary>IDEs (integrated development environments)</primary>
+
+          <secondary>text editors</secondary>
+        </indexterm></para>
 
       <para id="para_some_of_the_packages_are_fairl">Some of the packages are
       fairly immature. If you want to contribute to the Scala community,
       please consider improving the quality of the existing plugins or
-      contributing new plugins.</para>
+      contributing new plugins.<indexterm class="endofrange"
+      startref="ch14_IDEs"></indexterm></para>
 
       <note id="para_note_at_the_time_of_this_writ">
         <para>At the time of this writing, there are several variations of a
@@ -1597,7 +1684,9 @@ case class Complex(real: Double, imaginary: Double) {
     <para id="para_one_of_the_most_important_deve">One of the most important
     developer practices introduced in the last decade is <emphasis>Test-Driven
     Development</emphasis> (TDD). The Scala community has created several
-    tools to support TDD.</para>
+    tools to support TDD.<indexterm class="startofrange" id="ch14_TDD">
+        <primary>TDD (Test-Driven Development)</primary>
+      </indexterm></para>
 
     <para id="para_if_you_work_in_a_pure_java">If you work in a “pure” Java
     shop, consider introducing one or more of these Scala testing tools to
@@ -1626,7 +1715,13 @@ case class Complex(real: Double, imaginary: Double) {
       <para id="para_scala_s_version_of_the_venerab">Scala’s version of the
       venerable <emphasis>XUnit</emphasis> tool is
       <emphasis>ScalaTest</emphasis>, available at <ulink
-      url="http://www.artima.com/scalatest/"></ulink>.</para>
+      url="http://www.artima.com/scalatest/"></ulink>.<indexterm>
+          <primary>ScalaTest</primary>
+        </indexterm><indexterm>
+          <primary>TDD (Test-Driven Development)</primary>
+
+          <secondary>ScalaTest tool</secondary>
+        </indexterm></para>
 
       <para id="para_you_can_drive_your_tests_using">You can drive your tests
       using the built-in <literal>Runner</literal> or use the provided
@@ -1642,7 +1737,11 @@ case class Complex(real: Double, imaginary: Double) {
       xrefstyle="select:nopage">[BDD]</link> syntax that is becoming
       increasingly popular. The <ulink
       url="http://www.artima.com/scalatest/"><emphasis>ScalaTest</emphasis>
-      website</ulink> provides examples for these and other options.</para>
+      website</ulink> provides examples for these and other options.<indexterm>
+          <primary>BDD (Behavior-Driven-Development)</primary>
+
+          <secondary>BDD syntax provided by ScalaTest</secondary>
+        </indexterm></para>
 
       <para id="para_here_is_an_example_test_for_th">Here is an example
       <emphasis>ScalaTest</emphasis> test for the simple
@@ -1737,7 +1836,19 @@ All tests passed.</screen>
       <emphasis>testing</emphasis> role of TDD. With the syntax realigned, it
       is believed that the developer will be more likely to stay focused on
       the <emphasis>primary</emphasis> role of TDD: driving application
-      design.</para>
+      design.<indexterm>
+          <primary>requirements specification</primary>
+        </indexterm><indexterm class="startofrange" id="ch14_BDDSpecs">
+          <primary>BDD (Behavior-Driven Development)</primary>
+
+          <secondary>Specs library</secondary>
+        </indexterm><indexterm class="startofrange" id="ch14_TDDSpecs">
+          <primary>TDD (Test-Driven Development)</primary>
+
+          <secondary>Specs library</secondary>
+        </indexterm><indexterm class="startofrange" id="ch14_Specs">
+          <primary>Specs library</primary>
+        </indexterm></para>
 
       <para id="para_you_can_also_find_documentation">You can also find
       documentation on <emphasis>Specs</emphasis> at <link
@@ -1811,7 +1922,9 @@ object ComplexSpec extends Specification {
       + Complex(0.0, 0.0)) mustEqual c1</literal> are called “expectations”.
       They do the actual verifications that conditions are satisfied. Hence,
       “expectations” are analogous to assertions in <emphasis>XUnit</emphasis>
-      tools.</para>
+      tools.<indexterm>
+          <primary>expectations</primary>
+        </indexterm></para>
 
       <para id="para_there_are_several_ways_to_run_">There are several ways to
       run your “specs”. After compiling
@@ -1878,7 +1991,14 @@ Complex addition with (0.0, 0.0) should
       <emphasis>JUnit</emphasis>. <emphasis>JUnit</emphasis> is the best
       approach for running specifications in some IDEs. These and other
       options are described in the <emphasis>User’s Guide</emphasis> at <ulink
-      url="http://code.google.com/p/specs/wiki/RunningSpecs"></ulink>.</para>
+      url="http://code.google.com/p/specs/wiki/RunningSpecs"></ulink>.<indexterm
+      class="endofrange" startref="ch14_BDDSpecs"></indexterm><indexterm>
+          <primary>JUnit</primary>
+
+          <secondary>running specifications</secondary>
+        </indexterm><indexterm class="endofrange"
+      startref="ch14_TDDSpecs"></indexterm><indexterm class="endofrange"
+      startref="ch14_Specs"></indexterm></para>
     </sect2>
 
     <sect2 id="ScalaCheck">
@@ -1894,12 +2014,26 @@ Complex addition with (0.0, 0.0) should
       Testing</emphasis>, sometimes called <emphasis>type-based “property”
       testing</emphasis> in the Haskell literature (e.g., <link
       linkend="OSullivan2009"
-      xrefstyle="select:nopage">[O'Sullivan2009]</link>).</para>
+      xrefstyle="select:nopage">[O'Sullivan2009]</link>).<indexterm>
+          <primary>QuickCheck tool (Haskell)</primary>
+        </indexterm><indexterm>
+          <primary>Haskell, QuickCheck tool</primary>
+        </indexterm><indexterm>
+          <primary>ScalaCheck</primary>
+        </indexterm><indexterm>
+          <primary>TDD (Test-Driven Development)</primary>
+
+          <secondary>ScalaCheck tool</secondary>
+        </indexterm></para>
 
       <para
       id="para__scalacheck__can_be_installed_"><emphasis>ScalaCheck</emphasis>
       can be installed using <userinput>sbaz</userinput>, i.e.,
-      <userinput>sbaz install scalacheck</userinput>.</para>
+      <userinput>sbaz install scalacheck</userinput>.<indexterm>
+          <primary>sbaz tool</primary>
+
+          <secondary>installing ScalaCheck</secondary>
+        </indexterm></para>
 
       <para id="para_using__scalacheck__or__quickc">Using
       <emphasis>ScalaCheck</emphasis> (or <emphasis>QuickCheck</emphasis> for
@@ -2047,7 +2181,12 @@ ComplexSpecification.check</programlisting>
       <emphasis>Reductio</emphasis> is less widely used than
       <emphasis>ScalaCheck</emphasis>, but it offers a “native” Java API as
       well as a Scala API, so it would be more convenient for “pure” Java
-      teams.</para>
+      teams.<indexterm>
+          <primary>Functional Java project</primary>
+        </indexterm><indexterm>
+          <primary>Reductio tool</primary>
+        </indexterm><indexterm class="endofrange"
+      startref="ch14_TDD"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -2057,7 +2196,11 @@ ComplexSpecification.check</programlisting>
     <para id="para_while_scala_benefits_from_the_">While Scala benefits from
     the rich legacy of Java and .NET libraries, there is a growing collection
     of libraries written specifically for Scala. Here we discuss some of the
-    more notable ones.</para>
+    more notable ones.<indexterm>
+        <primary>libraries</primary>
+
+        <secondary>notable Scala libraries</secondary>
+      </indexterm></para>
 
     <sect2 id="Lift">
       <title>Lift</title>
@@ -2068,7 +2211,11 @@ ComplexSpecification.check</programlisting>
       status. <emphasis>Lift</emphasis> has been used for a number of
       commercial websites. You can also find documentation on Lift at <link
       linkend="ScalaTools"
-      xrefstyle="select:nopage">[ScalaTools]</link>.</para>
+      xrefstyle="select:nopage">[ScalaTools]</link>.<indexterm>
+          <primary>web application frameworks</primary>
+        </indexterm><indexterm>
+          <primary>Lift web framework</primary>
+        </indexterm></para>
 
       <para id="para_other_web_frameworks_include_s">Other web frameworks
       include <ulink url="http://code.google.com/p/sweetscala/">Sweet</ulink>,
@@ -2089,7 +2236,9 @@ ComplexSpecification.check</programlisting>
       for functional <emphasis>control</emphasis> abstractions, such as
       <literal>FoldLeft</literal>, <literal>FoldRight</literal>,
       <literal>Monad</literal>, etc. that expand upon what is available in the
-      standard library.</para>
+      standard library.<indexterm>
+          <primary>Scalaz library</primary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="Scalax">
@@ -2097,7 +2246,10 @@ ComplexSpecification.check</programlisting>
 
       <para id="para__scalax__http_scalax_scalaf"><emphasis><ulink
       url="http://scalax.scalaforge.org/">Scalax</ulink></emphasis> is another
-      third-party library effort to supplement the Scala core library.</para>
+      third-party library effort to supplement the Scala core
+      library.<indexterm>
+          <primary>Scalax library</primary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="MetaScala">
@@ -2108,7 +2260,9 @@ ComplexSpecification.check</programlisting>
       is an experimental metaprogramming library for Scala. Metaprogramming
       features tend to be weaker in statically-typed languages than in
       dynamically-typed languages. Also, the JVM and .NET CLR impose their own
-      constraints on metaprogramming.</para>
+      constraints on metaprogramming.<indexterm>
+          <primary>MetaScala library</primary>
+        </indexterm></para>
 
       <para id="para_many_of_the_features_of_scala_">Many of the features of
       Scala obviate the need for metaprogramming, compared to languages like
@@ -2129,7 +2283,9 @@ ComplexSpecification.check</programlisting>
       faster turnaround for changes, providing an experience more like the
       rapid turnaround users of dynamic languages enjoy.
       <emphasis>JavaRebel</emphasis> can be used with Scala code, as
-      well.</para>
+      well.<indexterm>
+          <primary>JavaRebel tool</primary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="MiscSmallerLibraries">
@@ -2137,7 +2293,11 @@ ComplexSpecification.check</programlisting>
 
       <para id="para_finally_here_is_a_list_of_sev">Finally, <xref
       linkend="misc-scala-libs" /> is a list of several Scala-specific
-      libraries you might find useful for your applications.</para>
+      libraries you might find useful for your applications.<indexterm>
+          <primary>libraries</primary>
+
+          <secondary>miscellaneous smaller Scala libraries</secondary>
+        </indexterm></para>
 
       <table id="misc-scala-libs">
         <title>Miscellaneous Scala libraries</title>
@@ -2216,7 +2376,12 @@ ComplexSpecification.check</programlisting>
     generalized to address interoperability with other JVM languages, such as
     JRuby or Groovy. For example, if you already know how to use JRuby and
     Java together and you know how to use Java and Scala together, then you
-    can generalize to using JRuby and Scala together.</para>
+    can generalize to using JRuby and Scala together.<indexterm
+        class="startofrange" id="ch14_JavaScala">
+        <primary>Java</primary>
+
+        <secondary>Scala interoperability with</secondary>
+      </indexterm></para>
 
     <para id="para_because_scala_syntax_is_primar">Because Scala syntax is
     primarily a superset of Java syntax, invoking Java code from Scala is
@@ -2236,7 +2401,19 @@ ComplexSpecification.check</programlisting>
       <literal>java.lang.String</literal> and various java collection classes.
       Instantiating Java generic types is straightforward in Scala (since
       Scala version 2.7.0). Consider the following very simple Java generic
-      class, <literal>JStack</literal>:</para>
+      class, <literal>JStack</literal>:<indexterm>
+          <primary>generics</primary>
+
+          <secondary>Java, using from Scala</secondary>
+        </indexterm><indexterm class="startofrange" id="ch14_generics">
+          <primary>generics</primary>
+        </indexterm><indexterm>
+          <primary>Java</primary>
+
+          <secondary>Scala interoperability with</secondary>
+
+          <tertiary>Java and Scala generics</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/JStack.java
 
@@ -2283,7 +2460,11 @@ object JStackSpec extends Specification {
       <para id="para_since_scala_version_2_7_2_you">Since Scala version 2.7.2,
       you can also use Scala generics from Java. Consider the following JUnit
       4 test, which shows some of the idiosyncrasies you might
-      encounter:</para>
+      encounter:<indexterm>
+          <primary>generics</primary>
+
+          <secondary>Scala, using from Java</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/SMapTest.java
 
@@ -2387,7 +2568,8 @@ required: scala.Option&lt;SMapTest.Name&gt;
       we assign the values returned by <literal>Map.get</literal> to
       <literal>Option&lt;?&gt;</literal> and then do an explicit cast to
       <literal>Name</literal> when we call <literal>Option.get</literal> in
-      the final two assertions.</para>
+      the final two assertions.<indexterm class="endofrange"
+      startref="ch14_generics"></indexterm></para>
     </sect2>
 
     <sect2 id="FunctionsInJava">
@@ -2395,7 +2577,17 @@ required: scala.Option&lt;SMapTest.Name&gt;
 
       <para id="para_continuing_with_our_previous_">Continuing with our
       previous <literal>SMapTest</literal> example, we can explore invoking
-      Scala code from Java where Scala functions are required:</para>
+      Scala code from Java where Scala functions are required:<indexterm>
+          <primary>functions</primary>
+
+          <secondary>Scala, using in Java</secondary>
+        </indexterm><indexterm>
+          <primary>Java</primary>
+
+          <secondary>Scala interoperability with</secondary>
+
+          <tertiary>using Scala functions in Java</tertiary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/SMapTestWithFunctions.java
 
@@ -2520,7 +2712,19 @@ public class SMapTestWithFunctions {
       <literal>static</literal> methods to Java code. For example,
       <literal>main</literal> methods defined in companion objects can’t be
       used to run the application. Instead, you should define such methods in
-      <emphasis>singleton</emphasis> objects.</para>
+      <emphasis>singleton</emphasis> objects.<indexterm>
+          <primary>methods</primary>
+
+          <secondary>defined in companion objects</secondary>
+        </indexterm><indexterm>
+          <primary>singleton objects</primary>
+
+          <secondary>methods defined in companion objects</secondary>
+        </indexterm><indexterm>
+          <primary>companion objects</primary>
+
+          <secondary>methods defined in, visibility to Java code</secondary>
+        </indexterm></para>
 
       <para id="para_so_using_scala_function_objec">So, using Scala function
       objects from Java can be challenging. If you find it necessary to use
@@ -2544,14 +2748,28 @@ public class SMapTestWithFunctions {
       provided by the Spring Framework <link linkend="SpringFramework"
       xrefstyle="select:nopage">[SpringFramework]</link>. You may also need
       <emphasis>JavaBeans</emphasis> accessor methods for some IDEs that do
-      bean “introspection”.</para>
+      bean “introspection”.<indexterm>
+          <primary>Java</primary>
+
+          <secondary>Scala interoperability with</secondary>
+
+          <tertiary>JavaBean properties</tertiary>
+        </indexterm></para>
 
       <para id="para_scala_solves_this_problem_with">Scala solves this problem
       with an annotation that you can apply to a field,
       <literal>@scala.reflect.BeanProperty</literal>, which tells the compiler
       to generate JavaBeans-style getter and setter methods. We introduced
       this annotation in <xref linkend="Annotations" /> in <xref
-      linkend="ApplicationDesign" />.</para>
+      linkend="ApplicationDesign" />.<indexterm>
+          <primary
+          sortas="scala.reflect.BeanProperty">@scala.reflect.BeanProperty
+          annotation</primary>
+        </indexterm><indexterm>
+          <primary>annotations</primary>
+
+          <secondary>@scala.reflect.BeanProperty</secondary>
+        </indexterm></para>
 
       <para id="para_recall_the_complex_class_we_">Recall the
       <literal>Complex</literal> class we saw previously. Now we add the
@@ -2641,7 +2859,24 @@ case class ComplexBean(
       <literal>doubles</literal>. All the <literal>AnyVal</literal> types are
       converted to their corresponding Java primitives. We showed the mapping
       in <xref linkend="AnyVal-value-types" />. In particular, note that
-      <literal>Unit</literal> is mapped to <literal>void</literal>.</para>
+      <literal>Unit</literal> is mapped to <literal>void</literal>.<indexterm>
+          <primary>primitive data types (Java), conversion of AnyVal types
+          to</primary>
+        </indexterm><indexterm>
+          <primary>AnyVal types</primary>
+
+          <secondary>conversion to Java primitives</secondary>
+        </indexterm><indexterm>
+          <primary>data types</primary>
+
+          <secondary>AnyVal types, conversion to Java primitives</secondary>
+        </indexterm><indexterm>
+          <primary>Java</primary>
+
+          <secondary>Scala interoperability with</secondary>
+
+          <tertiary>AnyVal types and Java primitives</tertiary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="ScalaNamesInJavaCode">
@@ -2654,7 +2889,96 @@ case class ComplexBean(
       encoded (or “mangled”, if you prefer) to satisfy the tighter constraints
       of the JVM specification. They are translated as shown in <xref
       linkend="char-encoding" /> (adapted from <link linkend="Spiewak2009a"
-      xrefstyle="select:nopage">[Spiewak2009a]</link>).</para>
+      xrefstyle="select:nopage">[Spiewak2009a]</link>).<indexterm>
+          <primary>characters</primary>
+
+          <secondary>operator characters, encoding in Java</secondary>
+        </indexterm><indexterm>
+          <primary>~ (tilde)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary># (pound sign)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>@ (at sign)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>&amp; (ampersand)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>^ (caret)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>% (percent sign)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>: (colon)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>? (question mark)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>! (exclamation point)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>| (vertical bar)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>\ (backslash)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>/ (slash)</primary>
+
+          <secondary>division operator, encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>* (asterisk)</primary>
+
+          <secondary>multiplication operator, encoding in Java
+          code</secondary>
+        </indexterm><indexterm>
+          <primary>- (minus sign)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>+ (plus sign)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>&lt; &gt; (angle brackets)</primary>
+
+          <secondary>&lt; (less than) operator</secondary>
+
+          <tertiary>encoding in Java code</tertiary>
+        </indexterm><indexterm>
+          <primary>&lt; &gt; (angle brackets)</primary>
+
+          <secondary>&gt; (greater than) operator</secondary>
+
+          <tertiary>encoding in Java code</tertiary>
+        </indexterm><indexterm>
+          <primary>= (equals sisgn)</primary>
+
+          <secondary>encoding in Java code</secondary>
+        </indexterm><indexterm>
+          <primary>operator characters, encoding in Java code</primary>
+        </indexterm><indexterm>
+          <primary>Java</primary>
+
+          <secondary>Scala interoperability with</secondary>
+
+          <tertiary>Scala names in Java code</tertiary>
+        </indexterm></para>
 
       <table id="char-encoding">
         <title>Encoding of operator characters</title>
@@ -2840,10 +3164,11 @@ public interface AllOpChars{
 
       <para id="para_to_conclude_interoperability_">To conclude,
       interoperability between Java and Scala works very well, but there are a
-      few things you must remmeber when invoking Scala code from Java. If
+      few things you must remember when invoking Scala code from Java. If
       you’re uncertain about how a Scala identifier is encoded or a Scala
       method is translated to valid byte code, use
-      <userinput>javap</userinput> to find out.</para>
+      <userinput>javap</userinput> to find out.<indexterm class="endofrange"
+      startref="ch14_JavaScala"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -2854,7 +3179,16 @@ public interface AllOpChars{
     considers interoperability with several important Java frameworks:
     AspectJ, the Spring Framework, Terracotta, and Hadoop. Because they are
     widely used in “enterprise” and Internet Java applications, successful
-    interoperability with Scala is important.</para>
+    interoperability with Scala is important.<indexterm class="startofrange"
+        id="ch14_Javalibraries">
+        <primary>Java</primary>
+
+        <secondary>libraries, interoperability with Scala</secondary>
+      </indexterm><indexterm class="startofrange" id="ch14_librariesJava">
+        <primary>libraries</primary>
+
+        <secondary>Java library interoperability</secondary>
+      </indexterm></para>
 
     <sect2 id="AspectJInterop">
       <title>AspectJ</title>
@@ -2868,7 +3202,27 @@ public interface AllOpChars{
       systemic changes of the same kind across many modules, while avoiding
       copying and pasting the same code over and over into each location.
       Avoiding this duplication not only improves productivity, it greatly
-      reduces bugs.</para>
+      reduces bugs.<indexterm class="startofrange"
+          id="ch14_librariesJavaAspectJ">
+          <primary>libraries</primary>
+
+          <secondary>Java library interoperability</secondary>
+
+          <tertiary>AspectJ</tertiary>
+        </indexterm><indexterm class="startofrange"
+          id="ch14_JavaLibrariesAspectJ">
+          <primary>Java</primary>
+
+          <secondary>libraries, interoperability with Scala</secondary>
+
+          <tertiary>AspectJ</tertiary>
+        </indexterm><indexterm>
+          <primary>AOP (aspect-oriented programming)</primary>
+        </indexterm><indexterm>
+          <primary>aspect-oriented programming (AOP)</primary>
+        </indexterm><indexterm class="startofrange" id="ch14_AspectJ">
+          <primary>AspectJ library</primary>
+        </indexterm></para>
 
       <para id="para_for_example_if_you_want_all_f">For example, if you want
       all field changes to all “domain model” objects to be persisted
@@ -2887,7 +3241,13 @@ public interface AllOpChars{
       AspectJ incorporates the desired behavior modifications into each join
       point. Manual insertion of these changes is not required. An
       <emphasis>aspect</emphasis> encapsulates pointcuts and advices, much the
-      way a class encapsulates member fields and methods.</para>
+      way a class encapsulates member fields and methods.<indexterm>
+          <primary>advice (in AOP)</primary>
+        </indexterm><indexterm>
+          <primary>pointcuts</primary>
+        </indexterm><indexterm>
+          <primary>join points</primary>
+        </indexterm></para>
 
       <para id="para_for_a_detailed_introduction_to">For a detailed
       introduction to AspectJ with many practical examples, see <xref
@@ -3022,7 +3382,11 @@ public aspect LogComplex {
       <emphasis>advice</emphasis> from <literal>LogComplex</literal> into
       <literal>Complex</literal>. To use load-time weaving, we also need the
       following configuration file,
-      <literal>META-INF/aop.xml</literal>:</para>
+      <literal>META-INF/aop.xml</literal>:<indexterm>
+          <primary>weaving, load-time</primary>
+        </indexterm><indexterm>
+          <primary>load-time weaving</primary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">&lt;!-- code-examples/ToolsLibs/META-INF/aop.xml --&gt;
 
@@ -3087,7 +3451,15 @@ Complex(4.0,6.0)</screen>
       AspectJ. However, if you find yourself in that situation, you should
       consider if you can refactor your code to extract a common trait that
       provides the “hooks” you need for <emphasis>advice</emphasis>
-      implemented using traits.</para>
+      implemented using traits.<indexterm class="endofrange"
+      startref="ch14_JavaLibrariesAspectJ"></indexterm><indexterm
+      class="endofrange"
+      startref="ch14_librariesJavaAspectJ"></indexterm><indexterm
+      class="endofrange" startref="ch14_AspectJ"></indexterm><indexterm>
+          <primary>traits</primary>
+
+          <secondary>aspects versus</secondary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="TheSpringFrameworkInterop">
@@ -3100,12 +3472,30 @@ Complex(4.0,6.0)</screen>
       integrated support for AspectJ, a <emphasis>Dependency
       Injection</emphasis> (DI) container, uniform and well designed APIs for
       invoking a variety of other Java third-party APIs, and additional
-      components for security, web development, etc.</para>
+      components for security, web development, etc.<indexterm>
+          <primary>libraries</primary>
+
+          <secondary>Java library interoperability</secondary>
+
+          <tertiary>Spring Framework</tertiary>
+        </indexterm><indexterm>
+          <primary>Java</primary>
+
+          <secondary>libraries</secondary>
+
+          <tertiary>interoperability with Scala/Spring Framework</tertiary>
+        </indexterm><indexterm>
+          <primary>Spring Framework</primary>
+        </indexterm></para>
 
       <para id="para_here_we_focus_on_dependency_in">Here we focus on
       dependency injection, as interoperability issues with the other parts of
       the Spring Framework boil down to either Java or AspectJ issues, which
-      we covered above.</para>
+      we covered above.<indexterm>
+          <primary>dependency injection (DI)</primary>
+
+          <secondary>Spring Framework</secondary>
+        </indexterm></para>
 
       <para id="para_we_discussed_the_concept_of_de">We discussed the concept
       of DI in <xref linkend="DependencyInjectionInScala" /> in <xref
@@ -3128,7 +3518,17 @@ Complex(4.0,6.0)</screen>
       DI with Scala classes, you will need to use the
       <literal>@scala.reflect.BeanProperty</literal> annotation when you use
       setter injection. The annotation is not needed when you use constructor
-      injection.</para>
+      injection.<indexterm>
+          <primary
+          sortas="scala.reflect.BeanProperty">@scala.reflect.BeanProperty
+          annotation</primary>
+        </indexterm><indexterm>
+          <primary>annotations</primary>
+
+          <secondary>@scala.reflect.BeanProperty annotation</secondary>
+        </indexterm><indexterm>
+          <primary>JavaBeans specification</primary>
+        </indexterm></para>
 
       <tip id="para_tip_prefer_constructor_inject">
         <para>Prefer constructor injection, when possible. Not only does this
@@ -3306,7 +3706,21 @@ Object: NamedObject(Dean Wampler)</screen>
       (at least in principle; some limited customization can be useful for
       performance reasons). Instead, the byte code is instrumented to provide
       the clustering. Terracotta is an alternative to distributed caches that
-      require code changes.</para>
+      require code changes.<indexterm>
+          <primary>libraries</primary>
+
+          <secondary>Java library interoperability</secondary>
+
+          <tertiary>Terracotta</tertiary>
+        </indexterm><indexterm>
+          <primary>Java</primary>
+
+          <secondary>libraries, interoperability with Scala</secondary>
+
+          <tertiary>Terracotta</tertiary>
+        </indexterm><indexterm>
+          <primary>Terracotta library</primary>
+        </indexterm></para>
 
       <para id="para_terracotta_example"><link linkend="Boner2008a"
       xrefstyle="select:nopage">[Bonér2008a]</link> provides a detailed write
@@ -3333,12 +3747,28 @@ Object: NamedObject(Dean Wampler)</screen>
       total number of processor cores available. (A few cores might be left
       idle as “backups” or for doing other processing.) The desired
       computation is performed on each subset. The “reduce” phase combines the
-      results of the subset calculations into a final result.</para>
+      results of the subset calculations into a final result.<indexterm>
+          <primary>Java</primary>
+
+          <secondary>libraries, interoperability with Scala</secondary>
+
+          <tertiary>Hadoop</tertiary>
+        </indexterm><indexterm>
+          <primary>libraries</primary>
+
+          <secondary>Java library interoperability</secondary>
+
+          <tertiary>Hadoop</tertiary>
+        </indexterm><indexterm>
+          <primary>Hadoop library</primary>
+        </indexterm></para>
 
       <para id="para_note_that_mapping_and_reducing">Note that mapping and
       reducing are essentially functional operations. Therefore a functional
       language like Scala is ideally suited for writing MapReduce
-      applications.</para>
+      applications.<indexterm>
+          <primary>MapReduce frameworks</primary>
+        </indexterm></para>
 
       <para id="para_mapreduce_frameworks">MapReduce frameworks provide tools
       for mapping and reducing data sets, managing all phases of the
@@ -3367,7 +3797,9 @@ Object: NamedObject(Dean Wampler)</screen>
       Scala’s support for higher-order and anonymous functions, its
       sophisticated type system and type inference, and the ability of
       <literal>for</literal> comprehensions to generate maps in an elegant and
-      succinct way.</para>
+      succinct way.<indexterm class="endofrange"
+      startref="ch14_librariesJava"></indexterm><indexterm class="endofrange"
+      startref="ch14_Javalibraries"></indexterm></para>
     </sect2>
   </sect1>
 
