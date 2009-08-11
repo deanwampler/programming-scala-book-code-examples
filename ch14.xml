@@ -50,9 +50,9 @@
       file. In fact, you can define as many public classes in the file as you
       want. You can also use arbitrary package declarations without putting
       the files in corresponding directories.<indexterm>
-          <primary>compilers</primary>
+          <primary>compiler</primary>
 
-          <secondary>scalac</secondary>
+          <see>scalac compiler</see>
         </indexterm><indexterm>
           <primary>command-line tools</primary>
 
@@ -1738,7 +1738,7 @@ case class Complex(real: Double, imaginary: Double) {
       increasingly popular. The <ulink
       url="http://www.artima.com/scalatest/"><emphasis>ScalaTest</emphasis>
       website</ulink> provides examples for these and other options.<indexterm>
-          <primary>BDD (Behavior-Driven-Development)</primary>
+          <primary>BDD (Behavior-Driven Development)</primary>
 
           <secondary>BDD syntax provided by ScalaTest</secondary>
         </indexterm></para>
@@ -2768,7 +2768,8 @@ public class SMapTestWithFunctions {
         </indexterm><indexterm>
           <primary>annotations</primary>
 
-          <secondary>@scala.reflect.BeanProperty</secondary>
+          <secondary
+          sortas="scala.reflect.BeanProperty">@scala.reflect.BeanProperty</secondary>
         </indexterm></para>
 
       <para id="para_recall_the_complex_class_we_">Recall the
@@ -2967,7 +2968,7 @@ case class ComplexBean(
 
           <tertiary>encoding in Java code</tertiary>
         </indexterm><indexterm>
-          <primary>= (equals sisgn)</primary>
+          <primary>= (equals sign)</primary>
 
           <secondary>encoding in Java code</secondary>
         </indexterm><indexterm>
@@ -3525,7 +3526,8 @@ Complex(4.0,6.0)</screen>
         </indexterm><indexterm>
           <primary>annotations</primary>
 
-          <secondary>@scala.reflect.BeanProperty annotation</secondary>
+          <secondary
+          sortas="scala.reflect.BeanProperty">@scala.reflect.BeanProperty</secondary>
         </indexterm><indexterm>
           <primary>JavaBeans specification</primary>
         </indexterm></para>

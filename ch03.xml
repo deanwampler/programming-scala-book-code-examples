@@ -35,7 +35,7 @@
     invocation looks like an operator invocation. This is called “infix”
     notation, where the operator is between the instance and the argument.
     We’ll find out more about this shortly.<indexterm>
-        <primary>symbolsl in method names and other identifiers</primary>
+        <primary>symbols in method names and other identifiers</primary>
       </indexterm><indexterm>
         <primary>infix notation</primary>
       </indexterm><indexterm>
@@ -50,7 +50,7 @@
     notation.<indexterm>
         <primary>. (dot)</primary>
 
-        <secondary>omitting in method invocations</secondary>
+        <secondary>omitting in method calls</secondary>
       </indexterm><indexterm>
         <primary>postfix notation</primary>
       </indexterm></para>
@@ -99,6 +99,10 @@
           Recall that some of them are combinations of operator and
           punctuation characters. For example, a single underscore
           (<literal>_</literal>) is a reserved word!<indexterm>
+              <primary>_ (underscore)</primary>
+
+              <secondary>reserved word</secondary>
+            </indexterm><indexterm>
               <primary>reserved words</primary>
 
               <secondary>not allowed in identifiers</secondary>
@@ -131,9 +135,11 @@
           expressions like this: <literal>abc_=123</literal>. Is that an
           identifier <literal>abc_=123</literal> or an assignment of the value
           <literal>123</literal> to <literal>abc_</literal>?<indexterm>
-              <primary>$ (dollar sign)</primary>
+              <primary>_ (underscore)</primary>
 
               <secondary>in identifiers</secondary>
+            </indexterm><indexterm>
+              <primary>$ (dollar sign) in identifiers</primary>
             </indexterm><indexterm>
               <primary>plain identifiers</primary>
             </indexterm></para>
@@ -145,7 +151,11 @@
 
         <listitem>
           <para>If an identifier begins with an operator character, the rest
-          of the characters must be operator characters.</para>
+          of the characters must be operator characters.<indexterm>
+              <primary>operator characters</primary>
+
+              <secondary>in identifiers</secondary>
+            </indexterm></para>
         </listitem>
       </varlistentry>
 
@@ -697,13 +707,11 @@ for (breed &lt;- dogBreeds)
       operator is called a <emphasis>generator</emphasis>, so named because
       it’s <emphasis>generating</emphasis> individual values from a collection
       for use in an expression.<indexterm>
-          <primary>arrow operator (&lt;-)</primary>
-        </indexterm><indexterm>
           <primary>&lt; &gt; (angle brackets)</primary>
 
-          <secondary>&lt;- arrow) operator</secondary>
-
-          <tertiary>using in for expressions</tertiary>
+          <secondary>&lt;- (left-arrow) operator, generators</secondary>
+        </indexterm><indexterm>
+          <primary>arrow operator (&lt;-)</primary>
         </indexterm><indexterm>
           <primary>generators</primary>
 
@@ -737,7 +745,11 @@ for (breed &lt;- dogBreeds
 
       <para id="para_to_add_more_than_one_filter_to">To add more than one
       filter to a <literal>for</literal> expression, separate the filters with
-      semicolons:</para>
+      semicolons:<indexterm>
+          <primary>; (semicolon)</primary>
+
+          <secondary>separating filters in for expression</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/double-filtered-for-script.scala
 
@@ -926,15 +938,13 @@ do {
       (<literal>&lt;-</literal>) from the discussion above about
       <literal>for</literal> loops? We can put it to work here, too. Let’s
       clean up the <literal>do-while</literal> example above:<indexterm>
+          <primary>&lt; &gt; (angle brackets)</primary>
+
+          <secondary>&lt;- (left-arrow) operator, generators</secondary>
+        </indexterm><indexterm>
           <primary>loops</primary>
 
           <secondary>generator expressions in</secondary>
-        </indexterm><indexterm>
-          <primary>&lt; &gt; (angle brackets)</primary>
-
-          <secondary>&lt;- (arrow) operator</secondary>
-
-          <tertiary>using in generator expressions</tertiary>
         </indexterm><indexterm>
           <primary>generator expressions</primary>
         </indexterm><indexterm>
@@ -1192,6 +1202,10 @@ for (bool &lt;- bools) {
       <literal>case</literal> clauses, the compiler will throw an “unreachable
       code” error on the next clause, because nothing will get past the
       default clause!<indexterm>
+          <primary>_ (underscore)</primary>
+
+          <secondary>wildcard character in Scala</secondary>
+        </indexterm><indexterm>
           <primary>cases in pattern matching</primary>
 
           <secondary>unreachable case</secondary>

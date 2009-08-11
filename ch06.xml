@@ -22,7 +22,7 @@
     class or trait before an instance can be created. Most object-oriented
     languages support abstract methods and some also support abstract fields
     and types.<indexterm>
-        <primary>abstract members</primary>
+        <primary>abstract type members</primary>
       </indexterm><indexterm class="startofrange" id="ch06_overriding">
         <primary>overriding class and trait members</primary>
       </indexterm><indexterm>
@@ -178,7 +178,7 @@ abstract class Widget {
       <literal>draw</literal> or rely on a parent class that implements it. We
       don’t need to return anything from <literal>draw</literal>, so its
       return value is <literal>Unit</literal>.<indexterm>
-          <primary>abstract members</primary>
+          <primary>abstract type members</primary>
 
           <secondary>overriding abstract methods</secondary>
         </indexterm></para>
@@ -289,9 +289,8 @@ class Button(val label: String) extends Widget with Clickable {
         </indexterm><indexterm class="startofrange" id="ch06_fieldstrait">
           <primary>fields</primary>
 
-          <secondary>overriding abstract and concrete fields</secondary>
-
-          <tertiary>in traits</tertiary>
+          <secondary>overriding abstract and concrete fields in
+          traits</secondary>
         </indexterm><indexterm class="startofrange"
           id="ch06_overridingfieldstrait">
           <primary>overriding class and trait members</primary>
@@ -1172,7 +1171,9 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
     the same package, and with the same name, they are called a
     <emphasis>companion class</emphasis> (or <emphasis>companion
     type</emphasis>) and a <emphasis>companion object</emphasis>,
-    respectively.</para>
+    respectively.<indexterm>
+        <primary>companion classes</primary>
+      </indexterm></para>
 
     <para id="para_there_is_no_namespace_collisio">There is no namespace
     collision when the name is reused in this way, because Scala stores the
@@ -1194,8 +1195,11 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       method for that instance. This is true for an <literal>object</literal>
       with a defined <literal>apply</literal> method (such as a companion
       object), as well as an instance of a <literal>class</literal> that
-      defines an <literal>apply</literal> method.<indexterm
-          class="startofrange" id="ch06_applymethod">
+      defines an <literal>apply</literal> method.<indexterm>
+          <primary>Pair class</primary>
+
+          <secondary>apply method</secondary>
+        </indexterm><indexterm class="startofrange" id="ch06_applymethod">
           <primary>apply method</primary>
         </indexterm><indexterm class="startofrange" id="ch06_companionapply">
           <primary>companion objects</primary>

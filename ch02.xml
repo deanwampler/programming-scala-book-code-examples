@@ -210,6 +210,11 @@ scala&gt;</programlisting>
     leave off the equals sign and method body. The enclosing type is then
     itself abstract. We’ll discuss abstract types in more detail in <xref
     linkend="BasicObjectOrientedProgramming" />.<indexterm>
+        <primary>= (equals sign)</primary>
+
+        <secondary sortas="method definitions">in method
+        definitions</secondary>
+      </indexterm><indexterm>
         <primary>def keyword</primary>
       </indexterm><indexterm>
         <primary>definitions, method</primary>
@@ -354,7 +359,11 @@ println( new OptionalUserProfileInfo(age = 29, location="Earth") )</programlisti
       as the default, as long as it can compile where used. For example, an
       expression could not refer to an instance field that will be computed
       inside the class or object body, but it could invoke a method on a
-      singleton object.</para>
+      singleton object.<indexterm>
+          <primary>constants</primary>
+
+          <secondary>default argument values</secondary>
+        </indexterm></para>
 
       <para id="para_a_related_limitation_is_that_a">A related limitation is
       that a default expression for one parameter can’t refer to another
@@ -951,7 +960,8 @@ scala&gt; println(double(2))
     Here is the definition we actually intended:<indexterm>
         <primary>= (equals sign)</primary>
 
-        <secondary>in method definition</secondary>
+        <secondary sortas="method definitions">in method
+        definitions</secondary>
 
         <tertiary>missing</tertiary>
       </indexterm></para>
@@ -1577,7 +1587,9 @@ t: (java.lang.String, Int, Double) = (Hello,1,2.3)</screen>
     there’s more than one way to define a tuple. We’ve been using the more
     common parenthesized syntax, but you can also use the arrow operator
     between two values, as well as special factory methods on the
-    tuple-related classes:</para>
+    tuple-related classes:<indexterm>
+        <primary>-&gt; (right arrow) operator</primary>
+      </indexterm></para>
 
     <screen>scala&gt; 1 -&gt; 2
 res0: (Int, Int) = (1,2)
@@ -1800,9 +1812,11 @@ Unknown: Oops2!</screen>
     structure does not have to match the directory structure. So, you can
     define packages in files independent of their “physical”
     location.<indexterm>
-        <primary>codes</primary>
-
-        <secondary>organizing in files and namespaces</secondary>
+        <primary>packages</primary>
+      </indexterm><indexterm>
+        <primary>namespaces</primary>
+      </indexterm><indexterm>
+        <primary>code, organizing in files and namespaces</primary>
       </indexterm></para>
 
     <para id="para_the_following_example_defines_">The following example
@@ -1909,6 +1923,10 @@ package com {
     for other languages. However, compared to Java, Scala greatly expands your
     options. The following example illustrates several ways to import Java
     types:<indexterm>
+        <primary>members</primary>
+
+        <secondary>importing</secondary>
+      </indexterm><indexterm>
         <primary>import statements</primary>
 
         <secondary>importing Java types and their members</secondary>
@@ -1935,7 +1953,7 @@ import java.util.{Map, HashMap}</programlisting>
     types, as shown on the second line.<indexterm>
         <primary>_ (underscore)</primary>
 
-        <secondary>use in Scala as wildcard</secondary>
+        <secondary>wildcard character in Scala</secondary>
       </indexterm></para>
 
     <para id="para_star_vs_underscore">Java uses the “star” character
@@ -2776,6 +2794,10 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
     We’ll discuss alternative approaches when we discuss
     <literal>for</literal> loops (see <xref linkend="GeneratorExpressions" />
     in <xref linkend="RoundingOutTheEssentials" />).<indexterm>
+        <primary>&lt; &gt; (angle brackets)</primary>
+
+        <secondary>&lt;- (left-arrow) operator, generators</secondary>
+      </indexterm><indexterm>
         <primary>@ (at sign)</primary>
 
         <secondary>marking annotations</secondary>
@@ -2791,18 +2813,12 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
       </indexterm><indexterm>
         <primary>&lt; &gt; (angle brackets)</primary>
 
-        <secondary>&lt;%, use in parameterized and abstract type view bounds
-        declarations</secondary>
+        <secondary>&lt;% indicating view bound in type declaration</secondary>
       </indexterm><indexterm>
         <primary>&lt; &gt; (angle brackets)</primary>
 
         <secondary>&lt;:, use in parameterized and abstract type
         declarations</secondary>
-      </indexterm><indexterm>
-        <primary>&lt; &gt; (angle brackets)</primary>
-
-        <secondary>&lt;-, use in comprehensions in generator
-        expressions</secondary>
       </indexterm><indexterm>
         <primary>= (equals sign)</primary>
 
@@ -2817,7 +2833,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
         <secondary>separator between identifiers and type
         annotations</secondary>
       </indexterm><indexterm>
-        <primary>_ underscore</primary>
+        <primary>_ (underscore)</primary>
 
         <secondary>placeholder in imports, function literals, etc.</secondary>
       </indexterm></para>

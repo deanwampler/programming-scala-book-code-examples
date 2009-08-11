@@ -932,7 +932,11 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       implementation is complex. Like any language, testing its robustness can
       be a challenge. Users will try many combinations of expressions. They
       will probably not understand the compiler error messages that refer to
-      the internals we’ve hidden behind the DSL.</para>
+      the internals we’ve hidden behind the DSL.<indexterm>
+          <primary>internal DSLs</primary>
+
+          <seealso>DSLs</seealso>
+        </indexterm></para>
 
       <para id="para_also_designing__good__dsls_is">Designing a quality DSL is
       difficult. With an API, you can follow the Scala library conventions for
@@ -992,10 +996,19 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
     attractive feature of this library is the way it defines an internal DSL
     that makes parser definitions look very similar to familiar grammar
     notations, like EBNF (Extended Backus-Naur Form—<link linkend="EBNF"
-    xrefstyle="select:nopage">[BNF]</link>).<indexterm>
+    xrefstyle="select:nopage">[BNF]</link>).<indexterm class="startofrange"
+        id="ch11_parsercombinators">
+        <primary>parser combinators, external DSLs with</primary>
+      </indexterm><indexterm>
+        <primary>external DSLs</primary>
+
+        <seealso>DSLs</seealso>
+      </indexterm><indexterm>
+        <primary>context-free grammars</primary>
+      </indexterm><indexterm>
         <primary>EBNF (Extended Backus-Naur Form) grammar notation</primary>
       </indexterm><indexterm class="startofrange" id="ch11_DSLexternal">
-        <primary>DSLs (Domain-specific Languages)</primary>
+        <primary>DSLs (Domain-Specific Languages)</primary>
 
         <secondary>external DSLs with parser combinators</secondary>
       </indexterm></para>
@@ -1010,13 +1023,11 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       combinator framework makes it easy to combine parsers to handle
       sequential and alternative cases, repetition, optional terms,
       etc.<indexterm>
-          <primary>DSLs (Domain-specific Languages)</primary>
+          <primary>DSLs (Domain-Specific Languages)</primary>
 
           <secondary>external DSLs with parser combinators</secondary>
 
           <tertiary>parser combinators</tertiary>
-        </indexterm><indexterm>
-          <primary>parser combinators</primary>
         </indexterm></para>
 
       <para id="para_other_references">We’ll learn more about parsing
@@ -1038,11 +1049,16 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       modify the grammar slightly, since our external DSL does not have to be
       valid Scala syntax. Other changes will make parser construction easier.
       Here’s an example written in the external DSL:<indexterm
-          class="startofrange" id="ch11_payrollexternalDSL">
+          class="startofrange" id="ch11_parsercombpayrollext">
+          <primary>parser combinators, external DSLs with</primary>
+
+          <secondary>payroll external DSL</secondary>
+        </indexterm><indexterm class="startofrange"
+          id="ch11_payrollexternalDSL">
           <primary>payroll external DSL (example)</primary>
         </indexterm><indexterm class="startofrange"
           id="ch11_DSLexternalpayroll">
-          <primary>DSLs (Domain-specific Languages)</primary>
+          <primary>DSLs (Domain-Specific Languages)</primary>
 
           <secondary>external DSLs with parser combinators</secondary>
 
@@ -1094,7 +1110,12 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       punctuation. It is still convenient to surround the list of deductions
       with curly braces. We now use a comma to separate the individual
       deductions, as that will make the parser’s job easier. We can also drop
-      the parentheses we used before.</para>
+      the parentheses we used before.<indexterm>
+          <primary>grammars</primary>
+
+          <secondary>EBNF notation for external payroll DSL
+          grammar</secondary>
+        </indexterm></para>
 
       <para id="para_to_see_how_closely_the__intern">To see how closely the
       internal DSL for Scala’s parser combinator library resembles the
@@ -1104,10 +1125,6 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
           <primary>EBNF (Extended Backus-Naur Form) grammar notation</primary>
 
           <secondary>external payroll DSL grammar</secondary>
-        </indexterm><indexterm>
-          <primary>parsers</primary>
-
-          <secondary>grammar for payroll external DSL</secondary>
         </indexterm></para>
 
       <screen>paycheck = empl gross deduct;
@@ -1179,6 +1196,10 @@ doubleNumber = ...</screen>
       relationships between the items. Notice that the grammar forms have a
       hierarchical decomposition; although not a directed acyclic graph, as
       generally speaking, these grammars can have cycles.<indexterm>
+          <primary>. (semicolon)</primary>
+
+          <secondary>ending production rule definitions</secondary>
+        </indexterm><indexterm>
           <primary>nonterminals</primary>
         </indexterm><indexterm>
           <primary>production rules</primary>
@@ -1236,7 +1257,9 @@ doubleNumber = ...</screen>
       possible (and supported in the Scala library), a few of which we’ll
       discuss below. See the <link linkend="ScalaAPI2008"
       xrefstyle="select:nopage">[ScalaAPI2008]</link> entry for
-      <literal>Parsers</literal> for more details.<indexterm>
+      <literal>Parsers</literal> for more details.<indexterm
+      class="endofrange"
+      startref="ch11_parsercombpayrollext"></indexterm><indexterm>
           <primary>Parsers object</primary>
 
           <secondary>documentation of composition operators</secondary>
@@ -1257,12 +1280,12 @@ doubleNumber = ...</screen>
       written using Scala’s parser combinators. At this point, we won’t do
       anything to actually calculate an employee’s paycheck, so we’ll append
       <literal>V1</literal> to the class name:<indexterm class="startofrange"
-          id="ch11_parsersScala">
-          <primary>parsers</primary>
+          id="ch11_parsercombScala">
+          <primary>parser combinators, external DSLs with</primary>
 
           <secondary>Scala implementation of external DSL grammar</secondary>
         </indexterm><indexterm class="startofrange" id="ch11_DSLsparser">
-          <primary>DSLs (Domain-specific Languages)</primary>
+          <primary>DSLs (Domain-Specific Languages)</primary>
 
           <secondary>external DSLs with parser combinators</secondary>
 
@@ -1710,8 +1733,8 @@ scala&gt;</screen>
       <para id="para_well_not_quite_we_re_still_n">Well, not quite. We’re
       still not calculating an actual paycheck for ol’ Buck. Let’s complete
       our implementation.<indexterm class="endofrange"
-      startref="ch11_DSLsparser"></indexterm><indexterm class="endofrange"
-      startref="ch11_parsersScala"></indexterm></para>
+      startref="ch11_parsercombScala"></indexterm><indexterm
+      class="endofrange" startref="ch11_DSLsparser"></indexterm></para>
     </sect2>
 
     <sect2 id="_generating_paychecks_with_the_external_dsl">
@@ -1725,13 +1748,13 @@ scala&gt;</screen>
       <literal>Employee</literal> instance and the completed
       <literal>Paycheck</literal>.<indexterm class="startofrange"
           id="ch11_parsersfinal">
-          <primary>parsers</primary>
+          <primary>parser combinators, external DSLs with</primary>
 
           <secondary>generating paychecks with
           PayrollParserCombinators</secondary>
         </indexterm><indexterm class="startofrange"
           id="ch11_DSLexternalpaycheck">
-          <primary>DSLs (Domain-specific Languages)</primary>
+          <primary>DSLs (Domain-Specific Languages)</primary>
 
           <secondary>external DSLs with parser combinators</secondary>
 
@@ -1880,9 +1903,7 @@ class PayrollParserCombinators(val employees: Map[Name, Employee])
       productions are unchanged, as the original parser instances are fine as
       is. Most of the changes reflect our desire to calculate the paycheck as
       we go.<indexterm>
-          <primary>@ (at sign)</primary>
-
-          <secondary>@return annotations</secondary>
+          <primary sortas="return annotations">@return annotations</primary>
         </indexterm><indexterm>
           <primary>Javadoc-style @return annotations</primary>
         </indexterm></para>
@@ -2063,7 +2084,9 @@ object PayrollParserCombinatorsSpec
       construction of the parser itself. Also, as we discussed above, we
       weren’t as careful about thread-safety and other issues in the
       implementation.<indexterm class="endofrange"
-      startref="ch11_parsersfinal"></indexterm><indexterm class="endofrange"
+      startref="ch11_parsercombinators"></indexterm><indexterm
+      class="endofrange" startref="ch11_parsersfinal"></indexterm><indexterm
+      class="endofrange"
       startref="ch11_DSLexternalpaycheck"></indexterm><indexterm
       class="endofrange" startref="ch11_DSLexternal"></indexterm></para>
     </sect2>
@@ -2077,6 +2100,14 @@ object PayrollParserCombinatorsSpec
       examples in this chapter, the parser combinators implementation was
       easier to design and write than the implementation for the internal DSL.
       However, we found that debugging the internal DSL was easier.<indexterm>
+          <primary>external DSLs</primary>
+
+          <secondary>internal DSLs versus</secondary>
+        </indexterm><indexterm>
+          <primary>internal DSLs</primary>
+
+          <secondary>external DSLs versus</secondary>
+        </indexterm><indexterm>
           <primary>DSLs (Domain-Specific Languages)</primary>
 
           <secondary>internal versus external</secondary>
@@ -2098,6 +2129,10 @@ object PayrollParserCombinatorsSpec
       improve performance, among other benefits. If you need a fast parser, a
       packrat parser will take you further before you need to consider more
       specialized tools, like parser generators.<indexterm>
+          <primary>memoization</primary>
+
+          <secondary>support by packrat parsers</secondary>
+        </indexterm><indexterm>
           <primary>PEGs (parsing expression grammars)</primary>
         </indexterm><indexterm>
           <primary>parsing expression grammars (PEGs)</primary>

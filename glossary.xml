@@ -90,7 +90,7 @@
 
           <secondary>Actor model of</secondary>
         </indexterm><indexterm>
-          <primary>Actor Model of Concurrency</primary>
+          <primary>Actor model of concurrency</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -972,8 +972,6 @@
       are assigned once. Functions can be assigned to variables and returned
       from other functions.<indexterm>
           <primary>functional programming</primary>
-
-          <secondary>defined</secondary>
         </indexterm></para>
     </glossdef>
   </glossentry>

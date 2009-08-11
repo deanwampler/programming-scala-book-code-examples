@@ -149,7 +149,7 @@ object Foo {
     share the same <emphasis>namespace</emphasis>, unlike Java. We’ll discuss
     this more in <xref linkend="UniformAccessPrinciple" /> in <xref
     linkend="AdvancedObjectOrientedProgramming" />.<indexterm>
-        <primary>member</primary>
+        <primary>members</primary>
       </indexterm></para>
 
     <para id="para_new_instances_of_reference_types">Finally, new instances of
@@ -170,6 +170,10 @@ object Foo {
     <literal>3.14</literal>, etc. In fact, there are no public constructors
     for these types, so an expression like <literal>val i = new
     Int(1)</literal> won’t compile.<indexterm>
+        <primary>primitive data types</primary>
+
+        <secondary>instances of value types corresponding to</secondary>
+      </indexterm><indexterm>
         <primary>value types</primary>
       </indexterm></para>
 

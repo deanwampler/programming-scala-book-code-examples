@@ -788,7 +788,7 @@ println(eventually())</programlisting>
         </indexterm><indexterm>
           <primary>concurrency</primary>
 
-          <secondary>traditional, using threads and events</secondary>
+          <secondary>traditional, using threading and events</secondary>
 
           <tertiary>one-off threads</tertiary>
         </indexterm></para>
@@ -830,7 +830,7 @@ object SpawnExample {
       on:<indexterm>
           <primary>concurrency</primary>
 
-          <secondary>traditional, using threads and events</secondary>
+          <secondary>traditional, using threading and events</secondary>
 
           <tertiary>using java.util.concurrent</tertiary>
         </indexterm><indexterm>
@@ -915,7 +915,7 @@ hello from Thread 13</screen>
         </indexterm><indexterm class="startofrange" id="ch09_concurrentevents">
           <primary>concurrency</primary>
 
-          <secondary>traditional, using threads and events</secondary>
+          <secondary>traditional, using threading and events</secondary>
 
           <tertiary>events</tertiary>
         </indexterm></para>

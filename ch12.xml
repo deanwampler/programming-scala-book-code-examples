@@ -10,7 +10,11 @@
   object-oriented programming. The type system tries to be logically
   comprehensive, complete, and consistent. It exceeds limitations in Java’s
   type system while containing innovations which appear in Scala for the first
-  time.<indexterm class="startofrange" id="ch12_datatypes">
+  time.<indexterm>
+      <primary>type system</primary>
+
+      <seealso>data types</seealso>
+    </indexterm><indexterm class="startofrange" id="ch12_datatypes">
       <primary>data types</primary>
     </indexterm></para>
 
@@ -308,6 +312,8 @@ List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
       companion objects are singleton objects associated with a companion
       class. There is only one instance of a singleton object, as its name
       implies, so type parameters would be meaningless.<indexterm>
+          <primary>parameterized methods</primary>
+        </indexterm><indexterm>
           <primary>parameterized types</primary>
 
           <secondary>parameterized methods</secondary>
@@ -359,6 +365,15 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
     parameters. In other contexts, you might want
     <emphasis>contravariant</emphasis> or <emphasis>invariant</emphasis>
     behavior, which we’ll describe shortly.<indexterm>
+        <primary>type variance</primary>
+
+        <seealso>variance under inheritance</seealso>
+      </indexterm><indexterm>
+        <primary>generics</primary>
+
+        <secondary>variance under inheritance, differences between Java and
+        Scala</secondary>
+      </indexterm><indexterm>
         <primary>data types</primary>
 
         <secondary>variance under inheritance</secondary>
@@ -377,6 +392,8 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
     <emphasis>variance annotations</emphasis>, <literal>+</literal>,
     <literal>-</literal>, or nothing. In other words, the type designer
     decides how the type should vary under inheritance.<indexterm>
+        <primary>declaration site</primary>
+      </indexterm><indexterm>
         <primary>- (minus sign)</primary>
 
         <secondary>variance annotations</secondary>
@@ -571,7 +588,9 @@ var f: C =&gt; C = (c: C)      =&gt; new C       // #1
     <para id="para_the_last_line_does_not_compile">The last line, #5, does not
     compile because we are attempting to use a covariant argument in a
     contravariant position. We’re also attempting to use a contravariant
-    return value where only covariant values are allowed.</para>
+    return value where only covariant values are allowed.<indexterm>
+        <primary>Design by Contract</primary>
+      </indexterm></para>
 
     <para id="para_okay_but__why__is_all_this_co">Why is the behavior correct
     in these cases? Here’s where <emphasis>Design by Contract</emphasis>
@@ -611,7 +630,7 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
     <literal>C</literal> and return a <literal>C</literal>. It will call the
     passed-in function, passing a <literal>C</literal> instance to it, and it
     will expect to receive a <literal>C</literal> back.<indexterm>
-        <primary>contract of behavior</primary>
+        <primary>contract</primary>
       </indexterm></para>
 
     <para id="para_in_line_5_we_pass_usef_a_f">In line #5, we pass
@@ -663,7 +682,7 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
       </indexterm><indexterm>
         <primary>+ (plus sign)</primary>
 
-        <secondary>variance annotation</secondary>
+        <secondary>variance annotations</secondary>
       </indexterm></para>
 
     <note id="para_note_the_8216_043_8217_">
@@ -1710,12 +1729,13 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
     supports abstract types, which are common in functional languages. We
     introduced abstract types in <xref
     linkend="AbstractTypesAndParameterizedTypes" /> in <xref
-    linkend="TypeLessDoMore" />.<indexterm>
+    linkend="TypeLessDoMore" />.<indexterm class="startofrange"
+        id="ch12_abstracttypes">
         <primary>abstract types</primary>
-      </indexterm><indexterm>
+      </indexterm><indexterm class="startofrange" id="ch12_datatypesabstract">
         <primary>data types</primary>
 
-        <secondary>abstract types</secondary>
+        <secondary>abstract</secondary>
       </indexterm></para>
 
     <para id="para_these_two_features_overlap_som">These two features overlap
@@ -1771,13 +1791,25 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
     &lt;: AnyRef</literal>. That is, <literal>t</literal> had an
     <emphasis>upper type bound</emphasis> (superclass) of
     <literal>AnyRef</literal>. <literal>AnyVal</literal> types weren’t
-    allowed.</para>
+    allowed.<indexterm>
+        <primary>upper type bounds</primary>
+      </indexterm><indexterm>
+        <primary>type bounds</primary>
+
+        <secondary>using in abstract type declarations</secondary>
+      </indexterm></para>
 
     <para id="para_we_can_also_have__lower_bounds">We can also have
     <emphasis>lower type bounds</emphasis> (subclasses) and we can use most of
     the <emphasis>value type</emphasis>s (see <xref linkend="ValueTypes" />
     below) in the bounds expressions. Here is an example illustrating the most
-    common options:</para>
+    common options:<indexterm>
+        <primary>value types</primary>
+
+        <secondary>use in type bounds expressions</secondary>
+      </indexterm><indexterm>
+        <primary>lower type bounds</primary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/abstracttypes/abs-type-examples-script.scala
 
@@ -1881,7 +1913,9 @@ trait T {
       library:<indexterm>
           <primary>data types</primary>
 
-          <secondary>parameterized versus abstract types</secondary>
+          <secondary>abstract</secondary>
+
+          <tertiary>parameterized types versus</tertiary>
         </indexterm><indexterm>
           <primary>parameterized types</primary>
 
@@ -1922,7 +1956,11 @@ trait T {
       trying to use an incompatible type in a particular context when in fact
       they are paths to compatible types. Second, it’s awkward to express
       methods like <literal>List.::</literal> (“cons”) using abstract types
-      where type changes (expansion in this case) can occur:</para>
+      where type changes (expansion in this case) can occur:<indexterm>
+          <primary>methods</primary>
+
+          <secondary>abstract types as arguments</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">class List[+A] {
   ...
@@ -1933,7 +1971,11 @@ trait T {
       <para id="para_also_if_you_want_to_express_v">Also, if you want to
       express variance under inheritance that is tied to the type
       abstractions, then parameterized types with variance annotations make
-      these behaviors obvious and explicit.</para>
+      these behaviors obvious and explicit.<indexterm>
+          <primary>variance under inheritance</primary>
+
+          <secondary>abstract versus parameterized types</secondary>
+        </indexterm></para>
 
       <para id="para_these_limitations_of_abstract_">These limitations of
       abstract types really reflect the tension between object-oriented
@@ -2015,7 +2057,9 @@ println( new FileBulkReader(new File("abstract-types-script.scala")).read )</pro
       object-oriented background, you will naturally tend to use parameterized
       types more often than abstract types. The Scala standard library tends
       to emphasize parameterized types, too. Still, you should learn the
-      merits of abstract types and use them when they make sense.</para>
+      merits of abstract types and use them when they make sense.<indexterm
+      class="endofrange" startref="ch12_abstracttypes"></indexterm><indexterm
+      class="endofrange"></indexterm></para>
     </sect2>
   </sect1>
 

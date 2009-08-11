@@ -413,7 +413,7 @@ class ButtonCountObserver {
       linkend="BDD" xrefstyle="select:nopage">[BDD]</link>) “specification”
       that exercises the combined <literal>Button</literal> and
       <literal>Subject</literal> types:<indexterm>
-          <primary>BDD (behavior-driven development)</primary>
+          <primary>BDD (Behavior-Driven Development)</primary>
 
           <secondary>specification exercising combined Button and Subject
           types</secondary>

@@ -100,6 +100,10 @@
       Smalltalk <phrase role="keep-together">offer</phrase> very high
       productivity due to their flexibility, powerful metaprogramming, and
       <phrase role="keep-together">elegance</phrase>.<indexterm>
+          <primary>Ruby</primary>
+
+          <secondary>dynamic typing</secondary>
+        </indexterm><indexterm>
           <primary>dynamically typed languages</primary>
         </indexterm></para>
 
@@ -118,7 +122,9 @@
 
         <para id="para_the_word_typing_is_used_in">The word “typing” is used
         in many contexts in software. Pierce offers the following “plausible”
-        definition that is useful for our purposes.</para>
+        definition that is useful for our purposes.<indexterm>
+            <primary>typing</primary>
+          </indexterm></para>
 
         <blockquote>
           <attribution>Benjamin C. Pierce, <citetitle>Types and Programming
@@ -136,7 +142,9 @@
         system is used to catch various errors, like unsupported operations on
         particular data structures, attempting to combine data in an undefined
         way (e.g., trying to add an integer to a string), breaking
-        abstractions, etc.</para>
+        abstractions, etc.<indexterm>
+            <primary>type system</primary>
+          </indexterm></para>
 
         <para id="para_informally_in_static_typing_">Informally, in static
         typing, a <emphasis>variable</emphasis> is bound to a particular type
@@ -145,7 +153,12 @@
         type <literal>A</literal>, you can’t assign a value of a different
         type <literal>B</literal> to it, unless <literal>B</literal> is a
         subtype of <literal>A</literal>, for some reasonable definition of
-        “subtype”.</para>
+        “subtype”.<indexterm>
+            <primary>variables</primary>
+
+            <secondary sortas="static and dynamic typing">in static and
+            dynamic typing</secondary>
+          </indexterm></para>
 
         <para id="para_in_dynamic_typing_the_type_is">In dynamic typing, the
         type is bound to the <emphasis>value</emphasis>, not the
@@ -166,7 +179,11 @@
 
         <para id="para_scala_and_java_are_statically_">Scala and Java are
         statically-typed languages, while Ruby, Python, Groovy, JavaScript,
-        and Smalltalk are dynamically-typed languages.</para>
+        and Smalltalk are dynamically-typed languages.<indexterm>
+            <primary>Java</primary>
+
+            <secondary>static typing</secondary>
+          </indexterm></para>
 
         <para id="para_for_simplicity_we_will_often_">For simplicity, we will
         often use the terms <emphasis>static language</emphasis> and
@@ -182,7 +199,11 @@
         required. While most languages allow some mixture of strong versus
         weak typing, Scala, Java, and Ruby are
         <emphasis>predominantly</emphasis> strongly-typed languages. Some
-        languages, like C and Perl, are more weakly typed.</para>
+        languages, like C and Perl, are more weakly typed.<indexterm>
+            <primary>weak versus string typing</primary>
+          </indexterm><indexterm>
+            <primary>strong versus weak typing</primary>
+          </indexterm></para>
       </sidebar>
 
       <para id="para_despite_their_productivity_adv">Despite their
@@ -294,7 +315,15 @@
             composition</emphasis>. Scala’s traits work much like Ruby’s
             <emphasis>modules</emphasis>. If you’re a Java programmer, think
             of traits as unifying interfaces with their
-            implementations.</para>
+            implementations.<indexterm>
+                <primary>object-oriented programming (OOP)</primary>
+
+                <secondary>mixed paradigm in Scala</secondary>
+              </indexterm><indexterm>
+                <primary>mixin composition</primary>
+              </indexterm><indexterm>
+                <primary>traits</primary>
+              </indexterm></para>
 
             <para id="para_everything_is_object">In Scala, everything is
             <emphasis>really</emphasis> an object. Scala does not have
@@ -329,13 +358,15 @@
             concurrent, autonomous processes. Scala supports this model with
             its <emphasis>Actors</emphasis> library, but it allows for both
             mutable and immutable variables.<indexterm>
-                <primary>Actors library</primary>
+                <primary>Actors</primary>
               </indexterm><indexterm>
                 <primary>variables</primary>
 
                 <secondary>mutable and immutable</secondary>
               </indexterm><indexterm>
-                <primary>functional programming (FP)</primary>
+                <primary>functional programming</primary>
+
+                <secondary>mixed paradigm in Scala</secondary>
               </indexterm></para>
 
             <para id="para_functions_are_first_class_">Functions are
@@ -434,6 +465,8 @@
             greater flexibility for solving design problems in a type-safe
             way.<indexterm>
                 <primary>type system</primary>
+
+                <secondary>Scala</secondary>
               </indexterm><indexterm>
                 <primary>data types</primary>
 
@@ -529,6 +562,8 @@
       Martin was hired by Sun Microsystems to produce the reference
       implementation of <userinput>javac</userinput>, the Java compiler that
       ships with the Java Developer Kit (JDK) today.<indexterm>
+          <primary>Odersky, Martin</primary>
+        </indexterm><indexterm>
           <primary>Java</primary>
 
           <secondary>JDK (Java Development Kit)</secondary>
@@ -908,11 +943,11 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <literal>/* comment */</literal> can cross line boundaries.<indexterm>
         <primary>/ (slash)</primary>
 
-        <secondary>/* */ in multiline commands</secondary>
+        <secondary>/* */ in multiline comments</secondary>
       </indexterm><indexterm>
         <primary>/ (slash)</primary>
 
-        <secondary>// in single-line commands</secondary>
+        <secondary>// in single-line comments</secondary>
       </indexterm><indexterm>
         <primary>comments</primary>
       </indexterm></para>
@@ -943,6 +978,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
       <literal>main</literal> method, just as you would normally do with the
       <userinput>java</userinput> command. (We’ll show an example
       shortly.)<indexterm>
+          <primary>scala command</primary>
+        </indexterm><indexterm>
           <primary>compiling versus interpreting</primary>
         </indexterm><indexterm>
           <primary>interpreting versus compiling</primary>
@@ -985,7 +1022,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
       </indexterm><indexterm>
         <primary>class keyword</primary>
       </indexterm><indexterm>
-        <primary>{ } curly braces</primary>
+        <primary>{ } (curly braces)</primary>
 
         <secondary>enclosing class body</secondary>
       </indexterm></para>
@@ -1016,7 +1053,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
       </indexterm><indexterm>
         <primary>type annotations</primary>
       </indexterm><indexterm>
-        <primary>variable length argument lists</primary>
+        <primary>variable-length argument lists</primary>
       </indexterm></para>
 
     <note id="para_note_when_explicit_type_infor">
@@ -1040,9 +1077,9 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     parameterized here with <literal>String</literal>. Note that Scala uses
     square brackets <literal>[…]</literal> for parameterized types, while Java
     uses angle brackets <literal>&lt;…&gt;</literal>.<indexterm>
-        <primary>&lt; &gt; (angle brackets</primary>
+        <primary>&lt; &gt; (angle brackets)</primary>
 
-        <secondary>in method names</secondary>
+        <secondary sortas="method names">in method names</secondary>
       </indexterm><indexterm>
         <primary>[ ] (square brackets)</primary>
 
@@ -1072,7 +1109,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <xref linkend="FunctionalProgramming" />.<indexterm>
         <primary>= (equals sign)</primary>
 
-        <secondary>method body following</secondary>
+        <secondary sortas="method definitions">in method
+        definitions</secondary>
       </indexterm></para>
 
     <para id="para_the_method_body_calls_the_map">The method body calls the
@@ -1147,6 +1185,8 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_this_code_does_exactly_the_sam">This code does exactly the
     same thing, but with a third fewer characters.<indexterm>
+        <primary>singleton objects</primary>
+      </indexterm><indexterm>
         <primary>objects</primary>
 
         <secondary sortas="Scala">in Scala</secondary>
@@ -1162,7 +1202,9 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
     for example.) Scala uses <literal>objects</literal> for situations where
     other languages would use “class-level” members, like
     <literal>statics</literal> in Java. We don’t really need more than one
-    <emphasis>instance</emphasis> here, so a singleton is fine.</para>
+    <emphasis>instance</emphasis> here, so a singleton is fine.<indexterm>
+        <primary>objects</primary>
+      </indexterm></para>
 
     <note id="para_note_why_doesn_t_scala_suppor">
       <para>Why doesn’t Scala support statics? Since
@@ -1207,7 +1249,7 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
     in several contexts.<indexterm>
         <primary>_ (underscore)</primary>
 
-        <secondary>shorthand notation for method parameter</secondary>
+        <secondary>placeholder in imports, function literals, etc.</secondary>
       </indexterm></para>
 
     <para id="para_you_can_also_use_this_short_ha">You can also use this
@@ -1290,7 +1332,7 @@ object Upper {
     function-literal shorthands, as in this example, can take some getting
     used to, but once you are comfortable with them, they yield very readable
     code with minimal use of temporary variables.<indexterm>
-        <primary>_ (unserscore)</primary>
+        <primary>_ (underscore)</primary>
 
         <secondary>method chaining and function-literal shorthands</secondary>
       </indexterm></para>
@@ -1372,7 +1414,7 @@ object Upper {
     the need to synchronize access to shared, mutable state, it is far easier
     to write robust, concurrent applications.<indexterm class="startofrange"
         id="ch01_actors">
-        <primary>actors</primary>
+        <primary>Actors</primary>
 
         <secondary>example</secondary>
       </indexterm><indexterm>
@@ -1447,6 +1489,12 @@ package shapes {
     <literal>var</literal> keywords in <xref
     linkend="VariableDeclarationsAndDefinitions" /> in <xref
     linkend="TypeLessDoMore" />.<indexterm>
+        <primary>fields</primary>
+
+        <secondary>mutable</secondary>
+      </indexterm><indexterm>
+        <primary>mutable fields</primary>
+      </indexterm><indexterm>
         <primary>var keyword</primary>
       </indexterm><indexterm>
         <primary>constructors</primary>
@@ -1462,6 +1510,10 @@ package shapes {
     fact, there is no <literal>virtual</literal> keyword in Scala. As before,
     we omit the curly braces “<literal>{…}</literal>” around the body of
     <literal>toString</literal>, since it has only one expression.<indexterm>
+        <primary>C#</primary>
+
+        <secondary>override keyword for concrete methods</secondary>
+      </indexterm><indexterm>
         <primary>override keyword</primary>
       </indexterm><indexterm>
         <primary>classes</primary>
@@ -1482,7 +1534,11 @@ package shapes {
     keyword is required on the method. Abstract methods in Scala are just like
     abstract methods in Java and C#. (See <xref linkend="OverridingMembers" />
     in <xref linkend="AdvancedObjectOrientedProgramming" /> for more
-    details.)</para>
+    details.)<indexterm>
+        <primary>C#</primary>
+
+        <secondary>abstract methods</secondary>
+      </indexterm></para>
 
     <para>The <literal>draw</literal> method returns <literal>Unit</literal>,
     which is a type that is roughly equivalent to <literal>void</literal> in
@@ -1515,7 +1571,11 @@ package shapes {
     C#, <literal>this</literal> is how an instance refers to itself. In this
     context, where <literal>this</literal> is the right-hand side of a String
     concatenation expression (using the plus sign),
-    <literal>this.toString</literal> is invoked implicitly.</para>
+    <literal>this.toString</literal> is invoked implicitly.<indexterm>
+        <primary>C#</primary>
+
+        <secondary>this keyword</secondary>
+      </indexterm></para>
 
     <note id="para_note_of_course_in_a_real_app">
       <para>Of course, in a real application, you would not implement drawing
@@ -1561,7 +1621,7 @@ package shapes {
     <literal>*</literal> is used in Java.<indexterm>
         <primary>_ (underscore)</primary>
 
-        <secondary>wildcard in Scala</secondary>
+        <secondary>wildcard character in Scala</secondary>
       </indexterm></para>
 
     <note id="para_note_because_is_a_valid_cha">
@@ -1577,7 +1637,9 @@ package shapes {
     <literal>object</literal> that is also named <literal>Actor</literal>. The
     <literal>class</literal> and <literal>object</literal> can have the same
     name, as we will see in <xref linkend="CompanionObjects" /> in <xref
-    linkend="AdvancedObjectOrientedProgramming" />.</para>
+    linkend="AdvancedObjectOrientedProgramming" />.<indexterm>
+        <primary>Actor object</primary>
+      </indexterm></para>
 
     <para id="para_our_actor_class_definition_s">Our actor class definition,
     <literal>ShapeDrawingActor</literal>, is an <literal>object</literal> that
@@ -1602,6 +1664,10 @@ package shapes {
     to handle the message. Because of the <literal>case</literal> clauses, it
     looks like a typical switch statement in Java, for example, and the
     behavior is very similar.<indexterm>
+        <primary>function literals</primary>
+
+        <secondary>passing to method for pattern matching</secondary>
+      </indexterm><indexterm>
         <primary>{ } (curly braces)</primary>
 
         <secondary>substituting for parentheses in method call</secondary>
@@ -1658,6 +1724,8 @@ package shapes {
       see that joining functional-style pattern matching with object-oriented
       polymorphic dispatching is a powerful combination that is a benefit of
       mixed paradigm languages like Scala.<indexterm>
+          <primary>imperative languages</primary>
+        </indexterm><indexterm>
           <primary>pattern matching</primary>
 
           <secondary>polymorphism versus</secondary>

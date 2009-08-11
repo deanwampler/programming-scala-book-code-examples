@@ -317,6 +317,10 @@ you want, you must write the annotation class in Java.
     expanded from <ulink url="http://www.scala-lang.org/node/106"></ulink>).
     We start with the direct children of <literal>Annotation</literal>,
     followed by the children of <literal>StaticAnnotation</literal>.<indexterm>
+        <primary>Annotation class</primary>
+
+        <secondary>Scala annotations derived from</secondary>
+      </indexterm><indexterm>
         <primary>annotations</primary>
 
         <secondary>Scala annotations derived from Annotation</secondary>
