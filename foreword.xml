@@ -4,95 +4,57 @@
 <preface id="foreword" role="foreword">
   <prefaceinfo>
     <author>
-      <firstname>Fred</firstname>
+      <firstname>Jonas</firstname>
 
-      <surname>Stringer</surname>
+      <surname>Bonér</surname>
 
       <affiliation>
-        <jobtitle></jobtitle>
+        <jobtitle>Independent Consultant, Scalable Solutions AB</jobtitle>
       </affiliation>
     </author>
 
-    <date>June 1, 2009</date>
+    <date>August, 2009</date>
   </prefaceinfo>
 
   <title>Foreword</title>
 
-  <para>The exchange of information via digital communication networks has
-  never been more critical and important than it is today. A few years ago we
-  labeled specific traffic, separate circuits, or dedicated networks as being
-  <emphasis>mission critical</emphasis>. Today, it is typical for the
-  communications that support our lives, such as the Supervisory Control And
-  Data Acquisition (SCADA) communications for our drinking water supplies, to
-  be labeled mission critical—critical not just to a corporation’s business
-  but to the global economy. The applications for communication networks
-  continue to expand, adding more critical uses such as remote surgical
-  consultation, distance health care, electrical power generation command and
-  control, industrial support systems, and banking. The list is nearly
-  endless, and as soon as it appears, it is out-of-date. The expectation is
-  that communication networks will always be ready and able to exchange
-  information.</para>
+  <para>If there has been a common theme throughout my career as a programmer,
+  it has been the quest for better abstractions and better tools to support
+  the craft of writing software. During the years, I have come to value one
+  trait more than any other: composability. If one can write code with good
+  composability, it usually means that other traits we software developers
+  value—such as orthogonality, loose coupling, and high cohesion—are already
+  present. It is all connected.</para>
 
-  <para>The network engineer has the task of designing a network and service
-  that meets the defined requirements, typically a long list of items
-  balancing technical, operational, and financial characteristics. It might
-  include a list of IT applications and services for which the engineer has to
-  determine the appropriate transmission tolerances (for example delay,
-  jitter, packet loss, or bit error rate). The requirements list might also
-  have a business priority for the various applications, or the requirements
-  might be more vague and left to the engineer’s discretion. Regardless if it
-  is defined, when a company invests money in a network it has a justified
-  expectation that that network will be highly available—and the most likely
-  expectation is that it will be available all the time, or 100% availability.
-  Engineers and statisticians will immediately see the error in that
-  expectation. Most network users and customers see no flaws in the 100%
-  expectation. The term <emphasis>high availability</emphasis> in
-  communication networks typically means that the network is ready to provide
-  the service required by the user 99.999% of the time. That requirement
-  allows for about five minutes of outage time per year. Of course, most users
-  expect that outage will not occur when they are using the network
-  services.</para>
+  <para>When I discovered Scala some years ago, the thing that made the
+  biggest impression on me was its composability. Through some very elegant
+  design choices and simple yet powerful abstractions that were taken from the
+  Object-Oriented and Functional Programming worlds, Martin Odersky has
+  managed to create a language with high cohesion and orthogonal, deep
+  abstractions that invites composability in all dimensions of software
+  design. Scala is truly a SCAlable LAnguage that scales with usage, from
+  scripting all the way up to large-scale enterprise applications and
+  middleware. Scala was born out of academia, but it has grown into a
+  pragmatic and practical language that is very much ready for real-world
+  production use.</para>
 
-  <para>To design a high availability network and service, the designer must
-  consider a rather long list of factors, starting with the failure rate of
-  the network elements (NEs) such as routers, switches, and gateways. This
-  includes all the available component redundancies and optional capabilities,
-  the failure rate of the circuits connecting the NEs, the amount of
-  interconnect between the NE (a.k.a. the network topology), the
-  routing/switching architectures, the alternate path capabilities, alternate
-  routing and switching features, and on and on. The complete list is
-  potentially an entire chapter of a book, even without a discussion of how
-  the variables perform and interact.</para>
+  <para>What excites me most about this book is that it’s so practical. Dean
+  and Alex have done a fantastic job, not only by explaining the language
+  through interesting discussions and samples, but also by putting it in the
+  context of the real world. Itʼs written for the programmer who wants to get
+  things done. I had the pleasure of getting to know Dean some years ago when
+  we were both part of the aspect-oriented programming community. Dean holds a
+  rare mix of deep analytical academic thinking and a pragmatic,
+  get-things-done kind of mentality. Alex, whom I’ve had the pleasure to meet
+  once, is leading the API team at Twitter, Inc. Alex has played a leading
+  role in moving Twitter’s code and infrastructure to Scala, making it one on
+  the first companies to successfully deploy Scala in production.</para>
 
-  <para>Large organizations often have the resources to divide the network
-  design tasks across groups of specialists. The engineers responsible for
-  meeting the availability objective are often well versed in failure
-  analysis, mathematics, and statistics. A quick web search shows that there
-  are a number of texts available on the subject for the mathematically
-  inclined. Operating systems like JUNOS are an area of study unto themselves,
-  and there is certainly no shortage of detailed analysis on the various
-  architectures, all documented in books.</para>
-
-  <para>Most networks operate without a large staff of specialists. The
-  engineers don’t have time to do a deep-dive study of OS architectures,
-  system architectures, or a detailed analysis of each subassembly of a
-  system. They need a resource with just enough descriptive detail on the
-  features and functions of the equipment and the network features it
-  provides. They need useful tools that include real examples of user commands
-  and system messages—and having troubleshooting guidance in the same place is
-  a real advantage. They need a pragmatic perspective and a few tools for
-  making comparative analysis, which are as useful for designing a greenfield
-  network as they are for augmenting part of the network or improving the
-  availability performance of an existing network.</para>
-
-  <para>And that is exactly what Orin Blomberg, James Sonderegger, Senad
-  Palislamovic, and Kieran Milne accomplish in <citetitle>JUNOS High
-  Availability</citetitle>. You won’t find a theoretical study of the Juniper
-  operating system, detailed analysis of the software architecture, failure
-  mode effects analysis, a Markov model of the probable failure modes and
-  recovery performance, or Weibull analysis. The goal of the text is not to
-  make you a reliability expert. The goal is to help you create, implement,
-  and maintain an effective network design with Juniper Networks devices
-  running JUNOS software. The goal is help you create continuous systems that
-  are up 99.999% of the time.</para>
+  <para>You are about to learn how to write reusable components using mixin
+  and function composition; how to write concurrent applications using Scala’s
+  actors; how to make effective use of Scala’s XML/XPath support; how to
+  utilize Scalaʼs rich, flexible, and expressive syntax to build
+  Domain-Specific Languages; how to effectively test your Scala code; how to
+  use Scala with popular frameworks such as Spring, Hadoop, and Terracotta;
+  and much, much more. Enjoy the ride. I sure did.</para>
 </preface>

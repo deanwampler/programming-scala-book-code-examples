@@ -167,20 +167,27 @@
     </sect2>
   </sect1>
 
-  <sect1 id="para_other_file_convention">
+  <sect1>
     <title>Safari® Books Online</title>
 
-    <note id="para_note_when_you_see_a_safari_">
-      <para>When you see a Safari® Books Online icon on the cover of your
-      favorite technology book, that means the book is available online
-      through the O’Reilly Network Safari Bookshelf.</para>
+    <note role="safarienabled">
+      <para>Safari Books Online is an on-demand digital library that lets you
+      easily search over 7,500 technology and creative reference books and
+      videos to find the answers you need quickly.</para>
     </note>
 
-    <para id="para_safari_offers_a_solution_that_">Safari offers a solution
-    that’s better than e-books. It’s a virtual library that lets you easily
-    search thousands of top tech books, cut and paste code samples, download
-    chapters, and find quick answers when you need the most accurate, current
-    information. Try it for free at <ulink role="orm:hideurl:ital"
+    <para>With a subscription, you can read any page and watch any video from
+    our library online. Read books on your cell phone and mobile devices.
+    Access new titles before they are available for print, and get exclusive
+    access to manuscripts in development and post feedback for the authors.
+    Copy and paste code samples, organize your favorites, download chapters,
+    bookmark key sections, create notes, print out pages, and benefit from
+    tons of other time-saving features.</para>
+
+    <para>O’Reilly Media has uploaded this book to the Safari Books Online
+    service. To have full digital access to this book and others on similar
+    topics from O’Reilly and other publishers, sign up for free at <ulink
+    role="orm:hideurl:ital"
     url="http://my.safaribooksonline.com/?portal=oreilly">http://my.safaribooksonline.com</ulink>.</para>
   </sect1>
 

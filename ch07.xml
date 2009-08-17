@@ -341,8 +341,8 @@
     general-purpose parsing conventions, such as support for
     <emphasis>implicits</emphasis>. Furthermore, it is all
     <emphasis>type-safe</emphasis>. You can use the same techniques to write
-    your own convenient “operators” for mini <emphasis>domain-specific
-    languages</emphasis> (see <xref
+    your own convenient “operators” for mini <emphasis>Domain-Specific
+    Languages</emphasis> (see <xref
     linkend="DomainSpecificLanguages" />).</para>
 
     <para

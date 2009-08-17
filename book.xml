@@ -3,6 +3,7 @@
 <book>
   <title>Programming Scala</title>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bookinfo.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInlucde" href="foreword.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch00.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch01.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch02.xml"/>

@@ -512,7 +512,7 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     Languages</emphasis>, or DSLs, provide a convenient syntactical means for
     expressing goals in a given problem domain. For example, SQL provides just
     enough of a programming language to handle the problems of working with
-    databases, making it a domain-specific language.<indexterm>
+    databases, making it a Domain-Specific Language.<indexterm>
         <primary>Domain-Specific Languaages</primary>
 
         <see>DSLs</see>

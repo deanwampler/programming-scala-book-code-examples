@@ -229,7 +229,7 @@ scala&gt;</programlisting>
     for a method. This is required for <emphasis>currying</emphasis> methods,
     which we’ll discuss in <xref linkend="Currying" /> in <xref
     linkend="FunctionalProgramming" />. It is also very useful for defining
-    your own domain-specific languages (DSLs), as we’ll see in <xref
+    your own Domain-Specific Languages (DSLs), as we’ll see in <xref
     linkend="DomainSpecificLanguages" />. Note that each argument list is
     surrounded by parentheses and the arguments are separated by
     commas.</para>
