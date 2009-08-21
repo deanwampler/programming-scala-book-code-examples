@@ -1607,6 +1607,8 @@
       provide guaranteed linear-time parsing using
       <emphasis>memoization</emphasis> and unambiguous grammars <link
       linkend="PEG" xrefstyle="select:nopage">[PEG]</link>.<indexterm>
+          <primary>PEGs (parsing expression grammars)</primary>
+        </indexterm><indexterm>
           <primary>grammars</primary>
 
           <secondary>parsing expression grammars (PEGs)</secondary>
@@ -1764,7 +1766,7 @@
       <para>Used in the context of functions to mean that they are
       <emphasis>side-effect free</emphasis>. See also <emphasis>referential
       transparency</emphasis>.<indexterm>
-          <primary>pure</primary>
+          <primary>pure (side-effect free functions)</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -1815,7 +1817,9 @@
     <glossdef>
       <para>The term used for adding or overriding members in a type body for
       a <emphasis>compound type</emphasis>.<indexterm>
-          <primary>refinement</primary>
+          <primary>refinement in compound type declarations</primary>
+
+          <secondary>defined</secondary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -2151,7 +2155,7 @@
       which invokes the original function, and so forth, back and forth. There
       is a proposal for the Scala version 2.8 compiler to include a trampoline
       implementation.<indexterm>
-          <primary>trampoline</primary>
+          <primary>trampolines</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -2432,7 +2436,7 @@
       parameter</emphasis>). An in-scope <emphasis>implicit type
       conversion</emphasis> method with the same signature can also be used as
       a view.<indexterm>
-          <primary>views and view bounds</primary>
+          <primary>views</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -2444,7 +2448,9 @@
       <para>A type specification of the form <literal>A &lt;% B</literal>,
       which says that any type can be used for <literal>A</literal> as long as
       an in-scope <emphasis>view</emphasis> exists that can convert an
-      <literal>A</literal> to a <literal>B</literal>.</para>
+      <literal>A</literal> to a <literal>B</literal>.<indexterm>
+          <primary>view bounds</primary>
+        </indexterm></para>
     </glossdef>
   </glossentry>
 

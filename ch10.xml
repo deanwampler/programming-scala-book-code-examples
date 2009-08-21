@@ -180,7 +180,7 @@ res6: scala.xml.NodeSeq = true</screen>
         </indexterm><indexterm>
           <primary>XML</primary>
 
-          <secondary>looping through and matching</secondary>
+          <secondary>looping and matching</secondary>
         </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/XML/reading/for-loop.scala

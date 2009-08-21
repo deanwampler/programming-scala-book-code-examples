@@ -772,7 +772,7 @@ def handle (method: HttpMethod) = method match {
     <emphasis>separate</emphasis> source files. This is why we picked the HTTP
     method hierarchy for the example. The list of methods is very
     stable.<indexterm>
-        <primary>Open-Closed Principle</primary>
+        <primary>Open-Closed Principle (OCP)</primary>
       </indexterm></para>
 
     <tip id="para_tip_avoid_sealed_case_class">
@@ -920,6 +920,10 @@ body length? 13</screen>
     some other important types that aren’t shown. Some details are omitted for
     clarity. When the underlying “runtime” is discussed, the points made apply
     equally to the JVM and the .NET CLR, except where noted.<indexterm>
+        <primary>reference types</primary>
+
+        <secondary>parent of, AnyRef</secondary>
+      </indexterm><indexterm>
         <primary>AnyRef object</primary>
       </indexterm><indexterm>
         <primary>AnyVal object</primary>
@@ -1243,7 +1247,9 @@ body length? 13</screen>
           </row>
 
           <row>
-            <entry><para><literal>ScalaObject</literal></para></entry>
+            <entry><para><literal>ScalaObject<indexterm>
+                <primary>ScalaObject class</primary>
+              </indexterm></literal></para></entry>
 
             <entry><para><literal>AnyRef</literal></para></entry>
 
@@ -1461,7 +1467,11 @@ println(c2.m)</programlisting>
     up by the <literal>m</literal> methods reflects the
     <emphasis>linearization</emphasis> of the inheritance hierarchy, with a
     few missing pieces we’ll discuss shortly. First, let’s see what the
-    invocation sequence of the constructors looks like:</para>
+    invocation sequence of the constructors looks like:<indexterm>
+        <primary>reference types</primary>
+
+        <secondary>linearization algorithm for</secondary>
+      </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/linearization/linearization2-script.scala
 
@@ -1508,11 +1518,7 @@ println(clist.reverse)</programlisting>
     linearization for reference types actually ends with
     <literal>ScalaObject</literal>, <literal>AnyRef</literal>, and
     <literal>Any</literal>. So the linearization for <literal>C2</literal> is
-    actually:<indexterm>
-        <primary>reference types</primary>
-
-        <secondary>linearization for</secondary>
-      </indexterm></para>
+    actually:</para>
 
     <screen>List(C2, T3, T2, T1, C1, ScalaObject, AnyRef, Any)</screen>
 

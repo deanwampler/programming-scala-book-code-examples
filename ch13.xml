@@ -102,6 +102,10 @@ public @interface Pre {
     JRuby. The name of the variable for this string, <literal>value</literal>,
     is a conventional name for the most important field in the
     annotation.<indexterm>
+        <primary>metadata</primary>
+
+        <seealso>annotations</seealso>
+      </indexterm><indexterm>
         <primary sortas="Pre annotation">@Pre annotation</primary>
       </indexterm></para>
 
@@ -224,7 +228,11 @@ class SerialVersionUID(uid: Long) extends StaticAnnotation</programlisting>
     This also means that Scala annotations have no way to define default
     values in version 2.7.X, as implicit arguments don’t work. However, the
     new default arguments feature in version 2.8.0 may work. (It is not yet
-    implemented at the time of this writing).</para>
+    implemented at the time of this writing).<indexterm>
+        <primary>metadata</primary>
+
+        <secondary>default values and</secondary>
+      </indexterm></para>
 
     <para id="para_like_java_and_net_annotatio">Like Java (and .NET)
     annotations, a Scala annotation clause applies to the definition it
@@ -1902,9 +1910,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     <para id="para_consider_two_methods_on_seq_">Consider two methods on
     <literal>Seq</literal>, <literal>first</literal> and
     <literal>firstOption</literal>:<indexterm>
-        <primary>Seq class</primary>
-
-        <secondary>first and firstOption methods</secondary>
+        <primary>Seq class, first and firstOption methods</primary>
       </indexterm></para>
 
     <screen>trait Seq[+A] {
@@ -1976,7 +1982,8 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     <emphasis>component</emphasis>). Proposed definitions usually start with
     assumptions about the platform, granularity, deployment and configuration
     scenarios, versioning issues, etc. <link linkend="Szyperski1998"
-    xrefstyle="select:nopage">[Szyperski1998]</link>.<indexterm>
+    xrefstyle="select:nopage">[Szyperski1998]</link>.<indexterm
+    class="startofrange" id="ch13_components"></indexterm><indexterm>
         <primary>modules</primary>
 
         <secondary>components and</secondary>
@@ -1994,7 +2001,11 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     and use the term <emphasis>component</emphasis> informally to refer to a
     grouping of types and packages that exposes coherent abstractions
     (preferably just one) for the services it offers, has minimal coupling to
-    other components, and is internally cohesive.</para>
+    other components, and is internally cohesive.<indexterm>
+        <primary>scalable abstractions</primary>
+
+        <see>components</see>
+      </indexterm></para>
 
     <para id="para_all_languages_offer_mechanisms">All languages offer
     mechanisms for defining components, at least to some degree. Objects are
@@ -2035,7 +2046,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
         </indexterm><indexterm>
           <primary>visibility</primary>
 
-          <secondary>fine-grained rules for in Scala</secondary>
+          <secondary>fine-grained visibility rules in Scala</secondary>
         </indexterm></para>
 
       <para id="para_consider_the_following_encodedstring_component">Consider
@@ -2264,11 +2275,6 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
           <primary>self-type annotations</primary>
 
           <secondary>and abstract type members</secondary>
-        </indexterm><indexterm>
-          <primary>scalable abstractions</primary>
-
-          <secondary>self-type annotations and abstract type
-          members</secondary>
         </indexterm></para>
     </sect2>
 
@@ -2294,6 +2300,10 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
       <literal>AbstractSubject</literal>. Perhaps this drawback wasn’t so
       evident before, because our simple examples never needed to access
       <literal>Button</literal> state information or methods.<indexterm>
+          <primary>polymorphism</primary>
+
+          <secondary>family polymorphism</secondary>
+        </indexterm><indexterm>
           <primary>family polymorphism</primary>
         </indexterm><indexterm>
           <primary>covariant specialization</primary>
@@ -2572,7 +2582,8 @@ object ButtonObserver3Spec extends Specification {
       compiler plugins.</para>
 
       <para id="para_revisit_in_di">We’ll revisit these idioms in <xref
-      linkend="DependencyInjectionInScala" /> below.</para>
+      linkend="DependencyInjectionInScala" /> below.<indexterm
+      class="endofrange" startref="ch13_components"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -3822,11 +3833,7 @@ class TextClient(userProfile: TwitterUserProfile)
       <literal>TwitterClientUIComponent</literal>, a
       <literal>TwitterLocalCacheComponent</literal>, and a
       <literal>TwitterServiceComponent</literal>, in addition to being a
-      <literal>TwitterClientComponent</literal>.<indexterm>
-          <primary>mixins</primary>
-
-          <secondary>Twitter client component model</secondary>
-        </indexterm></para>
+      <literal>TwitterClientComponent</literal>.</para>
 
       <para id="para_the_textclient_constructor_t">The
       <literal>TextClient</literal> constructor takes one argument, a user

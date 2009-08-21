@@ -297,7 +297,7 @@ class Button(val label: String) extends Widget with Clickable {
 
           <secondary>abstract and concrete fields</secondary>
 
-          <tertiary>overriding in traits</tertiary>
+          <tertiary>in traits</tertiary>
         </indexterm></para>
 
       <para id="para_unfortunately_in_the_v2_7_x_v">Unfortunately, in the
@@ -616,7 +616,9 @@ object ButtonClickableObserverVetoableSpec2 extends Specification {
       and a <literal>var</literal> reassignment in a derived class:<indexterm>
           <primary>overriding class and trait members</primary>
 
-          <secondary>abstract and concrete fields in classes</secondary>
+          <secondary>abstract and concrete fields</secondary>
+
+          <tertiary>in classes</tertiary>
         </indexterm><indexterm>
           <primary>classes</primary>
 

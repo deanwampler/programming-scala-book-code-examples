@@ -375,7 +375,7 @@
       the following output:<indexterm>
           <primary>scala command</primary>
 
-          <secondary>-cp . option</secondary>
+          <secondary>-cp option</secondary>
         </indexterm></para>
 
       <screen> HELLO WORLD!</screen>
@@ -895,9 +895,11 @@ object MessagePrinter {
       <literal>$tag</literal> method was originally introduced to optimize
       pattern matching, but it is now deprecated and it may be removed in a
       forthcoming release of Scala.<indexterm>
+          <primary sortas="tag method">$ tag method (ScalaObject)</primary>
+        </indexterm><indexterm>
           <primary>ScalaObject class</primary>
 
-          <secondary>&amp; tag method</secondary>
+          <secondary>$ tag method</secondary>
         </indexterm></para>
 
       <para id="para_javap_output">Let’s compare the
@@ -1124,7 +1126,7 @@ case class Complex(real: Double, imaginary: Double) {
     xrefstyle="select:nopage">[SBT]</link>).<indexterm>
         <primary>sbt (simple build tool)</primary>
       </indexterm><indexterm>
-        <primary>maven build tool</primary>
+        <primary>Maven build tool</primary>
       </indexterm><indexterm>
         <primary>build tools</primary>
       </indexterm></para>
@@ -1644,6 +1646,10 @@ case class Complex(real: Double, imaginary: Double) {
       for the supported editors. Most of the editor-specific directories
       contain instructions for installing the plugin. In other cases, consult
       your editor’s instructions for installing third-party plugins.<indexterm>
+          <primary>Mac OS X</primary>
+
+          <secondary>TextMate editor</secondary>
+        </indexterm><indexterm>
           <primary>Vim editor</primary>
         </indexterm><indexterm>
           <primary>Emacs editor</primary>
@@ -2015,7 +2021,7 @@ Complex addition with (0.0, 0.0) should
       testing</emphasis> in the Haskell literature (e.g., <link
       linkend="OSullivan2009"
       xrefstyle="select:nopage">[O'Sullivan2009]</link>).<indexterm>
-          <primary>QuickCheck tool (Haskell)</primary>
+          <primary>QuickCheck (Haskell)</primary>
         </indexterm><indexterm>
           <primary>Haskell, QuickCheck tool</primary>
         </indexterm><indexterm>
@@ -2867,8 +2873,9 @@ case class ComplexBean(
       converted to their corresponding Java primitives. We showed the mapping
       in <xref linkend="AnyVal-value-types" />. In particular, note that
       <literal>Unit</literal> is mapped to <literal>void</literal>.<indexterm>
-          <primary>primitive data types (Java), conversion of AnyVal types
-          to</primary>
+          <primary>primitive data types</primary>
+
+          <secondary>Java, conversion of AnyVal types to</secondary>
         </indexterm><indexterm>
           <primary>AnyVal types, conversion to Java primitives</primary>
         </indexterm><indexterm>

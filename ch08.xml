@@ -615,10 +615,7 @@ for (i &lt;- 1 to 10)
 
           <tertiary>lists</tertiary>
         </indexterm><indexterm>
-          <primary>lists</primary>
-
-          <secondary sortas="functional programming">in functional
-          programming</secondary>
+          <primary>lists in functional programming</primary>
         </indexterm></para>
 
       <para id="para_supporting_immutability_when_">In the interest of
@@ -719,10 +716,7 @@ val list2 = list1.::("read").::("should").::("People")</programlisting>
       in the Set wouldn’t necessarily match the order of “insertion”
       operations. In practice, sets are usually implemented with more
       efficient data structures.<indexterm>
-          <primary>sets</primary>
-
-          <secondary sortas="functional programming">in functional
-          programming</secondary>
+          <primary>sets in functional programming</primary>
         </indexterm></para>
 
       <para id="para_just_as_for_map_the_scala_">Just as for
@@ -1293,7 +1287,7 @@ println((1 to 1000000) reduceRight(_ + _))</programlisting>
 
           <secondary>Options object</secondary>
         </indexterm><indexterm>
-          <primary>Option object</primary>
+          <primary>Option class</primary>
 
           <secondary>functional operations on</secondary>
         </indexterm></para>
@@ -1336,6 +1330,10 @@ for (option &lt;- List(noneNumber, someNumber)) {
     where we used pattern matching in our Actor that drew geometric shapes. We
     discussed pattern matching in depth in <xref linkend="PatternMatching" />
     in <xref linkend="RoundingOutTheEssentials" />.<indexterm>
+        <primary>polymorphism</primary>
+
+        <secondary>pattern matching versus</secondary>
+      </indexterm><indexterm>
         <primary>functional programming</primary>
 
         <secondary>pattern matching</secondary>
@@ -1812,7 +1810,7 @@ println(fs.capitalize.reverse)</programlisting>
       methods to classes has been called <emphasis>pimp my library</emphasis>
       <link linkend="Odersky2006"
       xrefstyle="select:nopage">[Odersky2006]</link>.<indexterm>
-          <primary>pimp my library</primary>
+          <primary>Pimp My Library design pattern</primary>
         </indexterm><indexterm>
           <primary>methods</primary>
 
@@ -2017,6 +2015,8 @@ whileAwesome(count &lt; 5) {
         <secondary>order of initialization, using lazy vals</secondary>
       </indexterm><indexterm>
         <primary>vals, lazy</primary>
+
+        <see>lazy values</see>
       </indexterm><indexterm>
         <primary>functional programming</primary>
 

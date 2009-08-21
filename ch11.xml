@@ -444,6 +444,10 @@ List(buck, jane).foreach { employee =&gt;
 
       <para id="para_definition_of_payrollCalculator">Consider this line in
       the definition of <literal>payrollCalculator</literal>:<indexterm>
+          <primary>operator notation</primary>
+
+          <secondary>infix operator notation</secondary>
+        </indexterm><indexterm>
           <primary>DSLs (Domain-Specific Languages)</primary>
 
           <secondary>internal DSL for payroll application

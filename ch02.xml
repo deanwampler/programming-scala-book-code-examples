@@ -179,6 +179,10 @@ scala&gt;</programlisting>
     <literal>vals</literal> declared inside parent classes. We’ll discuss
     these exceptions in <xref
     linkend="BasicObjectOrientedProgramming" />.<indexterm>
+        <primary>parameters</primary>
+
+        <secondary>constructor, initialization of vals and vars</secondary>
+      </indexterm><indexterm>
         <primary>classes</primary>
 
         <secondary>derived, overriding vals declared in parent
@@ -325,7 +329,11 @@ println(joiner(strings = List("Programming", "Scala"), separator = " "))</progra
       <literal>#2</literal>. In the first line, it may not be obvious what the
       second, <literal>" "</literal> argument is for. In the second case, we
       supply the name <literal>separator</literal>, which suggests the purpose
-      of the argument.</para>
+      of the argument.<indexterm>
+          <primary>parameters</primary>
+
+          <secondary>order of, named arguments and</secondary>
+        </indexterm></para>
 
       <para id="para_the_second_benefit_is_that_you">The second benefit is
       that you can specify the parameters in any order when you specify them
@@ -433,7 +441,9 @@ println( factorial(5) )</programlisting>
       actually return 1 for <literal>i &lt; 0</literal>.) After the definition
       of the nested method, <literal>factorial</literal> calls it with the
       passed-in value <literal>i</literal> and the initial accumulator value
-      of 1.</para>
+      of 1.<indexterm>
+          <primary>recursion</primary>
+        </indexterm></para>
 
       <para id="para_like_a_local_variable_declarat">Like a local variable
       declaration in many languages, a nested method is only visible inside
@@ -557,11 +567,14 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
     <para id="para_method_type_inference">Type inference is used for methods,
     too. In most cases, the return type of the method can be inferred, so the
     <literal>:</literal> and return type can be omitted. However, type
-    annotations are required for all method parameters.<indexterm
-        class="startofrange" id="cg02_returntype">
+    annotations are required for all method parameters.<indexterm>
+        <primary>recursion</primary>
+
+        <secondary>explicit return type annotation</secondary>
+      </indexterm><indexterm class="startofrange" id="cg02_returntype">
         <primary>return type for methods</primary>
       </indexterm><indexterm>
-        <primary>parameters, method</primary>
+        <primary>parameters</primary>
 
         <secondary>required return type annotations</secondary>
       </indexterm></para>
@@ -684,9 +697,9 @@ println( upCase("Hello") )</programlisting>
     method in <xref linkend="NestingMethodDefinitions" />, previously in this
     chapter. Let’s remove the <literal>: Int</literal> return type on the
     nested <literal>fact</literal> method:<indexterm>
-        <primary>recursive methods</primary>
+        <primary>recursion</primary>
 
-        <secondary>explicit return type requirement</secondary>
+        <secondary>explicit return type annotation</secondary>
       </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-recursive-return-script.scala
@@ -1284,8 +1297,6 @@ b2: Boolean = false</screen>
           <secondary>enclosing character literals</secondary>
         </indexterm><indexterm>
           <primary>Unicode characters</primary>
-
-          <secondary>character literals</secondary>
         </indexterm><indexterm>
           <primary>literals</primary>
 
@@ -1847,7 +1858,7 @@ class MyClass {
     and the use of <literal>modules</literal> as namespaces in Ruby:<indexterm>
         <primary>namespaces</primary>
 
-        <secondary>similarity of Scala's nested package syntax to</secondary>
+        <secondary>relationship to Scala's nested package syntax</secondary>
       </indexterm><indexterm>
         <primary>packages</primary>
 
@@ -2096,7 +2107,7 @@ import mutable._      // Everything from the "collection.mutable" package</progr
 
         <secondary>enclosing parameterized types in Scala</secondary>
       </indexterm><indexterm>
-        <primary>parmeterized types</primary>
+        <primary>parameterized types</primary>
       </indexterm><indexterm>
         <primary>data types</primary>
 

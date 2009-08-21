@@ -56,9 +56,7 @@
       that are more succinct and flexible to improve their productivity. This
       is one reason why so-called “scripting” languages like Ruby and Python
       have become more popular recently.<indexterm>
-          <primary>scripting languages</primary>
-
-          <secondary>reason for popularity</secondary>
+          <primary>scripting languages, popularity of</primary>
         </indexterm></para>
 
       <para id="para_the_never_ending_need_to_scale">The never-ending need to
@@ -487,9 +485,7 @@
             explicit <emphasis>selftypes</emphasis>, 2) abstract type members
             and generics, 3) nested classes, and 4) <emphasis>mixin</emphasis>
             composition using <emphasis>traits</emphasis>.<indexterm>
-                <primary>scalability</primary>
-
-                <secondary>Scala's language mechanisms supporting</secondary>
+                <primary>scalability, Scala support for</primary>
               </indexterm><indexterm>
                 <primary>generics</primary>
               </indexterm><indexterm>
@@ -757,9 +753,7 @@
     number you see will be different if you installed a different release.
     From now on, when we show command output that contains the version number,
     we’ll show it as <literal>version 2.8.0.final</literal>.<indexterm>
-        <primary>versions</primary>
-
-        <secondary>Scala</secondary>
+        <primary>versions, Scala</primary>
       </indexterm></para>
 
     <para id="para_congratulations_you_have_installed_scala">Congratulations,
@@ -818,7 +812,7 @@
     url="http://www.scala-lang.org/downloads">downloads page</ulink>, or you
     can install it with the <userinput>sbaz</userinput> package tool, as
     follows:<indexterm>
-        <primary>sbaz package tool</primary>
+        <primary>sbaz tool</primary>
       </indexterm></para>
 
     <screen>sbaz install scala-devel-docs</screen>
@@ -834,7 +828,7 @@
 
         <secondary>information on</secondary>
       </indexterm><indexterm>
-        <primary>scalac command</primary>
+        <primary>scalac compiler</primary>
       </indexterm><indexterm>
         <primary>scala command</primary>
       </indexterm></para>
@@ -908,7 +902,12 @@ scala&gt;</screen>
     interpreter shows you the type and value of <literal>book</literal>. This
     can be very handy for understanding complex declarations. The second line
     prints the value of <literal>book</literal>, which is “Programming
-    Scala”.</para>
+    Scala”.<indexterm>
+        <primary>val keyword</primary>
+
+        <secondary sortas="declaration">in declaration of read-only
+        variable</secondary>
+      </indexterm></para>
 
     <tip id="para_note_experimenting_with_the_">
       <para>Experimenting with the <userinput>scala</userinput> command in the
@@ -1166,6 +1165,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     syntax <literal>new Upper</literal> creates a new instance. The
     <literal>up</literal> variable is declared as a read-only “value” using
     the <literal>val</literal> keyword.<indexterm>
+        <primary>println function</primary>
+      </indexterm><indexterm>
         <primary>new operator</primary>
       </indexterm><indexterm>
         <primary>val keyword</primary>
@@ -1274,6 +1275,8 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
     <literal>println</literal> by itself. (See <xref linkend="PredefObject" />
     in <xref linkend="ScalaObjectSystem" /> for details on the types and
     methods that are automatically imported or defined.)<indexterm>
+        <primary>println function</primary>
+      </indexterm><indexterm>
         <primary>I/O (input/output)</primary>
 
         <secondary>automatic importation of methods by Scala</secondary>
@@ -1352,7 +1355,7 @@ object Upper {
 
         <secondary>compiling Java class</secondary>
       </indexterm><indexterm>
-        <primary>scalac command</primary>
+        <primary>scalac compiler</primary>
 
         <secondary>compiling code into JVM .class file</secondary>
       </indexterm></para>
@@ -1786,11 +1789,7 @@ ShapeDrawingActor ! "exit"</programlisting>
     example, start by compiling the first two files. You can get the sources
     from the O’Reilly download site (see <xref
     linkend="GettingCodeExamples" /> in the <xref linkend="Preface" /> for
-    details) or you can create them yourself.<indexterm>
-        <primary>website for this book</primary>
-
-        <secondary>actor example source code</secondary>
-      </indexterm></para>
+    details) or you can create them yourself.</para>
 
     <para id="para_use_the_following_command_to_c">Use the following command
     to compile the files:</para>

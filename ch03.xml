@@ -35,7 +35,20 @@
     invocation looks like an operator invocation. This is called “infix”
     notation, where the operator is between the instance and the argument.
     We’ll find out more about this shortly.<indexterm>
-        <primary>symbols in method names and other identifiers</primary>
+        <primary>operator notation</primary>
+
+        <secondary>infix operator notation</secondary>
+      </indexterm><indexterm>
+        <primary>methods</primary>
+
+        <secondary>operators as</secondary>
+
+        <tertiary>infix notation</tertiary>
+      </indexterm><indexterm>
+        <primary>symbols</primary>
+
+        <secondary sortas="method names">in method names and other
+        identifiers</secondary>
       </indexterm><indexterm>
         <primary>infix notation</primary>
       </indexterm><indexterm>
@@ -170,6 +183,16 @@
           a method on a Java or .NET class when the method’s name is identical
           to a Scala reserved word, e.g.,
           <literal>java.net.Proxy.‵type‵()</literal>.<indexterm>
+              <primary>Java</primary>
+
+              <secondary>invoking method name identical to Scala reserved
+              word</secondary>
+            </indexterm><indexterm>
+              <primary sortas="NET">.NET</primary>
+
+              <secondary>invoking method name identical to Scala reserved
+              word</secondary>
+            </indexterm><indexterm>
               <primary>`` (back quotes) in literals</primary>
             </indexterm></para>
         </listitem>
@@ -779,7 +802,7 @@ for (breed &lt;- dogBreeds
 
           <secondary>yielding collections</secondary>
         </indexterm><indexterm>
-          <primary>yieid keyword</primary>
+          <primary>yield keyword</primary>
         </indexterm></para>
 
       <tip id="para_tip_for_expressions_may_be_">
@@ -971,6 +994,10 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
       inherits a number of methods for working with sequences and iterable
       data structures, including those necessary to use it in a
       <literal>for</literal> loop.<indexterm>
+          <primary>sequences</primary>
+
+          <secondary>Range.Inclusive class</secondary>
+        </indexterm><indexterm>
           <primary>Range.Inclusive class</primary>
         </indexterm><indexterm>
           <primary>RichInt class</primary>
@@ -1715,8 +1742,6 @@ Person(Charlie,32,Developer) is underpaid.</screen>
           finally clauses</primary>
         </indexterm><indexterm>
           <primary>try, catch, and finally clauses</primary>
-
-          <secondary>pattern matching in</secondary>
         </indexterm><indexterm>
           <primary>pattern matching</primary>
 
@@ -1792,7 +1817,11 @@ try {
       we highlighted the synergy between pattern matching and polymorphism.
       Most of the time, you want to avoid the problems of “switch” statements
       that know a class hierarchy, because they have to be modified every time
-      the hierarchy is changed.</para>
+      the hierarchy is changed.<indexterm>
+          <primary>polymorphism</primary>
+
+          <secondary>pattern matching versus</secondary>
+        </indexterm></para>
 
       <para id="para_in_our_drawing_actor_example_">In our drawing actor
       example, we used pattern matching to separate different “categories” of

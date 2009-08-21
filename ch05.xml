@@ -88,7 +88,7 @@
     parameters with types, and the method’s return value.<indexterm>
         <primary>overloaded methods</primary>
       </indexterm><indexterm>
-        <primary>signature, method</primary>
+        <primary>signature</primary>
       </indexterm></para>
 
     <para id="para_type_erasure_method_overloading">However, there is an
@@ -1100,14 +1100,6 @@ of type scopeA.PrivateClass4
 
           <secondary sortas="private and protected">of private and protected
           visibility</secondary>
-        </indexterm><indexterm>
-          <primary>protected visibility</primary>
-
-          <secondary>scoped</secondary>
-        </indexterm><indexterm>
-          <primary>private visibility</primary>
-
-          <secondary>scoped</secondary>
         </indexterm><indexterm class="startofrange" id="ch05_visibilityscoped">
           <primary>visibility</primary>
 

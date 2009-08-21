@@ -479,7 +479,7 @@ Finished in 0 second, 10 ms
       assertion:<indexterm>
           <primary>JUnit</primary>
         </indexterm><indexterm>
-          <primary>TDD (test-driven development)</primary>
+          <primary>TDD (Test-Driven Development)</primary>
         </indexterm></para>
 
       <programlisting linenumbering="unnumbered">assertEquals(3, buttonObserver.count)</programlisting>

@@ -25,7 +25,11 @@
   so we encourage you not to worry that you must master the type system in
   order to use Scala effectively. You might choose to skim this chapter if
   you’re new to Scala, so you’ll know where to look when type-related
-  questions arise later.</para>
+  questions arise later.<indexterm>
+      <primary>types</primary>
+
+      <seealso>data types</seealso>
+    </indexterm></para>
 
   <para id="para_still_the_more_you_know_about">Still, the more you know about
   the type system, the more you will be able to exploit its features in your
