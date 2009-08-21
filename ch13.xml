@@ -3463,15 +3463,16 @@ scala&gt;</screen>
       minimizing the coupling between these components, so it is relatively
       easy to substitute different components for different
       circumstances.<indexterm>
-          <primary>IoC (inversion of control)</primary>
-        </indexterm><indexterm>
           <primary>inversion of control (IoC)</primary>
         </indexterm><indexterm class="startofrange" id="ch13_DICakePattern">
-          <primary>Dependency Injection (DI), using Cake Pattern</primary>
-        </indexterm><indexterm>
+          <primary>dependency injection (DI)</primary>
+
+          <secondary>using Cake Pattern</secondary>
+        </indexterm><indexterm class="startofrange"
+          id="ch13_designpatternCAKE">
           <primary>design patterns</primary>
 
-          <secondary>Dependency Injection (DI) implementation, Cake
+          <secondary>dependency injection (DI) implementation, Cake
           Pattern</secondary>
         </indexterm><indexterm class="endofrange"
       startref="ch13_designpatternVisitor"></indexterm><indexterm
@@ -3905,9 +3906,11 @@ Chat history:
       dependency injection in Scala. See <link linkend="Boner2008b"
       xrefstyle="select:nopage">[Bonér2008b]</link> for other
       examples.<indexterm class="endofrange"
-      startref="ch13_Twitterclient"></indexterm><indexterm class="endofrange"
-      startref="ch13_DICakePattern"></indexterm><indexterm class="endofrange"
-      startref="ch12_CakePattern"></indexterm><indexterm class="endofrange"
+      startref="ch13_designpatternCAKE"></indexterm><indexterm
+      class="endofrange" startref="ch13_Twitterclient"></indexterm><indexterm
+      class="endofrange" startref="ch13_DICakePattern"></indexterm><indexterm
+      class="endofrange" startref="ch12_CakePattern"></indexterm><indexterm
+      class="endofrange"
       startref="ch13_appsdesignpatterns"></indexterm><indexterm
       class="endofrange" startref="ch13_designpatterns"></indexterm></para>
     </sect2>

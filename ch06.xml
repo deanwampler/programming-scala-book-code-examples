@@ -1373,7 +1373,11 @@ object WidgetApplySpec extends Specification {
       example, in the Scala standard library, <literal>Array.apply(i:
       int)</literal> returns the element at index <literal>i</literal> in the
       array. Many of the other collections use <literal>apply</literal> in a
-      similar way. So, users can write code like the following:</para>
+      similar way. So, users can write code like the following:<indexterm>
+          <primary>Array class</primary>
+
+          <secondary>apply method</secondary>
+        </indexterm></para>
 
       <programlisting linenumbering="unnumbered">val a = Array(1,2,3,4)
 println(a(2))  // =&gt; 3</programlisting>
@@ -2169,8 +2173,6 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
       <literal>copy</literal>. This method is useful when you want to make a
       new instance of a case class that is identical to another instance with
       a few fields changed. Consider the following example script:<indexterm>
-          <primary>copy method (Scala 2.8)</primary>
-        </indexterm><indexterm>
           <primary>case classes</primary>
 
           <secondary>copy method in Scala 2.8</secondary>
@@ -2499,9 +2501,7 @@ Circle == FancyCircle? true</screen>
 
       <para id="para_comparing_the_contents_of_two_">Comparing the contents of
       two Arrays doesn’t have an obvious result in Scala:<indexterm>
-          <primary>arrays</primary>
-
-          <secondary>comparing for equality</secondary>
+          <primary>arrays, comparing for equality</primary>
         </indexterm></para>
 
       <screen>scala&gt; Array(1, 2) == Array(1, 2)

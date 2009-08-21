@@ -170,7 +170,7 @@
           a method on a Java or .NET class when the method’s name is identical
           to a Scala reserved word, e.g.,
           <literal>java.net.Proxy.‵type‵()</literal>.<indexterm>
-              <primary>- - (back quotes) in literals</primary>
+              <primary>`` (back quotes) in literals</primary>
             </indexterm></para>
         </listitem>
       </varlistentry>
@@ -186,6 +186,8 @@
           restriction prevents some ambiguities because of the very succinct
           variable syntax that is used, e.g., no <literal>val</literal>
           keyword is present.<indexterm>
+              <primary>constant identifiers</primary>
+            </indexterm><indexterm>
               <primary>pattern matching identifiers</primary>
             </indexterm><indexterm>
               <primary>variable identifiers</primary>
@@ -223,7 +225,7 @@
         </indexterm><indexterm>
           <primary>! (exclamation point)</primary>
 
-          <secondary>use with Actors</secondary>
+          <secondary>! method, sending messages to Actors</secondary>
         </indexterm></para>
 
       <para id="para_this_flexible_method_naming_gi">This flexible method
@@ -513,10 +515,6 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     expressing goals in a given problem domain. For example, SQL provides just
     enough of a programming language to handle the problems of working with
     databases, making it a Domain-Specific Language.<indexterm>
-        <primary>Domain-Specific Languaages</primary>
-
-        <see>DSLs</see>
-      </indexterm><indexterm>
         <primary>DSLs (Domain-Specific Languages)</primary>
       </indexterm></para>
 
@@ -530,7 +528,7 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
 
         <secondary>BDD (behavior-driven development)</secondary>
       </indexterm><indexterm>
-        <primary>BDD (behavior-driven development)</primary>
+        <primary>BDD (Behavior-Driven Development)</primary>
       </indexterm><indexterm>
         <primary>Specs library</primary>
       </indexterm></para>
@@ -748,7 +746,7 @@ for (breed &lt;- dogBreeds
       semicolons:<indexterm>
           <primary>; (semicolon)</primary>
 
-          <secondary>separating filters in for expression</secondary>
+          <secondary>separators in for expression</secondary>
         </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Rounding/double-filtered-for-script.scala
@@ -1587,13 +1585,14 @@ for (item &lt;- catalog) {
       <literal>null</literal>.<indexterm>
           <primary>extractors</primary>
 
-          <secondary>translating regex capture groups to</secondary>
+          <secondary>translating regular expression capture groups
+          to</secondary>
         </indexterm><indexterm>
           <primary>( ) (parentheses)</primary>
 
-          <secondary>capture groups in regexes</secondary>
+          <secondary>capture groups in regular expressions</secondary>
         </indexterm><indexterm>
-          <primary>capture groups, defining in regexes</primary>
+          <primary>capture groups, defining in regular expressions</primary>
         </indexterm></para>
 
       <para id="para_the_case_clauses_look_similar_">What does this mean in
@@ -1712,10 +1711,8 @@ Person(Charlie,32,Developer) is underpaid.</screen>
       functional constructs and strong typing, Scala encourages a coding style
       that lessens the need for exceptions and exception handling. But where
       Scala interacts with Java, exceptions are still prevalent.<indexterm>
-          <primary>exception handling</primary>
-
-          <secondary>pattern matching using try, catch, and finally
-          clauses</secondary>
+          <primary>exception handling, pattern matching using try, catch, and
+          finally clauses</primary>
         </indexterm><indexterm>
           <primary>try, catch, and finally clauses</primary>
 

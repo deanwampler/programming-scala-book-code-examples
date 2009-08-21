@@ -1132,7 +1132,7 @@ case class Complex(real: Double, imaginary: Double) {
     <para id="para_build_tools_documented_on_sites">These plugins and tools
     are documented very well on their respective websites, so we refer you to
     those sites for details.<indexterm>
-        <primary>ant build tools</primary>
+        <primary>ant, Scala plugin for</primary>
       </indexterm></para>
 
     <para id="para_ant_support">The Scala distribution includes
@@ -1186,7 +1186,7 @@ case class Complex(real: Double, imaginary: Double) {
     all close enough in functionality that you will probably find it
     acceptable to adopt the plugin for the IDE that you already
     prefer.<indexterm class="startofrange" id="ch14_IDEs">
-        <primary>IDEs (interated development environments)</primary>
+        <primary>IDEs (integrated development environments)</primary>
       </indexterm></para>
 
     <para id="para_this_section_describes_how_to_">This section describes how
@@ -1210,7 +1210,7 @@ case class Complex(real: Double, imaginary: Double) {
 
             <secondary>installing Scala plugin</secondary>
           </indexterm><indexterm>
-            <primary>IDEs (interated development environments)</primary>
+            <primary>IDEs (integrated development environments)</primary>
 
             <secondary>Eclipse</secondary>
 
@@ -2404,7 +2404,9 @@ ComplexSpecification.check</programlisting>
       class, <literal>JStack</literal>:<indexterm>
           <primary>generics</primary>
 
-          <secondary>Java, using from Scala</secondary>
+          <secondary>Java</secondary>
+
+          <tertiary>using from Scala</tertiary>
         </indexterm><indexterm class="startofrange" id="ch14_generics">
           <primary>generics</primary>
         </indexterm><indexterm>
@@ -2715,7 +2717,7 @@ public class SMapTestWithFunctions {
       <emphasis>singleton</emphasis> objects.<indexterm>
           <primary>methods</primary>
 
-          <secondary>defined in companion objects</secondary>
+          <secondary>Java static methods and companion objects</secondary>
         </indexterm><indexterm>
           <primary>singleton objects</primary>
 
@@ -2749,6 +2751,10 @@ public class SMapTestWithFunctions {
       xrefstyle="select:nopage">[SpringFramework]</link>. You may also need
       <emphasis>JavaBeans</emphasis> accessor methods for some IDEs that do
       bean “introspection”.<indexterm>
+          <primary>JavaBeans</primary>
+
+          <secondary>conventions for</secondary>
+        </indexterm><indexterm>
           <primary>Java</primary>
 
           <secondary>Scala interoperability with</secondary>
@@ -2864,9 +2870,7 @@ case class ComplexBean(
           <primary>primitive data types (Java), conversion of AnyVal types
           to</primary>
         </indexterm><indexterm>
-          <primary>AnyVal types</primary>
-
-          <secondary>conversion to Java primitives</secondary>
+          <primary>AnyVal types, conversion to Java primitives</primary>
         </indexterm><indexterm>
           <primary>data types</primary>
 
@@ -2897,82 +2901,83 @@ case class ComplexBean(
         </indexterm><indexterm>
           <primary>~ (tilde)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary># (pound sign)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>@ (at sign)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>&amp; (ampersand)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>^ (caret)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>% (percent sign)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>: (colon)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>? (question mark)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>! (exclamation point)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>| (vertical bar)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>\ (backslash)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>/ (slash)</primary>
 
-          <secondary>division operator, encoding in Java code</secondary>
+          <secondary>division operator, encoding in Java
+          identifiers</secondary>
         </indexterm><indexterm>
           <primary>* (asterisk)</primary>
 
           <secondary>multiplication operator, encoding in Java
-          code</secondary>
+          identifiers</secondary>
         </indexterm><indexterm>
           <primary>- (minus sign)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>+ (plus sign)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>&lt; &gt; (angle brackets)</primary>
 
           <secondary>&lt; (less than) operator</secondary>
 
-          <tertiary>encoding in Java code</tertiary>
+          <tertiary>encoding in Java identifiers</tertiary>
         </indexterm><indexterm>
           <primary>&lt; &gt; (angle brackets)</primary>
 
           <secondary>&gt; (greater than) operator</secondary>
 
-          <tertiary>encoding in Java code</tertiary>
+          <tertiary>encoding in Java identifiers</tertiary>
         </indexterm><indexterm>
           <primary>= (equals sign)</primary>
 
-          <secondary>encoding in Java code</secondary>
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
-          <primary>operator characters, encoding in Java code</primary>
+          <primary>operator characters, encoding in Java identifiers</primary>
         </indexterm><indexterm>
           <primary>Java</primary>
 
@@ -3203,7 +3208,11 @@ public interface AllOpChars{
       systemic changes of the same kind across many modules, while avoiding
       copying and pasting the same code over and over into each location.
       Avoiding this duplication not only improves productivity, it greatly
-      reduces bugs.<indexterm class="startofrange"
+      reduces bugs.<indexterm>
+          <primary>AOP</primary>
+
+          <see>aspect-oriented programming</see>
+        </indexterm><indexterm class="startofrange"
           id="ch14_librariesJavaAspectJ">
           <primary>libraries</primary>
 
@@ -3217,8 +3226,6 @@ public interface AllOpChars{
           <secondary>libraries, interoperability with Scala</secondary>
 
           <tertiary>AspectJ</tertiary>
-        </indexterm><indexterm>
-          <primary>AOP (aspect-oriented programming)</primary>
         </indexterm><indexterm>
           <primary>aspect-oriented programming (AOP)</primary>
         </indexterm><indexterm class="startofrange" id="ch14_AspectJ">
@@ -3482,9 +3489,9 @@ Complex(4.0,6.0)</screen>
         </indexterm><indexterm>
           <primary>Java</primary>
 
-          <secondary>libraries</secondary>
+          <secondary>libraries, interoperability with Scala</secondary>
 
-          <tertiary>interoperability with Scala/Spring Framework</tertiary>
+          <tertiary>Spring Framework</tertiary>
         </indexterm><indexterm>
           <primary>Spring Framework</primary>
         </indexterm></para>
@@ -3529,7 +3536,9 @@ Complex(4.0,6.0)</screen>
           <secondary
           sortas="scala.reflect.BeanProperty">@scala.reflect.BeanProperty</secondary>
         </indexterm><indexterm>
-          <primary>JavaBeans specification</primary>
+          <primary>JavaBeans</primary>
+
+          <secondary>conventions for</secondary>
         </indexterm></para>
 
       <tip id="para_tip_prefer_constructor_inject">

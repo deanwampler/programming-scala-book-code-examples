@@ -114,7 +114,7 @@ case "exit" =&gt;
 
         <secondary>using in declaration of immutable variable</secondary>
       </indexterm><indexterm>
-        <primary>immutable varaibles</primary>
+        <primary>immutable variables</primary>
 
         <secondary>declaring</secondary>
       </indexterm><indexterm>
@@ -178,7 +178,12 @@ scala&gt;</programlisting>
     object is instantiated. Also, derived classes can override
     <literal>vals</literal> declared inside parent classes. We’ll discuss
     these exceptions in <xref
-    linkend="BasicObjectOrientedProgramming" />.</para>
+    linkend="BasicObjectOrientedProgramming" />.<indexterm>
+        <primary>classes</primary>
+
+        <secondary>derived, overriding vals declared in parent
+        classes</secondary>
+      </indexterm></para>
 
     <para id="para_scala_encourages_you_to_use_im">Scala encourages you to use
     immutable values whenever possible. As we will see, this promotes better
@@ -530,7 +535,7 @@ val intToStringMap: Map[Integer, String] = new HashMap</programlisting>
     parameters</emphasis>.<indexterm>
         <primary>[ ] (square brackets)</primary>
 
-        <secondary>enclosing generic type parameters</secondary>
+        <secondary>enclosing parameterized types in Scala</secondary>
       </indexterm></para>
 
     <para id="para_for_completeness_suppose_we_d">For completeness, suppose we
@@ -1812,6 +1817,10 @@ Unknown: Oops2!</screen>
     structure does not have to match the directory structure. So, you can
     define packages in files independent of their “physical”
     location.<indexterm>
+        <primary>Java</primary>
+
+        <secondary>package concept for namespaces</secondary>
+      </indexterm><indexterm>
         <primary>packages</primary>
       </indexterm><indexterm>
         <primary>namespaces</primary>
@@ -1822,11 +1831,7 @@ Unknown: Oops2!</screen>
     <para id="para_the_following_example_defines_">The following example
     defines a class <literal>MyClass</literal> in a package
     <literal>com.example.mypkg</literal> using the conventional Java
-    syntax:<indexterm>
-        <primary>classes</primary>
-
-        <secondary>defining using Java syntax</secondary>
-      </indexterm></para>
+    syntax:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/package-example1.scala
 
@@ -2083,11 +2088,13 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     obvious difference is in the syntax, where Scala uses square brackets
     (<literal>[...]</literal>), while Java uses angle brackets
     (<literal>&lt;...&gt;</literal>).<indexterm>
-        <primary>generics (Java)</primary>
+        <primary>generics</primary>
+
+        <secondary>Java</secondary>
       </indexterm><indexterm>
         <primary>[ ] (square brackets)</primary>
 
-        <secondary>use with parameterized types</secondary>
+        <secondary>enclosing parameterized types in Scala</secondary>
       </indexterm><indexterm>
         <primary>parmeterized types</primary>
       </indexterm><indexterm>
@@ -2119,7 +2126,11 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     type parameter, then the relationship goes the other way,
     <literal>Foo[B]</literal> would be a <emphasis>supertype</emphasis> of
     <literal>Foo[A]</literal>, if the declaration is
-    <literal>Foo[-A]</literal>.</para>
+    <literal>Foo[-A]</literal>.<indexterm>
+        <primary>List class</primary>
+
+        <secondary>declaration</secondary>
+      </indexterm></para>
 
     <para id="para_scala_supports_another_type_ab">Scala supports another type
     abstraction mechanism called <emphasis>abstract types</emphasis>, used in

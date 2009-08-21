@@ -1196,7 +1196,7 @@ doubleNumber = ...</screen>
       relationships between the items. Notice that the grammar forms have a
       hierarchical decomposition; although not a directed acyclic graph, as
       generally speaking, these grammars can have cycles.<indexterm>
-          <primary>. (semicolon)</primary>
+          <primary>; (semicolon)</primary>
 
           <secondary>ending production rule definitions</secondary>
         </indexterm><indexterm>

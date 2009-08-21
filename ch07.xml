@@ -291,7 +291,7 @@
     <para id="para_so_now_that_we_know_what_map">So, now that we know what
     <literal>Map.apply</literal> expects, how do we get from <literal>a -&gt;
     b</literal> to <literal>(a, b)</literal>?<indexterm>
-        <primary>implicit type conversions</primary>
+        <primary>implicit conversions</primary>
 
         <secondary>Predef.any2ArrowAssoc method</secondary>
       </indexterm></para>
@@ -432,7 +432,7 @@
     logging “threshold” level.<indexterm>
         <primary>fields</primary>
 
-        <secondary>class-level</secondary>
+        <secondary>comparison to Java class-level</secondary>
       </indexterm></para>
 
     <para id="para_an_example_of_a_class_level_me">An example of a class-level

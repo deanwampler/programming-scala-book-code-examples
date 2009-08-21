@@ -236,8 +236,8 @@
 
       <para id="para_when_using_a_static_language_">When using a static
       language, you have to think about appropriate type choices more often,
-      which forces you to weigh design choices more carefully. While this may
-      slow down daily design decisions, thinking through the types in the
+      whi**ch forces you to weigh design choices more carefully. While this
+      may slow down daily design decisions, thinking through the types in the
       application can result in a more coherent design over time.</para>
 
       <para id="para_another_small_benefit_of_stati">Another small benefit of
@@ -358,6 +358,8 @@
             concurrent, autonomous processes. Scala supports this model with
             its <emphasis>Actors</emphasis> library, but it allows for both
             mutable and immutable variables.<indexterm>
+                <primary>immutable variables</primary>
+              </indexterm><indexterm>
                 <primary>Actors</primary>
               </indexterm><indexterm>
                 <primary>variables</primary>
@@ -764,7 +766,11 @@
     you have installed Scala! If you get an error message along the lines of
     <literal>scala: command not found</literal>, make sure your environment’s
     <literal>PATH</literal> is set properly to include the correct
-    <filename>bin</filename> directory.</para>
+    <filename>bin</filename> directory.<indexterm>
+        <primary>classes</primary>
+
+        <secondary>JDK and .NET, use in Scala</secondary>
+      </indexterm></para>
 
     <note id="para_note_scala_versions_2_7_x_and">
       <para>Scala versions 2.7.X and earlier are compatible with JDK 1.4 and
@@ -1018,8 +1024,6 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <literal>Upper</literal> class begins with the <literal>class</literal>
     keyword. The class body is inside the outer most curly braces
     <literal>{…}</literal>.<indexterm>
-        <primary>classes</primary>
-      </indexterm><indexterm>
         <primary>class keyword</primary>
       </indexterm><indexterm>
         <primary>{ } (curly braces)</primary>
@@ -1049,7 +1053,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <literal>Array</literal>.<indexterm>
         <primary>: (colon)</primary>
 
-        <secondary>introducing type annotations</secondary>
+        <secondary>separator between identifiers and type
+        annotations</secondary>
       </indexterm><indexterm>
         <primary>type annotations</primary>
       </indexterm><indexterm>
@@ -1141,7 +1146,9 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     although you can have <literal>return</literal> statements elsewhere, too.
     The <literal>return</literal> keyword is optional here and it is rarely
     used, except when returning out of the middle of a block (e.g., in an
-    <literal>if</literal> statement).</para>
+    <literal>if</literal> statement).<indexterm>
+        <primary>return keyword</primary>
+      </indexterm></para>
 
     <note id="para_note_the_value_of_the_last_ex">
       <para>The value of the last expression is the default return value of a
@@ -1202,9 +1209,7 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
     for example.) Scala uses <literal>objects</literal> for situations where
     other languages would use “class-level” members, like
     <literal>statics</literal> in Java. We don’t really need more than one
-    <emphasis>instance</emphasis> here, so a singleton is fine.<indexterm>
-        <primary>objects</primary>
-      </indexterm></para>
+    <emphasis>instance</emphasis> here, so a singleton is fine.</para>
 
     <note id="para_note_why_doesn_t_scala_suppor">
       <para>Why doesn’t Scala support statics? Since
@@ -1417,8 +1422,6 @@ object Upper {
         <primary>Actors</primary>
 
         <secondary>example</secondary>
-      </indexterm><indexterm>
-        <primary>Actor model of concurrency</primary>
       </indexterm></para>
 
     <para id="para_in_this_example_instances_in_a_">In this example, instances
@@ -1638,7 +1641,9 @@ package shapes {
     <literal>class</literal> and <literal>object</literal> can have the same
     name, as we will see in <xref linkend="CompanionObjects" /> in <xref
     linkend="AdvancedObjectOrientedProgramming" />.<indexterm>
-        <primary>Actor object</primary>
+        <primary>Actors</primary>
+
+        <secondary>Actor class and object</secondary>
       </indexterm></para>
 
     <para id="para_our_actor_class_definition_s">Our actor class definition,
@@ -1771,7 +1776,11 @@ ShapeDrawingActor ! "exit"</programlisting>
     <literal>Double</literal> that is approximately equal to
     <emphasis>Pi</emphasis>. This is an unknown message for the actor, so it
     just prints an error message. The final message sends an “exit” string,
-    which causes the actor to terminate.</para>
+    which causes the actor to terminate.<indexterm>
+        <primary>! (exclamation point)</primary>
+
+        <secondary>! method, sending messages to Actors</secondary>
+      </indexterm></para>
 
     <para id="para_to_try_out_the_actor_example_">To try out the actor
     example, start by compiling the first two files. You can get the sources

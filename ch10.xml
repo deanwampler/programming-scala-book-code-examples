@@ -113,7 +113,7 @@ res2: scala.xml.NodeSeq = &lt;bread&gt;wheat&lt;/bread&gt;</screen>
       <literal>text</literal> method:<indexterm>
           <primary>\ (backslash)</primary>
 
-          <secondary>projection function</secondary>
+          <secondary>projection functions</secondary>
         </indexterm><indexterm>
           <primary>projection functions</primary>
         </indexterm></para>
@@ -138,11 +138,7 @@ res4: scala.xml.NodeSeq =</screen>
       <para id="para_what_went_wrong_the_funct">What went wrong? The
       <literal>\</literal> function doesn’t descend into child elements of an
       XML structure. To do that, we use its sister function,
-      <literal>\\</literal> (two backslashes):<indexterm>
-          <primary>\ (backslash)</primary>
-
-          <secondary>\\ projection function</secondary>
-        </indexterm></para>
+      <literal>\\</literal> (two backslashes):</para>
 
       <screen>scala&gt; someXML \\ "condiment"
 res5: scala.xml.NodeSeq = &lt;condiment expired="true"&gt;mayo&lt;/condiment&gt;
@@ -341,7 +337,7 @@ class Post(val title: String, val body: String, val updated: Date) {
       on the Web. Atom documents are a flavor of XML, and a perfect
       application for demonstrating the process of outputting XML with
       Scala.<indexterm>
-          <primary>lazy vals</primary>
+          <primary>lazy values</primary>
 
           <secondary>Post class (example)</secondary>
         </indexterm></para>

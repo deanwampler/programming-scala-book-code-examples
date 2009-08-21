@@ -71,9 +71,11 @@
     reflection methods available on the JVM, through
     <literal>java.lang.Object</literal> and
     <literal>java.lang.Class</literal>:<indexterm>
-        <primary>JVM (Java Virtual Machine)</primary>
+        <primary>Java</primary>
 
-        <secondary>reflection methods</secondary>
+        <secondary>JVM (Java Virtual Machine)</secondary>
+
+        <tertiary>reflection methods</tertiary>
       </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/reflection/jvm-script.scala
@@ -379,12 +381,10 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
         <secondary>variance under inheritance</secondary>
       </indexterm><indexterm>
         <primary>variance under inheritance</primary>
-      </indexterm><indexterm>
+      </indexterm><indexterm class="startofrange" id="ch12_inheritvariance">
         <primary>inheritance</primary>
 
         <secondary>variance under</secondary>
-      </indexterm><indexterm>
-        <primary>contravariant or invariant behavior</primary>
       </indexterm></para>
 
     <para id="para_in_scala_the_type_designer_sp">In Scala, the variance
@@ -678,7 +678,7 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
     them might be subtyped.<indexterm>
         <primary>- (minus sign)</primary>
 
-        <secondary>variance annotation</secondary>
+        <secondary>variance annotations</secondary>
       </indexterm><indexterm>
         <primary>+ (plus sign)</primary>
 
@@ -1002,7 +1002,9 @@ Unknown? None</screen>
       <literal>Shape</literal>. Because Scala defines a subtype of
       <emphasis>all</emphasis> types, <literal>Nothing</literal>, Scala can
       define <literal>None</literal> as <literal>case object None extends
-      Option[Nothing]</literal>.</para>
+      Option[Nothing]</literal>.<indexterm>
+          <primary>Nothing type</primary>
+        </indexterm></para>
 
       <para id="para_the_java_type_system_provides_">The Java type system
       provides no way to implement our Java <literal>None</literal> in a
@@ -1035,7 +1037,8 @@ Unknown? None</screen>
       generics). These aspects have performance implications that we will
       revisit when we discuss the <literal>@specialized</literal> annotation
       in <xref linkend="Annotations" /> in <xref
-      linkend="ApplicationDesign" />.</para>
+      linkend="ApplicationDesign" />.<indexterm class="endofrange"
+      startref="ch12_inheritvariance"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -1066,10 +1069,8 @@ Unknown? None</screen>
       parameterized for any type that is a subtype of
       <literal>AnyRef</literal>. Here is the implementation in Scala version
       2.7.5:<indexterm>
-          <primary>Array object</primary>
-
-          <secondary>apply method, overloaded for AnyVal types and AnyRef
-          types</secondary>
+          <primary>Array object, apply method overloaded for AnyVal and AnyRef
+          types</primary>
         </indexterm><indexterm>
           <primary>upper type bounds</primary>
         </indexterm><indexterm>
@@ -2073,7 +2074,7 @@ println( new FileBulkReader(new File("abstract-types-script.scala")).read )</pro
     compiler errors often contain type paths.<indexterm>
         <primary>data types</primary>
 
-        <secondary>path-dependent</secondary>
+        <secondary>path-dependent types</secondary>
       </indexterm><indexterm>
         <primary>path-dependent types</primary>
       </indexterm></para>
@@ -3399,6 +3400,10 @@ Calling first on List created from ints1 Seq:
     understanding of the type system. There are also a multitude of papers on
     Scala’s type system. You can find many linked on the official <ulink
     url="http://scala-lang.org"></ulink> website.<indexterm>
+        <primary>documentation</primary>
+
+        <secondary>Scala type system</secondary>
+      </indexterm><indexterm>
         <primary>data types</primary>
 
         <secondary>documentation for Scala type system</secondary>

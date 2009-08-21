@@ -219,7 +219,15 @@ I have no idea what I just got.</screen>
       Actor is always on the left-hand side of the bang, and the message being
       sent to said Actor is always on the right. If you need a mnemonic for
       this granule of syntactic sugar, imagine that you’re an irate director
-      shouting commands at your Actors.</para>
+      shouting commands at your Actors.<indexterm>
+          <primary>bang method</primary>
+
+          <see>! (exclamation point), under Symbols</see>
+        </indexterm><indexterm>
+          <primary>! (exclamation point)</primary>
+
+          <secondary>! method, sending messages to Actors</secondary>
+        </indexterm></para>
     </sect2>
 
     <sect2 id="_the_mailbox">
@@ -900,7 +908,7 @@ hello from Thread 13</screen>
           class="startofrange" id="ch09_ActorsMINANagatti">
           <primary>Actors</primary>
 
-          <secondary>using with MINA NIO and Nagatti library for SMTP
+          <secondary>using with MINA NIO and Naggati library for SMTP
           server</secondary>
         </indexterm><indexterm>
           <primary>I/O (input/output)</primary>

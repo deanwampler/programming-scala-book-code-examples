@@ -42,7 +42,11 @@
   functional programming. Finally, <link linkend="Okasaki1998"
   xrefstyle="select:nopage">[Okasaki1998]</link> and <link linkend="Rabhi1999"
   xrefstyle="select:nopage">[Rabhi1999]</link> discuss functional data
-  structures and algorithms in detail.</para>
+  structures and algorithms in detail.<indexterm>
+      <primary>functions</primary>
+
+      <seealso>functional programming</seealso>
+    </indexterm></para>
 
   <sect1 id="WhatIsFunctionalProgramming">
     <title>What Is Functional Programming?</title>
@@ -108,6 +112,10 @@
       <emphasis>higher-order function</emphasis>. In mathematics, two examples
       of higher-order functions from calculus are derivation and
       integration.<indexterm>
+          <primary>functions</primary>
+
+          <secondary>higher order</secondary>
+        </indexterm><indexterm>
           <primary>higher-order functions</primary>
         </indexterm></para>
     </sect2>
@@ -470,10 +478,6 @@ for (i &lt;- 1 to 10)
     them.<indexterm>
         <primary>functional programming</primary>
 
-        <secondary>tail calls and optimization for</secondary>
-      </indexterm><indexterm>
-        <primary>functional programming</primary>
-
         <secondary>tail calls and tail-call optimization</secondary>
       </indexterm><indexterm>
         <primary>tail calls</primary>
@@ -664,10 +668,7 @@ val list2 = list1.::("read").::("should").::("People")</programlisting>
 
           <tertiary>maps</tertiary>
         </indexterm><indexterm>
-          <primary>maps</primary>
-
-          <secondary sortas="functional programming">in functional
-          programming</secondary>
+          <primary>maps in functional programming</primary>
         </indexterm></para>
 
       <para id="para_in_the_interest_of_minimalism_">In the interest of
@@ -695,12 +696,7 @@ val list2 = list1.::("read").::("should").::("People")</programlisting>
       adding and removing elements, and <literal>++</literal> and
       <literal>--</literal> operators for adding and removing elements defined
       in <literal>Iterators</literal> of <literal>Pairs</literal>, where each
-      <literal>Pair</literal> is a key-value pair.<indexterm>
-          <primary>maps</primary>
-
-          <secondary sortas="functional programming">in functional
-          programming</secondary>
-        </indexterm></para>
+      <literal>Pair</literal> is a key-value pair.</para>
 
       <note id="para_note_you_might_have_noticed_t">
         <para>You might have noticed that the + does not appear in front of
@@ -1010,7 +1006,9 @@ println(flatten(graph))</programlisting>
       <para id="para_it_is_common_to_traverse_a_col">It is common to traverse
       a collection and extract a new collection from it with elements that
       match certain criteria:<indexterm>
-          <primary>filtering in functional programming</primary>
+          <primary>filtering</primary>
+
+          <secondary>in functional programming</secondary>
         </indexterm><indexterm>
           <primary>functional programming</primary>
 
@@ -2024,7 +2022,7 @@ whileAwesome(count &lt; 5) {
 
         <secondary>lazy vals</secondary>
       </indexterm><indexterm>
-        <primary>lazy vals</primary>
+        <primary>lazy valuess</primary>
       </indexterm></para>
 
     <para id="para_here_is_ui3_vetoable_clicks_">Here is that example

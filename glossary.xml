@@ -90,7 +90,9 @@
 
           <secondary>Actor model of</secondary>
         </indexterm><indexterm>
-          <primary>Actor model of concurrency</primary>
+          <primary>Actors</primary>
+
+          <secondary>Actor model of concurrency</secondary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -801,7 +803,9 @@
       <para>A high-performance form of concurrency where events are used to
       signal important state changes and handlers are used to respond to the
       events.<indexterm>
-          <primary>event-based concurrency</primary>
+          <primary>events</primary>
+
+          <secondary>using for concurrency</secondary>
         </indexterm><indexterm>
           <primary>concurrency</primary>
 
@@ -1014,7 +1018,7 @@
 
           <secondary>higher order</secondary>
         </indexterm><indexterm>
-          <primary>higher order functions</primary>
+          <primary>higher-order functions</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -1213,8 +1217,6 @@
       Hence, the object still has an active role and it has a dependency on
       the “provider”. The strongest form of IoC is <emphasis>dependency
       injection</emphasis>, where the object remains “passive”.<indexterm>
-          <primary>IoC (inversion of control)</primary>
-        </indexterm><indexterm>
           <primary>inversion of control (IoC)</primary>
         </indexterm></para>
     </glossdef>
@@ -1246,9 +1248,7 @@
       <para>The algorithm used for a type to resolve member lookup, such as
       overridden methods, including calls to
       <literal>super</literal>.<indexterm>
-          <primary>linearization</primary>
-
-          <secondary>defined</secondary>
+          <primary>linearization of object hierarchy</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -1284,7 +1284,7 @@
       <para>The queue were an <emphasis>actors</emphasis> messages are stored
       until the actor processes them in the <emphasis>actor model of
       concurrency</emphasis>.<indexterm>
-          <primary>mailbox for actors</primary>
+          <primary>mailbox for Actors</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -1300,7 +1300,7 @@
       <literal>object</literal>. Java, by way of contrast, requires a
       <literal>main</literal> method to be defined as a static method of a
       <literal>class</literal>.<indexterm>
-          <primary>main function or main method</primary>
+          <primary>main method</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>

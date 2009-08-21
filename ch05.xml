@@ -51,7 +51,9 @@
       <emphasis>instance</emphasis> to refer to a class instance generically,
       meaning either an <literal>object</literal> or an instance of a
       <literal>class</literal>, to avoid the potential for confusion between
-      these two concepts.</para>
+      these two concepts.<indexterm>
+          <primary>instance</primary>
+        </indexterm></para>
     </note>
 
     <para id="para_classes_are_declared_with_a_cl">Classes are declared with
@@ -665,7 +667,11 @@ abstract class Widget {
     <para id="para_there_are_two_kinds_of_users">There are two kinds of
     “users” of a type: derived types and code that works with instances of the
     type. Derived types usually need more access to the members of their
-    parent types than users of instances do.</para>
+    parent types than users of instances do.<indexterm>
+        <primary>derived types</primary>
+
+        <secondary>access to members of parent types</secondary>
+      </indexterm></para>
 
     <para id="para_scala_s_visibility_rules_are_s">Scala’s visibility rules
     are similar to Java’s, but tend to be both more consistently applied and
