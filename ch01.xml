@@ -493,7 +493,9 @@
               </indexterm><indexterm>
                 <primary>selftypes</primary>
               </indexterm><indexterm>
-                <primary>mixin composition using traits</primary>
+                <primary>mixin composition</primary>
+
+                <secondary>using traits</secondary>
               </indexterm></para>
 
             <para id="para_no_other_language_provides_all">No other language

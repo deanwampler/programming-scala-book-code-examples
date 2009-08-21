@@ -895,11 +895,11 @@ object MessagePrinter {
       <literal>$tag</literal> method was originally introduced to optimize
       pattern matching, but it is now deprecated and it may be removed in a
       forthcoming release of Scala.<indexterm>
-          <primary sortas="tag method">$ tag method (ScalaObject)</primary>
-        </indexterm><indexterm>
           <primary>ScalaObject class</primary>
 
-          <secondary>$ tag method</secondary>
+          <secondary>$tag method</secondary>
+        </indexterm><indexterm>
+          <primary sortas="tag method">$tag method (ScalaObject)</primary>
         </indexterm></para>
 
       <para id="para_javap_output">Let’s compare the
@@ -2984,7 +2984,9 @@ case class ComplexBean(
 
           <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
-          <primary>operator characters, encoding in Java identifiers</primary>
+          <primary>operator characters</primary>
+
+          <secondary>encoding in Java identifiers</secondary>
         </indexterm><indexterm>
           <primary>Java</primary>
 
@@ -3785,7 +3787,7 @@ Object: NamedObject(Dean Wampler)</screen>
       reducing are essentially functional operations. Therefore a functional
       language like Scala is ideally suited for writing MapReduce
       applications.<indexterm>
-          <primary>MapReduce frameworks</primary>
+          <primary>MapReduce</primary>
         </indexterm></para>
 
       <para id="para_mapreduce_frameworks">MapReduce frameworks provide tools

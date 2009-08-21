@@ -1722,7 +1722,7 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
       </indexterm><indexterm>
         <primary>Nil case object</primary>
       </indexterm><indexterm>
-        <primary>Nothing object</primary>
+        <primary>Nothing type</primary>
       </indexterm></para>
   </sect1>
 

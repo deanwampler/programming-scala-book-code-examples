@@ -94,9 +94,7 @@
 
         <secondary>used in identifiers</secondary>
       </indexterm><indexterm>
-        <primary>identifiers</primary>
-
-        <secondary>characters allowed in</secondary>
+        <primary>identifiers, characters allowed in</primary>
       </indexterm><indexterm>
         <primary>operator characters</primary>
       </indexterm></para>
@@ -238,9 +236,7 @@
 
           <secondary>shortcut operators used with</secondary>
         </indexterm><indexterm>
-          <primary>NodeSeq class</primary>
-
-          <secondary>\ and \\ methods</secondary>
+          <primary>NodeSeq class, \ and \\ methods</primary>
         </indexterm><indexterm>
           <primary>\ (backslash)</primary>
 
@@ -547,10 +543,6 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     the entirety of the host language for edge cases that the DSL does not
     cover, and saves the work of writing lexers, parsers, and the other
     building blocks of a language.<indexterm>
-        <primary>testing</primary>
-
-        <secondary>BDD (behavior-driven development)</secondary>
-      </indexterm><indexterm>
         <primary>BDD (Behavior-Driven Development)</primary>
       </indexterm><indexterm>
         <primary>Specs library</primary>
@@ -1454,9 +1446,7 @@ for (tup &lt;- List(tupA, tupB)) {
       differentiate them.<indexterm>
           <primary>cases in pattern matching</primary>
         </indexterm><indexterm>
-          <primary>guards</primary>
-
-          <secondary>pattern matching on</secondary>
+          <primary>guards, pattern matching on</primary>
         </indexterm></para>
 
       <tip id="para_tip_the_cases_in_a_pattern_ma">
@@ -1598,9 +1588,8 @@ for (item &lt;- catalog) {
       also define regexes by creating new instances of the
       <literal>Regex</literal> class, as in: <literal>new
       Regex("""\W""")</literal>.<indexterm>
-          <primary>raw strings</primary>
-
-          <secondary>using in regular expression pattern matching</secondary>
+          <primary>raw strings in regular expression pattern
+          matching</primary>
         </indexterm></para>
 
       <para id="para_notice_that_each_of_our_regexe">Notice that each of our

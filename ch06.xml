@@ -2484,7 +2484,9 @@ Circle == FancyCircle? true</screen>
         </indexterm><indexterm>
           <primary>eq method (AnyRef)</primary>
         </indexterm><indexterm>
-          <primary>reference equality, testing for</primary>
+          <primary>reference types</primary>
+
+          <secondary>testing equality</secondary>
         </indexterm></para>
 
       <para id="para_hence_eq_behave_like_the_">Hence, <literal>eq</literal>

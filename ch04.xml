@@ -137,7 +137,9 @@ class ButtonWithCallbacks(val label: String,
       xrefstyle="select:nopage">[GOF1995]</link>. So, let’s create a
       <emphasis>trait</emphasis> that implements this pattern, then use it to
       handle callback behavior. To simplify things, we’ll start with a single
-      callback that counts the number of button clicks.</para>
+      callback that counts the number of button clicks.<indexterm>
+          <primary>Observer Pattern</primary>
+        </indexterm></para>
 
       <para id="para_first_let_s_simplify_our_butt">First, let’s define a
       simple <literal>Button</literal> class:</para>
@@ -173,7 +175,9 @@ abstract class Widget</programlisting>
       <para id="para_here_is_a__trait__that_impleme">Here is a
       <emphasis>trait</emphasis> that implements the logic of the
       <emphasis>Observer Pattern</emphasis>:<indexterm>
-          <primary>Observer Pattern, trait implementing logic of</primary>
+          <primary>Observer Pattern</primary>
+
+          <secondary>trait implementing</secondary>
         </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Traits/observer/observer.scala
@@ -567,7 +571,7 @@ object ButtonObserverAnonSpec extends Specification {
     <para id="para_first_let_s_introduce_a_new_t">First, let’s introduce a new
     trait, <literal>Clickable</literal>, an abstraction for any widget that
     responds to clicks:<indexterm>
-        <primary>Clickable trait</primary>
+        <primary>Clickable trait (example)</primary>
       </indexterm></para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/clickable.scala
