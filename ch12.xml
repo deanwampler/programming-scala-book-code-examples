@@ -183,9 +183,9 @@ res1: java.lang.Class[_] = class C</screen>
 
     <note id="para_exper_scala_reflect">
       <para>At the time of this writing, there are some experimental features
-      in the <literal>scala.reflect</literal> package that might appear in the
-      final version 2.8 release. These features are designed to make
-      reflective examination and invocation of code easier than using the
+      that might appear in the final version 2.8 release in the
+      <literal>scala.reflect</literal> package. These features are designed to
+      make reflective examination and invocation of code easier than using the
       corresponding Java methods.</para>
     </note>
   </sect1>
@@ -235,10 +235,10 @@ res1: java.lang.Class[_] = class C</screen>
 
     <warning id="para_warning_if_you_write_class_s">
       <para>If you write <literal>class StringList[String] extends
-      List[String] {…}</literal>, Scala will interpret
+      List[String] {...}</literal>, Scala will interpret
       <literal>String</literal> as the name of the type parameter, not the
       creation of a type based on actual Strings. You want to write
-      <literal>class StringList extends List[String] {…}</literal>.</para>
+      <literal>class StringList extends List[String] {...}</literal>.</para>
     </warning>
 
     <sect2 id="Manifests">
@@ -512,13 +512,13 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
 
     <para id="para__val_f_function1_t_t_new_"><literal>val f: Function1[T, T]
     = new Function1[T</literal><superscript>sup</superscript><literal>,
-    T</literal><subscript>sub</subscript><literal>] { … }</literal></para>
+    T</literal><subscript>sub</subscript><literal>] { ... }</literal></para>
 
     <para id="para_hence_the_function_traits_are">Hence, the function traits
     are covariant in the return type parameter <literal>R</literal> and
     contravariant in the argument parameters
     <literal>T</literal><subscript>1</subscript><literal>,
-    T</literal><subscript>2</subscript><literal>, …,
+    T</literal><subscript>2</subscript><literal>, ...,
     T</literal><subscript>N</subscript>.</para>
 
     <para id="para_so_what_does_this_really_mean_">So, what does this really
@@ -835,7 +835,7 @@ two errors found</screen>
       cover in <xref linkend="ExistentialTypes" /> below.</para>
 
       <para id="para_because_variances_in_java_are_">A drawback of call-site
-      variance specifications is that it forces the users of Java generics to
+      variance specifications is that they force the users of Java generics to
       understand the type system more thoroughly than is necessary for Scala
       users, who don’t need to specify this behavior when using parameterized
       types. (Scala users also benefit greatly from type inference.)</para>
@@ -976,9 +976,8 @@ package shapes {
 }</programlisting>
 
       <para id="para_running_optionexample_with_">Running
-      <literal>OptionExample</literal> with <userinput>scala -cp ...
-      variances.OptionExample</userinput> produces the following
-      output:</para>
+      <literal>OptionExample</literal> with <literal>scala -cp ...
+      variances.OptionExample</literal> produces the following output:</para>
 
       <screen>Rectangle? Option(Rectangle(Point(0.0,0.0),2.0,5.0))
 Circle? Option(Circle(Point(0.0,0.0),2.0))
@@ -1101,9 +1100,8 @@ Unknown? None</screen>
       <literal>A</literal> could also equal <literal>AnyRef</literal>. So the
       <literal>&lt;:</literal> operator indicates that the type to the left
       must be derived from the type to the right, or that they must be the
-      same types. As we said in <xref linkend="ReservedWords" /> in <xref
-      linkend="TypeLessDoMore" />, this operator is actually a reserved word
-      in the language.</para>
+      same type. As we said in <xref linkend="ReservedWords" />, this operator
+      is actually a reserved word in the language.</para>
 
       <para id="para_these_bounds_are_called__upper">These bounds are called
       <emphasis>upper type bounds</emphasis>, following the <emphasis>de
@@ -1140,7 +1138,7 @@ Unknown? None</screen>
       <para id="para_in_contrast_a__type_bound__li">In contrast, lower and
       upper type bounds limit the allowed types that can be used for a type
       parameter when instantiating a type from a parameterized type. For
-      example, <literal>def apply[A &lt;: AnyRef]…</literal> says that any
+      example, <literal>def apply[A &lt;: AnyRef]...</literal> says that any
       type used for <literal>A</literal> must be a subtype of
       <literal>AnyRef</literal>.</para>
     </sect2>
@@ -1345,7 +1343,7 @@ final case class ::[B](private var hd: B,
       <para id="para_you_can_see_this_nesting_if_yo">You can see this nesting
       if you print out a list, exploiting the <literal>toString</literal>
       method generated because of the <literal>case</literal> keyword. Here is
-      an example <userinput>scala</userinput> session:</para>
+      an example <literal>scala</literal> session:</para>
 
       <screen>$ scala -cp ...
 Welcome to Scala version 2.7.5.final ...
@@ -1600,7 +1598,7 @@ println(list4)</programlisting>
       <programlisting linenumbering="unnumbered">def ::[B &gt;: A &lt;% Node[B]](x: Node[B]) = ...</programlisting>
 
       <para id="para_the_type_parameter_means_b_">The type parameter means
-      ``<literal>B</literal> is lower bounded (i.e., is a supertype of)
+      ``<literal>B</literal> is lower bounded by (i.e., is a supertype of)
       <literal>A</literal> and <literal>B</literal> also has a view bound of
       <literal>B &lt;% Node[B]</literal>. As we saw for
       <literal>List</literal> and <literal>AbbrevList</literal>, the lower
@@ -2349,7 +2347,7 @@ object O { type t }       // "O" and "t" are type designators
       <title>Tuples</title>
 
       <para id="para_a_value_of_the_form_x_1_">A value of the form
-      <literal>(x</literal><subscript>1</subscript><literal>, …
+      <literal>(x</literal><subscript>1</subscript><literal>, ...
       x</literal><subscript>N</subscript><literal>)</literal> is a tuple value
       type.<indexterm>
           <primary>tuples</primary>
@@ -2403,8 +2401,8 @@ object O { type t }       // "O" and "t" are type designators
       <literal>R</literal> is the <emphasis>refinement</emphasis> (body),
       declares a compound type. Any declarations in the refinement are part of
       the compound type definition. The notion of compound types accounts for
-      the fact not all types are named, since we can have anonymous types,
-      such as this example <userinput>scala</userinput> session:<indexterm>
+      the fact that not all types are named, since we can have anonymous
+      types, such as this example <literal>scala</literal> session:<indexterm>
           <primary>refinement in compound type declarations</primary>
         </indexterm><indexterm>
           <primary>compound types</primary>
@@ -2478,8 +2476,8 @@ Right(false)</screen>
       <title>Function Types</title>
 
       <para id="para_about_function_types">The functions we have been writing
-      are also types. <literal>(T</literal><subscript>1</subscript><literal>,
-      T</literal><subscript>2</subscript><literal>, …
+      are also typed. <literal>(T</literal><subscript>1</subscript><literal>,
+      T</literal><subscript>2</subscript><literal>, ...
       T</literal><subscript>N</subscript><literal>) =&gt; R</literal> is the
       type for all functions that take <literal>N</literal> arguments and
       return a value of type <literal>R</literal>.<indexterm>
@@ -3366,8 +3364,8 @@ Calling first on List created from ints1 Seq:
     <para id="para_calling_first_on_the_sequenc">Calling
     <literal>first</literal> on the sequence does not always return the same
     value! The reason is that the range at the beginning of the for
-    comprehension effectively forces the who sequence to be lazy. Hence, it is
-    re-evaluated with <emphasis>each</emphasis> call to
+    comprehension effectively forces the whole sequence to be lazy. Hence, it
+    is reevaluated with <emphasis>each</emphasis> call to
     <literal>first</literal> and the first value in the sequence actually
     changes, since <literal>Random</literal> returns a different number each
     time (at least it will if there is a sufficient time delta between
@@ -3378,8 +3376,8 @@ Calling first on List created from ints1 Seq:
     range and create a <emphasis>strict</emphasis> list.</para>
 
     <warning id="para_warning_avoid_using_ranges_in">
-      <para>Avoid using ranges in <literal>for (…) yield x</literal>
-      constructs, while <literal>for (…) {…}</literal> alternatives are
+      <para>Avoid using ranges in <literal>for (...) yield x</literal>
+      constructs, while <literal>for (...) {...}</literal> alternatives are
       fine.</para>
     </warning>
 
@@ -3402,8 +3400,8 @@ Calling first on List created from ints1 Seq:
     describes the type system in formal detail. Like any specification, it can
     be difficult reading. The effort is worthwhile if you want a deep
     understanding of the type system. There are also a multitude of papers on
-    Scala’s type system. You can find many linked on the official <ulink
-    url="http://scala-lang.org"></ulink> website.<indexterm>
+    Scala’s type system. You can find links to many of them on the official
+    <ulink url="http://scala-lang.org"></ulink> website.<indexterm>
         <primary>documentation</primary>
 
         <secondary>Scala type system</secondary>

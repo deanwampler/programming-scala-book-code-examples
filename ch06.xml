@@ -300,10 +300,10 @@ class Button(val label: String) extends Widget with Clickable {
           <tertiary>in traits</tertiary>
         </indexterm></para>
 
-      <para id="para_unfortunately_in_the_v2_7_x_v">Unfortunately, in the
-      version 2.7.X version of Scala, it is not possible to override a
-      <literal>val</literal> defined in a <emphasis>trait</emphasis>. However
-      it is possible to override a <literal>val</literal> defined in a parent
+      <para id="para_unfortunately_in_the_v2_7_x_v">Unfortunately, in Scala
+      version 2.7.X, it is not possible to override a <literal>val</literal>
+      defined in a <emphasis>trait</emphasis>. However it is possible to
+      override a <literal>val</literal> defined in a parent
       <emphasis>class</emphasis>. Version 2.8 of Scala does support overriding
       a <literal>val</literal> in a trait.</para>
 
@@ -344,7 +344,7 @@ val c2 = new ClassExtendsT1()
 println(c2.name)</screen>
 
       <para id="para_if_you_run_this_script_oo1a">If you run this script with
-      <userinput>scala</userinput> version 2.7.5, the output is the
+      <literal>scala</literal> version 2.7.5, the output is the
       following:</para>
 
       <screen>T1
@@ -356,7 +356,7 @@ T1</screen>
       respectively.</para>
 
       <para id="para_however_if_you_run_this_scrip">However, if you run this
-      script with <userinput>scala</userinput> version 2.8.0, you get this
+      script with <literal>scala</literal> version 2.8.0, you get this
       output:</para>
 
       <screen>ClassWithT1
@@ -370,9 +370,9 @@ ClassExtendsT1</screen>
 
       <para id="para_there_are_two_workarounds_the">There are three
       workarounds you can use with Scala version 2.7. The first is to use some
-      advanced options for <userinput>scala</userinput> and
-      <userinput>scalac</userinput>. The <literal>-Xfuture</literal> option
-      will enable the override behavior that is supported in version 2.8. The
+      advanced options for <literal>scala</literal> and
+      <literal>scalac</literal>. The <literal>-Xfuture</literal> option will
+      enable the override behavior that is supported in version 2.8. The
       <literal>-Xcheckinit</literal> option will analyze your code and report
       if the behavior change will break it. The option
       <literal>-Xexperimental</literal>, which enables many experimental
@@ -440,7 +440,7 @@ println("c2b.value = "+c2b.value+", inverse = "+c2b.inverse)</programlisting>
 
       <para id="para_while_it_appears_that_we_are_c">While it appears that we
       are creating an instance of the trait with <literal>new AbstractT2
-      …</literal>, we are actually using an anonymous inner class that
+      ...</literal>, we are actually using an anonymous inner class that
       implicitly extends the trait. This script shows what happens when
       <literal>inverse</literal> is calculated:</para>
 
@@ -572,11 +572,12 @@ object ButtonClickableObserverVetoableSpec2 extends Specification {
       var</literal> is required. We just assign a new value. Since the body of
       the trait is executed before the body of the class using it, reassigning
       the field value happens <emphasis>after</emphasis> the initial
-      assignment in trait’s body. However, as we saw before, that reassignment
-      could happen too late if the field is used in the trait’s body in some
-      calculation that will become invalid by a reassignment later! You can
-      avoid this problem if you make the field private and define a public
-      writer method that redoes any dependent calculations.</para>
+      assignment in the trait’s body. However, as we saw before, that
+      reassignment could happen too late if the field is used in the trait’s
+      body in some calculation that will become invalid by a reassignment
+      later! You can avoid this problem if you make the field private and
+      define a public writer method that redoes any dependent
+      calculations.</para>
 
       <para id="para_another_disadvantage_of_using_">Another disadvantage of
       using a <literal>var</literal> declaration is that
@@ -946,10 +947,10 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
       <para id="para_when_the_count_field_is_read">When the
       <literal>count</literal> field is read or written, as in this example,
       are methods called or is the field accessed directly? As originally
-      declared in <literal>ButtonCountObserver</literal>, field is accessed
-      directly. However, the user doesn’t really care. In fact, the following
-      two definitions are functionally equivalent, from the perspective of the
-      user:</para>
+      declared in <literal>ButtonCountObserver</literal>, the field is
+      accessed directly. However, the user doesn’t really care. In fact, the
+      following two definitions are functionally equivalent, from the
+      perspective of the user:</para>
 
       <programlisting linenumbering="unnumbered">class ButtonCountObserver {
   var count = 0  // public field access (original definition)
@@ -985,7 +986,7 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
         </indexterm></para>
 
       <para id="para_the_writer_method_has_the_form">The writer method has the
-      format <literal>count_=(…)</literal>. As a bit of syntactic sugar, the
+      format <literal>count_=(...)</literal>. As a bit of syntactic sugar, the
       compiler allows invocations of methods with this format to be written in
       either of the following ways:</para>
 
@@ -1054,7 +1055,7 @@ class ConcreteChild extends AbstractParent {
 println(new ConcreteChild().name)   // =&gt; "Child"</programlisting>
 
       <para id="para_this_also_works_for_traits_if">This also works for
-      Traits. If the trait’s method is concrete, we have the
+      traits. If the trait’s method is concrete, we have the
       following:<indexterm>
           <primary>traits</primary>
 
@@ -1099,7 +1100,7 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       <literal>def</literal> with a <literal>val</literal> in a subclass can
       also be handy when interoperating with Java code. Turn a getter into a
       <literal>val</literal> by placing it in the constructor. You’ll see this
-      in action in the below example, in which our Scala class
+      in action in the following example, in which our Scala class
       <literal>Person</literal> implements a hypothetical
       <literal>PersonInterface</literal> from some legacy Java code:</para>
 
@@ -1212,9 +1213,8 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       <para id="para_in_the_case_of_an_object_a">In the case of an
       <literal>object</literal>, <literal>apply</literal> is conventionally
       used as a <emphasis>factory</emphasis> method, returning a new instance.
-      This is what <literal>Pair.apply</literal> does in the Scala library, as
-      we saw before. Here is <literal>Pair:</literal> from the standard
-      library:<indexterm>
+      This is what <literal>Pair.apply</literal> does in the Scala library.
+      Here is <literal>Pair</literal> from the standard library:<indexterm>
           <primary>factory methods, apply method as</primary>
         </indexterm></para>
 
@@ -1280,10 +1280,9 @@ object Widget {
       instantiate. The string might come from a configuration file with
       widgets to create at startup, for example. The string format is the same
       format used by <literal>toString()</literal>. Regular expressions are
-      defined for each type. (<emphasis>Combinator parsers</emphasis> are an
+      defined for each type. (<emphasis>Parser combinators</emphasis> are an
       alternative. They are discussed in <xref
-      linkend="ExternalDSLsWithCombinatorParsers" /> in <xref
-      linkend="DomainSpecificLanguages" />.)</para>
+      linkend="ExternalDSLsWithCombinatorParsers" />.)</para>
 
       <para id="para_the_match_expression_applies">The
       <literal>match</literal> expression applies each regular expression to
@@ -1343,22 +1342,24 @@ object WidgetApplySpec extends Specification {
 
       <para id="para_the_first_match_statement_impl">The first match statement
       implicitly invokes <literal>Widget.apply</literal> with the string
-      “(button: label=click me, (Widget))”. If a button wrapped in a Some is
-      not returned with the label “click me”, this test will fail. Next, a
-      similar test for a <literal>TextField</literal> widget is done. The
-      final test uses an invalid string and confirms that
-      <literal>None</literal> is returned.</para>
+      <literal>"(button: label=click me, (Widget))"</literal>. If a button
+      wrapped in a <literal>Some</literal> is not returned with the label
+      <literal>"click me"</literal>, this test will fail. Next, a similar test
+      for a <literal>TextField</literal> widget is done. The final test uses
+      an invalid string and confirms that <literal>None</literal> is
+      returned.</para>
 
       <para id="para_a_drawback_of_this_particular_">A drawback of this
-      particular implementation is that we have hard-coded a dependency on
-      each derived class of <literal>Widget</literal> in
-      <literal>Widget</literal> itself, which breaks the <emphasis>Open-Closed
-      Principle</emphasis> (see <link linkend="Meyer1997"
-      xrefstyle="select:nopage">[Meyer1997]</link> and <link
-      linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>). A
-      better implementation would use a factory design pattern from &lt;&lt;
-      GOF1995&gt;&gt;. Nevertheless, the example illustrates how an
-      <literal>apply</literal> method can be used as a real factory.</para>
+      particular implementation is that we have hardcoded a dependency on each
+      derived class of <literal>Widget</literal> in <literal>Widget</literal>
+      itself, which breaks the <emphasis>Open-Closed Principle</emphasis> (see
+      <link linkend="Meyer1997" xrefstyle="select:nopage">[Meyer1997]</link>
+      and <link linkend="Martin2003"
+      xrefstyle="select:nopage">[Martin2003]</link>). A better implementation
+      would use a factory design pattern from <link
+      linkend="GOF1995">GOF1995</link>. Nevertheless, the example illustrates
+      how an <literal>apply</literal> method can be used as a real
+      factory.</para>
 
       <para id="para_there_is_no_requirement_for_a">There is no requirement
       for <literal>apply</literal> in an <literal>object</literal> to be used
@@ -1546,7 +1547,9 @@ object RadioButton {
       linkend="ScalaObjectSystem" />, <literal>Pair</literal> is a
       <emphasis>type</emphasis> defined to be equal to
       <literal>Tuple2</literal>. Here is the corresponding “specs”
-      <literal>object</literal> that tests it:</para>
+      <literal>object</literal> that tests it<indexterm class="endofrange"
+      startref="ch06_unapply"></indexterm><indexterm class="endofrange"
+      startref="ch06_companionunapply"></indexterm>:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/radio-button-unapply-spec.scala
 
@@ -1588,12 +1591,6 @@ object RadioButtonUnapplySpec extends Specification {
     }
   }
 }</programlisting>
-
-      <para id="para_the_apply_and_unapply_meth">The <literal>apply</literal>
-      and <literal>unapply</literal> methods provide an elegant, yet type-safe
-      way to construct and “deconstruct” instances.<indexterm
-      class="endofrange" startref="ch06_unapply"></indexterm><indexterm
-      class="endofrange" startref="ch06_companionunapply"></indexterm></para>
     </sect2>
 
     <sect2 id="UnapplySeqMethod">
@@ -1644,7 +1641,7 @@ def unapplySeq[A](x: List[A]): Some[List[A]] = Some(x)</programlisting>
       <literal>xs: A*</literal> is a variable argument list. Callers of
       <literal>apply</literal> can pass as many <literal>A</literal> instances
       as they want, including none. Internally, variable argument lists are
-      stored in an <literal>Seq[A]</literal>, which inherits the
+      stored in an <literal>Array[A]</literal>, which inherits the
       <literal>toList</literal> method from <literal>Iterable</literal> that
       we used here.</para>
 
@@ -1772,31 +1769,31 @@ object PersonTest {
 
       <para id="para_this_code_compiles_fine_but_i">This code compiles fine,
       but if you attempt to invoke <literal>Person.main</literal>, using
-      <userinput>scala -cp ... objects.Person</userinput>, you get the
-      following error:</para>
+      <literal>scala -cp ... objects.Person</literal>, you get the following
+      error:</para>
 
       <screen>java.lang.NoSuchMethodException: objects.Person.main([Ljava.lang.String;)</screen>
 
       <para id="para_the_objects_person_class_fil">The
       <literal>objects/Person.class</literal> file exists. If you decompile it
-      with <userinput>javap -classpath ... objects.Person</userinput> (see
-      <xref linkend="CommandLineToolDecompilers" /> in <xref
+      with <literal>javap -classpath ... objects.Person</literal> (see <xref
+      linkend="CommandLineToolDecompilers" /> in <xref
       linkend="ScalaToolsLibs" />), you can see that it doesn’t contain a
       <literal>main</literal> method. If you decompile
       <literal>objects/Person$.class</literal>, the file for the companion
       object’s byte code, it has a <literal>main</literal> method, but notice
       that it isn’t declared <literal>static</literal>. So, attempting to
-      invoke <userinput>scala -cp ... objects.Person$</userinput> also fails
-      to find the “static” <literal>main</literal>:</para>
+      invoke <literal>scala -cp ... objects.Person$</literal> also fails to
+      find the “static” <literal>main</literal>:</para>
 
       <screen>java.lang.NoSuchMethodException: objects.Person$.main is not static</screen>
 
       <para id="para_the_separate__singleton__objec">The separate
       <emphasis>singleton</emphasis> object <literal>PersonTest</literal>
       defined in this example has to be used. Decompiling it with
-      <userinput>javap -classpath ... objects.PersonTest</userinput> shows
-      that it has a <literal>static main</literal> method. If you invoke it
-      using <userinput>scala -cp ... objects.PersonTest</userinput>, the
+      <literal>javap -classpath ... objects.PersonTest</literal> shows that it
+      has a <literal>static main</literal> method. If you invoke it using
+      <literal>scala -cp ... objects.PersonTest</literal>, the
       <literal>PersonTest.main</literal> method is invoked, which in turn
       invokes <literal>Person.main</literal>. You get an assertion error from
       the second call to <literal>assert</literal>, which is
@@ -2065,10 +2062,9 @@ shape2: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0)). 1 == 2 ? false</
     </note>
 
     <para id="para_the_companion_object_also_gets">The companion object also
-    gets an <literal>unapply</literal> method, called an
-    <emphasis>extractor</emphasis>. Extractors are used to extract the parts
-    of an object in an elegant fashion. The following script demonstrates the
-    extractors in pattern matching <literal>case</literal>
+    gets an <literal>unapply</literal> extractor method, which extracts all
+    the fields of an instance in an elegant fashion. The following script
+    demonstrates the extractors in pattern matching <literal>case</literal>
     statements:<indexterm>
         <primary>pattern matching</primary>
 
@@ -2216,7 +2212,7 @@ println(circle2)</programlisting>
     <sect2 id="CaseClassInheritance">
       <title>Case Class Inheritance</title>
 
-      <para id="para_did_you_notice_that_shapes_c">Did you notice that new
+      <para id="para_did_you_notice_that_shapes_c">Did you notice that the new
       <literal>Shapes</literal> code in <xref linkend="CaseClasses" /> did not
       put the <literal>case</literal> keyword on the abstract
       <literal>Shape</literal> class? This is allowed by the compiler, but
@@ -2308,7 +2304,7 @@ package shapesid {
 
 import shapesid._
 
-case class FancyCircle(name:String, override val id: String,
+case class FancyCircle(name: String, override val id: String,
     override val center: Point, override val radius: Double)
       extends Circle(id, center, radius) {
   override def draw() = println("FancyCircle.draw: " + this)

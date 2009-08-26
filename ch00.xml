@@ -8,15 +8,86 @@
   language that offers all the benefits of a modern object model, functional
   programming, and an advanced type system. Packed with code examples, this
   comprehensive book teaches you how to be productive with Scala quickly, and
-  explains what makes this language ideal for today’s highly scalable,
+  explains what makes this language ideal for today’s scalable, distributed,
   component-based applications that support concurrency and distribution.
-  You’ll also learn the advantages that Scala offers as a language for the
-  Java Virtual Machine.</para>
+  You’ll also learn how Scala takes advantage of the advanced Java Virtual
+  Machine as a platform for programming languages.</para>
 
-  <para>Learn more at <ulink role="orm:hideurl:ital"
-  url="http://programmingscala.com">programmingscala.com</ulink> or at the
-  book’s <ulink url="http://oreilly.com/catalog/9780596155957/">catalog
+  <para>Learn more at <ulink
+  url="http://programmingscala.com">http://programmingscala.com</ulink> or at
+  the book’s <ulink url="http://oreilly.com/catalog/9780596155957/">catalog
   page</ulink>.</para>
+
+  <sect1>
+    <title>Welcome to Programming Scala</title>
+
+    <para>Programming languages become popular for many reasons. Sometimes,
+    programmers on a given platform prefer a particular language, or one is
+    institutionalized by a vendor. Most Mac OS programmers use Objective-C.
+    Most Windows programmers use C++ and .NET languages. Most embedded-systems
+    developers use C and C++.</para>
+
+    <para>Sometimes, popularity derived from technical merit gives way to
+    fashion and fanaticism. C++, Java, and Ruby have been the objects of
+    fanatical devotion among programmers.</para>
+
+    <para>Sometimes, a language becomes popular because it fits the needs of
+    its era. Java was initially seen as a perfect fit for browser-based, rich
+    client applications. Smalltalk captured the essence of object-oriented
+    programming (OOP) as that model of programming entered the
+    mainstream.</para>
+
+    <para>Today, concurrency, heterogeneity, always-on services, and
+    ever-shrinking development schedules are driving interest in functional
+    programming (FP). It appears that the dominance of object-oriented
+    programming may be over. Mixing paradigms is becoming popular, even
+    necessary.</para>
+
+    <para>We gravitated to Scala from other languages because Scala embodies
+    many of the optimal qualities we want in a general-purpose programming
+    language for the kinds of applications we build today: reliable,
+    high-performance, highly concurrent Internet and enterprise
+    applications.</para>
+
+    <para>Scala is a multi-paradigm language, supporting both object-oriented
+    and functional programming approaches. Scala is scalable, suitable for
+    everything from short scripts up to large-scale, component-based
+    applications. Scala is sophisticated, incorporating state-of-the-art ideas
+    from the halls of computer science departments worldwide. Yet Scala is
+    practical. Its creator, Martin Odersky, participated in the development of
+    Java for years and understands the needs of professional
+    developers.</para>
+
+    <para>Both of us were seduced by Scala, by its concise, elegant, and
+    expressive syntax and by the breadth of tools it put at our disposal. In
+    this book, we strive to demonstrate why all these qualities make Scala a
+    compelling and indispensable programming language.</para>
+
+    <para>If you’re an experienced developer who wants a fast, thorough
+    introduction to Scala, this book is for you. You may be evaluating Scala
+    as a replacement for or complement to your current languages. Maybe you
+    have already decided to use Scala, and you need to learn its features and
+    how to use it well. Either way, we hope to illuminate this powerful
+    language for you in an accessible way.</para>
+
+    <para>We assume that you are well versed in object-oriented programming,
+    but we don’t assume that you have prior exposure to functional
+    programming. We assume you are experienced in one or more other
+    programming languages. We draw parallels to features in Java, C#, Ruby,
+    and other languages. If you know any of these languages, we’ll point out
+    similar features in Scala, as well as many features that are new.</para>
+
+    <para>Whether you come from an object-oriented or functional programming
+    background, you will see how Scala elegantly combines both paradigms,
+    demonstrating their complementary nature. Based on many examples, you will
+    understand how and when to apply OOP and FP techniques to many different
+    design problems.</para>
+
+    <para>In the end, we hope that you too will be seduced by Scala. Even if
+    Scala does not end up becoming your day-to-day language, we hope you will
+    gain insights that you can apply regardless of what language you’re
+    using.</para>
+  </sect1>
 
   <sect1 id="_conventions_used_in_this_book">
     <title>Conventions Used in This Book</title>
@@ -102,16 +173,18 @@
       <title>Getting the Code Examples</title>
 
       <para id="para_you_can_download_the_code_exam">You can download the code
-      examples from TODO. Unzip the files to a convenient location. See the
+      examples from <ulink
+      url="http://examples.oreilly.com/9780596155964/">http://examples.oreilly.com/9780596155964/</ulink>.
+      Unzip the files to a convenient location. See the
       <filename>README.txt</filename> file in the distribution for
       instructions on building and using the examples.</para>
 
       <para id="para_file_name_conventions">Some of the example files can be
-      run as scripts using the <userinput>scala</userinput> command. Others
-      must be compiled into class files. Some files contain deliberate errors
-      and won’t compile. We have adopted a file naming convention to indicate
-      each of these cases, although as you learn Scala it should become
-      obvious from the contents of the files, in most cases.<indexterm>
+      run as scripts using the <literal>scala</literal> command. Others must
+      be compiled into class files. Some files contain deliberate errors and
+      won’t compile. We have adopted a file naming convention to indicate each
+      of these cases, although as you learn Scala it should become obvious
+      from the contents of the files, in most cases.<indexterm>
           <primary>code examples from this book</primary>
         </indexterm></para>
 
@@ -121,12 +194,11 @@
 
           <listitem>
             <para>Files that end in <filename>-script.scala</filename> can be
-            run on a command line using <userinput>scala</userinput>, e.g.,
-            <userinput>scala foo-script.scala</userinput>. You can also start
-            <userinput>scala</userinput> in the interpreter mode (when you
-            don’t specify a script file) and load any script file in the
-            interpreter using the <literal>:load filename</literal>
-            command.</para>
+            run on a command line using <literal>scala</literal>, e.g.,
+            <literal>scala foo-script.scala</literal>. You can also start
+            <literal>scala</literal> in the interpreter mode (when you don’t
+            specify a script file) and load any script file in the interpreter
+            using the <literal>:load filename</literal> command.</para>
           </listitem>
         </varlistentry>
 
@@ -148,7 +220,7 @@
 
           <listitem>
             <para>Files named <filename>sake.scala</filename> are used by our
-            build tool, called <userinput>sake</userinput>. The
+            build tool, called <literal>sake</literal>. The
             <filename>README.txt</filename> file describes this tool.</para>
           </listitem>
         </varlistentry>
@@ -158,7 +230,7 @@
 
           <listitem>
             <para>All other Scala files must be compiled using
-            <userinput>scalac</userinput>. In the distribution, they are used
+            <literal>scalac</literal>. In the distribution, they are used
             either by other compiled or script files, such as tests, not all
             of which are listed in the book.</para>
           </listitem>
@@ -236,5 +308,81 @@
     <simplelist type="vert">
       <member><ulink url="http://oreilly.com"></ulink></member>
     </simplelist>
+  </sect1>
+
+  <sect1>
+    <title>Acknowledgments</title>
+
+    <para>As we developed this book, many people read early drafts and
+    suggested numerous improvements to the text, for which we are eternally
+    grateful. We are especially grateful to Steve Jensen, Ramnivas Laddad,
+    Marcel Molina, Bill Venners, and Jonas Bonér for their extensive
+    feedback.</para>
+
+    <para>Much of the feedback we received came through the Safari Rough Cuts
+    releases and the online edition available at <ulink
+    url="http://programmingscala.com">http://programmingscala.com</ulink>. We
+    are grateful for the feedback provided by (in no particular order) Iulian
+    Dragos, Nikolaj Lindberg, Matt Hellige, David Vydra, Ricky Clarkson, Alex
+    Cruise, Josh Cronemeyer, Tyler Jennings, Alan Supynuk, Tony Hillerson,
+    Roger Vaughn, Arbi Sookazian, Bruce Leidl, Daniel Sobral, Eder Andres
+    Avila, Marek Kubica, Henrik Huttunen, Bhaskar Maddala, Ged Byrne, Derek
+    Mahar, Geoffrey Wiseman, Peter Rawsthorne, Geoffrey Wiseman, Joe Bowbeer,
+    Alexander Battisti, Rob Dickens, Tim MacEachern, Jason Harris, Steven
+    Grady, Bob Follek, Ariel Ortiz, Parth Malwankar, Reid Hochstedler, Jason
+    Zaugg, Jon Hanson, Mario Gleichmann, David Gates, Zef Hemel, Michael Yee,
+    Marius Kreis, Martin Süsskraut, Javier Vegas, Tobias Hauth, Francesco
+    Bochicchio, Stephen Duncan Jr., Patrik Dudits, Jan Niehusmann, Bill
+    Burdick, David Holbrook, Shalom Deitch, Jesper Nordenberg, Esa Laine, Gleb
+    Frank, Simon Andersson, Patrik Dudits, Chris Lewis, Julian Howarth, Dirk
+    Kuzemczak, Henri Gerrits, John Heintz, Stuart Roebuck, and Jungho Kim.
+    Many other readers for whom we only have 'user names' also provided
+    feedback. We wish to thank Zack, JoshG, ewilligers, abcoates, brad, teto,
+    pjcj, mkleint, dandoyon, Arek, rue, acangiano, vkelman, bryanl, Jeff,
+    mbaxter, pjb3, kxen, hipertracker, ctran, Ram R., cody, Nolan, Joshua,
+    Ajay, Joe, and anonymous contributors. We apologize if we have overlooked
+    anyone!</para>
+
+    <para>Our editor, Mike Loukides, knows how to push and prod gentle. He’s
+    been a great help throughout this crazy process. Many other people at
+    O’Reilly were always there to answer our questions and help us move
+    forward.</para>
+
+    <para>We thank Jonas Bonér for writing the <xref linkend="foreword"
+    xrefstyle="select:nopage" /> for the book. Jonas is a longtime friend and
+    collaborator from the Aspect-Oriented Programming (AOP) community. For
+    years, he has done pioneering work in the Java community. Now he is
+    applying his energies to promoting Scala and growing that
+    community.</para>
+
+    <para>Bill Venners graciously provided the quote on the back cover. The
+    first published book on Scala, <citetitle>Programming in Scala</citetitle>
+    (Artima), that he cowrote with Martin Odersky and Lex Spoon, is
+    indispensable for the Scala developer. Bill has also created the wonderful
+    ScalaTest library.</para>
+
+    <para>We have learned a lot from fellow developers around the world.
+    Besides Jonas and Bill, Debasish Ghosh, James Iry, Daniel Spiewak, David
+    Pollack, Paul Snively, Ola Bini, Daniel Sobral, Josh Suereth, Robey
+    Pointer, Nathan Hamblen, Jorge Ortiz, and others have illuminated dark
+    corners with their blog entries, forum discussions, and personal
+    conversations.</para>
+
+    <para>Dean thanks his colleagues at Object Mentor and several developers
+    at client sites for many stimulating discussions on languages, software
+    design, and the pragmatic issues facing developers in industry. The
+    members of the Chicago Area Scala Enthusiasts (CASE) group have also been
+    a source of valuable feedback and inspiration.</para>
+
+    <para>Alex dedicates his portion of the book to his mother, who bestowed
+    upon him an appreciation for good writing and the accompanying
+    intellectual tools with which to attempt to produce it. Alex thanks his
+    lovely partner, Kristen, for her patience and kindness throughout the
+    writing process. He would also like to thank his colleagues at Twitter for
+    their encouragement and superb work in demonstrating Scala’s
+    effectiveness.</para>
+
+    <para>Most of all, we thank Martin Odersky and his team for creating
+    Scala.</para>
   </sect1>
 </preface>

@@ -11,10 +11,9 @@
       <para>A method declared by the <literal>ScalaObject</literal> trait and
       used internally by Scala. It takes no arguments and returns an integer.
       It is currently used to optimize pattern matching, but it may be removed
-      in a future release of Scala. While normally invisible to Scala code
-      (they are generated automatically by the compiler), Java code that
-      extends some Scala traits and classes may need to implement this
-      method.<indexterm>
+      in a future release of Scala. While normally invisible to Scala code (it
+      is generated automatically by the compiler), Java code that extends some
+      Scala traits and classes may need to implement this method.<indexterm>
           <primary sortas="tag method">$tag method (ScalaObject)</primary>
         </indexterm><indexterm>
           <primary>ScalaObject class</primary>
@@ -101,7 +100,7 @@
     <glossterm>Annotated Type</glossterm>
 
     <glossdef>
-      <para>Any type that has one or more “<literal>@</literal> annotations
+      <para>Any type that has one or more <literal>@</literal> annotations
       applied to it.<indexterm>
           <primary>annotated types</primary>
         </indexterm></para>
@@ -123,7 +122,8 @@
         </indexterm></para>
 
       <para id="para_any_explicit_type_declarations">Any explicit type
-      declarations are also called <emphasis>annotations</emphasis>.</para>
+      declarations are also called <emphasis>type
+      annotations</emphasis>.</para>
 
       <para id="para_one_or_more_additions_to_a_typ">One or more additions to
       a type declaration that specify behaviors like variance under
@@ -198,9 +198,9 @@
     <glossterm>Attribute</glossterm>
 
     <glossdef>
-      <para>Another name for a type <emphasis>field</emphasis>, used by
-      convention in many object-oriented programming languages. Scala follows
-      Java’s convention of preferring the term <emphasis>field</emphasis> over
+      <para>Another name for a <emphasis>field</emphasis>, used by convention
+      in many object-oriented programming languages. Scala follows Java’s
+      convention of preferring the term <emphasis>field</emphasis> over
       <emphasis>attribute</emphasis>.<indexterm>
           <primary>attributes</primary>
         </indexterm></para>
@@ -413,10 +413,10 @@
       <emphasis>function literal</emphasis> with all the <emphasis>free
       variables</emphasis> referenced in the function literal bound to
       variables of the same name in the enclosing scope where the function
-      literal was used. In other words, the instance is “closed” in the sense
-      that the free variables are bound. Because they are instances, closures
-      are <emphasis>first-class</emphasis> values. They can be passed to other
-      functions to customize their behavior. For example,
+      literal was defined. In other words, the instance is “closed” in the
+      sense that the free variables are bound. Because they are instances,
+      closures are <emphasis>first-class</emphasis> values. They can be passed
+      to other functions to customize their behavior. For example,
       <literal>List.foreach</literal> takes a closure that is applied to each
       element in the list. See also <emphasis>bound variables</emphasis> and
       <emphasis>function literals</emphasis>.<indexterm>
@@ -491,8 +491,8 @@
 
     <glossdef>
       <para>The actual type of a declaration of the form <literal>T1 extends
-      T2 with T3 with … TN { R }</literal>, where <literal>R</literal> is the
-      <emphasis>refinement</emphasis> (body). Definitions in
+      T2 with T3 with ... TN { R }</literal>, where <literal>R</literal> is
+      the <emphasis>refinement</emphasis> (body). Definitions in
       <literal>R</literal> affect the type.<indexterm>
           <primary>compound types</primary>
 
@@ -913,8 +913,8 @@
       <para>A <emphasis>variable</emphasis> that is referenced in a
       <emphasis>function literal</emphasis>, but is not passed in as an
       argument. Therefore, it must be “bound” to a defined variable of the
-      same name in the context where the function literal is used, to form a
-      <emphasis>closure</emphasis>.<indexterm>
+      same name in the context where the function literal is defined, to form
+      a <emphasis>closure</emphasis>.<indexterm>
           <primary>free variables</primary>
         </indexterm></para>
     </glossdef>
@@ -955,10 +955,10 @@
 
     <glossdef>
       <para>In Scala, all functions are instances of <literal>FunctionN[-T1,
-      T2, …, TN, +R]</literal> types, where <literal>N</literal> is the number
-      of arguments (0 through 22 are supported). The type signature syntax
-      <literal>(T1, T2, …, TN) ⇒ R</literal> is used for declaring concrete
-      instances, i.e., function literals.<indexterm>
+      T2, ..., TN, +R]</literal> types, where <literal>N</literal> is the
+      number of arguments (0 through 22 are supported). The type signature
+      syntax <literal>(T1, T2, ..., TN) ⇒ R</literal> is used for declaring
+      concrete instances, i.e., function literals.<indexterm>
           <primary>function types</primary>
 
           <secondary>defined</secondary>
@@ -1040,7 +1040,7 @@
     <glossdef>
       <para>The quality of many <emphasis>object-oriented</emphasis> and
       “procedural” programs where the code consists of statements directing
-      the system to take a particular sequence of action. Contrast with
+      the system to take a particular sequence of actions. Contrast with
       <emphasis>declarative programming</emphasis>.<indexterm>
           <primary>imperative programming</primary>
         </indexterm></para>
@@ -1200,7 +1200,7 @@
 
       <para id="para_in_the_context_of__design_by_c">In the context of
       <emphasis>design by contract</emphasis>, an assertion that should be
-      true on exit from a method or other boundary point. See</para>
+      true before and after a method is executed.</para>
     </glossdef>
   </glossentry>
 
@@ -1281,8 +1281,8 @@
     <glossterm>Mailbox</glossterm>
 
     <glossdef>
-      <para>The queue were an <emphasis>actors</emphasis> messages are stored
-      until the actor processes them in the <emphasis>actor model of
+      <para>The queue where an <emphasis>actor’s</emphasis> messages are
+      stored until the actor processes them in the <emphasis>actor model of
       concurrency</emphasis>.<indexterm>
           <primary>mailbox for Actors</primary>
         </indexterm></para>
@@ -1422,9 +1422,9 @@
 
     <glossdef>
       <para>(Scala version 2.8) The ability to refer to a method argument by
-      name when calling it. useful in combination with <emphasis>default
-      argument values</emphasis> for minimizing the number of arguments that
-      have to be specified by the caller.<indexterm>
+      name when calling the method. It is useful in combination with
+      <emphasis>default argument values</emphasis> for minimizing the number
+      of arguments that have to be specified by the caller.<indexterm>
           <primary>named arguments</primary>
         </indexterm></para>
     </glossdef>
@@ -1487,10 +1487,9 @@
     <glossdef>
       <para>Characters like <literal>&lt;</literal>, <literal>*</literal>,
       etc. that are not letters, digits, nor reserved characters, like left
-      and right parentheses, “curly” braces, or “square” braces, the
-      semicolon, colon, or comma. These characters can be used in method names
-      to implement a form of <emphasis>operator
-      overloading</emphasis>.<indexterm>
+      and right parentheses, curly braces, square brackets, the semicolon,
+      colon, or comma. These characters can be used in method names to
+      implement a form of <emphasis>operator overloading</emphasis>.<indexterm>
           <primary>operator characters</primary>
 
           <secondary>defined</secondary>
@@ -1547,9 +1546,9 @@
     <glossdef>
       <para>A special kind of object declaration that declares members that
       should be visible at the scope of the named package. For example, for
-      the declaration <literal>package object math { type Complex = …
+      the declaration <literal>package object math { type Complex = ...
       }</literal>, the <literal>Complex</literal> type can be referenced as
-      <literal>math.Complex</literal>.<indexterm>
+      <literal>math.Complex</literal>. (Scala version 2.8.)<indexterm>
           <primary>package objects</primary>
         </indexterm></para>
     </glossdef>
@@ -2167,7 +2166,7 @@
       <para>A grouping of two or more items of arbitrary types into a
       “Cartesian product”, without first defining a class to hold them.
       Literal tuple values are written in parentheses and separated by commas,
-      e.g., <literal>(x1, x2, …)</literal>. They are
+      e.g., <literal>(x1, x2, ...)</literal>. They are
       <emphasis>first-class</emphasis> values, so you can assign them to
       variables, pass them as values, and return them from functions. Tuples
       are represented by <literal>TupleN</literal> classes, for N between 2
@@ -2384,13 +2383,13 @@
       <literal>Char</literal>, <literal>Byte</literal>,
       <literal>Double</literal>, <literal>Float</literal>,
       <literal>Long</literal>, <literal>Int</literal>, and
-      <literal>Short</literal>. All are declared <literal>abstract
-      final</literal> so they can’t be used in <literal>new V</literal>
-      expressions. Instead, programs specify literal values, e.g.,
-      <literal>3.14</literal> for a <literal>Double</literal> or use methods
-      that return new values. The Scala runtimes handles instantiation. All
-      the instances of value types are immutable <emphasis>value
-      objects</emphasis>.<indexterm>
+      <literal>Short</literal>. (<literal>Unit</literal> is also a value
+      type.) All are declared <literal>abstract final</literal> so they can’t
+      be used in <literal>new V</literal> expressions. Instead, programs
+      specify literal values, e.g., <literal>3.14</literal> for a
+      <literal>Double</literal> or use methods that return new values. The
+      Scala runtimes handles instantiation. All the instances of value types
+      are immutable <emphasis>value objects</emphasis>.<indexterm>
           <primary>value types</primary>
 
           <secondary>defined</secondary>

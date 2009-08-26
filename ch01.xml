@@ -560,8 +560,8 @@
       functional language on the JVM. He later worked on GJ, a prototype of
       what later became Generics in Java, with Philip Wadler of Haskell fame.
       Martin was hired by Sun Microsystems to produce the reference
-      implementation of <userinput>javac</userinput>, the Java compiler that
-      ships with the Java Developer Kit (JDK) today.<indexterm>
+      implementation of <literal>javac</literal>, the Java compiler that ships
+      with the Java Developer Kit (JDK) today.<indexterm>
           <primary>Odersky, Martin</primary>
         </indexterm><indexterm>
           <primary>Java</primary>
@@ -696,7 +696,7 @@
     <literal>N</literal> is the latest release of the 2.8.0 version. Go to the
     download directory in a terminal <phrase
     role="keep-together">window</phrase>, and install Scala with the
-    <userinput>java</userinput> command. Assuming you downloaded <filename
+    <literal>java</literal> command. Assuming you downloaded <filename
     role="keep-together">scala-2.8.0.final-</filename><filename>installer.jar</filename>,
     run the following command, which will guide you through the
     process:<indexterm>
@@ -746,8 +746,8 @@
     <screen>scala -version</screen>
 
     <para id="para_we_ll_learn_more_about_the_sc">We’ll learn more about the
-    <userinput>scala</userinput> command-line tool later. You should get
-    something like the following output:</para>
+    <literal>scala</literal> command-line tool later. You should get something
+    like the following output:</para>
 
     <screen>Scala code runner version 2.8.0.final -- Copyright 2002-2009, LAMP/EPFL</screen>
 
@@ -797,8 +797,8 @@
     <para id="para_the_documentation_for_the_scal">The documentation for the
     Scala tools and APIs are especially useful. You can browse the API at
     <ulink url="http://www.scala-lang.org/docu/files/api/index.html"></ulink>.
-    This documentation was generated using the <userinput>scaladoc</userinput>
-    tool, analogous to Java’s <userinput>javadoc</userinput> tool. See <xref
+    This documentation was generated using the <literal>scaladoc</literal>
+    tool, analogous to Java’s <literal>javadoc</literal> tool. See <xref
     linkend="CommandLineToolScaladoc" /> in <xref linkend="ScalaToolsLibs" />
     for more information.<indexterm>
         <primary>documentation</primary>
@@ -812,20 +812,20 @@
     compressed file of the API documentation for local browsing using the
     appropriate link on the <ulink
     url="http://www.scala-lang.org/downloads">downloads page</ulink>, or you
-    can install it with the <userinput>sbaz</userinput> package tool, as
+    can install it with the <literal>sbaz</literal> package tool, as
     follows:<indexterm>
         <primary>sbaz tool</primary>
       </indexterm></para>
 
     <screen>sbaz install scala-devel-docs</screen>
 
-    <para id="para__sbaz_is_installed_in_the_sam"><userinput>sbaz</userinput>
-    is installed in the same <filename>bin</filename> directory as the
-    <userinput>scala</userinput> and <userinput>scalac</userinput>
-    command-line tools. The installed documentation also includes details on
-    the scala tool chain (including <userinput>sbaz</userinput>) and code
-    examples. For more information on the Scala command-line tools and other
-    resources, see <xref linkend="ScalaToolsLibs" />.<indexterm>
+    <para id="para__sbaz_is_installed_in_the_sam"><literal>sbaz</literal> is
+    installed in the same <filename>bin</filename> directory as the
+    <literal>scala</literal> and <literal>scalac</literal> command-line tools.
+    The installed documentation also includes details on the scala tool chain
+    (including <literal>sbaz</literal>) and code examples. For more
+    information on the Scala command-line tools and other resources, see <xref
+    linkend="ScalaToolsLibs" />.<indexterm>
         <primary>command-line tools</primary>
 
         <secondary>information on</secondary>
@@ -861,9 +861,8 @@
 
     <para id="para_let_s_start_with_the_interacti">Let’s start with the
     interactive mode. Start the scala interpreter by typing
-    <userinput>scala</userinput> and the return key on your command line.
-    You’ll see the following output. (Some of the version numbers may
-    vary.)</para>
+    <literal>scala</literal> and the return key on your command line. You’ll
+    see the following output. (Some of the version numbers may vary.)</para>
 
     <screen>Welcome to Scala version 2.8.0.final (Java ...).
 Type in expressions to have them evaluated.
@@ -873,8 +872,8 @@ scala&gt;</screen>
 
     <para id="para_the_last_line_is_the_prompt_th">The last line is the prompt
     that is waiting for your input. The interactive mode of the
-    <userinput>scala</userinput> command is very convenient for
-    experimentation (see <xref linkend="CommandLineToolScala" /> in <xref
+    <literal>scala</literal> command is very convenient for experimentation
+    (see <xref linkend="CommandLineToolScala" /> in <xref
     linkend="ScalaToolsLibs" /> for more details). An interactive interpreter
     like this is called a REPL: <emphasis>Read, Evaluate, Print,
     Loop</emphasis>.<indexterm>
@@ -912,7 +911,7 @@ scala&gt;</screen>
       </indexterm></para>
 
     <tip id="para_note_experimenting_with_the_">
-      <para>Experimenting with the <userinput>scala</userinput> command in the
+      <para>Experimenting with the <literal>scala</literal> command in the
       interactive mode (REPL) is a great way to learn the details of
       Scala.</para>
     </tip>
@@ -921,8 +920,8 @@ scala&gt;</screen>
     this book can be executed in the interpreter like this. However, it’s
     often more convenient to use the second option we mentioned, writing Scala
     scripts in a text editor or IDE and executing them with the same
-    <userinput>scala</userinput> command. We’ll do that for most of the
-    remaining examples in this chapter.</para>
+    <literal>scala</literal> command. We’ll do that for most of the remaining
+    examples in this chapter.</para>
 
     <para id="para_in_your_text_editor_of_choice_">In your text editor of
     choice, save the Scala code in the following example to a file named
@@ -975,15 +974,15 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
       <title>Interpreting Versus Compiling and Running Scala Code</title>
 
       <para id="para_to_summarize_if_you_type_sca">To summarize, if you type
-      <userinput>scala</userinput> on the command line without a file
-      argument, the interpreter runs in interactive mode. You type in
-      definitions and statements that are evaluated on the fly. If you give
-      the command a scala source file argument, it compiles and runs the file
-      as a script, as in our <userinput>scala upper1-script.scala</userinput>
-      example. Finally, you can compile Scala files separately and execute the
+      <literal>scala</literal> on the command line without a file argument,
+      the interpreter runs in interactive mode. You type in definitions and
+      statements that are evaluated on the fly. If you give the command a
+      scala source file argument, it compiles and runs the file as a script,
+      as in our <literal>scala upper1-script.scala</literal> example. Finally,
+      you can compile Scala files separately and execute the
       <literal>class</literal> file, as long as it has a
       <literal>main</literal> method, just as you would normally do with the
-      <userinput>java</userinput> command. (We’ll show an example
+      <literal>java</literal> command. (We’ll show an example
       shortly.)<indexterm>
           <primary>scala command</primary>
         </indexterm><indexterm>
@@ -1000,7 +999,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
 
       <para id="para_whenever_we_refer_to__executin">Whenever we refer to
       <emphasis>executing a script</emphasis>, we mean running a Scala source
-      file with the <userinput>scala</userinput> command.<indexterm>
+      file with the <literal>scala</literal> command.<indexterm>
           <primary>executing a script</primary>
         </indexterm></para>
     </sidebar>
@@ -1024,7 +1023,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <para id="para_in_the_example_the_upper_cl">In the example, the
     <literal>Upper</literal> class begins with the <literal>class</literal>
     keyword. The class body is inside the outer most curly braces
-    <literal>{…}</literal>.<indexterm>
+    <literal>{...}</literal>.<indexterm>
         <primary>class keyword</primary>
       </indexterm><indexterm>
         <primary>{ } (curly braces)</primary>
@@ -1045,8 +1044,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
       </indexterm></para>
 
     <para id="para_the_argument_list_in_parenthes">The argument list in
-    parentheses is actually a <emphasis>variable length argument
-    list</emphasis> of <literal>String</literal>’s, indicated by the
+    parentheses is actually a <emphasis>variable-length argument
+    list</emphasis> of <literal>String</literal>s, indicated by the
     <literal>String*</literal> type following the colon. That is, you can pass
     in as many comma-separated strings as you want (including an empty list).
     These strings are stored in a parameter named <literal>strings</literal>.
@@ -1081,8 +1080,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     is a particular kind of collection. It is a <emphasis>parameterized
     type</emphasis> (like a <emphasis>generic</emphasis> type in Java),
     parameterized here with <literal>String</literal>. Note that Scala uses
-    square brackets <literal>[…]</literal> for parameterized types, while Java
-    uses angle brackets <literal>&lt;…&gt;</literal>.<indexterm>
+    square brackets <literal>[...]</literal> for parameterized types, while
+    Java uses angle brackets <literal>&lt;...&gt;</literal>.<indexterm>
         <primary>&lt; &gt; (angle brackets)</primary>
 
         <secondary sortas="method names">in method names</secondary>
@@ -1106,9 +1105,9 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <para id="para_the_body_of_the_upper_method">The body of the
     <literal>upper</literal> method comes after the equals sign
     <literal>=</literal>. Why an equals sign? Why not just curly braces
-    <literal>{…}</literal>, like in Java? Because semicolons, function return
-    types, method arguments lists, and even the curly braces are sometimes
-    omitted, using an equals sign prevents several possible parsing
+    <literal>{...}</literal>, like in Java? Because semicolons, function
+    return types, method arguments lists, and even the curly braces are
+    sometimes omitted, using an equals sign prevents several possible parsing
     ambiguities. Using an equals sign also reminds us that even functions are
     values in Scala, which is consistent with Scala’s support of
     <emphasis>functional programming</emphasis>, described in more detail in
@@ -1140,7 +1139,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <para id="para_takes_a_single_string_argume">It takes an argument list
     with a single <literal>String</literal> argument named
     <literal>s</literal>. The body of the function literal is after the
-    “arrow”, <literal>=&gt;</literal>. It calls
+    “arrow,” <literal>=&gt;</literal>. It calls
     <literal>toUpperCase()</literal> on <literal>s</literal>. The result of
     this call is returned by the function literal. In Scala, the last
     <emphasis>expression</emphasis> in a function is the return value,
@@ -1176,8 +1175,8 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_finally_we_call_the_upper_m">Finally, we call the
     <literal>upper</literal> method on a list of strings, and print out the
-    result with <literal>Console.println(…)</literal>, which is equivalent to
-    Java’s <literal>System.out.println(…)</literal>.<indexterm>
+    result with <literal>Console.println(...)</literal>, which is equivalent
+    to Java’s <literal>System.out.println(...)</literal>.<indexterm>
         <primary>Console.println( ) method</primary>
       </indexterm></para>
 
@@ -1237,7 +1236,7 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
     method body begins.</para>
 
     <para id="para_we_have_also_exploited_a_short">We have also exploited a
-    short-hand for the function literal. Previously we wrote it as
+    shorthand for the function literal. Previously we wrote it as
     follows:</para>
 
     <programlisting linenumbering="unnumbered">(s:String) =&gt; s.toUpperCase()</programlisting>
@@ -1261,8 +1260,8 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
       </indexterm></para>
 
     <para id="para_you_can_also_use_this_short_ha">You can also use this
-    short-hand syntax in some more complex function literals, as we will see
-    in <xref linkend="RoundingOutTheEssentials" />.</para>
+    shorthand syntax in some more complex function literals, as we will see in
+    <xref linkend="RoundingOutTheEssentials" />.</para>
 
     <para id="para_on_the_last_line_using_an_ob">On the last line, using an
     <literal>object</literal> rather than a <literal>class</literal>
@@ -1318,7 +1317,7 @@ object Upper {
     </note>
 
     <para id="para_the_first_line_inside_the_mai">The first line inside the
-    <literal>main</literal> method uses the same short-hand notation for
+    <literal>main</literal> method uses the same shorthand notation for
     <literal>map</literal> that we just examined:</para>
 
     <programlisting linenumbering="unnumbered">args.map(_.toUpperCase())...</programlisting>
@@ -1352,7 +1351,7 @@ object Upper {
 
     <para id="para_this_time_you_must_first_comp">This time, you must first
     compile the code to a JVM <filename>.class</filename> file using
-    <userinput>scalac</userinput>:<indexterm>
+    <literal>scalac</literal>:<indexterm>
         <primary>classes</primary>
 
         <secondary>compiling Java class</secondary>
@@ -1391,15 +1390,15 @@ object Upper {
 
     <screen>scala -cp . Upper Hello World!</screen>
 
-    <para id="para_the_cp_option_adds_he_cur">The <userinput>-cp .</userinput>
+    <para id="para_the_cp_option_adds_he_cur">The <literal>-cp .</literal>
     option adds the current directory to the search “class path”. You should
     get the following output:</para>
 
     <screen> HELLO WORLD!</screen>
 
     <para id="para_therefore_we_have_met_the_req">Therefore, we have met the
-    requirement a programming language book must start with a “hello world”
-    program.<indexterm class="endofrange"
+    requirement that a programming language book must start with a “hello
+    world” program.<indexterm class="endofrange"
     startref="ch01_Scalaexamples"></indexterm></para>
   </sect1>
 
@@ -1516,7 +1515,7 @@ package shapes {
     override a concrete method. Unlike C#, you don’t have to use a
     <literal>virtual</literal> keyword on the original concrete method. In
     fact, there is no <literal>virtual</literal> keyword in Scala. As before,
-    we omit the curly braces “<literal>{…}</literal>” around the body of
+    we omit the curly braces “<literal>{...}</literal>” around the body of
     <literal>toString</literal>, since it has only one expression.<indexterm>
         <primary>C#</primary>
 
@@ -1564,8 +1563,8 @@ package shapes {
     is also a concrete subclass of <literal>Shape</literal> that defines
     <literal>draw</literal> and overrides <literal>toString</literal>. For
     simplicity, we assume it is not rotated relative to the X and Y axes.
-    Hence, all we need is one point, the lower left-hand point will do, and
-    the height and width of the rectangle.</para>
+    Hence, all we need is one point, the lower lefthand point will do, and the
+    height and width of the rectangle.</para>
 
     <para id="para__triangle_follows_the_same_pa"><literal>Triangle</literal>
     follows the same pattern. It takes three <literal>Points</literal> as its
@@ -1577,7 +1576,7 @@ package shapes {
     methods in <literal>Circle</literal>, <literal>Rectangle</literal>, and
     <literal>Triangle</literal> use <literal>this</literal>. As in Java and
     C#, <literal>this</literal> is how an instance refers to itself. In this
-    context, where <literal>this</literal> is the right-hand side of a String
+    context, where <literal>this</literal> is the righthand side of a String
     concatenation expression (using the plus sign),
     <literal>this.toString</literal> is invoked implicitly.<indexterm>
         <primary>C#</primary>
@@ -1639,12 +1638,13 @@ package shapes {
     </note>
 
     <para id="para_all_the_methods_and_public_fie">All the methods and public
-    fields from <literal>Actor</literal> are imported. These are not
-    <literal>static</literal> imports from the <literal>Actor</literal> type,
-    as they would be in Java. Rather, they are imported from an
-    <literal>object</literal> that is also named <literal>Actor</literal>. The
-    <literal>class</literal> and <literal>object</literal> can have the same
-    name, as we will see in <xref linkend="CompanionObjects" /> in <xref
+    fields from <literal>Actor</literal> are imported by the second
+    <literal>import</literal>. These are not <literal>static</literal> imports
+    from the <literal>Actor</literal> type, as they would be in Java. Rather,
+    they are imported from an <literal>object</literal> that is also named
+    <literal>Actor</literal>. The <literal>class</literal> and
+    <literal>object</literal> can have the same name, as we will see in <xref
+    linkend="CompanionObjects" /> in <xref
     linkend="AdvancedObjectOrientedProgramming" />.<indexterm>
         <primary>Actors</primary>
 
@@ -1664,16 +1664,17 @@ package shapes {
     loop, the <literal>receive</literal> <emphasis>method</emphasis> is
     called. It blocks until a new message arrives. Why is the code after
     <literal>receive</literal> enclosed in curly braces
-    (<literal>{…}</literal>) and not parentheses (<literal>(…)</literal>)? We
-    will learn later that there are cases where this substitution is allowed
-    and it is quite useful (see <xref linkend="RoundingOutTheEssentials" />).
-    For now, what you need to know is that the expressions inside the braces
-    constitute a single <emphasis>function literal</emphasis> that is passed
-    to <literal>receive</literal>. This function literal does a
-    <emphasis>pattern match</emphasis> on the message instance to decide how
-    to handle the message. Because of the <literal>case</literal> clauses, it
-    looks like a typical switch statement in Java, for example, and the
-    behavior is very similar.<indexterm>
+    (<literal>{...}</literal>) and not parentheses (<literal>(...)</literal>)?
+    We will learn later that there are cases where this substitution is
+    allowed and it is quite useful (see <xref
+    linkend="RoundingOutTheEssentials" />). For now, what you need to know is
+    that the expressions inside the braces constitute a single
+    <emphasis>function literal</emphasis> that is passed to
+    <literal>receive</literal>. This function literal does a <emphasis>pattern
+    match</emphasis> on the message instance to decide how to handle the
+    message. Because of the <literal>case</literal> clauses, it looks like a
+    typical switch statement in Java, for example, and the behavior is very
+    similar.<indexterm>
         <primary>function literals</primary>
 
         <secondary>passing to method for pattern matching</secondary>

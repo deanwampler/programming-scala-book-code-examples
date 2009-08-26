@@ -25,7 +25,7 @@
   <para id="para_because_functional_programming">Because functional
   programming is less widely understood than object-oriented programming, we
   won’t assume that you have prior experience with it. We’ll start this
-  chapter with plenty of background information. As we’ll see, functional
+  chapter with plenty of background information. As you’ll see, functional
   programming is not only a very effective way to approach concurrent
   programming, which we’ll explore in depth in <xref linkend="Concurrency" />,
   but functional programming can also improve your objects, as well.</para>
@@ -99,13 +99,15 @@
       reliable.</para>
 
       <para id="para_in_functional_programming_the">In functional programming,
-      the ability to compose functions from other functions extends to
-      treating them as values. In other words, functions are <emphasis>first
-      class</emphasis> values, just like data. You can assign functions to
-      variables. You can pass functions to other functions. You can return
-      functions as values from functions. In the functional paradigm,
-      functions become a primitive type, a building block that’s just as
-      essential to the work of programming as integers or strings.</para>
+      you can compose functions from other functions. For example,
+      <literal>tan(x) = sin(x)/cos(x)</literal>. An implication of
+      composability is that functions can be treated as values. In other
+      words, functions are <emphasis>first class</emphasis>, just like data.
+      You can assign functions to variables. You can pass functions to other
+      functions. You can return functions as values from functions. In the
+      functional paradigm, functions become a primitive type, a building block
+      that’s just as essential to the work of programming as integers or
+      strings.</para>
 
       <para id="para_when_a_function_takes_other_fu">When a function takes
       other functions as arguments or returns a function, it is called a
@@ -224,7 +226,7 @@
     are all about eliminating side effects, a language that
     <emphasis>never</emphasis> allowed for side effects would be useless.
     Input and output (IO) is inherently about side effects, and IO is
-    essential to many programming tasks. For this reason, all functional
+    essential to all programming tasks. For this reason, all functional
     languages provide mechanisms for performing side effects in a controlled
     way.</para>
 
@@ -253,18 +255,19 @@
 
     <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-map-example-script.scala
 
-List(1, 2, 3, 4, 5).map { _ * 2 }</programlisting>
+List(1, 2, 3, 4, 5) map { _ * 2 }</programlisting>
 
     <para id="para_recall_that_095_042_2_">Recall that <literal>_ *
     2</literal> is a <emphasis>function literal</emphasis> that is shorthand
     for <literal>i =&gt; i * 2</literal>. For each argument to the function,
-    you can use <literal>_</literal> if the argument is used only once. Here’s
-    an example that “reduces” the same list by multiplying all the elements
-    together:</para>
+    you can use <literal>_</literal> if the argument is used only once. We
+    also used the infix operator notation to invoke <literal>map</literal>.
+    Here’s an example that “reduces” the same list by multiplying all the
+    elements together:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-reduceLeft-example-script.scala
 
-List(1, 2, 3, 4, 5).reduceLeft { _ * _ }</programlisting>
+List(1, 2, 3, 4, 5) reduceLeft { _ * _ }</programlisting>
 
     <para id="para_the_first_095_represents_th">The first <literal>_</literal>
     represents the argument that is accumulating the value of the reduction
@@ -311,10 +314,9 @@ println(l2)</programlisting>
       <literal>factor</literal>, to use as the multiplication factor and we
       pulled out the previous anonymous function into a value called
       <literal>multiplier</literal> that now uses <literal>factor</literal>.
-      Then we map over a list of integers, as we did before. (Notice the infix
-      operator notation for the calls to <literal>map</literal>.) After the
-      first call to <literal>map</literal>, we change
-      <literal>factor</literal> and map again. Here is the output:</para>
+      Then we map over a list of integers, as we did before. After the first
+      call to <literal>map</literal>, we change <literal>factor</literal> and
+      map again. Here is the output:</para>
 
       <screen>List(3, 6, 9, 12, 15)
 List(5, 10, 15, 20, 25)</screen>
@@ -349,7 +351,7 @@ List(5, 10, 15, 20, 25)</screen>
     </sect2>
 
     <sect2 id="PurityInsideVsOutside">
-      <title>Purity Inside and Outside</title>
+      <title>Purity Inside Versus Outside</title>
 
       <para id="para_if_we_called_sin_x_thousand">If we called
       <literal>sin(x)</literal> thousands of times with the same value of
@@ -373,7 +375,7 @@ List(5, 10, 15, 20, 25)</screen>
       functional libraries with mutable internals in the Scala library. The
       methods in <literal>List</literal> often use mutable local variables for
       efficient traversal. The local variables are thread safe, as are the
-      traversals since <literal>Lists</literal> themselves are
+      traversals, since <literal>Lists</literal> themselves are
       immutable.<indexterm class="endofrange"
       startref="ch08_functionalScala"></indexterm></para>
     </sect2>
@@ -474,7 +476,7 @@ for (i &lt;- 1 to 10)
     by conversion into a loop. Loops eliminate the potential of a stack
     overflow, and they improve performance by eliminating the recursive
     function call overhead. While tail recursion optimizations are not yet
-    supported natively on the JVM, <userinput>scalac</userinput> can do
+    supported natively on the JVM, <literal>scalac</literal> can do
     them.<indexterm>
         <primary>functional programming</primary>
 
@@ -531,7 +533,7 @@ for (i &lt;- 1 to 10)
     <para id="para_this_idiom_of_nesting_a">This idiom of nesting a
     tail-recursive function that uses an accumulator is a very useful
     technique for converting many recursive algorithms into tail recursions
-    that can be optimized into loops by <userinput>scalac</userinput>.</para>
+    that can be optimized into loops by <literal>scalac</literal>.</para>
 
     <note id="para_note_the_tail_call_optimizati">
       <simpara>The tail-call optimization won’t be applied when a method that
@@ -619,9 +621,9 @@ for (i &lt;- 1 to 10)
         </indexterm></para>
 
       <para id="para_supporting_immutability_when_">In the interest of
-      immutability, a new list is created is when you add an element to a
-      list. It is conventional to prepend the new element to the list, as
-      we’ve seen before:</para>
+      immutability, a new list is created when you add an element to a list.
+      It is conventional to prepend the new element to the list, as we’ve seen
+      before:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/list-script.scala
 
@@ -761,7 +763,7 @@ val list2 = list1.::("read").::("should").::("People")</programlisting>
       <para id="para_the_standard_traversal_method_">The standard traversal
       method for Scala containers is <literal>foreach</literal>, which is
       defined by the <literal>Iterable</literal> traits that the containers
-      mixin. It is O(N) in the number of elements. Here is an example of its
+      mix in. It is O(N) in the number of elements. Here is an example of its
       use for lists and maps:<indexterm>
           <primary>Iterable object</primary>
         </indexterm><indexterm>
@@ -854,7 +856,8 @@ val lengths = stateCapitals map { kv =&gt; (kv._1, kv._2.length) }
 println(lengths)</programlisting>
 
       <para id="para_we_convert_the_pair_string_st">This script produces the
-      output <literal>ArrayBufferAlabama</literal>. That is, we convert the
+      output <literal>ArrayBuffer((Alabama,10), (Alaska,6),
+      (Wyoming,8))</literal>. That is, we convert the
       <literal>Pair[String,String]</literal> elements to an
       <literal>ArrayBuffer</literal> of <literal>Pair[String,Int]</literal>
       elements. Where did the <literal>ArrayBuffer</literal> come from? It
@@ -957,11 +960,9 @@ val graph = List(
 )
 
 def flatten(list: List[_]): List[_] = list flatMap {
-  _ match {
-    case head :: tail =&gt; head :: flatten(tail)
-    case Nil =&gt; Nil
-    case x =&gt; List(x)
-  }
+  case head :: tail =&gt; head :: flatten(tail)
+  case Nil =&gt; Nil
+  case x =&gt; List(x)
 }
 
 println(flatten(graph))</programlisting>
@@ -1326,10 +1327,9 @@ for (option &lt;- List(noneNumber, someNumber)) {
 
     <para id="para_fp_pattern_matching">We’ve seen many examples of pattern
     matching throughout the book. We got our first taste in <xref
-    linkend="ATasteOfConcurrency" /> in <xref linkend="IntroducingScala" />,
-    where we used pattern matching in our Actor that drew geometric shapes. We
-    discussed pattern matching in depth in <xref linkend="PatternMatching" />
-    in <xref linkend="RoundingOutTheEssentials" />.<indexterm>
+    linkend="ATasteOfConcurrency" />, where we used pattern matching in our
+    Actor that drew geometric shapes. We discussed pattern matching in depth
+    in <xref linkend="PatternMatching" />.<indexterm>
         <primary>polymorphism</primary>
 
         <secondary>pattern matching versus</secondary>
@@ -1353,8 +1353,8 @@ for (option &lt;- List(noneNumber, someNumber)) {
     elegant way to decompose objects into their constituent parts for
     processing. On the face of it, pattern matching for this purpose seems to
     violate the goal of encapsulation that objects provide. Immutability,
-    though, rectifies this conflict. The risk that the parts of an object
-    might be changed outside of the control of the enclosing object is
+    though, largely rectifies this conflict. The risk that the parts of an
+    object might be changed outside of the control of the enclosing object is
     avoided.</para>
 
     <para id="para_for_example_if_we_have_a_per">For example, if we have a
@@ -1531,13 +1531,14 @@ println(pantsTest.isDefinedAt("skort"))</programlisting>
     <para id="para_of_course_we_could_define_mor">Of course, we could define
     more than two parameters on a curried function, if we like.</para>
 
-    <para id="para_you_also_use_the_syntax_below_">You also use the syntax
-    below to define a curried function. While the above syntax is, in our
-    estimation, more readable, the below omits the requirement of a trailing
-    underscore when treating the curried function as a partially applied
-    function:</para>
+    <para id="para_you_also_use_the_syntax_below_">We can also use the
+    following syntax to define a curried function:</para>
 
     <programlisting linenumbering="unnumbered">def cat(s1: String) = (s2: String) =&gt; s1 + s2</programlisting>
+
+    <para>While the previous syntax is more readable, in our estimation, using
+    this syntax eliminates the requirement of a trailing underscore when
+    treating the curried function as a partially applied function.</para>
 
     <para id="para_calling_our_curried_string_con">Calling our curried string
     concatenation function looks like this in the Scala REPL:</para>
@@ -1593,7 +1594,9 @@ val byTen = multiplier(10) _</programlisting>
     another integer to multiply the first one by. We then curry two special
     cases of <literal>multiplier</literal> into function values. Note the
     trailing underscores, which indicate to the compiler that the preceding
-    expression is to be curried.</para>
+    expression is to be curried. In particular, the wild card underscores
+    indicate that the remaining arguments (in this example, one argument) are
+    unspecified.</para>
 
     <para id="para_in_the_scala_console_we_get_p">In the Scala console, we get
     predictable output when calling our curried functions:</para>
@@ -1605,8 +1608,8 @@ scala&gt; byTen(2)
 res5: Int = 20</screen>
 
     <para id="para_we_ll_revisit_the_curry_meth">We’ll revisit the
-    <literal>curry</literal> method in <xref linkend="FunctionTypes" /> in
-    <xref linkend="ScalasTypeSystem" />.</para>
+    <literal>curry</literal> method in <xref
+    linkend="FunctionTypes" />.</para>
 
     <para id="para_as_you_can_see_currying_and_p">As you can see, currying and
     partially applied functions are closely related concepts. You may see them
@@ -1659,9 +1662,9 @@ println(name.capitalize.reverse)</programlisting>
       <screen>alacS</screen>
 
       <para id="para_how_work_capitalize_string">We saw in <xref
-      linkend="PredefObject" /> in <xref linkend="ScalaObjectSystem" /> that
-      <literal>Predef</literal> defines the <literal>String</literal> type to
-      be <literal>java.lang.String</literal>, yet the methods
+      linkend="PredefObject" /> that <literal>Predef</literal> defines the
+      <literal>String</literal> type to be
+      <literal>java.lang.String</literal>, yet the methods
       <literal>capitalize</literal> and <literal>reverse</literal> aren’t
       defined on <literal>java.lang.String</literal>. How did this code
       work?<indexterm>
@@ -1671,10 +1674,11 @@ println(name.capitalize.reverse)</programlisting>
         </indexterm></para>
 
       <para id="para_the_scala_library_defines_a_">The Scala library defines a
-      “wrapper” class called <literal>scala.runtime.RichString</literal> and
-      the compiler converted the <literal>name</literal> string to it
-      implicitly using a special method defined in <literal>Predef</literal>
-      called <literal>stringWrapper</literal>:<indexterm>
+      “wrapper” class called <literal>scala.runtime.RichString</literal> that
+      has these methods, and the compiler converted the
+      <literal>name</literal> string to it implicitly using a special method
+      defined in <literal>Predef</literal> called
+      <literal>stringWrapper</literal>:<indexterm>
           <primary>wrapper classes in Scala</primary>
         </indexterm><indexterm>
           <primary>RichString class</primary>
@@ -1692,7 +1696,7 @@ println(name.capitalize.reverse)</programlisting>
       a <literal>RichString</literal>, whenever the latter is required. The
       compiler detected an attempt to call a <literal>capitalize</literal>
       method and it determined that <literal>RichString</literal> has such a
-      method. Then it looked within the applicable scope for an
+      method. Then it looked within the current scope for an
       <literal>implicit</literal> method that converts
       <literal>String</literal> to <literal>RichString</literal>, finding
       <literal>stringWrapper</literal>.<indexterm>
@@ -1702,9 +1706,8 @@ println(name.capitalize.reverse)</programlisting>
         </indexterm></para>
 
       <para id="para_as_we_ll_see_in_viewsandview">As we’ll see in <xref
-      linkend="ViewsAndViewBounds" /> in <xref linkend="ScalasTypeSystem" />,
-      these conversion methods are sometimes called
-      <emphasis>views</emphasis>, in the sense that our
+      linkend="ViewsAndViewBounds" />, these conversion methods are sometimes
+      called <emphasis>views</emphasis>, in the sense that our
       <literal>stringWrapper</literal> conversion provides a view from
       <literal>String</literal> to <literal>RichString</literal>.<indexterm>
           <primary>views</primary>
@@ -1785,12 +1788,12 @@ import scala.runtime.RichString
 
 class FancyString(val str: String)
 
-object FancyUser2RichString {
+object FancyString2RichString {
     implicit def fancyString2RichString(fs: FancyString) =
         new RichString(fs.str)
 }
 
-import FancyUser2RichString._
+import FancyString2RichString._
 
 val fs = new FancyString("scala")
 println(fs.capitalize.reverse)</programlisting>
@@ -1799,10 +1802,10 @@ println(fs.capitalize.reverse)</programlisting>
       <literal>RichString</literal> or <literal>Predef</literal> to add an
       implicit conversion method for our custom <literal>FancyString</literal>
       class. Instead, we define an <literal>object</literal> named
-      <literal>FancyUser2RichString</literal> and define the conversion method
-      in it. We then import the contents of this object and the converter gets
-      invoked implicitly in the last line. The output of this script is the
-      following:</para>
+      <literal>FancyString2RichString</literal> and define the conversion
+      method in it. We then import the contents of this object and the
+      converter gets invoked implicitly in the last line. The output of this
+      script is the following:</para>
 
       <screen>alacS</screen>
 
@@ -1860,17 +1863,17 @@ multiplier(2)
 multiplier(2)(3)</programlisting>
 
     <para id="para_our_multiplier_takes_two_lists">Our multiplier takes two
-    lists of parameters. The latter includes an integer value,
-    <literal>factor</literal>, marked <literal>implicit</literal>. This
-    keywords informs the compiler to seek the value for
-    <literal>factor</literal> from the surrounding scope, if available, or to
-    use whatever parameter has been explicitly supplied to the
-    function.</para>
+    lists of parameters. The latter includes an integer value, <literal
+    role="keep-together">factor</literal>, marked <literal>implicit</literal>.
+    This keyword informs the compiler to seek the value for <literal
+    role="keep-together">factor</literal> from the surrounding scope, if
+    available, or to use whatever parameter has been explicitly supplied to
+    the function.</para>
 
     <para id="para_we_ve_defined_our_own_factor_">We’ve defined our own
     <literal>factor</literal> value in scope, and that value is used in the
-    first called to <literal>multiplier</literal>. In the second call, we’re
-    explicitly passing in a value for <literal>factor</literal>, and it
+    first call to <literal>multiplier</literal>. In the second call, we’re
+    explicitly passing in a value for <literal>factor</literal> and it
     overrides the value in the surrounding scope.</para>
 
     <para id="para_essentially_implicit_function">Essentially, implicit
@@ -1913,9 +1916,10 @@ multiplier(2)(3)</programlisting>
       However, a disadvantage of using default argument values is that it
       might be desirable to use a different “default” value based on the
       context in which the method is being called. Scala version 2.8 provides
-      some flexibility, as you can use some expressions for an argument, not
-      just constants. However, that flexibility might not be enough, in which
-      case implicits are a very flexible and powerful alternative.</para>
+      some flexibility, as you can use an expression for an argument, not just
+      a constant value. However, that flexibility might not be enough, in
+      which case implicits are a very flexible and powerful
+      alternative.</para>
 
       <tip id="para_tip_use_implicits_sparingly_a">
         <para>Use implicits sparingly and cautiously. Also, consider adding an
@@ -1956,7 +1960,7 @@ multiplier(2)(3)</programlisting>
     <programlisting linenumbering="unnumbered">def myCallByNameFunction(callByNameParameter: =&gt; ReturnType)</programlisting>
 
     <para id="para_without_this_syntactic_shortcu">Without this syntactic
-    shortcut, the above method definition would look like the below:</para>
+    shortcut, this method definition would look like the following:</para>
 
     <programlisting linenumbering="unnumbered">def myCallByNameFunction(callByNameParameter: () =&gt; ReturnType)</programlisting>
 
@@ -2059,7 +2063,7 @@ c2d.value = 10, inverse = 0.1</screen>
     class, which initializes <literal>value</literal>, is evaluated
     <emphasis>after</emphasis> the trait’s body. However, note that
     <literal>inverse</literal> is declared <literal>lazy</literal>, which
-    means that the right-hand side will be evaluated only when
+    means that the righthand side will be evaluated only when
     <literal>inverse</literal> is actually <emphasis>used</emphasis>. In this
     case, that happens in the last <literal>println</literal> statement. Only
     then is <literal>inverse</literal> initialized, using
@@ -2121,7 +2125,7 @@ c2d.value = 10, inverse = Infinity</screen>
     inherently lazy. When we write the Fibonacci sequence, for example, we
     might write it as an infinite sequence, something like this:</para>
 
-    <screen>Fib = 1, 1, 2, 6, 24, 120, ...</screen>
+    <screen>Fib = 1, 1, 2, 3, 5, 8, ...</screen>
 
     <para id="para_some_pure_functional_languages">Some pure functional
     languages are lazy by default, so they mimic this behavior as closely as
@@ -2129,15 +2133,14 @@ c2d.value = 10, inverse = Infinity</screen>
     tries to use more than a finite subset of these values. Scala is not lazy
     by default, but it does offer support for working with infinite data
     structures. We’ll address this topic in <xref
-    linkend="InfiniteDataStructuresAndLaziness" /> in <xref
-    linkend="ScalasTypeSystem" />.</para>
+    linkend="InfiniteDataStructuresAndLaziness" />.</para>
   </sect1>
 
   <sect1 id="FunctionalComponentAbstractions">
     <title>Recap: Functional Component Abstractions</title>
 
     <para id="para_when_object_oriented_programmi">When object-oriented
-    programming went mainstream in the late 80’s and early 90’s, there was
+    programming went mainstream in the late ’80s and early ’90s, there was
     great hope that it would usher in an era of reusable software components.
     It didn’t really work out that way, except in some rare cases, like the
     windowing APIs of various platforms.<indexterm>
@@ -2170,7 +2173,7 @@ c2d.value = 10, inverse = Infinity</screen>
     message content, it set the stage for the Internet revolution. RESTful web
     services built on top of HTTP are also proving successful as components,
     but they are just complex enough that care is required to ensure that they
-    work successful.</para>
+    work successfully.</para>
 
     <para id="para_so_is_there_hope_for_a_binary">So, is there hope for a
     binary or source-level component model? It probably won’t be

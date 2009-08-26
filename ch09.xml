@@ -112,7 +112,7 @@
         <tertiary>Actors in Scala</tertiary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Concurrency/simple-actor.scala
+    <programlisting linenumbering="unnumbered">// code-examples/Concurrency/simple-actor-script.scala
 
 import scala.actors.Actor
 
@@ -145,7 +145,7 @@ robert.start</programlisting>
         <secondary>factory method for creating</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Concurrency/factory-actor.scala
+    <programlisting linenumbering="unnumbered">// code-examples/Concurrency/factory-actor-script.scala
 
 import scala.actors.Actor
 import scala.actors.Actor._
@@ -171,14 +171,14 @@ val paulNewman = actor {
       whatever classes you’ve cooked up in your programs. For this reason,
       Actors and pattern matching go hand in hand. An Actor should only act on
       messages of familiar types; a pattern match on the class and/or contents
-      of a message is good defensive programming, and increases the
-      readability of Actor code:<indexterm>
+      of a message is good defensive programming and increases the readability
+      of Actor code:<indexterm>
           <primary>Actors</primary>
 
           <secondary>sending messages to</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/pattern-match-actor.scala
+      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/pattern-match-actor-script.scala
 
 import scala.actors.Actor
 import scala.actors.Actor._
@@ -216,7 +216,7 @@ I have no idea what I just got.</screen>
       example demonstrate use of the <literal>!</literal> (exclamation point,
       or <emphasis>bang</emphasis>) method to send messages to our Actor. If
       you’ve ever seen Actors in Erlang, you’ll find this syntax familiar. The
-      Actor is always on the left-hand side of the bang, and the message being
+      Actor is always on the lefthand side of the bang, and the message being
       sent to said Actor is always on the right. If you need a mnemonic for
       this granule of syntactic sugar, imagine that you’re an irate director
       shouting commands at your Actors.<indexterm>
@@ -244,7 +244,7 @@ I have no idea what I just got.</screen>
           <secondary>mailbox</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/actor-mailbox.scala
+      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/actor-mailbox-script.scala
 
 import scala.actors.Actor
 import scala.actors.Actor._
@@ -283,9 +283,8 @@ I've got 4 messages in my mailbox.</screen>
       <tip id="para_tip_keep_this_example_in_mind">
         <para>If you see an Actor’s mailbox size ballooning unexpectedly,
         you’re probably sending messages of a type that the Actor doesn’t know
-        about. Include a catchall case (<literal>_</literal>) when pattern
-        matching received messages to find out what’s harassing your
-        Actors.</para>
+        about. Include a catchall case ( <literal>_</literal> ) when pattern
+        matching messages to find out what’s harassing your Actors.</para>
       </tip>
     </sect2>
 
@@ -318,7 +317,7 @@ I've got 4 messages in my mailbox.</screen>
 
       <para id="para_strait_away_we_see_several_ob">The sleeping barber
       problem is usually solved with semaphores and mutexes, but we’ve got
-      better tools at our disposal. Straight away, we see several things to
+      better tools at our disposal. Straightaway, we see several things to
       model as Actors: the barber is clearly one, as are the customers. The
       barbershop itself could be modeled as an Actor, too; there need not be a
       real-world parallel to verbal communication in an Actor system, even
@@ -355,8 +354,8 @@ class Customer(val id: Int) extends Actor {
       <para id="para_for_the_most_part_this_should">For the most part, this
       should look pretty familiar: we declare the package in which this code
       lives, we import code from the <literal>scala.actors</literal> package,
-      and we define a class that extends <literal>Actor</literal>. There a few
-      details worth noting, however.</para>
+      and we define a class that extends <literal>Actor</literal>. There are a
+      few details worth noting, however.</para>
 
       <para id="para_first_of_all_there_s_our_decl">First of all, there’s our
       declaration of <literal>case object Haircut</literal>. A common pattern
@@ -381,7 +380,7 @@ class Customer(val id: Int) extends Actor {
       process we save some memory and thread use under the hood.</para>
 
       <para id="para_let_s_move_on_to_the_barber_hi">Let’s move on to the
-      barber himself. Because there’s only one barber, we could have use the
+      barber himself. Because there’s only one barber, we could have used the
       <literal>actor</literal> factory method technique mentioned above to
       create him. For testing purposes, we’ve instead defined our own
       <literal>Barber</literal> class:</para>
@@ -540,7 +539,8 @@ object BarbershopSimulator {
       sequence.</para>
 
       <para id="para_compile_and_run_the_code_withi">Compile and run the code
-      within the <literal>sleepingbarber</literal> directory as below:</para>
+      within the <literal>sleepingbarber</literal> directory as
+      follows:</para>
 
       <screen>fsc *.scala
 scala -classpath . sleepingbarber.BarbershopSimulator</screen>
@@ -610,8 +610,8 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
 
       <para id="para_try_modifying_the_code_to_intr">Try modifying the code to
       introduce more customers, additional message types, different delays, or
-      remove the randomness altogether. If you’re an experienced multithreaded
-      programmer, you might try writing your own sleeping barber
+      to remove the randomness altogether. If you’re an experienced
+      multithreaded programmer, you might try writing your own sleeping barber
       implementation just to compare and contrast. We’re willing to bet that
       an implementation in Scala with Actors will be terser and easier to
       maintain.<indexterm class="endofrange"
@@ -801,7 +801,7 @@ println(eventually())</programlisting>
           <tertiary>one-off threads</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/by-block.scala
+      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/by-block-script.scala
 
 new Thread { println("this will run in a new thread") }</programlisting>
 
@@ -849,7 +849,7 @@ object SpawnExample {
           <secondary>using java.util.concurrent</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/util-concurrent.scala
+      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/util-concurrent-script.scala
 
 import java.util.concurrent._
 
@@ -970,7 +970,7 @@ hello from Thread 13</screen>
       behavior-driven development library (see <xref
       linkend="ScalaSpecs" />):</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/smtpd/src/test/scala/com/programmingscala/smtpd/SmtpDecoderSpec.scala
+      <programlisting linenumbering="unnumbered">// .../smtpd/src/test/scala/com/programmingscala/smtpd/SmtpDecoderSpec.scala
 
 package com.programmingscala.smtpd
 
@@ -1040,7 +1040,7 @@ object SmtpDecoderSpec extends Specification {
           <primary>codec for SMTP (example)</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/smtpd/src/main/scala/com/programmingscala/smtpd/Codec.scala
+      <programlisting linenumbering="unnumbered">// .../smtpd/src/main/scala/com/programmingscala/smtpd/Codec.scala
 
 package com.programmingscala.smtpd
 
@@ -1105,7 +1105,7 @@ object Codec {
           <secondary>setup</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/smtpd/src/main/scala/com/programmingscala/smtpd/Main.scala
+      <programlisting linenumbering="unnumbered">// .../smtpd/src/main/scala/com/programmingscala/smtpd/Main.scala
 
 package com.programmingscala.smtpd
 
@@ -1176,7 +1176,7 @@ object Main {
           <primary>IOHandlerActorAdapter object</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/smtpd/src/main/scala/com/programmingscala/smtpd/SmtpHandler.scala
+      <programlisting linenumbering="unnumbered">// .../smtpd/src/main/scala/com/programmingscala/smtpd/SmtpHandler.scala
 
 package com.programmingscala.smtpd
 

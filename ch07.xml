@@ -10,7 +10,7 @@
     <para id="para_for_your_convenience_whenever">For your convenience,
     whenever you compile code, the Scala compiler automatically imports the
     definitions in the <literal>java.lang</literal> package
-    (<userinput>javac</userinput> does this, too). On the .NET platform, it
+    (<literal>javac</literal> does this, too). On the .NET platform, it
     imports the <literal>system</literal> package. The compiler also imports
     the definitions in the analogous Scala package, <literal>scala</literal>.
     Hence, common Java or .NET types can be used without explicitly importing
@@ -18,8 +18,8 @@
     prefix, in the Java case. Similarly, a number of common, Scala-specific
     types are made available without qualification, such as
     <literal>List</literal>. Where there are Java and Scala type names that
-    overlap, like <literal>List</literal>, the Scala version is imported last,
-    so it “wins”.<indexterm>
+    overlap, like <literal>String</literal>, the Scala version is imported
+    last, so it “wins.”<indexterm>
         <primary>object system (Scala)</primary>
 
         <secondary>Predef object</secondary>
@@ -127,17 +127,6 @@
       </tgroup>
     </table>
 
-    <para id="para_while_we_sometimes_uses_the_wo">While we sometimes use the
-    word <emphasis>type</emphasis> informally to refer to classes, traits, and
-    declared objects in a generic way, we saw in <xref
-    linkend="AbstractTypesAndParameterizedTypes" /> in <xref
-    linkend="TypeLessDoMore" /> that Scala supports the concept of declaring
-    “types” using the <literal>type</literal> keyword. This mechanism is
-    common in functional programming languages and it has many similarities to
-    <emphasis>parameterized types</emphasis>, as we saw before.<indexterm>
-        <primary>type keyword</primary>
-      </indexterm></para>
-
     <para id="para__predef_declares_the_types_an"><literal>Predef</literal>
     declares the types and exceptions listed in the table using the
     <literal>type</literal> keyword. They are definitions that equal the
@@ -174,8 +163,8 @@
     parameters, <literal>A</literal> and <literal>B</literal>, one for each
     item in the pair. Recall from <xref
     linkend="AbstractTypesAndParameterizedTypes" /> in <xref
-    linkend="TypeLessDoMore" /> that we explained the meaning of the ‘+’ in
-    front of each type parameter.</para>
+    linkend="TypeLessDoMore" /> that we explained the meaning of the
+    <literal>+</literal> in front of each type parameter.</para>
 
     <para id="para_suppose_we_declare_a_var_of_">Briefly, a
     <literal>Pair[A2,B2]</literal>, for some <literal>A2</literal> and
@@ -248,7 +237,7 @@
     <literal>ArrowAssoc</literal> class and the <literal>Map</literal> and
     <literal>Set</literal> values in <literal>Predef</literal> make the
     convenient <literal>Map</literal> initialization syntax possible. First,
-    when Scala sees <literal>Map(…)</literal> it calls the
+    when Scala sees <literal>Map(...)</literal> it calls the
     <literal>apply</literal> method on the <literal>Map</literal> companion
     object, just as we discussed for <literal>Pair</literal>.<indexterm>
         <primary>Set companion object</primary>
@@ -258,7 +247,7 @@
 
     <para id="para__map_apply_expects_zero_or_mo"><literal>Map.apply</literal>
     expects zero or more <literal>Pairs</literal> (e.g., <literal>(a1, b2),
-    (a2, b2), …</literal>), where each tuple holds a name and value. In the
+    (a2, b2), ...</literal>), where each tuple holds a name and value. In the
     example, the tuple types are all inferred to be of type
     <literal>Pair[String,String]</literal>. The declaration of
     <literal>Map.apply</literal> is as follows:<indexterm>
@@ -270,21 +259,17 @@
   def apply[A, B](elems : (A, B)*) : Map[A, B] = ...
 }</programlisting>
 
-    <para id="para_there_are_no_type_parameters_o">There are no type
-    parameters on the <literal>Map</literal> companion object. There can’t be
-    any, because there can be only one instance, which the Scala runtime
-    controls, so actual type values could never be specified! However,
-    <literal>apply</literal> can have type parameters.</para>
+    <para id="para_there_are_no_type_parameters_o">Recall that there can be no
+    type parameters on the <literal>Map</literal> companion object because
+    there can be only one instance. However, <literal>apply</literal> can have
+    type parameters.</para>
 
-    <para id="para_notice_the_argument_list_signa">Notice the argument list
-    signature. The syntax <literal>(x: X*)</literal> is the Scala way of
-    specifying a <emphasis>variable-length argument list</emphasis>.
-    Internally, <literal>x</literal> will be a subtype of
-    <literal>Seq[X]</literal> (“sequence”), depending on how it is invoked.
-    (Usually, it will be an <literal>Array[X]</literal>.) So, for
-    <literal>Map.apply</literal>, <literal>elems</literal> is of type
-    <literal>Seq[(A,B)]</literal> or <literal>Seq[Tuple2[A,B]]</literal>, if
-    you prefer.<indexterm>
+    <para id="para_notice_the_argument_list_signa">The apply method takes a
+    <emphasis>variable-length argument list</emphasis>. Internally,
+    <literal>x</literal> will be a subtype of <literal>Array[X]</literal>. So,
+    for <literal>Map.apply</literal>, <literal>elems</literal> is of type
+    <literal>Array[(A,B)]</literal> or <literal>Array[Tuple2[A,B]]</literal>,
+    if you prefer.<indexterm>
         <primary>variable-length argument lists</primary>
       </indexterm></para>
 
@@ -313,7 +298,7 @@
     <programlisting linenumbering="unnumbered">implicit def any2ArrowAssoc[A](x: A): ArrowAssoc[A] = new ArrowAssoc(x)</programlisting>
 
     <para id="para_it_is_applied_to_each_item_to_">It is applied to each item
-    to left of an arrow <literal>-&gt;</literal>, e.g., the
+    to the left of an arrow <literal>-&gt;</literal>, e.g., the
     <literal>"Alabama"</literal> string. These strings are wrapped in
     <literal>ArrowAssoc</literal> instances, upon which the
     <literal>-&gt;</literal> method is then invoked. This method has the
@@ -325,7 +310,7 @@
 }</programlisting>
 
     <para id="para_when_it_is_invoked_it_is_pass">When it is invoked, it is
-    passed the string on the right-hand side of the <literal>-&gt;</literal>.
+    passed the string on the righthand side of the <literal>-&gt;</literal>.
     The method returns a tuple with the value, <literal>("Alabama",
     "Montgomery")</literal>, for example. In this way, each <literal>key -&gt;
     value</literal> is converted into a tuple and the resulting
@@ -353,13 +338,13 @@
 
     <para id="para_next_recall_from_chapter_1_th">Next, recall from <xref
     linkend="IntroducingScala" /> that we were able to replace calls to
-    <literal>Console.println(…)</literal> with <literal>println(…)</literal>.
-    This “bare” <literal>println</literal> method is defined in
-    <literal>Predef</literal>, then imported automatically by the compiler.
-    The definition calls the corresponding method in
-    <literal>Console</literal>. Similarly, all the other I/O methods defined
-    by <literal>Predef</literal>, e.g., <literal>readLine</literal> and
-    <literal>format</literal>, call the corresponding
+    <literal>Console.println(...)</literal> with
+    <literal>println(...)</literal>. This “bare” <literal>println</literal>
+    method is defined in <literal>Predef</literal>, then imported
+    automatically by the compiler. The definition calls the corresponding
+    method in <literal>Console</literal>. Similarly, all the other I/O methods
+    defined by <literal>Predef</literal>, e.g., <literal>readLine</literal>
+    and <literal>format</literal>, call the corresponding
     <literal>Console</literal> methods.</para>
 
     <para id="para_finally_the_assert_assume">Finally, the
@@ -437,10 +422,10 @@
 
     <para id="para_an_example_of_a_class_level_me">An example of a class-level
     method is a “finder” method that locates all instances of the class in
-    some repository that match user-specified criteria. Another example is a
-    <emphasis>factory</emphasis> method, as used in one of the factory-related
-    design patterns <link linkend="GOF1995"
-    xrefstyle="select:nopage">[GOF1995]</link>.<indexterm>
+    some repository that match some user-specified criteria. Another example
+    is a <emphasis>factory</emphasis> method, as used in one of the
+    factory-related design patterns (see <link linkend="GOF1995"
+    xrefstyle="select:nopage">[GOF1995]</link>).<indexterm>
         <primary>methods</primary>
 
         <secondary>class-level</secondary>
@@ -479,12 +464,10 @@
       </indexterm></para>
 
     <para id="para_we_ve_already_seen_some_exampl">We’ve already seen some
-    examples of objects, such as the “specs” objects previously in this
-    chapter. Here is another example from the Scala library, the
-    <literal>Pair</literal> type and its <emphasis>companion
-    object</emphasis>. Both are defined in the <literal>Predef</literal>
-    object, which we explored in <xref linkend="PredefObject" /> earlier in
-    this chapter:</para>
+    examples of objects, such as the “specs” objects used previously for
+    tests, and the <literal>Pair</literal> type and its <emphasis>companion
+    object</emphasis>, which we explored in <xref
+    linkend="PredefObject" />:</para>
 
     <programlisting linenumbering="unnumbered">type Pair[+A, +B] = Tuple2[A, B]
 object Pair {
@@ -494,8 +477,8 @@ object Pair {
 
     <para id="para_to_reference_an_object_field">To reference an object field
     or method, you use the syntax <literal>object_name.field</literal> or
-    <literal>object_name.method(…)</literal>, respectively. For example,
-    <literal>Pair.apply(…)</literal>. Note that this is the same syntax that
+    <literal>object_name.method(...)</literal>, respectively. For example,
+    <literal>Pair.apply(...)</literal>. Note that this is the same syntax that
     is commonly used in languages with static fields and methods.<indexterm>
         <primary>fields</primary>
 
@@ -567,7 +550,7 @@ object Pair {
       2.8 source code distribution. Note the file name. It’s not required, but
       it’s a useful convention for package objects. Here is the full package
       object definition (at the time of this writing; it could change before
-      the 2.8.0 final version):</para>
+      the 2.8.0 final version is released):</para>
 
       <programlisting linenumbering="unnumbered">package object scala {
   type Iterable[+A] = scala.collection.Iterable[A]
@@ -603,13 +586,13 @@ object Pair {
 }</programlisting>
 
       <para id="para_note_that_pairs_of_declaration">Note that pairs of
-      declarations like <literal>type List[+] = …</literal> and <literal>val
-      List = …</literal> are effectively “aliases” for the companion class and
-      object, respectively. Because the contents of the
+      declarations like <literal>type List[+] = ...</literal> and <literal>val
+      List = ...</literal> are effectively “aliases” for the companion class
+      and object, respectively. Because the contents of the
       <literal>scala</literal> package is automatically imported by the
       compiler, you can still reference all the definitions in this object in
-      any scope without an explicit import statement for fully-qualified
-      name.</para>
+      any scope without an explicit import statement for fully qualified
+      names.</para>
 
       <para id="para_other_than_the_way_the_members">Other than the way the
       members in package objects are scoped, they behave just like other
@@ -657,7 +640,7 @@ import scala.toplevel._
     linkend="CaseClasses" /> in <xref
     linkend="AdvancedObjectOrientedProgramming" /> that we demonstrated
     pattern matching with our <literal>Shapes</literal> hierarchy, which use
-    case classes. We had a default <literal>case _ =&gt; …</literal>
+    case classes. We had a default <literal>case _ =&gt; ...</literal>
     expression. It’s usually wise to have one. Otherwise, if someone defines a
     new subtype of <literal>Shape</literal> and passes it to this
     <literal>match</literal> statement, a runtime
@@ -767,10 +750,10 @@ def handle (method: HttpMethod) = method match {
     xrefstyle="select:nopage">[Meyer1997]</link> and <link
     linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>), which
     is a solution to the practical problem that it can be costly to modify
-    existing code, retest it (and its users), and redeploy it. It’s much less
-    “costly” if you can extend the system by adding new derived types in
-    <emphasis>separate</emphasis> source files. This is why we picked the HTTP
-    method hierarchy for the example. The list of methods is very
+    existing code, retest it (and other code that uses it), and redeploy it.
+    It’s much less “costly” if you can extend the system by adding new derived
+    types in <emphasis>separate</emphasis> source files. This is why we picked
+    the HTTP method hierarchy for the example. The list of methods is very
     stable.<indexterm>
         <primary>Open-Closed Principle (OCP)</primary>
       </indexterm></para>
@@ -785,13 +768,14 @@ def handle (method: HttpMethod) = method match {
     noticed some duplication in the example. All the concrete classes have a
     <literal>body</literal> field. Why didn’t we put that field in the parent
     <literal>HttpMethod</literal> class? Because we decided to use case
-    classes for the concrete classes, we’ll run into the same problem we
-    discussed in the previous section with a shared <literal>id</literal>
-    field in the <literal>Shape</literal> hierarchy. We need the
-    <literal>body</literal> argument for each HTTP method’s constructor, yet
-    it will be made a field of each method type automatically. So, we would
-    have to use the <literal>override val</literal> technique we demonstrated
-    previously.</para>
+    classes for the concrete classes, we’ll run into the same problem with
+    case class inheritance that we discussed in <xref
+    linkend="CaseClassInheritance" />, where we added a shared
+    <literal>id</literal> field in the <literal>Shape</literal> hierarchy. We
+    need the <literal>body</literal> argument for each HTTP method’s
+    constructor, yet it will be made a field of each method type
+    automatically. So, we would have to use the <literal>override
+    val</literal> technique we demonstrated previously.</para>
 
     <para id="para_we_could_remove_the_case_keywo">We could remove the case
     keywords and implement the methods and companion objects that we need.
@@ -962,7 +946,8 @@ body length? 13</screen>
           </row>
 
           <row>
-            <entry><para><literal>AnyVal</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">AnyVal</literal></para></entry>
 
             <entry><para><literal>Any</literal></para></entry>
 
@@ -980,7 +965,8 @@ body length? 13</screen>
           </row>
 
           <row>
-            <entry><para><literal>AnyRef</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">AnyRef</literal></para></entry>
 
             <entry><para><literal>Any</literal></para></entry>
 
@@ -1073,9 +1059,10 @@ body length? 13</screen>
             <entry><para><literal>Unit</literal></para></entry>
 
             <entry><para>Serves the same role as <literal>void</literal> in
-            most imperative languages. Used exclusively as a function return
+            most imperative languages. Used primarily as a function return
             value. There is only one instance of <literal>Unit</literal>,
-            named <literal>()</literal>.</para></entry>
+            named <literal>()</literal>. Think of it as a tuple with zero
+            items.</para></entry>
           </row>
         </tbody>
       </tgroup>
@@ -1084,8 +1071,8 @@ body length? 13</screen>
     <para id="para_all_other_types_the__referenc">All other types, the
     <emphasis>reference types</emphasis>, are children of
     <literal>AnyRef</literal>. <xref linkend="AnyRef-reference-types" /> lists
-    are some of the more commonly-used reference types. Note that there are
-    some significant differences between the version 2.7.X and 2.8
+    some of the more commonly used reference types. Note that there are some
+    significant differences between the version 2.7.X and 2.8
     collections.<indexterm>
         <primary>AnyRef object</primary>
 
@@ -1130,7 +1117,7 @@ body length? 13</screen>
             return an instance of one of two unrelated types. For example, an
             exception or a “successful” result. The <literal>Either</literal>
             can be pattern matched for its <literal>Left</literal> or
-            <literal>Right</literal> subtypes. (It is analogous
+            <literal>Right</literal> subtypes. (It is analogous to
             <literal>Option</literal>, with <literal>Some</literal> and
             <literal>None</literal>) For the exception-handling idiom, it is
             conventional to use <literal>Left</literal> for the
@@ -1138,20 +1125,20 @@ body length? 13</screen>
           </row>
 
           <row>
-            <entry><para><phrase
-            role="keep-together"><literal>FunctionN[-T</literal><subscript>1</subscript><literal>,
-            -T</literal><subscript>2</subscript><literal>, …,
+            <entry><para><literal>FunctionN[-T</literal><subscript>1</subscript><literal>,
+            -T</literal><subscript>2</subscript><literal>,<?lb ?> ...,
             -T</literal><subscript>N</subscript><literal>,
-            +R]</literal></phrase></para></entry>
+            +R]</literal></para></entry>
 
             <entry><para><literal>AnyRef</literal></para></entry>
 
-            <entry><para>Function that takes <literal>N</literal> arguments,
-            each of which can have its own type, and returns a value of type
-            <literal>R</literal>. (Types are defined for <literal>N</literal>
-            = 0 to 22.) The <emphasis>variance annotations</emphasis> (‘+’ and
-            ‘-’) in front of the types will be explained in <xref
-            linkend="VarianceUnderInheritance" /> in <xref
+            <entry><para>Trait representing a function that takes
+            <literal>N</literal> arguments, each of which can have its own
+            type, and returns a value of type <literal>R</literal>. (Traits
+            are defined for <literal>N</literal> = 0 to 22.) The
+            <emphasis>variance annotations</emphasis> (<literal>+</literal>
+            and <literal>-</literal>) in front of the types will be explained
+            in <xref linkend="VarianceUnderInheritance" /> in <xref
             linkend="ScalasTypeSystem" />.</para></entry>
           </row>
 
@@ -1272,7 +1259,7 @@ body length? 13</screen>
 
             <entry><para>Separate case classes for arity <literal>N</literal>
             = 1 through 22. Tuples support the <emphasis>literal</emphasis>
-            syntax <literal>(x1, x2, …, xN)</literal>.</para></entry>
+            syntax <literal>(x1, x2, ..., xN)</literal>.</para></entry>
           </row>
         </tbody>
       </tgroup>
@@ -1291,9 +1278,8 @@ body length? 13</screen>
     Scala version 2.8, the collections implementations reuse code from
     <literal>scala.collection.generic</literal>. Users of the collections
     would normally not use any types defined in this package. We’ll explore
-    some of these of these collections in greater detail in <xref
-    linkend="FunctionalDataStructures" /> in <xref
-    linkend="FunctionalProgramming" />.<indexterm>
+    some of these collections in greater detail in <xref
+    linkend="FunctionalDataStructures" />.<indexterm>
         <primary>collections</primary>
 
         <secondary>mutable and immutable</secondary>
@@ -1310,9 +1296,9 @@ body length? 13</screen>
 
     <para id="para__predef_defines_a_number_of_i"><literal>Predef</literal>
     defines a number of implicit conversion methods for the value types
-    (excluding for <literal>Unit</literal>). There are implicit conversions to
-    the corresponding <literal>scala.runtime.RichX</literal> types. For
-    example, the <literal>byteWrapper</literal> method converts a
+    (excluding <literal>Unit</literal>). There are implicit conversions to the
+    corresponding <literal>scala.runtime.RichX</literal> types. For example,
+    the <literal>byteWrapper</literal> method converts a
     <literal>Byte</literal> to a <literal>scala.runtime.RichByte</literal>.
     There are implicit conversions between the “numeric” types,
     <literal>Byte</literal>, <literal>Short</literal>, <literal>Int</literal>,
@@ -1323,10 +1309,7 @@ body length? 13</screen>
     <literal>Double</literal>, etc. Finally, there are conversions to the
     corresponding Java wrapper types, e.g., <literal>Int</literal> to
     <literal>java.lang.Integer</literal>. We discuss implicit conversions in
-    more detail in <xref linkend="ImplicitConversions" /> in <xref
-    linkend="FunctionalProgramming" />. We explored <literal>Predef</literal>
-    in <xref linkend="PredefObject" /> at the beginning of this
-    chapter.<indexterm>
+    more detail in <xref linkend="ImplicitConversions" />.<indexterm>
         <primary>value types</primary>
 
         <secondary>implicit conversions by Predef object methods</secondary>
@@ -1338,9 +1321,9 @@ body length? 13</screen>
 
     <para id="para_either_example">There are several examples of
     <literal>Option</literal> elsewhere, e.g., <xref
-    linkend="OptionSomeNone" /> in <xref linkend="TypeLessDoMore" />. Here is
-    a script that illustrates using an <literal>Either</literal> return value
-    to handle a thrown exception or successful result (adapted from <ulink
+    linkend="OptionSomeNone" />. Here is a script that illustrates using an
+    <literal>Either</literal> return value to handle a thrown exception or
+    successful result (adapted from <ulink
     url="http://dcsobral.blogspot.com/2009/06/catching-exceptions.html"></ulink>):<indexterm>
         <primary>Either object</primary>
       </indexterm></para>
@@ -1466,8 +1449,9 @@ println(c2.m)</programlisting>
     <para id="para_this_list_of_strings_built_up_">This list of strings built
     up by the <literal>m</literal> methods reflects the
     <emphasis>linearization</emphasis> of the inheritance hierarchy, with a
-    few missing pieces we’ll discuss shortly. First, let’s see what the
-    invocation sequence of the constructors looks like:<indexterm>
+    few missing pieces we’ll discuss shortly. We’ll also see why C1 is at the
+    end of the list. First, let’s see what the invocation sequence of the
+    constructors looks like:<indexterm>
         <primary>reference types</primary>
 
         <secondary>linearization algorithm for</secondary>
@@ -1712,7 +1696,7 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
 
     <table id="table_7-5">
       <title>Hand calculation of C2 linearization: C2 extends C2A with T1 with
-      T2 with T3 {…}</title>
+      T2 with T3 {...}</title>
 
       <tgroup cols="3">
         <thead valign="top">

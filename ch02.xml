@@ -16,16 +16,15 @@
 
     <para id="para_scala_s_syntax_is_especially_u">Scala’s syntax is
     especially useful when writing scripts. Separate compile and run steps
-    aren’t required for simple programs that have no dependencies on libraries
-    outside of what Scala provides. You compile and run such programs in one
-    shot with the <userinput>scala</userinput> command. If you’ve downloaded
-    the example code for the book, many of the smaller examples can be run
-    using the <userinput>scala</userinput> command, e.g., <literal>scala
+    aren’t required for simple programs that have few dependencies on
+    libraries outside of what Scala provides. You compile and run such
+    programs in one shot with the <literal>scala</literal> command. If you’ve
+    downloaded the example code for the book, many of the smaller examples can
+    be run using the <literal>scala</literal> command, e.g., <literal>scala
     filename.scala</literal>. See the <filename>README.txt</filename> files in
     each chapter’s code examples for more details. See also <xref
     linkend="CommandLineTools" /> in <xref linkend="ScalaToolsLibs" /> for
-    more information about using the <userinput>scala</userinput>
-    command.</para>
+    more information about using the <literal>scala</literal> command.</para>
   </sect1>
 
   <sect1 id="Semicolons">
@@ -70,8 +69,7 @@ def commas(s1: String,
     multiple statements or expressions on the same line, you can use
     semicolons to separate them. We used this technique in the
     <literal>ShapeDrawingActor</literal> example in <xref
-    linkend="ATasteOfConcurrency" /> in <xref
-    linkend="IntroducingScala" />.</para>
+    linkend="ATasteOfConcurrency" />:</para>
 
     <programlisting linenumbering="unnumbered">case "exit" =&gt; println("exiting..."); exit</programlisting>
 
@@ -80,15 +78,15 @@ def commas(s1: String,
 
     <programlisting linenumbering="unnumbered">...
 case "exit" =&gt;
-        println("exiting...")
-        exit
+      println("exiting...")
+      exit
 ...</programlisting>
 
     <para id="para_why_no_curly_braces">You might wonder why you don’t need
-    curly braces (<literal>{…}</literal>) around the two statements after the
-    <literal>case … =&gt;</literal> line. You can put them in if you want, but
-    the compiler knows when you’ve reached the end of the “block” when it
-    finds the next <literal>case</literal> clause or the curly brace
+    curly braces (<literal>{...}</literal>) around the two statements after
+    the <literal>case ... =&gt;</literal> line. You can put them in if you
+    want, but the compiler knows when you’ve reached the end of the “block”
+    when it finds the next <literal>case</literal> clause or the curly brace
     (<literal>}</literal>) that ends the enclosing block for all the
     <literal>case</literal> clauses.<indexterm>
         <primary>{ } (curly braces)</primary>
@@ -128,7 +126,7 @@ case "exit" =&gt;
     <para id="para_immutable_precise">To be more precise, the
     <literal>array</literal> reference cannot be changed to point to a
     different <literal>Array</literal>, but the array itself can be modified,
-    as shown in the following <userinput>scala</userinput> session:</para>
+    as shown in the following <literal>scala</literal> session:</para>
 
     <programlisting linenumbering="unnumbered">scala&gt; val array: Array[String] = new Array(5)
 array: Array[String] = Array(null, null, null, null, null)
@@ -146,9 +144,8 @@ res3: Array[String] = Array(Hello, null, null, null, null)
 scala&gt;</programlisting>
 
     <para id="para_an_immutable_object_must_be_in">An immutable
-    <literal>val</literal> must be initialized, that is defined, when it is
-    declared. Also, you will get a compilation error if you attempt to assign
-    a new value to a <literal>val</literal>.</para>
+    <literal>val</literal> must be initialized—that is, defined—when it is
+    declared.</para>
 
     <para id="para_a_mutable_variable_is_declared">A mutable variable is
     declared with the keyword <literal>var</literal>:</para>
@@ -170,14 +167,15 @@ scala&gt;</programlisting>
     <literal>stockPrice</literal> refers to can’t be changed, because
     <literal>Doubles</literal> in Scala are immutable.</para>
 
-    <para id="para_there_s_one_exception_to_the_r">There is one exception to
-    the rule that you must initialize <literal>val</literal>’s and
-    <literal>var</literal>’s when they are declared. Both keywords can be used
+    <para id="para_there_s_one_exception_to_the_r">There are a few exceptions
+    to the rule that you must initialize <literal>val</literal>s and
+    <literal>var</literal>s when they are declared. Both keywords can be used
     with constructor parameters. When used as constructor parameters, the
     mutable or immutable variables specified will be initialized when an
-    object is instantiated. Also, derived classes can override
-    <literal>vals</literal> declared inside parent classes. We’ll discuss
-    these exceptions in <xref
+    object is instantiated. Both keywords can be used to declare “abstract”
+    (uninitialized) variables in abstract types. Also, derived types can
+    override <literal>val</literal>s declared inside parent types. We’ll
+    discuss these exceptions in <xref
     linkend="BasicObjectOrientedProgramming" />.<indexterm>
         <primary>parameters</primary>
 
@@ -245,7 +243,7 @@ scala&gt;</programlisting>
 
     <para id="para_if_a_method_body_has_more_than">If a method body has more
     than one expression, you must surround it with curly braces
-    <literal>{…}</literal>. You can omit the braces if the method body has
+    <literal>{...}</literal>. You can omit the braces if the method body has
     just one expression.<indexterm>
         <primary>{ } (curly braces)</primary>
 
@@ -277,7 +275,7 @@ object StringUtil {
 
   def joiner(strings: List[String]): String = joiner(strings, " ")
 }
-import StringUtil._
+import StringUtil._    // Import the joiner methods.
 
 println( joiner(List("Programming", "Scala")) )</programlisting>
 
@@ -297,15 +295,14 @@ object StringUtil {
   def joiner(strings: List[String], separator: String = " "): String =
     strings.mkString(separator)
 }
-import StringUtil._
+import StringUtil._    // Import the joiner methods.
 
 println(joiner(List("Programming", "Scala")))</programlisting>
 
       <para id="para_there_are_two_workarounds_for_">There is another
       alternative for earlier versions of Scala. You can use
       <emphasis>implicit</emphasis> arguments, which we will discuss in <xref
-      linkend="ImplicitFunctionParameters" /> in <xref
-      linkend="FunctionalProgramming" />.</para>
+      linkend="ImplicitFunctionParameters" />.</para>
 
       <para id="para_scala_version_2_8_offers_anoth">Scala version 2.8 offers
       another enhancement for method argument lists, <emphasis>named
@@ -525,10 +522,11 @@ Map&lt;Integer, String&gt; intToStringMap = new HashMap&lt;Integer, String&gt;()
     <para id="para_scala_supports__type_inferenci">Scala supports
     <emphasis>type inference</emphasis> (see, for example, <link
     linkend="TypeInference" xrefstyle="select:nopage">[TypeInference]</link>
-    and <xref linkend="Pierce2002" />). The language’s compiler can discern
-    quite a bit of type information from the context, without explicit type
-    annotations. Here’s the same declaration rewritten in Scala, with inferred
-    type information:</para>
+    and <link linkend="Pierce2002"
+    xrefstyle="select:nopage">Pierce2002</link>). The language’s compiler can
+    discern quite a bit of type information from the context, without explicit
+    type annotations. Here’s the same declaration rewritten in Scala, with
+    inferred type information:</para>
 
     <programlisting linenumbering="unnumbered">import java.util.Map
 import java.util.HashMap
@@ -537,12 +535,12 @@ val intToStringMap: Map[Integer, String] = new HashMap</programlisting>
 
     <para id="para_recall_from_chapter_1_that_sca">Recall from <xref
     linkend="IntroducingScala" /> that Scala uses square brackets
-    (<literal>[…]</literal>) for generic type parameters. We specify
-    <literal>Map[Integer, String]</literal> on the left-hand side of the
-    equals sign. (We are sticking with Java types for the example.) On the
-    right-hand side, we instantiate the actual type we want, a
-    <literal>HashMap</literal>, but we don’t have to repeat the <emphasis>type
-    parameters</emphasis>.<indexterm>
+    (<literal>[...]</literal>) for generic type parameters. We specify
+    <literal>Map[Integer, String]</literal> on the lefthand side of the equals
+    sign. (We are sticking with Java types for the example.) On the righthand
+    side, we instantiate the actual type we want, a
+    <literal>HashMap</literal>, but we don’t have to repeat the type
+    parameters.<indexterm>
         <primary>[ ] (square brackets)</primary>
 
         <secondary>enclosing parameterized types in Scala</secondary>
@@ -559,8 +557,8 @@ import java.util.HashMap
 val intToStringMap2 = new HashMap[Integer, String]</programlisting>
 
     <para id="para_this_declaration_requires_no_t">This declaration requires
-    no type annotations on the left-hand side because all of the type
-    information needed is on the right-hand side. The compiler automatically
+    no type annotations on the lefthand side because all of the type
+    information needed is on the righthand side. The compiler automatically
     makes <literal>intToStringMap2</literal> a
     <literal>HashMap[Integer,String]</literal>.</para>
 
@@ -742,7 +740,7 @@ object StringUtil {
 
   def joiner(strings: List[String]) = joiner(strings, " ")
 }
-import StringUtil._
+import StringUtil._    // Import the joiner methods.
 
 println( joiner(List("Programming", "Scala")) )</programlisting>
 
@@ -862,8 +860,7 @@ object StringUtilClient {
 }</programlisting>
 
     <para id="para_if_you_compile_these_files_yo">If you compile these files
-    with <userinput>scala</userinput>, you can run the client as
-    follows:</para>
+    with <literal>scala</literal>, you can run the client as follows:</para>
 
     <screen>$ scala -cp ... StringUtilClient "Programming Scala"
 Programming
@@ -871,12 +868,12 @@ Scala</screen>
 
     <note id="para_cp_current_dir">
       <para>For the <literal>-cp ...</literal> class path argument, use the
-      directory where <userinput>scalac</userinput> wrote the class files,
-      which defaults to the current directory (i.e., use <literal
+      directory where <literal>scalac</literal> wrote the class files, which
+      defaults to the current directory (i.e., use <literal
       role="keep-together">-cp .</literal>). If you used the build process in
       the downloaded code examples, the class files are written to the
-      <filename>build</filename> directory (using <userinput>scalac -d build
-      ...</userinput>). In this case, use <literal>-cp build</literal>.</para>
+      <filename>build</filename> directory (using <literal>scalac -d build
+      ...</literal>). In this case, use <literal>-cp build</literal>.</para>
     </note>
 
     <para id="para_everything_is_fine_at_this_poi">Everything is fine at this
@@ -908,7 +905,7 @@ java.lang.NoSuchMethodError: StringUtil$.toCollection(...
     client was compiled, <literal>StringUtil.toCollection</literal> returned
     an <literal>Array</literal>. Then <literal>toCollection</literal> was
     changed to return <literal>List</literal>. In both versions, the method
-    return was inferred. Therefore, client should have been recompiled,
+    return value was inferred. Therefore, client should have been recompiled,
     too.</para>
 
     <para id="para_however_had_an_explicit_retur">However, had an explicit
@@ -957,7 +954,7 @@ map.update("book", "Programming Scala")
     behavior with inferred return types that can cause unexpected and baffling
     results <link linkend="ScalaTips"
     xrefstyle="select:nopage">[ScalaTips]</link>. Consider the following
-    example <userinput>scala</userinput> session:</para>
+    example <literal>scala</literal> session:</para>
 
     <screen>scala&gt; def double(i: Int) { 2 * i }
 double: (Int)Unit
@@ -967,11 +964,11 @@ scala&gt; println(double(2))
 
     <para id="para_why_did_the_second_command_pri">Why did the second command
     print <literal>()</literal> instead of <literal>4</literal>? Look
-    carefully at what the <userinput>scala</userinput> interpreter said the
-    first command returned, <literal>double (Int)Unit</literal>. We defined a
-    method named <literal>double</literal> that takes an
-    <literal>Int</literal> argument and returns <literal>Unit</literal>. The
-    method doesn’t return an <literal>Int</literal> as we would expect.</para>
+    carefully at what the <literal>scala</literal> interpreter said the first
+    command returned, <literal>double (Int)Unit</literal>. We defined a method
+    named <literal>double</literal> that takes an <literal>Int</literal>
+    argument and returns <literal>Unit</literal>. The method doesn’t return an
+    <literal>Int</literal> as we would expect.</para>
 
     <para id="para_the_cause_of_this_unexpected_b">The cause of this
     unexpected behavior is a missing equals sign in the method definition.
@@ -1000,9 +997,9 @@ scala&gt; println(double(2))
     function definition and a function always returns a value in functional
     programming. On the other hand, when Scala sees a method body without the
     leading equals sign, it assumes the programmer intended the method to be a
-    “procedure” definition, intended for performing side effects only without
-    a return value, i.e., <literal>Unit</literal>. In practice, it is more
-    likely that the programmer simply forget to insert the equals sign!</para>
+    “procedure” definition, intended for performing side effects only with the
+    return value <literal>Unit</literal>. In practice, it is more likely that
+    the programmer simply forget to insert the equals sign!</para>
 
     <warning id="para_warning_when_the_return_type_">
       <para>When the return type of a method is inferred and you don’t use an
@@ -1185,10 +1182,10 @@ b: Byte = 127</screen>
     </sect2>
 
     <sect2 id="FloatingPointLiterals">
-      <title>Floating Point Literals</title>
+      <title>Floating-Point Literals</title>
 
-      <para id="para_floating_point_literals_are_ex">Floating point literals
-      are expresses with zero or more digits, followed by a period
+      <para id="para_floating_point_literals_are_ex">Floating-point literals
+      are expressions with zero or more digits, followed by a period
       <literal>.</literal>, followed by zero or more digits. If there are no
       digits before the period, i.e., the number is less than 1.0, then there
       must be one or more digits after the period. For
@@ -1197,23 +1194,23 @@ b: Byte = 127</screen>
       <literal>Double</literal> is assumed. You can optionally append a
       <literal>D</literal> or <literal>d</literal> for a
       <literal>Double</literal>.<indexterm>
-          <primary>floating point literals</primary>
+          <primary>floating-point literals</primary>
         </indexterm><indexterm>
           <primary>literals</primary>
 
-          <secondary>floating point</secondary>
+          <secondary>floating-point</secondary>
         </indexterm></para>
 
-      <para id="para_floating_point_literals_can_be">Floating point literals
+      <para id="para_floating_point_literals_can_be">Floating-point literals
       can be expressed with or without exponentials. The format of the
       exponential part is <literal>e</literal> or <literal>E</literal>,
       followed by an optional <literal>+</literal> or <literal>-</literal>,
       followed by one or more digits.<indexterm>
-          <primary>exponentials with floating point literals</primary>
+          <primary>exponentials with floating-point literals</primary>
         </indexterm></para>
 
       <para id="para_here_are_some_example_floating">Here are some example
-      floating point literals:</para>
+      floating-point literals:</para>
 
       <programlisting linenumbering="unnumbered">0.
 .0
@@ -1235,18 +1232,18 @@ b: Byte = 127</screen>
 3.14e-5D</programlisting>
 
       <para id="para__float_consists_of_all_ieee_7"><literal>Float</literal>
-      consists of all IEEE 754 32-bit, single-precision binary floating point
+      consists of all IEEE 754 32-bit, single-precision binary floating-point
       values. <literal>Double</literal> consists of all IEEE 754 64-bit,
-      double-precision binary floating point values.</para>
+      double-precision binary floating-point values.</para>
 
       <warning id="para_warning_to_avoid_parsing_ambi">
         <para>To avoid parsing ambiguities, you must have at least one space
-        after a floating point literal, if it is followed by a token that
+        after a floating-point literal, if it is followed by a token that
         starts with a letter. Also, the expression
         <literal>1.toString</literal> returns the integer value
         <literal>1</literal> as a string, while <literal>1. toString</literal>
         uses the <emphasis>operator notation</emphasis> to invoke
-        <literal>toString</literal> on the floating point literal
+        <literal>toString</literal> on the floating-point literal
         <literal>1.</literal>.</para>
       </warning>
     </sect2>
@@ -1308,11 +1305,11 @@ b2: Boolean = false</screen>
       <para id="para_character_literal_examples_">Here are some
       examples:</para>
 
-      <programlisting linenumbering="unnumbered">’A’
-’\u0041’  // 'A' in Unicode
-’\n’
+      <programlisting linenumbering="unnumbered">'A'
+'\u0041'  // 'A' in Unicode
+'\n'
 '\012'    // '\n' in octal
-’\t’</programlisting>
+'\t'</programlisting>
 
       <para id="para_the_valid_escape_sequences_are">The valid escape
       sequences are shown in <xref
@@ -1407,7 +1404,7 @@ b2: Boolean = false</screen>
       <para id="para_a_string_literal_is_a_sequence">A string literal is a
       sequence of characters enclosed in double quotes or
       <emphasis>triples</emphasis> of double quotes, i.e.,
-      <literal>"""…"""</literal>.<indexterm>
+      <literal>"""..."""</literal>.<indexterm>
           <primary>" " (quotation marks, double)</primary>
 
           <secondary>enclosing string literals</secondary>
@@ -1469,8 +1466,8 @@ Fourth line"""</programlisting>
       <literal>"Scala is great!\"</literal>, doesn’t work.</para>
 
       <para id="para_copy_and_past_these_strings_in">Copy and paste these
-      strings into the <userinput>scala</userinput> interpreter. Do the same
-      for the previous string examples. How are they interpreted
+      strings into the <literal>scala</literal> interpreter. Do the same for
+      the previous string examples. How are they interpreted
       differently?</para>
     </sect2>
 
@@ -1531,8 +1528,8 @@ Fourth line"""</programlisting>
     <para id="para_scala_supports__tuples__a_gr">Scala, supports
     <emphasis>tuples</emphasis>, a grouping of two or more items, usually
     created with the literal syntax of a comma-separated list of the items
-    inside parentheses, e.g., <literal>(x1, x2, …)</literal>. The types of the
-    <literal>x</literal><subscript>i</subscript> elements are unrelated to
+    inside parentheses, e.g., <literal>(x1, x2, ...)</literal>. The types of
+    the <literal>x</literal><subscript>i</subscript> elements are unrelated to
     each other, you can mix and match types. These literal “groupings” are
     instantiated as <literal>scala.TupleN</literal> instances, where the
     <literal>N</literal> is the number of items in the tuple. The Scala API
@@ -1557,8 +1554,8 @@ println( "Print the third item:  " + t._3 )
 val (t1, t2, t3) = tupleator("World", '!', 0x22)
 println( t1 + " " + t2 + " " + t3 )</programlisting>
 
-    <para id="para_running2">Running this script with
-    <userinput>scala</userinput> produces the following output:</para>
+    <para id="para_running2">Running this script with <literal>scala</literal>
+    produces the following output:</para>
 
     <screen>Print the whole tuple: (Hello,1,2.3)
 Print the first item:  Hello
@@ -1579,7 +1576,7 @@ World ! 34</screen>
     conventions).</para>
 
     <para id="para_tupleator_one_lhs">The last two lines show that we can use
-    a tuple expression on the left-hand side of the assignment. We declare
+    a tuple expression on the lefthand side of the assignment. We declare
     three <literal>vals</literal>, <literal>t1</literal>,
     <literal>t2</literal>, and <literal>t3</literal>, to hold the individual
     items in the tuple. In essence, the tuple items are extracted
@@ -1587,11 +1584,11 @@ World ! 34</screen>
 
     <para id="para_notice_how_we_mixed_types_in_t">Notice how we mixed types
     in the tuples. You can see the types more clearly if you use the
-    interactive mode of the <userinput>scala</userinput> command, which we
+    interactive mode of the <literal>scala</literal> command, which we
     introduced in <xref linkend="IntroducingScala" />.</para>
 
     <para id="para_try_typing_in_val_t_hello">Invoke the
-    <userinput>scala</userinput> command with no script argument. At the
+    <literal>scala</literal> command with no script argument. At the
     <literal>scala&gt;</literal> prompt, enter <literal>val t =
     ("Hello",1,2.3)</literal> and see that you get the following result, which
     shows you the types of each element in the tuple:</para>
@@ -1697,8 +1694,8 @@ println( "Unknown: " + stateCapitals.get("Unknown").getOrElse("Oops2!") )</progr
     linkend="PredefObject" /> in <xref linkend="ScalaObjectSystem" />. For
     now, we want to focus on the two groups of <literal>println</literal>
     statements, where we show what happens when you retrieve the values from
-    the map. If you run this script with the <userinput>scala</userinput>
-    command, you’ll get the following output:</para>
+    the map. If you run this script with the <literal>scala</literal> command,
+    you’ll get the following output:</para>
 
     <screen>Get the capitals wrapped in Options:
 Alabama: Some(Montgomery)
@@ -1778,8 +1775,8 @@ Unknown: Oops2!</screen>
     has to support <literal>null</literal>. Still, you should avoid using
     <literal>null</literal> in your code. Tony Hoare, who invented the null
     reference in 1965 while working on an object-oriented language called
-    ALGOL W, called its invention his “billion dollar mistake” <link
-    linkend="Hoare2009" xrefstyle="select:nopage">[Hoare2009]</link>. Don’t
+    ALGOL W, called its invention his “billion dollar mistake” (see <link
+    linkend="Hoare2009" xrefstyle="select:nopage">[Hoare2009]</link>). Don’t
     contribute to that figure.</para>
 
     <para id="para_so_how_would_you_write_a_func">So, how would you write a
@@ -1923,7 +1920,7 @@ package com {
 
     <warning id="para_note_scala_does_not_allow_pac">
       <para>Scala does not allow package declarations in scripts that are
-      executed directly with the <userinput>scala</userinput> interpreter. The
+      executed directly with the <literal>scala</literal> interpreter. The
       reason has to do with the way the interpreter converts statements in
       scripts to valid Scala code before compiling to byte code. See <xref
       linkend="CommandLineToolScala" /> in <xref linkend="ScalaToolsLibs" />
@@ -1975,9 +1972,8 @@ import java.util.{Map, HashMap}</programlisting>
     <para id="para_star_vs_underscore">Java uses the “star” character
     <literal>*</literal> as the wild card for matching all types in a package
     or all static members of a type when doing “static imports”. In Scala,
-    this character is allowed in method names, so <literal>_</literal> is
-    reserved for use as a wild card, instead. We’ll see many other uses for
-    <literal>_</literal> as we go along.</para>
+    this character is allowed in method names, so <literal>_</literal> is used
+    as a wild card, as we saw previously.</para>
 
     <para id="para_as_shown_on_the_third_line_yo">As shown on the third line,
     you can import all the static methods and fields in Java types. If
@@ -2034,10 +2030,10 @@ writeAboutBigInteger()</programlisting>
     renaming, so it can be referenced simply as <literal>TEN</literal>.</para>
 
     <para id="para_finally_the_java_math_bigint">Finally, the
-    <literal>java.math.BigInteger.ZERO</literal> constant is renamed
+    <literal>java.math.BigInteger.ZERO</literal> constant is given the “alias”
     <literal>JAVAZERO</literal>.</para>
 
-    <para id="para_renaming_is_useful_if_you_want">Renaming is useful if you
+    <para id="para_renaming_is_useful_if_you_want">Aliasing is useful if you
     want to give the item a more convenient name or you want to avoid
     ambiguities with other items in scope that have the same name.</para>
 
@@ -2077,8 +2073,8 @@ import mutable._      // Everything from the "collection.mutable" package</progr
       get a mystifying compiler error that a package wasn’t found, check that
       the statement is properly relative to the last the import statement or
       add the <literal>_root_.</literal> prefix. Also, you might see an IDE or
-      other tool insert an <literal>import _root_…</literal> statement in your
-      code. Now you know what it means.</para>
+      other tool insert an <literal>import _root_...</literal> statement in
+      your code. Now you know what it means.</para>
 
       <warning id="para_warning_remember_that_import_">
         <para>Remember that import statements are relative, not absolute. To
@@ -2121,23 +2117,21 @@ import mutable._      // Everything from the "collection.mutable" package</progr
 
     <para id="para_there_are_other_important_diff">There are other important
     differences with Java’s generics, which we’ll explore in <xref
-    linkend="ParameterizedTypes" /> in <xref
-    linkend="ScalasTypeSystem" />.</para>
+    linkend="ParameterizedTypes" />.</para>
 
     <para id="para_for_now_we_ll_mention_one_oth">For now, we’ll mention one
     other useful detail that you’ll encounter before we can explain it in
     depth in <xref linkend="ScalasTypeSystem" />. If you look at the
     declaration of <literal>scala.List</literal> in the
     <emphasis>Scaladocs</emphasis>, you’ll see that the declaration is written
-    as <literal>... class List[+A]</literal>. The ‘<literal>+</literal>’ in
+    as <literal>... class List[+A]</literal>. The <literal>+</literal> in
     front of the <literal>A</literal> means that <literal>List[B]</literal> is
-    a <emphasis>subtype</emphasis> of <literal>List[A]</literal>
-    <emphasis>if</emphasis> <literal>B</literal> is a subtype of
-    <literal>A</literal>. If there is a ‘<literal>-</literal>’ in front of a
-    type parameter, then the relationship goes the other way,
-    <literal>Foo[B]</literal> would be a <emphasis>supertype</emphasis> of
-    <literal>Foo[A]</literal>, if the declaration is
-    <literal>Foo[-A]</literal>.<indexterm>
+    a <emphasis>subtype</emphasis> of <literal>List[A]</literal> for any
+    <literal>B</literal> that is a subtype of <literal>A</literal>. If there
+    is a <literal>-</literal> in front of a type parameter, then the
+    relationship goes the other way, <literal>Foo[B]</literal> would be a
+    <emphasis>supertype</emphasis> of <literal>Foo[A]</literal>, if the
+    declaration is <literal>Foo[-A]</literal>.<indexterm>
         <primary>List class</primary>
 
         <secondary>declaration</secondary>
@@ -2198,7 +2192,7 @@ println( new StringBulkReader("Hello Scala!").read )
 println( new FileBulkReader(new File("abstract-types-script.scala")).read )</programlisting>
 
     <para id="para_running_1">Running this script with
-    <userinput>scala</userinput> produces the following output:</para>
+    <literal>scala</literal> produces the following output:</para>
 
     <screen>Hello Scala!
 import java.io._
@@ -2342,7 +2336,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           <row>
             <entry><para><literal>do</literal></para></entry>
 
-            <entry><para>Start a <literal>do … while</literal>
+            <entry><para>Start a <literal>do ... while</literal>
             loop.</para></entry>
 
             <entry><para><xref linkend="OtherLoopingConstructs" /> (<xref
@@ -2745,7 +2739,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             role="keep-together">constrain</phrase> the allowed
             types.</para></entry>
 
-            <entry><para><xref linkend="ScalasTypeSystem" /></para></entry>
+            <entry><para><xref linkend="TypeBounds" /> (<xref
+            linkend="ScalasTypeSystem" />)</para></entry>
           </row>
 
           <row>
@@ -2755,7 +2750,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <emphasis>abstract type</emphasis> “view bounds” <phrase
             role="keep-together">declarations</phrase>.</para></entry>
 
-            <entry><para><xref linkend="ScalasTypeSystem" /></para></entry>
+            <entry><para><xref linkend="TypeBounds" /> (<xref
+            linkend="ScalasTypeSystem" />)</para></entry>
           </row>
 
           <row>
@@ -2766,7 +2762,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             role="keep-together">constrain</phrase> the allowed
             types.</para></entry>
 
-            <entry><para><xref linkend="ScalasTypeSystem" /></para></entry>
+            <entry><para><xref linkend="TypeBounds" /> (<xref
+            linkend="ScalasTypeSystem" />)</para></entry>
           </row>
 
           <row>
@@ -2775,7 +2772,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Used in <emphasis>type
             projections.</emphasis></para></entry>
 
-            <entry><para><xref linkend="ScalasTypeSystem" /></para></entry>
+            <entry><para><xref linkend="PathDependentTypes" /> (<xref
+            linkend="ScalasTypeSystem" />)</para></entry>
           </row>
 
           <row>

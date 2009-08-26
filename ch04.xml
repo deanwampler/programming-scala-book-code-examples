@@ -21,11 +21,11 @@
     abstractions. Unfortunately, it has one major drawback.</para>
 
     <para id="para_for_many_interfaces_much_of_t">For many interfaces, much of
-    the functionality can be implemented with “boilerplate” code that will be
+    the functionality can be implemented with boilerplate code that will be
     valid for all classes that use the interface. Java provides no built-in
     mechanism for defining and using such reusable code. Instead, Java
     programmers must use ad hoc conventions to reuse implementation code for a
-    given interface. In the worst case, the developer just “copies and pastes”
+    given interface. In the worst case, the developer just copies and pastes
     the same code into every class that needs it.</para>
 
     <para id="para_often_the_implementation_of_a">Often, the implementation of
@@ -125,19 +125,20 @@ class ButtonWithCallbacks(val label: String,
         </indexterm></para>
 
       <para id="para_if_you_come_from_a_java_background">If you come from a
-      Java background, you can think of traits as interfaces
-      <emphasis>with</emphasis> optional implementations. Other languages
-      provide constructs that are similar to traits, such as
+      Java background, you can think of traits as interfaces with optional
+      implementations. Or, if you prefer, you can think of traits as a
+      “constrained” form of multiple inheritance. Other languages provide
+      constructs that are similar to traits, such as
       <emphasis>modules</emphasis> in Ruby, for example.</para>
 
       <para id="para_let_s_use_a_trait_to_separate_">Let’s use a trait to
       separate the callback handling from the button logic. We’ll generalize
       our approach a little bit. Callbacks are really a special case of the
       <emphasis>Observer Pattern</emphasis> <link linkend="GOF1995"
-      xrefstyle="select:nopage">[GOF1995]</link>. So, let’s create a
-      <emphasis>trait</emphasis> that implements this pattern, then use it to
-      handle callback behavior. To simplify things, we’ll start with a single
-      callback that counts the number of button clicks.<indexterm>
+      xrefstyle="select:nopage">[GOF1995]</link>. So, let’s create a trait
+      that implements this pattern, then use it to handle callback behavior.
+      To simplify things, we’ll start with a single callback that counts the
+      number of button clicks.<indexterm>
           <primary>Observer Pattern</primary>
         </indexterm></para>
 
@@ -208,7 +209,7 @@ trait Subject {
       <literal>type</literal> for an <literal>Observer</literal>. This is a
       <emphasis>structural type</emphasis> of the form <literal>{ def
       receiveUpdate(subject:Any) }</literal>. Structural types specify only
-      the structure a subtype must support; you could think of them as
+      the structure a type must support; you could think of them as
       “anonymous” types.<indexterm>
           <primary>data types</primary>
 
@@ -237,7 +238,7 @@ trait Subject {
         method in <literal>Observer</literal> through the structural type,
         i.e., to a method named <literal>receiveUpdate</literal>. There are
         several ways we can reduce this remaining coupling. We’ll see how in
-        <xref linkend="OverridingAbstractTypes" /> below.</para>
+        <xref linkend="OverridingAbstractTypes" />.</para>
       </note>
 
       <para id="para_next_we_declare_a_list_of_obs">Next, we declare a list of
@@ -341,7 +342,7 @@ class ObservableButton(name: String) extends Button(name) with Subject {
 
       <para id="para_we_start_by_importing_everythi">We start by importing
       everything in the <literal>observer</literal> package, using the
-      ‘<literal>_</literal>’ wild card. Actually, we have only defined the
+      <literal>_</literal> wild card. Actually, we have only defined the
       <literal>Subject</literal> trait in the package.</para>
 
       <para id="para_the_new_class_uses_the_with_">The new class uses the
@@ -910,7 +911,7 @@ new C12
 println( "After Creating C12" )</programlisting>
 
     <para id="para_running_script_oop1a">Running this script with the
-    <userinput>scala</userinput> command yields the following output:</para>
+    <literal>scala</literal> command yields the following output:</para>
 
     <screen>Creating C12:
 &nbsp;&nbsp;in Base12: b = null
@@ -1015,12 +1016,6 @@ After Creating C12</screen>
     how to use traits to encapsulate and share cross-cutting concerns between
     classes. We covered when and how to use traits, how to “stack” multiple
     traits, and the rules for initializing values within traits.</para>
-
-    <para id="para_at_this_point_in_your_reading_">At this point in your
-    reading, you’ve learned about many of Scala’s key features and concepts.
-    You should be able to look at most well-written Scala code and have a
-    basic level of understanding of what’s happening in it. To truly master
-    the language, though, we need to go deeper.</para>
 
     <para id="para_in_the_next_chapter_we_explor">In the next chapter, we
     explore how the fundamentals of object-oriented programming work in Scala.

@@ -16,11 +16,11 @@
 
   <para id="para_as_with_the_actor_library_we_l">As with the Actor
   functionality we learned about in <xref linkend="Concurrency" />, Scala’s
-  XML support is implemented largely as a library. Despite that, it feels to
-  the programmer like an entirely natural part of the language. Convenient
-  operators add a spoonful of syntactic sugar to the task of diving deep into
-  complex document structures, and pattern matching further sweetens the deal.
-  Outputting XML is just as pleasant.</para>
+  XML support is implemented partly as a library, with some built-in syntax
+  support. It feels to the programmer like an entirely natural part of the
+  language. Convenient operators add a spoonful of syntactic sugar to the task
+  of diving deep into complex document structures, and pattern matching
+  further sweetens the deal. Outputting XML is just as pleasant.</para>
 
   <para id="para_unusual_in_programming_languag">Unusual in programming
   languages and particularly handy, Scala allows inline XML. Most anywhere you
@@ -44,7 +44,7 @@
         <secondary>reading</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/XML/reading/from-string.scala
+    <programlisting linenumbering="unnumbered">// code-examples/XML/reading/from-string-script.scala
 
 import scala.xml._
 
@@ -75,7 +75,7 @@ assert(someXML.isInstanceOf[scala.xml.Elem])</programlisting>
     just assign a chunk of markup to a <literal>val</literal> or
     <literal>var</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/XML/reading/inline.scala
+    <programlisting linenumbering="unnumbered">// code-examples/XML/reading/inline-script.scala
 
 import scala.xml._
 
@@ -166,7 +166,7 @@ res6: scala.xml.NodeSeq = true</screen>
     </sect2>
 
     <sect2 id="_looping_amp_matching_xml">
-      <title>Looping &amp; Matching XML</title>
+      <title>Looping and Matching XML</title>
 
       <para id="para_this_extracts_the__value__of_t">The previous bit of code
       extracted the <emphasis>value</emphasis> of the
@@ -183,7 +183,7 @@ res6: scala.xml.NodeSeq = true</screen>
           <secondary>looping and matching</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/XML/reading/for-loop.scala
+      <programlisting linenumbering="unnumbered">// code-examples/XML/reading/for-loop-script.scala
 
 for (condiment &lt;- (someXML \\ "condiment")) {
   if ((condiment \ "@expired").text == "true")
@@ -219,7 +219,7 @@ for (condiment &lt;- (someXML \\ "condiment")) {
       together into one example. We’ll include the original XML document again
       so you can follow along as we pattern match on XML:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/XML/reading/pattern-matching.scala
+      <programlisting linenumbering="unnumbered">// code-examples/XML/reading/pattern-matching-script.scala
 
 import scala.xml._
 

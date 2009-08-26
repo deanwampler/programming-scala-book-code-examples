@@ -114,11 +114,10 @@ object Foo {
     signature after type erasure.</para>
 
     <warning id="para_warning_the_scala_interpret">
-      <para>The <userinput>scala</userinput> interpreter will let you type in
-      both methods. It appears to simply drop the first version. However, if
-      you try to load the previous example using the <literal>:load
-      file</literal> command, you’ll get the same error
-      <userinput>scalac</userinput> raises.</para>
+      <para>The <literal>scala</literal> interpreter will let you type in both
+      methods. It simply drops the first version. However, if you try to load
+      the previous example using the <literal>:load file</literal> command,
+      you’ll get the same error <literal>scalac</literal> raises.</para>
     </warning>
 
     <para id="para_we_ll_discuss_type_erasure_in_">We’ll discuss type erasure
@@ -156,8 +155,8 @@ object Foo {
 
     <para id="para_new_instances_of_reference_types">Finally, new instances of
     <emphasis>reference types</emphasis> are created from a class using the
-    <literal>new ClassName(…)</literal> syntax, as in languages like Java and
-    C#. Note that you can drop the parentheses when using a
+    <literal>new</literal> keyword, as in languages like Java and C#. Note
+    that you can drop the parentheses when using a
     <emphasis>default</emphasis> constructor (i.e., one that takes no
     arguments). In some cases, literal values can be used instead, e.g.,
     <literal>val name = "Programming Scala"</literal> is equivalent to
@@ -198,7 +197,8 @@ object Foo {
     <para id="para_scala_supports__single_inherit">Scala supports single
     inheritance, not multiple inheritance. A child (or derived) class can have
     one and only one parent (or base) class. The sole exception is the root of
-    the Scala class hierarchy, <literal>Any</literal>.<indexterm>
+    the Scala class hierarchy, <literal>Any</literal>, which has no
+    parent.<indexterm>
         <primary>Any class</primary>
       </indexterm><indexterm>
         <primary>parent classes</primary>
@@ -208,8 +208,8 @@ object Foo {
 
     <para id="para_here_is_a_simple_example_from_">We’ve seen several examples
     of parent and child classes already. Here are snippets of one of the first
-    examples we saw, in <xref linkend="AbstractTypesAndParameterizedTypes" />
-    from <xref linkend="TypeLessDoMore" />:</para>
+    examples we saw, in <xref
+    linkend="AbstractTypesAndParameterizedTypes" />:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
@@ -323,7 +323,7 @@ class ButtonWithCallbacks(val label: String,
     the field to be <emphasis>private</emphasis>. Add the
     <literal>private</literal> keyword before the <literal>val</literal> or
     <literal>var</literal> keyword and the accessor methods won’t be
-    generated. (See <xref linkend="VisibilityRules" /> below for more
+    generated. (See <xref linkend="VisibilityRules" /> for more
     details.)<indexterm>
         <primary>private keyword</primary>
       </indexterm></para>
@@ -336,12 +336,11 @@ class ButtonWithCallbacks(val label: String,
       <literal>set</literal> respectively, followed by the field name with the
       first character capitalized. We’ll see why when we discuss the
       <emphasis>Uniform Access Principle</emphasis> in <xref
-      linkend="UniformAccessPrinciple" /> below. However, you can get
+      linkend="UniformAccessPrinciple" />. However, you can get
       JavaBeans-style <emphasis>getters</emphasis> and
-      <emphasis>setters</emphasis> when you need them using
+      <emphasis>setters</emphasis> when you need them using the
       <literal>scala.reflect.BeanProperty</literal> annotation, as we’ll
-      discuss in <xref linkend="JavaBeanProperties" /> in <xref
-      linkend="ScalaToolsLibs" />.</para>
+      discuss in <xref linkend="JavaBeanProperties" />.</para>
     </note>
 
     <para id="para_when_an_instance_of_the_class_">When an instance of the
@@ -351,14 +350,14 @@ class ButtonWithCallbacks(val label: String,
     object-oriented languages.</para>
 
     <para id="para_the_first_statement_in_the_cla">The first statement in the
-    class (i.e., the constructor) body is a test to ensure that a
-    non-<literal>null</literal> list has been passed to the constructor. (It
-    does allow an empty <literal>Nil</literal> list, however.) It uses the
-    convenient <literal>require</literal> function that is imported
-    automatically into the current scope (as we’ll discuss in <xref
-    linkend="PredefObject" /> in <xref linkend="ScalaObjectSystem" />). If the
-    list is null, <literal>require</literal> will throw an exception. The
-    <literal>require</literal> function and its companion
+    <literal>ButtonWithCallbacks</literal> class (i.e., the constructor) body
+    is a test to ensure that a non-<literal>null</literal> list has been
+    passed to the constructor. (It does allow an empty <literal>Nil</literal>
+    list, however.) It uses the convenient <literal>require</literal> function
+    that is imported automatically into the current scope (as we’ll discuss in
+    <xref linkend="PredefObject" /> in <xref linkend="ScalaObjectSystem" />).
+    If the list is null, <literal>require</literal> will throw an exception.
+    The <literal>require</literal> function and its companion
     <literal>assume</literal> are very useful for <emphasis>design by
     contract</emphasis> programming, as discussed in <xref
     linkend="DesignByContractExample" /> in <xref
@@ -389,7 +388,7 @@ object ButtonWithCallbacksSpec extends Specification {
     <literal>null</literal> as the second parameter to the constructor; it
     won’t type check when you compile it. However, you can assign
     <literal>null</literal> to a value, as shown. If we didn’t have the
-    <literal>must throwA(…)</literal> clause, we would see the following
+    <literal>must throwA(...)</literal> clause, we would see the following
     exception thrown:</para>
 
     <screen>java.lang.IllegalArgumentException: requirement failed: Callback list can't be null!
@@ -397,8 +396,9 @@ object ButtonWithCallbacksSpec extends Specification {
         at ui.ButtonWithCallbacks.&lt;init&gt;(button-callbacks.scala:7)
 ....</screen>
 
-    <para id="para_in_this_example_two_auxiliary">In this example, two
-    auxiliary constructors are defined for the user’s convenience. The first
+    <para
+    id="para_in_this_example_two_auxiliary"><literal>ButtonWithCallbacks</literal>
+    defines two auxiliary constructors for the user’s convenience. The first
     auxiliary constructor accepts a label and a single callback. It calls the
     primary constructor, passing the label and a new <literal>List</literal>
     to wrap the single callback.</para>
@@ -415,7 +415,7 @@ object ButtonWithCallbacksSpec extends Specification {
     constructor defined before it <link linkend="ScalaSpec2009"
     xrefstyle="select:nopage">[ScalaSpec2009]</link>. The constructor invoked
     may be either another auxiliary constructor or the primary constructor,
-    and must be the first statement in the auxiliary constructor’s body.
+    and it must be the first statement in the auxiliary constructor’s body.
     Additional processing can occur after this call, such as the warning
     message printed in our example.</para>
 
@@ -466,10 +466,10 @@ object ButtonWithCallbacksSpec extends Specification {
 
         <listitem>
           <para>Sometimes it’s just not convenient to have one constructor
-          body that all constructors are forced to use. However, the authors
-          find these circumstances to be rare. In such cases, it may simply be
-          that the class has too many responsibilities and it should be
-          refactored into smaller classes.</para>
+          body that all constructors are forced to use. However, we find these
+          circumstances to be rare. In such cases, it may simply be that the
+          class has too many responsibilities and it should be refactored into
+          smaller classes.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -598,10 +598,10 @@ abstract class Widget {
     comments.</para>
 
     <note id="para_so_scala_allows_declarations_">
-      <para>You can see from the above example that Scala allows classes to be
-      declared inside one another, or “nested”. A nested class make sense when
-      you have enough related functionality to lump together in a class, but
-      said functionality is only ever going to be used by its “outer”
+      <para>You can see from the previous example that Scala allows classes to
+      be declared inside one another, or “nested.” A nested class make sense
+      when you have enough related functionality to lump together in a class,
+      but the functionality is only ever going to be used by its “outer”
       class.</para>
     </note>
 
@@ -703,7 +703,7 @@ abstract class Widget {
       <para>You can also use an access modifier keyword on the primary
       constructor of a class. Put it after the type name and type parameters,
       if any, and before the argument list, as in this example: <literal>class
-      Restricted[+A] private (name: String) {…}</literal></para>
+      Restricted[+A] private (name: String) {...}</literal></para>
     </note>
 
     <para
@@ -844,8 +844,7 @@ package scopeB {
 }</programlisting>
 
       <para id="para_you_can_compile_this_file_with">You can compile this file
-      with <userinput>scalac</userinput>. It should compile without
-      error.</para>
+      with <literal>scalac</literal>. It should compile without error.</para>
 
       <para id="para_everything_is_public_in_these_">Everything is public in
       these packages and classes. Note that
@@ -918,8 +917,8 @@ package scopeB {
 }</programlisting>
 
       <para id="para_when_you_compile_this_file_wit">When you compile this
-      file with <userinput>scalac</userinput>, you get the following output.
-      (The file name before the <literal>N:</literal> line numbers have been
+      file with <literal>scalac</literal>, you get the following output. (The
+      file name before the <literal>N:</literal> line numbers have been
       removed from the output to better fit the space.)</para>
 
       <screen>16: error: value nestedField cannot be accessed in ProtectedClass2.this.Nested

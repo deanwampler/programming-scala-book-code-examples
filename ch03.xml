@@ -29,12 +29,14 @@
     <para id="para_that_plus_sign_between_the_num">That plus sign between the
     numbers? It’s a method. First, Scala allows non-alphanumeric method names.
     You can call methods <literal>+</literal>, <literal>-</literal>,
-    <literal>_$_</literal>, or whatever you desire. Second, this expression is
-    identical to <literal>1.+(2)</literal>. When a method takes one argument,
-    Scala lets you drop both the period and the parentheses, so the method
-    invocation looks like an operator invocation. This is called “infix”
-    notation, where the operator is between the instance and the argument.
-    We’ll find out more about this shortly.<indexterm>
+    <literal>$</literal>, or whatever you desire. Second, this expression is
+    identical to <literal>1 .+(2)</literal>. (We put a space after the
+    <literal>1</literal> because <literal>1.</literal> would be interpreted as
+    a <literal>Double</literal>.) When a method takes one argument, Scala lets
+    you drop both the period and the parentheses, so the method invocation
+    looks like an operator invocation. This is called “infix” notation, where
+    the operator is between the instance and the argument. We’ll find out more
+    about this shortly.<indexterm>
         <primary>operator notation</primary>
 
         <secondary>infix operator notation</secondary>
@@ -140,8 +142,8 @@
           value <literal>1</literal>, while the expression <literal>val xyz++=
           = 1</literal> won’t compile, because the “identifier” could also be
           interpreted as <literal>xyz ++=</literal>, which looks like an
-          attempt to “append” something to <literal>xyz</literal>. Similarly,
-          if you have operator characters after the underscore, you can’t mix
+          attempt to append something to <literal>xyz</literal>. Similarly, if
+          you have operator characters after the underscore, you can’t mix
           them with letters and digits. This restriction prevents ambiguous
           expressions like this: <literal>abc_=123</literal>. Is that an
           identifier <literal>abc_=123</literal> or an assignment of the value
@@ -250,10 +252,10 @@
       <para id="para_this_flexible_method_naming_gi">This flexible method
       naming gives you the power to write libraries that feel like a natural
       extension of Scala itself. You could write a new math library with
-      numeric types that accept addition, subtraction, and all the usual
-      mathematical operators. You could write a new concurrent messaging layer
-      that behaves just like Actors. The possibilities are constrained only by
-      Scala’s method naming limitations.</para>
+      numeric types that accept all the usual mathematical operators, like
+      addition and subtraction. You could write a new concurrent messaging
+      layer that behaves just like Actors. The possibilities are constrained
+      only by Scala’s method naming limitations.</para>
 
       <caution id="para_caution_just_because_you__can">
         <para>Just because you <emphasis>can</emphasis> doesn’t mean you
@@ -279,9 +281,10 @@
     <literal>List</literal> has no parentheses, so you write <literal>List(1,
     2, 3).size</literal>. If you try <literal>List(1, 2, 3).size()</literal>,
     you’ll get an error. However, the <literal>length</literal> method for
-    <literal>String</literal> does have parentheses in its definition, so both
-    <literal>"hello".length()</literal> and <literal>"hello".length</literal>
-    will <phrase role="keep-together">compile</phrase>.<indexterm>
+    <literal role="keep-together">java.lang.String</literal> does have
+    parentheses in its definition, but Scala lets you write both
+    <literal>"hello".length()</literal> and
+    <literal>"hello".length</literal>.<indexterm>
         <primary>methods</primary>
 
         <secondary sortas="parentheses and dots">without parentheses and
@@ -290,7 +293,7 @@
 
     <para id="para_the_convention_in_the_scala_co">The convention in the Scala
     community is to omit parentheses when calling a method that has no
-    <emphasis>side-effects</emphasis>. So, asking for the size of a sequence
+    <emphasis>side effects</emphasis>. So, asking for the size of a sequence
     is fine without parentheses, but defining a method that transforms the
     elements in the sequence should be written with parentheses. This
     convention signals a potentially tricky method for users of your
@@ -340,7 +343,7 @@ List(1, 2, 3, 4) filter isEven foreach println</programlisting>
 
       <para id="para_so_if_an_expression_like_2_0">So, if an expression like
       <literal>2.0 * 4.0 / 3.0 * 5.0</literal> is actually a series of method
-      calls on <literal>Doubles</literal>, what are the <emphasis>operator
+      calls on <literal>Double</literal>s, what are the <emphasis>operator
       precedence</emphasis> rules? Here they are in order from lowest to
       highest precedence <link linkend="ScalaSpec2009"
       xrefstyle="select:nopage">[ScalaSpec2009]</link>.<indexterm>
@@ -404,7 +407,7 @@ List(1, 2, 3, 4) filter isEven foreach println</programlisting>
           <primary>operator precedence</primary>
         </indexterm></para>
 
-      <itemizedlist>
+      <orderedlist>
         <listitem>
           <para><emphasis>all letters</emphasis></para>
         </listitem>
@@ -444,14 +447,14 @@ List(1, 2, 3, 4) filter isEven foreach println</programlisting>
         <listitem>
           <para><emphasis>all other special characters</emphasis></para>
         </listitem>
-      </itemizedlist>
+      </orderedlist>
 
       <para id="para_characters_on_the_same_line_ha">Characters on the same
       line have the same precedence. An exception is <literal>=</literal> when
       used for assignment, when it has the lowest precedence.</para>
 
       <para id="para_since_042_and_have_the_sa">Since * and / have the same
-      precedence, the two lines in the following <userinput>scala</userinput>
+      precedence, the two lines in the following <literal>scala</literal>
       session behave the same:</para>
 
       <programlisting linenumbering="unnumbered">scala&gt; 2.0 * 4.0 / 3.0 * 5.0
@@ -517,7 +520,7 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
       </tip>
 
       <note id="para_note_when_you_use_the_scala_">
-        <para>When you use the <userinput>scala</userinput> command, either
+        <para>When you use the <literal>scala</literal> command, either
         interactively or with scripts, it may appear that you can define
         “global” variables and methods outside of types. This is actually an
         illusion; the interpreter wraps all definitions in an anonymous type
@@ -630,12 +633,12 @@ val configFilePath = if (configFile.exists()) {
     the result of an <literal>if</literal> expression that handles the case of
     a configuration file not existing internally, then returns the absolute
     path to that file. This value can now be reused throughout an application,
-    and the <literal>if</literal> expression won’t be re-evaluated when the
+    and the <literal>if</literal> expression won’t be reevaluated when the
     value is used.</para>
 
     <para id="para_because_if_statements_are_ex">Because <literal>if</literal>
     statements are expressions in Scala, there is no need for the special-case
-    ternary conditional expressions that exists in C-derived languages. You
+    ternary conditional expressions that exist in C-derived languages. You
     won’t see <literal>x ? doThis() : doThat()</literal> in Scala. Scala
     provides a mechanism that’s just as powerful and more readable.<indexterm>
         <primary>else clause (if statements)</primary>
@@ -643,8 +646,7 @@ val configFilePath = if (configFile.exists()) {
 
     <para id="para_what_if_we_forget_the_els">What if we omit the
     <literal>else</literal> clause in the previous example? Typing the code in
-    the <userinput>scala</userinput> interpreter will tell us what
-    happens:</para>
+    the <literal>scala</literal> interpreter will tell us what happens:</para>
 
     <programlisting linenumbering="unnumbered">scala&gt; val configFile = new java.io.File("~/.myapprc")
 configFile: java.io.File = ~/.myapprc
@@ -1000,9 +1002,9 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
         </indexterm></para>
 
       <para id="para_by_the_way_if_you_wanted_to_c">By the way, if you wanted
-      to count from 1 up to, but not including 10, you could use
+      to count from 1 up to—but not including—10, you could use
       <literal>until</literal> instead of <literal>to</literal>, for example
-      <literal>for (i ← 0 until 10)</literal>.</para>
+      <literal>for (i &lt;- 0 until 10)</literal>.</para>
 
       <para id="para_this_should_paint_a_clearer_pi">This should paint a
       clearer picture of how Scala’s internal libraries compose to form
@@ -1015,15 +1017,13 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
         when writing idiomatic Scala code, they’re not necessary. Use
         conditional expressions to test if a loop should continue, or make use
         of recursion. Better yet, filter your collections ahead of time to
-        eliminate complex conditions within your loops.</para>
+        eliminate complex conditions within your loops. However, because of
+        demand for it, Scala version 2.8 includes support for
+        <literal>break</literal>, implemented as a library method, rather than
+        a built-in break keyword.<indexterm>
+            <primary>break method</primary>
+          </indexterm></para>
       </note>
-
-      <para id="para_however_because_of_demand_for">However, because of demand
-      for it, Scala version 2.8 includes support for <literal>break</literal>,
-      implemented as a library method, rather than a built-in break
-      keyword.<indexterm>
-          <primary>break method</primary>
-        </indexterm></para>
     </sect2>
   </sect1>
 
@@ -1093,8 +1093,8 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
             <entry><para>and</para></entry>
 
             <entry><para>The values on the left and right of the operator are
-            true. The right-hand side is <emphasis>only</emphasis> evaluated
-            if the left-hand side is <emphasis>true</emphasis>.</para></entry>
+            true. The righthand side is <emphasis>only</emphasis> evaluated if
+            the lefthand side is <emphasis>true</emphasis>.</para></entry>
           </row>
 
           <row>
@@ -1103,9 +1103,8 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
             <entry><para>or</para></entry>
 
             <entry><para>At least one of the values on the left or right is
-            true. The right-hand side is <emphasis>only</emphasis> evaluated
-            if the left-hand side is
-            <emphasis>false</emphasis>.</para></entry>
+            true. The righthand side is <emphasis>only</emphasis> evaluated if
+            the lefthand side is <emphasis>false</emphasis>.</para></entry>
           </row>
 
           <row>
@@ -1118,12 +1117,30 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
           </row>
 
           <row>
+            <entry><literal>=&gt;</literal></entry>
+
+            <entry>greater than or equals</entry>
+
+            <entry>The value on the left is greater than or equal to the value
+            on the right.</entry>
+          </row>
+
+          <row>
             <entry><para><literal>&lt;</literal></para></entry>
 
             <entry><para>less than</para></entry>
 
             <entry><para>The value on the left is less than the value on the
             right.</para></entry>
+          </row>
+
+          <row>
+            <entry><literal>&lt;=</literal></entry>
+
+            <entry>less than or equals</entry>
+
+            <entry>The value on the left is less than or equal to the value on
+            the right.</entry>
           </row>
 
           <row>
@@ -1172,10 +1189,10 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
     <literal>case</literal> statement you’re limited to matching against
     values of ordinal types, yielding trivial expressions like this: “in the
     case that <literal>i</literal> is 5, print a message; in the case that
-    <literal>i</literal> is 6, exit the program”. With Scala’s pattern
-    matching, your cases can include types, wild-cards, sequences, and even
-    deep inspections of an object’s variables.<indexterm class="startofrange"
-        id="ch03_patternmatching">
+    <literal>i</literal> is 6, exit the program.” With Scala’s pattern
+    matching, your cases can include types, wild cards, sequences, regular
+    expressions, and even deep inspections of an object’s variables.<indexterm
+        class="startofrange" id="ch03_patternmatching">
         <primary>pattern matching</primary>
       </indexterm></para>
 
@@ -1616,7 +1633,7 @@ for (item &lt;- catalog) {
       <literal>case BookExtractorRE(title, authors)</literal> will assign the
       first capture group to <literal>title</literal> and the second to
       <literal>authors</literal>. We can then use those values on the
-      right-hand side of the <literal>case</literal> clause, as we have in the
+      righthand side of the <literal>case</literal> clause, as we have in the
       above example. The variable names <literal>title</literal> and
       <literal>author</literal> within the extractor are arbitrary; matches
       from capture groups are simply assigned from left to right, and you can
@@ -1651,7 +1668,7 @@ for (item &lt;- catalog) {
 
       <para id="para_finally_lets_bind_inner_variables">Sometimes you want to
       bind a variable to an object enclosed in a match, where you are also
-      specifying match criteria on the nested object. Suppose we modify the
+      specifying match criteria on the nested object. Suppose we modify a
       previous example so we’re matching on the key-value pairs from a map.
       We’ll store our same <literal>Person</literal> objects as the values and
       use an employee id as the key. We’ll also add another attribute to
@@ -1690,9 +1707,9 @@ for (item &lt;- Map(1 -&gt; alice, 2 -&gt; bob, 3 -&gt; charlie)) {
       <para id="para_the_case_objects_are_just_si">The <literal>case
       objects</literal> are just singleton objects like we’ve seen before, but
       with the special <literal>case</literal> behavior. We’re most interested
-      in the embedded <literal>p @ Person(…)</literal> inside the case clause.
-      We’re matching on particular kinds of <literal>Person</literal> objects
-      inside the enclosing tuple. We also want to assign the
+      in the embedded <literal>p @ Person(...)</literal> inside the case
+      clause. We’re matching on particular kinds of <literal>Person</literal>
+      objects inside the enclosing tuple. We also want to assign the
       <literal>Person</literal> to a variable <literal>p</literal>, so we can
       use it for printing:</para>
 
@@ -1713,7 +1730,7 @@ Person(Charlie,32,Developer) is underpaid.</screen>
 }</programlisting>
 
       <para id="para_note_that_the_p_person_">Note that the <literal>p @
-      Person(…)</literal> syntax gives us a way to flatten this nesting of
+      Person(...)</literal> syntax gives us a way to flatten this nesting of
       match statements into one statement. It is analogous to using “capture
       groups” in a regular expression to pull out substrings we want, instead
       of splitting the string in several successive steps to extract the
@@ -1782,15 +1799,15 @@ try {
         case in a pattern matching expression). However, you won’t be able to
         refer to the exception in the subsequent expression. Name the
         exception variable if you need it, for example, if you need to print
-        the exception as we do in the catch-all case of the previous example.
-        <literal>e</literal> or <literal>ex</literal> are fine names.</para>
+        the exception as we do in the catch-all case of the previous
+        example.</para>
       </note>
 
       <para id="para_pattern_matching_aside_scala_">Pattern matching aside,
       Scala’s treatment of exception handling should be familiar to those
       fluent in Java, Ruby, Python, and most other mainstream languages. And
       yes, you throw an exception by writing <literal>throw new
-      MyBadException(…)</literal>. That’s all there is to it.<indexterm>
+      MyBadException(...)</literal>. That’s all there is to it.<indexterm>
           <primary>exceptions</primary>
 
           <secondary>throwing</secondary>
@@ -1927,7 +1944,7 @@ Scottish Terrier</screen>
     space collision between the type and method that both have the name
     <literal>Value</literal>. There are other overloaded versions of the
     <literal>Value</literal> method. One of them takes no arguments, another
-    one takes an <literal>Int</literal> id value, and another one takes both
+    one takes an <literal>Int</literal> ID value, and another one takes both
     an <literal>Int</literal> and <literal>String</literal>. These
     <literal>Value</literal> methods return a <literal>Value</literal> object
     and they add the value to the enumeration’s collection of values.</para>
@@ -1939,7 +1956,7 @@ Scottish Terrier</screen>
     The output above also demonstrated that every <literal>Value</literal> in
     an enumeration is automatically assigned a numeric identifier, unless you
     call one of the <literal>Value</literal> methods where you specify your
-    own id value explicitly.</para>
+    own ID value explicitly.</para>
 
     <para id="para_enumeration_no_name_values">You’ll often want to give your
     enumeration values human readable names, as we did here. However,
@@ -1960,7 +1977,7 @@ def isWorkingDay(d: WeekDay) = ! (d == Sat || d == Sun)
 WeekDay filter isWorkingDay foreach println</programlisting>
 
     <para id="para_days_enumeration_scala_output">Running this script with
-    <userinput>scala</userinput> yields the following output:</para>
+    <literal>scala</literal> yields the following output:</para>
 
     <screen>Main$$anon$1$WeekDay(0)
 Main$$anon$1$WeekDay(1)
@@ -1972,7 +1989,7 @@ Main$$anon$1$WeekDay(4)</screen>
     using one of the <literal>Value</literal> methods that takes a
     <literal>String</literal> argument, <literal>Value.toString</literal>
     prints the name of the type that is synthesized by the compiler, along
-    with the id value that was generated automatically.</para>
+    with the ID value that was generated automatically.</para>
 
     <para id="para_note_that_we_imported_weekday">Note that we imported
     <literal>WeekDay._</literal>. This made each enumeration value, e.g.,
@@ -1995,15 +2012,13 @@ Main$$anon$1$WeekDay(4)</screen>
     However, extending <literal>Enumeration</literal> has several advantages.
     It automatically manages the values as a collection that you can iterate
     over, etc., as in our examples. It also automatically assigns unique
-    integer ids to each value.</para>
+    integer IDs to each value.</para>
 
     <para id="para_we_ll_revisit_enumerations_in_">Case classes (see <xref
-    linkend="CaseClasses" /> in <xref
-    linkend="AdvancedObjectOrientedProgramming" /> are often used instead of
-    enumerations in Scala, because the “use case” for them often involves
-    pattern matching. We’ll revisit this topic in <xref
-    linkend="EnumerationsVsPatternMatching" /> in <xref
-    linkend="ApplicationDesign" />.</para>
+    linkend="CaseClasses" />) are often used instead of enumerations in Scala,
+    because the “use case” for them often involves pattern matching. We’ll
+    revisit this topic in <xref
+    linkend="EnumerationsVsPatternMatching" />.</para>
   </sect1>
 
   <sect1 id="_recap_and_what_8217_s_next_3">
