@@ -68,12 +68,12 @@ class ButtonWithCallbacks(val label: String,
     list of <literal>callbacks</literal> that are invoked when the button’s
     <literal>click</literal> method is invoked. We’ll explore this class in
     greater detail in <xref linkend="BasicObjectOrientedProgramming" />. For
-    now we want to focus on one particular problem. Not only does
+    now, we want to focus on one particular problem. Not only does
     <literal>ButtonWithCallbacks</literal> handle behaviors essential to
     buttons (like clicking), it also handles notification of click events by
     invoking the callback functions. This goes against the <emphasis>Single
-    Responsibility Principle</emphasis> <link linkend="Martin2003"
-    xrefstyle="select:nopage">[Martin2003]</link>, a means to the design goal
+    Responsibility Principle</emphasis> (see <link linkend="Martin2003"
+    xrefstyle="select:nopage">[Martin2003]</link>), a means to the design goal
     of <emphasis>separation of concerns</emphasis>. We would like to separate
     the button-specific logic from the callback logic, such that each logical
     component becomes simpler, more modular, and more reusable. The callback
@@ -86,14 +86,15 @@ class ButtonWithCallbacks(val label: String,
     behavior. We still have to embed the implementation code in the class
     somehow, compromising modularity. The only other alternative is to use a
     specialized tool like <emphasis>aspect-oriented programming</emphasis>
-    (AOP, see <link linkend="AOSD" xrefstyle="select:nopage">[AOSD]</link>),
-    as implemented by AspectJ <link linkend="AspectJ"
-    xrefstyle="select:nopage">[AspectJ]</link>, an extension of Java. AOP is
-    primarily designed to separate the implementations of “pervasive” concerns
-    that are repeated throughout an application. It seeks to modularize these
-    concerns, yet enable the fine-grained “mixing” of their behaviors with
-    other concerns, including the core domain logic of the application, either
-    at build or run time.<indexterm>
+    (AOP; see <link linkend="AOSD" xrefstyle="select:nopage">[AOSD]</link>),
+    as implemented by AspectJ (see <link linkend="AspectJ"
+    xrefstyle="select:nopage">[AspectJ]</link>), an extension of Java. AOP is
+    primarily designed to separate the implementations of “<phrase
+    role="keep-together">pervasive</phrase>” concerns that are repeated
+    throughout an application. It seeks to modularize these concerns, yet
+    enable the fine-grained “mixing” of their behaviors with other concerns,
+    including the core domain logic of the application, either at build or
+    runtime.<indexterm>
         <primary>Java</primary>
 
         <secondary>aspect oriented programming, AspectJ</secondary>
@@ -102,7 +103,7 @@ class ButtonWithCallbacks(val label: String,
       </indexterm></para>
 
     <sect2 id="TraitsAsMixins">
-      <title>Traits as Mixins</title>
+      <title>Traits As Mixins</title>
 
       <para id="para_scala_provides_a_complete__mix">Scala provides a complete
       mixin solution, called <emphasis>traits</emphasis>. In our example, we
@@ -110,7 +111,7 @@ class ButtonWithCallbacks(val label: String,
       in a Java interface, but we can also implement the abstraction in the
       trait (or a derived trait). We can declare classes that “mix in” the
       trait, much the way you can declare classes that implement an interface
-      in Java. However, in Scala we can even mix-in traits at the same time we
+      in Java. However, in Scala we can even mix in traits at the same time we
       create instances. That is, we don’t have to declare a class first that
       mixes in all the traits we want. So, Scala traits preserve separation of
       concerns while giving us the ability to compose behavior on
@@ -134,11 +135,12 @@ class ButtonWithCallbacks(val label: String,
       <para id="para_let_s_use_a_trait_to_separate_">Let’s use a trait to
       separate the callback handling from the button logic. We’ll generalize
       our approach a little bit. Callbacks are really a special case of the
-      <emphasis>Observer Pattern</emphasis> <link linkend="GOF1995"
-      xrefstyle="select:nopage">[GOF1995]</link>. So, let’s create a trait
-      that implements this pattern, then use it to handle callback behavior.
-      To simplify things, we’ll start with a single callback that counts the
-      number of button clicks.<indexterm>
+      <emphasis>Observer Pattern</emphasis> (see <link linkend="GOF1995"
+      xrefstyle="select:nopage">[GOF1995]</link>). So, let’s create a trait
+      that implements this pattern, and then use it to <phrase
+      role="keep-together">handle</phrase> callback behavior. To simplify
+      things, we’ll start with a single callback that counts the number of
+      button clicks.<indexterm>
           <primary>Observer Pattern</primary>
         </indexterm></para>
 
@@ -173,9 +175,9 @@ abstract class Widget</programlisting>
       <literal>Button</literal> has only one concern, handling the “essence”
       of being a button.</para>
 
-      <para id="para_here_is_a__trait__that_impleme">Here is a
-      <emphasis>trait</emphasis> that implements the logic of the
-      <emphasis>Observer Pattern</emphasis>:<indexterm>
+      <para id="para_here_is_a__trait__that_impleme">Here is a trait that
+      implements the logic of the <emphasis>Observer
+      Pattern</emphasis>:<indexterm>
           <primary>Observer Pattern</primary>
 
           <secondary>trait implementing</secondary>
@@ -198,19 +200,18 @@ trait Subject {
       a normal class. <literal>Subject</literal> defines all the members it
       declares. Traits can declare <emphasis>abstract</emphasis> members,
       <emphasis>concrete</emphasis> members, or both, just as classes can (see
-      <xref linkend="OverridingMembers" /> in <xref
-      linkend="AdvancedObjectOrientedProgramming" /> for more details). Also
-      like classes, traits can contain nested trait and class definitions and
+      <xref linkend="OverridingMembers" /> for more details). Also like
+      classes, traits can contain nested trait and class definitions, and
       classes can contain nested trait definitions.<indexterm>
           <primary>trait keyword</primary>
         </indexterm></para>
 
       <para id="para_the_first_line_defines_a_type">The first line defines a
       <literal>type</literal> for an <literal>Observer</literal>. This is a
-      <emphasis>structural type</emphasis> of the form <literal>{ def
-      receiveUpdate(subject:Any) }</literal>. Structural types specify only
-      the structure a type must support; you could think of them as
-      “anonymous” types.<indexterm>
+      <emphasis>structural type</emphasis> of the form <literal
+      role="keep-together">{ def receiveUpdate(subject:Any) }</literal>.
+      Structural types specify only the structure a type must support; you
+      could think of them as “anonymous” types.<indexterm>
           <primary>data types</primary>
 
           <secondary>structural types</secondary>
@@ -225,8 +226,7 @@ trait Subject {
       linkend="ScalasTypeSystem" />. If you’re wondering why we didn’t use
       <literal>Subject</literal> as the type of the argument, instead of
       <literal>Any</literal>, we’ll revisit that issue in <xref
-      linkend="SelfTypeAnnotationsAndAbstractTypeMembers" /> in <xref
-      linkend="ApplicationDesign" />.</para>
+      linkend="SelfTypeAnnotationsAndAbstractTypeMembers" />.</para>
 
       <para id="para_the_main_thing_to_notice_for_n">The main thing to notice
       for now is how this structural type minimizes the coupling between the
@@ -244,14 +244,13 @@ trait Subject {
       <para id="para_next_we_declare_a_list_of_obs">Next, we declare a list of
       observers. We make it a <literal>var</literal>, rather than a
       <literal>val</literal>, because <literal>List</literal> is immutable, so
-      we must create a new list when an observer is added using the
-      <literal>addObserver</literal> method.</para>
+      we must create a new list when an observer is added using the <literal
+      role="keep-together">addObserver</literal> method.</para>
 
       <para id="para_we_ll_discuss_scala_list_s_m">We’ll discuss Scala
       <literal>List</literal>s more in <xref linkend="ScalaTypeHierarchy" />
-      in <xref linkend="ScalaObjectSystem" /> and also in <xref
-      linkend="FunctionalProgramming" />. For now, notice that
-      <literal>addObserver</literal> uses the the list
+      and also in <xref linkend="FunctionalProgramming" />. For now, notice
+      that <literal>addObserver</literal> uses the the list
       <emphasis>cons</emphasis> “operator” method (<literal>::</literal>) to
       <emphasis>prepend</emphasis> an <literal>observer</literal> to the list
       of <literal>observers</literal>. The scala compiler is smart enough to
@@ -265,7 +264,7 @@ trait Subject {
 
       <para id="para_note_that_we_wrote_observer_">Note that we wrote
       <literal>observer :: observers</literal>, with the existing
-      <literal>observers</literal> list on the <emphasis>right</emphasis> hand
+      <literal>observers</literal> list on the <emphasis>right</emphasis>hand
       side. Recall that any method that ends with <literal>:</literal> binds
       to the <emphasis>right</emphasis>. So, the previous statement is
       equivalent to the following statement:</para>
@@ -278,7 +277,7 @@ trait Subject {
       method and calls <literal>receiveUpdate</literal> on each one. (Note
       that we are using the “infix” operator notation instead of
       <literal>observers.foreach</literal>.) We use the placeholder
-      ‘<literal>_</literal>’ to shorten the following expression:</para>
+      <literal>_</literal> to shorten the following expression:</para>
 
       <programlisting linenumbering="unnumbered">(obs) =&gt; obs.receiveUpdate(this)</programlisting>
 
@@ -287,27 +286,27 @@ trait Subject {
       <programlisting linenumbering="unnumbered">_.receiveUpdate(this)</programlisting>
 
       <para id="para_this_expression_is_actually_th">This expression is
-      actually the body of an “anonymous function”, called a
+      actually the body of an “anonymous function,” called a
       <emphasis>function literal</emphasis> in Scala. This is similar to a
-      <emphasis>lambda</emphasis> and similar constructs used in many other
+      <emphasis>lambda</emphasis> and like constructs used in many other
       languages. Function literals and the related concept of a
       <emphasis>closure</emphasis> are discussed in <xref
-      linkend="FunctionLiteralsAndClosures" /> in <xref
-      linkend="FunctionalProgramming" />.<indexterm>
+      linkend="FunctionLiteralsAndClosures" />.<indexterm>
           <primary>function literals</primary>
         </indexterm></para>
 
       <para id="para_in_java_the_foreach_method_">In Java, the
-      <literal>foreach</literal> method would probably take an interface and
+      <literal>foreach</literal> method would probably take an interface, and
       you would pass an instance of a class that implements the interface
       (e.g., the way <literal>Comparable</literal> is typically used).</para>
 
       <para id="para_in_scala_the_list_a_foreach">In Scala, the
       <literal>List[A].foreach</literal> method expects an argument of type
       <literal>(A) =&gt; Unit</literal>, which is a function taking an
-      instance of type <literal>A</literal>, where A represents the type of
-      the elements of the list (<literal>Observer</literal>, in this case),
-      and returning <literal>Unit</literal> (like <literal>void</literal> in
+      instance of type <literal>A</literal>—where <literal>A</literal>
+      represents the type of the elements of the list
+      (<literal>Observer</literal>, in this case)—and returning
+      <literal>Unit</literal> (like <literal>void</literal> in
       Java).<indexterm>
           <primary>foreach method</primary>
         </indexterm></para>
@@ -315,10 +314,10 @@ trait Subject {
       <note id="para_note_we_chose_to_use_a_var_">
         <para>We chose to use a <literal>var</literal> with immutable
         <literal>Lists</literal> for the observers in this example. We could
-        have used a <literal>val</literal> with a mutable type, like
-        <literal>ListBuffer</literal>. That choice would make a little more
-        sense for a real application, but we wanted to avoid the distraction
-        of explaining new library classes.</para>
+        have used a <literal>val</literal> with a mutable type, like <literal
+        role="keep-together">ListBuffer</literal>. That choice would make a
+        little more sense for a real application, but we wanted to avoid the
+        distraction of explaining new library classes.</para>
       </note>
 
       <para id="para_once_again_we_learned_a_lot_o">Once again, we learned a
@@ -342,18 +341,17 @@ class ObservableButton(name: String) extends Button(name) with Subject {
 
       <para id="para_we_start_by_importing_everythi">We start by importing
       everything in the <literal>observer</literal> package, using the
-      <literal>_</literal> wild card. Actually, we have only defined the
+      <literal>_</literal> wildcard. Actually, we have only defined the
       <literal>Subject</literal> trait in the package.</para>
 
       <para id="para_the_new_class_uses_the_with_">The new class uses the
       <literal>with</literal> keyword to add the <literal>Subject</literal>
       trait to the class. <literal>ObservableButton</literal> overrides the
       <literal>click</literal> method. Using the <literal>super</literal>
-      keyword (see <xref linkend="OverridingMethods" /> in <xref
-      linkend="AdvancedObjectOrientedProgramming" />), it first invokes the
-      “superclass” method, <literal>Button.click</literal>, then it notifies
-      the observers. Since the new <literal>click</literal> method overrides
-      <literal>Button</literal>’s concrete implementation, the
+      keyword (see <xref linkend="OverridingMethods" />), it first invokes the
+      “superclass” method, <literal>Button.click</literal>, and then it
+      notifies the observers. Since the new <literal>click</literal> method
+      overrides <literal>Button</literal>’s concrete implementation, the
       <literal>override</literal> keyword is required.<indexterm>
           <primary>with keyword</primary>
         </indexterm><indexterm>
@@ -366,8 +364,8 @@ class ObservableButton(name: String) extends Button(name) with Subject {
       own <literal>with</literal> keyword.</para>
 
       <para id="para_a_class_can_extend_a_trait_and">A class can extend a
-      trait and a trait can extend a class. In fact, our
-      <literal>Widget</literal> class above could have been declared to be a
+      trait, and a trait can extend a class. In fact, our
+      <literal>Widget</literal> class earlier could have been declared to be a
       trait.<indexterm>
           <primary>extends keyword</primary>
         </indexterm></para>
@@ -392,9 +390,9 @@ class ObservableButton(name: String) with Button(name) with Subject {...}</progr
        class ObservableButton(name: String) with Button(name) with Subject {...}
                                             ^</screen>
 
-      <para id="para_the_error_should_really_say_">The error should really say
-      “<replaceable>with</replaceable> found, but
-      <replaceable>extends</replaceable> expected.”</para>
+      <para id="para_the_error_should_really_say_">The error should really
+      say, “<literal>with</literal> found, but <literal>extends</literal>
+      expected.”</para>
 
       <para id="para_to_demonstrate_this_code_let_">To demonstrate this code,
       let’s start with a class for observing button clicks that simply counts
@@ -412,12 +410,12 @@ class ButtonCountObserver {
 
       <para id="para_finally_let_s_write_a_test_th">Finally, let’s write a
       test that exercises all these classes. We will use the
-      <emphasis>Specs</emphasis> library (discussed in the <xref
-      linkend="ScalaSpecs" /> section of <xref linkend="ScalaToolsLibs" />) to
-      write a <emphasis>Behavior-Driven Development</emphasis> (<link
-      linkend="BDD" xrefstyle="select:nopage">[BDD]</link>) “specification”
-      that exercises the combined <literal>Button</literal> and
-      <literal>Subject</literal> types:<indexterm>
+      <emphasis>Specs</emphasis> library (discussed in <xref
+      linkend="ScalaSpecs" />) to write a <emphasis>Behavior-Driven
+      Development</emphasis> (<link linkend="BDD"
+      xrefstyle="select:nopage">[BDD]</link>) “specification” that exercises
+      the combined <literal>Button</literal> and <literal>Subject</literal>
+      types:<indexterm>
           <primary>BDD (Behavior-Driven Development)</primary>
 
           <secondary>specification exercising combined Button and Subject
@@ -449,10 +447,12 @@ object ButtonObserverSpec extends Specification {
 }</programlisting>
 
       <para id="para_if_you_downloaded_the_code_exa">If you downloaded the
-      code examples from the O’Reilly site, then you can follow the directions
-      in its <filename>README</filename> files for building and running the
-      examples in this chapter. The output of the <literal>specs</literal>
-      “target” of the build should include the following text:</para>
+      <ulink role="orm:hideurl"
+      url="http://oreilly.com/catalog/9780596155957/">code examples from the
+      O’Reilly site</ulink>, you can follow the directions in its
+      <filename>README</filename> files for building and running the examples
+      in this chapter. The output of the <literal>specs</literal> “target” of
+      the build should include the following text:</para>
 
       <screen>Specification "ButtonCountObserverSpec"
   A Button Observer should
@@ -463,11 +463,11 @@ Finished in 0 second, 10 ms
 1 example, 1 expectation, 0 failure, 0 error</screen>
 
       <para id="para_notice_that_the_strings_a_bu">Notice that the strings
-      <literal>"A Button Observer should"</literal> and <literal>"observe
-      button clicks"</literal> correspond to strings in the example. The
-      output of a <emphasis>Specs</emphasis> run provides a nice summary of
-      the requirements for the items being tested, assuming good choices were
-      made for the strings.</para>
+      <literal>A Button Observer should</literal> and <literal>observe button
+      clicks</literal> correspond to strings in the example. The output of a
+      <emphasis>Specs</emphasis> run provides a nice summary of the
+      requirements for the items being tested, assuming good choices were made
+      for the strings.</para>
 
       <para id="para_the_body_of_the_test_creates_a">The body of the test
       creates an “Okay” <literal>ObservableButton</literal> and a
@@ -476,12 +476,11 @@ Finished in 0 second, 10 ms
       <literal>for</literal> loop. The last line requires the observer’s
       <literal>count</literal> to equal 3. If you are accustomed to using an
       <emphasis>XUnit</emphasis>-style TDD tool, like <literal>JUnit</literal>
-      <link linkend="JUnit" xrefstyle="select:nopage">[JUnit]</link> or
-      <literal>ScalaTest</literal> <link linkend="ScalaTestTool"
-      xrefstyle="select:nopage">[ScalaTestTool]</link> (see also <xref
-      linkend="ScalaTest" /> in <xref linkend="ScalaToolsLibs" />), then the
-      last line is equivalent to the following <literal>JUnit</literal>
-      assertion:<indexterm>
+      (see <link linkend="JUnit" xrefstyle="select:nopage">[JUnit]</link>) or
+      <literal>ScalaTest</literal> (see <link linkend="ScalaTestTool"
+      xrefstyle="select:nopage">[ScalaTestTool]</link> and <xref
+      linkend="ScalaTest" />), then the last line is equivalent to the
+      following <literal>JUnit</literal> assertion:<indexterm>
           <primary>JUnit</primary>
         </indexterm><indexterm>
           <primary>TDD (Test-Driven Development)</primary>
@@ -493,14 +492,14 @@ Finished in 0 second, 10 ms
         <para>The <emphasis>Specs</emphasis> library (see <xref
         linkend="ScalaSpecs" />) and the <emphasis>ScalaTest</emphasis>
         library (see <xref linkend="ScalaTest" />) both support
-        <emphasis>behavior-driven development</emphasis> <link linkend="BDD"
-        xrefstyle="select:nopage">[BDD]</link>, a style of
-        <emphasis>test-driven development</emphasis> <link linkend="TDD"
-        xrefstyle="select:nopage">[TDD]</link> that emphasizes the
+        <emphasis>Behavior-Driven Development</emphasis> (<link linkend="BDD"
+        xrefstyle="select:nopage">[BDD]</link>), a style of
+        <emphasis>Test-Driven Development</emphasis> (<link linkend="TDD"
+        xrefstyle="select:nopage">[TDD]</link>) that emphasizes the
         “specification” role of tests.</para>
       </note>
 
-      <para id="para_suppose_we_only_need_one_obse">Suppose we only need one
+      <para id="para_suppose_we_only_need_one_obse">Suppose we need only one
       <literal>ObservableButton</literal> instance? We actually don’t have to
       declare a class that subclasses <literal>Button</literal> with
       <literal>Subject</literal>. We can incorporate the trait when we create
@@ -552,8 +551,7 @@ object ButtonObserverAnonSpec extends Specification {
       <para id="para_finally_note_that_the_inherit">Finally, note that the
       inheritance hierarchy for an instance can be complex if it mixes in
       traits that extend other traits, etc. We’ll discuss the details of the
-      hierarchy in <xref linkend="Linearization" /> in <xref
-      linkend="ScalaObjectSystem" />.</para>
+      hierarchy in <xref linkend="Linearization" />.</para>
     </sect2>
   </sect1>
 
@@ -618,8 +616,8 @@ class Button(val label: String) extends Widget with Clickable {
     <para id="para_previously_when_we_defined_o">When we previously defined
     <literal>ObservableButton</literal> (in <xref
     linkend="TraitsAsMixins" />), we overrode <literal>Button.click</literal>
-    to notify the observers. We had to duplicate that logic in
-    <literal>ButtonObserverAnonSpec</literal> when we declared
+    to notify the observers. We had to duplicate that logic in <literal
+    role="keep-together">ButtonObserverAnonSpec</literal> when we declared
     <literal>observableButton</literal> as a <literal>Button</literal>
     instance that mixed in the <literal>Subject</literal> trait directly.
     Let’s eliminate this duplication.</para>
@@ -656,7 +654,7 @@ trait ObservableClicks extends Clickable with Subject {
     <para id="para_look_closely_at_this_method_i">Look closely at this method.
     It calls <literal>super.click()</literal>, but what is
     <literal>super</literal> in this case? At this point, it could only appear
-    to be <literal>Clickable</literal>, which <emphasis>declares</emphasis>,
+    to be <literal>Clickable</literal>, which <emphasis>declares</emphasis>
     but does not <emphasis>define</emphasis> the <literal>click</literal>
     method, or it could be <literal>Subject</literal>, which doesn’t have a
     <literal>click</literal> method. So, <literal>super</literal> can’t be
@@ -675,8 +673,9 @@ trait ObservableClicks extends Clickable with Subject {
       <para>Except for declaring abstract classes, the
       <literal>abstract</literal> keyword is only required on a method in a
       trait when the method has a body, but it calls the
-      <literal>super</literal> method which doesn’t have a concrete
-      implementation in parents of the trait.</para>
+      <literal>super</literal> method that doesn’t have a concrete
+      implementation in <phrase role="keep-together">parents</phrase> of the
+      trait.</para>
     </note>
 
     <para id="para_let_s_use_this_trait_with_but">Let’s use this trait with
@@ -705,17 +704,18 @@ object ButtonClickableObserverSpec extends Specification {
 
     <para id="para_compare_this_code_to_button_">Compare this code to
     <literal>ButtonObserverAnonSpec</literal>. We instantiate a
-    <literal>Button</literal> with the <literal>ObservableClicks</literal>
-    trait mixed in, but now there is no override of <literal>click</literal>
-    required. Hence, this client of <literal>Button</literal> doesn’t have to
-    worry about properly overriding <literal>click</literal>. The hard work is
-    already done by <literal>ObservableClicks</literal>. The desired behavior
-    is <emphasis>composed declaratively</emphasis> when needed.</para>
+    <literal>Button</literal> with the <literal
+    role="keep-together">ObservableClicks</literal> trait mixed in, but now
+    there is no override of <literal>click</literal> required. Hence, this
+    client of <literal>Button</literal> doesn’t have to worry about properly
+    overriding <literal>click</literal>. The hard work is already done by
+    <literal>ObservableClicks</literal>. The desired behavior is
+    <emphasis>composed declaratively</emphasis> when needed.</para>
 
     <para id="para_let_s_finish_our_example_by_ad">Let’s finish our example by
     adding a second trait. The <emphasis>JavaBeans</emphasis> specification
-    <link linkend="JavaBeansSpec"
-    xrefstyle="select:nopage">[JavaBeansSpec]</link> has the idea of
+    (see <link linkend="JavaBeansSpec"
+    xrefstyle="select:nopage">[JavaBeansSpec]</link>) has the idea of
     “vetoable” events, where listeners for changes to a JavaBean can veto the
     change. Let’s implement something similar with a trait that vetoes more
     than a set number of clicks:<indexterm>
@@ -750,17 +750,15 @@ trait VetoableClicks extends Clickable {
     <para id="para_once_again_we_override_the_c">Once again, we override the
     <literal>click</literal> method. As before, the override must be declared
     <literal>abstract</literal>. The maximum allowed number of clicks defaults
-    to 1. You might wonder what we mean by “defaults” here? Isn’t the field
+    to 1. You might wonder what we mean by “defaults” here. Isn’t the field
     declared to be a <literal>val</literal>? There is no constructor defined
     to initialize it to another value. We’ll revisit these questions in <xref
-    linkend="OverridingMembers" /> in <xref
-    linkend="AdvancedObjectOrientedProgramming" />.</para>
+    linkend="OverridingMembers" />.</para>
 
     <para id="para_this_trait_also_declares_a_co">This trait also declares a
     <literal>count</literal> variable to keep track of the number of clicks
     seen. It is declared <literal>private</literal>, so it is invisible
-    outside the trait (see <xref linkend="VisibilityRules" /> in <xref
-    linkend="BasicObjectOrientedProgramming" />). The overridden
+    outside the trait (see <xref linkend="VisibilityRules" />). The overridden
     <literal>click</literal> method increments <literal>count</literal>. It
     only calls the <literal>super.click()</literal> method if the count is
     less than or equal to the <literal>maxAllowed</literal> count.<indexterm>
@@ -772,8 +770,8 @@ trait VetoableClicks extends Clickable {
     <literal>ObservableClicks</literal> and <literal>VetoableClicks</literal>
     working together. Note that a separate <literal>with</literal> keyword is
     required for each trait, as opposed to using one keyword and separating
-    the names with commas, as Java does for <literal>implements</literal>
-    clauses:<indexterm>
+    the names with commas, as Java does for <literal
+    role="keep-together">implements</literal> clauses:<indexterm>
         <primary>ObservableClicks trait (example)</primary>
 
         <secondary>working with VetoableClicks trait (example)</secondary>
@@ -813,7 +811,7 @@ object ButtonClickableObserverVetoableSpec extends Specification {
     anonymous class doesn’t define <literal>click</literal> itself, the method
     lookup proceeds <emphasis>right to left</emphasis>, as declared. It’s
     actually more complicated than that, as we’ll see later in <xref
-    linkend="Linearization" /> in <xref linkend="ScalaObjectSystem" />.</para>
+    linkend="Linearization" />.</para>
 
     <para id="para_in_the_meantime_what_happens_">In the meantime, what
     happens if we use the traits in the reverse order?</para>
@@ -856,11 +854,10 @@ object ButtonVetoableClickableObserverSpec extends Specification {
 
     <para id="para_breaking_up_your_application_i">Breaking up your
     application into small, focused traits is a powerful way to create
-    reusable, scalable abstractions and “components”. Complex behaviors can be
+    reusable, scalable abstractions and “components.” Complex behaviors can be
     built up through <emphasis>declarative composition</emphasis> of traits.
     We will explore this idea in greater detail in <xref
-    linkend="ScalableAbstractions" /> in <xref
-    linkend="ApplicationDesign" />.<indexterm>
+    linkend="ScalableAbstractions" />.<indexterm>
         <primary>declarative composition of traits</primary>
       </indexterm></para>
   </sect1>
@@ -930,9 +927,9 @@ After Creating C12</screen>
     hierarchy is left to right, starting with the base class
     <literal>Base12</literal>, followed by the traits <literal>T1</literal>
     and <literal>T2</literal>, and ending with the <literal>C12</literal>
-    constructor body. (For constructing arbitrarily-complex hierarchies, see
-    <xref linkend="Linearization" /> in <xref
-    linkend="ScalaObjectSystem" />.)<indexterm>
+    constructor body. (For constructing arbitrarily <phrase
+    role="keep-together">complex</phrase> hierarchies, see <xref
+    linkend="Linearization" />.)<indexterm>
         <primary>traits</primary>
 
         <secondary>constructing</secondary>
@@ -950,7 +947,7 @@ After Creating C12</screen>
     <para id="para_if_a_field_in_a_trait_does_not">If a concrete field in a
     trait does not have a suitable default value, there is no “fail-safe” way
     to initialize the value. All the alternative approaches require some ad
-    hoc steps by users of the trait, which is error prone because they might
+    hoc steps by users of the trait, which is error-prone because they might
     do it wrong or forget to do it all. Perhaps the field should be left
     abstract, so that classes or other traits that use this trait are forced
     to define the value appropriately. We’ll discuss overriding abstract and
@@ -997,9 +994,10 @@ After Creating C12</screen>
 
       <tip id="para_tip_avoid_fields_in_traits_th">
         <para>Avoid concrete fields in traits that can’t be initialized to
-        suitable default values. Use abstract fields instead or convert the
+        suitable default values. Use abstract fields instead, or convert the
         trait to a class with a constructor. Of course, stateless traits don’t
-        have any issues with initialization.</para>
+        have any issues with <phrase
+        role="keep-together">initialization</phrase>.</para>
       </tip>
 
       <para id="para_it_s_a_general_principle_of_go">It’s a general principle

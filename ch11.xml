@@ -391,8 +391,8 @@ Jane Doe: Paycheck($3461.54,$1576.92,$1884.62)</screen>
     retirementFundContributions are 10%  of gross</screen>
 
       <para id="para_this_reads_mostly_like_normal_">This reads like normal
-      English, not code. We have included some “bubble” words <link
-      linkend="Ford2009" xrefstyle="select:nopage">[Ford2009]</link> that aid
+      English, not code. We have included some “bubble” words (see <link
+      linkend="Ford2009" xrefstyle="select:nopage">[Ford2009]</link>) that aid
       readability but don’t necessarily correspond to anything essential, like
       <literal>to</literal>, <literal>an</literal>, <literal>is</literal>,
       <literal>for</literal>, <literal>of</literal>, and
@@ -407,9 +407,9 @@ Jane Doe: Paycheck($3461.54,$1576.92,$1884.62)</screen>
       five times, but hopefully in “intuitive” ways.</para>
 
       <para id="para_there_are_many_possible_intern">There are many possible
-      internal Scala DSLs we could construct that resemble this <emphasis>ad
-      hoc</emphasis> DSL. Here is one of them, again in a script, which
-      produces the same output as before:</para>
+      internal Scala DSLs we could construct that resemble this ad hoc DSL.
+      Here is one of them, again in a script, which produces the same output
+      as before:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/payroll-dsl-script.scala
 
@@ -548,10 +548,9 @@ case class Duration(val amount: Int) {
 
       <para
       id="para__duration_is_one_of_the__ad_h"><literal>Duration</literal> is
-      one of the <emphasis>ad hoc</emphasis> types that we designed to
-      encapsulate the implicit context, to implement helper methods for the
-      DSL, etc. We’ll discuss the implicit conversion method we need in a
-      moment.</para>
+      one of the ad hoc types that we designed to encapsulate the implicit
+      context, to implement helper methods for the DSL, etc. We’ll discuss the
+      implicit conversion method we need in a moment.</para>
     </sect2>
 
     <sect2 id="InternalDSLs-Apply">
@@ -2084,9 +2083,9 @@ object PayrollParserCombinatorsSpec
       conceptual difference from the two implementations. Here we are
       computing the paycheck as we parse code written in the external DSL. In
       the internal DSL case, we generated a paycheck calculator when we parsed
-      the DSL. Afterwards, we used that calculator to compute paychecks for
-      one employee at a time. We could have generated a paycheck calculator
-      like we did before, but we chose a simpler approach to focus on the
+      the DSL. Afterward, we used that calculator to compute paychecks for one
+      employee at a time. We could have generated a paycheck calculator like
+      we did before, but we chose a simpler approach to focus on the
       construction of the parser itself. Also, as we discussed above, we
       weren’t as careful about thread-safety and other issues in the
       implementation.<indexterm class="endofrange"

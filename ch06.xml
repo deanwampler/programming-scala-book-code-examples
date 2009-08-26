@@ -20,7 +20,7 @@
     <emphasis>fields</emphasis>, <emphasis>methods</emphasis>, and
     <emphasis>types</emphasis>. These members must be defined by a derived
     class or trait before an instance can be created. Most object-oriented
-    languages support abstract methods and some also support abstract fields
+    languages support abstract methods, and some also support abstract fields
     and types.<indexterm>
         <primary>abstract type members</primary>
       </indexterm><indexterm class="startofrange" id="ch06_overriding">
@@ -65,7 +65,7 @@
 
     <para id="para_java_has_an_optional_overrid">Java has an optional
     <literal>@Override</literal> annotation for methods. It helps catch errors
-    of the first type (mispellings), but it can’t help with errors of the
+    of the first type (misspellings), but it can’t help with errors of the
     second type, since using the annotation is optional.</para>
 
     <sect2 id="FinalDeclarations">
@@ -113,8 +113,7 @@ class Changeable1 extends Fixed     // ERROR</programlisting>
         <para>Some of the types in the Scala library are final, including JDK
         classes like <literal>String</literal> and all the “value” types
         derived from <literal>AnyVal</literal> (see <xref
-        linkend="ScalaTypeHierarchy" /> in <xref
-        linkend="ScalaObjectSystem" />).</para>
+        linkend="ScalaTypeHierarchy" />).</para>
       </note>
 
       <para id="para_declarations_that_arent_final">For declarations that
@@ -129,9 +128,8 @@ class Changeable1 extends Fixed     // ERROR</programlisting>
       <literal>Widget</literal> base class with an abstract method
       <literal>draw</literal>, to support “rendering” the widget to a display,
       web page, etc. We’ll also override a concrete method familiar to any
-      Java programmer, <literal>toString()</literal>, using an <emphasis>ad
-      hoc</emphasis> format. As before, we will use a new package,
-      <literal>ui3</literal>.<indexterm>
+      Java programmer, <literal>toString()</literal>, using an ad hoc format.
+      As before, we will use a new package, <literal>ui3</literal>.<indexterm>
           <primary>classes</primary>
 
           <secondary>overriding abstract and concrete methods</secondary>
@@ -186,7 +184,7 @@ abstract class Widget {
       <para id="para_the_tostring_method_is_str">The
       <literal>toString()</literal> method is straightforward. Since
       <literal>AnyRef</literal> defines <literal>toString</literal>, the
-      <literal>override</literal> keyword is required for
+      <literal role="keep-together">override</literal> keyword is required for
       <literal>Widget.toString</literal>.</para>
 
       <para id="para_here_is_the_revised_button_c">Here is the revised
@@ -213,10 +211,11 @@ class Button(val label: String) extends Widget with Clickable {
 
       <para id="para__button_implements_the_abstra"><literal>Button</literal>
       implements the abstract method <literal>draw</literal>. No
-      <literal>override</literal> keyword is required.
-      <literal>Button</literal> also overrides <literal>toString</literal>, so
-      the <literal>override</literal> keyword is required. Note that
-      <literal>super.toString</literal> is called.</para>
+      <literal>override</literal> keyword is required. <literal
+      role="keep-together">Button</literal> also overrides
+      <literal>toString</literal>, so the <literal>override</literal> keyword
+      is required. Note that <literal>super.toString</literal> is
+      called.</para>
 
       <para id="para_the_super_keyword_is_analogo">The
       <literal>super</literal> keyword is analogous to
@@ -224,8 +223,7 @@ class Button(val label: String) extends Widget with Clickable {
       aggregation of the parent class and any mixed-in traits. The search for
       <literal>super.toString</literal> will find the “closest” parent type
       <literal>toString</literal>, as determined by the linearization process
-      (see <xref linkend="Linearization" /> in <xref
-      linkend="ScalaObjectSystem" />). In this case, since
+      (see <xref linkend="Linearization" />). In this case, since
       <literal>Clickable</literal> doesn’t define <literal>toString</literal>,
       <literal>Widget.toString</literal> will be called.<indexterm>
           <primary>this keyword</primary>
@@ -237,26 +235,25 @@ class Button(val label: String) extends Widget with Clickable {
 
       <tip id="para_tip_overriding_a_concrete_met">
         <para>Overriding a concrete method should be done rarely, because it
-        is error prone. Should you invoke the parent method? If so, when? Do
-        you call it before doing anything else or afterwards? While the writer
+        is error-prone. Should you invoke the parent method? If so, when? Do
+        you call it before doing anything else, or afterward? While the writer
         of the parent method might document the overriding constraints for the
         method, it’s difficult to ensure that the writer of a derived class
         will honor those constraints. A much more robust approach is the
-        <emphasis>Template Method Pattern</emphasis> <link linkend="GOF1995"
-        xrefstyle="select:nopage">[GOF1995]</link>.</para>
+        <emphasis>Template Method Pattern</emphasis> (see <link
+        linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link>).</para>
       </tip>
     </sect2>
 
     <sect2 id="OverridingFields">
       <title>Overriding Abstract and Concrete Fields</title>
 
-      <para id="para_fewer_object_oriented_language">Most OO languages allow
-      you to override mutable fields (<literal>var</literal>). Fewer
-      object-oriented languages allow you to define abstract fields or
-      override concrete immutable fields (<literal>val</literal>). For
-      example, it’s common for a base class constructor to initialize a
-      mutable field and for a derived class constructor to change its
-      value.<indexterm>
+      <para id="para_fewer_object_oriented_language">Most object-oriented
+      languages allow you to override mutable fields (<literal>var</literal>).
+      Fewer OO languages allow you to define abstract fields or override
+      concrete immutable fields (<literal>val</literal>). For example, it’s
+      common for a base class constructor to initialize a mutable field and
+      for a derived class constructor to change its value.<indexterm>
           <primary>overriding class and trait members</primary>
 
           <secondary>abstract and concrete fields</secondary>
@@ -374,7 +371,7 @@ ClassExtendsT1</screen>
       <literal>scalac</literal>. The <literal>-Xfuture</literal> option will
       enable the override behavior that is supported in version 2.8. The
       <literal>-Xcheckinit</literal> option will analyze your code and report
-      if the behavior change will break it. The option
+      whether the behavior change will break it. The option
       <literal>-Xexperimental</literal>, which enables many experimental
       changes, will also warn you that the <literal>val</literal> override
       behavior is different.</para>
@@ -456,7 +453,7 @@ c2b.value = 10, inverse = Infinity</screen>
 
       <para id="para_the_behavior_of_this_script_is">The behavior of this
       script is actually quite subtle. As an exercise, try selectively
-      removing (or commenting-out) the different <literal>println</literal>
+      removing (or commenting out) the different <literal>println</literal>
       statements, one at a time. Observe what happens to the results.
       Sometimes <literal>inverse</literal> is initialized properly! (Hint:
       remove the <literal>println("In c2b:")</literal> statement. Then try
@@ -469,9 +466,8 @@ c2b.value = 10, inverse = Infinity</screen>
       especially during initialization. It’s best to avoid them.</para>
 
       <para id="para_scala_provides_two_solutions_t">Scala provides two
-      solutions to this problem, <emphasis>lazy values</emphasis>, which we
-      discuss in <xref linkend="LazyVals" /> in <xref
-      linkend="FunctionalProgramming" />, and <emphasis>pre-initialized
+      solutions to this problem: <emphasis>lazy values</emphasis>, which we
+      discuss in <xref linkend="LazyVals" />, and <emphasis>pre-initialized
       fields</emphasis>, which is demonstrated in the following refinement to
       the previous example:<indexterm>
           <primary>pre-initialized fields</primary>
@@ -512,7 +508,7 @@ c2c.value = 10, inverse = 0.1</screen>
       same expected and now predictable results.</para>
 
       <para id="para_now_let_s_consider_the_second_">Now let’s consider the
-      second workaround we described above, changing the declaration to
+      second workaround we described earlier, changing the declaration to
       <literal>var</literal>. This solution is more suitable if a good default
       value exists and you don’t want to require instances that use the trait
       to always set the value. In this case, change the <literal>val</literal>
@@ -594,8 +590,8 @@ object ButtonClickableObserverVetoableSpec2 extends Specification {
       The maintainer must carefully consider whether or not the value will
       change and if a change will invalidate the state of the instance. This
       issue is especially pernicious in multithreaded systems (see <xref
-      linkend="ProblemsOfSharedSynchronizedState" /> in <xref
-      linkend="Concurrency" />).<indexterm class="endofrange"
+      linkend="ProblemsOfSharedSynchronizedState" />).<indexterm
+      class="endofrange"
       startref="ch06_traitsoverridefields"></indexterm><indexterm
       class="endofrange"
       startref="ch06_overridingfieldstrait"></indexterm><indexterm
@@ -695,10 +691,10 @@ println(c.count)</programlisting>
       emphasize that <literal>name</literal> and <literal>count</literal> are
       <emphasis>abstract</emphasis> fields, not concrete fields with default
       values. A similar-looking declaration of <literal>name</literal> in a
-      Java class, <literal>String name;</literal> would declare a concrete
-      field with the default value (<literal>null</literal> in this case).
-      Java doesn’t support abstract fields or types (as we’ll discuss next),
-      only methods.<indexterm class="startofrange"
+      Java class, <literal role="keep-together">String name;</literal>, would
+      declare a concrete field with the default value (<literal>null</literal>
+      in this case). Java doesn’t support abstract fields or types (as we’ll
+      discuss next), only methods.<indexterm class="startofrange"
           id="ch06_overrideabstracttypes">
           <primary>overriding class and trait members</primary>
 
@@ -711,10 +707,9 @@ println(c.count)</programlisting>
 
       <para id="para_we_introduced_abstract_type_de">We introduced abstract
       type declarations in <xref
-      linkend="AbstractTypesAndParameterizedTypes" /> in <xref
-      linkend="TypeLessDoMore" />. Recall the <literal>BulkReader</literal>
-      example from that section:<indexterm class="startofrange"
-          id="ch06_abstracttypeoverride">
+      linkend="AbstractTypesAndParameterizedTypes" />. Recall the
+      <literal>BulkReader</literal> example from that section:<indexterm
+          class="startofrange" id="ch06_abstracttypeoverride">
           <primary>abstract types</primary>
 
           <secondary>overriding</secondary>
@@ -751,9 +746,8 @@ println( new FileBulkReader(new File("abstract-types-script.scala")).read )</pro
 
       <para id="para_abstract_types_are_an_alternat">Abstract types are an
       alternative to parameterized types, which we’ll explore in <xref
-      linkend="ParameterizedTypes" /> in <xref linkend="ScalasTypeSystem" />.
-      Like parameterized types, they provide an abstraction mechanism at the
-      type level.</para>
+      linkend="ParameterizedTypes" />. Like parameterized types, they provide
+      an abstraction mechanism at the type level.</para>
 
       <para id="para_the_example_shows_how_to_decla">The example shows how to
       declare an abstract type and how to define a concrete value in derived
@@ -774,10 +768,10 @@ println( new FileBulkReader(new File("abstract-types-script.scala")).read )</pro
 
       <para id="para_for_another_example_let_s_rev">For another example, let’s
       revisit our <literal>Subject</literal> trait from <xref
-      linkend="TraitsAsMixins" /> in <xref linkend="Traits" />. The definition
-      of the <literal>Observer</literal> type is a <emphasis>structural
+      linkend="TraitsAsMixins" />. The definition of the
+      <literal>Observer</literal> type is a <emphasis>structural
       type</emphasis> with a method named <literal>receiveUpdate</literal>.
-      Observers must have this “structure”. Let’s generalize the
+      Observers must have this “structure.” Let’s generalize the
       implementation now, using an abstract type:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/observer2.scala
@@ -817,8 +811,8 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
       <para id="para_the_subjectforreceiveupdateob">The
       <literal>SubjectForReceiveUpdateObservers</literal> derived trait
       defines <literal>Observer</literal> with the same structural type we
-      used in the original example and <literal>notify</literal> simply calls
-      <literal>receiveUpdate</literal>, as before.</para>
+      used in the original example, and <literal>notify</literal> simply calls
+      <literal role="keep-together">receiveUpdate</literal>, as before.</para>
 
       <para id="para_the_subjectforfunctionalobser">The
       <literal>SubjectForFunctionalObservers</literal> derived trait defines
@@ -828,10 +822,9 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
       the observer function, passing the subject as the sole argument. Note
       that this implementation is similar to the approach we used in our
       original button implementation, <literal>ButtonWithCallbacks</literal>,
-      where the “callbacks” where user-supplied functions. (See <xref
-      linkend="IntroducingTraits" /> in <xref linkend="Traits" /> and a
-      revisited version in <xref linkend="Constructors" /> in <xref
-      linkend="BasicObjectOrientedProgramming" />.)</para>
+      where the “callbacks” were user-supplied functions. (See <xref
+      linkend="IntroducingTraits" /> and a revisited version in <xref
+      linkend="Constructors" />.)</para>
 
       <para id="para_here_is_a_specification_that_e">Here is a specification
       that exercises these two variations, observing button clicks as
@@ -904,8 +897,7 @@ object ButtonObserver2Spec extends Specification {
 
       <para id="para_but_wait_there_s_more_we_ll_">But wait, there’s more!
       We’ll revisit the use of abstract types and the observer pattern in
-      <xref linkend="ScalableAbstractions" /> in <xref
-      linkend="ApplicationDesign" />.<indexterm class="endofrange"
+      <xref linkend="ScalableAbstractions" />.<indexterm class="endofrange"
       startref="ch06_overrideabstracttypes"></indexterm><indexterm
       class="endofrange"
       startref="ch06_abstracttypeoverride"></indexterm></para>
@@ -917,9 +909,8 @@ object ButtonObserver2Spec extends Specification {
 
       <para id="para_suppose_a_user_of_buttoncount">Suppose a user of
       <literal>ButtonCountObserver</literal> from <xref
-      linkend="TraitsAsMixins" /> in <xref linkend="Traits" /> accesses the
-      <literal>count</literal> member:<indexterm class="startofrange"
-          id="ch06_overridemethodsfields">
+      linkend="TraitsAsMixins" /> accesses the <literal>count</literal>
+      member:<indexterm class="startofrange" id="ch06_overridemethodsfields">
           <primary>overriding class and trait members</primary>
 
           <secondary>accessor methods indistinguishable from
@@ -967,8 +958,8 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
       <para id="para_this_equivalence_in_scala_is_c">This equivalence is an
       example of the <emphasis>Uniform Access Principle</emphasis>. Clients
       read and write field values as if they are publicly accessible, even
-      though in some case they are actually calling methods. The maintainer of
-      <literal>ButtonCountObserver</literal> has the freedom to change the
+      though in some cases they are actually calling methods. The maintainer
+      of <literal>ButtonCountObserver</literal> has the freedom to change the
       implementation without forcing users to make code changes.<indexterm>
           <primary>Uniform Access Principle</primary>
         </indexterm></para>
@@ -976,10 +967,11 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
       <para id="para_the_reader_method_in_the_secon">The reader method in the
       second version does not have parentheses. Recall that consistency in the
       use of parentheses is required if a method definition omits parentheses.
-      This is only possible if the method takes no arguments. For the uniform
-      access principle to work, we want to define field reader methods without
-      parentheses. (Contrast with Ruby where method parentheses are always
-      optional, as long as the parse is unambiguous.)<indexterm>
+      This is only possible if the method takes no arguments. For the Uniform
+      Access Principle to work, we want to define field reader methods without
+      parentheses. (Contrast that with Ruby, where method parentheses are
+      always optional as long as the parse is <phrase
+      role="keep-together">unambiguous</phrase>.)<indexterm>
           <primary>( ) (parentheses)</primary>
 
           <secondary>omitting in method definitions</secondary>
@@ -999,10 +991,10 @@ obj.field = newValue</programlisting>
       keeps field and method names in the <emphasis>same</emphasis> namespace,
       which means we can’t name the field <literal>count</literal> if a method
       is named <literal>count</literal>. Many languages, like Java, don’t have
-      this restriction, because they keep field and method names in separate
-      namespaces. However, these languages can’t support the uniform access
-      principle as a result, unless they build in <emphasis>ad hoc</emphasis>
-      support in their grammars or compilers.</para>
+      this restriction because they keep field and method names in separate
+      namespaces. However, these languages can’t support the Uniform Access
+      Principle as a result, unless they build in ad hoc support in their
+      grammars or compilers.</para>
 
       <para id="para_object_in_member_namespace">Since member
       <literal>object</literal> definitions behave similar to fields from the
@@ -1094,7 +1086,7 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       useful? It allows derived classes and traits to use a simple field
       access, when that is sufficient, or a method call when more processing
       is required, such as lazy initialization. The same argument holds for
-      the uniform access principle, in general.</para>
+      the Uniform Access Principle, in general.</para>
 
       <para id="para_overriding_a_def_with_a_val">Overriding a
       <literal>def</literal> with a <literal>val</literal> in a subclass can
@@ -1122,7 +1114,7 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       overriding anything. This would also be inconsistent with a
       philosophical goal of functional programming, that a method that takes
       no parameters should always return the same result. To do otherwise
-      would require side-effects in the implementation, which functional
+      would require side effects in the implementation, which functional
       programming tries to avoid, for reasons we will examine in <xref
       linkend="FunctionalProgramming" />. Because a <literal>var</literal> is
       changeable, the no-parameter “method” defined in the parent type would

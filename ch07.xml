@@ -319,12 +319,11 @@
 
     <para id="para_the_description_may_sound_comp">The description may sound
     complicated at first, but the beauty of Scala is that this map
-    initialization syntax is not an <emphasis>ad hoc</emphasis> language
-    feature, such as a special-purpose operator <literal>-&gt;</literal>
-    defined in the language grammar. Instead, this syntax is defined with
-    normal definitions of types and methods, combined with a few
-    general-purpose parsing conventions, such as support for
-    <emphasis>implicits</emphasis>. Furthermore, it is all
+    initialization syntax is not an ad hoc language feature, such as a
+    special-purpose operator <literal>-&gt;</literal> defined in the language
+    grammar. Instead, this syntax is defined with normal definitions of types
+    and methods, combined with a few general-purpose parsing conventions, such
+    as support for <emphasis>implicits</emphasis>. Furthermore, it is all
     <emphasis>type-safe</emphasis>. You can use the same techniques to write
     your own convenient “operators” for mini <emphasis>Domain-Specific
     Languages</emphasis> (see <xref
@@ -523,7 +522,7 @@ object Pair {
       itself. The collection library is being reorganized to refine the
       package structure and to use it more consistently (among other changes).
       The Scala team faced a dilemma. They wanted to move types to new
-      packages, but avoid breaking backwards compatibility. The
+      packages, but avoid breaking backward compatibility. The
       <literal>package object</literal> construct provided a solution, along
       with other benefits.<indexterm>
           <primary>scope</primary>
@@ -604,9 +603,9 @@ object Pair {
       <para id="para_another_benefit_of_package_obj">Another benefit of
       package objects is that it provides a more succinct implementation of
       what was an awkward idiom before. Without package objects, you would
-      have to put definitions in an <emphasis>ad hoc</emphasis> object inside
-      the desired package, then import from the object. For example, here is
-      how <literal>List</literal> would have to be handled without a package
+      have to put definitions in an ad hoc object inside the desired package,
+      then import from the object. For example, here is how
+      <literal>List</literal> would have to be handled without a package
       object:</para>
 
       <programlisting linenumbering="unnumbered">package scala {
@@ -1160,7 +1159,7 @@ body length? 13</screen>
 
             <entry><para><literal>sealed abstract class</literal> for ordered
             collections with functional-style list semantics. It is the most
-            widely-used collection in Scala, so it is defined in the
+            widely used collection in Scala, so it is defined in the
             <literal>scala</literal> package, rather than one of the
             collection packages. (In Scala version2.8, it is actually defined
             in <literal>scala.collection.immutable</literal> and “aliased” in
@@ -1216,7 +1215,7 @@ body length? 13</screen>
             <entry><para><literal>AnyRef</literal></para></entry>
 
             <entry><para>An <literal>object</literal> that defines and imports
-            many commonly-used types and methods. See <xref
+            many commonly used types and methods. See <xref
             linkend="PredefObject" /> earlier in this chapter for
             details.</para></entry>
           </row>
@@ -1511,8 +1510,8 @@ println(clist.reverse)</programlisting>
     <literal>AnyRef</literal> and <literal>Any</literal> that are the
     penultimate and ultimate parent classes of any reference type. Of course,
     these three types do not show up in the output of the scripts, because we
-    used an <emphasis>ad hoc</emphasis> <literal>m</literal> method to figure
-    out the behavior by building up an output string.</para>
+    used an ad hoc <literal>m</literal> method to figure out the behavior by
+    building up an output string.</para>
 
     <para id="para_the_value_types_subclasse">The “value types”, subclasses of
     <literal>AnyVal</literal>, are all declared <literal>abstract

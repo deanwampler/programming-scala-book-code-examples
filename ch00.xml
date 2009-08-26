@@ -184,8 +184,8 @@
       be compiled into class files. Some files contain deliberate errors and
       won’t compile. We have adopted a file naming convention to indicate each
       of these cases, although as you learn Scala it should become obvious
-      from the contents of the files, in most cases.<indexterm>
-          <primary>code examples from this book</primary>
+      from the contents of the files, in most cases:<indexterm>
+          <primary>code examples in this book</primary>
         </indexterm></para>
 
       <variablelist id="para_script_file_convention">
@@ -232,7 +232,7 @@
             <para>All other Scala files must be compiled using
             <literal>scalac</literal>. In the distribution, they are used
             either by other compiled or script files, such as tests, not all
-            of which are listed in the book.</para>
+            of which are listed in this book.</para>
           </listitem>
         </varlistentry>
       </variablelist>

@@ -8,7 +8,7 @@
   pragmatic look at developing applications in Scala. We discuss a few
   language and API features that we haven’t covered before, examine common
   design patterns and idioms, and revisit <emphasis>traits</emphasis> with an
-  eye towards structuring our code effectively.<indexterm class="startofrange"
+  eye toward structuring our code effectively.<indexterm class="startofrange"
       id="ch13_appdesign">
       <primary>application design</primary>
     </indexterm></para>
@@ -198,7 +198,7 @@ class SerialVersionUID(uid: Long) extends StaticAnnotation</programlisting>
 
     <para id="para_the_serialversionuid_annota">The
     <literal>@SerialVersionUID</literal> annotation is applied to a class to
-    define a globally-unique ID as a <literal>Long</literal>. When the
+    define a globally unique ID as a <literal>Long</literal>. When the
     annotation is used, the ID is specified as a constructor argument. This
     annotation serves the same purpose as a <literal>static</literal> field
     named <literal>serialVersionUID</literal> in a Java class. This is one
@@ -590,7 +590,7 @@ you want, you must write the annotation class in Java.
             <emphasis>static</emphasis> <phrase role="keep-together">field in
             a class</phrase></para></entry>
 
-            <entry><para>Defines a globally-unique ID for serialization
+            <entry><para>Defines a globally unique ID for serialization
             purposes. The annotation’s constructor takes a
             <literal>Long</literal> argument for the UID.</para></entry>
           </row>
@@ -1298,7 +1298,7 @@ println( HttpMethod )</programlisting>
     of name strings and names of the <literal>vals</literal>. <emphasis>It is
     up to you to keep the items in the list and their order consistent with
     the declared values!</emphasis> This version has fewer characters, but it
-    is more error prone. Internally, <literal>Enumeration</literal> pairs the
+    is more error-prone. Internally, <literal>Enumeration</literal> pairs the
     strings with the corresponding <literal>Value</literal> instances as they
     are created.</para>
 
@@ -1323,10 +1323,9 @@ println( HttpMethod )</programlisting>
     inventing custom keywords and syntax. The advantages include fewer special
     cases in the language. Classes and traits are used more or less in the
     same ways they are used for “normal” code. The disadvantages include the
-    need to understand and use <emphasis>ad hoc</emphasis> conventions which
-    are not always as convenient to use as the custom syntax mechanisms
-    required in Java and .NET. Also, Scala’s implementations are not as
-    full-featured.<indexterm>
+    need to understand and use ad hoc conventions which are not always as
+    convenient to use as the custom syntax mechanisms required in Java and
+    .NET. Also, Scala’s implementations are not as full-featured.<indexterm>
         <primary>enumerations</primary>
 
         <secondary>advantages and disadvantages of</secondary>
@@ -1337,11 +1336,11 @@ println( HttpMethod )</programlisting>
       </indexterm></para>
 
     <para id="para_so_should_the_scala_community">So, should the Scala
-    community relent and implement <emphasis>ad hoc</emphasis>, but more
-    full-featured mechanisms for annotations and enumerations? Maybe not.
-    Scala is a more flexible language than most languages. Many of the
-    features provided by Java and .NET annotations and enumerations can be
-    implemented in Scala by other means.</para>
+    community relent and implement ad hoc, but more full-featured mechanisms
+    for annotations and enumerations? Maybe not. Scala is a more flexible
+    language than most languages. Many of the features provided by Java and
+    .NET annotations and enumerations can be implemented in Scala by other
+    means.</para>
 
     <para id="para_some_use_cases_for_the_mor">Some “use cases” for the more
     advanced features of Java annotations can be implemented more elegantly
@@ -1870,7 +1869,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
 
     <para id="para_every_now_and_then_an_argumen">Every now and then, an
     argument erupts among developers in a particular language community about
-    whether or not it’s okay to use exceptions as a control-flow mechanism for
+    whether or not it’s OK to use exceptions as a control-flow mechanism for
     normal processing. Sometimes this use of exceptions is seen as a useful
     <literal>longjump</literal> or nonlocal <literal>goto</literal> mechanism
     for exiting out of a deeply nested scope. One reason this debate pops up
@@ -1959,7 +1958,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
 
     <para id="para_of_course_it_is_impossible_to">Of course, it is impossible
     to avoid all exceptions. Part of the original intent of checked versus
-    unchecked exceptions was to distinguish between potentially-recoverable
+    unchecked exceptions was to distinguish between potentially recoverable
     problems and catastrophic failures, like out-of-memory errors.</para>
 
     <para id="para_however_the_alternative_metho">However, the alternative
@@ -2863,7 +2862,7 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     <para id="para_we_think_the_criticisms_often_">We think the criticisms
     often overlook an important point, the distinction between an idea and how
     it is implemented and used in a particular situation. Design patterns
-    document recurring, widely-useful ideas. These ideas are part of the
+    document recurring, widely useful ideas. These ideas are part of the
     <emphasis>vocabulary</emphasis> that software developers use to describe
     their designs.<indexterm>
         <primary>singleton objects</primary>
@@ -3089,7 +3088,7 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))</screen>
       redeploy) <emphasis>all</emphasis> the visitors for that hierarchy. Note
       that every <literal>ShapeVisitor</literal> trait has methods that
       hard-code information about every <literal>Shape</literal> derived type.
-      These kinds of changes are also error prone.<indexterm>
+      These kinds of changes are also error-prone.<indexterm>
           <primary>Open-Closed Principle (OCP)</primary>
 
           <secondary>violation by Visitor Pattern</secondary>
@@ -3551,7 +3550,7 @@ scala&gt;</screen>
         </indexterm></para>
 
       <para id="para_let_s_build_a_simple_component">Let’s build a simple
-      component model for an overly-simplified Twitter client. We want a
+      component model for an overly simplified Twitter client. We want a
       configurable UI, a configurable local cache of past tweets, and a
       configurable connection to the Twitter service itself. Each of these
       “components” will be specified separately, along with a client component
@@ -3771,7 +3770,7 @@ trait TwitterClientComponent {
       <para id="para_notice_also_that_all_the_metho">Notice also that all the
       methods that call other components are concrete. Those inter-component
       relationships are fully specified. The abstractions are directed
-      “outwards”, towards the graphical user interface, a caching mechanism,
+      “outward,” toward the graphical user interface, a caching mechanism,
       etc.</para>
 
       <para id="para_let_s_now_define_a_concrete_tw">Let’s now define a

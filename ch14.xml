@@ -312,7 +312,7 @@
       plugin that developers can use to generate byte code that uses a
       continuation-passing style (CPS), rather than a stack-based style. Other
       plugins that are under development include an “effects” analyzer, useful
-      for determining whether functions are truly side-effect free, whether or
+      for determining whether functions are truly side-effect-free, whether or
       not variables are modified, etc. Finally, the preliminary
       <literal>sxr</literal> documentation tool <link linkend="SXR"
       xrefstyle="select:nopage">[SXR]</link> uses a compiler plugin to
@@ -397,7 +397,7 @@
 
       <para id="para_if_you_specify_a_fully_qualifi">Our
       <literal>Upper</literal> example demonstrates the case where you specify
-      a fully-qualified <literal>object</literal> name (or Java
+      a fully qualified <literal>object</literal> name (or Java
       <literal>class</literal> name). In this case, <literal>scala</literal>
       behaves just like the <literal>java</literal> command; it searches the
       <literal>CLASSPATH</literal> for the corresponding code. It will expect
@@ -571,7 +571,7 @@ g
             <row>
               <entry><para><literal>:load</literal></para></entry>
 
-              <entry><para>Followed by a filename loads a Scala
+              <entry><para>Followed by a file name, loads a Scala
               file.</para></entry>
             </row>
 
@@ -918,7 +918,7 @@ public final class MessagePrinter extends java.lang.Object{
       several warnings that <literal>jad</literal> could not fully decompile
       some methods. We won’t reproduce the output here, but the
       <filename>.jad</filename> file will print normal Java statements
-      interspersed with several sections of JVM byte-code instructions, where
+      interspersed with several sections of JVM byte code instructions, where
       it could not decompile the byte code.</para>
 
       <para id="para_scalap_javap_jad_help">All these tools have command-line
@@ -1246,7 +1246,7 @@ case class Complex(real: Double, imaginary: Double) {
         work!</para>
 
         <para id="para_select_the_check_box_next_to_t">Select the check box
-        next to the newly-added update site and click the
+        next to the newly added update site and click the
         <emphasis>Install</emphasis> button, as indicated in <xref
         linkend="eclipse-install-scala2" />. <emphasis
         role="strong">Don’t</emphasis> click the “default”
@@ -2034,7 +2034,7 @@ Complex addition with (0.0, 0.0) should
       <emphasis>ScalaCheck</emphasis> (or <emphasis>QuickCheck</emphasis> for
       Haskell), conditions for a type are specified that should be true for
       any instances of the type. The tool tries the conditions using
-      automatically-generated instances of the type and verifies that the
+      automatically generated instances of the type and verifies that the
       conditions are satisfied.</para>
 
       <para id="para_here_is_a__scalacheck__test_fo">Here is a
@@ -2098,7 +2098,7 @@ ComplexSpecification.check</programlisting>
       imaginary parts that range from <literal>-toD(s)</literal> to
       <literal>toD(s)</literal> (i.e., <literal>-(s * .1)</literal> to
       <literal>(s * .1)</literal>). Fortunately, you don’t have to define
-      implicit conversions or generators for most of the commonly-used Scala
+      implicit conversions or generators for most of the commonly used Scala
       and Java types.</para>
 
       <para id="para_the_most_interesting_part_is_t">The most interesting part
@@ -2151,8 +2151,8 @@ ComplexSpecification.check</programlisting>
       <para id="para_it_s_important_to_understand_t">It’s important to
       understand the value that <emphasis>ScalaCheck</emphasis> delivers.
       Rather than going through the process of writing enough “example” test
-      cases with representative data, which is tedious and error prone, we
-      define reusable “generators”, like the
+      cases with representative data, which is tedious and error-prone, we
+      define reusable “generators,” like the
       <literal>arbitraryComplex</literal> function, to produce an appropriate
       range of instances of the type under test. Then we write property
       specifications that should hold for any instances.
@@ -2252,8 +2252,8 @@ ComplexSpecification.check</programlisting>
       <para id="para__metascala__http_www_assemb"><emphasis><ulink
       url="http://www.assembla.com/wiki/show/metascala">MetaScala</ulink></emphasis>
       is an experimental metaprogramming library for Scala. Metaprogramming
-      features tend to be weaker in statically-typed languages than in
-      dynamically-typed languages. Also, the JVM and .NET CLR impose their own
+      features tend to be weaker in statically typed languages than in
+      dynamically typed languages. Also, the JVM and .NET CLR impose their own
       constraints on metaprogramming.<indexterm>
           <primary>MetaScala library</primary>
         </indexterm></para>
@@ -3738,7 +3738,7 @@ Object: NamedObject(Dean Wampler)</screen>
       up of how to use Terracotta with Scala Actors. A Scala-specific,
       Terracotta Integration Module (TIM) must be installed. When configuring
       which objects to distribute, you have to use the encoded names for
-      companion objects, method names, etc. as they exist at the byte-code
+      companion objects, method names, etc. as they exist at the byte code
       level. We discussed these encodings in <xref
       linkend="ScalaNamesInJavaCode" /> above. Finally, you have to add some
       more parameters to the <literal>java</literal> invocation command inside

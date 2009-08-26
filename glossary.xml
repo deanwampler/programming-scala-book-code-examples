@@ -235,7 +235,7 @@
     <glossterm>Behavior-Driven Development</glossterm>
 
     <glossdef>
-      <para>A style of <emphasis>test-driven development</emphasis> (TDD) that
+      <para>A style of <emphasis>Test-Driven Development</emphasis> (TDD) that
       emphasizes TDD’s role in driving the understanding of requirements for
       the code. You follow the same process as in TDD, where the “tests” are
       written before the code. The difference is that the automated tests are
@@ -744,9 +744,9 @@
       <para>A term used in languages with <emphasis>dynamic typing</emphasis>
       for the way method resolution works. As long as an object accepts a
       method call (message send), the runtime is satisfied. “If it walks like
-      a duck and talks like a duck, it’s a duck”. Contrast to the use of
-      <emphasis>structural types</emphasis> in some
-      <emphasis>statically-typed</emphasis> languages like Scala.<indexterm>
+      a duck and talks like a duck, it’s a duck.” Contrast to the use of
+      <emphasis>structural types</emphasis> in some <emphasis>statically
+      typed</emphasis> languages like Scala.<indexterm>
           <primary>duck typing</primary>
 
           <secondary>defined</secondary>
@@ -971,10 +971,10 @@
 
     <glossdef>
       <para>A form of programming that mimics the way mathematical functions
-      and variables work. Mathematical functions are <emphasis>side-effect
-      free</emphasis> and they are composable from other functions. Variables
-      are assigned once. Functions can be assigned to variables and returned
-      from other functions.<indexterm>
+      and variables work. Mathematical functions are
+      <emphasis>side-effect-free</emphasis> and they are composable from other
+      functions. Variables are assigned once. Functions can be assigned to
+      variables and returned from other functions.<indexterm>
           <primary>functional programming</primary>
         </indexterm></para>
     </glossdef>
@@ -1167,7 +1167,7 @@
       <emphasis>class</emphasis> constructor. The word
       <emphasis>object</emphasis> is synonymous in most object-oriented
       languages, but we use the term <emphasis>object</emphasis> to refer to
-      an explicitly-declared Scala <emphasis>object</emphasis> and we use the
+      an explicitly declared Scala <emphasis>object</emphasis> and we use the
       term <emphasis>instance</emphasis> (and the verb
       <emphasis>instantiate</emphasis>) for the more general case.<indexterm>
           <primary>instantiate</primary>
@@ -1383,7 +1383,7 @@
     <glossterm>Mixin</glossterm>
 
     <glossdef>
-      <para>A narrowly-focused encapsulation of state and behavior that is
+      <para>A narrowly focused encapsulation of state and behavior that is
       more useful as an adjunct to another object’s state and behavior, rather
       than standing on its own. Mixins in Scala are implemented using
       <emphasis>traits</emphasis>.<indexterm>
@@ -1763,9 +1763,9 @@
 
     <glossdef>
       <para>Used in the context of functions to mean that they are
-      <emphasis>side-effect free</emphasis>. See also <emphasis>referential
+      <emphasis>side-effect-free</emphasis>. See also <emphasis>referential
       transparency</emphasis>.<indexterm>
-          <primary>pure (side-effect free functions)</primary>
+          <primary>pure (side-effect-free functions)</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -1800,7 +1800,7 @@
     <glossdef>
       <para>The property of an expression, such as a function, where it can be
       replaced with its value without changing the behavior of the code. This
-      can be done with <emphasis>side-effect free</emphasis> functions when
+      can be done with <emphasis>side-effect-free</emphasis> functions when
       the inputs are the same. The primary benefit of referential transparency
       is that it is easy to reason about the behavior of a function, without
       having to understand the context in which it is invoked. That makes the
@@ -1910,12 +1910,12 @@
   </glossentry>
 
   <glossentry id="glossentry-side-effect-free">
-    <glossterm>Side-effect Free</glossterm>
+    <glossterm>Side-Effect-Free</glossterm>
 
     <glossdef>
       <para>Functions or expressions that have no side effects, meaning they
       modify no global or “object” state.<indexterm>
-          <primary>side-effect free</primary>
+          <primary>side-effect-free</primary>
         </indexterm></para>
     </glossdef>
   </glossentry>
@@ -2032,7 +2032,7 @@
       matching types need to share a common <emphasis>parent trait</emphasis>
       or <emphasis>class</emphasis> with the structural type. Hence,
       structural types are a type-safe analog to <emphasis>duck
-      typing</emphasis> in dynamically-typed languages, like Ruby.<indexterm>
+      typing</emphasis> in dynamically typed languages, like Ruby.<indexterm>
           <primary>structural types</primary>
 
           <secondary>defined</secondary>
@@ -2093,8 +2093,8 @@
     <glossdef>
       <para>A development discipline where no new functionality is implemented
       until a test has been written that will pass once the functionality is
-      implemented. See also <emphasis>behavior-driven
-      development</emphasis>.<indexterm>
+      implemented. See also <emphasis>Behavior-Driven
+      Development</emphasis>.<indexterm>
           <primary>TDD (Test-Driven Development)</primary>
 
           <secondary>defined</secondary>

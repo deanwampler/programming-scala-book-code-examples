@@ -11,20 +11,24 @@
     with a few “teaser” examples of Scala code. This chapter discusses uses of
     Scala that promote succinct, flexible code. We’ll discuss organization of
     files and packages, importing other types, variable declarations,
-    miscellaneous syntax conventions and a few other concepts. We’ll emphasize
-    how the concise syntax of Scala helps you work better and faster.</para>
+    miscellaneous syntax conventions, and a few other concepts. We’ll
+    emphasize how the concise syntax of Scala helps you work better and
+    faster.</para>
 
     <para id="para_scala_s_syntax_is_especially_u">Scala’s syntax is
     especially useful when writing scripts. Separate compile and run steps
     aren’t required for simple programs that have few dependencies on
     libraries outside of what Scala provides. You compile and run such
     programs in one shot with the <literal>scala</literal> command. If you’ve
-    downloaded the example code for the book, many of the smaller examples can
-    be run using the <literal>scala</literal> command, e.g., <literal>scala
-    filename.scala</literal>. See the <filename>README.txt</filename> files in
-    each chapter’s code examples for more details. See also <xref
-    linkend="CommandLineTools" /> in <xref linkend="ScalaToolsLibs" /> for
-    more information about using the <literal>scala</literal> command.</para>
+    <ulink role="orm:hideurl"
+    url="http://examples.oreilly.com/9780596155964/">downloaded the example
+    code</ulink> for this book, many of the smaller examples can be run using
+    the <literal>scala</literal> command, e.g., <literal>scala
+    </literal><replaceable>filename</replaceable><literal>.scala</literal>.
+    See the <filename>README.txt</filename> files in each chapter’s code
+    examples for more details. See also <xref linkend="CommandLineTools" />
+    for more information about using the <literal>scala</literal>
+    command.</para>
   </sect1>
 
   <sect1 id="Semicolons">
@@ -189,33 +193,33 @@ scala&gt;</programlisting>
 
     <para id="para_scala_encourages_you_to_use_im">Scala encourages you to use
     immutable values whenever possible. As we will see, this promotes better
-    object-oriented design and it is consistent with the principles of “pure”
+    object-oriented design and is consistent with the principles of “pure”
     functional programming. It may take some getting used to, but you’ll find
     a newfound confidence in your code when it is written in an immutable
     style.</para>
 
     <note id="para_note_the_var_and_val_keyw">
       <para>The <literal>var</literal> and <literal>val</literal> keywords
-      only specify if the reference can be changed to refer to a different
-      object (<literal>var</literal>) or not (<literal>val</literal>). They
-      don’t specify whether or not the object they reference is
-      mutable.</para>
+      only specify whether the reference can be changed to refer to a
+      different object (<literal>var</literal>) or not
+      (<literal>val</literal>). They don’t specify whether or not the object
+      they reference is mutable.</para>
     </note>
   </sect1>
 
   <sect1 id="MethodDeclarationsAndDefinitions">
     <title>Method Declarations</title>
 
-    <para id="para_method_declarations">We saw several examples in <xref
-    linkend="IntroducingScala" /> of how to define
-    <emphasis>methods</emphasis>, which are functions that are members of a
-    class. Method <emphasis>definitions</emphasis> start with the
-    <literal>def</literal> keyword, followed by optional argument lists, a
-    colon character (<literal>:</literal>) and the return type of the method,
-    an equals sign (<literal>=</literal>), and finally the method body.
-    Methods are implicitly <emphasis>declared</emphasis> “abstract” if you
-    leave off the equals sign and method body. The enclosing type is then
-    itself abstract. We’ll discuss abstract types in more detail in <xref
+    <para id="para_method_declarations">In <xref linkend="IntroducingScala" />
+    we saw several examples of how to define <emphasis>methods</emphasis>,
+    which are functions that are members of a class. Method
+    <emphasis>definitions</emphasis> start with the <literal>def</literal>
+    keyword, followed by optional argument lists, a colon character
+    (<literal>:</literal>) and the return type of the method, an equals sign
+    (<literal>=</literal>), and finally the method body. Methods are
+    implicitly <emphasis>declared</emphasis> “abstract” if you leave off the
+    equals sign and method body. The enclosing type is then itself abstract.
+    We’ll discuss abstract types in more detail in <xref
     linkend="BasicObjectOrientedProgramming" />.<indexterm>
         <primary>= (equals sign)</primary>
 
@@ -231,14 +235,13 @@ scala&gt;</programlisting>
         <secondary>declarations</secondary>
       </indexterm></para>
 
-    <para id="para_multiple_arg_lists">We said “optional argument lists”,
+    <para id="para_multiple_arg_lists">We said “optional argument lists,”
     meaning more than one. Scala lets you define more than one argument list
     for a method. This is required for <emphasis>currying</emphasis> methods,
-    which we’ll discuss in <xref linkend="Currying" /> in <xref
-    linkend="FunctionalProgramming" />. It is also very useful for defining
-    your own Domain-Specific Languages (DSLs), as we’ll see in <xref
-    linkend="DomainSpecificLanguages" />. Note that each argument list is
-    surrounded by parentheses and the arguments are separated by
+    which we’ll discuss in <xref linkend="Currying" />. It is also very useful
+    for defining your own Domain-Specific Languages (DSLs), as we’ll see in
+    <xref linkend="DomainSpecificLanguages" />. Note that each argument list
+    is surrounded by parentheses and the arguments are separated by
     commas.</para>
 
     <para id="para_if_a_method_body_has_more_than">If a method body has more
@@ -283,8 +286,8 @@ println( joiner(List("Programming", "Scala")) )</programlisting>
       “overloaded” <literal>joiner</literal> methods. The second one uses a
       single space as the “default” separator. Having two methods seems a bit
       wasteful. It would be nice if we could eliminate the second
-      <literal>joiner</literal> method and declare that the
-      <literal>separator</literal> argument in the first
+      <literal>joiner</literal> method and declare that the <literal
+      role="keep-together">separator</literal> argument in the first
       <literal>joiner</literal> has a default value. In fact, in Scala version
       2.8, you can now do this:</para>
 
@@ -324,9 +327,9 @@ println(joiner(strings = List("Programming", "Scala"), separator = " "))</progra
       those methods document each argument with a name. For example, compare
       the two lines with comments <literal>#1</literal> and
       <literal>#2</literal>. In the first line, it may not be obvious what the
-      second, <literal>" "</literal> argument is for. In the second case, we
-      supply the name <literal>separator</literal>, which suggests the purpose
-      of the argument.<indexterm>
+      second <literal>" "</literal> argument is for. In the second case, we
+      supply the name <literal role="keep-together">separator</literal>, which
+      suggests the purpose of the argument.<indexterm>
           <primary>parameters</primary>
 
           <secondary>order of, named arguments and</secondary>
@@ -357,7 +360,7 @@ println( new OptionalUserProfileInfo(age = 29, location="Earth") )</programlisti
 
       <para
       id="para__optionaluserprofileinfo_repr"><literal>OptionalUserProfileInfo</literal>
-      represents all the “optional” user profile data in your next Web 2.0,
+      represents all the “optional” user profile data in your next Web 2.0
       social networking site. It defines default values for all its fields.
       The script creates instances with zero or more named parameters. The
       order of those parameters is arbitrary.</para>
@@ -365,7 +368,7 @@ println( new OptionalUserProfileInfo(age = 29, location="Earth") )</programlisti
       <para id="para_the_examples_we_have_shown_use">The examples we have
       shown use constant values as the defaults. Most languages with default
       argument values only allow constants or other values that can be
-      determined at parse-time. However, in Scala, any expression can be used
+      determined at parse time. However, in Scala, any expression can be used
       as the default, as long as it can compile where used. For example, an
       expression could not refer to an instance field that will be computed
       inside the class or object body, but it could invoke a method on a
@@ -380,20 +383,20 @@ println( new OptionalUserProfileInfo(age = 29, location="Earth") )</programlisti
       parameter in the list, unless the parameter that is referenced appears
       earlier in the list <emphasis>and</emphasis> the parameters are
       <emphasis>curried</emphasis>, a concept we’ll discuss in <xref
-      linkend="Currying" /> in <xref
-      linkend="FunctionalProgramming" />.</para>
+      linkend="Currying" />.</para>
 
       <para id="para_finally_another_constraint_on">Finally, another
       constraint on named parameters is that once you provide a name for a
-      parameter in a method invocation, then the rest of the parameters
-      appearing after it must also be named. For example, <literal> new
-      OptionalUserProfileInfo(age = 29, "Earth")</literal> would not compile
-      because the second argument is not invoked by name.</para>
+      parameter in a method invocation, the rest of the parameters appearing
+      after it must also be named. For example, <literal
+      role="keep-together">new OptionalUserProfileInfo(age = 29,
+      "Earth")</literal> would not compile because the second argument is not
+      invoked by name.</para>
 
       <para id="para_we_ll_see_another_useful_examp">We’ll see another useful
       example of named and default arguments when we discuss <emphasis>case
-      classes</emphasis> in more detail in <xref linkend="CaseClasses" /> in
-      <xref linkend="AdvancedObjectOrientedProgramming" />.</para>
+      classes</emphasis> in more detail in <xref
+      linkend="CaseClasses" />.</para>
     </sect2>
 
     <sect2 id="NestingMethodDefinitions">
@@ -432,13 +435,14 @@ println( factorial(5) )</programlisting>
 
       <para id="para_the_second_method_is_nested_in">The second method calls
       itself recursively, passing an <literal>accumulator</literal> parameter,
-      where the result of the calculation is “accumulated”. Note that we
+      where the result of the calculation is “accumulated.” Note that we
       return the accumulated value when the counter <literal>i</literal>
       reaches 1. (We’re ignoring invalid negative integers. The function
-      actually return 1 for <literal>i &lt; 0</literal>.) After the definition
-      of the nested method, <literal>factorial</literal> calls it with the
-      passed-in value <literal>i</literal> and the initial accumulator value
-      of 1.<indexterm>
+      actually returns 1 for <literal>i &lt; 0</literal>.) After the
+      definition of the nested method, <literal
+      role="keep-together">factorial</literal> calls it with the passed-in
+      value <literal>i</literal> and the initial accumulator value of
+      1.<indexterm>
           <primary>recursion</primary>
         </indexterm></para>
 
@@ -459,7 +463,7 @@ println( factorial(5) )</programlisting>
       of <literal>factorial</literal>.</para>
 
       <para id="para_what_if_we_need_to_use_a_varia">What if we need to use a
-      variable that is defined outside a nested function. Consider this
+      variable that is defined outside a nested function? Consider this
       contrived example:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/count-to-script.scala
@@ -489,17 +493,16 @@ countTo(5)</programlisting>
       <emphasis>visibility</emphasis>, just as in languages like Java and C#.
       Similarly the declaration of a non-nested method can be prefixed with
       the same keywords. We will discuss the visibility rules and keywords in
-      <xref linkend="VisibilityRules" /> in <xref
-      linkend="BasicObjectOrientedProgramming" />.<indexterm
-      class="endofrange" startref="ch02_methodsdeclare"></indexterm></para>
+      <xref linkend="VisibilityRules" />.<indexterm class="endofrange"
+      startref="ch02_methodsdeclare"></indexterm></para>
     </sect2>
   </sect1>
 
   <sect1 id="InferringTypes">
     <title>Inferring Type Information</title>
 
-    <para id="para_statically_typed_languages_can">Statically-typed languages
-    can be very verbose. Consider this typical declaration in Java.<indexterm
+    <para id="para_statically_typed_languages_can">Statically typed languages
+    can be very verbose. Consider this typical declaration in Java:<indexterm
         class="startofrange" id="ch02_typeinfer">
         <primary>type inference</primary>
       </indexterm><indexterm class="startofrange" id="ch02_datatypesinfer">
@@ -523,10 +526,10 @@ Map&lt;Integer, String&gt; intToStringMap = new HashMap&lt;Integer, String&gt;()
     <emphasis>type inference</emphasis> (see, for example, <link
     linkend="TypeInference" xrefstyle="select:nopage">[TypeInference]</link>
     and <link linkend="Pierce2002"
-    xrefstyle="select:nopage">Pierce2002</link>). The language’s compiler can
-    discern quite a bit of type information from the context, without explicit
-    type annotations. Here’s the same declaration rewritten in Scala, with
-    inferred type information:</para>
+    xrefstyle="select:nopage">[Pierce2002]</link>). The language’s compiler
+    can discern quite a bit of type information from the context, without
+    explicit type annotations. Here’s the same declaration rewritten in Scala,
+    with inferred type information:</para>
 
     <programlisting linenumbering="unnumbered">import java.util.Map
 import java.util.HashMap
@@ -579,7 +582,7 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
 
     <para id="para_functional_languages_like_hask">Pure functional languages
     like Haskell (see, e.g., <link linkend="OSullivan2009"
-    xrefstyle="select:nopage">[O'Sullivan2009]</link>) use type inference
+    xrefstyle="select:nopage">[O’Sullivan2009]</link>) use type inference
     algorithms like <emphasis>Hindley-Milner</emphasis> (see <link
     linkend="Spiewak2008" xrefstyle="select:nopage">[Spiewak2008]</link> for
     an easily digested explanation). Code written in these languages require
@@ -593,8 +596,8 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
       <title>When Explicit Type Annotations Are Required</title>
 
       <para id="para_in_practical_terms_you_have_t">In practical terms, you
-      have to provide explicit type annotations for the following
-      situations:<indexterm>
+      have to provide explicit type annotations for the following <phrase
+      role="keep-together">situations</phrase>:<indexterm>
           <primary>type annotations</primary>
 
           <secondary>required explicit type annotations</secondary>
@@ -603,12 +606,12 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
       <orderedlist numeration="arabic">
         <listitem>
           <para>A variable declaration, unless you assign a value to the
-          variable. (e.g., <literal>val name = "Programming
+          variable (e.g., <literal>val name = "Programming
           Scala"</literal>)</para>
         </listitem>
 
         <listitem>
-          <para>All method parameters. (e.g., <literal>def deposit(amount:
+          <para>All method parameters (e.g., <literal>def deposit(amount:
           Money)...</literal>)</para>
         </listitem>
 
@@ -618,22 +621,22 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
           <orderedlist numeration="loweralpha">
             <listitem>
               <para>When you explicitly call <literal>return</literal> in a
-              method (even at the end).</para>
+              method (even at the end)</para>
             </listitem>
 
             <listitem>
-              <para>When a method is recursive.</para>
+              <para>When a method is recursive</para>
             </listitem>
 
             <listitem>
               <para>When a method is overloaded and one of the methods calls
-              another. The <emphasis>calling</emphasis> method needs a return
-              type annotation.</para>
+              another; the <emphasis>calling</emphasis> method needs a return
+              type annotation</para>
             </listitem>
 
             <listitem>
               <para>When the inferred return type would be more general than
-              you intended, e.g., <literal>Any</literal>.</para>
+              you intended, e.g., <literal>Any</literal></para>
             </listitem>
           </orderedlist>
         </listitem>
@@ -642,11 +645,11 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
 
     <note id="para_note_the_any_type_is_the_su">
       <para>The <literal>Any</literal> type is the root of the Scala type
-      hierarchy (see <xref linkend="ScalaTypeHierarchy" /> in <xref
-      linkend="ScalaObjectSystem" /> for more details). If a block of code
-      returns a value of type <literal>Any</literal> unexpectedly, chances are
-      good that the type inferencer couldn’t figure out what type to return,
-      so it chose the most generic possible type.</para>
+      hierarchy (see <xref linkend="ScalaTypeHierarchy" /> for more details).
+      If a block of code returns a value of type <literal>Any</literal>
+      unexpectedly, chances are good that the type inferencer couldn’t figure
+      out what type to return, so it chose the most generic type
+      possible.</para>
     </note>
 
     <para id="para_method_return_value_cases">Let’s look at examples where
@@ -692,9 +695,9 @@ println( upCase("Hello") )</programlisting>
 
     <para id="para_recursive_methods_require_a_re">Recursive methods also
     require an explicit return type. Recall our <literal>factorial</literal>
-    method in <xref linkend="NestingMethodDefinitions" />, previously in this
-    chapter. Let’s remove the <literal>: Int</literal> return type on the
-    nested <literal>fact</literal> method:<indexterm>
+    method in <xref linkend="NestingMethodDefinitions" />. Let’s remove the
+    <literal>: Int</literal> return type on the nested <literal>fact</literal>
+    method:<indexterm>
         <primary>recursion</primary>
 
         <secondary>explicit return type annotation</secondary>
@@ -847,7 +850,8 @@ object StringUtil {
     returns an <literal>Array</literal> containing the substrings. The return
     type is inferred, which is a potential problem, as we will see. The method
     is somewhat contrived, but it will illustrate our point. Here is a client
-    of <literal>StringUtil</literal> that uses this method:</para>
+    of <literal role="keep-together">StringUtil</literal> that uses this
+    method:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-client.scala
 
@@ -877,11 +881,11 @@ Scala</screen>
     </note>
 
     <para id="para_everything_is_fine_at_this_poi">Everything is fine at this
-    point, but now imagine that the code base has grown.
-    <literal>StringUtil</literal> and its clients are now built separately and
-    bundled into different jars. Imagine also that the maintainers of
-    <literal>StringUtil</literal> decide to return a <literal>List</literal>
-    instead of the default:</para>
+    point, but now imagine that the code base has grown. <literal
+    role="keep-together">StringUtil</literal> and its clients are now built
+    separately and bundled into different JARs. Imagine also that the
+    maintainers of <literal>StringUtil</literal> decide to return a
+    <literal>List</literal> instead of the default:</para>
 
     <programlisting linenumbering="unnumbered">object StringUtil {
   ...
@@ -892,7 +896,7 @@ Scala</screen>
     <para id="para_you_recompile_stringutil_and">The only difference is the
     final call to <literal>toList</literal> that converts the computed
     <literal>Array</literal> to a <literal>List</literal>. You recompile
-    <literal>StringUtil</literal> and redeploy its jar. Then you run the same
+    <literal>StringUtil</literal> and redeploy its JAR. Then you run the same
     client, <emphasis>without</emphasis> recompiling it first:</para>
 
     <screen>$ scala -cp ... StringUtilClient "Programming Scala"
@@ -905,8 +909,8 @@ java.lang.NoSuchMethodError: StringUtil$.toCollection(...
     client was compiled, <literal>StringUtil.toCollection</literal> returned
     an <literal>Array</literal>. Then <literal>toCollection</literal> was
     changed to return <literal>List</literal>. In both versions, the method
-    return value was inferred. Therefore, client should have been recompiled,
-    too.</para>
+    return value was inferred. Therefore, the client should have been
+    recompiled, too.</para>
 
     <para id="para_however_had_an_explicit_retur">However, had an explicit
     return type of <literal>Seq</literal> been declared, which is a parent for
@@ -923,8 +927,8 @@ java.lang.NoSuchMethodError: StringUtil$.toCollection(...
     </note>
 
     <para id="para_another_scenario_to_watch_for_">There is another scenario
-    to watch for when using declarations of collections like <literal>val map
-    = Map()</literal>, as in this example:</para>
+    to watch for when using declarations of collections like <literal
+    role="keep-together">val map = Map()</literal>, as in this example:</para>
 
     <programlisting linenumbering="unnumbered">val map = Map()
 
@@ -938,22 +942,22 @@ map.update("book", "Programming Scala")
 
     <para id="para_what_happened_the__type_param">What happened? The
     <emphasis>type parameters</emphasis> of the generic type
-    <literal>Map</literal> were inferred as
-    <literal>[Nothing,Nothing]</literal> when the map was created. (We’ll
-    discuss <literal>Nothing</literal> in <xref
-    linkend="ScalaTypeHierarchy" /> in <xref linkend="ScalaObjectSystem" />,
-    but its name is suggestive!) We attempted to insert an incompatible key,
-    value pair of types <literal>String</literal> and
-    <literal>String</literal>. Call it a <literal>Map</literal> to nowhere!
-    The solution is to parameterize the initial map declaration, e.g.,
-    <literal>val map = Map[String, String]()</literal> or to specify initial
-    values so the map parameters are inferred, e.g., <literal>val map =
-    Map("Programming" → "Scala")</literal>.</para>
+    <literal>Map</literal> were inferred as <literal
+    role="keep-together">[Nothing,Nothing]</literal> when the map was created.
+    (We’ll discuss <literal>Nothing</literal> in <xref
+    linkend="ScalaTypeHierarchy" />, but its name is suggestive!) We attempted
+    to insert an incompatible key-value pair of types
+    <literal>String</literal> and <literal>String</literal>. Call it a
+    <literal>Map</literal> to nowhere! The solution is to parameterize the
+    initial map declaration, e.g., <literal>val map = Map[String,
+    String]()</literal>, or to specify initial values so that the map
+    parameters are inferred, e.g., <literal>val map = Map("Programming" →
+    "Scala")</literal>.</para>
 
     <para id="para_finally_there_is_a_subtle_beh">Finally, there is a subtle
     behavior with inferred return types that can cause unexpected and baffling
-    results <link linkend="ScalaTips"
-    xrefstyle="select:nopage">[ScalaTips]</link>. Consider the following
+    results (see <link linkend="ScalaTips"
+    xrefstyle="select:nopage">[ScalaTips]</link>). Consider the following
     example <literal>scala</literal> session:</para>
 
     <screen>scala&gt; def double(i: Int) { 2 * i }
@@ -965,7 +969,7 @@ scala&gt; println(double(2))
     <para id="para_why_did_the_second_command_pri">Why did the second command
     print <literal>()</literal> instead of <literal>4</literal>? Look
     carefully at what the <literal>scala</literal> interpreter said the first
-    command returned, <literal>double (Int)Unit</literal>. We defined a method
+    command returned: <literal>double (Int)Unit</literal>. We defined a method
     named <literal>double</literal> that takes an <literal>Int</literal>
     argument and returns <literal>Unit</literal>. The method doesn’t return an
     <literal>Int</literal> as we would expect.</para>
@@ -1027,8 +1031,8 @@ scala&gt; println(double(2))
     of literal values supported by Scala. Here, we’ll limit ourselves to
     lexical syntax literals. We’ll cover literal syntax for functions (used as
     <emphasis>values</emphasis>, not member methods), tuples, and certain
-    types like <literal>Lists</literal> and <literal>Maps</literal>, as we
-    come to them.<indexterm class="startofrange" id="ch02_literals">
+    types like <literal>Lists</literal> and <literal>Maps</literal> as we come
+    to them.<indexterm class="startofrange" id="ch02_literals">
         <primary>literals</primary>
       </indexterm></para>
 
@@ -1070,7 +1074,7 @@ scala&gt; println(double(2))
               <entry><para>Decimal</para></entry>
 
               <entry><para>0 <emphasis>or</emphasis> a nonzero digit followed
-              zero or more digits (0–9)</para></entry>
+              by zero or more digits (0–9)</para></entry>
 
               <entry><para>0, 1, 321</para></entry>
             </row>
@@ -1125,7 +1129,7 @@ scala&gt; println(double(2))
 
               <entry><para>−2<superscript>63</superscript></para></entry>
 
-              <entry><para>2<superscript>63</superscript> - 1</para></entry>
+              <entry><para>2<superscript>63</superscript> − 1</para></entry>
             </row>
 
             <row>
@@ -1133,7 +1137,7 @@ scala&gt; println(double(2))
 
               <entry><para>−2<superscript>31</superscript></para></entry>
 
-              <entry><para>2<superscript>31</superscript> - 1</para></entry>
+              <entry><para>2<superscript>31</superscript> − 1</para></entry>
             </row>
 
             <row>
@@ -1141,7 +1145,7 @@ scala&gt; println(double(2))
 
               <entry><para>−2<superscript>15</superscript></para></entry>
 
-              <entry><para>2<superscript>15</superscript> - 1</para></entry>
+              <entry><para>2<superscript>15</superscript> − 1</para></entry>
             </row>
 
             <row>
@@ -1149,7 +1153,7 @@ scala&gt; println(double(2))
 
               <entry><para>0</para></entry>
 
-              <entry><para>2<superscript>16</superscript> - 1</para></entry>
+              <entry><para>2<superscript>16</superscript> − 1</para></entry>
             </row>
 
             <row>
@@ -1157,7 +1161,7 @@ scala&gt; println(double(2))
 
               <entry><para>−2<superscript>7</superscript></para></entry>
 
-              <entry><para>2<superscript>7</superscript> - 1</para></entry>
+              <entry><para>2<superscript>7</superscript> − 1</para></entry>
             </row>
           </tbody>
         </tgroup>
@@ -1274,10 +1278,10 @@ b2: Boolean = false</screen>
 
       <para id="para_a_character_literal_is_either_">A character literal is
       either a printable Unicode character or an escape sequence, written
-      between single quotes. A character with Unicode value between 0 and 255
-      may also be represented by an octal escape, a backslash
+      between single quotes. A character with a Unicode value between 0 and
+      255 may also be represented by an octal escape, i.e., a backslash
       <literal>\</literal> followed by a sequence of up to three octal
-      characters. It is a compile time error if a backslash character in a
+      characters. It is a compile-time error if a backslash character in a
       character or string literal does not start a valid escape
       sequence.<indexterm>
           <primary>" " (quotation marks, double)</primary>
@@ -1335,7 +1339,7 @@ b2: Boolean = false</screen>
 
               <entry><para><literal>\u0008</literal></para></entry>
 
-              <entry><para>backspace BS</para></entry>
+              <entry><para>Backspace (BS)</para></entry>
             </row>
 
             <row>
@@ -1343,7 +1347,7 @@ b2: Boolean = false</screen>
 
               <entry><para><literal>\u0009</literal></para></entry>
 
-              <entry><para>horizontal tab HT</para></entry>
+              <entry><para>Horizontal tab (HT)</para></entry>
             </row>
 
             <row>
@@ -1351,7 +1355,7 @@ b2: Boolean = false</screen>
 
               <entry><para><literal>\u000a</literal></para></entry>
 
-              <entry><para>linefeed LF</para></entry>
+              <entry><para>Line feed (LF)</para></entry>
             </row>
 
             <row>
@@ -1359,7 +1363,7 @@ b2: Boolean = false</screen>
 
               <entry><para><literal>\u000c</literal></para></entry>
 
-              <entry><para>form feed FF</para></entry>
+              <entry><para>Form feed (FF)</para></entry>
             </row>
 
             <row>
@@ -1367,7 +1371,7 @@ b2: Boolean = false</screen>
 
               <entry><para><literal>\u000d</literal></para></entry>
 
-              <entry><para>carriage return CR</para></entry>
+              <entry><para>Carriage return (CR)</para></entry>
             </row>
 
             <row>
@@ -1375,7 +1379,7 @@ b2: Boolean = false</screen>
 
               <entry><para><literal>\u0022</literal></para></entry>
 
-              <entry><para>double quote <literal>"</literal></para></entry>
+              <entry><para>Double quote (<literal>"</literal>)</para></entry>
             </row>
 
             <row>
@@ -1383,7 +1387,7 @@ b2: Boolean = false</screen>
 
               <entry><para><literal>\u0027</literal></para></entry>
 
-              <entry><para>single quote <literal>’</literal></para></entry>
+              <entry><para>Single quote (<literal>’</literal>)</para></entry>
             </row>
 
             <row>
@@ -1391,7 +1395,7 @@ b2: Boolean = false</screen>
 
               <entry><para><literal>\u0009</literal></para></entry>
 
-              <entry><para>backslash \</para></entry>
+              <entry><para>Backslash (<literal>\</literal>)</para></entry>
             </row>
           </tbody>
         </tgroup>
@@ -1419,7 +1423,8 @@ b2: Boolean = false</screen>
       <para id="para_for_string_literals_in_double_">For string literals in
       double quotes, the allowed characters are the same as the character
       literals. However, if a double quote <literal>"</literal> character
-      appears in the string, it must be “escaped” with a <literal>\</literal>
+      appears in the string, it must be “<phrase
+      role="keep-together">escaped</phrase>” with a <literal>\</literal>
       character. Here are some examples:<indexterm>
           <primary>\ (backslash)</primary>
 
@@ -1476,7 +1481,7 @@ Fourth line"""</programlisting>
 
       <para id="para_scala_supports_symbols_which_">Scala supports symbols,
       which are <emphasis>interned</emphasis> strings, meaning that two
-      symbols with the same “name”, i.e., the same character sequence, will
+      symbols with the same “name” (i.e., the same character sequence) will
       actually refer to the same object in memory. Symbols are used less often
       in Scala than in some other languages, like Ruby, Smalltalk, and Lisp.
       They are useful as map keys instead of strings.<indexterm>
@@ -1519,7 +1524,7 @@ Fourth line"""</programlisting>
     wanted to return <emphasis>two</emphasis> or more values from a method? In
     many languages, like Java, you only have a few options, none of which is
     very appealing. You could pass in parameters to the method that will be
-    modified for all or some of the “return” values, which is ugly. Or, you
+    modified for all or some of the “return” values, which is ugly. Or you
     could declare some small “structural” class that holds the two or more
     values, then return an instance of that class.<indexterm>
         <primary>tuples</primary>
@@ -1530,13 +1535,13 @@ Fourth line"""</programlisting>
     created with the literal syntax of a comma-separated list of the items
     inside parentheses, e.g., <literal>(x1, x2, ...)</literal>. The types of
     the <literal>x</literal><subscript>i</subscript> elements are unrelated to
-    each other, you can mix and match types. These literal “groupings” are
-    instantiated as <literal>scala.TupleN</literal> instances, where the
+    each other; you can mix and match types. These literal “groupings” are
+    instantiated as <literal>scala.TupleN</literal> instances, where
     <literal>N</literal> is the number of items in the tuple. The Scala API
-    defines separate <literal>TupleN</literal> classes for N between 1 and 22,
-    inclusive. Tuple instances are immutable, <emphasis>first-class</emphasis>
-    values, so you can assign them to variables, pass them as values, and
-    return them from methods.</para>
+    defines separate <literal>TupleN</literal> classes for
+    <literal>N</literal> between 1 and 22, inclusive. Tuple instances are
+    immutable, <emphasis>first-class</emphasis> values, so you can assign them
+    to variables, pass them as values, and return them from methods.</para>
 
     <para id="para_the_following_example_demonstr">The following example
     demonstrates the use of tuples:</para>
@@ -1577,8 +1582,8 @@ World ! 34</screen>
 
     <para id="para_tupleator_one_lhs">The last two lines show that we can use
     a tuple expression on the lefthand side of the assignment. We declare
-    three <literal>vals</literal>, <literal>t1</literal>,
-    <literal>t2</literal>, and <literal>t3</literal>, to hold the individual
+    three <literal>val</literal>s—<literal>t1</literal>,
+    <literal>t2</literal>, and <literal>t3</literal>—to hold the individual
     items in the tuple. In essence, the tuple items are extracted
     automatically.</para>
 
@@ -1589,9 +1594,10 @@ World ! 34</screen>
 
     <para id="para_try_typing_in_val_t_hello">Invoke the
     <literal>scala</literal> command with no script argument. At the
-    <literal>scala&gt;</literal> prompt, enter <literal>val t =
-    ("Hello",1,2.3)</literal> and see that you get the following result, which
-    shows you the types of each element in the tuple:</para>
+    <literal>scala&gt;</literal> prompt, enter <literal
+    role="keep-together">val t = ("Hello",1,2.3)</literal> and see that you
+    get the following result, which shows you the type of each element in the
+    tuple:</para>
 
     <screen>scala&gt; val t = ("Hello",1,2.3)
 t: (java.lang.String, Int, Double) = (Hello,1,2.3)</screen>
@@ -1618,10 +1624,10 @@ res2: (Int, Int) = (1,2)</screen>
     <title>Option, Some, and None: Avoiding nulls</title>
 
     <para id="para_we_ll_discuss_the_standard_typ">We’ll discuss the standard
-    type hierarchy for Scala in <xref linkend="ScalaTypeHierarchy" /> in <xref
-    linkend="ScalaObjectSystem" />. However, three useful classes to
-    understand now are the <literal>Option</literal> class and its two
-    subclasses, <literal>Some</literal> and <literal>None</literal>.<indexterm
+    type hierarchy for Scala in <xref linkend="ScalaTypeHierarchy" />.
+    However, three useful classes to understand now are the
+    <literal>Option</literal> class and its two subclasses,
+    <literal>Some</literal> and <literal>None</literal>.<indexterm
         class="startofrange" id="ch02_nullsavoid">
         <primary>nulls</primary>
 
@@ -1691,11 +1697,10 @@ println( "Unknown: " + stateCapitals.get("Unknown").getOrElse("Oops2!") )</progr
     <para id="para_the_convenient_gt_syntax_">The convenient
     <literal>-&gt;</literal> syntax for defining name-value pairs to
     initialize a <literal>Map</literal> will be discussed in <xref
-    linkend="PredefObject" /> in <xref linkend="ScalaObjectSystem" />. For
-    now, we want to focus on the two groups of <literal>println</literal>
-    statements, where we show what happens when you retrieve the values from
-    the map. If you run this script with the <literal>scala</literal> command,
-    you’ll get the following output:</para>
+    linkend="PredefObject" />. For now, we want to focus on the two groups of
+    <literal>println</literal> statements, where we show what happens when you
+    retrieve the values from the map. If you run this script with the
+    <literal>scala</literal> command, you’ll get the following output:</para>
 
     <screen>Get the capitals wrapped in Options:
 Alabama: Some(Montgomery)
@@ -1710,27 +1715,28 @@ Unknown: Oops2!</screen>
     <literal>println</literal> statements invoke <literal>toString</literal>
     implicitly on the instances returned by <literal>get</literal>. We are
     calling <literal>toString</literal> on <literal>Some</literal> or
-    <literal>None</literal> instances, because the values returned by
+    <literal>None</literal> instances because the values returned by
     <literal>Map.get</literal> are automatically wrapped in a
     <literal>Some</literal>, when there is a value in the map for the
     specified key. Note that the Scala library doesn’t store the
-    <literal>Some</literal> in the map, it wraps the value in a
+    <literal>Some</literal> in the map; it wraps the value in a
     <literal>Some</literal> upon retrieval. Conversely, when we ask for a map
     entry that doesn’t exist, the <literal>None</literal> object is returned,
     rather than <literal>null</literal>. This occurred in the last
     <literal>println</literal> of the three.</para>
 
     <para id="para_the_second_group_of_println_">The second group of
-    <literal>println</literal> statements go a step further. After calling
+    <literal>println</literal> statements goes a step further. After calling
     <literal>Map.get</literal>, they call <literal>get</literal> or
     <literal>getOrElse</literal> on each <literal>Option</literal> instance to
     retrieve the value it contains. <literal>Option.get</literal> requires
-    that the <literal>Option</literal> is not empty, that is, the
+    that the <literal>Option</literal> is not empty—that is, the
     <literal>Option</literal> instance must actually be a
     <literal>Some</literal>. In this case, <literal>get</literal> returns the
     value wrapped by the <literal>Some</literal>, as demonstrated in the
     <literal>println</literal> where we print the capital of Alabama. However,
-    if the <literal>Option</literal> is actually <literal>None</literal>, then
+    if the <literal>Option</literal> <phrase role="keep-together">is
+    actually</phrase> <literal>None</literal>, then
     <literal>None.get</literal> throws a
     <literal>NoSuchElementException</literal>.</para>
 
@@ -1748,8 +1754,7 @@ Unknown: Oops2!</screen>
     avoids a potential thrown exception. We’ll discuss the merits of
     alternatives like <literal>get</literal> versus
     <literal>getOrElse</literal> in <xref
-    linkend="ExceptionsAndTheAlternatives" /> in <xref
-    linkend="ApplicationDesign" />.</para>
+    linkend="ExceptionsAndTheAlternatives" />.</para>
 
     <para id="para_note_that_because_the_map_get">Note that because the
     <literal>Map.get</literal> method returns an <literal>Option</literal>, it
@@ -1782,11 +1787,11 @@ Unknown: Oops2!</screen>
     <para id="para_so_how_would_you_write_a_func">So, how would you write a
     method that returns an <literal>Option</literal>? Here is a possible
     implementation of <literal>get</literal> that could be used by a concrete
-    subclass of of <literal>Map</literal> (<literal>Map.get</literal> itself
-    is <emphasis>abstract</emphasis>). For a more sophisticated version, see
-    the implementation of <literal>get</literal> in
-    <literal>scala.collection.immutable.HashMap</literal> in the Scala library
-    source code distribution:</para>
+    subclass of <literal>Map</literal> (<literal>Map.get</literal> itself is
+    <emphasis>abstract</emphasis>). For a more sophisticated version, see the
+    implementation of <literal>get</literal> in
+    <literal>scala.col⁠lection.immutable.HashMap</literal> in the Scala
+    library source code distribution:</para>
 
     <programlisting linenumbering="unnumbered">def get(key: A): Option[B] = {
   if (contains(key))
@@ -1895,8 +1900,8 @@ package com {
   }
 }</programlisting>
 
-    <para id="para_two_packages_pkg1_and_pkg2_">Two packages
-    <literal>pkg1</literal> and <literal>pkg2</literal> are defined under the
+    <para id="para_two_packages_pkg1_and_pkg2_">Two packages,
+    <literal>pkg1</literal> and <literal>pkg2</literal>, are defined under the
     <literal>com.example</literal> package. A total of three classes are
     defined between the two packages. The <literal>makeClass11</literal> and
     <literal>makeClass12</literal> methods in <literal>Class21</literal>
@@ -1923,8 +1928,7 @@ package com {
       executed directly with the <literal>scala</literal> interpreter. The
       reason has to do with the way the interpreter converts statements in
       scripts to valid Scala code before compiling to byte code. See <xref
-      linkend="CommandLineToolScala" /> in <xref linkend="ScalaToolsLibs" />
-      for more details.</para>
+      linkend="CommandLineToolScala" /> for more details.</para>
     </warning>
   </sect1>
 
@@ -1961,7 +1965,7 @@ import java.io.File._
 import java.util.{Map, HashMap}</programlisting>
 
     <para id="para_you_can_import_all_types_in_a_">You can import all types in
-    a package, using the underscore <literal>_</literal> as a wild card, as
+    a package, using the underscore <literal>_</literal> as a wildcard, as
     shown on the first line. You can also import individual Scala or Java
     types, as shown on the second line.<indexterm>
         <primary>_ (underscore)</primary>
@@ -1970,10 +1974,10 @@ import java.util.{Map, HashMap}</programlisting>
       </indexterm></para>
 
     <para id="para_star_vs_underscore">Java uses the “star” character
-    <literal>*</literal> as the wild card for matching all types in a package
-    or all static members of a type when doing “static imports”. In Scala,
+    <literal>*</literal> as the wildcard for matching all types in a package
+    or all static members of a type when doing “static imports.” In Scala,
     this character is allowed in method names, so <literal>_</literal> is used
-    as a wild card, as we saw previously.</para>
+    as a wildcard, as we saw previously.</para>
 
     <para id="para_as_shown_on_the_third_line_yo">As shown on the third line,
     you can import all the static methods and fields in Java types. If
@@ -2021,7 +2025,7 @@ writeAboutBigInteger()</programlisting>
     <para id="para_the_second_feature_shown_is_th">The second feature shown is
     the ability to <emphasis>rename</emphasis> imported items. First, the
     <literal>java.math.BigInteger.ONE</literal> constant is renamed to the
-    underscore wild card. This effectively makes it invisible and unavailable
+    underscore wildcard. This effectively makes it invisible and unavailable
     to the importing scope. This is a useful technique when you want to import
     everything <emphasis>except</emphasis> a few particular items.</para>
 
@@ -2041,7 +2045,7 @@ writeAboutBigInteger()</programlisting>
       <title>Imports are Relative</title>
 
       <para id="para_there_s_one_other_important_th">There’s one other
-      important thing to know about imports; they are
+      important thing to know about imports: they are
       <emphasis>relative</emphasis>. The following imports are all the
       same:<indexterm>
           <primary>import statements</primary>
@@ -2071,8 +2075,8 @@ import mutable._      // Everything from the "collection.mutable" package</progr
       convention is that they sometimes cause surprises, especially if you are
       accustomed to languages like Java, where imports are absolute. If you
       get a mystifying compiler error that a package wasn’t found, check that
-      the statement is properly relative to the last the import statement or
-      add the <literal>_root_.</literal> prefix. Also, you might see an IDE or
+      the statement is properly relative to the last import statement or add
+      the <literal>_root_.</literal> prefix. Also, you might see an IDE or
       other tool insert an <literal>import _root_...</literal> statement in
       your code. Now you know what it means.</para>
 
@@ -2087,14 +2091,13 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     <title>Abstract Types And Parameterized Types</title>
 
     <para id="para_we_mentioned_in_atasteofscal">We mentioned in <xref
-    linkend="ATasteOfScala" /> in <xref linkend="IntroducingScala" /> that
-    Scala supports <emphasis>parameterized types</emphasis>, which are very
-    similar to <emphasis>generics</emphasis> in Java. (We could use the two
-    terms interchangeably, but it’s more common to use “parameterized types”
-    in the Scala community and “generics” in the Java community.) The most
-    obvious difference is in the syntax, where Scala uses square brackets
-    (<literal>[...]</literal>), while Java uses angle brackets
-    (<literal>&lt;...&gt;</literal>).<indexterm>
+    linkend="ATasteOfScala" /> that Scala supports <emphasis>parameterized
+    types</emphasis>, which are very similar to <emphasis>generics</emphasis>
+    in Java. (We could use the two terms interchangeably, but it’s more common
+    to use “parameterized types” in the Scala community and “generics” in the
+    Java community.) The most obvious difference is in the syntax, where Scala
+    uses square brackets (<literal>[...]</literal>), while Java uses angle
+    brackets (<literal>&lt;...&gt;</literal>).<indexterm>
         <primary>generics</primary>
 
         <secondary>Java</secondary>
@@ -2129,7 +2132,7 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     a <emphasis>subtype</emphasis> of <literal>List[A]</literal> for any
     <literal>B</literal> that is a subtype of <literal>A</literal>. If there
     is a <literal>-</literal> in front of a type parameter, then the
-    relationship goes the other way, <literal>Foo[B]</literal> would be a
+    relationship goes the other way; <literal>Foo[B]</literal> would be a
     <emphasis>supertype</emphasis> of <literal>Foo[A]</literal>, if the
     declaration is <literal>Foo[-A]</literal>.<indexterm>
         <primary>List class</primary>
@@ -2141,7 +2144,7 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     abstraction mechanism called <emphasis>abstract types</emphasis>, used in
     many <emphasis>functional programming</emphasis> languages, such as
     Haskell. Abstract types were also considered for inclusion in Java when
-    generics were adopted. We want to introduce them now, because you’ll see
+    generics were adopted. We want to introduce them now because you’ll see
     many examples of them before we dive into their details in <xref
     linkend="ScalasTypeSystem" />. For a very detailed comparison of these two
     mechanisms, see <link linkend="Bruce1998"
@@ -2158,6 +2161,9 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     are used. However, while the two mechanisms overlap, they are not
     redundant. Each has strengths and weaknesses for certain design
     problems.</para>
+
+    <?dbfo-need height=”1in”
+?>
 
     <para id="para_here_is_an_example_that_uses_a">Here is an example that
     uses an abstract type:</para>
@@ -2202,7 +2208,7 @@ abstract class BulkReader {
 
     <para id="para_the_bulkreader__abstract__cl">The
     <literal>BulkReader</literal> <emphasis>abstract</emphasis> class declares
-    three abstract members, a <literal>type</literal> named
+    three abstract members: a <literal>type</literal> named
     <literal>In</literal>, a <literal>val</literal> field
     <literal>source</literal>, and a <literal>read</literal> method. As in
     Java, instances in Scala can only be created from
@@ -2247,7 +2253,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
     <para id="para_as_demonstrated_by_bruce1998">As demonstrated by <link
     linkend="Bruce1998" xrefstyle="select:nopage">[Bruce1998]</link>,
     parameterized types tend to be best for collections, which is how they are
-    most often used in Java code, while abstract types are most useful for
+    most often used in Java code, whereas abstract types are most useful for
     type “families” and other type scenarios.</para>
 
     <para id="para_we_ll_explore_the_details_of_s">We’ll explore the details
@@ -2261,9 +2267,9 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
     <para id="para_reserved_words_table_lists_the_reserved_words"><xref
     linkend="reserved-words-table" /> lists the reserved words in Scala, which
-    we sometimes call “keywords”, and briefly describes how they are used
+    we sometimes call “keywords,” and briefly describes how they are used (see
     <link linkend="ScalaSpec2009"
-    xrefstyle="select:nopage">[ScalaSpec2009]</link>.<indexterm>
+    xrefstyle="select:nopage">[ScalaSpec2009]</link>).<indexterm>
         <primary>reserved words</primary>
 
         <secondary>listing of reserved words in Scala</secondary>
@@ -2489,7 +2495,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           <row>
             <entry><para><literal>object</literal></para></entry>
 
-            <entry><para>Start a <emphasis>singleton</emphasis> declaration; a
+            <entry><para>Start a <emphasis>singleton</emphasis> declaration: a
             <literal>class</literal> with only one <phrase
             role="keep-together">instance</phrase>.</para></entry>
 
@@ -2599,7 +2605,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>A <emphasis>mixin module</emphasis> that adds
             additional state and behavior to an instance of a
-            class</para></entry>
+            class.</para></entry>
 
             <entry><para><xref linkend="Traits" /></para></entry>
           </row>
@@ -2686,7 +2692,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           <row>
             <entry><para><literal>_</literal></para></entry>
 
-            <entry><para>A place holder, used in imports, function literals,
+            <entry><para>A placeholder, used in imports, function literals,
             etc.</para></entry>
 
             <entry><para><emphasis>Many</emphasis></para></entry>
@@ -2789,7 +2795,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           <row>
             <entry><para><literal>⇒</literal></para></entry>
 
-            <entry><para>(Unicode \u21D2) same as =&gt;.</para></entry>
+            <entry><para>(Unicode \u21D2.) Same as =&gt;.</para></entry>
 
             <entry><para><xref linkend="FunctionLiteralsAndClosures" /> (<xref
             linkend="FunctionalProgramming" />)</para></entry>
@@ -2798,7 +2804,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           <row>
             <entry><para><literal>←</literal></para></entry>
 
-            <entry><para>(Unicode \u2190) same as &lt;-.</para></entry>
+            <entry><para>(Unicode \u2190.) Same as &lt;-.</para></entry>
 
             <entry><para><xref linkend="ForComprehensions" /> (<xref
             linkend="RoundingOutTheEssentials" />)</para></entry>
@@ -2810,10 +2816,10 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
     <para id="para_no_break_and_continue">Notice that <literal>break</literal>
     and <literal>continue</literal> are not listed. These control keywords
     don’t exist in Scala. Instead, Scala encourages you to use functional
-    programming idioms that are usually more succinct and less error prone.
+    programming idioms that are usually more succinct and less error-prone.
     We’ll discuss alternative approaches when we discuss
-    <literal>for</literal> loops (see <xref linkend="GeneratorExpressions" />
-    in <xref linkend="RoundingOutTheEssentials" />).<indexterm>
+    <literal>for</literal> loops (see <xref
+    linkend="GeneratorExpressions" />).<indexterm>
         <primary>&lt; &gt; (angle brackets)</primary>
 
         <secondary>&lt;- (left-arrow) operator, generators</secondary>
@@ -2860,7 +2866,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
     <para id="para_some_java_methods_use_names_th">Some Java methods use names
     that are reserved by Scala, e.g.,
-    <literal>java.util.Scanner.match</literal>. To avoid a compilation error,
+    <literal>java.util.Scan⁠ner.match</literal>. To avoid a compilation error,
     surround the name with single back quotes, e.g.,
     <literal>java.util.Scanner.‵match‵</literal>.</para>
   </sect1>

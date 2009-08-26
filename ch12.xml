@@ -4,7 +4,7 @@
 <chapter id="ScalasTypeSystem">
   <title>The Scala Type System</title>
 
-  <para id="para_types_intro">Scala is a statically-typed language. Its type
+  <para id="para_types_intro">Scala is a statically typed language. Its type
   system is one of the most sophisticated in any programming language, in part
   because it combines comprehensive ideas from functional programming and
   object-oriented programming. The type system tries to be logically
@@ -19,7 +19,7 @@
     </indexterm></para>
 
   <para id="para_however_much_of_this_sophisti">However, the type system can
-  be intimidating at first, especially if you come from a dynamically-typed
+  be intimidating at first, especially if you come from a dynamically typed
   language like Ruby or Python. Fortunately, type inference hides most of the
   complexities away. Most of the time, you don’t need to know the particulars,
   so we encourage you not to worry that you must master the type system in
@@ -301,7 +301,7 @@ List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
       <para id="para_the_compiler_exploits_the_type">The compiler exploits the
       type information it knows in the first case to construct the implicit
       <literal>Manifest</literal> with the correct <literal>B</literal>.
-      However, when given previously-constructed lists, the crucial type
+      However, when given previously constructed lists, the crucial type
       information is already lost.</para>
 
       <para id="para_hence_manifests_can_t_resur">Hence, Manifests can’t
@@ -655,7 +655,7 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
 
     <para id="para_return_promise">Similarly, by “promising” to return a
     <literal>CSub</literal>, this anonymous function narrows the possible
-    values returned to <literal>useF</literal>. That’s okay, too, because
+    values returned to <literal>useF</literal>. That’s OK, too, because
     <literal>useF</literal> will accept any <literal>C</literal> in return, so
     if it only gets <literal>CSubs</literal>, it will be happy. Lines #3 and
     #4 will still work.</para>
@@ -826,7 +826,7 @@ two errors found</screen>
         </indexterm></para>
 
       <para id="para_in_java_variance_specification">In Java variance
-      specifications, a wild card <literal>?</literal> always appears before
+      specifications, a wildcard <literal>?</literal> always appears before
       the <literal>super</literal> or <literal>extends</literal> keyword, as
       shown in the previous table. When we said after the table that the “Java
       Equivalent” column is a bit misleading, we were referring to the
@@ -1728,7 +1728,7 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
     <title>Understanding Abstract Types</title>
 
     <para id="para_what_are_abstract_types">Besides parameterized types, which
-    are common in statically-typed, object-oriented languages, Scala also
+    are common in statically typed, object-oriented languages, Scala also
     supports abstract types, which are common in functional languages. We
     introduced abstract types in <xref
     linkend="AbstractTypesAndParameterizedTypes" /> in <xref
@@ -1943,7 +1943,7 @@ trait T {
       of the field <literal>x</literal>? We can’t use <literal>A</literal>
       because it’s not in scope at the point of the constructor argument. We
       could use <literal>Any</literal>, but that defeats the value of having
-      appropriately-typed declarations.</para>
+      appropriately typed declarations.</para>
 
       <para id="para_if_a_type_will_have_constructo">If a type will have
       constructor arguments declared using a “placeholder” type that has not
@@ -3065,7 +3065,7 @@ trait Subject {
       </listitem>
 
       <listitem>
-        <para>When Java uses wild cards in generics to express variance
+        <para>When Java uses wildcards in generics to express variance
         behavior when the generics are <emphasis>used</emphasis>, the actual
         type is unknown. (We discussed this earlier in <xref
         linkend="VarianceUnderInheritance" />.)</para>
@@ -3103,7 +3103,7 @@ object ProcessList {
     the best we can do in pattern matching is to focus on the fact that we
     have a list and not try to determine the “lost” type parameter for the
     list instance. For type safety, we have to specify that a list has a
-    parameter, but since we don’t know what it is, we use the wild card
+    parameter, but since we don’t know what it is, we use the wildcard
     <literal>_</literal> character for the type parameter, e.g.:</para>
 
     <programlisting linenumbering="unnumbered">case l: List[_] =&gt; // do something "generic" with the list</programlisting>

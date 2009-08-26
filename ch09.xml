@@ -967,7 +967,7 @@ hello from Thread 13</screen>
 
       <para id="para_we_ll_drive_our_experiment_wit">We’ll keep ourselves
       honest with a test suite, facilitated by the <emphasis>Specs</emphasis>
-      behavior-driven development library (see <xref
+      Behavior-Driven Development library (see <xref
       linkend="ScalaSpecs" />):</para>
 
       <programlisting linenumbering="unnumbered">// .../smtpd/src/test/scala/com/programmingscala/smtpd/SmtpDecoderSpec.scala

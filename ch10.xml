@@ -331,7 +331,7 @@ class Post(val title: String, val body: String, val updated: Date) {
 
       <para id="para_beyond_the_obvious_title_and">Beyond the obvious
       <literal>title</literal> and <literal>body</literal> attributes, we’ve
-      defined several lazily-loaded values in our <literal>Post</literal>
+      defined several lazily loaded values in our <literal>Post</literal>
       class. These attributes will come in handy when we transmute our posts
       into an Atom feed, the standard way to syndicate blogs between computers
       on the Web. Atom documents are a flavor of XML, and a perfect

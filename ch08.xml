@@ -81,7 +81,7 @@
       <literal>sin(x)</literal> does, all the results are returned and
       assigned to <literal>y</literal>. No global state of any kind is
       modified internally by <literal>sin(x)</literal>. Hence, we say that
-      such a function is free of <emphasis>side-effects</emphasis> or
+      such a function is free of <emphasis>side effects</emphasis>, or
       <emphasis>pure</emphasis>.</para>
 
       <para id="para_this_property_simplifies_enorm">This property simplifies
@@ -161,7 +161,7 @@
       enormous benefits for concurrency. Almost all the difficulty of
       multithreaded programming lies in synchronizing access to shared,
       mutable state. If you remove mutability, then the problems essentially
-      go away. It is the combination of referentially-transparent functions
+      go away. It is the combination of referentially transparent functions
       and immutable values that make functional programming compelling as a
       “better way” to write concurrent software.</para>
 
@@ -184,8 +184,8 @@
       with clients. We have to add special accessor methods to control access,
       so clients can’t modify them outside our control. These additions
       increase code size, which increases the testing and maintenance burden,
-      and they increase the effort required by clients to understand the
-      <emphasis>ad hoc</emphasis> features of our APIs.</para>
+      and they increase the effort required by clients to understand the ad
+      hoc features of our APIs.</para>
 
       <para id="para_in_contrast_when_we_have_immu">In contrast, when we have
       immutable data structures, many of these problems simply go away. We can
@@ -276,7 +276,7 @@ List(1, 2, 3, 4, 5) reduceLeft { _ * _ }</programlisting>
 
     <para id="para_by_the_way_this_example_succe">Both examples successfully
     “looped” through the list without the use of a mutable counter to track
-    iterations. Most containers in the Scala library provide functionally-pure
+    iterations. Most containers in the Scala library provide functionally pure
     iteration methods. In other cases, recursion is the preferred way to
     traverse a data structure or perform an algorithm. We’ll return to this
     topic in <xref linkend="Recursion" />.</para>
@@ -357,10 +357,10 @@ List(5, 10, 15, 20, 25)</screen>
       <literal>sin(x)</literal> thousands of times with the same value of
       <literal>x</literal>, it would be wasteful if it calculated the same
       value every single time. Even in “pure” functional libraries, it is
-      common to perform internal optimizations like caching
-      previously-computed values (sometimes called
-      <emphasis>memoization</emphasis>). Caching introduces side effects, as
-      the state of the cache is modified.<indexterm>
+      common to perform internal optimizations like caching previously
+      computed values (sometimes called <emphasis>memoization</emphasis>).
+      Caching introduces side effects, as the state of the cache is
+      modified.<indexterm>
           <primary>memoization</primary>
         </indexterm></para>
 
@@ -875,7 +875,7 @@ println(lengths)</programlisting>
       <para id="para_you_could_solve_this_problem_t">You could solve this
       problem two ways. First, you could have each type in the hierarchy
       override methods like <literal>map</literal> to return an instance of
-      their own type. This approach is error prone, though, as it would be
+      their own type. This approach is error-prone, though, as it would be
       easy to forget to override all such methods when a new type is
       added.</para>
 
@@ -1281,7 +1281,7 @@ println((1 to 1000000) reduceRight(_ + _))</programlisting>
       functional operations we’ve explored throughout the Scala library, and
       not exclusively on collection classes. The always handy
       <literal>Option</literal> container supports filter, map, flatMap, and
-      other functionally-oriented methods that are only applied if the
+      other functionally oriented methods that are only applied if the
       <literal>Option</literal> isn’t empty (that is, if it’s a
       <literal>Some</literal> and not a <literal>None</literal>).<indexterm>
           <primary>functional programming</primary>
@@ -1594,7 +1594,7 @@ val byTen = multiplier(10) _</programlisting>
     another integer to multiply the first one by. We then curry two special
     cases of <literal>multiplier</literal> into function values. Note the
     trailing underscores, which indicate to the compiler that the preceding
-    expression is to be curried. In particular, the wild card underscores
+    expression is to be curried. In particular, the wildcard underscores
     indicate that the remaining arguments (in this example, one argument) are
     unspecified.</para>
 
