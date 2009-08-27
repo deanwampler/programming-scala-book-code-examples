@@ -336,11 +336,11 @@
     Burdick, David Holbrook, Shalom Deitch, Jesper Nordenberg, Esa Laine, Gleb
     Frank, Simon Andersson, Patrik Dudits, Chris Lewis, Julian Howarth, Dirk
     Kuzemczak, Henri Gerrits, John Heintz, Stuart Roebuck, and Jungho Kim.
-    Many other readers for whom we only have 'user names' also provided
-    feedback. We wish to thank Zack, JoshG, ewilligers, abcoates, brad, teto,
-    pjcj, mkleint, dandoyon, Arek, rue, acangiano, vkelman, bryanl, Jeff,
-    mbaxter, pjb3, kxen, hipertracker, ctran, Ram R., cody, Nolan, Joshua,
-    Ajay, Joe, and anonymous contributors. We apologize if we have overlooked
+    Many other readers for whom we only have usernames also provided feedback.
+    We wish to thank Zack, JoshG, ewilligers, abcoates, brad, teto, pjcj,
+    mkleint, dandoyon, Arek, rue, acangiano, vkelman, bryanl, Jeff, mbaxter,
+    pjb3, kxen, hipertracker, ctran, Ram R., cody, Nolan, Joshua, Ajay, Joe,
+    and anonymous contributors. We apologize if we have overlooked
     anyone!</para>
 
     <para>Our editor, Mike Loukides, knows how to push and prod gentle. He’s
@@ -350,7 +350,7 @@
 
     <para>We thank Jonas Bonér for writing the <xref linkend="foreword"
     xrefstyle="select:nopage" /> for the book. Jonas is a longtime friend and
-    collaborator from the Aspect-Oriented Programming (AOP) community. For
+    collaborator from the aspect-oriented programming (AOP) community. For
     years, he has done pioneering work in the Java community. Now he is
     applying his energies to promoting Scala and growing that
     community.</para>

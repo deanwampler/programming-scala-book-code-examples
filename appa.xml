@@ -6,7 +6,7 @@
 
   <para id="Abelson1996">[Abelson1996] Harold Abelson, Gerald Jay Sussman, and
   Julie Sussman, <citetitle>Structure and Interpretation of Computer
-  Programs</citetitle>, MIT Press, 1996.</para>
+  Programs</citetitle>, The MIT Press, 1996.</para>
 
   <para id="Agha1987">[Agha1987] Gul Agha, <citetitle>Actors</citetitle>, The
   MIT Press, 1987.</para>
@@ -30,20 +30,20 @@
   <para id="BDD">[BDD] <citetitle>Behavior-Driven Development</citetitle>,
   <ulink url="http://behaviour-driven.org/"></ulink>.</para>
 
-  <para id="Bloch2008">[Bloch2008] Joshua Bloch, <citetitle>Effective Java
-  (2nd Edition)</citetitle>, Addison-Wesley, 2008.</para>
+  <para id="Bloch2008">[Bloch2008] Joshua Bloch, <citetitle>Effective
+  Java</citetitle> (Second Edition), Addison-Wesley, 2008.</para>
 
-  <para id="Boner2008a">[Boner2008a] Jonas Bonér, <citetitle>Clustering Scala
+  <para id="Boner2008a">[Bonér2008a] Jonas Bonér, <citetitle>Clustering Scala
   Actors with Terracotta</citetitle>, <ulink
   url="http://jonasboner.com/2008/01/25/clustering-scala-actors-with-terracotta.html"></ulink>.</para>
 
-  <para id="Boner2008b">[Boner2008b] Jonas Bonér, <citetitle>Real-World Scala:
+  <para id="Boner2008b">[Bonér2008b] Jonas Bonér, <citetitle>Real-World Scala:
   Dependency Injection (DI)</citetitle>, <ulink
   url="http://jonasboner.com/2008/10/06/real-world-scala-dependency-injection-di.html"></ulink>.</para>
 
   <para id="Bruce1998">[Bruce1998] Kim Bruce, Martin Odersky, and Philip
-  Wadler, <replaceable>'A Statically Safe Alternative to Virtual
-  Types</replaceable>', <citetitle>Proc. ECOOP’98</citetitle>, E. Jul (Ed.),
+  Wadler, <citetitle>A Statically Safe Alternative to Virtual
+  Types</citetitle>, <citetitle>Proc. ECOOP ’98</citetitle>, E. Jul (Ed.),
   LNCS 1445, pp. 523–549, Springer-Verlag, 1998.</para>
 
   <para id="Buildr">[Buildr] <citetitle>Buildr</citetitle>, <ulink
@@ -119,7 +119,8 @@
 
   <para id="Hofer2008">[Hofer2008] Christian Hofer, Klaus Ostermann, Tillmann
   Rendel, and Adriaan Moors, <citetitle>Polymorphic Embedding of
-  DSLs</citetitle>, GPCE’08, October 19-23, 2008, Nashville, Tennessee, <ulink
+  DSLs</citetitle>, GPCE ’08, October 19–23, 2008, Nashville, Tennessee,
+  <ulink
   url="http://www.daimi.au.dk/~ko/papers/gpce50_hofer.pdf"></ulink>.</para>
 
   <para id="HTTP11">[HTTP11] <citetitle>Hypertext Transfer
@@ -150,7 +151,7 @@
   url="http://junit.org"></ulink>.</para>
 
   <para id="Laddad2009">[Laddad2009] Ramnivas Laddad, <citetitle>AspectJ in
-  Action, 2nd Edition</citetitle>, Manning Press, 2009.</para>
+  Action</citetitle> (Second Edition), Manning Press, 2009.</para>
 
   <para id="Mailslot">[Mailslot] <citetitle>Mailslot</citetitle>, <ulink
   url="http://github.com/stevej/mailslot/"></ulink>.</para>
@@ -164,7 +165,7 @@
 
   <para id="Martin2003">[Martin2003] Robert C. Martin, <citetitle>Agile
   Software Development: Principles, Patterns, and Practices</citetitle>,
-  Prentice-Hall, 2003.</para>
+  Prentice Hall, 2003.</para>
 
   <para id="Maven">[Maven] <citetitle>The Apache Maven Project</citetitle>,
   <ulink url="http://maven.apache.org/"></ulink>.</para>
@@ -178,7 +179,8 @@
   url="http://www.drmaciver.com/2009/04/scala-trivia-of-the-day-traits-can-extend-classes/"></ulink>.</para>
 
   <para id="Meyer1997">[Meyer1997] Bertrand Meyer, <citetitle>Object-Oriented
-  Software Construction (2nd Edition)</citetitle>, Prentice-Hall, 1997.</para>
+  Software Construction</citetitle> (Second Edition), Prentice Hall,
+  1997.</para>
 
   <para id="MINA">[MINA] <citetitle>Apache MINA</citetitle>, <ulink
   url="http://mina.apache.org/"></ulink>.</para>
@@ -195,13 +197,12 @@
   url="http://github.com/robey/naggati/"></ulink>.</para>
 
   <para id="Odersky2005">[Odersky2005] Martin Odersky and Matthias Zenger,
-  <citetitle>Scalable Component Abstractions</citetitle>,
-  <emphasis>OOPSLA’05</emphasis>, October 16–20, 2005, San Diego, California,
-  USA.</para>
+  <citetitle>Scalable Component Abstractions</citetitle>, <emphasis>OOPSLA
+  ’05</emphasis>, October 16–20, 2005, San Diego, California, USA.</para>
 
   <para id="Odersky2006">[Odersky2006] Martin Odersky, <citetitle>Pimp My
   Library</citetitle>, <ulink
-  url="http://www.artima.com/weblogs/viewpost.jsp?thread=179766"></ulink></para>
+  url="http://www.artima.com/weblogs/viewpost.jsp?thread=179766"></ulink>.</para>
 
   <para id="Odersky2008">[Odersky2008] Martin Odersky, Lex Spoon, and Bill
   Venners, <citetitle>Programming in Scala</citetitle>, Artima Press,
@@ -326,9 +327,9 @@
   Behind Parser Combinators</citetitle>, <ulink
   url="http://www.codecommit.com/blog/scala/the-magic-behind-parser-combinators"></ulink>.</para>
 
-  <para id="Spiewak2009c">[Spiewak2009c] Daniel Spiewak,<citetitle>Practically
-  Functional</citetitle>, Talk at the Chicago-Area Scala Enthusiasts, May 21,
-  2009.</para>
+  <para id="Spiewak2009c">[Spiewak2009c] Daniel Spiewak,
+  <citetitle>Practically Functional</citetitle>, talk at the Chicago-Area
+  Scala Enthusiasts, May 21, 2009.</para>
 
   <para id="SpringFramework">[SpringFramework] <citetitle>The Spring
   Framework</citetitle>, <ulink
@@ -337,9 +338,9 @@
   <para id="SXR">[SXR] <citetitle>A Scala source code browser</citetitle>,
   <ulink url="http://github.com/harrah/browse/tree/master"></ulink>.</para>
 
-  <para id="Szyperski1998">[Szyperski1998] Clemens Szypeski,
+  <para id="Szyperski1998">[Szyperski1998] Clemens Szyperski,
   <citetitle>Component Software: Beyond Object-Oriented
-  Programming</citetitle>, Addison Wesley Longman Limited, 1998.</para>
+  Programming</citetitle>, Addison-Wesley Longman Limited, 1998.</para>
 
   <para id="TDD">[TDD] <citetitle>Test-Driven Development</citetitle>, <ulink
   url="http://en.wikipedia.org/wiki/Test-driven_development"></ulink>.</para>
@@ -352,7 +353,7 @@
 
   <para id="Turbak2008">[Turbak2008] Franklyn Turbak, David Gifford, and Mark
   A. Sheldon, <citetitle>Design Concepts of Programming Languages</citetitle>,
-  MIT Press, 2008.</para>
+  The MIT Press, 2008.</para>
 
   <para id="TypeInference">[TypeInference] <citetitle>Type
   inference</citetitle>, <ulink
@@ -360,7 +361,7 @@
 
   <para id="VanRoy2004">[VanRoy2004] Peter Van Roy and Seif Haridi,
   <citetitle>Concepts, Techniques, and Models of Computer
-  Programming</citetitle>, MIT Press, 2004.</para>
+  Programming</citetitle>, The MIT Press, 2004.</para>
 
   <para id="Wampler2008">[Wampler2008] Dean Wampler, <citetitle>Traits vs.
   Aspects in Scala</citetitle>, <ulink

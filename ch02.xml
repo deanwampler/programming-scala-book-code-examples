@@ -806,7 +806,7 @@ val list: List[String] = makeList()
     <literal>else</literal> expression returns a
     <literal>List[String]</literal>, the result of
     <literal>strings.toList</literal>, the inferred return type for the method
-    is the closest common super type of <literal>List[Int]</literal> and
+    is the closest common supertype of <literal>List[Int]</literal> and
     <literal>List[String]</literal>, which is <literal>List[Any]</literal>.
     Note that the compilation error doesn’t occur in the function definition.
     We only see it when we attempt to assign the value returned from
@@ -2125,16 +2125,16 @@ import mutable._      // Everything from the "collection.mutable" package</progr
     <para id="para_for_now_we_ll_mention_one_oth">For now, we’ll mention one
     other useful detail that you’ll encounter before we can explain it in
     depth in <xref linkend="ScalasTypeSystem" />. If you look at the
-    declaration of <literal>scala.List</literal> in the
-    <emphasis>Scaladocs</emphasis>, you’ll see that the declaration is written
-    as <literal>... class List[+A]</literal>. The <literal>+</literal> in
-    front of the <literal>A</literal> means that <literal>List[B]</literal> is
-    a <emphasis>subtype</emphasis> of <literal>List[A]</literal> for any
-    <literal>B</literal> that is a subtype of <literal>A</literal>. If there
-    is a <literal>-</literal> in front of a type parameter, then the
-    relationship goes the other way; <literal>Foo[B]</literal> would be a
-    <emphasis>supertype</emphasis> of <literal>Foo[A]</literal>, if the
-    declaration is <literal>Foo[-A]</literal>.<indexterm>
+    declaration of <literal>scala.List</literal> in the Scaladocs, you’ll see
+    that the declaration is written as <literal>... class List[+A]</literal>.
+    The <literal>+</literal> in front of the <literal>A</literal> means that
+    <literal>List[B]</literal> is a <emphasis>subtype</emphasis> of
+    <literal>List[A]</literal> for any <literal>B</literal> that is a subtype
+    of <literal>A</literal>. If there is a <literal>-</literal> in front of a
+    type parameter, then the relationship goes the other way;
+    <literal>Foo[B]</literal> would be a <emphasis>supertype</emphasis> of
+    <literal>Foo[A]</literal>, if the declaration is
+    <literal>Foo[-A]</literal>.<indexterm>
         <primary>List class</primary>
 
         <secondary>declaration</secondary>

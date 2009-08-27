@@ -356,8 +356,8 @@ class ButtonWithCallbacks(val label: String,
     <xref linkend="PredefObject" />). If the list is null,
     <literal>require</literal> will throw an exception. The
     <literal>require</literal> function and its companion
-    <literal>assume</literal> are very useful for <emphasis>design by
-    contract</emphasis> programming, as discussed in <xref
+    <literal>assume</literal> are very useful for <emphasis>Design by
+    Contract</emphasis> programming, as discussed in <xref
     linkend="DesignByContractExample" />.</para>
 
     <para id="para_here_is_a_partial_specification">Here is part of a full

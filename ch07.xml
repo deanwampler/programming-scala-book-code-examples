@@ -36,96 +36,93 @@
     <tip id="para_tip_you_can_learn_a_lot_of_sc">
       <para>You can learn a lot of Scala by viewing the source for
       <literal>Predef</literal>. It is available by clicking the “source” link
-      in the <literal>Predef</literal> <emphasis>Scaladoc</emphasis> page or
-      you can download the full source code for Scala at <link linkend="Scala"
+      in the <literal>Predef</literal> Scaladoc page, or you can download the
+      full source code for Scala at <link linkend="Scala"
       xrefstyle="select:nopage">[Scala]</link>.</para>
     </tip>
 
-    <para id="para_here_is_a_partial_list_of_the_"><xref
-    linkend="table_7-1" /> shows a partial list of the items imported or
-    defined by <literal>Predef</literal> on the Java platform.<indexterm>
+    <para id="para_here_is_a_partial_list_of_the_">The following is a partial
+    list of the items imported or defined by <literal>Predef</literal> on the
+    Java platform:<indexterm>
         <primary>Predef object</primary>
 
         <secondary>items imported or defined by</secondary>
       </indexterm></para>
 
-    <table id="table_7-1">
-      <title>Items imported or defined by Predef</title>
+    <variablelist>
+      <varlistentry>
+        <term>Types</term>
 
-      <tgroup cols="2">
-        <tbody valign="top">
-          <row>
-            <entry><para><emphasis
-            role="strong">Types</emphasis></para></entry>
+        <listitem>
+          <para><literal>Character</literal>, <literal>Class</literal>,
+          <literal>Error</literal>, <literal>Function</literal>,
+          <literal>Integer</literal>, <literal>Map</literal>,
+          <literal>Pair</literal>, <literal>Runnable</literal>,
+          <literal>Set</literal>, <literal>String</literal>, <literal
+          role="keep-together">Throwable</literal>,
+          <literal>Triple</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-            <entry><para><literal>Character</literal>,
-            <literal>Class</literal>, <literal>Error</literal>,
-            <literal>Function</literal>, <literal>Integer</literal>,
-            <literal>Map</literal>, <literal>Pair</literal>,
-            <literal>Runnable</literal>, <literal>Set</literal>,
-            <literal>String</literal>, <literal
-            role="keep-together">Throwable</literal>,
-            <literal>Triple</literal>.</para></entry>
-          </row>
+      <varlistentry>
+        <term>Exceptions</term>
 
-          <row>
-            <entry><para><emphasis
-            role="strong">Exceptions</emphasis></para></entry>
+        <listitem>
+          <para><literal>Exception</literal>,
+          <literal>ArrayIndexOutOfBoundsException</literal>,
+          <literal>ClassCastException</literal>, <literal
+          role="keep-together">IllegalArgumentException</literal>,
+          <literal>IndexOutOfBoundsException</literal>,
+          <literal>NoSuchElementException</literal>,
+          <literal>NullPointerException</literal>,
+          <literal>NumberFormatException</literal>,
+          <literal>RuntimeException</literal>,
+          <literal>StringIndexOutOfBoundsException</literal>,
+          <literal>UnsupportedOperationException</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-            <entry><para><literal>Exception</literal>,
-            <literal>ArrayIndexOutOfBoundsException</literal>,
-            <literal>ClassCastException</literal>, <literal
-            role="keep-together">IllegalArgumentException</literal>,
-            <literal>IndexOutOfBoundsException</literal>,
-            <literal>NoSuchElementException</literal>,
-            <literal>NullPointerException</literal>,
-            <literal>NumberFormatException</literal>,
-            <literal>RuntimeException</literal>,
-            <literal>StringIndexOutOfBoundsException</literal>,
-            <literal>UnsupportedOperationException</literal></para></entry>
-          </row>
+      <varlistentry>
+        <term>Values</term>
 
-          <row>
-            <entry><para><emphasis
-            role="strong">Values</emphasis></para></entry>
+        <listitem>
+          <para><literal>Map</literal>, <literal>Set</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-            <entry><para><literal>Map</literal>,
-            <literal>Set</literal>.</para></entry>
-          </row>
+      <varlistentry>
+        <term>Objects</term>
 
-          <row>
-            <entry><para><emphasis
-            role="strong">Objects</emphasis></para></entry>
+        <listitem>
+          <para><literal>Pair</literal>, <literal>Triple</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-            <entry><para><literal>Pair</literal>,
-            <literal>Triple</literal>.</para></entry>
-          </row>
+      <varlistentry>
+        <term>Classes</term>
 
-          <row>
-            <entry><para><emphasis
-            role="strong">Classes</emphasis></para></entry>
+        <listitem>
+          <para><literal>Ensuring</literal>,
+          <literal>ArrowAssoc</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-            <entry><para><literal>Ensuring</literal>,
-            <literal>ArrowAssoc</literal>.</para></entry>
-          </row>
+      <varlistentry>
+        <term>Methods</term>
 
-          <row>
-            <entry><para><emphasis
-            role="strong">Methods</emphasis></para></entry>
-
-            <entry><para>Factory methods to create
-            <emphasis>tuples</emphasis>, overloaded versions of
-            <literal>exit</literal>, <literal>error</literal>,
-            <literal>assert</literal>, <literal>assume</literal>, and
-            <literal>require</literal>, <emphasis>implicit</emphasis> type
-            conversion methods, I/O methods like <literal>readLine</literal>,
-            <literal>println</literal>, and <literal>format</literal>, and a
-            method <literal>currentThread</literal>, which calls
-            <literal>java.lang.Thread.currentThread</literal>.</para></entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </table>
+        <listitem>
+          <para>Factory methods to create <emphasis>tuples</emphasis>,
+          overloaded versions of <literal>exit</literal>,
+          <literal>error</literal>, <literal>assert</literal>,
+          <literal>assume</literal>, and <literal>require</literal>,
+          <emphasis>implicit</emphasis> type conversion methods, I/O methods
+          like <literal>readLine</literal>, <literal>println</literal>, and
+          <literal>format</literal>, and a method
+          <literal>currentThread</literal>, which calls
+          <literal>java.lang.Thread.currentThread</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
     <para id="para__predef_declares_the_types_an"><literal>Predef</literal>
     declares the types and exceptions listed in the table using the
@@ -162,9 +159,9 @@
     <para id="para_as_you_would_expect_there_are">There are two type
     parameters, <literal>A</literal> and <literal>B</literal>, one for each
     item in the pair. Recall from <xref
-    linkend="AbstractTypesAndParameterizedTypes" /> in <xref
-    linkend="TypeLessDoMore" /> that we explained the meaning of the
-    <literal>+</literal> in front of each type parameter.</para>
+    linkend="AbstractTypesAndParameterizedTypes" /> that we explained the
+    meaning of the <literal>+</literal> in front of each type
+    parameter.</para>
 
     <para id="para_suppose_we_declare_a_var_of_">Briefly, a
     <literal>Pair[A2,B2]</literal>, for some <literal>A2</literal> and
@@ -172,9 +169,9 @@
     <literal>Pair[A1,B1]</literal>, for some <literal>A1</literal> and
     <literal>B1</literal>, if <literal>A2</literal> is a subtype of
     <literal>A1</literal> and <literal>B2</literal> is a subtype of
-    <literal>B1</literal>. In <xref linkend="ParameterizedTypes" /> in <xref
-    linkend="ScalasTypeSystem" />, we’ll discuss ‘+’ and other type qualifiers
-    in more detail.<indexterm>
+    <literal>B1</literal>. In <xref linkend="ParameterizedTypes" />, we’ll
+    discuss <literal>+</literal> and other type qualifiers in more
+    detail.<indexterm>
         <primary>Pair object</primary>
       </indexterm><indexterm>
         <primary>companion objects</primary>
@@ -185,8 +182,8 @@
     <para id="para_the_pair_class_also_has_a__c">The <literal>Pair</literal>
     class also has a <emphasis>companion object</emphasis>
     <literal>Pair</literal> with an <literal>apply</literal> factory method,
-    as discussed in <xref linkend="CompanionObjects" /> previously. Hence, we
-    can create <literal>Pair</literal> instances as in this example:</para>
+    as discussed in <xref linkend="CompanionObjects" />. Hence, we can create
+    <literal>Pair</literal> instances as in this example:</para>
 
     <screen>val p = Pair(1, "one")</screen>
 
@@ -200,7 +197,7 @@
     <literal>Set</literal> appear in both the types and values lists. In the
     values list, they are assigned the <emphasis>companion objects</emphasis>
     <literal>scala.collection.immutable.Map</literal> and
-    <literal>scala.collection.immutable.Set</literal>, respectively. Hence,
+    <literal>scala.collection.immuta⁠ble.Set</literal>, respectively. Hence,
     <literal>Map</literal> and <literal>Set</literal> in
     <literal>Predef</literal> are <emphasis>values</emphasis>, not object
     definitions, because they refer to objects defined elsewhere, whereas
@@ -220,8 +217,8 @@
       </indexterm></para>
 
     <para id="para_the_arrowassoc_class_defines">The
-    <literal>ArrowAssoc</literal> class defines two methods,
-    <literal>-&gt;</literal> and the unicode equivalent <literal>→</literal>.
+    <literal>ArrowAssoc</literal> class defines two methods:
+    <literal>-&gt;</literal>, and the Unicode equivalent <literal>→</literal>.
     The utility of these methods was demonstrated previously in <xref
     linkend="OptionSomeNone" />, where we created a map of U.S. state
     capitals:</para>
@@ -332,18 +329,19 @@
     <para
     id="para__implicit__type_conversions_ar"><emphasis>Implicit</emphasis>
     type conversions are discussed in more detail in <xref
-    linkend="ImplicitConversions" /> in <xref
-    linkend="FunctionalProgramming" />.</para>
+    linkend="ImplicitConversions" />.</para>
 
     <para id="para_next_recall_from_chapter_1_th">Next, recall from <xref
     linkend="IntroducingScala" /> that we were able to replace calls to
     <literal>Console.println(...)</literal> with
     <literal>println(...)</literal>. This “bare” <literal>println</literal>
-    method is defined in <literal>Predef</literal>, then imported
-    automatically by the compiler. The definition calls the corresponding
-    method in <literal>Console</literal>. Similarly, all the other I/O methods
-    defined by <literal>Predef</literal>, e.g., <literal>readLine</literal>
-    and <literal>format</literal>, call the corresponding
+    method is defined in <literal>Predef</literal>, then imported <phrase
+    role="keep-together">automatically</phrase> by the compiler. The
+    definition calls the corresponding method in <literal
+    role="keep-together">Console</literal>. Similarly, all the other I/O
+    methods defined by <literal>Predef</literal>, e.g.,
+    <literal>readLine</literal> and <literal
+    role="keep-together">format</literal>, call the corresponding
     <literal>Console</literal> methods.</para>
 
     <para id="para_finally_the_assert_assume">Finally, the
@@ -353,12 +351,11 @@
     conditions. If a condition is false, an exception is thrown. The
     <literal>Ensuring</literal> class serves a similar purpose. You can use
     these features for <emphasis>Design by Contract</emphasis> programming, as
-    discussed in <xref linkend="DesignByContractExample" /> in <xref
-    linkend="ApplicationDesign" />.</para>
+    discussed in <xref linkend="DesignByContractExample" />.</para>
 
     <para id="para_for_the_full_list_of_features_">For the full list of
     features defined by <literal>Predef</literal>, see the corresponding
-    <emphasis>Scaladoc</emphasis> entry in <link linkend="ScalaAPI2008"
+    Scaladoc entry in <link linkend="ScalaAPI2008"
     xrefstyle="select:nopage">[ScalaAPI2008]</link>.<indexterm>
         <primary>tuples</primary>
 
@@ -370,7 +367,7 @@
       </indexterm></para>
 
     <sidebar>
-      <title>Four Ways to Create a Two-item Tuple</title>
+      <title>Four Ways to Create a Two-Item Tuple</title>
 
       <para id="para_we_now_know_four_ways_to_creat">We now know four ways to
       create a two-item tuple (<emphasis>twople</emphasis>?):</para>
@@ -430,14 +427,14 @@
         <secondary>class-level</secondary>
       </indexterm></para>
 
-    <para id="para_in_order_to_remain_consistent_">In order to remain
-    consistent with the goal that “everything is an object” in Scala,
-    class-level fields and methods are not supported. Instead, Scala supports
-    declarations of classes that are <emphasis>singletons</emphasis>, using
-    the <literal>object</literal> keyword instead of the
-    <literal>class</literal> keyword. The <literal>objects</literal> provide
-    an object-oriented approach to “static” data and methods. Hence, Scala
-    does not even have a <literal>static</literal> keyword.<indexterm>
+    <para id="para_in_order_to_remain_consistent_">To remain consistent with
+    the goal that “everything is an object” in Scala, class-level fields and
+    methods are not supported. Instead, Scala supports declarations of classes
+    that are <emphasis>singletons</emphasis>, using the
+    <literal>object</literal> keyword instead of the <literal>class</literal>
+    keyword. The <literal>objects</literal> provide an object-oriented
+    approach to “static” data and methods. Hence, Scala does not even have a
+    <literal>static</literal> keyword.<indexterm>
         <primary>singletons</primary>
 
         <secondary>Scala classes declared as</secondary>
@@ -449,7 +446,7 @@
 
     <para id="para__objects_are_instantiated_aut"><literal>Objects</literal>
     are instantiated automatically and lazily by the runtime system (see
-    section 5.4 of <link linkend="ScalaSpec2009"
+    Section 5.4 of <link linkend="ScalaSpec2009"
     xrefstyle="select:nopage">[ScalaSpec2009]</link>). Just as for classes and
     traits, the body of the <literal>object</literal> is the constructor, but
     since the system instantiates the object, there is no way for the user to
@@ -463,9 +460,9 @@
       </indexterm></para>
 
     <para id="para_we_ve_already_seen_some_exampl">We’ve already seen some
-    examples of objects, such as the “specs” objects used previously for
-    tests, and the <literal>Pair</literal> type and its <emphasis>companion
-    object</emphasis>, which we explored in <xref
+    examples of objects, such as the <literal>specs</literal> objects used
+    previously for tests, and the <literal>Pair</literal> type and its
+    <emphasis>companion object</emphasis>, which we explored in <xref
     linkend="PredefObject" />:</para>
 
     <programlisting linenumbering="unnumbered">type Pair[+A, +B] = Tuple2[A, B]
@@ -588,7 +585,7 @@ object Pair {
       declarations like <literal>type List[+] = ...</literal> and <literal>val
       List = ...</literal> are effectively “aliases” for the companion class
       and object, respectively. Because the contents of the
-      <literal>scala</literal> package is automatically imported by the
+      <literal>scala</literal> package are automatically imported by the
       compiler, you can still reference all the definitions in this object in
       any scope without an explicit import statement for fully qualified
       names.</para>
@@ -596,8 +593,8 @@ object Pair {
       <para id="para_other_than_the_way_the_members">Other than the way the
       members in package objects are scoped, they behave just like other
       object declarations. While this example contains only
-      <literal>vals</literal> and <literal>types</literal>, you can also
-      define methods and you can subclass another class or trait and mix in
+      <literal>val</literal>s and <literal>type</literal>s, you can also
+      define methods, and you can subclass another class or trait and mix in
       other traits.</para>
 
       <para id="para_another_benefit_of_package_obj">Another benefit of
@@ -626,7 +623,7 @@ import scala.toplevel._
       the abstractions exposed by a package and the implementations that
       should be hidden inside it. In a larger application, a package object
       could be used to expose all the public types, values, and operations
-      (methods) for a “component”, while everything else in the package and
+      (methods) for a “component,” while everything else in the package and
       nested packages could be treated as internal implementation
       details.</para>
     </sect2>
@@ -636,10 +633,9 @@ import scala.toplevel._
     <title>Sealed Class Hierarchies</title>
 
     <para id="para_recall_shapes_usage_example2">Recall from <xref
-    linkend="CaseClasses" /> in <xref
-    linkend="AdvancedObjectOrientedProgramming" /> that we demonstrated
-    pattern matching with our <literal>Shapes</literal> hierarchy, which use
-    case classes. We had a default <literal>case _ =&gt; ...</literal>
+    linkend="CaseClasses" /> that we demonstrated pattern matching with our
+    <literal>Shapes</literal> hierarchy, which use case classes. We had a
+    default <literal role="keep-together">case _ =&gt; ...</literal>
     expression. It’s usually wise to have one. Otherwise, if someone defines a
     new subtype of <literal>Shape</literal> and passes it to this
     <literal>match</literal> statement, a runtime
@@ -674,9 +670,10 @@ import scala.toplevel._
     expression.</para>
 
     <para id="para_here_is_an_example_using_the_h">Here is an example using
-    the HTTP 1.1 methods <link linkend="HTTP11"
-    xrefstyle="select:nopage">[HTTP1.1]</link>, which are not likely to change
-    very often, so we declare a “sealed” set of case classes for them:</para>
+    the HTTP 1.1 methods (see <link linkend="HTTP11"
+    xrefstyle="select:nopage">[HTTP1.1]</link>), which are not likely to
+    change very often, so we declare a “sealed” set of case classes for
+    them:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/sealed/http-script.scala
 
@@ -713,6 +710,9 @@ val methods = List(
 
 methods.foreach { method =&gt; handle(method) }</programlisting>
 
+    <?dbfo-need height=”1in”
+?>
+
     <para id="para_output3">This script outputs the following:</para>
 
     <screen>connect: connect body...
@@ -728,7 +728,7 @@ trace: trace body...</screen>
     necessary, since we cover all the possibilities. Conversely, if you omit
     one of the classes and you don’t provide a default case or a case for a
     shared parent class, the compiler warns you that the “match is not
-    exhaustive”. For example, if you comment out the case for
+    exhaustive.” For example, if you comment out the case for
     <literal>Put</literal>, you get this warning:</para>
 
     <screen>warning: match is not exhaustive!
@@ -745,7 +745,7 @@ def handle (method: HttpMethod) = method match {
     <literal>sealed</literal> has one drawback. Every time you add or remove a
     class from the hierarchy, you have to modify the file, since the entire
     hierarchy has to be declared in the same file. This breaks the
-    <emphasis>Open-Closed Principle</emphasis> (<link linkend="Meyer1997"
+    <emphasis>Open-Closed Principle</emphasis> (see <link linkend="Meyer1997"
     xrefstyle="select:nopage">[Meyer1997]</link> and <link
     linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>), which
     is a solution to the practical problem that it can be costly to modify
@@ -954,7 +954,7 @@ body length? 13</screen>
             which correspond to the <emphasis>primitive</emphasis> types on
             the runtime platform, plus <literal>Unit</literal>. All the
             <literal>AnyVal</literal> instances are immutable <emphasis>value
-            instances</emphasis> and all the <literal>AnyVal</literal> types
+            instances</emphasis>, and all the <literal>AnyVal</literal> types
             are <literal>abstract final</literal>. Hence, none of them can be
             instantiated with <literal>new</literal>. Rather, new instances
             are created with <emphasis>literal</emphasis> values (e.g.,
@@ -1008,50 +1008,50 @@ body length? 13</screen>
           <row>
             <entry><para><literal>Boolean</literal></para></entry>
 
-            <entry><para>boolean (<literal>true</literal> and
+            <entry><para>Boolean (<literal>true</literal> and
             <literal>false</literal>).</para></entry>
           </row>
 
           <row>
             <entry><para><literal>Byte</literal></para></entry>
 
-            <entry><para>byte.</para></entry>
+            <entry><para>Byte.</para></entry>
           </row>
 
           <row>
             <entry><para><literal>Char</literal></para></entry>
 
-            <entry><para>char.</para></entry>
+            <entry><para>Char.</para></entry>
           </row>
 
           <row>
             <entry><para><literal>Short</literal></para></entry>
 
-            <entry><para>short.</para></entry>
+            <entry><para>Short.</para></entry>
           </row>
 
           <row>
             <entry><para><literal>Int</literal></para></entry>
 
-            <entry><para>int.</para></entry>
+            <entry><para>Int.</para></entry>
           </row>
 
           <row>
             <entry><para><literal>Long</literal></para></entry>
 
-            <entry><para>long.</para></entry>
+            <entry><para>Long.</para></entry>
           </row>
 
           <row>
             <entry><para><literal>Float</literal></para></entry>
 
-            <entry><para>float.</para></entry>
+            <entry><para>Float.</para></entry>
           </row>
 
           <row>
             <entry><para><literal>Double</literal></para></entry>
 
-            <entry><para>double.</para></entry>
+            <entry><para>Double.</para></entry>
           </row>
 
           <row>
@@ -1118,7 +1118,7 @@ body length? 13</screen>
             can be pattern matched for its <literal>Left</literal> or
             <literal>Right</literal> subtypes. (It is analogous to
             <literal>Option</literal>, with <literal>Some</literal> and
-            <literal>None</literal>) For the exception-handling idiom, it is
+            <literal>None</literal>.) For the exception-handling idiom, it is
             conventional to use <literal>Left</literal> for the
             exception.</para></entry>
           </row>
@@ -1137,8 +1137,7 @@ body length? 13</screen>
             are defined for <literal>N</literal> = 0 to 22.) The
             <emphasis>variance annotations</emphasis> (<literal>+</literal>
             and <literal>-</literal>) in front of the types will be explained
-            in <xref linkend="VarianceUnderInheritance" /> in <xref
-            linkend="ScalasTypeSystem" />.</para></entry>
+            in <xref linkend="VarianceUnderInheritance" />.</para></entry>
           </row>
 
           <row>
@@ -1162,7 +1161,7 @@ body length? 13</screen>
             widely used collection in Scala, so it is defined in the
             <literal>scala</literal> package, rather than one of the
             collection packages. (In Scala version2.8, it is actually defined
-            in <literal>scala.collection.immutable</literal> and “aliased” in
+            in <literal>scala.col⁠lection.immutable</literal> and “aliased” in
             <literal>package object scala</literal>). It has two subclasses,
             <literal>case object Nil</literal>, which extends
             <literal>List[Nothing]</literal> and represents an empty list, and
@@ -1175,20 +1174,20 @@ body length? 13</screen>
           <row>
             <entry><para><literal>Nothing</literal></para></entry>
 
-            <entry><para><emphasis>all other types</emphasis></para></entry>
+            <entry><para><emphasis>All other types</emphasis></para></entry>
 
             <entry><para><literal>Nothing</literal> is the subtype of
             <emphasis>all</emphasis> other types. It has no instances. It is
             used primarily for defining other types in a type-safe way, such
             as the special <literal>List</literal> subtype
-            <literal>Nil</literal>. See also <xref linkend="NothingAndNull" />
-            in <xref linkend="ScalasTypeSystem" />.</para></entry>
+            <literal>Nil</literal>. See also <xref
+            linkend="NothingAndNull" />.</para></entry>
           </row>
 
           <row>
             <entry><para><literal>Null</literal></para></entry>
 
-            <entry><para><emphasis>all reference
+            <entry><para><emphasis>All reference
             types</emphasis></para></entry>
 
             <entry><para><literal>Null</literal> has one instance,
@@ -1216,8 +1215,7 @@ body length? 13</screen>
 
             <entry><para>An <literal>object</literal> that defines and imports
             many commonly used types and methods. See <xref
-            linkend="PredefObject" /> earlier in this chapter for
-            details.</para></entry>
+            linkend="PredefObject" /> for details.</para></entry>
           </row>
 
           <row>
@@ -1226,7 +1224,7 @@ body length? 13</screen>
             <entry><para><literal>AnyRef</literal></para></entry>
 
             <entry><para>Trait with methods for determining arity and getting
-            the n<superscript>th</superscript> item in a “cartesian product”.
+            the n<superscript>th</superscript> item in a “cartesian product.”
             Subtraits are defined for <literal>Product</literal>, called
             <literal>ProductN</literal>, for dimension <literal>N</literal>
             from 1 through 22.</para></entry>
@@ -1246,7 +1244,8 @@ body length? 13</screen>
           <row>
             <entry><para><literal>Seq[+T]</literal></para></entry>
 
-            <entry><para><literal>Collection[T]</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">Collection[T]</literal></para></entry>
 
             <entry><para>Trait for ordered collections.</para></entry>
           </row>
@@ -1268,14 +1267,14 @@ body length? 13</screen>
     <literal>List</literal>, some of the other library collections include
     <literal>Map</literal>, <literal>Set</literal>, <literal>Queue</literal>,
     and <literal>Stack</literal>. These other collections come in two
-    varieties, mutable and immutable. The immutable collections are in the
+    varieties: mutable and immutable. The immutable collections are in the
     package <literal>scala.collection.immutable</literal>, while the mutable
     collections are in <literal>scala.collection.mutable</literal>. Only an
     immutable version of <literal>List</literal> is provided; for a mutable
     list, use a <literal>ListBuffer</literal>, which can return a
     <literal>List</literal> via the <literal>toList</literal> method. For
     Scala version 2.8, the collections implementations reuse code from
-    <literal>scala.collection.generic</literal>. Users of the collections
+    <literal>scala.col⁠lec⁠tion.generic</literal>. Users of the collections
     would normally not use any types defined in this package. We’ll explore
     some of these collections in greater detail in <xref
     linkend="FunctionalDataStructures" />.<indexterm>
@@ -1299,13 +1298,13 @@ body length? 13</screen>
     corresponding <literal>scala.runtime.RichX</literal> types. For example,
     the <literal>byteWrapper</literal> method converts a
     <literal>Byte</literal> to a <literal>scala.runtime.RichByte</literal>.
-    There are implicit conversions between the “numeric” types,
-    <literal>Byte</literal>, <literal>Short</literal>, <literal>Int</literal>,
-    <literal>Long</literal>, and <literal>Float</literal> to the other types
-    that are “wider” than the original. For example, <literal>Byte</literal>
-    to <literal>Int</literal>, <literal>Int</literal> to
-    <literal>Long</literal>, <literal>Int</literal>, to
-    <literal>Double</literal>, etc. Finally, there are conversions to the
+    There are implicit conversions between the “numeric”
+    types—<literal>Byte</literal>, <literal>Short</literal>,
+    <literal>Int</literal>, <literal>Long</literal>, and
+    <literal>Float</literal>—to the other types that are “wider” than the
+    original. For example, <literal>Byte</literal> to <literal>Int</literal>,
+    <literal>Int</literal> to <literal>Long</literal>, <literal>Int</literal>
+    to <literal>Double</literal>, etc. Finally, there are conversions to the
     corresponding Java wrapper types, e.g., <literal>Int</literal> to
     <literal>java.lang.Integer</literal>. We discuss implicit conversions in
     more detail in <xref linkend="ImplicitConversions" />.<indexterm>
@@ -1380,8 +1379,8 @@ Oops, got exception java.lang.RuntimeException: 3 is odd!</screen>
 
     <para id="para_we_ll_revisit_function__n__in">We’ll revisit
     <literal>FunctionN</literal> in <xref
-    linkend="VarianceUnderInheritance" /> and <xref linkend="FunctionTypes" />
-    in <xref linkend="ScalasTypeSystem" />.</para>
+    linkend="VarianceUnderInheritance" /> and <xref
+    linkend="FunctionTypes" />.</para>
   </sect1>
 
   <sect1 id="Linearization">
@@ -1391,8 +1390,8 @@ Oops, got exception java.lang.RuntimeException: 3 is odd!</screen>
     inheritance, the inheritance hierarchy would be linear, if we ignored
     mixed-in traits. When traits are considered, each of which may be derived
     from other traits and classes, the inheritance hierarchy forms a directed,
-    acyclic graph <link linkend="ScalaSpec2009"
-    xrefstyle="select:nopage">[ScalaSpec2009]</link>. The term
+    acyclic graph (see <link linkend="ScalaSpec2009"
+    xrefstyle="select:nopage">[ScalaSpec2009]</link>). The term
     <emphasis>linearization</emphasis> refers to the algorithm used to
     “flatten” this graph for the purposes of resolving method lookup
     priorities, constructor invocation order, binding of
@@ -1411,9 +1410,9 @@ Oops, got exception java.lang.RuntimeException: 3 is odd!</screen>
       </indexterm></para>
 
     <para id="para_informally_we_saw_in_stacka">Informally, we saw in <xref
-    linkend="StackableTraits" /> in <xref linkend="Traits" /> that when an
-    instance has more than one trait, they bind right to left, as declared.
-    Consider the following example of linearization:</para>
+    linkend="StackableTraits" /> that when an instance has more than one
+    trait, they bind right to left, as declared. Consider the following
+    example of linearization:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/linearization/linearization1-script.scala
 
@@ -1520,16 +1519,17 @@ println(clist.reverse)</programlisting>
     straightforward.</para>
 
     <para id="para_the_linearization_defines_the_">The linearization defines
-    the order in which method look-up occurs. Let’s examine it more
+    the order in which method lookup occurs. Let’s examine it more
     closely.</para>
 
     <para id="para_all_our_classes_and_traits_def">All our classes and traits
     define the method <literal>m</literal>. The one in <literal>C3</literal>
     is called first, since the instance is of that type.
     <literal>C3.m</literal> calls <literal>super.m</literal>, which resolves
-    to <literal>T3.m</literal>. The search appears to be “breadth-first”,
-    rather than “depth-first”. (If it were depth-first, it would invoke
-    <literal>C1.m</literal> after <literal>T3.m</literal>.) After,
+    to <literal>T3.m</literal>. The search appears to be
+    <emphasis>breadth-first</emphasis>, rather than
+    <emphasis>depth-first</emphasis>. (If it were depth-first, it would invoke
+    <literal>C1.m</literal> after <literal>T3.m</literal>.) Afterward,
     <literal>T3.m</literal>, <literal>T2.m</literal>, then
     <literal>T1.m</literal>, and finally <literal>C1.m</literal> are invoked.
     <literal>C1</literal> is the parent of the three traits. From which of the
@@ -1595,7 +1595,7 @@ println(c2.m(""))</programlisting>
         </listitem>
 
         <listitem>
-          <para>Starting with the <emphasis>right-most</emphasis> parent type
+          <para>Starting with the <emphasis>rightmost</emphasis> parent type
           and working <emphasis>left</emphasis>, compute the linearization of
           each type, appending its linearization to the cumulative
           linearization. (Ignore <literal>ScalaObject</literal>,
@@ -1675,7 +1675,7 @@ C2A:  List(C2A, T2, C1, ScalaObject, AnyRef, Any)
 C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
 
     <para id="para_to_help_us_along_we_calculate">To help us along, we
-    calculated the linearizations for the other types and we also appended
+    calculated the linearizations for the other types, and we also appended
     <literal>ScalaObject</literal>, <literal>AnyRef</literal>, and
     <literal>Any</literal> to remind ourselves that they should also be there.
     We also removed the logic to pass the caller’s name to
@@ -1779,7 +1779,7 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
           <row>
             <entry><para>8</para></entry>
 
-            <entry><para><literal>C2, T3, T1, C2A, T2, C1, ScalaObject,
+            <entry><para><literal>C2, T3, T1, C2A, T2, C1, ScalaObject,<?lb ?>
             AnyRef, Any</literal></para></entry>
 
             <entry><para>Finish!</para></entry>
@@ -1802,7 +1802,7 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
 
     <tip id="para_tip_overly_complex_type_hiera">
       <para>Overly complex type hierarchies can result in method lookup
-      “surprises”. If you have to work through this algorithm to figure out
+      “surprises.” If you have to work through this algorithm to figure out
       what’s going on, try to simplify your code.</para>
     </tip>
   </sect1>
@@ -1811,9 +1811,11 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
     <title>Recap and What’s Next</title>
 
     <para id="para_we_have_finished_our_survey_of">We have finished our survey
-    of Scala’s object model. If you come from an object-oriented language
-    background, you now know enough about Scala to replace your existing
-    object-oriented language with object-oriented Scala.</para>
+    of Scala’s object model. If you come from an <phrase
+    role="keep-together">object-</phrase><phrase
+    role="keep-together">oriented</phrase> language background, you now know
+    enough about Scala to replace your existing object-oriented language with
+    object-oriented Scala.</para>
 
     <para id="para_however_there_is_much_more_to">However, there is much more
     to come. Scala supports <emphasis>functional programming</emphasis>, which

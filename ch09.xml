@@ -26,10 +26,10 @@
     <para id="para_a_large_part_of_the_difficulty">A large part of the
     difficulty of concurrent programming comes down to state: how do you know
     what your multithreaded program is doing, and when? What value does a
-    particular variable hold when you have two threads running, or five, or
-    fifty? How can you guarantee that your program’s many tendrils aren’t
-    clobbering one another in a race to take action? A thread-based
-    concurrency paradigm poses more questions than it answers.</para>
+    particular variable hold when you have 2 threads running, or 5, or 50? How
+    can you guarantee that your program’s many tendrils aren’t clobbering one
+    another in a race to take action? A thread-based concurrency paradigm
+    poses more questions than it answers.</para>
 
     <para id="para_thankfully_scala_offers_a_rea">Thankfully, Scala offers a
     reasonable, flexible approach to concurrency that we’ll explore in this
@@ -276,9 +276,10 @@ I've got 4 messages in my mailbox.</screen>
 
       <para id="para_note_that_the_first_and_second">Note that the first and
       second lines of output are identical. Because our Actor was set up
-      solely to process messages of the string “how many?”, those messages
-      didn’t remain in its mailbox. Only the messages of types we didn’t know
-      about—in this case, <literal>Int</literal>—remained unprocessed.</para>
+      solely to process messages of the string <literal>"how many?"</literal>,
+      those messages didn’t remain in its mailbox. Only the messages of types
+      we didn’t know about—in this case, <literal>Int</literal>—remained
+      unprocessed.</para>
 
       <tip id="para_tip_keep_this_example_in_mind">
         <para>If you see an Actor’s mailbox size ballooning unexpectedly,
@@ -294,7 +295,7 @@ I've got 4 messages in my mailbox.</screen>
       <para id="para_now_that_we_ve_got_a_basic_sen">Now that we’ve got a
       basic sense of what Actors are and how they’re used in Scala, let’s put
       them to work. Specifically, let’s put them to work cutting hair. The
-      <emphasis>sleeping barber problem</emphasis> (<link
+      <emphasis>sleeping barber problem</emphasis> (see <link
       linkend="SleepingBarberProblem"
       xrefstyle="select:nopage">[SleepingBarberProblem]</link>) is one of a
       popular set of computer science hypotheticals designed to demonstrate
@@ -317,15 +318,15 @@ I've got 4 messages in my mailbox.</screen>
 
       <para id="para_strait_away_we_see_several_ob">The sleeping barber
       problem is usually solved with semaphores and mutexes, but we’ve got
-      better tools at our disposal. Straightaway, we see several things to
+      better tools at our disposal. Straight away, we see several things to
       model as Actors: the barber is clearly one, as are the customers. The
       barbershop itself could be modeled as an Actor, too; there need not be a
       real-world parallel to verbal communication in an Actor system, even
       though we’re sending messages.</para>
 
       <para id="para_let_s_start_with_the_customers">Let’s start with the
-      sleeping barber’s customers, as they have the simplest
-      responsibilities:</para>
+      sleeping barber’s customers, as they have the simplest <phrase
+      role="keep-together">responsibilities</phrase>:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Concurrency/sleepingbarber/customer.scala
 
@@ -381,7 +382,7 @@ class Customer(val id: Int) extends Actor {
 
       <para id="para_let_s_move_on_to_the_barber_hi">Let’s move on to the
       barber himself. Because there’s only one barber, we could have used the
-      <literal>actor</literal> factory method technique mentioned above to
+      <literal>actor</literal> factory method technique mentioned earlier to
       create him. For testing purposes, we’ve instead defined our own
       <literal>Barber</literal> class:</para>
 
@@ -424,7 +425,7 @@ class Barber extends Actor {
       employ a check on the mailbox size to serve as our “chairs” that
       customers may occupy; we could have the <literal>Barber</literal> or
       <literal>Shop</literal> classes maintain an internal
-      <literal>Queue</literal>, but why bother when each actor’s mailbox
+      <literal>Queue</literal>, but why bother when each Actor’s mailbox
       already is one?</para>
 
       <para id="para_if_three_or_more_customers_are">If three or more
@@ -433,9 +434,9 @@ class Barber extends Actor {
       semi-random delay (always at least 100 milliseconds) for the time it
       takes to cut a customer’s hair, then send off a
       <literal>Haircut</literal> message to that customer. (Were we not trying
-      to simulate a real-world scenario, we would of course remove the call to
-      <literal>Thread.sleep()</literal> and allow our barber to run full
-      tilt.)</para>
+      to simulate a <phrase role="keep-together">real-world</phrase> scenario,
+      we would of course remove the call to <literal>Thread.sleep()</literal>
+      and allow our barber to run full tilt.)</para>
 
       <para id="para_next_up_we_have_a_simple_clas">Next up, we have a simple
       class to represent the barbershop itself:</para>
@@ -469,7 +470,7 @@ class Shop extends Actor {
       <literal>Customer</literal> comes in, he’s sent to the barber. We now
       see an unexpected benefit of Actors: they allow us to describe
       concurrent business logic in easily understood terms. “Send the customer
-      to the barber” makes perfect sense, much more so than “notify the
+      to the barber” makes perfect sense, much more so than “Notify the
       barber, unlock the mutex around the customer seats, increment the number
       of free seats,” and so forth. Actors get us closer to our domain.</para>
 
@@ -527,7 +528,7 @@ object BarbershopSimulator {
   }
 }</programlisting>
 
-      <para id="para_after_opening_the_shop_we_g">After “opening the shop”, we
+      <para id="para_after_opening_the_shop_we_g">After “opening the shop,” we
       generate a number of <literal>Customer</literal> objects, assigning a
       numeric ID to each and storing the lot in an
       <literal>ArrayBuffer</literal>. Next, we “trickle” the customers in by
@@ -622,11 +623,11 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
     <sect2 id="_effective_actors">
       <title>Effective Actors</title>
 
-      <para id="para_in_order_to_get_the_most_out_o">In order to get the most
-      out of Actors, there are few things to remember. First off, note that
-      there are several methods you can use to get different types of behavior
-      out of your Actors. <xref linkend="actor-methods" /> should help clarify
-      when to use each method.<indexterm>
+      <para id="para_in_order_to_get_the_most_out_o">To get the most out of
+      Actors, there are few things to remember. First, note that there are
+      several methods you can use to get different types of behavior out of
+      your Actors. <xref linkend="actor-methods" /> should help clarify when
+      to use each method.<indexterm>
           <primary>Actors</primary>
 
           <secondary>methods, listed</secondary>
@@ -675,7 +676,7 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
               <entry><para>Result of processing <phrase
               role="keep-together">message</phrase></para></entry>
 
-              <entry><para>Like <literal>receive</literal> but unblocks after
+              <entry><para>Like <literal>receive</literal>, but unblocks after
               specified number of milliseconds.</para></entry>
             </row>
 
@@ -685,7 +686,7 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
               <entry><para><literal>Nothing</literal></para></entry>
 
               <entry><para>Requires less overhead (threads) than
-              receive.</para></entry>
+              <literal>receive</literal>.</para></entry>
             </row>
 
             <row>
@@ -694,7 +695,7 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
 
               <entry><para><literal>Nothing</literal></para></entry>
 
-              <entry><para>Like <literal>react</literal> but unblocks after
+              <entry><para>Like <literal>react</literal>, but unblocks after
               specified number of milliseconds.</para></entry>
             </row>
           </tbody>
@@ -716,12 +717,12 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
       use of <emphasis>futures</emphasis>. A future is a placeholder object
       for a value that hasn’t yet been returned from an asynchronous process.
       You can send a message to an Actor with the <literal>!!</literal>
-      method; a variant of this method allows you pass along a partial
-      function which is applied to the future value. As you can see from the
-      example below, retrieving a value from a <literal>Future</literal> is as
-      straightforward as invoking its <literal>apply</literal> method. Note
-      that retrieving a value from a <literal>Future</literal> is a blocking
-      operation:<indexterm>
+      method; a variant of this method allows you to pass along a partial
+      function that is applied to the future value. As you can see from the
+      following example, retrieving a value from a <literal>Future</literal>
+      is as straightforward as invoking its <literal>apply</literal> method.
+      Note that retrieving a value from a <literal>Future</literal> is a
+      blocking operation:<indexterm>
           <primary>! (exclamation point)</primary>
 
           <secondary>!! method, sending messages to Actors</secondary>
@@ -736,14 +737,14 @@ val eventually = future(5 * 42)
 println(eventually())</programlisting>
 
       <para id="para_each_actor_in_your_system_shou">Each Actor in your system
-      should have clear responsibilities. Don’t use Actors for
-      general-purpose, highly stateful tasks. Instead, think like a director:
-      what are the distinct roles in the “script” of your application, and
-      what’s the least amount of information each Actor needs to do its job?
-      Give each Actor just a couple of responsibilities, and use messages
-      (usually in the form of a <literal>case class</literal> or <literal>case
-      object</literal>) to delegate those responsibilities to other
-      Actors.</para>
+      should have clear responsibilities. Don’t use Actors for <phrase
+      role="keep-together">general-purpose</phrase>, highly stateful tasks.
+      Instead, think like a director: what are the distinct roles in the
+      “script” of your application, and what’s the least amount of information
+      each Actor needs to do its job? Give each Actor just a couple of
+      responsibilities, and use messages (usually in the form of a
+      <literal>case class</literal> or <literal>case object</literal>) to
+      delegate those responsibilities to other Actors.</para>
 
       <para id="para_don_t_be_hesitant_to_copy_data">Don’t be hesitant to copy
       data when writing Actor-centric code. The more immutable your design,
@@ -756,13 +757,13 @@ println(eventually())</programlisting>
 
       <para id="para_lastly_know_when_actors_aren_">Lastly, know when Actors
       aren’t appropriate. Just because Actors are a great way to handle
-      concurrency in Scala doesn’t mean they’re the <emphasis>only</emphasis>
-      way, as we’ll see below. Traditional threading and locking may better
-      suit write-heavy critical paths for which a messaging approach would
-      incur too much overhead. In our experience, you can use a purely
-      Actor-based design to prototype a concurrent solution, then use
-      profiling tools to suss out parts of your application that might benefit
-      from a different approach.<indexterm class="endofrange"
+      concurrency in Scala doesn’t mean that they’re the
+      <emphasis>only</emphasis> way, as we’ll see soon. Traditional threading
+      and locking may better suit write-heavy critical paths for which a
+      messaging approach would incur too much overhead. In our experience, you
+      can use a purely Actor-based design to prototype a concurrent solution,
+      then use profiling tools to suss out parts of your application that
+      might benefit from a different approach.<indexterm class="endofrange"
       startref="ch09_concurrentActors"></indexterm><indexterm
       class="endofrange"
       startref="ch09_concurrentActorsScala"></indexterm><indexterm
@@ -869,8 +870,8 @@ for (i &lt;- 1 to 10) {
       concurrency, the <literal>run</literal> method is where a threaded class
       starts. Every time our <literal>pool</literal> executes a new
       <literal>ThreadIdentifier</literal>, its <literal>run</literal> method
-      is invoked. A look at the output below tells us that we’re running on
-      the five threads in the pool, with IDs ranging from 9 to 13:</para>
+      is invoked. A look at the output tells us that we’re running on the five
+      threads in the pool, with IDs ranging from 9 to 13:</para>
 
       <screen>hello from Thread 9
 hello from Thread 10
@@ -885,10 +886,10 @@ hello from Thread 13</screen>
 
       <para id="para_this_is_of_course_just_scrat">This is, of course, just
       scratching the surface of what’s available in
-      <literal>java.util.concurrent</literal>. You’ll find that your existing
-      knowledge of Java’s approach to multithreading still applies in Scala.
-      What’s more, you’ll be able to accomplish the same tasks using less
-      code, which should contribute to maintainability and
+      <literal>java.util.con⁠cur⁠rent</literal>. You’ll find that your
+      existing knowledge of Java’s approach to multithreading still applies in
+      Scala. What’s more, you’ll be able to accomplish the same tasks using
+      less code, which should contribute to maintainability and
       productivity.</para>
     </sect2>
 
@@ -902,10 +903,12 @@ hello from Thread 13</screen>
       need to scale to thousands of simultaneous clients. Eschewing the
       traditional one-to-one relationship of threads to clients, this model of
       concurrency exposes events that occur when particular conditions are met
-      (for example, when data is received from a client over a network
-      socket.) Typically, the programmer will associate a callback method with
-      each event that’s relevant to her program.<indexterm
-          class="startofrange" id="ch09_ActorsMINANagatti">
+      (for <phrase role="keep-together">example</phrase>, when data is
+      received from a client over a network socket). Typically, the <phrase
+      role="keep-together">programmer</phrase> will associate a callback
+      method with each event that’s relevant to her <phrase
+      role="keep-together">program</phrase>.<indexterm class="startofrange"
+          id="ch09_ActorsMINANagatti">
           <primary>Actors</primary>
 
           <secondary>using with MINA NIO and Naggati library for SMTP
@@ -930,13 +933,13 @@ hello from Thread 13</screen>
 
       <para id="para_while_the_java_nio_package_p">While the
       <literal>java.nio</literal> package provides a variety of useful
-      primitives for non-blocking I/O (buffers, channels, etc.), it’s still a
-      fair bit of work to cobble together an event-based concurrent program
-      from those simple parts. Enter Apache MINA, built atop Java NIO and
-      described on its homepage as “a network application framework which
-      helps users develop high performance and high scalability network
-      applications easily” (see <link linkend="MINA"
-      xrefstyle="select:nopage">[MINA]</link>).<indexterm>
+      primitives for non-blocking <phrase role="keep-together">I/O</phrase>
+      (buffers, channels, etc.), it’s still a fair bit of work to cobble
+      together an event-based concurrent program from those simple parts.
+      Enter Apache MINA, built atop Java NIO and described on its homepage as
+      “a network application framework which helps users develop high
+      performance and high scalability network applications easily” (see <link
+      linkend="MINA" xrefstyle="select:nopage">[MINA]</link>).<indexterm>
           <primary>MINA (Apache)</primary>
         </indexterm><indexterm>
           <primary>Apache MINA</primary>
@@ -946,8 +949,8 @@ hello from Thread 13</screen>
 
       <para id="para_while_mina_may_be_easier_to_us">While MINA may be easier
       to use than Java’s built-in NIO libraries, we’ve gotten used to some
-      conveniences of Scala that just aren’t available in MINA. The
-      open-source Naggati library (see <link linkend="Naggati"
+      conveniences of Scala that just aren’t available in MINA. The open
+      source Naggati library (see <link linkend="Naggati"
       xrefstyle="select:nopage">[Naggati]</link>) adds a Scala-friendly layer
       atop MINA that, according to its author, “makes it easy to build
       protocol filters [using a] sequential style”. Essentially, Naggati is a
@@ -1079,8 +1082,8 @@ object Codec {
       store request data as it arrives. Then we specify the
       <literal>encoder</literal> portion of our codec, which exists simply to
       write data out. A <literal>dispose</literal> method is defined (but not
-      fleshed out) to fulfill the contract of the
-      <literal>ProtocolEncoder</literal> trait.<indexterm>
+      fleshed out) to fulfill the contract of the <literal
+      role="keep-together">ProtocolEncoder</literal> trait.<indexterm>
           <primary>Request case class</primary>
         </indexterm></para>
 
@@ -1226,12 +1229,12 @@ class SmtpHandler(val session: IoSession) extends Actor {
 }</programlisting>
 
       <para id="para_straight_away_we_see_the_same">Straight away, we see the
-      same pattern that we saw in the Actors examples earlier in the chapter:
+      same pattern that we saw in the Actors examples earlier in this chapter:
       looping around a <literal>react</literal> block that pattern matches on
       a limited set of cases. In <literal>SmtpHandler</literal>, all of those
       cases are <emphasis>events</emphasis> provided by MINA. For example,
       MINA will send us <literal>MinaMessage.SessionOpened</literal> when a
-      client connects and <literal>MinaMessage.SessionClosed</literal> when a
+      client connects and <literal>MinaMessage.Ses⁠sionClosed</literal> when a
       client disconnects.</para>
 
       <para id="para_the_case_we_re_most_interested">The case we’re most

@@ -107,9 +107,9 @@ res2: scala.xml.NodeSeq = &lt;bread&gt;wheat&lt;/bread&gt;</screen>
 
       <para id="para_that_backslash_what_the_docu">That backslash—what the
       documentation calls a <emphasis>projection function</emphasis>—says,
-      “find me elements named <replaceable>bread</replaceable>”. We’ll always
-      get a <literal>NodeSeq</literal> back when using a projection function.
-      If we’re only interested in what’s between the tags, we can use the
+      “Find me elements named <literal>bread</literal>.” We’ll always get a
+      <literal>NodeSeq</literal> back when using a projection function. If
+      we’re only interested in what’s between the tags, we can use the
       <literal>text</literal> method:<indexterm>
           <primary>\ (backslash)</primary>
 
@@ -193,20 +193,20 @@ for (condiment &lt;- (someXML \\ "condiment")) {
       <para id="para_because_nodeseq_inherits_the">Because
       <literal>NodeSeq</literal> inherits the same familiar attributes that
       most Scala collection types carry, tools like <literal>for</literal>
-      loops apply directly. In the above example, we extract the
-      <literal>&lt;condiment&gt;</literal> nodes, loop over each of them, and
-      test whether or not their <literal>expired</literal> attribute equals
-      the string “true”. We have to specify that we want the
-      <literal>text</literal> of a given <literal>condiment</literal>,
-      otherwise we’d get a string representation of the entire line of
-      XML.</para>
+      loops apply directly. In the example just shown, we extract the <literal
+      role="keep-together">&lt;condiment&gt;</literal> nodes, loop over each
+      of them, and test whether or not their <literal>expired</literal>
+      attribute equals the string <literal>"true"</literal>. We have to
+      specify that we want the <literal>text</literal> of a given <literal
+      role="keep-together">condiment</literal>; otherwise, we’d get a string
+      representation of the entire line of XML.</para>
 
       <para id="para_we_can_also_use_pattern_matchi">We can also use pattern
       matching on XML structures. Cases in pattern matches can be written in
       terms of XML literals; expressions between curly braces
       (<literal>{}</literal>) escape back to standard Scala pattern matching
       syntax. To match all XML nodes in the escaped portion of a pattern
-      match, use a underscore (wildcard) followed by a asterisk
+      match, use an underscore (wildcard) followed by an asterisk
       (<literal>_*</literal>). To bind what you’ve matched on to a variable,
       prefix the match with the variable name and an <literal>@</literal>
       sign.<indexterm>
@@ -266,7 +266,7 @@ someXML match {
     support for XML literals makes writing XML far simpler. Essentially, when
     you want XML, just write XML. To interpolate variables and expressions,
     escape out to Scala with curly braces, as we did in the pattern matching
-    examples above:<indexterm>
+    examples earlier:<indexterm>
         <primary>XML</primary>
 
         <secondary>writing</secondary>
@@ -296,7 +296,7 @@ bobXML: scala.xml.Elem =
 
       <para id="para_for_a_more_complete_example_l">For a more complete
       example, let’s say we’re designing that favorite latter-day “hello
-      world”, a blogging system. We’ll start with a class to represent an
+      world,” a blogging system. We’ll start with a class to represent an
       Atom-friendly blog post:<indexterm class="startofrange"
           id="ch10_blogsys">
           <primary>blogging system (example)</primary>

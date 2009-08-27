@@ -23,11 +23,13 @@
   the book’s examples, <literal>sake</literal>, uses a DSL similar to the
   venerable <literal>make</literal> and its Ruby cousin
   <literal>rake</literal>. (See the <phrase
-  role="keep-together">README</phrase> in the code download archive for
-  details.) For other examples of Scala “internal” and “external” DSLs, see
-  <link linkend="Ghosh2008a" xrefstyle="select:nopage">[Ghosh2008a]</link> and
-  <link linkend="Ghosh2008b" xrefstyle="select:nopage">[Ghosh2008b]</link>.
-  For some advanced work on DSLs using Scala, <link linkend="Hofer2008"
+  role="keep-together">README</phrase> in the <ulink role="orm:hideurl"
+  url="http://examples.oreilly.com/9780596155964/">code download
+  archive</ulink> for details.) For other examples of Scala “internal” and
+  “external” DSLs, see <link linkend="Ghosh2008a"
+  xrefstyle="select:nopage">[Ghosh2008a]</link> and <link linkend="Ghosh2008b"
+  xrefstyle="select:nopage">[Ghosh2008b]</link>. For some advanced work on
+  DSLs using Scala, <link linkend="Hofer2008"
   xrefstyle="select:nopage">[Hofer2008]</link> explores polymorphic
   substitution of alternative implementations for DSL abstractions, which is
   useful for analysis, optimization, composition, etc.</para>
@@ -89,7 +91,7 @@
       <listitem>
         <para>Good DSLs are harder to design than traditional APIs. The latter
         tend to follow language idioms for API design, where uniformity is
-        important. Even then, elegant, effective, and easy to use APIs are
+        important. Even then, elegant, effective, and easy-to-use APIs are
         difficult to design. In contrast, each DSL should reflect the unique
         language idioms of its domain. The DSL designer has much greater
         latitude, which also means it is much harder to determine the “best”
@@ -130,7 +132,7 @@
     </indexterm></para>
 
   <para id="para_internal_dsls_are_easier_to_cr">Internal DSLs are easier to
-  create because they don’t require a special purpose parser. On the other
+  create because they don’t require a special-purpose parser. On the other
   hand, the constraints of the underlying language limit the options for
   expressing domain concepts. External DSLs remove this constraint. You can
   design the language any way you want, as long as you can write a reliable
@@ -208,7 +210,7 @@ List(buck, jane).foreach { employee =&gt;
     that “noise” and focus on what’s really going on.</para>
 
     <para id="para_second_notice_that_the_code_i">Second, notice that the code
-    is imperative. It says “divide this, add that”, and so forth. We’ll see
+    is imperative. It says “divide this, add that,” and so forth. We’ll see
     that our DSLs look similar, but they are more declarative, hiding the work
     from the user.</para>
 
@@ -320,7 +322,7 @@ object Type2Money {
 
     <para id="para_the_deductions_are_calculated_">Deductions are calculated
     using four helper methods in
-    <literal>payroll.api.DeductionsCalculator</literal>:</para>
+    <literal>payroll.api.DeductionsCal⁠cu⁠lator</literal>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/api/deductions-calc.scala
 
@@ -352,15 +354,15 @@ Jane Doe: Paycheck($3461.54,$1576.92,$1884.62)</screen>
     <sect2 id="APayrollInternalDSL">
       <title>A Payroll Internal DSL</title>
 
-      <para id="para_this_code_works_well_enough_b">The above code works well
-      enough, but suppose we wanted to show it to the Accounting Department to
-      confirm that we’re calculating paychecks correctly. Most likely, they
-      would get lost in the Scala idioms. Suppose further that we need the
-      ability to customize this algorithm frequently, for example because it
-      needs to be customized for different employee types (salaried, hourly,
-      etc.) or to modify the deduction calculations. Ideally, we would like to
-      enable the accountants to do these customizations themselves, without
-      our help.<indexterm>
+      <para id="para_this_code_works_well_enough_b">The previous code works
+      well enough, but suppose we wanted to show it to the Accounting
+      Department to confirm that we’re calculating paychecks correctly. Most
+      likely, they would get lost in the Scala idioms. Suppose further that we
+      need the ability to customize this algorithm frequently—for example,
+      because it needs to be customized for different employee types
+      (salaried, hourly, etc.), or to modify the deduction calculations.
+      Ideally, we would like to enable the accountants to do these
+      customizations themselves, without our help.<indexterm>
           <primary>payroll internal DSL (example)</primary>
         </indexterm><indexterm class="endofrange"
       startref="ch11_DSLinternalpayrollAPI"></indexterm><indexterm>
@@ -393,8 +395,8 @@ Jane Doe: Paycheck($3461.54,$1576.92,$1884.62)</screen>
       <para id="para_this_reads_mostly_like_normal_">This reads like normal
       English, not code. We have included some “bubble” words (see <link
       linkend="Ford2009" xrefstyle="select:nopage">[Ford2009]</link>) that aid
-      readability but don’t necessarily correspond to anything essential, like
-      <literal>to</literal>, <literal>an</literal>, <literal>is</literal>,
+      readability but don’t necessarily correspond to anything essential, such
+      as <literal>to</literal>, <literal>an</literal>, <literal>is</literal>,
       <literal>for</literal>, <literal>of</literal>, and
       <literal>which</literal>. We’ll eliminate some of these unnecessary
       words and keep others in our Scala DSL.</para>
@@ -470,10 +472,10 @@ List(buck, jane).foreach { employee =&gt;
       <programlisting linenumbering="unnumbered">employee.salary_for(2.weeks).minus_deductions_for { gross =&gt;</programlisting>
 
       <para id="para_you_can_see_why_we_wrote_2_we">You can see why we wrote
-      <literal>2.weeks</literal> before, because the result of this expression
-      is passed to <literal>salary_for</literal>. Without the period, the
-      infix expression would be parsed as
-      <literal>employee.salary_for(2).weeks...</literal> There is no
+      <literal>2.weeks</literal> earlier, because the result of this
+      expression is passed to <literal>salary_for</literal>. Without the
+      period, the infix expression would be parsed as
+      <literal>employee.salary_for(2).weeks...</literal>. There is no
       <literal>weeks</literal> method on <literal>Int</literal>, of course.
       We’ll revisit this expression in a moment.</para>
 
@@ -507,7 +509,7 @@ List(buck, jane).foreach { employee =&gt;
     </sect2>
 
     <sect2 id="InternalDSLs-ImplicitConversions-UserDefinedTypes">
-      <title>Implicit Conversions and User Defined Types</title>
+      <title>Implicit Conversions and User-Defined Types</title>
 
       <para id="para_int_doesnt_have_weeks_method">Returning to
       <literal>2.weeks</literal>, since <literal>Int</literal> doesn’t have a
@@ -727,12 +729,12 @@ protected[dsl] class PayrollBuilderRules(rules: Employee =&gt; Paycheck) {
 }</programlisting>
 
       <para id="para_now_the_fact_that_a_builder_">Now the fact that a
-      <literal>builder</literal> is being used is more explicit and
-      <literal>federalIncomeTax</literal>,
-      <literal>insurancePremiums</literal>, etc. are methods on the builder.
-      We opted for a more readable style, with the penalty of a harder
-      implementation. You’ll sometimes hear the phrase <emphasis>fluent
-      interface</emphasis> used to refer to DSLs that emphasize
+      <literal>builder</literal> is being used is more explicit, and
+      <literal>federalIncomeTax</literal>, <literal
+      role="keep-together">insurancePremiums</literal>, etc. are methods on
+      the builder. We opted for a more readable style, with the penalty of a
+      harder implementation. You’ll sometimes hear the phrase <emphasis>fluent
+      in⁠ter⁠face</emphasis> used to refer to DSLs that emphasize
       readability.<indexterm>
           <primary>fluent interface</primary>
         </indexterm></para>
@@ -801,7 +803,7 @@ protected[dsl] class DeductionsBuilder(gpb: GrossPayBuilder) {
 
       <para
       id="para__deductionsbuilder_saves_the_"><literal>DeductionsBuilder</literal>
-      saves the <literal>employee</literal> from the passed in
+      saves the <literal>employee</literal> from the passed-in
       <literal>GrossPayBuilder</literal>, which it doesn’t save as a field. It
       also initializes the <literal>paycheck</literal> using the calculated
       gross pay.</para>
@@ -810,7 +812,7 @@ protected[dsl] class DeductionsBuilder(gpb: GrossPayBuilder) {
       <literal>currency</literal> method simply returns
       <literal>this</literal>. We don’t need to do anything with the actual
       currency when this method is invoked. Instead, it is used to support a
-      design idiom we’ll discuss below.</para>
+      design idiom that we’ll discuss shortly.</para>
 
       <para id="para_the_minus_deductions_for_doe">The
       <literal>minus_deductions_for</literal> does the important work. It
@@ -852,10 +854,10 @@ protected[dsl] class DeductionsBuilderDeductionHelper(val factor: Double) {
       <literal>federalIncomeTax</literal>, etc. are singleton objects. Note
       the “synonym” methods <literal>is</literal> and <literal>are</literal>.
       We used <literal>are</literal> for the objects with plural names, like
-      <literal>insurancePremiums</literal> and <literal>is</literal> for the
+      <literal>insurancePre⁠miums</literal>, and <literal>is</literal> for the
       singular objects, like <literal>federalIncomeTax</literal>. In fact,
       since both methods delegate to <literal>apply</literal>, they are
-      effectively “bubble” words that the user could omit. That is, the
+      effectively bubble words that the user could omit. That is, the
       following two DSL lines are equivalent:</para>
 
       <programlisting linenumbering="unnumbered">federalIncomeTax is (25. percent_of gross)
@@ -874,11 +876,11 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
 
       <para id="para_to_see_why_deductioncalculato">To see why
       <literal>DeductionCalculator.apply</literal> is empty, let’s discuss
-      <literal>DeductionsBuilderDeductionHelper</literal>. Recall that the
+      <literal>DeductionsBuilderDe⁠duc⁠tionHelper</literal>. Recall that the
       <literal>rules</literal> object has an implicit conversion method to
       convert a <literal>Double</literal> to a
       <literal>DeductionsBuilderDeductionHelper</literal>. Once we have a
-      helper instance we can call either the <literal>in</literal> method or
+      helper instance, we can call either the <literal>in</literal> method or
       the <literal>percent_of</literal> method. Every line in the deductions
       function literal exploits this instance.</para>
 
@@ -908,8 +910,8 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       <para id="para_in_other_words_we_used_deduc">In other words, we used
       <literal>DeductionsBuilderDeductionHelper</literal> to convert an
       expression of the form <literal>Double method
-      DeductionsBuilder</literal> into an expression of the form
-      <literal>DeductionsBuilder method2 Double</literal>.
+      DeductionsBuilder</literal> into an expression of the form <literal
+      role="keep-together">DeductionsBuilder method2 Double</literal>.
       <literal>DeductionsBuilder</literal> accumulates each deduction into the
       paycheck we’re building.</para>
 
@@ -949,17 +951,18 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
 
       <para id="para_on_the_other_hand_a_well_desi">It’s worth the effort,
       though. A well-designed DSL minimizes the translation effort between
-      requirements and code, thereby improving communications with
-      stakeholders about requirements. DSLs also facilitate rapid feature
-      change and they hide distracting implementation details. As always,
-      there is a cost/benefit analysis you should make when deciding whether
-      or not to use a DSL.</para>
+      requirements and code, thereby improving communications with <phrase
+      role="keep-together">stake</phrase><phrase
+      role="keep-together">holders</phrase> about requirements. DSLs also
+      facilitate rapid feature change and hide distracting implementation
+      details. As always, there is a cost/benefit analysis you should make
+      when deciding whether to use a DSL.</para>
 
       <para id="para_assuming_you_ve_made_the_go_">Assuming you’ve made the
       “go” decision, a common problem in DSL design is the <emphasis>finishing
-      problem</emphasis> <link linkend="Ford2009"
-      xrefstyle="select:nopage">[Ford2009]</link>. How do you know when you’ve
-      finished building up the state of an instance and it’s ready to
+      problem</emphasis> (see <link linkend="Ford2009"
+      xrefstyle="select:nopage">[Ford2009]</link>). How do you know when
+      you’ve finished building up the state of an instance and it’s ready to
       use?<indexterm>
           <primary>finishing problem (in DSL design)</primary>
         </indexterm></para>
@@ -967,7 +970,7 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       <para id="para_we_solved_this_problem_in_two_">We solved this problem in
       two ways. First, we nested the calculation steps in a function literal.
       As soon as <literal>rules(employee)</literal> was invoked, the paycheck
-      was built to completion. Also, all the steps were evaluated “eagerly”.
+      was built to completion. Also, all the steps were evaluated “eagerly.”
       We didn’t need to put in all the rules, then run them at the end. Our
       only ordering requirement was the need to calculate the gross pay first,
       since the deductions are based on it. We enforced the correct order of
@@ -993,13 +996,13 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
     <title>External DSLs with Parser Combinators</title>
 
     <para id="para_when_you_write_a_parser_for_an">When you write a parser for
-    an external DSL, you can use a parser generator tool like Antlr <link
-    linkend="Antlr" xrefstyle="select:nopage">[Antlr]</link>. However, the
+    an external DSL, you can use a parser generator tool like Antlr (see <link
+    linkend="Antlr" xrefstyle="select:nopage">[Antlr]</link>). However, the
     Scala library includes a powerful parser combinator library that can be
     used for parsing most external DSLs that have a context-free grammar. An
     attractive feature of this library is the way it defines an internal DSL
     that makes parser definitions look very similar to familiar grammar
-    notations, like EBNF (Extended Backus-Naur Form—<link linkend="EBNF"
+    notations, like EBNF (Extended Backus-Naur Form—see <link linkend="EBNF"
     xrefstyle="select:nopage">[BNF]</link>).<indexterm class="startofrange"
         id="ch11_parsercombinators">
         <primary>parser combinators, external DSLs with</primary>
@@ -1022,11 +1025,10 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
 
       <para id="para_parser_combinators_are_buildin">Parser combinators are
       building blocks for parsers. Parsers that handle specific kinds of
-      input, e.g., floating-point numbers, integers, etc., can be combined
-      together to form other parser combinators for larger expressions. A
-      combinator framework makes it easy to combine parsers to handle
-      sequential and alternative cases, repetition, optional terms,
-      etc.<indexterm>
+      input—floating-point numbers, integers, etc.—can be combined together to
+      form other parser combinators for larger expressions. A combinator
+      framework makes it easy to combine parsers to handle sequential and
+      alternative cases, repetition, optional terms, etc.<indexterm>
           <primary>DSLs (Domain-Specific Languages)</primary>
 
           <secondary>external DSLs with parser combinators</secondary>
@@ -1077,8 +1079,8 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
 }</screen>
 
       <para id="para_compare_this_example_of_our_ex">Compare this example to
-      the internal DSL we defined in <xref linkend="APayrollInternalDSL" />
-      above:</para>
+      the internal DSL we defined in <xref
+      linkend="APayrollInternalDSL" />:</para>
 
       <programlisting linenumbering="unnumbered">... = rules { employee =&gt;
   employee salary_for 2.weeks minus_deductions_for { gross =&gt;
@@ -1114,7 +1116,7 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       punctuation. It is still convenient to surround the list of deductions
       with curly braces. We now use a comma to separate the individual
       deductions, as that will make the parser’s job easier. We can also drop
-      the parentheses we used before.<indexterm>
+      the parentheses we used earlier.<indexterm>
           <primary>grammars</primary>
 
           <secondary>EBNF notation for external payroll DSL
@@ -1177,7 +1179,7 @@ doubleNumber = ...</screen>
       the <emphasis>terminals</emphasis> (the literal strings
       <literal>paycheck</literal>, <literal>for</literal>,
       <literal>employee</literal>, the characters <literal>{</literal> and
-      <literal>}</literal>, etc.) will be “bubble” words, as defined in the
+      <literal>}</literal>, etc.) will be bubble words, as defined in the
       previous section. We’ll ignore these after parsing. The Ɛ is used to
       indicate an empty production for <literal>deductItems</literal>,
       although there will rarely be no deductions!<indexterm>
@@ -1259,7 +1261,7 @@ doubleNumber = ...</screen>
       optional items in our grammar, we would enclose them in square brackets,
       <literal>[ ... ]</literal>. There are other kinds of composition
       operators possible (and supported in the Scala library), a few of which
-      we’ll discuss below. See the <link linkend="ScalaAPI2008"
+      we’ll discuss shortly. See the <link linkend="ScalaAPI2008"
       xrefstyle="select:nopage">[ScalaAPI2008]</link> entry for
       <literal>Parsers</literal> for more details.<indexterm
       class="endofrange"
@@ -1355,7 +1357,7 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       method, it would be valid Scala to leave it in.</para>
 
       <para id="para_where_we_had_whitespace_betwee">Where we had whitespace
-      between each production on the right hand side, we now use a combinator
+      between each production on the righthand side, we now use a combinator
       operator, either <literal>∼</literal>, <literal>∼&gt;</literal>, or
       <literal>&lt;∼</literal>. The combinator for sequential composition is
       <literal>∼</literal>, used when we want to retain for further processing
@@ -1399,7 +1401,7 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       of the source of each deduction, just the amount of the deduction. A
       real paycheck application would print this information, of course. Our
       aim is for simplicity. As an exercise, consider how
-      <literal>PayrollParserCombinatorsV1</literal> and the subsequent
+      <literal>PayrollParserCombi⁠natorsV1</literal> and the subsequent
       refinements below would change if we tracked this information. Would you
       necessarily keep the parsed strings or track the information some other
       way?</para>
@@ -1416,7 +1418,7 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       <para id="para_the_rep_method_can_be_used_f">The <literal>rep</literal>
       method can be used for zero or more repetitions. We actually use a
       similar method, <literal>repsep</literal>, which lets us specify a
-      separator, in our case a comma ‘,’:</para>
+      separator, in our case a comma (<literal>,</literal>):</para>
 
       <programlisting linenumbering="unnumbered">def deduct = ... ~&gt; "{" ~&gt; repsep(deductItem, "," ) &lt;~ "}"</programlisting>
 
@@ -1436,9 +1438,10 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       non-trivial grammars with just regular expressions tends to break down
       pretty quickly. However, using regular expressions to parse individual
       terms inside a parsing framework can be very effective. In our example,
-      we exploit the productions in <literal>JavaTokenParsers</literal> to
-      parse quoted strings (for the employee’s name), decimal literals, and
-      floating-point literals.<indexterm>
+      we exploit the productions in <literal
+      role="keep-together">JavaTokenParsers</literal> to parse quoted strings
+      (for the employee’s name), decimal literals, and floating-point
+      literals.<indexterm>
           <primary>Parsers object</primary>
         </indexterm><indexterm>
           <primary>JavaTokenParsers</primary>
@@ -1517,10 +1520,9 @@ p.parseAll(p.paycheck, input) match {
       <literal>Parsers</literal> trait. Why is there a <literal>p.</literal>
       prefix? It indicates that <literal>p.Success</literal> is a
       <emphasis>path-dependent type</emphasis>, which we will discuss in <xref
-      linkend="PathDependentTypes" /> in <xref linkend="ScalasTypeSystem" />.
-      For now, just know that even though <literal>Success</literal> is
-      defined in the <literal>Parsers</literal> trait, the actual type of the
-      instance is dependent on the
+      linkend="PathDependentTypes" />. For now, just know that even though
+      <literal>Success</literal> is defined in the <literal>Parsers</literal>
+      trait, the actual type of the instance is dependent on the
       <literal>PayrollParserCombinatorsV1</literal> instance we created. In
       other words, if we had another parser, say <literal>p2</literal> of type
       <literal>MyOtherParser</literal>, then
@@ -1533,9 +1535,9 @@ p.parseAll(p.paycheck, input) match {
         </indexterm></para>
 
       <para id="para_the_success_object_contains_">The
-      <literal>Success</literal> instance contains two fields, the result of
+      <literal>Success</literal> instance contains two fields: the result of
       the parse, an instance of type <literal>T</literal> (assigned to
-      <literal>r</literal> in the <literal>case</literal> clause) and the
+      <literal>r</literal> in the <literal>case</literal> clause); and the
       remaining input string to parse, which will be empty after a successful
       parse (we will have parsed the whole string at this point). This string
       is assigned to <literal>_</literal>.</para>
@@ -1551,7 +1553,7 @@ p.parseAll(p.paycheck, input) match {
       framework, if possible. An <literal>Error</literal> result does not
       trigger backtracking and is used to signal more serious problems.</para>
 
-      <para id="para_for_completeness_both_p_succ">For completeness, Both
+      <para id="para_for_completeness_both_p_succ">For completeness, both
       <literal>p.Success</literal> and <literal>p.NoSuccess</literal> derive
       from <literal>p.ParseResult</literal>.</para>
 
@@ -1570,9 +1572,9 @@ p.parseAll(p.paycheck, input) match {
       corresponding to each match in the repetition.</para>
 
       <para id="para_so_our_call_to_p_parseall_p_">So, our call to
-      <literal>p.parseAll(p.paycheck, input)</literal> above parses the
+      <literal>p.parseAll(p.paycheck, input)</literal> earlier parses the
       <literal>input</literal> string using the parser returned by
-      <literal>p.paycheck</literal>. That brings us to the second question,
+      <literal>p.paycheck</literal>. That brings us to the second question:
       what is the result of a successful parse?</para>
 
       <para id="para_to_see_what_s_returned_compil">To see what’s returned,
@@ -1632,9 +1634,9 @@ scala&gt;</screen>
       <para id="para_we_import_types_we_need_and_cr">We import the necessary
       types and create a <literal>PayrollParserCombinatorsV1</literal>
       instance. Then we call several of the production methods to see what
-      kind of <literal>Parser</literal> each returns. The first three,
-      <literal>empl</literal>, <literal>weeksDays</literal>, and
-      <literal>doubleNumber</literal> return
+      kind of <literal>Parser</literal> each returns. The first
+      three—<literal>empl</literal>, <literal>weeksDays</literal>, and
+      <literal>doubleNumber</literal>—return
       <literal>p.Parser[String]</literal>.</para>
 
       <para id="para_note_what_s_written_on_the_rig">Note what’s written on
@@ -1642,7 +1644,7 @@ scala&gt;</screen>
       <literal>empl</literal>, <literal>weeksDays</literal>, and
       <literal>doubleNumber</literal>. We see <literal>Parser
       (∼&gt;)</literal>, <literal>Parser (|)</literal>, and <literal>Parser
-      ()</literal>, respectively. The Parsers returned reflect the definitions
+      ()</literal>, respectively. The parsers returned reflect the definitions
       of the production rules, where <literal>empl</literal> ends with a
       combinator of the form <literal>prod1 ∼&gt; prod2</literal>,
       <literal>weeksDays</literal> returns a combinator of the form
@@ -1661,9 +1663,10 @@ scala&gt;</screen>
       interesting when we look at the top-level production,
       <literal>paycheck</literal>. What is
       <literal>p.Parser[p.∼[p.∼[String,p.∼[String,String]],List[String]]] =
-      Parser (∼)</literal> supposed to mean?? Well, the righthand side should
-      be easy to understand now; the definition of <literal>paycheck</literal>
-      ends in <literal>prod1 ∼ prod2</literal>. What is the type parameter for
+      Parser (∼)</literal> <phrase role="keep-together">supposed</phrase> to
+      mean? Well, the righthand side should be easy to understand now; the
+      definition of <literal>paycheck</literal> ends in <literal>prod1 ∼
+      prod2</literal>. What is the type parameter for
       <literal>p.Parser</literal> on the lefthand side of the equals
       sign?</para>
 
@@ -1692,17 +1695,17 @@ scala&gt;</screen>
 
       <para id="para_let_s_break_it_down_working_o">Let’s break it down,
       working our way inside out. Note that there are three
-      <literal>p.∼</literal>. We’ll start with the inner-most type,
+      <literal>p.∼</literal>. We’ll start with the innermost type,
       <literal>p.∼[String,String]</literal>, and map the type declaration to
       the output we saw in the <literal>scala</literal> session <literal>"Buck
       Trends"∼(2∼weeks∼List())</literal>.</para>
 
       <para id="para_the_p_string_string_corre">The
       <literal>p.∼[String,String]</literal> corresponds to the parser that
-      handles expressions like <literal>2 weeks</literal>. Hence, the instance
-      created when we parsed our example string was the instance
-      <literal>p.∼("2", "weeks")</literal>. Calling the
-      <literal>p.∼.toString</literal> method produces the output
+      handles expressions like <literal role="keep-together">2
+      weeks</literal>. Hence, the instance created when we parsed our example
+      string was the instance <literal>p.∼("2", "weeks")</literal>. Calling
+      the <literal>p.∼.toString</literal> method produces the output
       <literal>(2~weeks)</literal>.</para>
 
       <para id="para_working_out_one_level_we_have">Working out one level, we
@@ -1715,7 +1718,7 @@ scala&gt;</screen>
       "weeks"))</literal>. Calling <literal>toString</literal> again results
       in the string <literal>("Buck Trends"∼(2∼weeks))</literal>.</para>
 
-      <para id="para_finally_at_the_outer_level_of">Finally, at the outer-most
+      <para id="para_finally_at_the_outer_level_of">Finally, at the outermost
       level, we have
       <literal>p.∼[p.∼[String,p.∼[String,String]],List[String]]</literal>.
       We’ve already discussed everything up to the the last
@@ -1729,7 +1732,7 @@ scala&gt;</screen>
       except for the list of zero or more <literal>deductItems</literal>.
       There are none in our example, so we get an empty list for which
       <literal>toString</literal> returns <literal>List()</literal>.
-      Therefore, calling <literal>p.∼.toString</literal> on our outer-most
+      Therefore, calling <literal>p.∼.toString</literal> on our outermost
       type, the one that parameterizes <literal>p.Parser</literal>, returns
       the string <literal>"Buck Trends"∼(2∼weeks∼List())</literal>. We’re
       done!</para>
@@ -1746,7 +1749,7 @@ scala&gt;</screen>
 
       <para id="para_as_we_parse_the_dsl_we_want_t">As we parse the DSL, we
       want to look up the employee by name, fetch his or her gross salary for
-      the specified pay period and then calculate the deductions as we go.
+      the specified pay period, and then calculate the deductions as we go.
       When the parser returned by <literal>paycheck</literal> finishes, we
       want to return a <literal>Pair</literal> with the
       <literal>Employee</literal> instance and the completed
@@ -1768,13 +1771,13 @@ scala&gt;</screen>
       <para id="para_we_will_reuse_domain_class">We will reuse “domain”
       classes like <literal>Employee</literal>, <literal>Money</literal>,
       <literal>Paycheck</literal>, etc. from earlier in the chapter. To do the
-      calculations on demand, we will create a second iteration of
-      <literal>PayrollParserCombinatorsV1</literal> that we’ll call
-      <literal>PayrollParserCombinators</literal>. We’ll modify the parsers
-      returned by some of the production methods to return new kinds of
-      parsers. We’ll also do administrative work like storing running context
-      data, as needed. Our implementation won’t be thread safe. You’ll want to
-      ensure that only one thread uses a given
+      calculations on demand, we will create a second iteration of <literal
+      role="keep-together">PayrollParserCombinatorsV1</literal> that we’ll
+      call <literal>PayrollParserCombinators</literal>. We’ll modify the
+      parsers returned by some of the production methods to return new kinds
+      of parsers. We’ll also do administrative work like storing running
+      context data, as needed. Our implementation won’t be thread-safe. You’ll
+      want to ensure that only one thread uses a given
       <literal>PayrollParserCombinators</literal>. We could make it more
       robust, but doing so isn’t the goal of this exercise.</para>
 
@@ -1885,8 +1888,8 @@ class PayrollParserCombinators(val employees: Map[Name, Employee])
       kind.</para>
 
       <para id="para_there_are_two_other_fields_c">There are two other fields:
-      <literal>currentEmployee</literal> which remembers which employee we are
-      processing, and <literal>grossAmount</literal>, which remembers the
+      <literal>currentEmployee</literal>, which remembers which employee we
+      are processing, and <literal>grossAmount</literal>, which remembers the
       gross amount of pay for the employee for the pay period. Both fields
       have a slight <emphasis>design smell</emphasis>. They are mutable. They
       are set only once per parse, but not when they are declared, only when
@@ -1924,13 +1927,14 @@ def paycheck = empl ~ gross ~ deduct ^^ {
       <literal>Pair</literal> with the <literal>Employee</literal> and the
       computed <literal>Paycheck</literal>. The <literal>empl ∼ gross ∼
       deduct</literal> combination would still return
-      <literal>Parser[String]</literal> (we’ll drop the path-dependent prefix
-      for now). We have added a new combinator <literal>^^</literal>, e.g.,
-      <literal>prod1 ^^ func1</literal>, where <literal>func1</literal> is a
-      function. If <literal>prod1</literal> succeeds, then the result of
-      applying <literal>func1</literal> to the result of
-      <literal>prod1</literal> is returned. That is, we return
-      <literal>func1(prod1)</literal>.</para>
+      <literal>Parser[String]</literal> (we’ll drop the <phrase
+      role="keep-together">path-</phrase><phrase
+      role="keep-together">dependent</phrase> prefix for now). We have added a
+      new combinator <literal>^^</literal>, e.g., <literal>prod1 ^^
+      func1</literal>, where <literal>func1</literal> is a function. If
+      <literal>prod1</literal> succeeds, then the result of applying
+      <literal>func1</literal> to the result of <literal>prod1</literal> is
+      returned. That is, we return <literal>func1(prod1)</literal>.</para>
 
       <para id="para_for_paycheck_we_give_it_a_f">For
       <literal>paycheck</literal>, we give it a function literal that does a
@@ -1970,7 +1974,7 @@ def empl = "paycheck" ~&gt; "for" ~&gt; "employee" ~&gt; employeeName ^^ { name 
       embedded double quotes have to be removed, which is why we start by
       extracting the substring that tosses the first and last characters. The
       name is used to look up the <literal>Employee</literal> instance in the
-      map, saving the value in the <literal>currentEmployee</literal> field.
+      map, saving the value in the <literal>currentEm⁠ployee</literal> field.
       In general, there is not a lot of “graceful” error handling in
       <literal>PayrollParserCombinators</literal>. However, the
       <literal>empl</literal> method handles the case where no employee is
@@ -1984,14 +1988,14 @@ def empl = "paycheck" ~&gt; "for" ~&gt; "employee" ~&gt; employeeName ^^ { name 
       interesting case is <literal>deduct</literal>. It folds the list of
       deductions into a single deduction amount, using addition. The
       <literal>foldLeft</literal> method takes two argument lists. The first
-      has a single argument that specifies the initial value, in this case
+      has a single argument that specifies the initial value, in this case,
       zero <literal>Money</literal>. The second argument list has a single
-      function literal argument that takes two arguments, the accumulated
-      value of the folding operation and an item from the list. In this case,
-      we return the sum of the arguments. So, <literal>foldLeft</literal>
-      iterates over the <literal>items</literal> collection, adding them
-      together. See <xref linkend="TraversingMappingFilteringFolding" /> in
-      <xref linkend="FunctionalProgramming" /> for more information on
+      function literal argument that takes two arguments: the accumulated
+      value of the folding operation, and an item from the list. In this case,
+      we return the sum of the arguments. So, <literal
+      role="keep-together">foldLeft</literal> iterates over the
+      <literal>items</literal> collection, adding them together. See <xref
+      linkend="TraversingMappingFilteringFolding" /> for more information on
       <literal>foldLeft</literal> and related operations.</para>
 
       <para id="para_the_weeks_and_days_product">The <literal>weeks</literal>
@@ -1999,7 +2003,7 @@ def empl = "paycheck" ~&gt; "for" ~&gt; "employee" ~&gt; employeeName ^^ { name 
       parser combinators based on regular-expressions. (We’re also using
       <literal>stringLiteral</literal>, <literal>decimalNumber</literal>, and
       <literal>floatingPointNumber</literal> provided by
-      <literal>JavaTokenParsers</literal>). Note that <literal>weeks</literal>
+      <literal>JavaTokenParsers</literal>.) Note that <literal>weeks</literal>
       and <literal>days</literal> ignore the parsed string. They just return a
       multiplication factor used to determine total days in the pay period in
       the <literal>duration</literal> production rule.</para>
@@ -2082,13 +2086,15 @@ object PayrollParserCombinatorsSpec
       the previous implementation of the internal DSL, there is one big
       conceptual difference from the two implementations. Here we are
       computing the paycheck as we parse code written in the external DSL. In
-      the internal DSL case, we generated a paycheck calculator when we parsed
-      the DSL. Afterward, we used that calculator to compute paychecks for one
-      employee at a time. We could have generated a paycheck calculator like
-      we did before, but we chose a simpler approach to focus on the
-      construction of the parser itself. Also, as we discussed above, we
-      weren’t as careful about thread-safety and other issues in the
-      implementation.<indexterm class="endofrange"
+      the internal DSL case, we generated a <phrase
+      role="keep-together">paycheck</phrase> calculator when we parsed the
+      DSL. Afterward, we used that calculator to <phrase
+      role="keep-together">compute</phrase> paychecks for one employee at a
+      time. We could have generated a paycheck calculator like we did before,
+      but we chose a simpler approach to focus on the construction of the
+      parser itself. Also, as we discussed earlier, we weren’t as careful
+      about thread safety and other issues in the implementation.<indexterm
+      class="endofrange"
       startref="ch11_parsercombinators"></indexterm><indexterm
       class="endofrange" startref="ch11_parsersfinal"></indexterm><indexterm
       class="endofrange"
@@ -2147,6 +2153,9 @@ object PayrollParserCombinatorsSpec
     </sect2>
   </sect1>
 
+  <?dbfo-need height=”2in”
+?>
+
   <sect1 id="_recap_and_what_s_next_3">
     <title>Recap and What’s Next</title>
 
@@ -2166,9 +2175,9 @@ object PayrollParserCombinatorsSpec
     non-programming stakeholders to read or even write code written in the
     DSL, it might be worth the extra effort to create an external DSL that
     eliminates as many of the programming-language idioms as possible.
-    Consider whether or not the code written in the DSL will need to be
-    processed for other purposes, like generating documentation, spreadsheets,
-    etc. Since you will have to write a parser for the DSL anyway, it might be
+    Consider whether the code written in the DSL will need to be processed for
+    other purposes, like generating documentation, spreadsheets, etc. Since
+    you will have to write a parser for the DSL anyway, it might be
     straightforward to write others to handle these different purposes.</para>
 
     <para id="para_so_far_we_have_only_hinted_at">In the next chapter, we’ll

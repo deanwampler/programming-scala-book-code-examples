@@ -1964,8 +1964,7 @@ Scottish Terrier</screen>
     <para id="para_enumeration_no_name_values">You’ll often want to give your
     enumeration values human-readable names, as we did here. However,
     sometimes you may not need them. Here’s another enumeration example
-    adapted from the <emphasis>scaladoc</emphasis> entry for
-    <literal>Enumeration</literal>:</para>
+    adapted from the Scaladoc entry for <literal>Enumeration</literal>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Rounding/days-enumeration-script.scala
 

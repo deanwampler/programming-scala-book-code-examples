@@ -46,9 +46,10 @@
       <orderedlist id="glossary_abstract_type" numeration="lowerroman">
         <listitem>
           <para>A <emphasis>class</emphasis> or <emphasis>trait</emphasis>
-          with one or more methods, fields, or types declared, but undefined.
-          Abstract types can’t be instantiated. Contrast with
-          <emphasis>concrete types</emphasis>.<indexterm>
+          with one or more methods, fields, or types declared, but <phrase
+          role="keep-together">undefined</phrase>. Abstract types can’t be
+          instantiated. Contrast with <emphasis>concrete
+          types</emphasis>.<indexterm>
               <primary>abstract types</primary>
 
               <secondary>defined</secondary>
@@ -69,7 +70,7 @@
 
     <glossdef>
       <para>An autonomous sender and receiver of messages in the
-      <emphasis>actor model of concurrency</emphasis>.<indexterm>
+      <emphasis>Actor model of concurrency</emphasis>.<indexterm>
           <primary>Actors</primary>
 
           <secondary>defined</secondary>
@@ -81,8 +82,9 @@
     <glossterm>Actor Model of Concurrency</glossterm>
 
     <glossdef>
-      <para>A concurrency model where autonomous <emphasis>actors</emphasis>
-      coordinate work by exchanging messages. An actor’s messages are stored
+      <para>A concurrency model where autonomous <emphasis>Actors</emphasis>
+      coordinate work by exchanging <phrase
+      role="keep-together">messages</phrase>. An Actor’s messages are stored
       in a <emphasis>mailbox</emphasis> until the actor processes
       them.<indexterm>
           <primary>concurrency</primary>
@@ -113,8 +115,8 @@
     <glossdef>
       <para>A way of attaching “metadata” to a declaration that can be
       exploited by the compiler and other tools for code generation,
-      verification and validation, etc. In Scala (and Java) An annotation is a
-      class. When used, it is prefixed with the <literal>@</literal>
+      verification and validation, etc. In Scala (and Java), an annotation is
+      a class. When used, it is prefixed with the <literal>@</literal>
       character.<indexterm>
           <primary>annotations</primary>
 
@@ -157,18 +159,17 @@
     <glossterm>Aspect-Oriented Programming</glossterm>
 
     <glossdef>
-      <para>(Sometimes called <emphasis>Aspect-Oriented Software
-      Development</emphasis>) An approach to <emphasis>cross-cutting
+      <para>(Sometimes called <emphasis>aspect-oriented software
+      development</emphasis>.) An approach to <emphasis>cross-cutting
       concerns</emphasis>, where the concerns are designed and implemented in
       a “modular” way (that is, with appropriate encapsulation, lack of
       duplication, etc.), then integrated into all the relevant execution
-      points in a succinct and robust way, e.g. through declarative or
+      points in a succinct and robust way, e.g., through declarative or
       programmatic means. In AOP terms, the execution points are called
-      <emphasis>join points</emphasis>, a particular set of them is called a
-      <emphasis>pointcut</emphasis> and the new behavior that is executed
+      <emphasis>join points</emphasis>; a particular set of them is called a
+      <emphasis>pointcut</emphasis>; and the new behavior that is executed
       before, after, or “around” a join point is called
-      <emphasis>advice</emphasis>. <emphasis>AspectJ</emphasis> <link
-      linkend="AspectJ" xrefstyle="select:nopage">[AspectJ]</link> is the best
+      <emphasis>advice</emphasis>. <emphasis>AspectJ</emphasis> is the best
       known AOP toolkit. Scala <emphasis>traits</emphasis> can be used to
       implement some aspect-like functionality.<indexterm>
           <primary>aspect-oriented programming (AOP)</primary>
@@ -182,13 +183,16 @@
     <glossterm>AspectJ</glossterm>
 
     <glossdef>
-      <para>A extension of Java that supports <emphasis>aspect-oriented
-      programming</emphasis>. AspectJ supports two forms of syntax, an
-      extended Java-based syntax and a “pure” Java syntax that uses Java
-      annotations to indicate the <emphasis>pointcuts</emphasis> and
+      <para>An extension of Java that supports <emphasis>Aspect-Ori⁠ented
+      Programming</emphasis>. AspectJ (<link linkend="AspectJ"
+      xrefstyle="select:nopage">[AspectJ]</link>) supports two forms of
+      syntax: an extended Java-based syntax, and a “pure” Java syntax that
+      uses Java annotations to indicate the <emphasis>pointcuts</emphasis> and
       <emphasis>advices</emphasis> of an aspect. The aspect behaviors
       (advices) can be incorporated into the target code at compile time, as a
-      post-compile “weaving” step, or at load time.<indexterm>
+      <phrase role="keep-together">post-</phrase><phrase
+      role="keep-together">compile</phrase> “weaving” step, or at load
+      time.<indexterm>
           <primary>AspectJ library</primary>
         </indexterm></para>
     </glossdef>
@@ -198,10 +202,11 @@
     <glossterm>Attribute</glossterm>
 
     <glossdef>
-      <para>Another name for a <emphasis>field</emphasis>, used by convention
-      in many object-oriented programming languages. Scala follows Java’s
-      convention of preferring the term <emphasis>field</emphasis> over
-      <emphasis>attribute</emphasis>.<indexterm>
+      <para>Another name for a <emphasis>field</emphasis>, used by <phrase
+      role="keep-together">convention</phrase> in many object-oriented
+      programming languages. Scala follows Java’s convention of preferring the
+      term <emphasis>field</emphasis> over <emphasis
+      role="keep-together">attribute</emphasis>.<indexterm>
           <primary>attributes</primary>
         </indexterm></para>
     </glossdef>
@@ -242,7 +247,7 @@
       written in a format that looks more like a requirements (or behavioral)
       specification and less like a test of the code’s conformance to the
       requirements. However, the specification format is still executable and
-      it still provides the verification, validation and regression testing
+      it still provides the verification, validation, and regression testing
       service that TDD tests provide.<indexterm>
           <primary>BDD (Behavior-Driven Development)</primary>
 
@@ -268,7 +273,7 @@
     <glossterm>By-Name Parameter</glossterm>
 
     <glossdef>
-      <para>A <emphasis>by-name</emphasis> parameter looks like a function
+      <para>A <emphasis>by-name parameter</emphasis> looks like a function
       value that takes no parameters, but rather than being declared with the
       signature <literal>p: () ⇒ R</literal>, where <literal>R</literal> is
       the return type, it is declared with the signature <literal>p: ⇒
@@ -277,9 +282,9 @@
       <emphasis>once</emphasis> just before the function call, like a
       <emphasis>by-value parameter</emphasis>. For example, they are useful
       for a function that is designed to look like a control construct that
-      takes a “block”, not a function with explicit parameter arguments,
-      (think of how <emphasis>while loops</emphasis> look, for example). The
-      function argument that has block-like behavior would be a by-name
+      takes a “block,” not a function with explicit parameter arguments (think
+      of how <literal>while</literal> loops look, for example). The function
+      argument that has block-like behavior would be a by-name
       parameter.<indexterm>
           <primary>by-name parameters</primary>
 
@@ -292,7 +297,7 @@
     <glossterm>By-Value Parameter</glossterm>
 
     <glossdef>
-      <para>A <emphasis>by-value</emphasis> parameter is the usually kind of
+      <para>A <emphasis>by-value parameter</emphasis> is the usual kind of
       method parameter that is evaluated before it is passed to the method.
       Contrast with <emphasis>by-name parameter</emphasis>.<indexterm>
           <primary>by-value parameters</primary>
@@ -347,11 +352,11 @@
 
     <glossdef>
       <para>A class declared with the keyword <literal>case</literal>. The
-      Scala compiler automatically defines <emphasis>equals</emphasis>,
-      <emphasis>hashCode</emphasis> and <emphasis>toString</emphasis> methods
-      for the class and creates a <emphasis>companion object</emphasis> with
-      an <emphasis>apply</emphasis> factory method and an
-      <emphasis>unapply</emphasis> extractor method. Case classes are
+      Scala compiler automatically defines <literal>equals</literal>,
+      <literal>hashCode</literal> and <literal>toString</literal> methods for
+      the class and creates a <emphasis>companion object</emphasis> with an
+      <literal role="keep-together">apply</literal> factory method and an
+      <literal>unapply</literal> extractor method. Case classes are
       particularly convenient for use with <emphasis>pattern
       matching</emphasis> (<emphasis>case</emphasis>) expressions.<indexterm>
           <primary>case classes</primary>
@@ -365,7 +370,7 @@
     <glossterm>Child Type</glossterm>
 
     <glossdef>
-      <para>A class or trait that inherits from a <emphasis>parent</emphasis>
+      <para>A class or trait that inherits from a <literal>parent</literal>
       class or trait. Sometimes called a <emphasis>subtype</emphasis> or
       <emphasis>derived type</emphasis>. See
       <emphasis>inheritance</emphasis>.<indexterm>
@@ -432,8 +437,9 @@
 
     <glossdef>
       <para>Scala follows the same comment conventions as Java, C#, C++, etc.
-      A <literal>// comment</literal> goes to the end of a line, while a
-      <literal>/* comment */</literal> can cross line boundaries.<indexterm>
+      A <literal>// <replaceable>comment</replaceable></literal> goes to the
+      end of a line, while a <literal>/* <replaceable>comment</replaceable>
+      */</literal> can cross line boundaries.<indexterm>
           <primary>comments</primary>
         </indexterm></para>
     </glossdef>
@@ -443,7 +449,7 @@
     <glossterm>Companion Class</glossterm>
 
     <glossdef>
-      <para>An <literal>class</literal> declared with the same name as an
+      <para>A <literal>class</literal> declared with the same name as an
       object and defined in the same source file. See also <emphasis>companion
       object</emphasis>.<indexterm>
           <primary>companion classes</primary>
@@ -458,11 +464,12 @@
 
     <glossdef>
       <para>An <literal>object</literal> declared with the same name as a
-      class (called its <emphasis>companion class</emphasis>) and defined in
-      the same source file. Companion objects are where methods and fields are
-      defined that would be statics in Java classes, such as factory methods,
-      <literal>apply</literal> and <literal>unapply</literal> for pattern
-      matching, etc.<indexterm>
+      class (called its <emphasis>companion class</emphasis>) and <phrase
+      role="keep-together">defined</phrase> in the same source file. Companion
+      objects are where methods and fields are defined that would be statics
+      in Java classes, such as factory methods, <literal>apply</literal> and
+      <literal role="keep-together">unapply</literal> for pattern matching,
+      etc.<indexterm>
           <primary>companion objects</primary>
 
           <secondary>defined</secondary>
@@ -520,8 +527,8 @@
     <glossdef>
       <para>The protocol and requirements that exist between a module (e.g.,
       class, trait, object, or even function or method) and clients of the
-      module. More specifically, see <emphasis>design by
-      contract</emphasis>.<indexterm>
+      module. More specifically, see <emphasis>Design by
+      Contract</emphasis>.<indexterm>
           <primary>contract</primary>
 
           <secondary>defined</secondary>
@@ -530,14 +537,14 @@
   </glossentry>
 
   <glossentry id="glossentry-context-free-grammar">
-    <glossterm>Context Free Grammar</glossterm>
+    <glossterm>Context-Free Grammar</glossterm>
 
     <glossdef>
       <para>A kind of language grammar for which each
       <emphasis>nonterminal</emphasis> can be specified as a
       <emphasis>production</emphasis> without reference to additional context
       information. That is, each nonterminal can appear by itself on the
-      left-hand side of the production the specifies it.<indexterm>
+      lefthand side of the production the specifies it.<indexterm>
           <primary>grammars</primary>
 
           <secondary>context-free</secondary>
@@ -555,7 +562,7 @@
       types</emphasis> under inheritance, if a parameter <literal>A</literal>
       is <emphasis>contravariant</emphasis> in a parameterized type
       <literal>T[-A]</literal>, then the <literal>-</literal> is the
-      <emphasis>variance annotation</emphasis> and a type
+      <emphasis>variance annotation</emphasis>, and a type
       <literal>T[B]</literal> is a <emphasis>supertype</emphasis> of
       <literal>T[A]</literal> if <literal>B</literal> is a
       <emphasis>subtype</emphasis> of <literal>A</literal>. See also
@@ -574,7 +581,7 @@
       types</emphasis> under inheritance, if a parameter <literal>A</literal>
       is <emphasis>covariant</emphasis> in a parameterized type
       <literal>T[+A]</literal>, then the <literal>+</literal> is the
-      <emphasis>variance annotation</emphasis> and a type
+      <emphasis>variance annotation</emphasis>, and a type
       <literal>T[B]</literal> is a <emphasis>subtype</emphasis> of
       <literal>T[A]</literal> if <literal>B</literal> is a
       <emphasis>subtype</emphasis> of <literal>A</literal>. See also
@@ -593,11 +600,13 @@
       don’t fit in the same boundaries as the primary modularity
       decomposition. The same behaviors must be invoked consistently at
       specific execution points over a range of objects and functions. For
-      example, the same ORM (Object-Relational Mapping) persistence strategy
+      example, the same ORM (<phrase
+      role="keep-together">Object-</phrase><phrase
+      role="keep-together">Relational</phrase> Mapping) persistence strategy
       needs to be used consistently for a set of classes, not just a single
-      class. Hence, such “concerns” are said to be “cross-cutting”. Supporting
+      class. Hence, such concerns are said to be cross-cutting. Supporting
       these concerns should not involve duplication of code, etc. See also
-      <emphasis>Aspect-Oriented Programming</emphasis>.<indexterm>
+      a<emphasis>spect-oriented programming</emphasis>.<indexterm>
           <primary>cross-cutting concerns</primary>
         </indexterm></para>
     </glossdef>
@@ -608,10 +617,11 @@
 
     <glossdef>
       <para>Converting an N argument function into a sequence of N functions
-      of one argument, where each function except for the last returns a new
-      function that takes a single argument that returns a new function, etc.,
-      until the last function that takes a single argument and returns a
-      value.<indexterm>
+      of one argument, where each function except for the last <phrase
+      role="keep-together">returns</phrase> a new function that takes a single
+      argument that returns a new function, etc., until the last function that
+      takes a single <phrase role="keep-together">argument</phrase> and
+      returns a value.<indexterm>
           <primary>currying</primary>
         </indexterm></para>
     </glossdef>
@@ -651,7 +661,7 @@
     <glossterm>Default Argument Value</glossterm>
 
     <glossdef>
-      <para>(Scala version 2.8) The ability to define a default value for a
+      <para>(Scala version 2.8.) The ability to define a default value for a
       method argument that will be used if the caller does not specify a
       value. See also <emphasis>implicit argument</emphasis> and
       <emphasis>named argument</emphasis>.<indexterm>
@@ -664,13 +674,13 @@
     <glossterm>Dependency Injection</glossterm>
 
     <glossdef>
-      <para>A form of <emphasis>inversion of control</emphasis>, where an
+      <para>A form of <emphasis>inversion of control</emphasis> where an
       object’s external dependencies are given to it, either programmatically
       or through a DI framework that is driven by configuration information.
-      Hence, the object remains “passive”, rather than taking an active role
+      Hence, the object remains “passive,” rather than taking an active role
       in resolving dependencies. The injection mechanism uses constructor
       arguments or field setters provided by the object. DI minimizes the
-      coupling of objects. They only need to know about the abstractions of
+      coupling of objects; they only need to know about the abstractions of
       their dependencies.<indexterm>
           <primary>dependency injection (DI)</primary>
 
@@ -695,10 +705,11 @@
       for the Eiffel language. For each entry point, valid inputs are
       specified in a programmatic way, so they can be validated during
       testing. These specifications are called
-      <emphasis>preconditions</emphasis>. Similarly, assuming the
-      preconditions are specified, specifications on the guaranteed results
-      are called <emphasis>postconditions</emphasis> and are also specified in
-      an executable way. <emphasis>Invariants</emphasis> can also be specified
+      <emphasis>preconditions</emphasis>. Similarly, <phrase
+      role="keep-together">assuming</phrase> the preconditions are specified,
+      specifications on the guaranteed results are called
+      <emphasis>postconditions</emphasis> and are also specified in an
+      executable way. <emphasis>Invariants</emphasis> can also be specified
       that should be true on entry and on exit.<indexterm>
           <primary>Design by Contract</primary>
 
@@ -726,10 +737,12 @@
       <para>A custom programming language that resembles the terms, idioms,
       and expressions of a particular domain. An <emphasis>internal</emphasis>
       DSL is an idiomatic form of a general-purpose programming language. That
-      is, no special-purpose parser is created for the language. Instead, DSL
-      code is written in the general-purpose language and parsed just like any
-      other code. An <emphasis>external</emphasis> DSL is a language with its
-      own grammar and parser.<indexterm>
+      is, no <phrase role="keep-together">special-</phrase><phrase
+      role="keep-together">purpose</phrase> parser is created for the
+      language. <phrase role="keep-together">Instead</phrase>, DSL code is
+      written in the general-purpose language and parsed just like any other
+      code. An <emphasis>external</emphasis> DSL is a language with its own
+      grammar and parser.<indexterm>
           <primary>DSLs (Domain-Specific Languages)</primary>
 
           <secondary>defined</secondary>
@@ -744,7 +757,7 @@
       <para>A term used in languages with <emphasis>dynamic typing</emphasis>
       for the way method resolution works. As long as an object accepts a
       method call (message send), the runtime is satisfied. “If it walks like
-      a duck and talks like a duck, it’s a duck.” Contrast to the use of
+      a duck and talks like a duck, it’s a duck.” Contrast with the use of
       <emphasis>structural types</emphasis> in some <emphasis>statically
       typed</emphasis> languages like Scala.<indexterm>
           <primary>duck typing</primary>
@@ -777,7 +790,7 @@
       type, while hiding implementation details, which prevents unwanted
       access to them from clients and keeps the
       <emphasis>abstraction</emphasis> exposed by the type consistent and
-      minimal.<indexterm>
+      <phrase role="keep-together">minimal</phrase>.<indexterm>
           <primary>encapsulation</primary>
 
           <secondary>defined</secondary>
@@ -838,7 +851,8 @@
       <para>An <literal>unapply</literal> method defined in a
       <emphasis>companion object</emphasis> that is used to extract the
       constituent values for fields in an object. They are most commonly used
-      in <emphasis>pattern matching</emphasis> expressions.<indexterm>
+      in <emphasis>pattern matching</emphasis> <phrase
+      role="keep-together">expressions</phrase>.<indexterm>
           <primary>extractors</primary>
         </indexterm></para>
     </glossdef>
@@ -849,7 +863,7 @@
 
     <glossdef>
       <para>A <literal>val</literal> or <literal>var</literal> in a type that
-      represents part, if not all of the state of a corresponding instance of
+      represents part, if not all, of the state of a corresponding instance of
       the type.<indexterm>
           <primary>fields</primary>
 
@@ -911,7 +925,7 @@
 
     <glossdef>
       <para>A <emphasis>variable</emphasis> that is referenced in a
-      <emphasis>function literal</emphasis>, but is not passed in as an
+      <emphasis>function literal</emphasis> but is not passed in as an
       argument. Therefore, it must be “bound” to a defined variable of the
       same name in the context where the function literal is defined, to form
       a <emphasis>closure</emphasis>.<indexterm>
@@ -954,11 +968,12 @@
     <glossterm>Function Type</glossterm>
 
     <glossdef>
-      <para>In Scala, all functions are instances of <literal>FunctionN[-T1,
-      T2, ..., TN, +R]</literal> types, where <literal>N</literal> is the
-      number of arguments (0 through 22 are supported). The type signature
-      syntax <literal>(T1, T2, ..., TN) ⇒ R</literal> is used for declaring
-      concrete instances, i.e., function literals.<indexterm>
+      <para>In Scala, all functions are instances of <literal
+      role="keep-together">FunctionN[-T1, T2, ..., TN, +R]</literal> types,
+      where <literal>N</literal> is the number of arguments (0 through 22 are
+      supported). The type signature syntax <literal>(T1, T2, ..., TN) ⇒
+      R</literal> is used for declaring concrete instances, i.e., function
+      literals.<indexterm>
           <primary>function types</primary>
 
           <secondary>defined</secondary>
@@ -972,9 +987,10 @@
     <glossdef>
       <para>A form of programming that mimics the way mathematical functions
       and variables work. Mathematical functions are
-      <emphasis>side-effect-free</emphasis> and they are composable from other
-      functions. Variables are assigned once. Functions can be assigned to
-      variables and returned from other functions.<indexterm>
+      <emphasis>side-effect-free</emphasis>, and they are composable from
+      other functions. Variables are assigned once. Functions can be assigned
+      to variables and <phrase role="keep-together">returned</phrase> from
+      other functions.<indexterm>
           <primary>functional programming</primary>
         </indexterm></para>
     </glossdef>
@@ -984,10 +1000,11 @@
     <glossterm>Generator</glossterm>
 
     <glossdef>
-      <para>Expressions like <literal>i &lt;- listOfInts</literal> in for
-      expressions. Each pass through the loop <emphasis>generates</emphasis> a
-      new val <literal>i</literal> taken from the list
-      <literal>listOfInts</literal>, in this example.<indexterm>
+      <para>Expressions like <literal>i &lt;- listOfInts</literal> in
+      <literal>for</literal> expressions. Each pass through the loop
+      <emphasis>generates</emphasis> a new <literal>val</literal>
+      <literal>i</literal> taken from the list <literal>listOfInts</literal>,
+      in this example.<indexterm>
           <primary>generators</primary>
 
           <secondary>defined</secondary>
@@ -1009,7 +1026,7 @@
   </glossentry>
 
   <glossentry id="glossentry-higher-order-functions">
-    <glossterm>Higher Order Functions</glossterm>
+    <glossterm>Higher-Order Functions</glossterm>
 
     <glossdef>
       <para>Functions that take other functions as arguments or return a
@@ -1070,7 +1087,8 @@
       <emphasis>implicit</emphasis> keyword, marking it as eligible for use as
       an <emphasis>implicit type conversion</emphasis>, whenever it is in
       scope and conversion is needed (e.g., for the <emphasis>pimp my
-      library</emphasis> pattern).<indexterm>
+      library</emphasis> <phrase
+      role="keep-together">pattern</phrase>).<indexterm>
           <primary>implicit conversions</primary>
 
           <secondary>defined</secondary>
@@ -1098,11 +1116,12 @@
     <glossterm>Infinite Data Structure</glossterm>
 
     <glossdef>
-      <para>A data structure that represents a non-terminating collection of
-      values, but which is capable of doing so without exhausting system
-      resources. The values are not computed until the data structure is asked
-      to produce them. As long as only a finite subset of the values are
-      requested, resource exhaustion is avoided.<indexterm>
+      <para>A data structure that represents a non-<phrase
+      role="keep-together">terminating</phrase> collection of values, but
+      which is capable of doing so without exhausting system resources. The
+      values are not computed until the data structure is asked to produce
+      them. As long as only a finite subset of the values are requested,
+      resource exhaustion is avoided.<indexterm>
           <primary>infinite data structures</primary>
         </indexterm></para>
     </glossdef>
@@ -1118,7 +1137,7 @@
       for methods named with <emphasis>operator characters</emphasis>, the
       syntax provides a form of <emphasis>operator overloading</emphasis>.
       Sometimes also called <emphasis>operator notation</emphasis>. See also
-      <emphasis>postfix notation</emphasis>.<indexterm>
+      <emphasis>postfix no⁠tation</emphasis>.<indexterm>
           <primary>operator notation</primary>
         </indexterm><indexterm>
           <primary>infix notation</primary>
@@ -1135,7 +1154,8 @@
       <para>When a parameterized type of the form <literal>Op[A,B]</literal>
       is used to instantiate a type, it can also be written as <literal>A Op
       B</literal>. For example, <literal>Or[Throwable,Boolean]</literal> can
-      be written <literal>Throwable Or Boolean</literal>.<indexterm>
+      be written <literal role="keep-together">Throwable Or
+      Boolean</literal>.<indexterm>
           <primary>infix types</primary>
         </indexterm></para>
     </glossdef>
@@ -1146,11 +1166,12 @@
 
     <glossdef>
       <para>A strong relationship between one class or trait and another class
-      or trait. The inheriting (<emphasis>derived</emphasis>) class or trait
-      incorporates the members of the <emphasis>parent</emphasis> class or
-      trait, as if they were defined within the derivative. The derivative may
-      override inherited members (in most cases). Instances of a derivative
-      are <emphasis>substitutable</emphasis> for instances of the
+      or trait. The <phrase role="keep-together">inheriting</phrase>
+      (<emphasis>derived</emphasis>) class or trait incorporates the members
+      of the <emphasis>parent</emphasis> class or trait, as if they were
+      defined within the derivative. The derivative may override inherited
+      members (in most cases). Instances of a derivative are
+      <emphasis>substitutable</emphasis> for instances of the
       parent.<indexterm>
           <primary>inheritance</primary>
 
@@ -1167,8 +1188,9 @@
       <emphasis>class</emphasis> constructor. The word
       <emphasis>object</emphasis> is synonymous in most object-oriented
       languages, but we use the term <emphasis>object</emphasis> to refer to
-      an explicitly declared Scala <emphasis>object</emphasis> and we use the
-      term <emphasis>instance</emphasis> (and the verb
+      an explicitly <phrase role="keep-together">declared</phrase> Scala
+      <emphasis>object</emphasis>, and we use the term <emphasis
+      role="keep-together">instance</emphasis> (and the verb
       <emphasis>instantiate</emphasis>) for the more general case.<indexterm>
           <primary>instantiate</primary>
         </indexterm><indexterm>
@@ -1178,7 +1200,7 @@
       <para id="para_instantiation_can_also_refer_t">Instantiation can also
       refer to creating a <emphasis>concrete type</emphasis> from a
       <emphasis>parameterized type</emphasis> by specifying concrete types for
-      the parameters.</para>
+      the <phrase role="keep-together">parameters</phrase>.</para>
     </glossdef>
   </glossentry>
 
@@ -1190,7 +1212,7 @@
       types</emphasis> under inheritance, if a parameter <literal>A</literal>
       is <emphasis>invariant</emphasis> in a parameterized type
       <literal>T[A]</literal>, then there is no <emphasis>variance
-      annotation</emphasis> and a type <literal>T[B]</literal> is a
+      annotation</emphasis>, and a type <literal>T[B]</literal> is a
       <emphasis>subtype</emphasis> of <literal>T[A]</literal> if and only if
       <literal>B</literal> equals <literal>A</literal>. That is, the type
       can’t be changed. See also <emphasis>covariance</emphasis> and
@@ -1199,7 +1221,7 @@
         </indexterm></para>
 
       <para id="para_in_the_context_of__design_by_c">In the context of
-      <emphasis>design by contract</emphasis>, an assertion that should be
+      <emphasis>Design by Contract</emphasis>, an assertion that should be
       true before and after a method is executed.</para>
     </glossdef>
   </glossentry>
@@ -1208,15 +1230,15 @@
     <glossterm>Inversion of Control</glossterm>
 
     <glossdef>
-      <para>The idea that an object should not instantiate it’s own copies of
+      <para>The idea that an object should not instantiate its own copies of
       external dependencies, but rather rely on other mechanisms to supply
       those dependencies. IoC promotes better decoupling and testability, as
       the object only knows about the abstractions of its dependencies, not
       specific concrete implementers of them. A weak form of IoC is when an
-      object calls a factory, service locator, etc. to obtain the dependents.
+      object calls a factory, service locator, etc., to obtain the dependents.
       Hence, the object still has an active role and it has a dependency on
-      the “provider”. The strongest form of IoC is <emphasis>dependency
-      injection</emphasis>, where the object remains “passive”.<indexterm>
+      the “provider.” The strongest form of IoC is <emphasis>dependency
+      injection</emphasis>, where the object remains “passive.”<indexterm>
           <primary>inversion of control (IoC)</primary>
         </indexterm></para>
     </glossdef>
@@ -1226,18 +1248,20 @@
     <glossterm>Lazy</glossterm>
 
     <glossdef>
-      <para>Immutable variables (<literal>vals</literal>) can be declared
+      <para>Immutable variables (<literal>val</literal>s) can be declared
       <literal>lazy</literal>, meaning they will only be evaluated when they
       are read. This feature is useful for expensive evaluations that may not
-      be needed.<indexterm>
+      be <phrase role="keep-together">needed</phrase>.<indexterm>
           <primary>lazy, defined</primary>
         </indexterm></para>
 
       <para id="para_lazy_data_structures_can_also_">Lazy data structures can
-      also be used to define infinite data structures that won’t exhaust
-      system resources as long as only a finite subset of the structure is
-      evaluated. The <literal>Stream</literal> and <literal>Range</literal>
-      classes are both lazy. Contrast with <emphasis>strict</emphasis>.</para>
+      also be used to <phrase role="keep-together">define</phrase> infinite
+      data structures that won’t exhaust system resources as long as only a
+      finite subset of the structure is evaluated. The
+      <literal>Stream</literal> and <literal>Range</literal> classes are both
+      lazy. <phrase role="keep-together">Contrast</phrase> with
+      <emphasis>strict</emphasis>.</para>
     </glossdef>
   </glossentry>
 
@@ -1281,8 +1305,8 @@
     <glossterm>Mailbox</glossterm>
 
     <glossdef>
-      <para>The queue where an <emphasis>actor’s</emphasis> messages are
-      stored until the actor processes them in the <emphasis>actor model of
+      <para>The queue where an <emphasis>Actor’s</emphasis> messages are
+      stored until the actor processes them in the A<emphasis>ctor model of
       concurrency</emphasis>.<indexterm>
           <primary>mailbox for Actors</primary>
         </indexterm></para>
@@ -1309,14 +1333,15 @@
     <glossterm>MapReduce</glossterm>
 
     <glossdef>
-      <para>A divide and conquer strategy for processing large data sets in
+      <para>A divide-and-conquer strategy for processing large data sets in
       parallel. In the “map” phase, the data sets are subdivided. The desired
       computation is performed on each subset. The “reduce” phase combines the
       results of the subset calculations into a final result. MapReduce
       frameworks handle the details of managing the operations and the nodes
-      they run on, including restarting operations that fail for some reason.
-      The user of the framework only has to write the algorithms for mapping
-      and reducing the data sets and computing with the subsets.<indexterm>
+      they run on, including restarting <phrase
+      role="keep-together">operations</phrase> that fail for some reason. The
+      user of the framework only has to write the algorithms for mapping and
+      reducing the data sets and computing with the subsets.<indexterm>
           <primary>MapReduce</primary>
         </indexterm></para>
     </glossdef>
@@ -1341,7 +1366,7 @@
       <para>A form of caching that optimizes function invocations. The results
       from a function’s invocations are saved so that when repeated
       invocations with the same inputs are made, the cached results can be
-      returned instead of re-invoking the function again.<indexterm>
+      returned instead of reinvoking the function.<indexterm>
           <primary>memoization</primary>
         </indexterm></para>
     </glossdef>
@@ -1351,15 +1376,15 @@
     <glossterm>Message</glossterm>
 
     <glossdef>
-      <para>In the <emphasis>actor model of concurrency</emphasis>, messages
-      are exchanged between actors to coordinate their work.<indexterm>
+      <para>In the <emphasis>Actor model of concurrency</emphasis>, messages
+      are exchanged between Actors to coordinate their work.<indexterm>
           <primary>messages</primary>
         </indexterm></para>
 
       <para id="para_in_object_oriented_programming">In object-oriented
       programming, method invocation is sometimes referred to as “sending a
-      message to an object”, especially in certain languages, like Smalltalk
-      and to some extent, Ruby.</para>
+      message to an object,” especially in certain languages, like Smalltalk
+      and, to some extent, Ruby.</para>
     </glossdef>
   </glossentry>
 
@@ -1421,7 +1446,7 @@
     <glossterm>Named Argument</glossterm>
 
     <glossdef>
-      <para>(Scala version 2.8) The ability to refer to a method argument by
+      <para>(Scala version 2.8.) The ability to refer to a method argument by
       name when calling the method. It is useful in combination with
       <emphasis>default argument values</emphasis> for minimizing the number
       of arguments that have to be specified by the caller.<indexterm>
@@ -1447,7 +1472,7 @@
     <glossterm>Object</glossterm>
 
     <glossdef>
-      <para>An cohesive unit with a particular state, possible state
+      <para>A cohesive unit with a particular state, possible state
       transitions, and behaviors. In Scala, the keyword
       <literal>object</literal> is used to declare a
       <emphasis>singleton</emphasis> explicitly, using the same syntax as
@@ -1466,7 +1491,7 @@
   </glossentry>
 
   <glossentry id="glossentry-object-oriented-programming">
-    <glossterm>Object Oriented Programming</glossterm>
+    <glossterm>Object-Oriented Programming</glossterm>
 
     <glossdef>
       <para>A form of programming that encapsulates state values and
@@ -1486,10 +1511,11 @@
 
     <glossdef>
       <para>Characters like <literal>&lt;</literal>, <literal>*</literal>,
-      etc. that are not letters, digits, nor reserved characters, like left
-      and right parentheses, curly braces, square brackets, the semicolon,
-      colon, or comma. These characters can be used in method names to
-      implement a form of <emphasis>operator overloading</emphasis>.<indexterm>
+      etc. that are not letters, nor digits, nor reserved characters, like
+      left and right parentheses, curly braces, square brackets, the
+      semicolon, colon, or comma. These characters can be used in method names
+      to implement a form of <emphasis role="keep-together">operator
+      overloading</emphasis>.<indexterm>
           <primary>operator characters</primary>
 
           <secondary>defined</secondary>
@@ -1511,7 +1537,7 @@
     <glossdef>
       <para>The feature in some languages where standard mathematical
       operators, like <literal>*</literal>, <literal>/</literal>,
-      <literal>&lt;</literal>, etc. can be defined by users for custom types.
+      <literal>&lt;</literal>, etc., can be defined by users for custom types.
       In Scala, a form of operator overloading is supported by allowing
       operator characters to be used as normal method names and by allowing
       methods with one argument to be invoked with <emphasis>infix
@@ -1529,7 +1555,7 @@
 
     <glossdef>
       <para>Two or more functions defined in the same scope (e.g., as methods
-      in a type or as “bare” functions) that have the same name, but different
+      in a type or as “bare” functions) that have the same name but different
       <emphasis>signatures</emphasis>.<indexterm>
           <primary>functions</primary>
 
@@ -1559,11 +1585,12 @@
 
     <glossdef>
       <para>Parsers for <emphasis>parsing expression grammars</emphasis>
-      (PEGs) <link linkend="Ford" xrefstyle="select:nopage">[Ford]</link>.
-      They have several benefits, such as lack of ambiguity and good
-      performance characteristics. The forthcoming Scala version 2.8 parser
-      combinator library will add support for creating packrat
-      parsers.<indexterm>
+      (PEGs; see <link linkend="Ford"
+      xrefstyle="select:nopage">[Ford]</link>). They have several benefits,
+      such as lack of ambiguity and good performance characteristics. The
+      forthcoming Scala version 2.8 parser combinator library will add support
+      for creating packrat <phrase
+      role="keep-together">parsers</phrase>.<indexterm>
           <primary>packrat parsers</primary>
         </indexterm></para>
     </glossdef>
@@ -1577,7 +1604,8 @@
       Parameterized types are defined with placeholder parameters for types
       they use. When an instance of a parameterized type is created, specific
       types must be specified to replace all the type parameters. See also
-      <emphasis>type constructor</emphasis>.<indexterm>
+      <emphasis>type</emphasis> <emphasis
+      role="keep-together">constructor</emphasis>.<indexterm>
           <primary>parameterized types</primary>
 
           <secondary>defined</secondary>
@@ -1603,9 +1631,10 @@
 
     <glossdef>
       <para>An alternative to <emphasis>context-free grammars</emphasis> that
-      provide guaranteed linear-time parsing using
-      <emphasis>memoization</emphasis> and unambiguous grammars <link
-      linkend="PEG" xrefstyle="select:nopage">[PEG]</link>.<indexterm>
+      provide guaranteed linear-time parsing <phrase
+      role="keep-together">using</phrase> <emphasis>memoization</emphasis> and
+      unambiguous <phrase role="keep-together">grammars</phrase> (<link
+      linkend="PEG" xrefstyle="select:nopage">[PEG]</link>).<indexterm>
           <primary>PEGs (parsing expression grammars)</primary>
         </indexterm><indexterm>
           <primary>grammars</primary>
@@ -1622,7 +1651,7 @@
 
     <glossdef>
       <para>Associated with <emphasis>currying</emphasis>, where a subset of a
-      curried functions arguments are applied, yielding a new function that
+      curried function’s arguments are applied, yielding a new function that
       takes the remaining arguments.<indexterm>
           <primary>partial application</primary>
         </indexterm></para>
@@ -1645,7 +1674,7 @@
     <glossterm>Path-Dependent Type</glossterm>
 
     <glossdef>
-      <para>A nested type T is unique based on its “path”, the hierarchical,
+      <para>A nested type T is unique based on its “path,” the hierarchical,
       period-delimited list of the the enclosing packages, the enclosing
       types, and finally the type T itself. Instances of T can have different,
       incompatible types. For example, if T is nested in a trait and the trait
@@ -1661,8 +1690,9 @@
 
     <glossdef>
       <para>Case expressions, usually in a match expression, that compare an
-      object against possible types, type extractors, regular expressions,
-      etc. to determine the appropriate handling.<indexterm>
+      object against <phrase role="keep-together">possible</phrase> types,
+      type extractors, regular expressions, etc., to determine the appropriate
+      handling.<indexterm>
           <primary>pattern matching</primary>
 
           <secondary>defined</secondary>
@@ -1688,7 +1718,7 @@
 
     <glossdef>
       <para>An assertion that should be true on entry to a method or other
-      entry point. See <emphasis>design by contract</emphasis>.<indexterm>
+      entry point. See <emphasis>Design by Contract</emphasis>.<indexterm>
           <primary>preconditions</primary>
         </indexterm></para>
     </glossdef>
@@ -1699,7 +1729,7 @@
 
     <glossdef>
       <para>An assertion that should be true on exit from a method or other
-      boundary point. See <emphasis>design by contract</emphasis>.<indexterm>
+      boundary point. See <emphasis>Design by Contract</emphasis>.<indexterm>
           <primary>postconditions</primary>
         </indexterm></para>
     </glossdef>
@@ -1711,8 +1741,9 @@
     <glossdef>
       <para>A syntax supported by the compiler for methods with no argument,
       sometimes called <emphasis>nullary</emphasis> methods. The method can be
-      invoked without the period between the object and the method name. See
-      also <emphasis>infix notation</emphasis>.<indexterm>
+      invoked without the period between the <phrase
+      role="keep-together">object</phrase> and the method name. See also
+      <emphasis>infix no⁠tation</emphasis>.<indexterm>
           <primary>postfix notation</primary>
         </indexterm></para>
     </glossdef>
@@ -1751,8 +1782,8 @@
     <glossdef>
       <para>A term used for each part of a grammar that decomposes a specific
       <emphasis>nonterminal</emphasis> into other nonterminals (perhaps
-      including a recursive reference to the original nonterminal) and
-      <emphasis>terminals</emphasis>.<indexterm>
+      including a <phrase role="keep-together">recursive</phrase> reference to
+      the original nonterminal) and <emphasis>terminals</emphasis>.<indexterm>
           <primary>production</primary>
         </indexterm></para>
     </glossdef>
@@ -1854,9 +1885,9 @@
     <glossterm>Scaladocs</glossterm>
 
     <glossdef>
-      <para>The API documented generated form Scala source code using the
+      <para>The API documentation generated from Scala source code using the
       <userinput>scaladoc</userinput> tool, analogous to Java’s
-      <emphasis>Javadocs</emphasis>.<indexterm>
+      Javadocs.<indexterm>
           <primary>Scaladocs</primary>
         </indexterm></para>
     </glossdef>
@@ -1900,8 +1931,7 @@
       dependencies are used to ensure that an instance of the current type can
       be used as an instance of a dependent type in certain contexts (e.g., as
       used in the Observer Pattern in <xref
-      linkend="SelfTypeAnnotationsAndAbstractTypeMembers" /> in <xref
-      linkend="ApplicationDesign" />).<indexterm>
+      linkend="SelfTypeAnnotationsAndAbstractTypeMembers" />).<indexterm>
           <primary>self-type annotations</primary>
 
           <secondary>defined</secondary>
@@ -1924,8 +1954,8 @@
     <glossterm>Signature</glossterm>
 
     <glossdef>
-      <para>For a function, the name, parameter list types, and return value.
-      For a <emphasis>method</emphasis>, also includes the type that defines
+      <para>For a function: the name, parameter list types, and return value.
+      For a <emphasis>method</emphasis>: also includes the type that defines
       the method.<indexterm>
           <primary>signature</primary>
         </indexterm></para>
@@ -1960,12 +1990,12 @@
 
     <glossdef>
       <para>The unique type designator that excludes path dependencies. If
-      <literal>p1</literal> and <literal>p2</literal> are two different path
-      dependent types, their singleton types are <literal>p1.type</literal>
-      and <literal>p2.type</literal>, which may be the same. Contrast with
-      <emphasis>singleton</emphasis> objects. Singleton types are not
-      specifically the types of singleton objects, but singleton objects do
-      have singleton types.<indexterm>
+      <literal>p1</literal> and <literal>p2</literal> are two different
+      path-dependent types, their singleton types are
+      <literal>p1.type</literal> and <literal>p2.type</literal>, which may be
+      the same. Contrast with <emphasis>singleton</emphasis> objects.
+      Singleton types are not specifically the types of singleton objects, but
+      singleton objects do have singleton types.<indexterm>
           <primary>singleton types</primary>
         </indexterm></para>
     </glossdef>
@@ -1989,7 +2019,7 @@
     <glossterm>State</glossterm>
 
     <glossdef>
-      <para>As in, “the state of an object”, where it informally means the set
+      <para>As in, “the state of an object,” where it informally means the set
       of all the current values of an object’s
       <emphasis>fields</emphasis>.<indexterm>
           <primary>state</primary>
@@ -2065,7 +2095,7 @@
 
     <glossdef>
       <para>An interned string. Literal symbols are written starting with a
-      single “right quote”, e.g., <literal>'name</literal>.<indexterm>
+      single “right quote,” e.g., <literal>'name</literal>.<indexterm>
           <primary>symbols</primary>
 
           <secondary>defined</secondary>
@@ -2122,7 +2152,7 @@
       double may assist in the testing process, provide controlled test data
       and behaviors, and very aspects of the interaction between the object
       under test and the test double. Specific types of test doubles include
-      “fakes”, “mocks”, and “stubs”.<indexterm>
+      “fakes,” “mocks,” and “stubs.”<indexterm>
           <primary>test double</primary>
         </indexterm></para>
     </glossdef>
@@ -2151,7 +2181,7 @@
       turn. The metaphor of bouncing the functions off a trampoline is the
       source of the name. It can be used to rewrite a form of recursion where
       a function doesn’t call itself, but rather calls a different function
-      which invokes the original function, and so forth, back and forth. There
+      that invokes the original function, and so forth, back and forth. There
       is a proposal for the Scala version 2.8 compiler to include a trampoline
       implementation.<indexterm>
           <primary>trampolines</primary>
@@ -2164,7 +2194,7 @@
 
     <glossdef>
       <para>A grouping of two or more items of arbitrary types into a
-      “Cartesian product”, without first defining a class to hold them.
+      “Cartesian product,” without first defining a class to hold them.
       Literal tuple values are written in parentheses and separated by commas,
       e.g., <literal>(x1, x2, ...)</literal>. They are
       <emphasis>first-class</emphasis> values, so you can assign them to
@@ -2185,7 +2215,7 @@
       <para>A categorization of allowed states and operations on those states,
       including transformations from one state to another. The type of an
       instance is the combination of its declared <emphasis>class</emphasis>
-      (explicitly named or anonymous), mixed in <emphasis>traits</emphasis>,
+      (explicitly named or anonymous), mixed-in <emphasis>traits</emphasis>,
       and the specific types used to resolve any parameters if the class or
       traits are <emphasis>parameterized types</emphasis>. In Scala,
       <literal>type</literal> is also a keyword. When indicated in the text,
@@ -2211,9 +2241,9 @@
       <literal>count: Int</literal>, where <literal>Int</literal> is the
       <emphasis>type annotation</emphasis>. A type annotation is required when
       <emphasis>type inference</emphasis> can’t be used. In Scala, function
-      parameters require type annotations and annotations are required in some
-      other contexts where the type can’t be inferred, e.g., for return values
-      of some functions.<indexterm>
+      parameters require type annotations, and annotations are required in
+      some other contexts where the type can’t be inferred, e.g., for return
+      values of some functions.<indexterm>
           <primary>type annotations</primary>
 
           <secondary>defined</secondary>
@@ -2229,10 +2259,10 @@
       in a <emphasis>parameterized type</emphasis> or assigned to an
       <emphasis>abstract type</emphasis>. In Scala, the expression <literal>A
       &lt;: B</literal> defines an <emphasis>upper bound</emphasis> on
-      <literal>A</literal>, it must be a <emphasis>subtype</emphasis> or the
+      <literal>A</literal>; it must be a <emphasis>subtype</emphasis> or the
       same as <literal>B</literal>. The expression <literal>A &gt;:
       B</literal> defines a <emphasis>lower bound</emphasis> on
-      <literal>A</literal>, it must be a <emphasis>supertype</emphasis> or the
+      <literal>A</literal>; it must be a <emphasis>supertype</emphasis> or the
       same as <literal>B</literal>.<indexterm>
           <primary>type bounds</primary>
 
@@ -2247,7 +2277,7 @@
     <glossdef>
       <para>Informally, a <emphasis>parameterized type</emphasis> is sometimes
       called a type constructor, although a “non-parameterized” type is really
-      a type constructor, too, just with zero parameters! The analogy with an
+      a type constructor too, just with zero parameters! The analogy with an
       instance constructor is that you specify specific concrete types for the
       parameters to create a new concrete type, just as you specify values to
       an instance constructor to create an instance.<indexterm>
@@ -2260,9 +2290,9 @@
     <glossterm>Type Designators</glossterm>
 
     <glossdef>
-      <para>The conventional type ids commonly used, e.g., <literal>class
-      Person</literal>, <literal>object O { type t }</literal>, etc. They are
-      actually a short hand syntax for <emphasis>type
+      <para>The conventional type IDs commonly used, e.g., <literal>class
+      Person</literal>, <literal>object O { type t }</literal>. They are
+      actually a shorthand syntax for <emphasis>type
       projections</emphasis>.<indexterm>
           <primary>type designators</primary>
         </indexterm></para>
@@ -2276,8 +2306,8 @@
       <para>A property of the generics type model on the JVM. When a type is
       created from a generic, the information about the specific types
       substituted for the type parameters is not stored in the byte code and
-      is therefore not available at run time. Scala must follow the same
-      model. So, for example, instances of <literal>List[String]</literal> and
+      is therefore not available at runtime. Scala must follow the same model.
+      So, for example, instances of <literal>List[String]</literal> and
       <literal>List[Int]</literal> are indistinguishable. Contrast with
       <emphasis>reified types</emphasis>.<indexterm>
           <primary>type erasure</primary>
@@ -2292,9 +2322,9 @@
 
     <glossdef>
       <para>Inferring the type of a value based on the context in which it is
-      used, rather than relying on explicit type
-      <emphasis>annotations</emphasis>. Sometimes called <emphasis>implicit
-      typing</emphasis>.<indexterm>
+      used, rather than <phrase role="keep-together">relying</phrase> on
+      explicit type <emphasis>annotations</emphasis>. Sometimes called
+      <emphasis>implicit typing</emphasis>.<indexterm>
           <primary>implicit typing</primary>
         </indexterm><indexterm>
           <primary>type inference</primary>
@@ -2380,15 +2410,15 @@
       <para>A subclass of <literal>AnyVal</literal> that wraps a corresponding
       non-object “primitive” type on the runtime platform (e.g., JVM and
       .NET). The value types are <literal>Boolean</literal>,
-      <literal>Char</literal>, <literal>Byte</literal>,
-      <literal>Double</literal>, <literal>Float</literal>,
+      <literal>Char</literal>, <literal>Byte</literal>, <literal
+      role="keep-together">Double</literal>, <literal>Float</literal>,
       <literal>Long</literal>, <literal>Int</literal>, and
       <literal>Short</literal>. (<literal>Unit</literal> is also a value
       type.) All are declared <literal>abstract final</literal> so they can’t
       be used in <literal>new V</literal> expressions. Instead, programs
       specify literal values, e.g., <literal>3.14</literal> for a
       <literal>Double</literal> or use methods that return new values. The
-      Scala runtimes handles instantiation. All the instances of value types
+      Scala runtime handles instantiation. All the instances of value types
       are immutable <emphasis>value objects</emphasis>.<indexterm>
           <primary>value types</primary>
 
@@ -2398,12 +2428,12 @@
       <para id="para_the_term__value_type__is_also_">The term <emphasis>value
       type</emphasis> is also used to mean the categories of types for
       instances. That is, the type of every instance must fall into one of
-      several categories: <emphasis>annotated types</emphasis>,
-      <emphasis>compound types</emphasis>, <emphasis>function
+      several categories: <emphasis>annotated types</emphasis>, <emphasis
+      role="keep-together">compound types</emphasis>, <emphasis>function
       types</emphasis>, <emphasis>infix types</emphasis>,
       <emphasis>parameterized types</emphasis>, <emphasis>tuples</emphasis>,
       <emphasis>type designators</emphasis>, <emphasis>type
-      projections</emphasis>, <emphasis>singleton types</emphasis>.</para>
+      projections</emphasis>, and <emphasis>singleton types</emphasis>.</para>
     </glossdef>
   </glossentry>
 
@@ -2415,7 +2445,7 @@
       <literal>val</literal> keyword, a new value can’t be assigned to the
       variable. If the variable is declared with the <literal>var</literal>
       keyword, a new value can be assigned to the variable. The value a
-      variable references must be type compatible with the declared or
+      variable references must be type-compatible with the declared or
       inferred type of the variable.<indexterm>
           <primary>variables</primary>
 
@@ -2430,11 +2460,11 @@
     <glossdef>
       <para>An implicit value of function type that converts a type
       <literal>A</literal> to <literal>B</literal>. The function has the type
-      <literal>A =&gt; B</literal> or <literal>(=&gt; A) =&gt; B</literal> (In
-      the later case, the <literal>(=&gt; A)</literal> is a <emphasis>by-name
-      parameter</emphasis>). An in-scope <emphasis>implicit type
-      conversion</emphasis> method with the same signature can also be used as
-      a view.<indexterm>
+      <literal>A =&gt; B</literal> or <literal>(=&gt; A) =&gt; B</literal>.
+      (In the later case, the <literal>(=&gt; A)</literal> is a
+      <emphasis>by-name parameter</emphasis>.) An in-scope <emphasis>implicit
+      type conversion</emphasis> method with the same signature can also be
+      used as a view.<indexterm>
           <primary>views</primary>
         </indexterm></para>
     </glossdef>
@@ -2459,7 +2489,8 @@
     <glossdef>
       <para>The <emphasis>scope</emphasis> in which a declared
       <emphasis>type</emphasis> or type <emphasis>member</emphasis> is visible
-      to other types and members.<indexterm>
+      to other types and <phrase
+      role="keep-together">members</phrase>.<indexterm>
           <primary>visibility</primary>
         </indexterm></para>
     </glossdef>

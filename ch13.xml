@@ -20,10 +20,10 @@
     supports <emphasis>annotations</emphasis> for adding
     <emphasis>metadata</emphasis> to declarations. Annotations are used by a
     variety of tools in typical enterprise and Internet applications. For
-    example, there are annotations that provide directives to the compiler and
-    some Object-Relational Mapping (ORM) frameworks use annotations on types
-    and type members to indicate persistence mapping information. While some
-    uses for annotations in the Java and .NET worlds can be accomplished
+    example, there are annotations that provide directives to the compiler,
+    and some Object-Relational Mapping (ORM) frameworks use annotations on
+    types and type members to indicate persistence mapping information. While
+    some uses for annotations in the Java and .NET worlds can be accomplished
     through other means in Scala, annotations can be essential for
     interoperating with Java and .NET libraries that rely heavily on them.
     Fortunately, Java and .NET annotations can be used in Scala
@@ -55,7 +55,7 @@
     the declaration of an annotation taken from a toolkit called Contract4J
     (see <link linkend="Contract4J"
     xrefstyle="select:nopage">[Contract4J]</link>) that uses annotations to
-    support <emphasis>design by contract</emphasis> programming in Java (see
+    support <emphasis>Design by Contract</emphasis> programming in Java (see
     also <xref linkend="DesignByContractExample" />). Some of the comments
     have been removed for clarity:<indexterm>
         <primary sortas="interface keyword">@interface keyword
@@ -114,7 +114,7 @@ public @interface Pre {
     optional <literal>message</literal> to use when reporting failures.</para>
 
     <para id="para_the_declaration_has_other_anno">The declaration has other
-    annotations applied to it, for example the <literal>@Retention</literal>
+    annotations applied to it—for example, the <literal>@Retention</literal>
     annotation with the value <literal>RetentionPolicy.RUNTIME</literal> means
     that when <literal>@Pre</literal> is used, its information will be
     retained in the class file for runtime use.<indexterm>
@@ -148,36 +148,38 @@ class SSN(
     <para id="para_in_the_person_class_the_p">In the <literal>Person</literal>
     class, the <literal>@Pre</literal> annotation on <literal>name</literal>
     has a simple string argument: the “precondition” that users must satisfy
-    when passing in a name. This value can’t be <literal>null</literal> and it
-    can’t be of zero length. As in Java, if a single argument is given to the
-    annotation, it is assigned to the <literal>value</literal> field.</para>
+    when passing in a name. This value can’t be <literal>null</literal>, and
+    it can’t be of zero length. As in Java, if a single argument is given to
+    the annotation, it is assigned to the <literal>value</literal>
+    field.</para>
 
     <para id="para_a_similar_pre_annotation_is">A similar
     <literal>@Pre</literal> annotation is used for the third argument, the
-    <literal>ssn</literal> (social security number). In both cases, the
+    <literal>ssn</literal> (Social Security number). In both cases, the
     <literal>message</literal> defaults to the empty string specified in the
     definition of <literal>Pre</literal>.</para>
 
     <para id="para_the_pre_annotation_for_the_">The <literal>@Pre</literal>
     annotation for the age shows one way to specify values for more than one
-    field. Instead of parentheses, “curly” braces are used. The syntax for
-    each field looks like a <literal>val</literal> declaration, without any
-    type information, since the types can always be inferred! This syntax
-    allows you to use the shorthand syntax for the <literal>value</literal>
-    and still specify values for other fields.</para>
+    field. Instead of parentheses, curly braces are used. The syntax for each
+    field looks like a <literal>val</literal> declaration, without any type
+    information, since the types can always be inferred! This syntax allows
+    you to use the shorthand syntax for the <literal>value</literal> and still
+    specify values for other fields.</para>
 
     <note id="para_note_if_person_were_a_java_">
-      <para>if <literal>Person</literal> were a Java class, this annotation
+      <para>If <literal>Person</literal> were a Java class, this annotation
       expression would look identical, except there would be no
       <literal>val</literal> keywords and parentheses would be used.</para>
     </note>
 
     <para id="para_the_pre_annotation_on_the_c">The <literal>@Pre</literal>
     annotation on the constructor parameter for the <literal>SSN</literal>
-    class shows the alternative syntax for specifying values for more than one
-    field. The <literal>value</literal> field is specified as before with a
-    one-element parameter list. The <literal>message</literal> is initialized
-    in a follow-on block in curly braces.</para>
+    class shows the alterna<phrase role="keep-together">tive syntax</phrase>
+    for specifying values for more than one field. The
+    <literal>value</literal> field is specified as before with a one-element
+    parameter list. The <literal>message</literal> is initialized in a
+    follow-on block in curly braces.</para>
 
     <para id="para_testing_this_code_would_requir">Testing this code would
     require the <emphasis>Contract4J</emphasis> library, build setup, etc. We
@@ -229,7 +231,7 @@ class SerialVersionUID(uid: Long) extends StaticAnnotation</programlisting>
     This also means that Scala annotations have no way to define default
     values in version 2.7.X, as implicit arguments don’t work. However, the
     new default arguments feature in version 2.8.0 may work. (It is not yet
-    implemented at the time of this writing).<indexterm>
+    implemented at the time of this writing.)<indexterm>
         <primary>metadata</primary>
 
         <secondary>default values and</secondary>
@@ -237,14 +239,14 @@ class SerialVersionUID(uid: Long) extends StaticAnnotation</programlisting>
 
     <para id="para_like_java_and_net_annotatio">Like Java (and .NET)
     annotations, a Scala annotation clause applies to the definition it
-    precedes. You can have as many annotation clauses as you want and the
+    precedes. You can have as many annotation clauses as you want, and the
     order in which they appear is not significant.</para>
 
     <para id="para_like_java_annotations_scala_a">Like Java annotations, Scala
-    annotation clauses are written using the syntax
-    <literal>@MyAnnotation</literal>, if the annotation constructor takes no
-    parameters, or <literal>@MyAnnotation(arg1, .., argN)</literal> if the
-    constructor takes parameters. The annotation must be a subclass of
+    annotation clauses are written using the syntax <literal
+    role="keep-together">@MyAnnotation</literal> if the annotation constructor
+    takes no parameters, or <literal>@MyAnnotation(arg1, .., argN)</literal>
+    if the constructor takes parameters. The annotation must be a subclass of
     <literal>scala.Annotation</literal>.</para>
 
     <para id="para_all_the_constructor_parameters">All the constructor
@@ -272,9 +274,9 @@ class Account(val balance: Double)</programlisting>
     <literal>-&gt;</literal> method doesn’t exist for
     <literal>String</literal>. The implicit conversion to
     <literal>ArrowAssoc</literal> that we discussed in <xref
-    linkend="PredefObject" /> in <xref linkend="ScalaObjectSystem" /> isn’t
-    invoked. Instead, you have to use a list of <literal>Tuples</literal>,
-    which <literal>Map.apply</literal> actually expects.<indexterm>
+    linkend="PredefObject" /> isn’t invoked. Instead, you have to use a list
+    of <literal>Tuples</literal>, which <literal>Map.apply</literal> actually
+    expects.<indexterm>
         <primary>ClassfileAnnotation class</primary>
       </indexterm></para>
 
@@ -354,8 +356,7 @@ you want, you must write the annotation class in Java.
             <entry><para><literal
             role="keep-together">ClassfileAnnotation</literal></para></entry>
 
-            <entry><para>Annotate with <literal
-            role="keep-together">@Retention(RetentionPolicy.RUNTIME)</literal></para></entry>
+            <entry><para>Annotate with <literal>@Retention<?lb ?>(RetentionPolicy.RUNTIME)</literal></para></entry>
 
             <entry><para>The parent trait for annotations that should be
             retained in the class file for runtime access, but it doesn’t
@@ -392,11 +393,13 @@ you want, you must write the annotation class in Java.
 
             <entry><para><literal>BeanInfo</literal> (class)</para></entry>
 
-            <entry><para>A marker that indicates that a
-            <literal>BeanInfo</literal> class should be generated for the
-            marked Scala class. A <literal>val</literal> becomes a read-only
-            property. A <literal>var</literal> becomes a read-write property.
-            A <literal>def</literal> becomes a method.</para></entry>
+            <entry><para>A marker that indicates that a <literal
+            role="keep-together">BeanInfo</literal> class should be generated
+            for the marked Scala class. A <literal>val</literal> <phrase
+            role="keep-together">becomes</phrase> a read-only property. A
+            <literal>var</literal> <phrase
+            role="keep-together">becomes</phrase> a read-write property. A
+            <literal>def</literal> becomes a method.</para></entry>
           </row>
 
           <row>
@@ -411,7 +414,7 @@ you want, you must write the annotation class in Java.
           <row>
             <entry><para><literal>StaticAnnotation</literal></para></entry>
 
-            <entry><para>Static fields, <literal
+            <entry><para>Static fields, <?lb ?><literal
             role="keep-together">@Target(ElementType.TYPE)</literal></para></entry>
 
             <entry><para>The parent trait of annotations that should be
@@ -441,11 +444,11 @@ you want, you must write the annotation class in Java.
             <entry><para>A marker annotation for the selector in a match
             statement (e.g., the <literal>x</literal> in <literal>x match
             {...}</literal>) that suppresses a compiler warning if the
-            <literal>case</literal> clauses are not “exhaustive”. You can
+            <literal>case</literal> clauses are not “exhaustive.” You can
             still have a runtime <literal>MatchError</literal> occur if a
             value of <literal>x</literal> fails to match any of the
             <literal>case</literal> clauses. See the example
-            below.</para></entry>
+            later.</para></entry>
           </row>
 
           <row>
@@ -453,8 +456,8 @@ you want, you must write the annotation class in Java.
 
             <entry><para><emphasis>N.A.</emphasis></para></entry>
 
-            <entry><para>Deprecated, use <literal>@unchecked</literal>
-            instead.</para></entry>
+            <entry><para>Deprecated, use <literal>@unchecked</literal> <phrase
+            role="keep-together">instead</phrase>.</para></entry>
           </row>
         </tbody>
       </tgroup>
@@ -496,8 +499,7 @@ you want, you must write the annotation class in Java.
             keyword) that tells the compiler to generate a JavaBean-style
             “getter” and “setter” method. The setter is only generated for
             <literal>var</literal> declarations. See the discussion in <xref
-            linkend="JavaBeanProperties" /> in <xref
-            linkend="ScalaToolsLibs" />.</para></entry>
+            linkend="JavaBeanProperties" />.</para></entry>
           </row>
 
           <row>
@@ -537,7 +539,8 @@ you want, you must write the annotation class in Java.
             <entry><para><emphasis>N.A.</emphasis></para></entry>
 
             <entry><para>A method marker telling the compiler that it should
-            try “especially hard” to inline the method.</para></entry>
+            try “<phrase role="keep-together">especially</phrase> hard” to
+            inline the method.</para></entry>
           </row>
 
           <row>
@@ -564,8 +567,8 @@ you want, you must write the annotation class in Java.
           <row>
             <entry><para><literal>remote</literal></para></entry>
 
-            <entry><para><literal>java.rmi.Remote</literal>
-            (interface)</para></entry>
+            <entry><para><literal>java.rmi.Remote</literal> (<phrase
+            role="keep-together">interface</phrase>)</para></entry>
 
             <entry><para>A class marker indicating that the class can be
             invoked from a remote JVM.</para></entry>
@@ -603,10 +606,10 @@ you want, you must write the annotation class in Java.
             <entry><para>(version 2.8) An annotation to be applied to a match
             expression, e.g., <literal>(x: @switch) match {...}</literal>.
             When present, the compiler will verify that the match has been
-            compiled to a table-based or lookup-based switch statement. If
-            not, it will issue an error if it instead compiles into a series
-            of conditional expressions, which are less
-            efficient.</para></entry>
+            compiled to a table-based or lookup-based
+            <literal>switch</literal> statement. If not, it will issue an
+            error if it instead compiles into a series of conditional
+            expressions, which are less efficient.</para></entry>
           </row>
 
           <row>
@@ -631,12 +634,12 @@ you want, you must write the annotation class in Java.
 
             <entry><para>(version 2.8) A method annotation that tells the
             compiler to verify that the method will be compiled with
-            <emphasis>tail call optimization</emphasis>. If it is present, the
+            <emphasis>tail-call optimization</emphasis>. If it is present, the
             compiler will issue an error if the method cannot be optimized
-            into a loop. This happens for example, when the method is not
-            <literal>private</literal> or <literal>final</literal>, it could
-            be overridden, and when recursive invocations are not true tail
-            calls.</para></entry>
+            into a loop. This happens, for example, when the method is not
+            <literal>private</literal> or <literal>final</literal>, when it
+            could be overridden, and when recursive invocations are not true
+            tail calls.</para></entry>
           </row>
 
           <row>
@@ -645,7 +648,7 @@ you want, you must write the annotation class in Java.
             <entry><para><literal>throws</literal> (keyword)</para></entry>
 
             <entry><para>Indicates which exceptions are thrown by the
-            annotated method. See the discussion below.</para></entry>
+            annotated method. See the discussion later.</para></entry>
           </row>
 
           <row>
@@ -653,7 +656,7 @@ you want, you must write the annotation class in Java.
 
             <entry><para><literal>transient</literal> (keyword)</para></entry>
 
-            <entry><para>Marks a method as “transient”.</para></entry>
+            <entry><para>Marks a method as “transient.”</para></entry>
           </row>
 
           <row>
@@ -680,8 +683,8 @@ you want, you must write the annotation class in Java.
           <row>
             <entry><para><literal>volatile</literal></para></entry>
 
-            <entry><para><literal>volatile</literal> (keyword, for fields
-            only)</para></entry>
+            <entry><para><literal>volatile</literal> (keyword, <phrase
+            role="keep-together">for fields only</phrase>)</para></entry>
 
             <entry><para>A marker for an individual field or a whole type,
             which affects all fields, indicating that the field may be
@@ -761,9 +764,9 @@ one error found</screen>
     &lt;= 1</literal>.</para>
 
     <para id="para_let_s_look_at_an_example_of_">Let’s look at an example of
-    <literal>@unchecked</literal> in use (adapted from the
-    <emphasis>Scaladoc</emphasis> entry for <literal>@unchecked</literal>).
-    Consider the following code fragement:<indexterm>
+    <literal>@unchecked</literal> in use (adapted from the Scaladoc entry for
+    <literal>@unchecked</literal>). Consider the following code
+    fragement:<indexterm>
         <primary>exceptions</primary>
 
         <secondary>@unchecked annotation and</secondary>
@@ -804,17 +807,17 @@ def process(x: Option[int]) = (x: @unchecked) match {
 
     <para id="para_the_specialized_annotation_">The
     <literal>@specialized</literal> annotation is another optimization-related
-    annotation added in version 2.8. It is a pragmatic solution to a tradeoff
-    between space efficiency and performance. In Java and Scala, the
-    implementation of a parameterized type or method is generated at the point
-    of the declaration (as we discussed in <xref
-    linkend="ParameterizedTypes" /> in <xref linkend="ScalasTypeSystem" />).
-    In contrast, in C++, a <emphasis>template</emphasis> is used to generate
-    an implementation for the actual type parameters where the template is
-    used. The C++ approach has the advantage of allowing optimized
-    implementations to be generated for primitive types, while it has the
-    disadvantage of resulting in code bloat from all the instantiations of
-    templates.<indexterm>
+    annotation added in <phrase role="keep-together">version</phrase> 2.8. It
+    is a pragmatic solution to a tradeoff between space efficiency and
+    performance. In Java and Scala, the implementation of a parameterized type
+    or method is generated at the point of the declaration (as we discussed in
+    <xref linkend="ParameterizedTypes" />). In contrast, in C++, a
+    <emphasis>template</emphasis> is used to generate an implementation for
+    the actual type parameters where the template is used. The <phrase
+    role="keep-together">C++</phrase> approach has the advantage of allowing
+    optimized implementations to be generated for primitive types, while it
+    has the disadvantage of resulting in code bloat from all the
+    instantiations of templates.<indexterm>
         <primary sortas="specialized annotation">@specialized
         annotation</primary>
       </indexterm><indexterm>
@@ -859,10 +862,9 @@ def process(x: Option[int]) = (x: @unchecked) match {
     <literal>Double</literal>. For the final version 2.8 library, it is
     planned that the other <literal>AnyVal</literal> types will be supported.
     There are also plans to allow the user to specify the types for which
-    optimized implementations are generated, so that unused implementations
-    for the other <literal>AnyVals</literal> are avoided. See the final 2.8
-    <emphasis>Scaladocs</emphasis> for details on the final feature
-    set.</para>
+    optimized implementations are generated so that unused implementations for
+    the other <literal>AnyVals</literal> are avoided. See the final 2.8
+    Scaladocs for details on the final feature set.</para>
 
     <para id="para_another_planned_version_2_8_an">Another planned version 2.8
     annotation is <literal>@cps</literal>, which stands for
@@ -931,7 +933,7 @@ class FilePrinter(val file: File) {
     <literal>@throws</literal> annotation applied to the
     <literal>print</literal> method. The argument to the annotation
     constructor is a single <literal>java.lang.Class[Any]</literal> object, in
-    this case, <literal>classOf[IOException]</literal>. The Java IO API
+    this case, <literal>classOf[IO⁠Exception]</literal>. The Java IO API
     methods used by <literal>print</literal> and the private method
     <literal>loop</literal> might throw this exception.</para>
 
@@ -939,7 +941,7 @@ class FilePrinter(val file: File) {
     <literal>loop</literal> uses functional-style tail recursion, rather than
     a loop. No variables were mutated during the production of this output!
     (Well, we don’t actually know what’s happening inside the Java IO
-    classes…)</para>
+    classes....)</para>
 
     <para id="para_here_is_a_java_class_that_uses">Here is a Java class that
     uses <literal>FilePrinter</literal>. It provides the
@@ -990,8 +992,8 @@ public class FilePrinterMain {
 14:   }
 15: }</screen>
 
-    <para id="para_now_returning_to_file_print">Now, returning to
-    <literal>FilePrinter</literal> class above, suppose you comment out the
+    <para id="para_now_returning_to_file_print">Now, returning to the
+    <literal>FilePrinter</literal> class, suppose you comment out the
     <literal>@throws</literal> line. This file will continue to compile, but
     when you compile <literal>FilePrinterMain.java</literal>, you will get the
     following error:</para>
@@ -1063,9 +1065,8 @@ thrown in body of corresponding try statement
       </indexterm></para>
 
     <para id="para_recall_http_methods_script_">Recall the HTTP methods
-    scripts we wrote in <xref linkend="SealedClassHierarchies" /> in <xref
-    linkend="ScalaObjectSystem" />. We defined the set of HTTP 1.1 methods
-    using a sealed case class hierarchy:</para>
+    scripts we wrote in <xref linkend="SealedClassHierarchies" />. We defined
+    the set of HTTP 1.1 methods using a sealed case class hierarchy:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/sealed/http-script.scala
 
@@ -1188,7 +1189,7 @@ Main$$anon$1$HttpMethod(6), Main$$anon$1$HttpMethod(7)}</screen>
     <literal>HttpMethod.Method</literal> objects. It simply prints a message
     for each value along with its <literal>id</literal>. Note that while the
     example has no “default” case clause (e.g. <literal>case _ ⇒
-    ...</literal>). None is required in this case. However, the compiler
+    ...</literal>), none is required in this case. However, the compiler
     doesn’t actually know that all the possible values are covered, in
     contrast to a sealed case class hierarchy. If you comment out one of the
     case statements in <literal>handle</literal>, you will get no warnings,
@@ -1200,11 +1201,11 @@ Main$$anon$1$HttpMethod(6), Main$$anon$1$HttpMethod(7)}</screen>
 
     <warning id="para_warning_when_pattern_matching">
       <para>When pattern matching on enumeration values, the compiler can’t
-      tell if the match is “exhaustive”.</para>
+      tell if the match is “exhaustive.”</para>
     </warning>
 
     <para id="para_you_might_wonder_why_we_hard_c">You might wonder why we
-    hard-coded strings like “Connect” in the <literal>println</literal>
+    hardcoded strings like “Connect” in the <literal>println</literal>
     statements in the case clauses. Can’t we get the name from the
     <literal>HttpMethod.Method</literal> object itself? And why didn’t the
     output of <literal>println(HttpMethod)</literal> include those names,
@@ -1318,12 +1319,12 @@ println( HttpMethod )</programlisting>
     <title>Thoughts On Annotations and Enumerations</title>
 
     <para id="para_for_both_annotations_and_enume">For both annotations and
-    enumerations, there are advantages and disadvantages of the Scala
-    approach, where regular class-based mechanisms are used, rather than
+    enumerations, there are advantages and disadvantages to the Scala
+    approach, where we use regular class-based mechanisms, rather than
     inventing custom keywords and syntax. The advantages include fewer special
-    cases in the language. Classes and traits are used more or less in the
+    cases in the language. Classes and traits are used in more or less the
     same ways they are used for “normal” code. The disadvantages include the
-    need to understand and use ad hoc conventions which are not always as
+    need to understand and use ad hoc conventions that are not always as
     convenient to use as the custom syntax mechanisms required in Java and
     .NET. Also, Scala’s implementations are not as full-featured.<indexterm>
         <primary>enumerations</primary>
@@ -1342,7 +1343,7 @@ println( HttpMethod )</programlisting>
     .NET annotations and enumerations can be implemented in Scala by other
     means.</para>
 
-    <para id="para_some_use_cases_for_the_mor">Some “use cases” for the more
+    <para id="para_some_use_cases_for_the_mor">Some use cases for the more
     advanced features of Java annotations can be implemented more elegantly
     with “normal” Scala code, as we will discuss in <xref
     linkend="DesignPatterns" />. For enumerations, sealed case classes and
@@ -1370,7 +1371,7 @@ println( HttpMethod )</programlisting>
       <title>Enumerations Versus Case Classes and Pattern Matching</title>
 
       <para id="para_let_s_revisit_http_methods_s">Let’s revisit the HTTP
-      method script, which uses a sealed case class hierarchy versus our the
+      method script, which uses a sealed case class hierarchy versus the
       version we wrote previously that uses an <literal>Enumeration</literal>.
       Since the enumeration version doesn’t handle the message body, let’s
       write a modified version of the sealed case class version that is closer
@@ -1449,11 +1450,11 @@ Main$$anon$1$Trace$: 7</screen>
       implementation naturally accommodates other fields, e.g., the
       <literal>body</literal>, as in the original implementation, while
       enumerations can only accommodate constant <literal>Values</literal>
-      with associated names and id’s.</para>
+      with associated names and IDs.</para>
 
       <tip id="para_tip_for_cases_where_you_need_">
         <para>For cases where you need only a simple list of constants by name
-        or id number, use enumerations. Be careful to follow the usage idioms.
+        or ID number, use enumerations. Be careful to follow the usage idioms.
         For fixed sets of more complex, constant objects, use sealed case
         objects.</para>
       </tip>
@@ -1464,12 +1465,12 @@ Main$$anon$1$Trace$: 7</screen>
     <title>Using Nulls Versus Options</title>
 
     <para id="para_when_we_introduced_option_in">When we introduced
-    <literal>Option</literal> in <xref linkend="OptionSomeNone" /> in <xref
-    linkend="TypeLessDoMore" />, we briefly discussed how it encourages
-    avoiding <literal>null</literal> references in your code, which Tony
-    Hoare, who introduced the concept of <literal>null</literal> in 1965,
-    called his “billion dollar mistake” <link linkend="Hoare2009"
-    xrefstyle="select:nopage">[Hoare2009]</link>.<indexterm>
+    <literal>Option</literal> in <xref linkend="OptionSomeNone" />, we briefly
+    discussed how it encourages avoiding <literal>null</literal> references in
+    your code, which Tony Hoare, who introduced the concept of
+    <literal>null</literal> in 1965, called his “billion dollar mistake” (see
+    <link linkend="Hoare2009"
+    xrefstyle="select:nopage">[Hoare2009]</link>).<indexterm>
         <primary>Option class</primary>
 
         <secondary>nulls versus</secondary>
@@ -1504,9 +1505,9 @@ Main$$anon$1$Trace$: 7</screen>
     for a particular key. Both of these methods avoid returning
     <literal>null</literal> in that case. Concrete implementations of
     <literal>get</literal> in subclasses return a <literal>None</literal> if
-    no value exists for the key. Otherwise they return a
+    no value exists for the key. Otherwise, they return a
     <literal>Some</literal> wrapping the value. The method signature tells you
-    that a value might not exist and it forces you to handle that situation
+    that a value might not exist, and it forces you to handle that situation
     gracefully:</para>
 
     <programlisting linenumbering="unnumbered">val stateCapitals = Map("Alabama" -&gt; "Montgomery", ...)
@@ -1532,11 +1533,11 @@ stateCapitals.get("North Hinterlandia") match {
     <literal>nulls</literal>.</para>
 
     <para id="para_for_example_let_s_revisit_our">For example, let’s revisit
-    our previous file printing example in <xref linkend="Annotations" />.
+    our previous file printing example from <xref linkend="Annotations" />.
     We’ll refactor our <literal>FilePrinter</literal> class and the Java
     driver into a combined script. We’ll address two issues: 1) wrap
     <literal>LineNumberReader.readLine</literal> with a method that returns an
-    <literal>Option</literal> instead of <literal>null</literal> and 2) wrap
+    <literal>Option</literal> instead of <literal>null</literal>, and 2) wrap
     checked <literal>IOExceptions</literal> in our own unchecked exception,
     called <literal>ScalaIOException</literal>:</para>
 
@@ -1590,10 +1591,11 @@ args.foreach { fileName =&gt;
 
     <para id="para_the_scalabufferedreader_clas">The
     <literal>ScalaLineNumberReader</literal> class defines a new method
-    <literal>inputLine</literal> that calls
-    <literal>LineNumberReader.readLine</literal> and pattern matches the
-    result. If <literal>null</literal>, then <literal>None</literal> is
-    returned. Otherwise the line is returned wrapped in a
+    <literal>inputLine</literal> that calls <literal
+    role="keep-together">LineNumberReader.readLine</literal> and pattern
+    matches the result. If <literal>null</literal>, then
+    <literal>None</literal> is returned. <phrase
+    role="keep-together">Otherwise</phrase>, the line is returned wrapped in a
     <literal>Some[String]</literal>.</para>
 
     <para
@@ -1622,15 +1624,15 @@ args.foreach { fileName =&gt;
     <screen>scala file-printer-refactored-script.scala file-printer-refactored-script.scala</screen>
 
     <sect2 id="OptionsAndForComprehensions">
-      <title>Options and For Comprehensions</title>
+      <title>Options and for Comprehensions</title>
 
       <para id="para_one_other_benefit_of_option_with_for_comps">There is one
       other benefit of using <literal>Options</literal> with
       <literal>for</literal> comprehensions, automatic removal of
       <literal>None</literal> elements from comprehensions, under most
-      conditions <link linkend="Pollak2007"
-      xrefstyle="select:nopage">[Pollak2007]</link>, <link
-      linkend="Spiewak2009c" xrefstyle="select:nopage">[Spiewak2009c]</link>.
+      conditions (see <link linkend="Pollak2007"
+      xrefstyle="select:nopage">[Pollak2007]</link> and <link
+      linkend="Spiewak2009c" xrefstyle="select:nopage">[Spiewak2009c]</link>).
       Consider this first version of a script that uses
       <literal>Options</literal> in a <literal>for</literal> <phrase
       role="keep-together">comprehension</phrase>:<indexterm>
@@ -1674,9 +1676,9 @@ validUsers.foreach (user =&gt; println(user))</programlisting>
 
       <para id="para_imagine_this_code_is_used_in_s">Imagine this code is used
       in some sort of social networking site. New users submit profile data,
-      which are passed to this service in bulk for processing. For example, we
-      hard coded a list of submitted profiles, where each profile data set is
-      a map. The map might have been copied from an HTTP session.</para>
+      which is passed to this service in bulk for processing. For example, we
+      hardcoded a list of submitted profiles, where each profile data set is a
+      map. The map might have been copied from an HTTP session.</para>
 
       <para id="para_the_service_filters_out_incomp">The service filters out
       incomplete profiles (missing fields), shown with the #1 comments, and
@@ -1704,7 +1706,7 @@ var validUsers = for {
 validUsers.foreach (user =&gt; println(user))</programlisting>
 
       <para id="para_before_you_rerun_the_script_w">Before you rerun the
-      script, what do you expect to happen? Will it print 5 lines with some
+      script, what do you expect to happen? Will it print five lines with some
       fields empty (or containing other kinds of values)?</para>
 
       <para id="para_same_3_of_5_users_printed">It prints the same thing! How
@@ -1714,9 +1716,9 @@ validUsers.foreach (user =&gt; println(user))</programlisting>
       <para id="para_the_answer_lies_in_the_way_tha">The answer lies in the
       way that <literal>for</literal> comprehensions are implemented. Here are
       a couple of simple for comprehensions followed by their translations
-      <link linkend="ScalaSpec2009"
-      xrefstyle="select:nopage">[ScalaSpec2009]</link>. First, we’ll look at a
-      single <emphasis>generator</emphasis> with a
+      (see <link linkend="ScalaSpec2009"
+      xrefstyle="select:nopage">[ScalaSpec2009]</link>). First, we’ll look at
+      a single <emphasis>generator</emphasis> with a
       <literal>yield</literal>:<indexterm>
           <primary>generators</primary>
 
@@ -1728,16 +1730,16 @@ validUsers.foreach (user =&gt; println(user))</programlisting>
 
 e1 map ( case p1 =&gt; e2 )         // translation</programlisting>
 
-      <para id="para_here_s_the_translation_a_singl">Here’s the translation a
-      single <emphasis>generator</emphasis> followed by an arbitrary
-      expression (which could be several expressions in braces, etc.):</para>
+      <para id="para_here_s_the_translation_a_singl">Here’s the translation of
+      a single generator followed by an arbitrary expression (which could be
+      several expressions in braces, etc.):</para>
 
       <programlisting linenumbering="unnumbered">for (p1 &lt;- e1) e2                // for comprehension
 
 e1 foreach ( case p1 =&gt; e2 )     // translation</programlisting>
 
       <para id="para_with_more_than_one__generator_">With more than one
-      <emphasis>generator</emphasis>, <literal>map</literal> is replaced with
+      generator, <literal>map</literal> is replaced with
       <literal>flatMap</literal> in the <literal>yield</literal> expressions,
       but <literal>foreach</literal> is unchanged:</para>
 
@@ -1754,12 +1756,13 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
       comprehensions that need translating.</para>
 
       <para id="para_there_are_similar_translations">There are similar
-      translations for conditional statements (which become calls to
-      <literal>filter</literal>) and <literal>val</literal> assignments. We
-      won’t show them here, since our primary purpose is to describe just
-      enough of the implementation details so you can understand how
-      <literal>Options</literal> and for comprehensions work together. The
-      additional details are described in <link linkend="ScalaSpec2009"
+      translations for conditional statements (which become calls to <literal
+      role="keep-together">filter</literal>) and <literal>val</literal>
+      assignments. We won’t show them here, since our primary purpose is to
+      describe just enough of the implementation details so you can understand
+      how <literal>Options</literal> and <literal>for</literal> comprehensions
+      work together. The additional details are described in <link
+      linkend="ScalaSpec2009"
       xrefstyle="select:nopage">[ScalaSpec2009]</link>, with examples.</para>
 
       <para id="para_if_you_follow_this_translation">If you follow this
@@ -1781,7 +1784,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
       <para id="para_note_that_we_have_flatmap_ca">Note that we have
       <literal>flatMap</literal> calls until the most nested case, where
       <literal>map</literal> is used (<literal>flatMap</literal> and
-      <literal>map</literal> behave equivalently in this case.)</para>
+      <literal>map</literal> behave equivalently in this case).</para>
 
       <para id="para_now_we_can_understand_why_the_">Now we can understand why
       the big conditional was unnecessary. Recall that <literal>user</literal>
@@ -1802,13 +1805,13 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
       simply stop and never get to the line marked with the comment #1, where
       the <literal>User</literal> is created.</para>
 
-      <para id="para_the_outer_most_flatmap_is_on">The outer most
+      <para id="para_the_outer_most_flatmap_is_on">The outermost
       <literal>flatMap</literal> is on the input <literal>List</literal>,
       <literal>newUserProfiles</literal>. On a multi-element collection like
       this, the behavior of <literal>flatMap</literal> is similar to
-      <literal>map</literal>, but it “flattens” the new collection and it
-      doesn’t require the resulting map to have the same number of elements as
-      the original collection, like <literal>map</literal> does.</para>
+      <literal>map</literal>, but it flattens the new collection and doesn’t
+      require the resulting map to have the same number of elements as the
+      original collection, like <literal>map</literal> does.</para>
 
       <para id="para_finally_recall_from_partial">Finally, recall from <xref
       linkend="PartialFunctions" /> that the <literal>case user =&gt;
@@ -1829,14 +1832,13 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
 
     <para id="para_if_nulls_are_the_billion_d">If <literal>nulls</literal> are
     the “billion dollar mistake” as we discussed in <xref
-    linkend="OptionSomeNone" /> in <xref linkend="TypeLessDoMore" />, then
-    what about exceptions? You can argue that <literal>nulls</literal> should
-    never occur and you can design a language and libraries that never use
-    them. However, exceptions have a legitimate place, because they
-    <emphasis>separate the concerns</emphasis> of normal program flow from
-    “exceptional” program flow. The divide isn’t always clear cut. For
-    example, if a user mistypes his user name, is that normal or
-    exceptional?<indexterm>
+    linkend="OptionSomeNone" />, then what about exceptions? You can argue
+    that <literal>nulls</literal> should never occur and you can design a
+    language and libraries that never use them. However, exceptions have a
+    legitimate place because they <emphasis>separate the con⁠cerns</emphasis>
+    of normal program flow from “exceptional” program flow. The divide isn’t
+    always clear-cut. For example, if a user mistypes his username, is that
+    normal or exceptional?<indexterm>
         <primary>application design</primary>
 
         <secondary>exceptions and alternatives</secondary>
@@ -1849,17 +1851,17 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     <para id="para_another_question_is_where_shou">Another question is where
     should the exception be caught and handled? Java’s checked exceptions were
     designed to document for the API user what exceptions might be thrown by a
-    method. The flaw was it encouraged handling of the exception in ways that
-    are often suboptimal. If one method calls another method that might throw
-    a checked exception, the calling method is forced to either handle the
-    exception or to declare that it also throws the exception. More often than
-    not, the calling method is the wrong place to handle the exception. It is
-    too common for methods to simply “eat” an exception that should really be
-    passed up the stack and handled in a more appropriate context. Otherwise,
-    <literal>throws</literal> declarations are required up the stack of method
-    calls. This is not only tedious, but it pollutes the intermediate contexts
-    with exception names that often have no connection to the local
-    context.</para>
+    method. The flaw was that it encouraged handling of the exception in ways
+    that are often suboptimal. If one method calls another method that might
+    throw a checked exception, the calling method is forced to either handle
+    the exception or declare that it also throws the exception. More often
+    than not, the calling method is the wrong place to handle the exception.
+    It is too common for methods to simply “eat” an exception that should
+    really be passed up the stack and handled in a more appropriate context.
+    Otherwise, <literal>throws</literal> declarations are required up the
+    stack of method calls. This is not only tedious, but it pollutes the
+    intermediate contexts with exception names that often have no connection
+    to the local context.</para>
 
     <para id="para_as_we_have_seen_scala_doesn_t_">As we have seen, Scala
     doesn’t have checked exceptions. Any exception can propagate to the point
@@ -1871,15 +1873,16 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     argument erupts among developers in a particular language community about
     whether or not it’s OK to use exceptions as a control-flow mechanism for
     normal processing. Sometimes this use of exceptions is seen as a useful
-    <literal>longjump</literal> or nonlocal <literal>goto</literal> mechanism
-    for exiting out of a deeply nested scope. One reason this debate pops up
-    is that this use of exceptions is sometimes more efficient than a more
-    “conventional” implementation.</para>
+    <literal role="keep-together">longjump</literal> or non-local
+    <literal>goto</literal> mechanism for exiting out of a deeply nested
+    scope. One reason this debate pops up is that this use of exceptions is
+    sometimes more efficient than a more “conventional” implementation.</para>
 
     <para id="para_for_example_you_might_impleme">For example, you might
     implement <literal>Iterable.foreach</literal> to blindly traverse a
     collection and stop when it catches whatever exception indicates it went
-    past the end of the collection.</para>
+    past the end of the <phrase
+    role="keep-together">collection</phrase>.</para>
 
     <para id="para_when_it_comes_to_application_d">When it comes to
     application design, communicating <emphasis>intent</emphasis> is very
@@ -1887,7 +1890,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     the <emphasis>principle of least surprise</emphasis>. It will be rare that
     the performance gain will justify the loss of clarity, so we encourage you
     to use exceptions only for truly “exceptional” conditions. Note that Ruby
-    actually provides a nonlocal <literal>goto</literal>-like mechanism. In
+    actually provides a non-local <literal>goto</literal>-like mechanism. In
     Ruby the keywords <literal>throw</literal> and <literal>catch</literal>
     are actually reserved for this purpose, while <literal>raise</literal> and
     <literal>rescue</literal> are the keywords for raising an exception and
@@ -1931,7 +1934,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     <para id="para_you_could_argue_that_the_seq_">You could argue that the
     <literal>Seq</literal> API would be more robust if it only had a “first”
     method that returned an <literal>Option</literal>. It’s useful to ask
-    yourself, “how can I prevent the user from ever failing?” When “failure”
+    yourself, “How can I prevent the user from ever failing?” When “failure”
     can’t be prevented, use <literal>Option</literal> or a similar construct
     to document for the user that a failure mode is possible. Thinking in
     terms of valid state transformations, the <literal>first</literal> method,
@@ -1945,16 +1948,15 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     non-exceptional situation.</para>
 
     <para id="para_recall_that_we_saw_another_exa">Recall that we saw another
-    example of this decision tradeoff in <xref linkend="OptionSomeNone" /> in
-    <xref linkend="TypeLessDoMore" />. We discussed two methods on
-    <literal>Option</literal> for retrieving the value an instance wraps (when
-    the instance is actually a <literal>Some</literal>). The
-    <literal>get</literal> method throws an exception if there is no value,
-    i.e., the <literal>Option</literal> instance is actually
-    <literal>None</literal>. The other method, <literal>getOrElse</literal>
-    takes a second argument, a default value to return if the
-    <literal>Option</literal> is actually <literal>None</literal>. In this
-    case, no exception is thrown.</para>
+    example of this decision tradeoff in <xref linkend="OptionSomeNone" />. We
+    discussed two methods on <literal>Option</literal> for retrieving the
+    value an instance wraps (when the instance is actually a
+    <literal>Some</literal>). The <literal>get</literal> method throws an
+    exception if there is no value, i.e., the <literal>Option</literal>
+    instance is actually <literal>None</literal>. The other method,
+    <literal>getOrElse</literal>, takes a second argument, a default value to
+    return if the <literal>Option</literal> is actually
+    <literal>None</literal>. In this case, no exception is thrown.</para>
 
     <para id="para_of_course_it_is_impossible_to">Of course, it is impossible
     to avoid all exceptions. Part of the original intent of checked versus
@@ -1976,7 +1978,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     <para id="para_it_has_been_a_goal_for_some_ti">It has been a goal for some
     time in our industry to create reusable <emphasis>components</emphasis>.
     Unfortunately, there is little agreement on the meaning of the term
-    <emphasis>component</emphasis> nor on a related term,
+    <emphasis>component</emphasis>, nor on a related term,
     <emphasis>module</emphasis> (which some people consider synonymous with
     <emphasis>component</emphasis>). Proposed definitions usually start with
     assumptions about the platform, granularity, deployment and configuration
@@ -1999,8 +2001,8 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     <para id="para_we_ll_avoid_that_discussion_an">We’ll avoid that discussion
     and use the term <emphasis>component</emphasis> informally to refer to a
     grouping of types and packages that exposes coherent abstractions
-    (preferably just one) for the services it offers, has minimal coupling to
-    other components, and is internally cohesive.<indexterm>
+    (preferably just one) for the services it offers, that has minimal
+    coupling to other components, and that is internally cohesive.<indexterm>
         <primary>scalable abstractions</primary>
 
         <see>components</see>
@@ -2012,9 +2014,9 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     objects alone aren’t enough, because we quickly find that objects
     naturally cluster together into more coarse-grained aggregates, especially
     as our applications grow. Generally speaking, an object isn’t necessarily
-    a component and a component may contain many objects. Scala and Java offer
-    packages for aggregating types. Ruby modules serve a similar purpose, as
-    do C# and C++ namespaces.</para>
+    a component, and a component may contain many objects. Scala and Java
+    offer packages for aggregating types. Ruby modules serve a similar
+    purpose, as do C# and C++ namespaces.</para>
 
     <para id="para_however_these_packaging_mecha">However, these packaging
     mechanisms still have limitations. A common problem is that they don’t
@@ -2022,7 +2024,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
     what is internal to the component. For example, in Java, any public type
     or public method on a public type is visible outside the package boundary
     to every other component. You can make types and methods “package
-    private”, but then they are invisible to other packages encapsulated in
+    private,” but then they are invisible to other packages encapsulated in
     the component. Java doesn’t have a clear sense of component
     boundaries.</para>
 
@@ -2034,10 +2036,9 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
       <title>Fine-Grained Visibility Rules</title>
 
       <para id="para_we_saw_in_visibilityrules_">We saw in <xref
-      linkend="VisibilityRules" /> in <xref
-      linkend="BasicObjectOrientedProgramming" /> that Scala provides more
-      fine-grained visibility rules than most other languages. You can control
-      the visibility of types and methods outside type and package
+      linkend="VisibilityRules" /> that Scala provides more fine-grained
+      visibility rules than most other languages. You can control the
+      visibility of types and methods outside type and package
       boundaries.<indexterm>
           <primary>components</primary>
 
@@ -2049,7 +2050,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
         </indexterm></para>
 
       <para id="para_consider_the_following_encodedstring_component">Consider
-      the following example of a <emphasis>component</emphasis> in package
+      the following example of a component in package
       <literal>encodedstring</literal>:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/encoded-string.scala
@@ -2100,13 +2101,13 @@ package encodedstring {
       to clients. The concrete classes implementing CSVs and TSVs are declared
       <literal>protected[encodedstring]</literal> in the
       <literal>encodedstring.impl</literal> package. The trait defines two
-      abstract <literal>val</literal> fields, one to hold the encoded
+      abstract <literal>val</literal> fields: one to hold the encoded
       <literal>string</literal>, which is protected from client access, and
       the other to hold the <literal>separator</literal> (e.g., a comma).
       Recall from <xref linkend="AdvancedObjectOrientedProgramming" /> that
       abstract fields, like abstract types and methods, must be initialized in
       concrete instances. In this case, <literal>string</literal> will be
-      defined through a concrete constructor and the
+      defined through a concrete constructor, and the
       <literal>separator</literal> is defined explicitly in the concrete
       classes, <literal>CSV</literal> and <literal>TSV</literal>.</para>
 
@@ -2131,11 +2132,10 @@ package encodedstring {
       if we stored the strings in a different way, this method could
       transparently reconstitute the original string.</para>
 
-      <para id="para_clients_of_encoded_strings">So, clients of this
-      <emphasis>component</emphasis> only know about the
-      <literal>EncodedString</literal> abstraction and the enumeration
-      representing the supported types of encoded strings. All the actual
-      implementation types and details are private to the
+      <para id="para_clients_of_encoded_strings">So, clients of this component
+      only know about the <literal>EncodedString</literal> abstraction and the
+      enumeration representing the supported types of encoded strings. All the
+      actual implementation types and details are private to the
       <literal>encodedstring</literal> package. (We put them in the same file
       for convenience, but normally you would kept them separate.) Hence, the
       boundary is clear between the exposed abstractions and the internal
@@ -2202,7 +2202,7 @@ scala&gt;</screen>
 
       <para id="para_was_it_necessary_to_make_the_c">In this simple example,
       it wasn’t essential to make the concrete types private to the component.
-      However, we have a very minimal interface to clients of the component
+      However, we have a very minimal interface to clients of the component,
       and we are free to modify the implementation as we see fit with little
       risk of forcing client code modifications. A common cause of maintenance
       paralysis in mature applications is the presence of too many
@@ -2218,7 +2218,7 @@ scala&gt;</screen>
 
       <para id="para_we_saw_in_traits_in_obje">We saw in <xref
       linkend="Traits" /> how traits promote mixin composition. A class can
-      focus on its <emphasis>primary domain</emphasis> and other
+      focus on its <emphasis>primary domain</emphasis>, and other
       responsibilities can be implemented separately in traits. When instances
       are constructed, classes and traits can be combined to compose the full
       range of required behaviors.<indexterm>
@@ -2230,9 +2230,8 @@ scala&gt;</screen>
         </indexterm></para>
 
       <para id="para_in_overridingabstracttypes_">For example, in <xref
-      linkend="OverridingAbstractTypes" /> in <xref
-      linkend="AdvancedObjectOrientedProgramming" />, we discussed our second
-      version of the Observer Pattern:</para>
+      linkend="OverridingAbstractTypes" />, we discussed our second version of
+      the Observer Pattern:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/observer2.scala
 
@@ -2280,13 +2279,13 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
 
       <para id="para_there_are_a_few_things_that_are_unsatisfying1">There are
       a few things that are unsatisfying about the implementation of
-      <literal>AbstractSubject</literal> in our second version of the Observer
-      Pattern. The first occurs in
-      <literal>SubjectForReceiveUpdateObservers</literal>, where the
+      <literal>AbstractSub⁠ject</literal> in our second version of the
+      Observer Pattern. The first occurs in
+      <literal>SubjectForRe⁠ceiveUpdateObservers</literal>, where the
       <literal>Observer</literal> type is defined to be the structural type
       <literal>{ def receiveUpdate(subject: Any) }</literal>. It would be nice
-      to narrow the type of <literal>subject</literal> to something more
-      specific than <literal>Any</literal>.</para>
+      to narrow the type of <literal role="keep-together">subject</literal> to
+      something more specific than <literal>Any</literal>.</para>
 
       <para id="para_there_are_a_few_things_that_are_unsatisfying2">The second
       issue, which is really the same problem in a different form, occurs in
@@ -2307,19 +2306,19 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
         </indexterm></para>
 
       <para id="para_in_fact_we_expect_the_actual_">In fact, we expect the
-      actual types of the subject and observer to be specialized
-      <emphasis>covariantly</emphasis>. For example, when we’re observing
-      <literal>Buttons</literal>, we expect our observers to be specialized
-      for <literal>Buttons</literal>, so they can access
+      actual types of the subject and observer to be specialized <emphasis
+      role="keep-together">covariantly</emphasis>. For example, when we’re
+      observing <literal>Buttons</literal>, we expect our observers to be
+      specialized for <literal>Buttons</literal>, so they can access
       <literal>Button</literal> state and methods. This
       <emphasis>covariant</emphasis> specialization is sometimes called
-      <emphasis>family polymorphism</emphasis> <link linkend="Odersky2005"
-      xrefstyle="select:nopage">[Odersky2005]</link>. Let’s fix our design to
-      support this covariance.</para>
+      <emphasis>family polymorphism</emphasis> (see <link
+      linkend="Odersky2005" xrefstyle="select:nopage">[Odersky2005]</link>).
+      Let’s fix our design to support this covariance.</para>
 
       <para id="para_to_simplify_the_example_let_s">To simplify the example,
       let’s focus on just the <literal>receiveUpdate</literal> form of the
-      Observer, which we implemented with
+      <literal>Observer</literal>, which we implemented with
       <literal>SubjectForReceiveUpdateObservers</literal> before. Here is a
       reworking of our pattern, loosely following an example in <link
       linkend="Odersky2005" xrefstyle="select:nopage">[Odersky2005]</link>.
@@ -2348,15 +2347,14 @@ abstract class SubjectObserver {
 
       <para id="para_type_and_parents">We’ll explain the error in a minute.
       Note how the types <literal>S</literal> and <literal>O</literal> are
-      declared. As we saw in <xref linkend="ParameterizedTypes" /> in <xref
-      linkend="ScalasTypeSystem" />, the expression <literal>type S &lt;:
-      Subject</literal> defines an abstract type <literal>S</literal> where
-      the only allowed concrete types will be subtypes of
-      <literal>Subject</literal>. The declaration of <literal>O</literal> is
-      similar. To be clear, <literal>S</literal> and <literal>O</literal> are
-      “placeholders” at this point, while <literal>Subject</literal> and
-      <literal>Observer</literal> are abstract traits defined in
-      <literal>SubjectObserver</literal>.</para>
+      declared. As we saw in <xref linkend="ParameterizedTypes" />, the
+      expression <literal>type S &lt;: Subject</literal> defines an abstract
+      type <literal>S</literal> where the only allowed concrete types will be
+      subtypes of <literal>Subject</literal>. The declaration of
+      <literal>O</literal> is similar. To be clear, <literal>S</literal> and
+      <literal>O</literal> are “placeholders” at this point, while
+      <literal>Subject</literal> and <literal>Observer</literal> are abstract
+      traits defined in <literal>SubjectObserver</literal>.</para>
 
       <para id="para_subjectobserver_as_abstract_class_or_trait">By the way,
       declaring <literal>SubjectObserver</literal> as an abstract class versus
@@ -2385,16 +2383,16 @@ one error found</screen>
       the parent type, <literal>Subject</literal>. That’s undesirable. We just
       mentioned that our concrete observers need the more specific type, the
       actual concrete type we’ll eventually define for <literal>S</literal>,
-      so they can call methods on it. For example, when observing UI
-      <literal>CheckBoxes</literal>, the observers will want to read whether
-      or not a box is checked. We don’t want to force the observers to use
-      unsafe casts.</para>
+      so they can call methods on it. For example, when observing UI <literal
+      role="keep-together">CheckBoxes</literal>, the observers will want to
+      read whether or not a box is checked. We don’t want to force the
+      observers to use unsafe casts.</para>
 
       <para id="para_a__self_type_annotation__ode">We looked at composition
       using <emphasis>self-type annotations</emphasis> in <xref
-      linkend="SelfTypeAnnotations" /> in <xref linkend="ScalasTypeSystem" />.
-      Let’s use this feature now to solve our current compilation problem.
-      Here is the same code again with a self-type annotation:</para>
+      linkend="SelfTypeAnnotations" />. Let’s use this feature now to solve
+      our current compilation problem. Here is the same code again with a
+      self-type annotation:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/observer3.scala
 
@@ -2436,7 +2434,7 @@ abstract class SubjectObserver {
 
       <para id="para_when_an_actual_concrete_subje">Are self-type annotations
       a safe thing to use? When an actual concrete
-      <literal>SubjectObserver</literal> is defined, <literal>S</literal> and
+      <literal>SubjectOb⁠server</literal> is defined, <literal>S</literal> and
       <literal>O</literal> will be specified and type checking will be
       performed to ensure that the concrete <literal>S</literal> and
       <literal>O</literal> are compatible with <literal>Subject</literal> and
@@ -2480,8 +2478,8 @@ object ButtonSubjectObserver extends SubjectObserver {
       <literal>S</literal> and <literal>O</literal> to be
       <literal>ObservableButton</literal> and
       <literal>ButtonObserver</literal>, respectively, both of which are
-      defined in the object. We use an <literal>object</literal> now so we can
-      refer to the nested types easily, as we’ll see shortly.</para>
+      defined in the object. We use an <literal>object</literal> now so that
+      we can refer to the nested types easily, as we’ll see shortly.</para>
 
       <para
       id="para_observablebutton_is_a_concrete_class"><literal>ObservableButton</literal>
@@ -2489,8 +2487,9 @@ object ButtonSubjectObserver extends SubjectObserver {
       observers, similar to our previous implementations in <xref
       linkend="Traits" />. However, <literal>ButtonObserver</literal> is still
       an abstract trait, because <literal>receiveUpdate</literal> is not
-      defined. Notice that the argument to <literal>receiveUpdate</literal> is
-      now an <literal>ObservableButton</literal>, the value assigned to
+      defined. Notice that the argument to <literal
+      role="keep-together">receiveUpdate</literal> is now an
+      <literal>ObservableButton</literal>, the value assigned to
       <literal>S</literal>.</para>
 
       <para id="para_the_final_piece_of_the_puzzle_">The final piece of the
@@ -2520,11 +2519,11 @@ class ButtonClickObserver extends ButtonSubjectObserver.ButtonObserver {
       fetches the current count for the button, if any, and updates the map
       with an incremented count. Note that it is now impossible to call
       <literal>receiveUpdate</literal> with a normal
-      <literal>Button</literal>. We have to use an
-      <literal>ObservableButton</literal>. This restriction eliminates bugs
-      where we don’t get the notifications we expected. We also have access to
-      any “enhanced” features that <literal>ObservableButton</literal> may
-      have.</para>
+      <literal>Button</literal>. We have to use an <literal
+      role="keep-together">ObservableButton</literal>. This restriction
+      eliminates bugs where we don’t get the notifications we expected. We
+      also have access to any “enhanced” features that
+      <literal>ObservableButton</literal> may have.</para>
 
       <para id="para_finally_here_is_a_specificati">Finally, here is a
       specification that exercises the code:</para>
@@ -2573,14 +2572,14 @@ object ButtonObserver3Spec extends Specification {
       from <literal>Subject</literal> abstractions.</para>
 
       <para id="para_modular_scala_compiler">The Scala compiler itself is
-      implemented using these mechanisms <link linkend="Odersky2005"
-      xrefstyle="select:nopage">[Odersky2005]</link> to make it modular in
+      implemented using these mechanisms (see <link linkend="Odersky2005"
+      xrefstyle="select:nopage">[Odersky2005]</link>) to make it modular in
       useful ways. For example, it is relatively straightforward to implement
       compiler plugins.</para>
 
       <para id="para_revisit_in_di">We’ll revisit these idioms in <xref
-      linkend="DependencyInjectionInScala" /> below.<indexterm
-      class="endofrange" startref="ch13_components"></indexterm></para>
+      linkend="DependencyInjectionInScala" />.<indexterm class="endofrange"
+      startref="ch13_components"></indexterm></para>
     </sect2>
   </sect1>
 
@@ -2590,7 +2589,7 @@ object ButtonObserver3Spec extends Specification {
     <para id="para_one_of_the_reasons_that_java_d">One of the reasons that
     many languages (like Java) do not implement multiple inheritance is
     because of the problems observed with multiple inheritance in C++. One of
-    the those problems is the so-called <emphasis>diamond of death</emphasis>,
+    those problems is the so-called <emphasis>diamond of death</emphasis>,
     which is illustrated in <xref linkend="diamond-of-death" />.<indexterm>
         <primary>C++</primary>
 
@@ -2644,7 +2643,7 @@ object ButtonObserver3Spec extends Specification {
 
     <para id="para_scala_s_single_inheritance_wit">Scala’s single inheritance
     and support for traits avoid these problems, while providing the most
-    important benefit of multiple inheritance, <emphasis>mixin</emphasis>
+    important benefit of multiple inheritance: <emphasis>mixin</emphasis>
     composition. The order of construction is unambiguous (see <xref
     linkend="Linearization" />). Traits can’t have constructor argument lists,
     but Scala ensures that their fields are properly initialized when
@@ -2677,15 +2676,15 @@ object ButtonObserver3Spec extends Specification {
 
     <para id="para_for_example_recall_our_vetoa">For example, recall our
     <literal>VetoableClicks</literal> trait in <xref
-    linkend="StackableTraits" /> in <xref linkend="Traits" />, where button
-    clicks were counted and additional clicks were vetoed after a certain
-    number of clicks occurred. Our simple <literal>Button</literal> class
-    contributed only a <literal>label</literal>
-    <emphasis>dimension</emphasis>, while <literal>VetoableClicks</literal>
-    contributed a <literal>count</literal> <emphasis>dimension</emphasis> and
-    a <literal>maxAllowed</literal> constant. Here is a recap of these types,
-    collected together into a single script that also exercises the
-    code:</para>
+    linkend="StackableTraits" />, where button clicks were counted and
+    additional clicks were vetoed after a certain number of clicks occurred.
+    Our simple <literal>Button</literal> class contributed only a
+    <literal>label</literal> <emphasis
+    role="keep-together">dimension</emphasis>, while
+    <literal>VetoableClicks</literal> contributed a <literal>count</literal>
+    <emphasis>dimension</emphasis> and a <literal>maxAllowed</literal>
+    constant. Here is a recap of these types, collected together into a single
+    script that also exercises the code:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/vetoable-clicks1-script.scala
 
@@ -2732,10 +2731,11 @@ click!</screen>
     instantiating each instance. So, two instances could differ only by the
     value of <literal>maxAllowed</literal>. Therefore,
     <literal>maxAllowed</literal> also contributes a dimension to the state,
-    but with only one value per instance!</para>
+    but with only one value per <phrase
+    role="keep-together">instance</phrase>!</para>
 
     <para id="para_so_for_a_button_labeled_sub">So, for a button labeled
-    “Submit”, with <literal>maxAllowed</literal> set to 3, and which has been
+    “Submit,” with <literal>maxAllowed</literal> set to 3, and which has been
     clicked twice (so <literal>count</literal> equals 2), its state can be
     represented by the tuple <literal>("Submit", 2, 3)</literal>.</para>
 
@@ -2748,15 +2748,15 @@ click!</screen>
     button’s label), while <literal>VetoableClicks</literal> contributes
     <literal>maxAllowed</literal> and <literal>count</literal>. Traits with
     orthogonal state often have orthogonal methods, too. For example, the
-    observer pattern traits we used in <xref linkend="Traits" /> contained
+    Observer Pattern traits we used in <xref linkend="Traits" /> contained
     methods for managing their lists of observers.</para>
 
-    <para id="para_independent_of_these_two_possi">Independent of whether or
-    not a trait contributes state dimensions, a trait can also modify the
-    possible values for a dimension contributed by a different trait or the
-    parent class. To see an example, let’s refactor the script to move the
-    click <literal>count</literal> to the <literal>Clickable</literal>
-    trait:</para>
+    <para id="para_independent_of_these_two_possi">Independent of whether a
+    trait contributes state dimensions, a trait can also modify the possible
+    values for a dimension contributed by a different trait or the parent
+    class. To see an example, let’s refactor the script to move the click
+    <literal>count</literal> to the <literal
+    role="keep-together">Clickable</literal> trait:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/vetoable-clicks2-script.scala
 
@@ -2816,27 +2816,27 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     suite? The suite won’t pass if it assumes that you can click a button as
     many times as you want. There are different “specifications” for these two
     kinds of buttons. This difference is expressed by the <emphasis>Liskov
-    Substitution Principle</emphasis> <link linkend="Martin2003"
-    xrefstyle="select:nopage">[Martin2003]</link>. An instance of a
+    Substitution Principle</emphasis> (see <link linkend="Martin2003"
+    xrefstyle="select:nopage">[Martin2003]</link>). An instance of a
     <literal>Button with VetoableClicks</literal> won’t be
     <emphasis>substitutable</emphasis> in every situation where a regular
     <literal>Button</literal> instance is used. This is a consequence of the
-    <emphasis>invasive</emphasis> nature of
-    <literal>VetoableClicks</literal>.</para>
+    invasive nature of <literal
+    role="keep-together">VetoableClicks</literal>.</para>
 
     <para id="para_similarly_orthogonal_state_an">When a trait adds only
     orthogonal state and behavior, without affecting the rest of the state and
     behavior of the instance, it makes reuse and composition much easier, as
-    well as reducing the potential for bugs. The observer pattern
+    well as reducing the potential for bugs. The Observer Pattern
     implementations we have seen are quite reusable. The only requirement for
     reuse is to provide some “glue” to adapt the generic subject and observer
     traits to particular circumstances.</para>
 
     <para id="para_this_does_not_mean_that__invas">This does not mean that
-    <emphasis>invasive</emphasis> mixins are bad, just that they should be
-    used wisely. The “vetoable events” pattern can be very useful.<indexterm
-    class="endofrange" startref="ch13_appdesigntraits"></indexterm><indexterm
-    class="endofrange" startref="ch13_traitseffective"></indexterm></para>
+    invasive mixins are bad, just that they should be used wisely. The
+    “vetoable events” pattern can be very useful.<indexterm class="endofrange"
+    startref="ch13_appdesigntraits"></indexterm><indexterm class="endofrange"
+    startref="ch13_traitseffective"></indexterm></para>
   </sect1>
 
   <sect1 id="DesignPatterns">
@@ -2845,11 +2845,11 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     <para id="para_design_patterns_have_taken_a_b">Design patterns have taken
     a beating lately. Critics dismiss them as workarounds for missing language
     features. Indeed, some of the <emphasis>Gang of Four</emphasis> patterns
-    <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link> are not
-    really needed in Scala, as native features provide better substitutes.
-    Other patterns are part of the language itself, so no special coding is
-    needed. Of course, patterns are frequently misused, but that’s not the
-    fault of the patterns themselves.<indexterm>
+    (see <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link>)
+    are not really needed in Scala, as native features provide better
+    substitutes. Other patterns are part of the language itself, so no special
+    coding is needed. Of course, patterns are frequently misused, but that’s
+    not the fault of the patterns themselves.<indexterm>
         <primary>Gang of Four (GOF) patterns</primary>
       </indexterm><indexterm class="startofrange" id="ch13_designpatterns">
         <primary>design patterns</primary>
@@ -2860,7 +2860,7 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
       </indexterm></para>
 
     <para id="para_we_think_the_criticisms_often_">We think the criticisms
-    often overlook an important point, the distinction between an idea and how
+    often overlook an important point: the distinction between an idea and how
     it is implemented and used in a particular situation. Design patterns
     document recurring, widely useful ideas. These ideas are part of the
     <emphasis>vocabulary</emphasis> that software developers use to describe
@@ -2873,8 +2873,8 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     <para id="para_pattern_ideas_language_features">Some common patterns are
     native language features in Scala, like <emphasis>singleton</emphasis>
     objects that eliminate the need for a <emphasis>Singleton
-    Pattern</emphasis> <link linkend="GOF1995"
-    xrefstyle="select:nopage">[GOF1995]</link> implementation like you often
+    Pattern</emphasis> (<link linkend="GOF1995"
+    xrefstyle="select:nopage">[GOF1995]</link>) implementation like you often
     use in Java code.</para>
 
     <para id="para_pattern_ideas_language_features2">The <emphasis>Iterator
@@ -2898,8 +2898,8 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
 
     <para id="para_pattern_ideas_language_better_alternatives">Other common
     patterns have better alternatives in Scala. We’ll discuss a better
-    alternative to the <emphasis>Visitor Pattern</emphasis> <link
-    linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link> in a
+    alternative to the <emphasis>Visitor Pattern</emphasis> (<link
+    linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link>) in a
     moment.</para>
 
     <para id="para_other_patterns_useful">Finally, still other patterns can be
@@ -2920,19 +2920,18 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     illustrative examples. We’ll start by discussing a replacement for the
     <emphasis>Visitor Pattern</emphasis> that uses functional idioms and
     implicit conversations. Then we’ll discuss a powerful way of implementing
-    <emphasis>Dependency Injection</emphasis> in Scala using the
+    <emphasis>dependency injection</emphasis> in Scala using the
     <emphasis>Cake Pattern</emphasis>.</para>
 
     <sect2 id="VisitorAlternativeInScala">
       <title>The Visitor Pattern: A Better Alternative</title>
 
-      <para id="para_visitor_pattern_description">The <emphasis>Visitor
-      Pattern</emphasis> <link linkend="GOF1995"
-      xrefstyle="select:nopage">[GOF1995]</link> solves the problem of adding
-      a new operation to a class hierarchy without editing the source code for
-      the classes in the hierarchy. For a number of practical reasons, it may
-      not be feasible or desirable to edit the hierarchy to support the new
-      operation.<indexterm class="startofrange" id="ch13_VisitorPattern">
+      <para id="para_visitor_pattern_description">The Visitor Pattern solves
+      the problem of adding a new operation to a class hierarchy without
+      editing the source code for the classes in the hierarchy. For a number
+      of practical reasons, it may not be feasible or desirable to edit the
+      hierarchy to support the new operation.<indexterm class="startofrange"
+          id="ch13_VisitorPattern">
           <primary>Visitor Pattern, alternative to</primary>
         </indexterm><indexterm class="startofrange"
           id="ch13_designpatternVisitor">
@@ -2944,8 +2943,7 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
       <para id="para_let_s_look_at_an_example_of_th">Let’s look at an example
       of the pattern using the <literal>Shape</literal> class hierarchy we
       have used previously. We’ll start with the case class version from <xref
-      linkend="CaseClasses" /> in <xref
-      linkend="AdvancedObjectOrientedProgramming" />:</para>
+      linkend="CaseClasses" />:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case.scala
 
@@ -3022,16 +3020,17 @@ package shapes {
       each method to do the appropriate operation for the particular type
       passed in.</para>
 
-      <para id="para_the_visitor_pattern_requires_a">The visitor pattern
+      <para id="para_the_visitor_pattern_requires_a">The Visitor Pattern
       requires a one-time modification to the class hierarchy. An overridden
-      method named “accept” must be added, which takes a
+      method named <literal>accept</literal> must be added, which takes a
       <literal>Visitor</literal> parameter. This method must be overridden for
-      each class. It calls the corresponding method defined on the visitor
-      instance, passing <literal>this</literal> as the argument.</para>
+      each class. It calls the corresponding method defined on the
+      <literal>visitor</literal> instance, passing <literal>this</literal> as
+      the argument.</para>
 
       <para id="para_finally_note_that_we_declared">Finally, note that we
       declared <literal>Shape</literal> to be <literal>sealed</literal>. It
-      won’t help us prevent some bugs in the visitor pattern implementation,
+      won’t help us prevent some bugs in the Visitor Pattern implementation,
       but it will prove useful shortly.</para>
 
       <para id="para_here_is_a_concrete_visitor_tha">Here is a concrete
@@ -3082,12 +3081,12 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))</screen>
 
       <para id="para_visitor_has_been_criticized_fo">Visitor has been
       criticized for being somewhat inelegant and for breaking the
-      <emphasis>Open-Closed Principle</emphasis> (OCP) <link
-      linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>,
+      <emphasis>Open-Closed Principle</emphasis> (OCP; see <link
+      linkend="Martin2003" xrefstyle="select:nopage">[Martin2003]</link>),
       because if the hierarchy changes, you are forced to edit (and test and
       redeploy) <emphasis>all</emphasis> the visitors for that hierarchy. Note
       that every <literal>ShapeVisitor</literal> trait has methods that
-      hard-code information about every <literal>Shape</literal> derived type.
+      hardcode information about every <literal>Shape</literal> derived type.
       These kinds of changes are also error-prone.<indexterm>
           <primary>Open-Closed Principle (OCP)</primary>
 
@@ -3095,7 +3094,7 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))</screen>
         </indexterm></para>
 
       <para id="para_visitor_pattern_alt_ruby_open_types">In languages with
-      “open types”, like Ruby, an alternative to the visitor pattern is to
+      “open types,” like Ruby, an alternative to the Visitor Pattern is to
       create a new source file that reopens all the types in the hierarchy and
       inserts an appropriate method implementation in each one. No
       modifications to the original source code are required.</para>
@@ -3104,7 +3103,7 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))</screen>
       open types, of course, but it offers a few alternatives. The first
       approach we’ll discuss combines pattern matching with implicit
       conversions. Let’s begin by refactoring the
-      <literal>ShapeVisitor</literal> code to remove the visitor pattern
+      <literal>ShapeVisitor</literal> code to remove the Visitor Pattern
       logic:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes.scala
@@ -3173,15 +3172,15 @@ import shapes2.ShapeDrawer._
 list foreach { _.draw }</programlisting>
 
       <para id="para_same_output_as_visitor">It produces the same output as
-      the example using the visitor pattern.</para>
+      the example using the Visitor Pattern.</para>
 
       <para id="para_this_implementation_shares_a_l">This implementation of
-      <literal>ShapeDrawer</literal> has some similarities with the visitor
-      pattern, but it is more concise, elegant, and it requires no code
+      <literal>ShapeDrawer</literal> has some similarities with the Visitor
+      Pattern, but it is more concise, elegant, and requires no code
       modifications to the original <literal>Shape</literal> hierarchy.</para>
 
       <para id="para_the_implementation_of_shapedr">Technically, the
-      implementation has the same OCP issue as the visitor pattern. Changing
+      implementation has the same OCP issue as the Visitor Pattern. Changing
       the <literal>Shape</literal> hierarchy requires a change to the pattern
       matching expression. However, the required changes are isolated to one
       place and they are more succinct. In fact, all the logic for drawing is
@@ -3201,7 +3200,7 @@ list foreach { _.draw }</programlisting>
 
       <para id="para_if_on_the_other_hand_we_don_">If, on the other hand, we
       don’t care about using the object-oriented <literal>shape.draw</literal>
-      syntax, We could eliminate the implicit conversion and do the same
+      syntax, we could eliminate the implicit conversion and do the same
       pattern matching that is done in <literal>ShapeDrawer.draw</literal>.
       This approach could be simpler, especially when the extra behavior can
       be isolated to one place. Indeed, this approach would be a conventional
@@ -3299,12 +3298,12 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))
       should only need to know how to do input and output of shapes in one
       place, whether it is serializing shapes to a textual format for storage
       or rendering shapes to the screen. We can separate the drawing “concern”
-      from the rest of the functionality for shapes and we can isolate the
-      logic for drawing, all without modifying the <literal>Shape</literal>
-      hierarchy or any of the places where it is used in the application. The
-      visitor pattern gives us some of this separation and isolation, but we
-      are required to add visitor implementation logic to each
-      <literal>Shape</literal>.</para>
+      from the rest of the <phrase role="keep-together">functionality</phrase>
+      for shapes, and we can isolate the logic for drawing, all without
+      modifying the <literal>Shape</literal> hierarchy or any of the places
+      where it is used in the application. The Visitor Pattern gives us some
+      of this separation and isolation, but we are required to add visitor
+      implementation logic to each <literal>Shape</literal>.</para>
 
       <para id="para_let_s_conclude_with_a_discussi">Let’s conclude with a
       discussion of one other option that may be applicable in some contexts.
@@ -3401,7 +3400,7 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))</screen>
       able to call <literal>draw</literal> on the instance!</para>
 
       <para id="para_in_this_script_scala_inferred">In this script, Scala
-      inferred a slightly different common super type for the parameterized
+      inferred a slightly different common supertype for the parameterized
       list. You can see that type if you use the <literal>:load</literal>
       command to load the script while inside the interactive
       <literal>scala</literal> interpreter, as in the following
@@ -3427,15 +3426,14 @@ scala&gt;</screen>
 
       <para id="para_notice_the_line_that_begins_l">Notice the line that
       begins <literal>list: List[Product with shapes2.Shape with
-      shapes2.Drawing]</literal>. This line was printed after the list of
-      shapes was parsed. The inferred common super type is <literal>Product
+      shapes2.Draw⁠ing]</literal>. This line was printed after the list of
+      shapes was parsed. The inferred common supertype is <literal>Product
       with shapes2.Shape with shapes2.Drawing</literal>.
       <literal>Product</literal> is a trait mixed into all case classes, such
       as our concrete subclasses of <literal>Shape</literal>. Recall that to
       avoid case-class inheritance, <literal>Shape</literal> itself is not a
-      case class. (see <xref linkend="CaseClasses" /> in <xref
-      linkend="AdvancedObjectOrientedProgramming" /> for details on why case
-      class inheritance should be avoided.) So, our common super type is an
+      case class. (See <xref linkend="CaseClasses" /> for details on why case
+      class inheritance should be avoided.) So, our common supertype is an
       anonymous class that incorporates <literal>Shape</literal>,
       <literal>Product</literal>, and the <literal>Drawing</literal>
       trait.<indexterm>
@@ -3463,8 +3461,8 @@ scala&gt;</screen>
       <title>Dependency Injection in Scala: The Cake Pattern</title>
 
       <para id="para_description_of_di"><emphasis>Dependency
-      Injection</emphasis> (DI), a form of <emphasis>Inversion of
-      Control</emphasis> (IoC), is a powerful technique for resolving
+      injection</emphasis> (DI), a form of <emphasis>inversion of
+      control</emphasis> (IoC), is a powerful technique for resolving
       dependencies between “components” in larger applications. It supports
       minimizing the coupling between these components, so it is relatively
       easy to substitute different components for different
@@ -3487,7 +3485,7 @@ scala&gt;</screen>
       <para id="para_it_used_to_be_that_when_a_clie">It used to be that when a
       client object needed a database “accessor” object, for example, it would
       just instantiate the accessor itself. While convenient, this approach
-      makes unit testing very difficult, because you have to test with a real
+      makes unit testing very difficult because you have to test with a real
       database. It also compromises reuse, for those alternative situations
       where another persistence mechanism (or none) is required. Inversion of
       control solves this problem by reversing responsibility for satisfying
@@ -3516,21 +3514,21 @@ scala&gt;</screen>
       testing. Our client object with a dependency on a database accessor
       object is a classic example. While unit testing the client, the overhead
       and complications of using a real database are prohibitive. Using a
-      lightweight test double with hard-coded sample data provides simpler
+      lightweight test double with hardcoded sample data provides simpler
       setup and tear down, faster execution, and predictable behavior from the
       data accessor dependency.</para>
 
       <para id="para_java_di">In Java, DI is usually done using an inversion
-      of control container, like the Spring Framework <link
+      of control container, like the Spring Framework (<link
       linkend="SpringFramework"
-      xrefstyle="select:nopage">[SpringFramework]</link>, or a Java-API
-      equivalent, like Google’s Guice API <link linkend="Guice"
-      xrefstyle="select:nopage">[Guice]</link>. These options can be used with
-      Scala code, especially when you are introducing Scala into a mature Java
-      environment.<indexterm>
+      xrefstyle="select:nopage">[SpringFramework]</link>), or a Java-API
+      equivalent like Google’s Guice API (see <link linkend="Guice"
+      xrefstyle="select:nopage">[Guice]</link>). These options can be used
+      with Scala code, especially when you are introducing Scala into a mature
+      Java environment.<indexterm>
           <primary>Java</primary>
 
-          <secondary>DI (Dependency Injection)</secondary>
+          <secondary>DI (dependency injection)</secondary>
         </indexterm></para>
 
       <para id="para_the_cake_pattern_">However, Scala offers some unique
@@ -3538,9 +3536,9 @@ scala&gt;</screen>
       linkend="Boner2008b" xrefstyle="select:nopage">[Bonér2008b]</link>.
       We’ll discuss one of them, the <emphasis>Cake Pattern</emphasis>, which
       can replace or complement these other dependency injection mechanisms.
-      We’ll see that it is similar to the implementation of the observer
-      pattern we discussed earlier in this chapter, in <xref
-      linkend="SelfTypeAnnotationsAndAbstractTypeMembers" />. The cake pattern
+      We’ll see that it is similar to the implementation of the Observer
+      Pattern we discussed earlier in this chapter, in <xref
+      linkend="SelfTypeAnnotationsAndAbstractTypeMembers" />. The Cake Pattern
       was described by <link linkend="Odersky2005"
       xrefstyle="select:nopage">[Odersky2005]</link>, although it was given
       that name after that paper was published. <link linkend="Boner2008b"
@@ -3633,7 +3631,7 @@ trait TwitterClientComponent {
 
       <para id="para_the_first_class_twitteruserp">The first class,
       <literal>TwitterUserProfile</literal>, encapsulates a user’s profile,
-      which we limit to the user name. The second class is a case class,
+      which we limit to the username. The second class is a case class,
       <literal>Tweet</literal>, that encapsulates a single “tweet” (a Twitter
       message, limited to 140 characters by the Twitter service). Besides the
       message string, it encapsulates the user who sent the tweet and the date
@@ -3651,7 +3649,7 @@ trait TwitterClientComponent {
       <literal>TwitterClientUIComponent</literal>. All the components are
       defined next in the file.</para>
 
-      <para id="para_there_are_four_components_">There are four “components”.
+      <para id="para_there_are_four_components_">There are four components.
       Note that they are implemented as traits:<indexterm>
           <primary>traits</primary>
 
@@ -3664,23 +3662,22 @@ trait TwitterClientComponent {
 
       <itemizedlist>
         <listitem>
-          <para><literal>TwitterClientUIComponent</literal>, for the
-          UI.</para>
+          <para><literal>TwitterClientUIComponent</literal>, for the UI</para>
         </listitem>
 
         <listitem>
           <para><literal>TwitterLocalCacheComponent</literal>, for the local
-          cache of prior tweets.</para>
+          cache of prior tweets</para>
         </listitem>
 
         <listitem>
           <para><literal>TwitterServiceComponent</literal>, for accessing the
-          Twitter service.</para>
+          Twitter service</para>
         </listitem>
 
         <listitem>
           <para><literal>TwitterClientComponent</literal>, the client that
-          pulls the pieces together.</para>
+          pulls the pieces together</para>
         </listitem>
       </itemizedlist>
 
@@ -3692,14 +3689,14 @@ trait TwitterClientComponent {
       <para id="para_java_packages_as_components">Often in Java, packages are
       informally associated with components. This is common in other
       languages, too, using their equivalent of a package, e.g., a module or a
-      namespace. Here we define a more precise notion of a component and a
+      namespace. Here we define a more precise notion of a component, and a
       trait is the best vehicle for it, because traits are designed for mixin
       composition.</para>
 
       <para
       id="para__twitterclientuicomponent_dec"><literal>TwitterClientUIComponent</literal>
       declares a <literal>val</literal> named <literal>ui</literal> of the
-      nested type <literal>TwitterClientUI</literal>. This class has a
+      nested type <literal>TwitterClien⁠tUI</literal>. This class has a
       <literal>client</literal> field that must be initialized with a
       <literal>Tweeter</literal> instance. In fact, this instance will be a
       <literal>TwitterClient</literal> (defined in
@@ -3825,7 +3822,7 @@ class TextClient(userProfile: TwitterUserProfile)
       components. By mixing in the other components, we satisfy the self-type
       annotations in <literal>TwitterClientComponent</literal>. In other
       words, <literal>TextClient</literal> <emphasis>is</emphasis> also a
-      <literal>TwitterClientUIComponent</literal>, a
+      <literal>TwitterClien⁠tUIComponent</literal>, a
       <literal>TwitterLocalCacheComponent</literal>, and a
       <literal>TwitterServiceComponent</literal>, in addition to being a
       <literal>TwitterClientComponent</literal>.</para>
@@ -3849,12 +3846,12 @@ class TextClient(userProfile: TwitterUserProfile)
 
       <para id="para_for_the_localcache_it_insta">For the
       <literal>localCache</literal>, it instantiates an anonymous class
-      derived from <literal>TwitterLocalCache</literal>. It keeps the history
+      derived from <literal>TwitterLocalC⁠ache</literal>. It keeps the history
       of tweets in a <literal>List</literal>.</para>
 
       <para id="para_finally_for_the_service_it">Finally, for the
       <literal>service</literal>, it instantiates an anonymous class derived
-      from <literal>TwitterService</literal>. This “fake” defines
+      from <literal>TwitterSer⁠vice</literal>. This “fake” defines
       <literal>sendTweet</literal> to print out a message and to return an
       empty list for the history.</para>
 
@@ -3873,7 +3870,7 @@ println("Chat history:")
 client.localCache.history.foreach {t =&gt; println(t)}</programlisting>
 
       <para id="para_may_3">We instantiate a <literal>TextClient</literal> for
-      the user “BuckTrends”. Old Buck sends three insightful tweets through
+      the user “BuckTrends.” Old Buck sends three insightful tweets through
       the UI. We finish by reprinting the history of tweets, in reverse order,
       that are cached locally. Running this script yields output like the
       following:</para>
@@ -3904,7 +3901,7 @@ Chat history:
 
       <para id="para_other_di_approaches">We get type-safe “wiring” together
       of components, a flexible component model, and we did it all in Scala
-      code! There are alternatives to the cake pattern for implementing
+      code! There are alternatives to the Cake Pattern for implementing
       dependency injection in Scala. See <link linkend="Boner2008b"
       xrefstyle="select:nopage">[Bonér2008b]</link> for other
       examples.<indexterm class="endofrange"
@@ -3923,12 +3920,12 @@ Chat history:
 
     <para id="para_we_ll_conclude_this_chapter_wi">We’ll conclude this chapter
     with a look at an approach to programming called <emphasis>Design by
-    Contract</emphasis> <link linkend="DesignByContract"
-    xrefstyle="select:nopage">[DesignByContract]</link>, which was developed
-    by Bertrand Meyer for the Eiffel language <link linkend="Eiffel"
-    xrefstyle="select:nopage">[Eiffel]</link>. (See also <link
-    linkend="Hunt2000" xrefstyle="select:nopage">[Hunt2000]</link>, <xref
-    linkend="Traits" />.). Design by Contract has been around for about twenty
+    Contract</emphasis> (<link linkend="DesignByContract"
+    xrefstyle="select:nopage">[DesignByContract]</link>), which was developed
+    by Bertrand Meyer for the Eiffel language (see <link linkend="Eiffel"
+    xrefstyle="select:nopage">[Eiffel]</link>, <link linkend="Hunt2000"
+    xrefstyle="select:nopage">[Hunt2000]</link>, and <xref
+    linkend="Traits" />). Design by Contract has been around for about 20
     years. It has fallen somewhat out of favor, but it is still very useful
     for thinking about design.<indexterm>
         <primary>Meyer, Bertrand</primary>
@@ -3945,7 +3942,7 @@ Chat history:
     <para id="para_when_considering_the_contract">When considering the
     “contract” of a module, you can specify three types of conditions. First,
     you can specify the required inputs for a module to successfully perform a
-    service (e.g., when a method is called) These constraints are called
+    service (e.g., when a method is called). These constraints are called
     <emphasis>preconditions</emphasis>. They can also include system
     requirements, e.g., global data (which you should normally avoid, of
     course).<indexterm>
@@ -4006,7 +4003,7 @@ class BankAccount(val balance: Double) {
   }
 }</programlisting>
 
-    <para id="para_class_bankaccount_uses_requ">Class
+    <para id="para_class_bankaccount_uses_requ">The class
     <literal>BankAccount</literal> uses <literal>require</literal> to ensure
     that a non-negative balance is specified for the constructor. Similarly,
     the <literal>debit</literal> and <literal>credit</literal> methods use
@@ -4054,21 +4051,21 @@ object BankAccountSpec extends Specification {
 
     <para id="para_if_we_attempt_to_create_a_ban">If we attempt to create a
     <literal>BankAccount</literal> with a negative balance, an
-    <literal>IllegalArgumentException</literal> is thrown. Similarly, the same
-    kind of exception is thrown if the debit amount is less than zero. Both
-    conditions are enforced using <literal>require</literal>, which throws an
-    <literal role="keep-together">IllegalArgumentException</literal> when the
-    condition specified is false.</para>
+    <literal>IllegalArgumentEx⁠ception</literal> is thrown. Similarly, the
+    same kind of exception is thrown if the debit amount is less than zero.
+    Both conditions are enforced using <literal>require</literal>, which
+    throws an <literal role="keep-together">IllegalArgumentException</literal>
+    when the condition specified is false.</para>
 
     <para id="para_the_assume_method_which_is_">The <literal>assume</literal>
     method, which is used to ensure that overdrafts don’t occur, is
     functionally almost identical to <literal>require</literal>. It throws an
-    <literal>AssertionError</literal> instead of an
-    <literal>IllegalArgumentException</literal>.</para>
+    <literal>AssertionError</literal> instead of an <literal
+    role="keep-together">IllegalArgumentException</literal>.</para>
 
     <para id="para_both_require_and_assume_co">Both <literal>require</literal>
-    and <literal>assume</literal> come in two forms, one which takes just a
-    boolean condition and the other which also takes an error message
+    and <literal>assume</literal> come in two forms: one that takes just a
+    boolean condition, and the other that also takes an error message
     string.</para>
 
     <para id="para_there_is_also_an_assert_pair">There is also an
@@ -4082,7 +4079,7 @@ object BankAccountSpec extends Specification {
     also defines an <literal>Ensuring</literal> class that can be used to
     generalize the capabilities of these methods. <literal>Ensuring</literal>
     has one overloaded method, <literal>ensure</literal>, some versions of
-    which take a function literal as a “predicate”.<indexterm>
+    which take a function literal as a “predicate.”<indexterm>
         <primary>Ensuring class</primary>
       </indexterm></para>
 
@@ -4090,7 +4087,7 @@ object BankAccountSpec extends Specification {
     methods and <literal>Ensuring</literal> is that you can’t disable these
     checks in production. It may <emphasis>not</emphasis> be acceptable to
     terminate abruptly if a condition fails, although if the system is allowed
-    to “limp along” it might crash later and the problem would be harder to
+    to “limp along,” it might crash later and the problem would be harder to
     debug. The performance overhead may be another reason to disable contract
     checks at runtime.</para>
 
@@ -4110,7 +4107,7 @@ object BankAccountSpec extends Specification {
     <title>Recap and What’s Next</title>
 
     <para id="para_we_learned_a_number_of_pragmat">We learned a number of
-    pragmatic techniques, patterns and idioms for effective application
+    pragmatic techniques, patterns, and idioms for effective application
     development using Scala.</para>
 
     <para id="para_good_tools_and_libraries_are_i">Good tools and libraries

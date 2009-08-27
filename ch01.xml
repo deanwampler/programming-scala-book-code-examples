@@ -690,9 +690,9 @@
     <para id="para_the_easiest_installer_to_use_f">The easiest cross-platform
     installer is the <emphasis>IzPack</emphasis> installer. Download the Scala
     JAR file, either <filename>scala-2.7.5.final-installer.jar</filename> or
-    <filename>scala-2.8.0.<replaceable>N</replaceable>-installer.jar</filename>,
-    where <replaceable>N</replaceable> is the latest release of the 2.8.0
-    version. Go to the download directory in a terminal <phrase
+    <filename>scala-2.8.0.N-installer.jar</filename>, where
+    <replaceable>N</replaceable> is the latest release of the 2.8.0 version.
+    Go to the download directory in a terminal <phrase
     role="keep-together">window</phrase>, and install Scala with the
     <literal>java</literal> command. Assuming you downloaded <filename
     role="keep-together">scala-2.8.0.final-</filename><filename>in⁠staller.jar</filename>,
@@ -948,7 +948,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     */</literal> can cross line boundaries.<indexterm>
         <primary>/ (slash)</primary>
 
-        <secondary>/* */ in multiline comments</secondary>
+        <secondary>/* */ in multi-line comments</secondary>
       </indexterm><indexterm>
         <primary>/ (slash)</primary>
 

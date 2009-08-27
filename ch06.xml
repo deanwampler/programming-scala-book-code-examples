@@ -896,7 +896,7 @@ object ButtonObserver2Spec extends Specification {
       </note>
 
       <para id="para_but_wait_there_s_more_we_ll_">But wait, there’s more!
-      We’ll revisit the use of abstract types and the observer pattern in
+      We’ll revisit the use of abstract types and the Observer Pattern in
       <xref linkend="ScalableAbstractions" />.<indexterm class="endofrange"
       startref="ch06_overrideabstracttypes"></indexterm><indexterm
       class="endofrange"
@@ -1013,7 +1013,7 @@ class IllegalMemberNameUse {
 }</programlisting>
 
       <para id="para_there_is_one_other_benefit_of_">There is one other
-      benefit of this namespace “unification”. If a parent class declares a
+      benefit of this namespace “unification.” If a parent class declares a
       parameterless method, then a subclass can override that method with a
       <literal>val</literal>. If the parent’s method is concrete, then the
       <literal>override</literal> keyword is required:</para>
@@ -1068,7 +1068,7 @@ class ConcreteNameClass extends NameTrait {
 println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlisting>
 
       <para id="para_if_the_trait_s_method_is_abstr">If the trait’s method is
-      abstract, then we have the following:</para>
+      abstract, we have the following:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/abs-method-field-trait-script.scala
 
@@ -1084,9 +1084,9 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
 
       <para id="para_why_is_this_feature_useful_it">Why is this feature
       useful? It allows derived classes and traits to use a simple field
-      access, when that is sufficient, or a method call when more processing
-      is required, such as lazy initialization. The same argument holds for
-      the Uniform Access Principle, in general.</para>
+      access when that is sufficient, or a method call when more processing is
+      required, such as lazy initialization. The same argument holds for the
+      Uniform Access Principle, in general.</para>
 
       <para id="para_overriding_a_def_with_a_val">Overriding a
       <literal>def</literal> with a <literal>val</literal> in a subclass can
@@ -1103,9 +1103,9 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       quick work of them.</para>
 
       <para id="para_what_about_overriding_a_parame">What about overriding a
-      parameterless method with a <literal>var</literal> or overriding a
+      parameterless method with a <literal>var</literal>, or overriding a
       <literal>val</literal> or <literal>var</literal> with a method? These
-      are not permitted, because they can’t match the behaviors of the things
+      are not permitted because they can’t match the behaviors of the things
       they are overriding.</para>
 
       <para id="para_if_you_attempt_to_use_a_var_">If you attempt to use a
@@ -1121,8 +1121,8 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       no longer return the same result consistently.</para>
 
       <para id="para_if_you_could_override_a_val_">If you could override a
-      <literal>val</literal> with a method, there is no way for Scala to
-      guarantee that the method will always return the same value, consistent
+      <literal>val</literal> with a method, there would be no way for Scala to
+      guarantee that the method would always return the same value, consistent
       with <literal>val</literal> semantics. That issue doesn’t exist with a
       <literal>var</literal>, of course, but you would have to override the
       <literal>var</literal> with two methods, a reader and a writer. The
@@ -1155,7 +1155,7 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       </indexterm></para>
 
     <para id="para_we_mentioned_companion_objects">We mentioned companion
-    objects briefly in <xref linkend="IntroducingScala" /> and we discussed
+    objects briefly in <xref linkend="IntroducingScala" />, and we discussed
     the <literal>Pair</literal> example from the Scala library in <xref
     linkend="TypeLessDoMore" /> and the last chapter. Let’s fill in the
     remaining details now.</para>
@@ -1173,8 +1173,8 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
     <para id="para_there_is_no_namespace_collisio">There is no namespace
     collision when the name is reused in this way, because Scala stores the
     class name in the type namespace, while it stores the object name in the
-    term namespace <link linkend="ScalaSpec2009"
-    xrefstyle="select:nopage">[ScalaSpec2009]</link>.</para>
+    term namespace (see <link linkend="ScalaSpec2009"
+    xrefstyle="select:nopage">[ScalaSpec2009]</link>).</para>
 
     <para id="para_the_two_most_interesting_metho">The two most interesting
     methods frequently defined in a companion object are
@@ -1217,12 +1217,12 @@ object Pair {
 }</programlisting>
 
       <para id="para_so_you_can_create_a_new_pair_">So, you can create a new
-      Pair as follows:</para>
+      <literal>Pair</literal> as follows:</para>
 
       <programlisting linenumbering="unnumbered">val p = Pair(1, "one")</programlisting>
 
-      <para id="para_it_looks_like_we_are_some_how_">It looks like we are some
-      how creating an <literal>Pair</literal> instance without a
+      <para id="para_it_looks_like_we_are_some_how_">It looks like we are
+      somehow creating a <literal>Pair</literal> instance without a
       <literal>new</literal>. Rather than calling a <literal>Pair</literal>
       constructor directly, we are actually calling
       <literal>Pair.apply</literal> (i.e., the companion object
@@ -1359,9 +1359,10 @@ object WidgetApplySpec extends Specification {
       what <literal>apply</literal> returns. However, because it is so common
       to use <literal>apply</literal> in an <literal>object</literal> as a
       factory, use caution when using <literal>apply</literal> for other
-      purposes, as it could confuse users. However, there are good counter
-      examples, such as the use of <literal>apply</literal> in Domain-Specific
-      Languages (see <xref linkend="DomainSpecificLanguages" />).</para>
+      purposes, as it could confuse users. However, there are good
+      counterexamples, such as the use of <literal>apply</literal> in
+      Domain-Specific Languages (see <xref
+      linkend="DomainSpecificLanguages" />).</para>
 
       <para id="para_the_factory_convention_is_less">The factory convention is
       less commonly used for <literal>apply</literal> defined in classes. For
@@ -1379,7 +1380,7 @@ println(a(2))  // =&gt; 3</programlisting>
 
       <para id="para_finally_as_a_reminder_althou">Finally, as a reminder,
       although <literal>apply</literal> is handled specially by the compiler,
-      it is otherwise no different than any other method. You can overload it,
+      it is otherwise no different from any other method. You can overload it,
       you can invoke it directly, etc.<indexterm class="endofrange"
       startref="ch06_companionapply"></indexterm><indexterm class="endofrange"
       startref="ch06_applymethod"></indexterm></para>
@@ -1390,11 +1391,11 @@ println(a(2))  // =&gt; 3</programlisting>
 
       <para id="para_the_name_unapply_suggests_th">The name
       <literal>unapply</literal> suggests that it does the “opposite”
-      operation that <literal>apply</literal> does. Indeed, it is used to
-      extract the constituent parts of an instance. Pattern matching uses this
-      feature extensively. Hence, <literal>unapply</literal> is often defined
-      in companion objects and it is used to extract the field values from
-      instances of the corresponding companion types. For this reason,
+      operation of <literal>apply</literal>. Indeed, it is used to extract the
+      constituent parts of an instance. Pattern matching uses this feature
+      extensively. Hence, <literal>unapply</literal> is often defined in
+      companion objects and is used to extract the field values from instances
+      of the corresponding companion types. For this reason,
       <literal>unapply</literal> methods are called
       <emphasis>extractors</emphasis>.<indexterm>
           <primary>extractors</primary>
@@ -1443,7 +1444,7 @@ object Button {
       They return a <literal>Some</literal> wrapping the extracted fields.
       (We’ll see how to handle more than one field in a moment.)</para>
 
-      <para id="para_specs_button_unapply">Here is a “specs”
+      <para id="para_specs_button_unapply">Here is a <literal>specs</literal>
       <literal>object</literal> that exercises
       <literal>Button.unapply</literal>:</para>
 
@@ -1505,7 +1506,7 @@ object ButtonUnapplySpec extends Specification {
       <literal>unapply</literal> method and invokes that method, passing the
       instance. The default case clause <literal>case _</literal> is invoked
       for the instances that don’t type check as compatible. The pattern
-      matching process is fully type safe.</para>
+      matching process is fully type-safe.</para>
 
       <para id="para_the_remaining_examples_in_c">The remaining examples
       (<literal>in</literal> clauses) confirm that the correct values for the
@@ -1535,11 +1536,11 @@ object RadioButton {
 
       <para id="para_a_some_wrapping_a_pair_butt">A <literal>Some</literal>
       wrapping a <literal>Pair(button.on, button.label)</literal> is returned.
-      As we discuss in <xref linkend="PredefObject" /> in <xref
-      linkend="ScalaObjectSystem" />, <literal>Pair</literal> is a
-      <emphasis>type</emphasis> defined to be equal to
-      <literal>Tuple2</literal>. Here is the corresponding “specs”
-      <literal>object</literal> that tests it<indexterm class="endofrange"
+      As we discuss in <xref linkend="PredefObject" />,
+      <literal>Pair</literal> is a <emphasis>type</emphasis> defined to be
+      equal to <literal>Tuple2</literal>. Here is the corresponding
+      <literal>specs</literal> <literal>object</literal> that tests
+      it<indexterm class="endofrange"
       startref="ch06_unapply"></indexterm><indexterm class="endofrange"
       startref="ch06_companionunapply"></indexterm>:</para>
 
@@ -1624,10 +1625,9 @@ def unapplySeq[A](x: List[A]): Some[List[A]] = Some(x)</programlisting>
       <para id="para_the_a_type_parameterizatio">The <literal>[A]</literal>
       type parameterization on these methods allows the
       <literal>List</literal> <literal>object</literal>, which is not
-      parameterized, to construct a new <literal>List[A]</literal> (See <xref
-      linkend="ParameterizedTypes" /> in <xref linkend="ScalasTypeSystem" />
-      for more details.) Most of the time, the type parameter will be inferred
-      based on the context.</para>
+      parameterized, to construct a new <literal>List[A]</literal>. (See <xref
+      linkend="ParameterizedTypes" /> for more details.) Most of the time, the
+      type parameter will be inferred based on the context.</para>
 
       <para id="para_the_parameter_list_xs_a_is">The parameter list
       <literal>xs: A*</literal> is a variable argument list. Callers of
@@ -1639,8 +1639,8 @@ def unapplySeq[A](x: List[A]): Some[List[A]] = Some(x)</programlisting>
 
       <tip id="para_tip_this_is_a_handy_idiom_for">
         <para>This is a handy idiom for API writers. Accepting variable
-        arguments to a function can be convenient for users and converting the
-        arguments to a <literal>List</literal> is often ideal for internal
+        arguments to a function can be convenient for users, and converting
+        the arguments to a <literal>List</literal> is often ideal for internal
         management.</para>
       </tip>
 
@@ -1674,7 +1674,7 @@ println("3: "+list3)</programlisting>
       <para id="para_the_unapplyseq_method_is_tri">The
       <literal>unapplySeq</literal> method is trivial; it returns the input
       list wrapped in a <literal>Some</literal>. However, this is sufficient
-      for pattern matching as shown in this example:</para>
+      for pattern matching, as shown in this example:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/list-unapply-example-script.scala
 
@@ -1686,7 +1686,7 @@ list match {
 
       <para id="para_the_list_x_y___syntax_m">The <literal>List(x, y,
       _*)</literal> syntax means we will only match on a list with at least
-      two elements and the first two elements will be assigned to
+      two elements, and the first two elements will be assigned to
       <literal>x</literal> and <literal>y</literal>. We don’t care about the
       rest of the list. The <literal>_*</literal> matches zero or more
       remaining elements.</para>
@@ -1697,8 +1697,7 @@ list match {
 
       <para id="para_we_ll_have_much_more_to_say_ab">We’ll have much more to
       say about <literal>List</literal> and pattern matching in <xref
-      linkend="ListsInFunctionalProgramming" /> in <xref
-      linkend="FunctionalProgramming" />.</para>
+      linkend="ListsInFunctionalProgramming" />.</para>
     </sect2>
 
     <sect2 id="CompanionObjectsAndJavaStaticMethods">
@@ -1713,8 +1712,8 @@ list match {
       generated code, the JVM won’t find the <literal>main</literal> method.
       This issue may be resolved in a future release. For now, you must define
       any <literal>main</literal> method in a <emphasis>singleton</emphasis>
-      object (i.e., a “non-companion” object) <link linkend="ScalaTips"
-      xrefstyle="select:nopage">[ScalaTips]</link>. Consider the following
+      object (i.e., a “non-companion” object; see <link linkend="ScalaTips"
+      xrefstyle="select:nopage">[ScalaTips]</link>). Consider the following
       example of a simple <literal>Person</literal> class and companion object
       that attempts to define <literal>main</literal>:<indexterm
           class="startofrange" id="ch06_Javamethods">
@@ -1769,9 +1768,8 @@ object PersonTest {
       <para id="para_the_objects_person_class_fil">The
       <literal>objects/Person.class</literal> file exists. If you decompile it
       with <literal>javap -classpath ... objects.Person</literal> (see <xref
-      linkend="CommandLineToolDecompilers" /> in <xref
-      linkend="ScalaToolsLibs" />), you can see that it doesn’t contain a
-      <literal>main</literal> method. If you decompile
+      linkend="CommandLineToolDecompilers" />), you can see that it doesn’t
+      contain a <literal>main</literal> method. If you decompile
       <literal>objects/Person$.class</literal>, the file for the companion
       object’s byte code, it has a <literal>main</literal> method, but notice
       that it isn’t declared <literal>static</literal>. So, attempting to
@@ -1882,8 +1880,7 @@ public class PersonUser {
     <title>Case Classes</title>
 
     <para id="para_in_matchingoncaseclasses_i">In <xref
-    linkend="MatchingOnCaseClasses" /> in <xref
-    linkend="RoundingOutTheEssentials" />, we briefly introduced you to
+    linkend="MatchingOnCaseClasses" />, we briefly introduced you to
     <emphasis>case classes</emphasis>. Case classes have several useful
     features, but also some drawbacks.<indexterm class="startofrange"
         id="ch06_caseclasses">
@@ -1896,8 +1893,8 @@ public class PersonUser {
 
     <para id="para_let_s_rewrite_the_shape_exam">Let’s rewrite the
     <literal>Shape</literal> example we used in <xref
-    linkend="ATasteOfConcurrency" /> in <xref linkend="IntroducingScala" /> to
-    use case classes. Here is the original implementation:</para>
+    linkend="ATasteOfConcurrency" /> to use case classes. Here is the original
+    implementation:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes.scala
 
@@ -1969,9 +1966,9 @@ package shapes {
 
     <para id="para_first_the_parser_automaticall">First, the compiler
     automatically converts the constructor arguments into immutable fields
-    (<literal>val</literal>’s). The <literal>val</literal> keyword is
-    optional. If you want mutable fields, use the <literal>var</literal>
-    keyword. So, our constructor argument lists are now shorter.</para>
+    (<literal>val</literal>s). The <literal>val</literal> keyword is optional.
+    If you want mutable fields, use the <literal>var</literal> keyword. So,
+    our constructor argument lists are now shorter.</para>
 
     <para id="para_second_the_parser_automatical">Second, the compiler
     automatically implements <literal>equals</literal>,
@@ -2013,8 +2010,8 @@ shape2: Rectangle(Point(-2.0,-1.0),4.0,3.0). 1 == 2 ? false
 shape2: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0)). 1 == 2 ? false</screen>
 
     <para id="para_as_we_ll_see_in_equalityofob">As we’ll see in <xref
-    linkend="EqualityOfObjects" /> below, the <literal>==</literal> method
-    actually invokes the <literal>equals</literal> method.<indexterm>
+    linkend="EqualityOfObjects" />, the <literal>==</literal> method actually
+    invokes the <literal>equals</literal> method.<indexterm>
         <primary>= (equals sign)</primary>
 
         <secondary>== (equals) operator</secondary>
@@ -2103,8 +2100,7 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
       <title>Syntactic Sugar for Binary Operations</title>
 
       <para id="para_by_the_way_remember_in_matc">By the way, remember in
-      <xref linkend="MatchingOnSequences" /> in <xref
-      linkend="RoundingOutTheEssentials" /> when we discussed matching on
+      <xref linkend="MatchingOnSequences" /> when we discussed matching on
       lists? We wrote this <literal>case</literal> expression:<indexterm>
           <primary>case classes</primary>
 
@@ -2131,7 +2127,7 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
       <para id="para_it_works_not_only_for_unapply">It works not only for
       <literal>unapply</literal> methods with two arguments, but also with one
       or more arguments. We could rewrite our <literal>matchOn</literal>
-      method above this way:</para>
+      method this way:</para>
 
       <programlisting linenumbering="unnumbered">def matchOn(shape: Shape) = shape match {
   case center Circle radius =&gt; ...
@@ -2184,9 +2180,9 @@ println(circle2)</programlisting>
       <literal>copy</literal> method implementation that is generated by the
       compiler exploits the new named and default parameters in Scala version
       2.8, which we discussed in <xref
-      linkend="MethodDefaultAndNamedArguments" /> in <xref
-      linkend="TypeLessDoMore" />. The generated implementation of
-      <literal>Circle.copy</literal> looks roughly like the following:</para>
+      linkend="MethodDefaultAndNamedArguments" />. The generated
+      implementation of <literal>Circle.copy</literal> looks roughly like the
+      following:</para>
 
       <programlisting linenumbering="unnumbered">case class Circle(center: Point, radius: Double) extends Shape() {
   ...
@@ -2196,8 +2192,8 @@ println(circle2)</programlisting>
 
       <para id="para_so_default_values_are_provide">So, default values are
       provided for all the arguments to the method (only two in this case).
-      When using the <literal>copy</literal> method, the user only specifies
-      by name the fields that are changing. The values for the rest of the
+      When using the <literal>copy</literal> method, the user specifies by
+      name only the fields that are changing. The values for the rest of the
       fields are used without having to reference them explicitly.</para>
     </sect2>
 
@@ -2211,9 +2207,10 @@ println(circle2)</programlisting>
       there are reasons for not having one case class inherit another. First,
       it can complicate field initialization. Suppose we make
       <literal>Shape</literal> a case class. Suppose we want to add a string
-      field to all shapes representing an “id” that the user wants to set. It
-      makes sense to define this field in <literal>Shape</literal>. Let’s make
-      these two changes to <literal>Shape</literal>:<indexterm>
+      field to all shapes representing an <literal>id</literal> that the user
+      wants to set. It makes sense to define this field in
+      <literal>Shape</literal>. Let’s make these two changes to
+      <literal>Shape</literal>:<indexterm>
           <primary>inheritance</primary>
 
           <secondary>case class</secondary>
@@ -2246,7 +2243,7 @@ println(circle2)</programlisting>
 
       <para id="para_remember_that_both_definitions">Remember that both
       definitions of <literal>id</literal>, the one in
-      <literal>Shape</literal> and the one in <literal>Circle</literal> are
+      <literal>Shape</literal> and the one in <literal>Circle</literal>, are
       considered <literal>val</literal> field definitions! The error message
       tells us the answer; use the <literal>override</literal> keyword, as we
       discussed in <xref linkend="OverridingMembers" />. So, the complete set
@@ -2284,9 +2281,9 @@ package shapesid {
       <para id="para_a_more_ominous_problem_involve">A more ominous problem
       involves the generated <literal>equals</literal> methods. Under
       inheritance, the <literal>equals</literal> methods don’t obey all the
-      standard rules for robust object equality. We’ll discuss those rules
-      below in <xref linkend="EqualityOfObjects" />. For now, consider the
-      following example:<indexterm>
+      standard rules for robust object equality. We’ll discuss those rules in
+      <xref linkend="EqualityOfObjects" />. For now, consider the following
+      example:<indexterm>
           <primary>equals method</primary>
 
           <secondary>case class comparisons</secondary>
@@ -2314,8 +2311,8 @@ format("Circle == FancyCircle? %b\n", (c  == fc))</programlisting>
 Circle == FancyCircle? true</screen>
 
       <para id="para_so_circle_equals_evaluates_">So,
-      <literal>Circle.equals</literal> evaluates to true when given a
-      <literal>FancyCircle</literal> with the same values for the
+      <literal>Circle.equals</literal> evaluates to <literal>true</literal>
+      when given a <literal>FancyCircle</literal> with the same values for the
       <literal>Circle</literal> fields. The reverse case isn’t true. While you
       might argue that, as far as <literal>Circle</literal> is concerned, they
       really <emphasis>are</emphasis> equal, most people would argue that this
@@ -2347,15 +2344,14 @@ Circle == FancyCircle? true</screen>
 
     <para id="para_implementing_a_reliable_equali">Implementing a reliable
     equality test for instances is difficult to do correctly.
-    <emphasis>Effective Java</emphasis> <link linkend="Bloch2008"
-    xrefstyle="select:nopage">[Bloch2008]</link> and the
-    <emphasis>Scaladoc</emphasis> page for <literal>AnyRef.equals</literal>
-    describe the requirements for a good equality test. A very good
-    description of the techniques for writing correct
-    <literal>equals</literal> and <literal>hashCode</literal> methods can be
-    found in <link linkend="Odersky2009"
+    <emphasis>Effective Java</emphasis> (<link linkend="Bloch2008"
+    xrefstyle="select:nopage">[Bloch2008]</link>) and the Scaladoc page for
+    <literal>AnyRef.equals</literal> describe the requirements for a good
+    equality test. A very good description of the techniques for writing
+    correct <literal>equals</literal> and <literal>hashCode</literal> methods
+    can be found in <link linkend="Odersky2009"
     xrefstyle="select:nopage">[Odersky2009]</link>, which uses Java syntax,
-    but is adapted from chapter 28 of <emphasis>Programming in
+    but is adapted from Chapter 28 of <emphasis>Programming in
     Scala</emphasis> <link linkend="Odersky2008"
     xrefstyle="select:nopage">[Odersky2008]</link>. Consult these references
     when you need to implement your own <literal>equals</literal> and
@@ -2370,11 +2366,11 @@ Circle == FancyCircle? true</screen>
 
     <para id="para_here_we_focus_on_the_different">Here we focus on the
     different equality methods available in Scala and their meanings. There
-    are some slight inconsistencies between the Scala specification <link
-    linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>
-    and the <emphasis>Scaladoc</emphasis> pages for the equality-related
-    methods for <literal>Any</literal> and <literal>AnyRef</literal>, but the
-    general behavior is clear.</para>
+    are some slight inconsistencies between the Scala specification (<link
+    linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>)
+    and the Scaladoc pages for the equality-related methods for
+    <literal>Any</literal> and <literal>AnyRef</literal>, but the general
+    behavior is clear.</para>
 
     <caution id="para_caution_some_of_the_equality_">
       <para>Some of the equality methods have the same names as equality
@@ -2408,7 +2404,7 @@ Circle == FancyCircle? true</screen>
       That is, <literal>obj1 == obj2</literal> is true if both
       <literal>obj1</literal> and <literal>obj2</literal> have the same value.
       In fact, <literal>==</literal> delegates to <literal>equals</literal>.
-      Here is part of the <emphasis>Scaladoc</emphasis> entry for
+      Here is part of the Scaladoc entry for
       <literal>Any.==</literal>:<indexterm>
           <primary>= (equals sign)</primary>
 
@@ -2422,8 +2418,7 @@ Circle == FancyCircle? true</screen>
       <screen>o == arg0 is the same as o.equals(arg0).</screen>
 
       <para id="para_here_is_the_corresponding_part">Here is the corresponding
-      part of the <emphasis>Scaladoc</emphasis> entry for
-      <literal>AnyRef.==</literal>:<indexterm>
+      part of the Scaladoc entry for <literal>AnyRef.==</literal>:<indexterm>
           <primary>AnyRef class</primary>
 
           <secondary>== (equals) method</secondary>
@@ -2431,7 +2426,7 @@ Circle == FancyCircle? true</screen>
 
       <screen>o == arg0 is the same as if (o eq null) arg0 eq null else o.equals(arg0).</screen>
 
-      <para id="para_as_you_would_expect_is_th">As you would expect
+      <para id="para_as_you_would_expect_is_th">As you would expect,
       <literal>!=</literal> is the negation, i.e., it is equivalent to
       <literal>!(obj1 == obj2)</literal>.<indexterm>
           <primary>! (exclamation point)</primary>
@@ -2449,7 +2444,7 @@ Circle == FancyCircle? true</screen>
         </indexterm></para>
 
       <note id="para_note_that_in_java_c_043">
-        <para>In Java, C++, and C# the <literal>==</literal> operator tests
+        <para>In Java, C++, and C#, the <literal>==</literal> operator tests
         for <emphasis>reference</emphasis>, not <emphasis>value</emphasis>
         equality. In contrast, Ruby’s <literal>==</literal> operator tests for
         <emphasis>value</emphasis> equality. Whatever language you’re used to,
@@ -2478,8 +2473,8 @@ Circle == FancyCircle? true</screen>
         </indexterm></para>
 
       <para id="para_hence_eq_behave_like_the_">Hence, <literal>eq</literal>
-      behave like the <literal>==</literal> operator in Java, C++, and C#, but
-      not <literal>==</literal> in Ruby.</para>
+      behaves like the <literal>==</literal> operator in Java, C++, and C#,
+      but not <literal>==</literal> in Ruby.</para>
 
       <para id="para_the_ne_method_is_the_negatio">The <literal>ne</literal>
       method is the negation of <literal>eq</literal>, i.e., it is equivalent
@@ -2492,7 +2487,8 @@ Circle == FancyCircle? true</screen>
       <title>Array Equality and the sameElements Method</title>
 
       <para id="para_comparing_the_contents_of_two_">Comparing the contents of
-      two Arrays doesn’t have an obvious result in Scala:<indexterm>
+      two <literal>Array</literal>s doesn’t have an obvious result in
+      Scala:<indexterm>
           <primary>arrays, comparing for equality</primary>
         </indexterm></para>
 
@@ -2500,8 +2496,8 @@ Circle == FancyCircle? true</screen>
 res0: Boolean = false</screen>
 
       <para id="para_that_s_a_surprise_thankfully_">That’s a surprise!
-      Thankfully, there’s a simple solution in the form of the
-      <literal>sameElements</literal> method:<indexterm>
+      Thankfully, there’s a simple solution in the form of the <literal
+      role="keep-together">sameElements</literal> method:<indexterm>
           <primary>Array class</primary>
 
           <secondary>sameElements method</secondary>
@@ -2511,14 +2507,15 @@ res0: Boolean = false</screen>
 res1: Boolean = true</screen>
 
       <para id="para_much_better_remember_to_use_">Much better. Remember to
-      use <literal>sameElements</literal> when you want to test if two Arrays
-      contain the same elements.</para>
+      use <literal>sameElements</literal> when you want to test if two
+      <literal>Array</literal>s contain the same elements.</para>
 
       <para id="para_while_this_may_seem_like_an_in">While this may seem like
       an inconsistency, encouraging an explicit test of the equality of two
       mutable data structures is a conservative approach on the part of the
       language designers. In the long run, it should save you from unexpected
-      results in your conditionals.</para>
+      results in your <phrase
+      role="keep-together">conditionals</phrase>.</para>
     </sect2>
   </sect1>
 
@@ -2530,9 +2527,9 @@ res1: Boolean = true</screen>
     equality, case classes, and companion classes and objects.</para>
 
     <para id="para_in_the_next_chapter_on_scalas_object_system">In the next
-    chapter, we’ll learn about the Scala type hierarchy, in particular, the
-    <literal>Predef</literal> object that includes many useful definitions.
-    We’ll also learn about Scala’s alternative to Java’s
+    chapter, we’ll learn about the Scala type hierarchy—in particular, the
+    <literal role="keep-together">Predef</literal> object that includes many
+    useful definitions. We’ll also learn about Scala’s alternative to Java’s
     <literal>static</literal> class members and the
     <emphasis>linearization</emphasis> rules for method lookup.</para>
   </sect1>

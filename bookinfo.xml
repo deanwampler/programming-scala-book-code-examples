@@ -86,10 +86,11 @@
       trainer, and mentor with Object Mentor, Inc. He specializes in Scala,
       Java, and Ruby. He works with clients on application design strategies
       that combine object-oriented programming, functional programming, and
-      aspect-oriented programming. He also consults on Agile methods, such as
-      Lean and XP. Dean is a frequent speaker at industry and academic
-      conferences on these topics. He has a Ph.D. in physics from the
-      University of Washington.</para>
+      <phrase role="keep-together">aspect-</phrase><phrase
+      role="keep-together">oriented</phrase> programming. He also consults on
+      Agile methods, such as Lean and XP. Dean is a frequent speaker at
+      industry and academic conferences on these topics. He has a Ph.D. in
+      physics from the University of Washington.</para>
     </authorblurb>
   </author>
 

@@ -9,7 +9,7 @@
   because it combines comprehensive ideas from functional programming and
   object-oriented programming. The type system tries to be logically
   comprehensive, complete, and consistent. It exceeds limitations in Java’s
-  type system while containing innovations which appear in Scala for the first
+  type system while containing innovations that appear in Scala for the first
   time.<indexterm>
       <primary>type system</primary>
 
@@ -39,8 +39,7 @@
   and so forth. Also, some understanding of the type system will help you
   understand and debug the occasional compilation failure related to typing.
   Finally, this understanding will help you make sense of the type information
-  shown in the sources and <emphasis>Scaladocs</emphasis> for Scala
-  libraries.</para>
+  shown in the sources and Scaladocs for Scala libraries.</para>
 
   <para id="para_if_you_didn_t_understand_some_">If you didn’t understand some
   of the terms we used in the preceding paragraphs, don’t worry. We’ll explain
@@ -149,21 +148,22 @@ res1: java.lang.Class[_] = class C</screen>
     </note>
 
     <para id="para_we_ll_discuss_a_workaround_for">We’ll discuss a workaround
-    for erasure, called <emphasis>Manifests</emphasis>, after we discuss
-    <emphasis>Parameterized Types</emphasis> in the next section.</para>
+    for erasure, called <literal>Manifest</literal>s, after we discuss
+    <emphasis>parameterized types</emphasis> in the next section.</para>
 
     <para id="para_scala_also_provides_methods_fo">Scala also provides methods
-    for testing whether or not an object matches a type and also for casting
-    an object to a type.</para>
+    for testing whether an object matches a type and also for casting an
+    object to a type.</para>
 
     <para
     id="para__any_isinstanceof_t_will_ret"><literal>x.isInstanceOf[T]</literal>
-    will return true if the instance <literal>x</literal> is of type
-    <literal>T</literal>. However, this test is subject to type erasure. For
-    example, <literal>List(3.14159).isInstanceOf[List[String]]</literal> will
-    return true, because the type parameter of <literal>List</literal> is lost
-    at the byte code level. However, you’ll get an “unchecked” warning from
-    the compiler.</para>
+    will return <literal>true</literal> if the instance <literal>x</literal>
+    is of type <literal>T</literal>. However, this test is subject to type
+    erasure. For example,
+    <literal>List(3.14159).isInstanceOf[List[String]]</literal> will return
+    <literal>true</literal> because the type parameter of
+    <literal>List</literal> is lost at the byte code level. However, you’ll
+    get an “unchecked” warning from the compiler.</para>
 
     <para
     id="para__any_asinstanceof_t_will_cas"><literal>x.asInstanceOf[T]</literal>
@@ -196,11 +196,10 @@ res1: java.lang.Class[_] = class C</screen>
     <para id="para_we_introduced__parameterized_t">We introduced
     <emphasis>parameterized types</emphasis> and <emphasis>methods</emphasis>
     in <xref linkend="IntroducingScala" />, and filled in a few more details
-    in <xref linkend="AbstractTypesAndParameterizedTypes" /> in <xref
-    linkend="TypeLessDoMore" />. If you come from a Java or C# background, you
-    probably already have some knowledge of parameterized types and methods.
-    Now we explore the details of Scala’s sophisticated support for
-    parameterized types.<indexterm>
+    in <xref linkend="AbstractTypesAndParameterizedTypes" />. If you come from
+    a Java or C# background, you probably already have some knowledge of
+    parameterized types and methods. Now we explore the details of Scala’s
+    sophisticated support for parameterized types.<indexterm>
         <primary>parameterized types</primary>
       </indexterm><indexterm>
         <primary>data types</primary>
@@ -217,21 +216,22 @@ res1: java.lang.Class[_] = class C</screen>
     <literal>class List[+A]</literal> means that <literal>List</literal> is
     parameterized by a single type, represented by <literal>A</literal>. The
     <literal>+</literal> is called a <emphasis>variance annotation</emphasis>.
-    We’ll come back to it in <xref linkend="VarianceUnderInheritance" />
-    below.<indexterm>
+    We’ll come back to it in <xref
+    linkend="VarianceUnderInheritance" />.<indexterm>
         <primary>variance annotations</primary>
       </indexterm></para>
 
-    <para id="para_a_declaration_like_list_043">Sometimes, a
-    <emphasis>parameterized type</emphasis> like <literal>List</literal> is
-    called a <emphasis>type constructor</emphasis>, because it is used to
-    create specific types. For example, <literal>List</literal> is the type
-    constructor for <literal>List[String]</literal> and
-    <literal>List[Int]</literal>, which are different types. (Although they
-    are actually implemented with the same byte code due to <emphasis>type
-    erasure</emphasis>.) In fact, it’s more accurate to say that all traits
-    and classes are type constructors. Those without type parameters are
-    effectively zero-argument, parameterized types.</para>
+    <para id="para_a_declaration_like_list_043">Sometimes, a parameterized
+    type like <literal>List</literal> is called a <emphasis>type
+    constructor</emphasis>, because it is used to create specific types. For
+    example, <literal>List</literal> is the type constructor for
+    <literal>List[String]</literal> and <literal>List[Int]</literal>, which
+    are different types (although they are actually implemented with the same
+    byte code due to <emphasis>type erasure</emphasis>). In fact, it’s more
+    accurate to say that all traits and classes are type constructors. Those
+    without type parameters are effectively <phrase
+    role="keep-together">zero-</phrase><phrase
+    role="keep-together">argument</phrase>, parameterized types.</para>
 
     <warning id="para_warning_if_you_write_class_s">
       <para>If you write <literal>class StringList[String] extends
@@ -246,12 +246,12 @@ res1: java.lang.Class[_] = class C</screen>
 
       <para id="para_there_is_an_experimental_featu">There is an experimental
       feature in Scala (since version 2.7.2), called
-      <emphasis>Manifests</emphasis>, that captures type information that is
+      <literal>Manifest</literal>s, that captures type information that is
       erased in the byte code. This feature is not documented in the
-      <emphasis>Scaladocs</emphasis>, but you can examine the source for the
+      Scaladocs, but you can examine the source for the
       <literal>scala.reflect.Manifest</literal> trait. <link
       linkend="Ortiz2008" xrefstyle="select:nopage">[Ortiz2008]</link>
-      discusses <literal>Manifests</literal> and provides examples of their
+      discusses <literal>Manifest</literal>s and provides examples of their
       use.<indexterm>
           <primary>Manifests</primary>
         </indexterm><indexterm>
@@ -265,8 +265,8 @@ res1: java.lang.Class[_] = class C</screen>
       method or type that wants to capture the erased type information. Unlike
       most implicit arguments, the user does not need to supply an in-scope
       <literal>Manifest</literal> value or method. Instead, the compiler
-      generates one automatically. Here is an example the illustrates some of
-      the strengths and weaknesses of <literal>Manifests</literal>:</para>
+      generates one automatically. Here is an example that illustrates some of
+      the strengths and weaknesses of <literal>Manifest</literal>s:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/manifests/manifest-script.scala
 
@@ -292,10 +292,10 @@ List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
       <para
       id="para__whichlist_tries_to_determine"><literal>WhichList</literal>
       tries to determine the type of list passed in. It uses the value of the
-      manifest’s <literal>toString</literal> method to determine this
-      information. Notice that it works when the list is constructed inside
-      the call to <literal>WhichList.apply</literal>. It does
-      <emphasis>not</emphasis> work when a previously constructed list is
+      <literal>Manifest</literal>’s <literal>toString</literal> method to
+      determine this information. Notice that it works when the list is
+      constructed inside the call to <literal>WhichList.apply</literal>. It
+      does <emphasis>not</emphasis> work when a previously constructed list is
       passed to <literal>WhichList.apply</literal>.</para>
 
       <para id="para_the_compiler_exploits_the_type">The compiler exploits the
@@ -304,9 +304,10 @@ List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
       However, when given previously constructed lists, the crucial type
       information is already lost.</para>
 
-      <para id="para_hence_manifests_can_t_resur">Hence, Manifests can’t
-      “resurrect” type information from byte code, but they can be used to
-      capture and exploit type information before it is erased.</para>
+      <para id="para_hence_manifests_can_t_resur">Hence,
+      <literal>Manifest</literal>s can’t “resurrect” type information from
+      byte code, but they can be used to capture and exploit type information
+      before it is erased.</para>
     </sect2>
 
     <sect2 id="ParameterizedMethods">
@@ -351,7 +352,7 @@ List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
 val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
 
       <para id="para_we_ll_look_at_other_parameteri">We’ll look at other
-      parameterized methods below.</para>
+      parameterized methods shortly.</para>
     </sect2>
   </sect1>
 
@@ -393,7 +394,7 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
 
     <para id="para_in_scala_the_type_designer_sp">In Scala, the variance
     behavior is defined at the <emphasis>declaration site</emphasis> using
-    <emphasis>variance annotations</emphasis>, <literal>+</literal>,
+    <emphasis>variance annotations</emphasis>: <literal>+</literal>,
     <literal>-</literal>, or nothing. In other words, the type designer
     decides how the type should vary under inheritance.<indexterm>
         <primary>declaration site</primary>
@@ -501,18 +502,16 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
     <literal>trait Function1[-T, +R]</literal>.</para>
 
     <para id="para_the_043_r_is_the_return_ty">The <literal>+R</literal> is
-    the return type and it has the covariant annotation ‘+’. The type for the
-    single argument has the <emphasis>contravariant</emphasis> annotation
-    <literal>-</literal>. For functions with more than one argument all the
-    argument types have the contravariant annotation. So, for example, using
-    our <literal>T</literal>,
+    the return type and has the covariant annotation <literal>+</literal>. The
+    type for the single argument has the <emphasis>contravariant</emphasis>
+    annotation <literal>-</literal>. For functions with more than one
+    argument, all the argument types have the contravariant annotation. So,
+    for example, using our <literal>T</literal>,
     <literal>T</literal><superscript>sup</superscript>, and
     <literal>T</literal><subscript>sub</subscript> types, the following
-    definition would be legal.</para>
+    definition would be legal:</para>
 
-    <para id="para__val_f_function1_t_t_new_"><literal>val f: Function1[T, T]
-    = new Function1[T</literal><superscript>sup</superscript><literal>,
-    T</literal><subscript>sub</subscript><literal>] { ... }</literal></para>
+    <programlisting>val f: Function1[T, T] = new Function1[T<superscript>sup</superscript>, T<subscript>sub</subscript>] { ... }</programlisting>
 
     <para id="para_hence_the_function_traits_are">Hence, the function traits
     are covariant in the return type parameter <literal>R</literal> and
@@ -523,14 +522,12 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
 
     <para id="para_so_what_does_this_really_mean_">So, what does this really
     mean? Let’s look at an example to understand the variance behavior. If you
-    have prior experience with <emphasis>Design by Contract</emphasis> <link
-    linkend="DesignByContract"
-    xrefstyle="select:nopage">[DesignByContract]</link>, it might help you to
-    recall how it works, which is very similar. (We will discuss
-    <emphasis>Design by Contract</emphasis> briefly in <xref
-    linkend="DesignByContractExample" /> in <xref
-    linkend="ApplicationDesign" />.) This script demonstrates variance under
-    inheritance:</para>
+    have prior experience with <emphasis>Design by Contract</emphasis> (see
+    <link linkend="DesignByContract"
+    xrefstyle="select:nopage">[DesignByContract]</link>), it might help you to
+    recall how it works, which is very similar. (We will discuss Design by
+    Contract briefly in <xref linkend="DesignByContractExample" />.) This
+    script demonstrates variance under inheritance:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/func-script.scala
 // WON'T COMPILE
@@ -568,7 +565,7 @@ var f: C =&gt; C = (c: C)      =&gt; new C       // #1
     anonymous function values to <literal>f</literal>. We use whitespace to
     make the similarities and differences stand out when comparing the
     original declaration of <literal>f</literal> and the subsequent
-    re-assignments. We keep reassigning to <literal>f</literal> because we are
+    reassignments. We keep reassigning to <literal>f</literal> because we are
     just testing what will and won’t compile at this point. Specifically, we
     want to know what function values we can legally assign to <literal>f: (C)
     =&gt; C</literal>.</para>
@@ -597,9 +594,9 @@ var f: C =&gt; C = (c: C)      =&gt; new C       // #1
       </indexterm></para>
 
     <para id="para_okay_but__why__is_all_this_co">Why is the behavior correct
-    in these cases? Here’s where <emphasis>Design by Contract</emphasis>
-    thinking comes in handy. Let’s see how a client might use use some of
-    these definitions of <literal>f</literal>:</para>
+    in these cases? Here’s where Design by Contract thinking comes in handy.
+    Let’s see how a client might use use some of these definitions of
+    <literal>f</literal>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/func2-script.scala
 // WON'T COMPILE
@@ -624,7 +621,7 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
     (We’re just passing function literals now, rather than assigning them to
     <literal>f</literal>.) It creates a <literal>C</literal> (line #1) and
     passes it to the input function to create a new <literal>C</literal> (line
-    #2). Then it uses the features of <literal>C</literal>, namely it calls
+    #2). Then it uses the features of <literal>C</literal>; namely, it calls
     the <literal>msuper</literal> and <literal>m</literal> methods (lines #3
     and #4, respectively).</para>
 
@@ -665,21 +662,21 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
     the anonymous function can only accept a <literal>CSub</literal>, but
     <literal>useF</literal> will pass it a <literal>C</literal>. The body of
     the anonymous function would now break, because it calls
-    <literal>c.msub</literal> which doesn’t exist in <literal>C</literal>.
+    <literal>c.msub</literal>, which doesn’t exist in <literal>C</literal>.
     Similarly, returning a <literal>CSuper</literal> when a
     <literal>C</literal> is expected breaks line #4 in
     <literal>useF</literal>, because <literal>CSuper</literal> doesn’t have
     the <literal>m</literal> method.</para>
 
     <para id="para_the_same_arguments_explain_how">The same arguments are used
-    to explain how contracts can change under inheritance in <emphasis>Design
-    by Contract</emphasis>.</para>
+    to explain how contracts can change under inheritance in Design by
+    Contract.</para>
 
     <para id="para_note_that_variance_annotations">Note that variance
     annotations only make sense on the type parameters for parameterized
     types, not parameterized methods, because the annotations affect the
     behavior of subtyping. Methods aren’t subtyped, but the types that contain
-    them might be subtyped.<indexterm>
+    them might be <phrase role="keep-together">subtyped</phrase>.<indexterm>
         <primary>- (minus sign)</primary>
 
         <secondary>variance annotations</secondary>
@@ -800,13 +797,13 @@ two errors found</screen>
       behavior is defined at the <emphasis>declaration site</emphasis> in
       Scala. In Java, it is defined at the <emphasis>call site</emphasis>. The
       <emphasis>client</emphasis> of a type defines the variance behavior
-      desired <link linkend="Naftalin2006"
-      xrefstyle="select:nopage">[Naftalin2006]</link>. In other words, when
+      desired (see <link linkend="Naftalin2006"
+      xrefstyle="select:nopage">[Naftalin2006]</link>). In other words, when
       you use a Java generic and specify the type parameter, you also specify
       the variance behavior (including invariance, which is the default). You
       can’t specify variance behavior at the definition site in Java, although
       you can use expressions that look similar. Those expressions define
-      <emphasis>type bounds</emphasis>, which we’ll discuss below.<indexterm
+      <emphasis>type bounds</emphasis>, which we’ll discuss shortly.<indexterm
           class="startofrange" id="ch12_datatypesvarianceSvJ">
           <primary>data types</primary>
 
@@ -828,11 +825,12 @@ two errors found</screen>
       <para id="para_in_java_variance_specification">In Java variance
       specifications, a wildcard <literal>?</literal> always appears before
       the <literal>super</literal> or <literal>extends</literal> keyword, as
-      shown in the previous table. When we said after the table that the “Java
-      Equivalent” column is a bit misleading, we were referring to the
-      differences between declaration versus call site specifications. There
-      is another way in which the Scala and Java behaviors differ, which we’ll
-      cover in <xref linkend="ExistentialTypes" /> below.</para>
+      shown earlier in <xref linkend="type-variance-annotations-table" />.
+      When we said after the table that the “Java Equivalent” column is a bit
+      misleading, we were referring to the differences between declaration
+      versus call site specifications. There is another way in which the Scala
+      and Java behaviors differ, which we’ll cover in <xref
+      linkend="ExistentialTypes" />.</para>
 
       <para id="para_because_variances_in_java_are_">A drawback of call-site
       variance specifications is that they force the users of Java generics to
@@ -986,7 +984,7 @@ Unknown? None</screen>
 
       <para id="para_note_that_we_are_also_demonstr">By the way, we are also
       demonstrating Scala-Java interoperability, which we’ll revisit in <xref
-      linkend="JavaInterop" /> in <xref linkend="ScalaToolsLibs" />.</para>
+      linkend="JavaInterop" />.</para>
 
       <para
       id="para__optionexample_main_calls_the"><literal>OptionExample.main</literal>
@@ -997,7 +995,7 @@ Unknown? None</screen>
 
       <para id="para_note_that_the_makeshape_retu">Note that
       <literal>makeShape</literal> returns <literal>Option&lt;? extends
-      Shape&gt;</literal> and when we instantiate a <literal>Shape</literal>,
+      Shape&gt;</literal>, and when we instantiate a <literal>Shape</literal>,
       we return a <literal>Some</literal> parameterized with the
       <literal>Shape</literal> subtype it wraps. If an unknown shape name is
       passed in, then we return a <literal>None&lt;Shape&gt;</literal>. We
@@ -1016,7 +1014,7 @@ Unknown? None</screen>
       creating lots of little objects, and unambiguous behavior of
       <literal>equals</literal>, because we don’t need to define the semantics
       of equality between different type instantiations of our Java
-      <literal>None&lt;?&gt;</literal> type, for example,
+      <literal>None&lt;?&gt;</literal> type—for example,
       <literal>None&lt;String&gt;</literal> versus
       <literal>None&lt;Shape&gt;</literal>.</para>
 
@@ -1039,8 +1037,7 @@ Unknown? None</screen>
       subtype could be specified (<literal>Object</literal> is used in Java
       generics). These aspects have performance implications that we will
       revisit when we discuss the <literal>@specialized</literal> annotation
-      in <xref linkend="Annotations" /> in <xref
-      linkend="ApplicationDesign" />.<indexterm class="endofrange"
+      in <xref linkend="Annotations" />.<indexterm class="endofrange"
       startref="ch12_inheritvariance"></indexterm></para>
     </sect2>
   </sect1>
@@ -1069,9 +1066,9 @@ Unknown? None</screen>
       scala.Array</literal> that create new arrays. There are optimized
       implementations for each of the <literal>AnyVal</literal> types. There
       is another implementation of <literal>apply</literal> that is
-      parameterized for any type that is a subtype of
-      <literal>AnyRef</literal>. Here is the implementation in Scala version
-      2.7.5:<indexterm>
+      parameterized for any type that is a subtype of <literal
+      role="keep-together">AnyRef</literal>. Here is the implementation in
+      Scala version 2.7.5:<indexterm>
           <primary>Array object, apply method overloaded for AnyVal and AnyRef
           types</primary>
         </indexterm><indexterm>
@@ -1101,14 +1098,14 @@ Unknown? None</screen>
       <literal>&lt;:</literal> operator indicates that the type to the left
       must be derived from the type to the right, or that they must be the
       same type. As we said in <xref linkend="ReservedWords" />, this operator
-      is actually a reserved word in the language.</para>
+      is actually a reserved word in the <phrase
+      role="keep-together">language</phrase>.</para>
 
       <para id="para_these_bounds_are_called__upper">These bounds are called
-      <emphasis>upper type bounds</emphasis>, following the <emphasis>de
-      facto</emphasis> convention that diagrams of type hierarchies put
-      subtypes below their supertypes. We followed this convention in the
-      diagram shown in <xref linkend="ScalaTypeHierarchy" /> in <xref
-      linkend="ScalaObjectSystem" />.</para>
+      <emphasis>upper type bounds</emphasis>, following the de facto
+      convention that diagrams of type hierarchies put subtypes below their
+      supertypes. We followed this convention in the diagram shown in <xref
+      linkend="ScalaTypeHierarchy" />.</para>
 
       <para id="para_without_the_bound_in_this_case">Without the bound in this
       case, i.e., if the signature were <literal>def apply[A](xs: A*):
@@ -1120,7 +1117,7 @@ Unknown? None</screen>
         <para>The type signature <literal>A &lt;: B</literal> says that
         <literal>A</literal> must be a <emphasis>subtype</emphasis> of
         <literal>B</literal>. In Java, this would be expressed as <literal>A
-        extends B</literal> in a type declaration. This is different than
+        extends B</literal> in a type declaration. This is different from
         <emphasis>instantiating</emphasis> a type at a call site, where the
         syntax <literal>? extends B</literal> is used in Java, indicating the
         <emphasis>variance</emphasis> behavior.</para>
@@ -1222,17 +1219,18 @@ println(list)</programlisting>
       together, it’s worth looking at the implementation of the
       <literal>List</literal> class in the Scala library. It illustrates
       several useful idioms for functional-style, immutable data structures
-      that are fully type safe, yet flexible. We won’t show the entire
+      that are fully type-safe, yet flexible. We won’t show the entire
       implementation, and we’ll omit the <literal>object List</literal>, many
       methods in the <literal>List</literal> class, and the comments that are
-      used to generate the <emphasis>Scaladocs</emphasis>. We encourage you to
-      look at the complete implementation of <literal>List</literal>, either
-      by downloading the source distribution from the Scala website [Scala] or
-      by browsing to the implementation through the
-      <emphasis>Scaladocs</emphasis> page for <literal>List</literal>. To
-      avoid confusion with <literal>scala.List</literal>, we’ll use our own
-      package and name, <literal>AbbrevList</literal>:<indexterm
-          class="startofrange" id="ch12_typeboundsList">
+      used to generate the Scaladocs. We encourage you to look at the complete
+      implementation of <literal>List</literal>, either by downloading the
+      source distribution from the <ulink
+      url="http://www.scala-lang.org/">Scala website</ulink> or by browsing to
+      the implementation through the Scaladocs page for
+      <literal>List</literal>. To avoid confusion with
+      <literal>scala.List</literal>, we’ll use our own package and name,
+      <literal>AbbrevList</literal>:<indexterm class="startofrange"
+          id="ch12_typeboundsList">
           <primary>type bounds</primary>
 
           <secondary>List class, Scala implementation</secondary>
@@ -1293,9 +1291,9 @@ final case class ::[B](private var hd: B,
       <para id="para_there_are_three_types_defined_">There are three types
       defined, forming a sealed hierarchy. <literal>AbbrevList</literal> (the
       analog of <literal>List</literal>) is an abstract trait that declares
-      three abstract methods, <literal>isEmpty</literal>,
+      three abstract methods: <literal>isEmpty</literal>,
       <literal>head</literal>, and <literal>tail</literal>. It defines the
-      “cons” operator, <literal>::</literal> and a <literal>foreach</literal>
+      “cons” operator (<literal>::</literal>) and a <literal>foreach</literal>
       method. All the other methods found in <literal>List</literal> could be
       implemented with these methods, although some methods (like
       <literal>List.length</literal>) use different implementation options for
@@ -1304,10 +1302,10 @@ final case class ::[B](private var hd: B,
       <para
       id="para__abbrevnil_is_the_analog_of_"><literal>AbbrevNil</literal> is
       the analog of <literal>Nil</literal>. It is a case object that extends
-      <literal>AbbrevList[Nothing]</literal>. It returns true from
-      <literal>isEmpty</literal> and it throws an exception from
-      <literal>head</literal> and <literal>tail</literal>. Because
-      <literal>AbbrevNil</literal> (and <literal>Nil</literal>) have
+      <literal>AbbrevList[Nothing]</literal>. It returns
+      <literal>true</literal> from <literal>isEmpty</literal>, and it throws
+      an exception from <literal>head</literal> and <literal>tail</literal>.
+      Because <literal>AbbrevNil</literal> (and <literal>Nil</literal>) have
       essentially no state and behavior, having an object rather than a class
       eliminates unnecessary copies, makes <literal>equals</literal> fast and
       simple, etc.</para>
@@ -1361,7 +1359,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       elements.</para>
 
       <para id="para_for_another_example_of_a_simil">For another example using
-      similar approaches, this time for defining a Stack, see <ulink
+      similar approaches, this time for defining a stack, see <ulink
       url="http://www.scala-lang.org/node/129"></ulink>.<indexterm
       class="endofrange" startref="ch12_Listclass"></indexterm><indexterm
       class="endofrange" startref="ch12_typeboundsList"></indexterm></para>
@@ -1372,11 +1370,11 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
 
       <para id="para_we_ve_seen_many_examples_where">We’ve seen many examples
       where an <literal>implicit</literal> method was used to convert one type
-      to another, for example to give the appearance of adding new methods to
+      to another—for example, to give the appearance of adding new methods to
       an existing type, the so-called “pimp my library” pattern. We used this
       pattern extensively in <xref linkend="DomainSpecificLanguages" />. You
       can also use function values that have the <literal>implicit</literal>
-      keyword. We’ll see an examples of both shortly.<indexterm
+      keyword. We’ll see examples of both shortly.<indexterm
           class="startofrange" id="ch12_views">
           <primary>views</primary>
         </indexterm><indexterm>
@@ -1422,8 +1420,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       second circumstance is the <literal>x -&gt; y</literal> initialization
       syntax for <literal>Maps</literal>, which triggers invocation of
       <literal>Predef.anyToArrowAssoc(x)</literal>, as we discussed in <xref
-      linkend="PredefObject" /> in <xref
-      linkend="ScalaObjectSystem" />.</para>
+      linkend="PredefObject" />.</para>
 
       <para id="para_for_the_first_case_predef_a">For an example of the first
       circumstance, <literal>Predef</literal> also defines many views for
@@ -1432,7 +1429,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       <literal>java.lang</literal> type. For example,
       <literal>double2Double</literal> converts a
       <literal>scala.Double</literal> to a
-      <literal>java.lang.Double</literal>.</para>
+      <literal>java.lang.Dou⁠ble</literal>.</para>
 
       <para id="para_a__view_bound__a_b_is_i">A <emphasis>view
       bound</emphasis> in a type declaration is indicated with the
@@ -1524,10 +1521,11 @@ object NilNode extends Node[Nothing] {
 
       <para id="para_this_type_hierarchy_looks_a_lo">This type hierarchy is
       modeled after <literal>List</literal> and <literal>AbbrevList</literal>
-      above. The <literal>::</literal> type represents intermediate nodes and
-      <literal>NilNode</literal> is analogous to <literal>Nil</literal> for
-      <literal>Lists</literal>. We also override <literal>toString</literal>
-      to give us convenient output, which we’ll examine shortly.</para>
+      earlier. The <literal>::</literal> type represents intermediate nodes,
+      and <literal>NilNode</literal> is analogous to <literal>Nil</literal>
+      for <literal>Lists</literal>. We also override
+      <literal>toString</literal> to give us convenient output, which we’ll
+      examine shortly.</para>
 
       <para id="para_the_following_script_defines_t">The following script
       defines a <literal>LinkedList</literal> type that uses
@@ -1599,7 +1597,7 @@ println(list4)</programlisting>
 
       <para id="para_the_type_parameter_means_b_">The type parameter means
       ``<literal>B</literal> is lower bounded by (i.e., is a supertype of)
-      <literal>A</literal> and <literal>B</literal> also has a view bound of
+      <literal>A</literal>, and <literal>B</literal> also has a view bound of
       <literal>B &lt;% Node[B]</literal>. As we saw for
       <literal>List</literal> and <literal>AbbrevList</literal>, the lower
       bound allows us to prepend items of different types from the original
@@ -1616,7 +1614,7 @@ println(list4)</programlisting>
       <literal>Strings</literal>. We would have to call them with
       <literal>Node[Int]</literal> and <literal>Node[String]</literal>
       arguments explicitly. We would also have to invoke <literal>::</literal>
-      in an ugly way, <literal>val list2 = list1.::(2)(converter)</literal>,
+      in an ugly way—<literal>val list2 = list1.::(2)(converter)</literal>,
       for example.</para>
 
       <para id="para_even_though_it_looks_like_the_">Let’s clarify the syntax
@@ -1624,8 +1622,8 @@ println(list4)</programlisting>
       tempting to assume that the <literal>&lt;%</literal> should apply to
       <literal>A</literal> in this expression. It actually applies to
       <literal>B</literal>. The grammar for type parameters, including view
-      bounds, is the following <link linkend="ScalaSpec2009"
-      xrefstyle="select:nopage">[ScalaSpec2009]</link>:</para>
+      bounds, is the following (see <link linkend="ScalaSpec2009"
+      xrefstyle="select:nopage">[ScalaSpec2009]</link>):</para>
 
       <programlisting linenumbering="unnumbered">TypeParam ::= (id | ‘_’) [TypeParamClause] [‘&gt;:’ Type] [‘&lt;:’ Type] [‘&lt;%’ Type]
 TypeParamClause ::= ‘[’ VariantTypeParam {‘,’ VariantTypeParam} ‘]’
@@ -1638,11 +1636,11 @@ VariantTypeParam ::= [‘+’ | ‘’] TypeParam</programlisting>
       <literal>&gt;: A</literal> and <literal>&lt;% Node[B]</literal>
       expressions on the right. Again, all the bounds expressions apply to the
       first <literal>id</literal> (<literal>B</literal>) or the underscore
-      ‘_’.</para>
+      <literal>_</literal>.</para>
 
-      <para id="para_you_would_use_the_underscore_">The underscore ‘_’ is used
-      for <emphasis>existential types</emphasis>, which we’ll cover below, in
-      <xref linkend="ExistentialTypes" />.<indexterm>
+      <para id="para_you_would_use_the_underscore_">The underscore
+      <literal>_</literal> is used for <emphasis>existential types</emphasis>,
+      which we’ll cover in <xref linkend="ExistentialTypes" />.<indexterm>
           <primary>existential types</primary>
         </indexterm></para>
 
@@ -1676,19 +1674,18 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
   <sect1 id="NothingAndNull">
     <title>Nothing and Null</title>
 
-    <para id="para_nothing_and_null">In <xref linkend="ScalaTypeHierarchy" />
-    in <xref linkend="ScalaObjectSystem" />, we mentioned that
-    <literal>Null</literal> is a subtype of all <literal>AnyRef</literal>
-    types and <literal>Nothing</literal> is a subtype of all types, including
-    <literal>Null</literal>.<indexterm>
+    <para id="para_nothing_and_null">In <xref linkend="ScalaTypeHierarchy" />,
+    we mentioned that <literal>Null</literal> is a subtype of all
+    <literal>AnyRef</literal> types and <literal>Nothing</literal> is a
+    subtype of all types, including <literal>Null</literal>.<indexterm>
         <primary>data types</primary>
 
         <secondary>Nothing and Null</secondary>
       </indexterm></para>
 
     <para id="para__null_is_declared_as_a_final"><literal>Null</literal> is
-    declared as a <literal>final trait</literal> (so it can’t be subtyped) and
-    it has only one instance, <literal>null</literal>. Since
+    declared as a <literal>final trait</literal> (so it can’t be subtyped),
+    and it has only one instance, <literal>null</literal>. Since
     <literal>Null</literal> is a subtype of all <literal>AnyRef</literal>
     types, you can always assign <literal>null</literal> as an instance of any
     of those types. Java, in contrast, simply treats <literal>null</literal>
@@ -1709,9 +1706,9 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
     it is still useful for defining types. The best example is
     <literal>Nil</literal>, the empty list, which is a <literal>case
     object</literal>. It is of type <literal>List[Nothing]</literal>. Because
-    lists are covariant in Scala, as we saw above, this makes
+    lists are covariant in Scala, as we saw earlier, this makes
     <literal>Nil</literal> an instance of <literal>List[T]</literal>, for any
-    type T. We also exploited this feature above in our
+    type T. We also exploited this feature in our
     <literal>AbbrevList</literal> and <literal>LinkedList</literal>
     implementations.<indexterm>
         <primary>List class</primary>
@@ -1731,9 +1728,8 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
     are common in statically typed, object-oriented languages, Scala also
     supports abstract types, which are common in functional languages. We
     introduced abstract types in <xref
-    linkend="AbstractTypesAndParameterizedTypes" /> in <xref
-    linkend="TypeLessDoMore" />.<indexterm class="startofrange"
-        id="ch12_abstracttypes">
+    linkend="AbstractTypesAndParameterizedTypes" />.<indexterm
+        class="startofrange" id="ch12_abstracttypes">
         <primary>abstract types</primary>
       </indexterm><indexterm class="startofrange" id="ch12_datatypesabstract">
         <primary>data types</primary>
@@ -1743,9 +1739,9 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
 
     <para id="para_these_two_features_overlap_som">These two features overlap
     somewhat. Technically, you could implement almost all the idioms that
-    parameterized types support using abstract types and <emphasis>vice
-    versa</emphasis>. However, in practice, each feature is a natural fit for
-    different design problems.</para>
+    parameterized types support using abstract types and vice versa. However,
+    in practice, each feature is a natural fit for different design
+    problems.</para>
 
     <para id="para_recall_our_version_of_observe">Recall our version of
     <literal>Observer</literal> that uses abstract types in <xref
@@ -1789,10 +1785,9 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
 
     <para id="para_we_can_also_use_type_bounds_wh">We can also use type bounds
     when we declare or refine the declaration of abstract types. We saw a
-    simple example previously in this chapter in <xref
-    linkend="TypeProjections" /> where we had a declaration <literal>type t
-    &lt;: AnyRef</literal>. That is, <literal>t</literal> had an
-    <emphasis>upper type bound</emphasis> (superclass) of
+    simple example previously in <xref linkend="TypeProjections" /> where we
+    had a declaration <literal>type t &lt;: AnyRef</literal>. That is,
+    <literal>t</literal> had an upper type bound (superclass) of
     <literal>AnyRef</literal>. <literal>AnyVal</literal> types weren’t
     allowed.<indexterm>
         <primary>upper type bounds</primary>
@@ -1802,11 +1797,11 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
         <secondary>using in abstract type declarations</secondary>
       </indexterm></para>
 
-    <para id="para_we_can_also_have__lower_bounds">We can also have
-    <emphasis>lower type bounds</emphasis> (subclasses) and we can use most of
-    the <emphasis>value type</emphasis>s (see <xref linkend="ValueTypes" />
-    below) in the bounds expressions. Here is an example illustrating the most
-    common options:<indexterm>
+    <para id="para_we_can_also_have__lower_bounds">We can also have lower type
+    bounds (subclasses), and we can use most of the <emphasis>value
+    type</emphasis>s (see <xref linkend="ValueTypes" />) in the bounds
+    expressions. Here is an example illustrating the most common
+    options:<indexterm>
         <primary>value types</primary>
 
         <secondary>use in type bounds expressions</secondary>
@@ -1853,8 +1848,8 @@ object example extends exampleTrait {
     points. First, the declaration of <literal>t2</literal> says that it must
     be “between” <literal>t1</literal> and <literal>t3</literal>. Whatever
     <literal>t1</literal> becomes, it must be a super class of
-    <literal>t2</literal> (or equal to it) and <literal>t3</literal> must be a
-    subclass of <literal>t2</literal> (or equal to it).</para>
+    <literal>t2</literal> (or equal to it), and <literal>t3</literal> must be
+    a subclass of <literal>t2</literal> (or equal to it).</para>
 
     <para id="para_remember_from_typebounds">Remember from <xref
     linkend="TypeBounds" /> that we are making a declaration of the
@@ -1873,11 +1868,10 @@ object example extends exampleTrait {
     <literal>t2</literal> declaration.</para>
 
     <para id="para_when_we_revisit_the_observer_p">When we revisit the
-    Observer pattern in <xref
-    linkend="SelfTypeAnnotationsAndAbstractTypeMembers" /> in <xref
-    linkend="ApplicationDesign" />, we’ll see another example of type bounds
-    used on abstract types. We’ll see a problem they can cause, along with an
-    elegant solution.</para>
+    Observer Pattern in <xref
+    linkend="SelfTypeAnnotationsAndAbstractTypeMembers" />, we’ll see another
+    example of type bounds used on abstract types. We’ll see a problem they
+    can cause, along with an elegant solution.</para>
 
     <para id="para_finally_abstract_types_don_t_">Finally, abstract types
     don’t have variance annotations:</para>
@@ -1898,12 +1892,13 @@ trait T {
     types are <emphasis>members</emphasis> of the enclosing type, not type
     parameters, as for parameterized types. The enclosing type may have an
     inheritance relationship with other types, but member types behave just
-    like member methods and variables. They don’t affect the inheritance
-    relationships of their enclosing type. Like other members, abstract types
-    can be declared abstract or concrete. However, they can also be refined in
-    subtypes without being fully defined, unlike variables and methods. Of
-    course, instances can only be created when the abstract types are given
-    concrete definitions.</para>
+    like member methods and <phrase role="keep-together">variables</phrase>.
+    They don’t affect the inheritance relationships of their enclosing type.
+    Like other members, abstract types can be declared abstract or concrete.
+    However, they can also be refined in subtypes without being fully defined,
+    unlike variables and methods. Of course, instances can only be created
+    when the abstract types are given concrete <phrase
+    role="keep-together">definitions</phrase>.</para>
 
     <sect2 id="_parameterized_types_vs_abstract_types">
       <title>Parameterized Types Versus Abstract Types</title>
@@ -1953,10 +1948,11 @@ trait T {
 
       <para id="para_you_can_use_abstract_types_as_">You can use abstract
       types as method arguments and return values within a function. However,
-      two problems can arise. First, you can run into problems with
-      path-dependent types (discussed below in <xref
+      two problems can arise. First, you can run into problems with <phrase
+      role="keep-together">path-</phrase><phrase
+      role="keep-together">dependent</phrase> types (discussed in <xref
       linkend="PathDependentTypes" />), where the compiler thinks you are
-      trying to use an incompatible type in a particular context when in fact
+      trying to use an incompatible type in a particular context, when in fact
       they are paths to compatible types. Second, it’s awkward to express
       methods like <literal>List.::</literal> (“cons”) using abstract types
       where type changes (expansion in this case) can occur:<indexterm>
@@ -1983,9 +1979,10 @@ trait T {
       <para id="para_these_limitations_of_abstract_">These limitations of
       abstract types really reflect the tension between object-oriented
       inheritance and the origin of abstract types in pure functional
-      programming type systems, which don’t have inheritance. Parameterized
-      types are more popular in object-oriented languages because they handle
-      inheritance more naturally in most circumstances.</para>
+      programming type <phrase role="keep-together">systems</phrase>, which
+      don’t have inheritance. Parameterized types are more popular in
+      object-oriented languages because they handle inheritance more naturally
+      in most <phrase role="keep-together">circumstances</phrase>.</para>
 
       <para id="para_on_the_other_hand_when_you_wa">On the other hand,
       sometimes it’s useful to refer to a type abstraction as a member of
@@ -2024,8 +2021,8 @@ class C extends T3 {
 
       <para id="para_we_used_constructor_arguments_">We used constructor
       arguments in the brief <literal>BulkReader</literal> example we
-      presented in <xref linkend="AbstractTypesAndParameterizedTypes" /> in
-      <xref linkend="TypeLessDoMore" />:</para>
+      presented in <xref
+      linkend="AbstractTypesAndParameterizedTypes" />:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
@@ -2126,7 +2123,7 @@ one error found</screen>
 
     <para id="para_the_error_says_that_the_logge">The error says that the
     <literal>logger</literal> value in <literal>MyService2</literal> on line
-    25 has type <literal>MyService2.Logger</literal>, even though it’s
+    25 has type <literal>MyService2.Log⁠ger</literal>, even though it’s
     declared to be of type <literal>Logger</literal> in the parent
     <literal>Service</literal> trait. Also, we’re trying to assign it a value
     of type <literal>MyService1.MyService1Logger</literal>.</para>
@@ -2135,15 +2132,15 @@ one error found</screen>
     different in Scala. <literal>Logger</literal> is nested in
     <literal>Service</literal>, which is the parent of
     <literal>MyService1</literal> and <literal>MyService2</literal>. In Scala,
-    that means that the the nested <literal>Logger</literal> type is unique
-    for each of the service types. The actual type is <emphasis>path
-    dependent</emphasis>.</para>
+    that means that the nested <literal>Logger</literal> type is unique for
+    each of the service types. The actual type is
+    <emphasis>path-dependent</emphasis>.</para>
 
     <para id="para_in_this_case_the_easiest_solu">In this case, the easiest
     solution is to move the declaration of <literal>Logger</literal> outside
-    of <literal>Service</literal>, thereby removing the path dependency. In
-    other cases, it’s possible to qualify the type so that it resolves to what
-    you want.</para>
+    of <literal role="keep-together">Service</literal>, thereby removing the
+    path dependency. In other cases, it’s possible to qualify the type so that
+    it resolves to what you want.</para>
 
     <para id="para_there_are_several_kinds_of_typ">There are several kinds of
     type paths.</para>
@@ -2151,9 +2148,10 @@ one error found</screen>
     <sect2 id="_c_this">
       <title>C.this</title>
 
-      <para id="para_for_a_class_c_you_can_use_c_">For a class C, you can use
-      <literal>C.this</literal> or <literal>this</literal> inside the body to
-      refer to the current instance:<indexterm>
+      <para id="para_for_a_class_c_you_can_use_c_">For a class
+      <literal>C</literal>, you can use <literal>C.this</literal> or
+      <literal>this</literal> inside the body to refer to the current
+      instance:<indexterm>
           <primary>C.this type</primary>
         </indexterm><indexterm>
           <primary>path-dependent types</primary>
@@ -2223,8 +2221,7 @@ class C3 extends C2 {
       another type? To which type does <literal>super</literal> bind? Without
       the qualification, the rules of <emphasis>linearization</emphasis>
       determine the target of <literal>super</literal> (see <xref
-      linkend="Linearization" /> in <xref
-      linkend="ScalaObjectSystem" />).<indexterm>
+      linkend="Linearization" />).<indexterm>
           <primary>linearization of object hierarchy</primary>
         </indexterm></para>
 
@@ -2324,7 +2321,7 @@ class C8 {
     <sect2 id="_type_designators">
       <title>Type Designators</title>
 
-      <para id="para_the_conventional_type_ids_we_c">The conventional type ids
+      <para id="para_the_conventional_type_ids_we_c">The conventional type IDs
       we commonly use are called <emphasis>type
       designators</emphasis>:<indexterm>
           <primary>value types</primary>
@@ -2338,9 +2335,9 @@ class C8 {
 object O { type t }       // "O" and "t" are type designators
 ...</programlisting>
 
-      <para id="para_they_are_actually_a_short_hand">They are actually a short
-      hand syntax for <emphasis>type projections</emphasis>, which we cover
-      below.</para>
+      <para id="para_they_are_actually_a_short_hand">They are actually a
+      shorthand syntax for <emphasis>type projections</emphasis>, which we
+      cover later.</para>
     </sect2>
 
     <sect2 id="_tuples">
@@ -2420,7 +2417,7 @@ x: java.lang.Object with T1 with T2{type z = String; def zv: this.z} = \
 
       <para id="para_a_particularly_interesting_cas">A particularly
       interesting case is a declaration of the form <literal>val x = new { R
-      }</literal>, i.e., without any type ids. This is equivalent to
+      }</literal>, i.e., without any type IDs. This is equivalent to
       <literal>val x = new AnyRef { R }</literal>.</para>
     </sect2>
 
@@ -2430,8 +2427,8 @@ x: java.lang.Object with T1 with T2{type z = String; def zv: this.z} = \
       <para id="para_some_parameterized_types_take_">Some parameterized types
       take two type arguments, e.g., <literal>scala.Either[+A,+B]</literal>.
       Scala allows you to declare instances of these types using an infix
-      notation, e.g., <literal>a Either b. Consider the following script that
-      uses +Either</literal>:<indexterm>
+      notation, e.g., <literal>a Either b</literal>. Consider the following
+      script that uses <literal>+Either</literal>:<indexterm>
           <primary>value types</primary>
 
           <secondary>infix types</secondary>
@@ -2455,7 +2452,7 @@ println(attempt { false })</programlisting>
       <literal>attempt</literal> method will evaluate the
       <emphasis>call-by-value</emphasis> parameter
       <literal>operation</literal> and return its <literal>Boolean</literal>
-      result, wrapped in a <literal>Right</literal> <emphasis>or</emphasis>
+      result, wrapped in a <literal>Right</literal>, <emphasis>or</emphasis>
       any <literal>Throwable</literal> that is caught, wrapped in a
       <literal>Left</literal>. The script produces this output:</para>
 
@@ -2489,8 +2486,8 @@ Right(false)</screen>
         </indexterm></para>
 
       <para id="para_when_there_is_only_one_argumen">When there is only one
-      argument, you can drop the parentheses, <literal>T =&gt; R</literal>. A
-      Function that takes a <emphasis>call-by-name</emphasis> parameter (as
+      argument, you can drop the parentheses: <literal>T =&gt; R</literal>. A
+      function that takes a <emphasis>call-by-name</emphasis> parameter (as
       discussed in <xref linkend="FunctionalProgramming" />) has the type
       <literal>(=&gt;T) =&gt; R</literal>. We used a call-by-name argument in
       our <literal>attempt</literal> example in the previous
@@ -2525,10 +2522,9 @@ trait Function3[-T1, -T2, -T3, +R] extends AnyRef {
 }</programlisting>
 
       <para id="para_as_we_discussed_in_varianceu">As we discussed in <xref
-      linkend="VarianceUnderInheritance" /> above, The
-      <literal>FunctionN</literal> traits are
-      <emphasis>contravariant</emphasis> in the type parameters for the
-      arguments and <emphasis>covariant</emphasis> in the return type
+      linkend="VarianceUnderInheritance" />, the <literal>FunctionN</literal>
+      traits are <emphasis>contravariant</emphasis> in the type parameters for
+      the arguments and <emphasis>covariant</emphasis> in the return type
       parameter.</para>
 
       <para id="para_recall_that_when_you_reference">Recall that when you
@@ -2543,9 +2539,9 @@ trait Function3[-T1, -T2, -T3, +R] extends AnyRef {
         </indexterm></para>
 
       <para id="para_when_you_define_a_function_val">When you define a
-      function value, the compiler instantiates the appropriate
-      <literal>FunctionN</literal> object and uses your definition of the
-      function as the body of <literal>apply</literal>:</para>
+      function value, the compiler instantiates the appropriate <literal
+      role="keep-together">FunctionN</literal> object and uses your definition
+      of the function as the body of <literal>apply</literal>:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/function-types-script.scala
 
@@ -2565,11 +2561,10 @@ println( List("Programming", "Scala") map capitalizer2)</programlisting>
 
       <para id="para_the_curry_method_returns_a_n">We discussed the
       <literal>curry</literal> method previously in <xref
-      linkend="Currying" /> in <xref linkend="FunctionalProgramming" />. It
-      returns a new function with <literal>N</literal> argument lists, each of
-      which has a single argument taken from the original argument list of
-      <literal>N</literal> arguments. Note that the same
-      <literal>apply</literal> method is invoked:<indexterm>
+      linkend="Currying" />. It returns a new function with
+      <literal>N</literal> argument lists, each of which has a single argument
+      taken from the original argument list of <literal>N</literal> arguments.
+      Note that the same <literal>apply</literal> method is invoked:<indexterm>
           <primary>curried functions</primary>
         </indexterm></para>
 
@@ -2625,9 +2620,9 @@ println( answer3 + " == " + answer2 + "? " + (answer3 == answer2))</programlisti
       <para id="para_next_in_val_fc2_fc1_5_">Next, in <literal>val fc2 =
       fc1(5.)</literal>, we supply the second (<literal>T2</literal>)
       argument, returning a new function of type <literal>T3 =&gt;
-      R</literal>, that is <literal>Double =&gt; Double</literal>. Finally, in
-      <literal>val answer3 = fc2(4.)</literal> we supply the last argument to
-      compute the value of type <literal>R</literal>, that is
+      R</literal>, that is, <literal>Double =&gt; Double</literal>. Finally,
+      in <literal>val answer3 = fc2(4.)</literal> we supply the last argument
+      to compute the value of type <literal>R</literal>, that is
       <literal>Double</literal>.</para>
 
       <note id="para_note_a_type_t1_062_t2_">
@@ -2693,9 +2688,9 @@ println(ic2)</programlisting>
       type</emphasis> using the expression <literal>v.type</literal>. These
       expressions can be used as types in declarations. This feature is useful
       on rare occasions to work around the fact that types are path dependent,
-      which we discussed in <xref linkend="PathDependentTypes" /> above. In
-      these cases an object may have a path dependent type that appears to be
-      incompatible with another path dependent type, when in fact they are
+      which we discussed in <xref linkend="PathDependentTypes" />. In these
+      cases an object may have a path-dependent type that appears to be
+      incompatible with another path-dependent type, when in fact they are
       compatible. Using the <literal>v.type</literal> expression retrieves the
       singleton type, a “unique” type that eliminates the path dependency. Two
       values <literal>v1</literal> and <literal>v2</literal> may have
@@ -2720,7 +2715,7 @@ val x: c.x.type = c.x</programlisting>
   </sect1>
 
   <sect1 id="SelfTypeAnnotations">
-    <title>Self Type Annotations</title>
+    <title>Self-Type Annotations</title>
 
     <para id="para_self_types">You can use <literal>this</literal> in a method
     to refer to the enclosing type, which is useful for referencing a member
@@ -2741,13 +2736,13 @@ val x: c.x.type = c.x</programlisting>
       </indexterm><indexterm class="startofrange" id="ch12_datatypesself">
         <primary>data types</primary>
 
-        <secondary>self type annotations</secondary>
+        <secondary>self-type annotations</secondary>
       </indexterm><indexterm class="endofrange"
     startref="ch12_datatypesvalue"></indexterm></para>
 
     <para id="para__self_type_annotations__let_yo"><emphasis>Self-type
     annotations</emphasis> let you specify additional type expectations for
-    <literal>this</literal> and they can be used to create aliases for
+    <literal>this</literal>, and they can be used to create aliases for
     <literal>this</literal>. Let’s consider the latter case first:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/selftype/this-alias-script.scala
@@ -2781,7 +2776,8 @@ C1.talk: C3.talk: World</screen>
     would be completely redundant.</para>
 
     <para id="para_if_the_self_type_annotation_ha">If the self-type annotation
-    has types in the annotation, we get some very different benefits:</para>
+    has types in the annotation, we get some very different <phrase
+    role="keep-together">benefits</phrase>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/selftype/selftype-script.scala
 
@@ -2844,7 +2840,7 @@ MyApp.run</programlisting>
 
     <para id="para_note_the_self_type_annotation_">Note the self-type
     annotation, <literal>self: Persistence with Midtier with UI
-    =&gt;</literal>. It has two practical effects.</para>
+    =&gt;</literal>. It has two practical effects:</para>
 
     <orderedlist numeration="arabic">
       <listitem>
@@ -2884,10 +2880,10 @@ MyApp.run</programlisting>
     theoretical reasons and a few special cases where self-type annotations
     offer unique benefits. In practice, you could use inheritance for almost
     all cases. By convention, people use inheritance when they want to imply
-    that a type <emphasis>behaves as</emphasis> (inherits from) another type
+    that a type <emphasis>behaves as</emphasis> (inherits from) another type,
     and they use self-type annotations when they want to express a dependency
-    between a type and other types <link linkend="McIver2009"
-    xrefstyle="select:nopage">[McIver2009]</link>.</para>
+    between a type and other types (see <link linkend="McIver2009"
+    xrefstyle="select:nopage">[McIver2009]</link>).</para>
 
     <para id="para_in_our_case_we_don_t_really_t">In our case, we don’t really
     think of an <literal>App</literal> as <emphasis>being</emphasis> a UI,
@@ -2945,8 +2941,7 @@ public abstract class JavaApp {
     annotations as a component composition model in <xref
     linkend="ApplicationDesign" />. See <xref
     linkend="SelfTypeAnnotationsAndAbstractTypeMembers" /> and <xref
-    linkend="DependencyInjectionInScala" /> in that <phrase
-    role="keep-together">chapter</phrase>.<indexterm class="endofrange"
+    linkend="DependencyInjectionInScala" />.<indexterm class="endofrange"
     startref="ch12_datatypesself"></indexterm><indexterm class="endofrange"
     startref="ch12_selftype"></indexterm><indexterm class="endofrange"
     startref="ch12_typeself"></indexterm></para>
@@ -2960,14 +2955,15 @@ public abstract class JavaApp {
     typing</emphasis>, the popular name for the way method resolution works in
     dynamically typed languages. In Ruby, for example, when you write
     <literal>starFighter.shootWeapons</literal>, the runtime looks for a
-    <literal>shootWeapons</literal> method on the object referenced by
-    <literal>starFighter</literal>. That method, if found, might have been
-    defined in the class used to instantiate <literal>starFighter</literal> or
-    one of its parents or “included” modules. The method might also have been
-    added to the object using the metaprogramming facility of Ruby. Finally,
-    the object might override the catch-all <literal>method_missing</literal>
-    method and do something reasonable when the object receives the
-    <literal>shootWeapons</literal> “message”.<indexterm>
+    <literal role="keep-together">shootWeapons</literal> method on the object
+    referenced by <literal>starFighter</literal>. That method, if found, might
+    have been defined in the class used to instantiate
+    <literal>starFighter</literal> or one of its parents or “included”
+    modules. The method might also have been added to the object using the
+    metaprogramming facility of Ruby. Finally, the object might override the
+    catch-all <literal>method_missing</literal> method and do something
+    reasonable when the object receives the <literal>shootWeapons</literal>
+    “message.”<indexterm>
         <primary>Ruby</primary>
 
         <secondary>method resolution in</secondary>
@@ -2987,7 +2983,7 @@ public abstract class JavaApp {
     contains certain types, fields, or methods, without concern for the actual
     type of the object. We first encountered structural types near the
     beginning of <xref linkend="Traits" />. Here is the example we saw then, a
-    variation of the Observer pattern:</para>
+    variation of the Observer Pattern:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Traits/observer/observer.scala
 
@@ -3011,12 +3007,11 @@ trait Subject {
     virtue of minimizing the interface between two things. In this case, the
     coupling consists of only a single method signature, rather than a type,
     such as a shared trait. A drawback of a structural type is that we still
-    couple to a particular <emphasis>names</emphasis>. If a name is arbitrary,
+    couple to a particular <emphasis>name</emphasis>. If a name is arbitrary,
     we don’t really care about its name so much as its intent. In our example
     of a single method, we can avoid coupling to the name using a function
     object instead. In fact, we did this in <xref
-    linkend="OverridingAbstractTypes" /> in <xref
-    linkend="AdvancedObjectOrientedProgramming" />.</para>
+    linkend="OverridingAbstractTypes" />.</para>
 
     <para id="para_structural_types_when_names_are_good">On the other hand, if
     the name is a universal convention in some sense, then coupling to it has
@@ -3061,7 +3056,7 @@ trait Subject {
       <listitem>
         <para>You might encounter “raw” types, such as pre-Java 5 libraries
         where collections had no type parameters. (All type parameters are
-        effectively <literal>Object</literal>).</para>
+        effectively <literal>Object</literal>.)</para>
       </listitem>
 
       <listitem>
@@ -3095,7 +3090,7 @@ object ProcessList {
     shown.</para>
 
     <para id="para_the_manifests_that_we_discus">The
-    <literal>Manifests</literal> that we discussed previously won’t work
+    <literal>Manifest</literal>s that we discussed previously won’t work
     either, because they can’t recover the erased type of
     <literal>B</literal>.</para>
 
@@ -3114,7 +3109,7 @@ object ProcessList {
     }</literal>. This is the most general case. We’re saying the type
     parameter for the list could be any type. <xref
     linkend="existential-type-examples-table" /> lists some other examples
-    which demonstrate the use of type bounds.<indexterm>
+    that demonstrate the use of type bounds.<indexterm>
         <primary>existential types</primary>
 
         <secondary>examples of</secondary>
@@ -3146,7 +3141,7 @@ object ProcessList {
           </row>
 
           <row>
-            <entry><para><literal role="keep-together">List[_ &lt;:
+            <entry><para><literal>List[_ &lt;:
             scala.actors.AbstractActor]</literal></para></entry>
 
             <entry><para><literal>List[T] forSome { type T &lt;:
@@ -3174,7 +3169,7 @@ object ProcessList {
     <para id="para_if_you_think_about_how_scala_s">If you think about how
     Scala syntax for generics is mapped to Java syntax, you might have noticed
     that an expression like <literal>java.util.List[_ &lt;:
-    scala.actors.AbstractActor]</literal> is structurally similar to the Java
+    scala.actors.AbstractAc⁠tor]</literal> is structurally similar to the Java
     variance expression <literal>java.util.List&lt;? extends
     scala.actors.AbstractActor&gt;</literal>. In fact, they are the same
     declarations. Although we said that variance behavior in Scala is defined
@@ -3254,7 +3249,7 @@ evens.take(10).print</programlisting>
 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, Stream.empty</screen>
 
     <para id="para_the_from_method_is_recursive">The <literal>from</literal>
-    method is recursive and it never terminates! We use it to define the
+    method is recursive and never terminates! We use it to define the
     <literal>ints</literal> by calling <literal>from(0)</literal>.
     <literal>Streams.cons</literal> is an object with an
     <literal>apply</literal> method that is analogous to the
@@ -3272,7 +3267,7 @@ evens.take(10).print</programlisting>
 
     <para id="para_returning_to_the_fibonacci_seq">Returning to the Fibonacci
     sequence, there is a famous definition using infinite, lazy sequences that
-    exploits the “<literal>zip</literal>” operation (see, e.g., <link
+    exploits the <literal>zip</literal> operation (see, e.g., <link
     linkend="Abelson1996" xrefstyle="select:nopage">[Abelson1996]</link>). Our
     discussion for Scala is adapted from <link linkend="Ortiz2007"
     xrefstyle="select:nopage">[Ortiz2007]</link>:</para>
@@ -3318,9 +3313,9 @@ fib.take(10).print</programlisting>
     <para id="para_another_scala_type_that_is_laz">Another lazy Scala type,
     albeit a finite one, is <literal>Range</literal>. Typically, you write
     literal ranges such as <literal>1 to 1000</literal>.
-    <literal>Range</literal> is lazy, so that very large ranges don’t consume
-    too many resources. However, this feature can lead to subtle problems
-    unless you are careful, as documented by <link linkend="Smith2009b"
+    <literal>Range</literal> is lazy, so very large ranges don’t consume too
+    many resources. However, this feature can lead to subtle problems unless
+    you are careful, as documented by <link linkend="Smith2009b"
     xrefstyle="select:nopage">[Smith2009b]</link> and commenters. Using the
     example described there, consider this function for returning a
     <literal>Seq</literal> of three random integers:<indexterm>
@@ -3363,12 +3358,12 @@ Calling first on List created from ints1 Seq:
 
     <para id="para_calling_first_on_the_sequenc">Calling
     <literal>first</literal> on the sequence does not always return the same
-    value! The reason is that the range at the beginning of the for
-    comprehension effectively forces the whole sequence to be lazy. Hence, it
-    is reevaluated with <emphasis>each</emphasis> call to
-    <literal>first</literal> and the first value in the sequence actually
+    value! The reason is that the range at the beginning of the
+    <literal>for</literal> comprehension effectively forces the whole sequence
+    to be lazy. Hence, it is reevaluated with <emphasis>each</emphasis> call
+    to <literal>first</literal>, and the first value in the sequence actually
     changes, since <literal>Random</literal> returns a different number each
-    time (at least it will if there is a sufficient time delta between
+    time (at least, it will if there is a sufficient time delta between
     calls).</para>
 
     <para id="para_however_calling_tolist_on_t">However, calling
@@ -3383,7 +3378,7 @@ Calling first on List created from ints1 Seq:
 
     <para id="para_finally_scala_version_2_8_wil">Finally, Scala version 2.8
     will include a <literal>force</literal> method on all collections that
-    will force them to be <emphasis>strict</emphasis>.</para>
+    will force them to be strict.</para>
   </sect1>
 
   <sect1 id="_recap_and_what_8217_s_next_5">
