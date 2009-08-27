@@ -2111,7 +2111,10 @@ object MyService2 extends Service {
   def doRun = true  // do some real work...
 }</programlisting>
 
-    <para id="para_if_you_compile_this_file_you_g">If you compile this file
+    <?dbfo-need height=”1in”
+?>
+
+    <para id="para_if_you_compile_this_file_you_g">If you compile this file,
     you get the following error:</para>
 
     <screen>...:27: error: error overriding value logger in trait Service of type \

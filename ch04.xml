@@ -757,8 +757,9 @@ trait VetoableClicks extends Clickable {
 
     <para id="para_this_trait_also_declares_a_co">This trait also declares a
     <literal>count</literal> variable to keep track of the number of clicks
-    seen. It is declared <literal>private</literal>, so it is invisible
-    outside the trait (see <xref linkend="VisibilityRules" />). The overridden
+    seen. <phrase role="keep-together">It is declared</phrase>
+    <literal>private</literal>, so it is invisible outside the trait (see
+    <xref linkend="VisibilityRules" />). The overridden
     <literal>click</literal> method increments <literal>count</literal>. It
     only calls the <literal>super.click()</literal> method if the count is
     less than or equal to the <literal>maxAllowed</literal> count.<indexterm>

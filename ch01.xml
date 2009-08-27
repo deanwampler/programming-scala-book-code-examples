@@ -312,8 +312,8 @@
             way of implementing classes using <emphasis>mixin
             composition</emphasis>. Scala’s traits work much like Ruby’s
             <emphasis>modules</emphasis>. If you’re a Java programmer, think
-            of traits as unifying interfaces with their
-            implementations.<indexterm>
+            of traits as unifying interfaces with their <phrase
+            role="keep-together">implementations</phrase>.<indexterm>
                 <primary>object-oriented programming (OOP)</primary>
 
                 <secondary>mixed paradigm in Scala</secondary>
@@ -326,7 +326,8 @@
             <para id="para_everything_is_object">In Scala, everything is
             <emphasis>really</emphasis> an object. Scala does not have
             primitive types, like Java. Instead, all numeric types are true
-            objects. However, for optimal performance, Scala uses the
+            objects. However, for optimal <phrase
+            role="keep-together">performance</phrase>, Scala uses the
             underlying primitives types of the runtime whenever possible.
             Also, Scala does not support “static” or class-level members of
             types, since they are not associated with an actual instance.
@@ -878,6 +879,9 @@ scala&gt;</screen>
         <primary>interactive mode, scala command</primary>
       </indexterm></para>
 
+    <?dbfo-need height=”2in”
+?>
+
     <para id="para_type_in_the_following_two_line">Type in the following two
     lines of code:</para>
 
@@ -956,6 +960,9 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
       </indexterm><indexterm>
         <primary>comments</primary>
       </indexterm></para>
+
+    <?dbfo-need height=”2in”
+?>
 
     <para id="para_to_run_this_script_go_to_a_co">To run this script, go to a
     command window, change to the same directory, and run the following

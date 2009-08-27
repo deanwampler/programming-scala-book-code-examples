@@ -41,88 +41,90 @@
       xrefstyle="select:nopage">[Scala]</link>.</para>
     </tip>
 
-    <para id="para_here_is_a_partial_list_of_the_">The following is a partial
-    list of the items imported or defined by <literal>Predef</literal> on the
-    Java platform:<indexterm>
+    <para id="para_here_is_a_partial_list_of_the_"><xref
+    linkend="table_7-1" /> shows a partial list of the items imported or
+    defined by <literal>Predef</literal> on the Java platform.<indexterm>
         <primary>Predef object</primary>
 
         <secondary>items imported or defined by</secondary>
       </indexterm></para>
 
-    <variablelist>
-      <varlistentry>
-        <term>Types</term>
+    <table id="table_7-1">
+      <title>Items imported or defined by Predef</title>
 
-        <listitem>
-          <para><literal>Character</literal>, <literal>Class</literal>,
-          <literal>Error</literal>, <literal>Function</literal>,
-          <literal>Integer</literal>, <literal>Map</literal>,
-          <literal>Pair</literal>, <literal>Runnable</literal>,
-          <literal>Set</literal>, <literal>String</literal>, <literal
-          role="keep-together">Throwable</literal>,
-          <literal>Triple</literal>.</para>
-        </listitem>
-      </varlistentry>
+      <tgroup cols="2">
+        <tbody valign="top">
+          <row>
+            <entry><para><emphasis
+            role="strong">Types</emphasis></para></entry>
 
-      <varlistentry>
-        <term>Exceptions</term>
+            <entry><para><literal>Character</literal>,
+            <literal>Class</literal>, <literal>Error</literal>,
+            <literal>Function</literal>, <literal>Integer</literal>,
+            <literal>Map</literal>, <literal>Pair</literal>,
+            <literal>Runnable</literal>, <literal>Set</literal>,
+            <literal>String</literal>, <literal>Throwable</literal>,
+            <literal>Triple</literal>.</para></entry>
+          </row>
 
-        <listitem>
-          <para><literal>Exception</literal>,
-          <literal>ArrayIndexOutOfBoundsException</literal>,
-          <literal>ClassCastException</literal>, <literal
-          role="keep-together">IllegalArgumentException</literal>,
-          <literal>IndexOutOfBoundsException</literal>,
-          <literal>NoSuchElementException</literal>,
-          <literal>NullPointerException</literal>,
-          <literal>NumberFormatException</literal>,
-          <literal>RuntimeException</literal>,
-          <literal>StringIndexOutOfBoundsException</literal>,
-          <literal>UnsupportedOperationException</literal>.</para>
-        </listitem>
-      </varlistentry>
+          <row>
+            <entry><para><emphasis
+            role="strong">Exceptions</emphasis></para></entry>
 
-      <varlistentry>
-        <term>Values</term>
+            <entry><para><literal>Exception</literal>,
+            <literal>ArrayIndexOutOfBoundsException</literal>,
+            <literal>ClassCastException</literal>,
+            <literal>IllegalArgumentException</literal>,
+            <literal>IndexOutOfBoundsException</literal>,
+            <literal>NoSuchElementException</literal>,
+            <literal>NullPointerException</literal>,
+            <literal>NumberFormatException</literal>,
+            <literal>RuntimeException</literal>,
+            <literal>StringIndexOutOfBoundsException</literal>,
+            <literal>UnsupportedOperationException</literal>.</para></entry>
+          </row>
 
-        <listitem>
-          <para><literal>Map</literal>, <literal>Set</literal>.</para>
-        </listitem>
-      </varlistentry>
+          <row>
+            <entry><para><emphasis
+            role="strong">Values</emphasis></para></entry>
 
-      <varlistentry>
-        <term>Objects</term>
+            <entry><para><literal>Map</literal>,
+            <literal>Set</literal>.</para></entry>
+          </row>
 
-        <listitem>
-          <para><literal>Pair</literal>, <literal>Triple</literal>.</para>
-        </listitem>
-      </varlistentry>
+          <row>
+            <entry><para><emphasis
+            role="strong">Objects</emphasis></para></entry>
 
-      <varlistentry>
-        <term>Classes</term>
+            <entry><para><literal>Pair</literal>,
+            <literal>Triple</literal>.</para></entry>
+          </row>
 
-        <listitem>
-          <para><literal>Ensuring</literal>,
-          <literal>ArrowAssoc</literal>.</para>
-        </listitem>
-      </varlistentry>
+          <row>
+            <entry><para><emphasis
+            role="strong">Classes</emphasis></para></entry>
 
-      <varlistentry>
-        <term>Methods</term>
+            <entry><para><literal>Ensuring</literal>,
+            <literal>ArrowAssoc</literal>.</para></entry>
+          </row>
 
-        <listitem>
-          <para>Factory methods to create <emphasis>tuples</emphasis>,
-          overloaded versions of <literal>exit</literal>,
-          <literal>error</literal>, <literal>assert</literal>,
-          <literal>assume</literal>, and <literal>require</literal>,
-          <emphasis>implicit</emphasis> type conversion methods, I/O methods
-          like <literal>readLine</literal>, <literal>println</literal>, and
-          <literal>format</literal>, and a method
-          <literal>currentThread</literal>, which calls
-          <literal>java.lang.Thread.currentThread</literal>.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+          <row>
+            <entry><para><emphasis
+            role="strong">Methods</emphasis></para></entry>
+
+            <entry><para>Factory methods to create
+            <emphasis>tuples</emphasis>, overloaded versions of
+            <literal>exit</literal>, <literal>error</literal>,
+            <literal>assert</literal>, <literal>assume</literal>, and
+            <literal>require</literal>, <emphasis>implicit</emphasis> type
+            conversion methods, I/O methods like <literal>readLine</literal>,
+            <literal>println</literal>, and <literal>format</literal>, and a
+            method <literal>currentThread</literal>, which calls
+            <literal>java.lang.Thread.currentThread</literal>.</para></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
 
     <para id="para__predef_declares_the_types_an"><literal>Predef</literal>
     declares the types and exceptions listed in the table using the
@@ -880,7 +882,7 @@ body length? 13</screen>
         <secondary>type hierarchy</secondary>
       </indexterm></para>
 
-    <figure id="scalas-type-hierarchy">
+    <figure float="none" id="scalas-type-hierarchy">
       <title>Scala’s type hierarchy</title>
 
       <mediaobject>
@@ -1585,6 +1587,9 @@ println(c2.m(""))</programlisting>
         <secondary>linearization algorithm for</secondary>
       </indexterm></para>
 
+    <?dbfo-need height=”1in”
+?>
+
     <sidebar>
       <title>Linearization Algorithm for Reference Types</title>
 
@@ -1806,6 +1811,9 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
       what’s going on, try to simplify your code.</para>
     </tip>
   </sect1>
+
+  <?dbfo-need height=”1in”
+?>
 
   <sect1 id="_recap_and_what_8217_s_next_4">
     <title>Recap and What’s Next</title>

@@ -739,12 +739,14 @@ println(eventually())</programlisting>
       <para id="para_each_actor_in_your_system_shou">Each Actor in your system
       should have clear responsibilities. Don’t use Actors for <phrase
       role="keep-together">general-purpose</phrase>, highly stateful tasks.
-      Instead, think like a director: what are the distinct roles in the
-      “script” of your application, and what’s the least amount of information
-      each Actor needs to do its job? Give each Actor just a couple of
-      responsibilities, and use messages (usually in the form of a
-      <literal>case class</literal> or <literal>case object</literal>) to
-      delegate those responsibilities to other Actors.</para>
+      Instead, think like a director: what are the <phrase
+      role="keep-together">distinct</phrase> roles in the “script” of your
+      application, and what’s the least amount of <phrase
+      role="keep-together">information</phrase> each Actor needs to do its
+      job? Give each Actor just a couple of responsibilities, and use messages
+      (usually in the form of a <literal>case class</literal> or <literal>case
+      object</literal>) to delegate those responsibilities to other
+      Actors.</para>
 
       <para id="para_don_t_be_hesitant_to_copy_data">Don’t be hesitant to copy
       data when writing Actor-centric code. The more immutable your design,
@@ -1234,8 +1236,9 @@ class SmtpHandler(val session: IoSession) extends Actor {
       a limited set of cases. In <literal>SmtpHandler</literal>, all of those
       cases are <emphasis>events</emphasis> provided by MINA. For example,
       MINA will send us <literal>MinaMessage.SessionOpened</literal> when a
-      client connects and <literal>MinaMessage.Ses⁠sionClosed</literal> when a
-      client disconnects.</para>
+      client connects and <literal
+      role="keep-together">MinaMessage.Ses⁠sionClosed</literal> when a client
+      disconnects.</para>
 
       <para id="para_the_case_we_re_most_interested">The case we’re most
       interested in is <literal>MinaMessage.MessageReceived</literal>. We’re
@@ -1268,6 +1271,9 @@ HELO jaya.local
 QUIT
 221 Peace out girl scout
 Connection closed by foreign host.</screen>
+
+      <?dbfo-need height=”1in”
+?>
 
       <para id="para_a_brief_conversation_to_be_su">A brief conversation, to
       be sure, but our server works! Now, what happens if we throw something

@@ -884,6 +884,9 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       the <literal>percent_of</literal> method. Every line in the deductions
       function literal exploits this instance.</para>
 
+      <?dbfo-need height=”1in”
+?>
+
       <para id="para_for_example_25_percent_of_">For example, <literal>(25.
       percent_of gross)</literal> is roughly equivalent to the following
       steps:</para>
@@ -1200,8 +1203,9 @@ doubleNumber = ...</screen>
       parsing, other nonterminals (including possibly a recursive reference to
       the lefthand side nonterminal), and operators that express relationships
       between the items. Notice that the grammar forms have a hierarchical
-      decomposition; although not a directed acyclic graph, as generally
-      speaking, these grammars can have cycles.<indexterm>
+      <phrase role="keep-together">decomposition</phrase>; although not a
+      directed acyclic graph, as generally speaking, these <phrase
+      role="keep-together">grammars</phrase> can have cycles.<indexterm>
           <primary>; (semicolon)</primary>
 
           <secondary>ending production rule definitions</secondary>
@@ -1260,8 +1264,9 @@ doubleNumber = ...</screen>
       <para id="para_finally_if_we_had_optional_te">Finally, if we had
       optional items in our grammar, we would enclose them in square brackets,
       <literal>[ ... ]</literal>. There are other kinds of composition
-      operators possible (and supported in the Scala library), a few of which
-      we’ll discuss shortly. See the <link linkend="ScalaAPI2008"
+      operators possible (and <phrase role="keep-together">supported</phrase>
+      in the Scala library), a few of which we’ll discuss. See the <link
+      linkend="ScalaAPI2008" role="keep-together"
       xrefstyle="select:nopage">[ScalaAPI2008]</link> entry for
       <literal>Parsers</literal> for more details.<indexterm
       class="endofrange"
@@ -1915,6 +1920,9 @@ class PayrollParserCombinators(val employees: Map[Name, Employee])
           <primary>Javadoc-style @return annotations</primary>
         </indexterm></para>
 
+      <?dbfo-need height=”1in”
+?>
+
       <para id="para_consider_the_new_paycheck_pr">Consider the new
       <literal>paycheck</literal> production:</para>
 
@@ -1979,7 +1987,8 @@ def empl = "paycheck" ~&gt; "for" ~&gt; "employee" ~&gt; employeeName ^^ { name 
       <literal>PayrollParserCombinators</literal>. However, the
       <literal>empl</literal> method handles the case where no employee is
       found with the specified name, throwing an
-      <literal>UnknownEmployee</literal> exception when this occurs.</para>
+      <literal>UnknownEmployee</literal> exception when this <phrase
+      role="keep-together">occurs</phrase>.</para>
 
       <para id="para_the_rest_of_the_productions_wo">The rest of the
       productions work similarly. Sometimes, a parser converts an input string

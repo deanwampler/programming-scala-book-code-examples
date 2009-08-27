@@ -23,8 +23,9 @@
   the craft of writing software. During the years, I have come to value one
   trait more than any other: composability. If one can write code with good
   composability, it usually means that other traits we software developers
-  value—such as orthogonality, loose coupling, and high cohesion—are already
-  present. It is all connected.</para>
+  value—such as orthogonality, loose coupling, and high <phrase
+  role="keep-together">cohesion—</phrase>are already present. It is all
+  connected.</para>
 
   <para>When I discovered Scala some years ago, the thing that made the
   biggest impression on me was its composability. Through some very elegant
@@ -49,6 +50,9 @@
   once, is leading the API team at Twitter, Inc. Alex has played a leading
   role in moving Twitter’s code and infrastructure to Scala, making it one on
   the first companies to successfully deploy Scala in production.</para>
+
+  <?dbfo-need height=”2in”
+?>
 
   <para>You are about to learn how to write reusable components using mixin
   and function composition; how to write concurrent applications using Scala’s

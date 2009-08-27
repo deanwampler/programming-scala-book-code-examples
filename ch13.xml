@@ -943,6 +943,9 @@ class FilePrinter(val file: File) {
     (Well, we don’t actually know what’s happening inside the Java IO
     classes....)</para>
 
+    <?dbfo-need height=”1in”
+?>
+
     <para id="para_here_is_a_java_class_that_uses">Here is a Java class that
     uses <literal>FilePrinter</literal>. It provides the
     <literal>main</literal> routine:</para>
@@ -1437,7 +1440,8 @@ Main$$anon$1$Trace$: 7</screen>
       the concept of a finite and fixed set of values, as long as the case
       class hierarchy is sealed. An additional advantage of a sealed case
       class hierarchy is the fact that the compiler will warn you if pattern
-      matching statements aren’t exhaustive. Try removing one of the case
+      matching statements aren’t <phrase
+      role="keep-together">exhaustive</phrase>. Try removing one of the case
       clauses and you’ll get the usual warning. The compiler can’t do this
       with enumerations, as we saw.</para>
 
@@ -1628,13 +1632,14 @@ args.foreach { fileName =&gt;
 
       <para id="para_one_other_benefit_of_option_with_for_comps">There is one
       other benefit of using <literal>Options</literal> with
-      <literal>for</literal> comprehensions, automatic removal of
-      <literal>None</literal> elements from comprehensions, under most
-      conditions (see <link linkend="Pollak2007"
-      xrefstyle="select:nopage">[Pollak2007]</link> and <link
-      linkend="Spiewak2009c" xrefstyle="select:nopage">[Spiewak2009c]</link>).
-      Consider this first version of a script that uses
-      <literal>Options</literal> in a <literal>for</literal> <phrase
+      <literal>for</literal> comprehensions, automatic <phrase
+      role="keep-together">removal</phrase> of <literal>None</literal>
+      elements from comprehensions, under most conditions (refer to <link
+      linkend="Pollak2007" xrefstyle="select:nopage">[Pollak2007]</link> and
+      <link linkend="Spiewak2009c"
+      xrefstyle="select:nopage">[Spiewak2009c]</link>). Consider this first
+      version of a script that uses <literal>Options</literal> in a
+      <literal>for</literal> <phrase
       role="keep-together">comprehension</phrase>:<indexterm>
           <primary>for comprehensions</primary>
 
@@ -1807,11 +1812,12 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
 
       <para id="para_the_outer_most_flatmap_is_on">The outermost
       <literal>flatMap</literal> is on the input <literal>List</literal>,
-      <literal>newUserProfiles</literal>. On a multi-element collection like
-      this, the behavior of <literal>flatMap</literal> is similar to
-      <literal>map</literal>, but it flattens the new collection and doesn’t
-      require the resulting map to have the same number of elements as the
-      original collection, like <literal>map</literal> does.</para>
+      <literal>newUserProfiles</literal>. On a multi-element <phrase
+      role="keep-together">collection</phrase> like this, the behavior of
+      <literal>flatMap</literal> is similar to <literal>map</literal>, but it
+      flattens the new <phrase role="keep-together">collection</phrase> and
+      doesn’t require the resulting map to have the same number of elements as
+      the original collection, like <literal>map</literal> does.</para>
 
       <para id="para_finally_recall_from_partial">Finally, recall from <xref
       linkend="PartialFunctions" /> that the <literal>case user =&gt;
@@ -2533,7 +2539,8 @@ class ButtonClickObserver extends ButtonSubjectObserver.ButtonObserver {
 package ui
 import org.specs._
 import observer._
-
+<?dbfo-need height="1in"
+?>
 object ButtonObserver3Spec extends Specification {
   "An Observer counting button clicks" should {
     "see all clicks" in {
@@ -3987,6 +3994,9 @@ Chat history:
         <secondary>require and assume methods, using for contract
         enforcement</secondary>
       </indexterm></para>
+
+    <?dbfo-need height=”1in”
+?>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/design-by-contract/bank-account.scala
 

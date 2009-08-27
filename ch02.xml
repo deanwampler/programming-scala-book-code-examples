@@ -136,7 +136,8 @@ case "exit" =&gt;
 array: Array[String] = Array(null, null, null, null, null)
 
 scala&gt; array = new Array(2)
-&lt;console&gt;:5: error: reassignment to val
+&lt;console&gt;:5: error: reassignment to val<?dbfo-need height="1in"
+?>
        array = new Array(2)
              ^
 
@@ -862,6 +863,9 @@ object StringUtilClient {
     args foreach { s =&gt; toCollection(s).foreach { x =&gt; println(x) } }
   }
 }</programlisting>
+
+    <?dbfo-need height=”1in”
+?>
 
     <para id="para_if_you_compile_these_files_yo">If you compile these files
     with <literal>scala</literal>, you can run the client as follows:</para>
@@ -2813,6 +2817,9 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
       </tgroup>
     </table>
 
+    <?dbfo-need height=”2in”
+?>
+
     <para id="para_no_break_and_continue">Notice that <literal>break</literal>
     and <literal>continue</literal> are not listed. These control keywords
     don’t exist in Scala. Instead, Scala encourages you to use functional
@@ -2865,7 +2872,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
       </indexterm></para>
 
     <para id="para_some_java_methods_use_names_th">Some Java methods use names
-    that are reserved by Scala, e.g.,
+    that are reserved by Scala, for example,
     <literal>java.util.Scan⁠ner.match</literal>. To avoid a compilation error,
     surround the name with single back quotes, e.g.,
     <literal>java.util.Scanner.‵match‵</literal>.</para>

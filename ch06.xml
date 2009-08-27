@@ -2352,8 +2352,8 @@ Circle == FancyCircle? true</screen>
     can be found in <link linkend="Odersky2009"
     xrefstyle="select:nopage">[Odersky2009]</link>, which uses Java syntax,
     but is adapted from Chapter 28 of <emphasis>Programming in
-    Scala</emphasis> <link linkend="Odersky2008"
-    xrefstyle="select:nopage">[Odersky2008]</link>. Consult these references
+    Scala</emphasis> (<link linkend="Odersky2008"
+    xrefstyle="select:nopage">[Odersky2008]</link>). Consult these references
     when you need to implement your own <literal>equals</literal> and
     <literal>hashCode</literal> methods. Recall that these methods are created
     automatically for <literal>case</literal> classes.<indexterm>
@@ -2366,11 +2366,12 @@ Circle == FancyCircle? true</screen>
 
     <para id="para_here_we_focus_on_the_different">Here we focus on the
     different equality methods available in Scala and their meanings. There
-    are some slight inconsistencies between the Scala specification (<link
-    linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>)
-    and the Scaladoc pages for the equality-related methods for
-    <literal>Any</literal> and <literal>AnyRef</literal>, but the general
-    behavior is clear.</para>
+    are some slight inconsistencies between the Scala specification (see <link
+    linkend="ScalaSpec2009" role="keep-together"
+    xrefstyle="select:nopage">[ScalaSpec2009]</link>) and the Scaladoc pages
+    for the equality-related methods for <literal>Any</literal> and <literal
+    role="keep-together">AnyRef</literal>, but the general behavior is
+    clear.</para>
 
     <caution id="para_caution_some_of_the_equality_">
       <para>Some of the equality methods have the same names as equality

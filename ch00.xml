@@ -379,8 +379,8 @@
     intellectual tools with which to attempt to produce it. Alex thanks his
     lovely partner, Kristen, for her patience and kindness throughout the
     writing process. He would also like to thank his colleagues at Twitter for
-    their encouragement and superb work in demonstrating Scala’s
-    effectiveness.</para>
+    their encouragement and superb work in demonstrating Scala’s <phrase
+    role="keep-together">effectiveness</phrase>.</para>
 
     <para>Most of all, we thank Martin Odersky and his team for creating
     Scala.</para>

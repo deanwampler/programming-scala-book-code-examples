@@ -1227,12 +1227,12 @@ case class Complex(real: Double, imaginary: Double) {
           <mediaobject>
             <imageobject role="print">
               <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1401.pdf"
-                         format="PDF" />
+                         format="PDF" scale="90" />
             </imageobject>
 
             <imageobject role="web">
               <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1401.png"
-                         format="PNG" />
+                         format="PNG" scale="90" />
             </imageobject>
           </mediaobject>
         </figure>
@@ -1376,6 +1376,9 @@ case class Complex(real: Double, imaginary: Double) {
             </imageobject>
           </mediaobject>
         </figure>
+
+        <?dbfo-need height=”2in”
+?>
 
         <para id="para_right_click_the__scala__plugin">Right-click the Scala
         plugin name and select “Download and Install” from the menu. Repeat
@@ -1532,12 +1535,12 @@ case class Complex(real: Double, imaginary: Double) {
           <mediaobject>
             <imageobject role="print">
               <imagedata fileref="/work/eans/9780596155957/figs/print/prsc_1408.pdf"
-                         format="PDF" />
+                         format="PDF" scale="90" />
             </imageobject>
 
             <imageobject role="web">
               <imagedata fileref="/work/eans/9780596155957/figs/web/prsc_1408.png"
-                         format="PNG" />
+                         format="PNG" scale="90" />
             </imageobject>
           </mediaobject>
         </figure>
@@ -3209,7 +3212,7 @@ public interface AllOpChars{
         </indexterm></para>
 
       <para id="para_for_a_detailed_introduction_to">For a detailed
-      introduction to AspectJ with many practical examples, see <link
+      introduction to AspectJ with many practical examples, refer to <link
       linkend="Laddad2009"
       xrefstyle="select:nopage">[Laddad2009]</link>.</para>
 
@@ -3255,6 +3258,9 @@ object ComplexMain {
       aspect that defines one <emphasis>pointcut</emphasis> for the creation
       of <literal>Complex</literal> instances and another pointcut for
       invocations of the <literal>+</literal> method:</para>
+
+      <?dbfo-need height=”1in”
+?>
 
       <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/aspectj/LogComplex.aj
 

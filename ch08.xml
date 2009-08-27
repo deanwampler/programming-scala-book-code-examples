@@ -54,9 +54,9 @@
     <para id="para_based_on_mathematics_">Don’t all programming languages have
     functions of some sort? Whether they are called methods, procedures, or
     <literal>GOTOs</literal>, programmers are always dealing in functions.
-    Functional programming is based on the behavior of functions in the
-    mathematical sense, with all the implications that starting point
-    implies.<indexterm>
+    <phrase role="keep-together">Functional</phrase> programming is based on
+    the behavior of functions in the mathematical sense, with all the
+    implications that starting point implies.<indexterm>
         <primary>functional programming</primary>
 
         <secondary>definition of</secondary>
@@ -280,6 +280,9 @@ List(1, 2, 3, 4, 5) reduceLeft { _ * _ }</programlisting>
     iteration methods. In other cases, recursion is the preferred way to
     traverse a data structure or perform an algorithm. We’ll return to this
     topic in <xref linkend="Recursion" />.</para>
+
+    <?dbfo-need height=”1in”
+?>
 
     <sect2 id="FunctionLiteralsAndClosures">
       <title>Function Literals and Closures</title>
@@ -684,11 +687,14 @@ val list2 = list1.::("read").::("should").::("People")</programlisting>
   // ...
   "Wyoming" -&gt; "Cheyenne")</programlisting>
 
+      <?dbfo-need height=”1in”
+?>
+
       <para id="para_the_scala_collection_map_a_">The
       <literal>scala.collection.Map[A,+B]</literal> trait only defines methods
       for reading the <literal>Map</literal>. There are derived traits for
       immutable and mutable maps,
-      <literal>scala.collection.immuta⁠ble.Map[A,+B]</literal> and
+      <literal>scala.collection.immutable.Map[A,+B]</literal> and
       <literal>scala.collection.mutable.Map[A,B]</literal>, respectively. They
       define <literal>+</literal> and <literal>-</literal> operators for
       adding and removing elements, and <literal>++</literal> and
@@ -837,6 +843,9 @@ stateCapitals foreach { kv =&gt; println(kv._1 + ": " + kv._2) }</programlisting
   def map[B](f : (A) =&gt; B) : Iterable[B] = ...
   ...
 }</programlisting>
+
+      <?dbfo-need height=”1in”
+?>
 
       <para id="para_the_passed_in_function_can_tra">The passed-in function
       (<literal>f</literal>) can transform an original element of type
@@ -1374,8 +1383,11 @@ for (option &lt;- List(noneNumber, someNumber)) {
     we can change the implementation of the addresses as long as they still
     support those abstractions. Of course, we’ve known for a long time in
     object-oriented programming that you should only couple to abstractions,
-    not concrete details (e.g., see <link linkend="Martin2003"
+    not concrete details (for example, see <link linkend="Martin2003"
     xrefstyle="select:nopage">[Martin2003]</link>).</para>
+
+    <?dbfo-need height=”1in”
+?>
 
     <para id="para_functional_pattern_matching_an">Functional pattern matching
     and object-oriented polymorphism are powerful <phrase
@@ -1600,6 +1612,9 @@ val byTen = multiplier(10) _</programlisting>
     indicate that the remaining arguments (in this example, one argument) are
     unspecified.</para>
 
+    <?dbfo-need height=”1in”
+?>
+
     <para id="para_in_the_scala_console_we_get_p">In the Scala console, we get
     predictable output when calling our curried functions:</para>
 
@@ -1799,6 +1814,9 @@ import FancyString2RichString._
 
 val fs = new FancyString("scala")
 println(fs.capitalize.reverse)</programlisting>
+
+      <?dbfo-need height=”1in”
+?>
 
       <para id="para_we_can_t_modify_richstring_o">We can’t modify
       <literal>RichString</literal> or <literal>Predef</literal> to add an
