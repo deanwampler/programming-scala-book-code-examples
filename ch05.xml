@@ -91,13 +91,13 @@
         <primary>signature</primary>
       </indexterm></para>
 
-    <para id="para_type_erasure_method_overloading">However, there is an
-    exception to this rule due to <emphasis>type erasure</emphasis>, which is
-    a feature of the JVM only, but is used by Scala on both the JVM and .NET
-    platforms, to minimize incompatibilities. Suppose two methods are
-    identical except that one takes a parameter of type
-    <literal>List[String]</literal> while the other takes a parameter of type
-    <literal>List[Int]</literal>, as in the following example:<indexterm>
+    <para id="para_type_erasure_method_overloading">There is an exception to
+    this rule due to <emphasis>type erasure</emphasis>, which is a feature of
+    the JVM only, but is used by Scala on both the JVM and .NET platforms, to
+    minimize incompatibilities. Suppose two methods are identical except that
+    one takes a parameter of type <literal>List[String]</literal> while the
+    other takes a parameter of type <literal>List[Int]</literal>, as
+    follows:<indexterm>
         <primary>type erasure</primary>
       </indexterm></para>
 
@@ -136,8 +136,8 @@ object Foo {
     <para id="para_as_we_discussed_in_variabled">As we discussed in <xref
     linkend="VariableDeclarationsAndDefinitions" />, read-only (“value”)
     fields are declared using the <literal>val</literal> keyword, and
-    read/write fields are declared using the <literal>var</literal>
-    keyword.</para>
+    read/write fields are declared using the <literal>var</literal> <phrase
+    role="keep-together">keyword</phrase>.</para>
 
     <para id="para_scala_also_allows__types__to_b">Scala also allows types to
     be declared in classes, as we saw in <xref
@@ -205,9 +205,8 @@ object Foo {
       </indexterm></para>
 
     <para id="para_here_is_a_simple_example_from_">We’ve seen several examples
-    of parent and child classes already. Here are snippets of one of the first
-    examples we saw, in <xref
-    linkend="AbstractTypesAndParameterizedTypes" />:</para>
+    of parent and child classes. Here are snippets of one of the first we saw,
+    in <xref linkend="AbstractTypesAndParameterizedTypes" />:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
@@ -391,7 +390,7 @@ object ButtonWithCallbacksSpec extends Specification {
     <screen>java.lang.IllegalArgumentException: requirement failed: Callback list can't be null!
         at scala.Predef$.require(Predef.scala:112)
         at ui.ButtonWithCallbacks.&lt;init&gt;(button-callbacks.scala:7)
-....</screen>
+...</screen>
 
     <para
     id="para_in_this_example_two_auxiliary"><literal>ButtonWithCallbacks</literal>
