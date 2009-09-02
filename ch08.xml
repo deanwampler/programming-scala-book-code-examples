@@ -163,7 +163,7 @@
       mutable state. If you remove mutability, then the problems essentially
       go away. It is the combination of referentially transparent functions
       and immutable values that make functional programming compelling as a
-      “better way” to write concurrent software.</para>
+      better way to write concurrent software.</para>
 
       <para id="para_these_qualities_benefit_progra">These qualities benefit
       programs in other ways. Almost all the constructs we have invented in
@@ -225,7 +225,7 @@
     <para id="para_if_you_think_about_what_we_sai">Though functional languages
     are all about eliminating side effects, a language that
     <emphasis>never</emphasis> allowed for side effects would be useless.
-    Input and output (IO) is inherently about side effects, and IO is
+    Input and output (IO) are inherently about side effects, and IO is
     essential to all programming tasks. For this reason, all functional
     languages provide mechanisms for performing side effects in a controlled
     way.</para>

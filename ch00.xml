@@ -374,13 +374,10 @@
     members of the Chicago Area Scala Enthusiasts (CASE) group have also been
     a source of valuable feedback and inspiration.</para>
 
-    <para>Alex dedicates his portion of the book to his mother, who bestowed
-    upon him an appreciation for good writing and the accompanying
-    intellectual tools with which to attempt to produce it. Alex thanks his
-    lovely partner, Kristen, for her patience and kindness throughout the
-    writing process. He would also like to thank his colleagues at Twitter for
-    their encouragement and superb work in demonstrating Scala’s <phrase
-    role="keep-together">effectiveness</phrase>.</para>
+    <para>Alex thanks his colleagues at Twitter for their encouragement and
+    superb work in demonstrating Scala’s effectiveness as a language. He also
+    thanks the Bay Area Scala Enthusiasts (BASE) for their motivation and
+    <phrase role="keep-together">community</phrase>.</para>
 
     <para>Most of all, we thank Martin Odersky and his team for creating
     Scala.</para>

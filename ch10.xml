@@ -384,7 +384,7 @@ class AtomFeed(posts: Seq[Post]) {
     }
   &lt;/feed&gt;
 
-  def write = XML.saveFull(Config.atomPath, feed, "UTF-8", true, null)
+  def write = XML.saveFull(/tmp/atom-example.xml, feed, "UTF-8", true, null)
 }</programlisting>
 
       <para id="para_we_re_making_heavy_use_of_the_">We’re making heavy use of
