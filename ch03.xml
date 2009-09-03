@@ -82,8 +82,8 @@
     <link linkend="ScalaSpec2009"
     xrefstyle="select:nopage">[ScalaSpec2009]</link>. Scala allows all the
     printable ASCII characters, such as letters, digits, the underscore
-    <literal>_</literal>, and the dollar sign <literal>$</literal>, with the
-    exceptions of the “parenthetical” characters—<literal>(</literal>,
+    ( <literal>_</literal> ), and the dollar sign (<literal>$</literal>), with
+    the exceptions of the “parenthetical” characters—<literal>(</literal>,
     <literal>)</literal>, <literal>[</literal>, <literal>]</literal>,
     <literal>{</literal>, and <literal>}</literal>—and the “delimiter”
     characters—<literal>`</literal>, <literal>’</literal>,
@@ -560,8 +560,7 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     syntax makes writing DSLs a breeze. Consider this example of a style of
     test writing called <emphasis>Behavior-Driven Development</emphasis> (see
     <link linkend="BDD" xrefstyle="select:nopage">[BDD]</link>) using the
-    <emphasis>Specs</emphasis> library (see <xref
-    linkend="ScalaSpecs" />):</para>
+    Specs library (see <xref linkend="ScalaSpecs" />):</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/Rounding/specs-script.scala
 
@@ -722,7 +721,7 @@ for (breed &lt;- dogBreeds)
       create a temporary variable called <literal>breed</literal> with the
       value of that element, then print it.” Think of the
       <literal>&lt;-</literal> operator as an arrow directing elements of a
-      collection, one-by-one, to the scoped variable by which we’ll refer to
+      collection, one by one, to the scoped variable by which we’ll refer to
       them inside the <literal>for</literal> expression. The left-arrow
       operator is called a <emphasis>generator</emphasis>, so named because
       it’s <emphasis>generating</emphasis> individual values from a collection
@@ -1227,8 +1226,8 @@ for (bool &lt;- bools) {
       <para id="para_it_looks_just_like_a_c_style_">It looks just like a
       C-style <literal>case</literal> statement, right? The only difference is
       the last <literal>case</literal> with the underscore
-      <literal>_</literal> wildcard. It matches anything not defined in the
-      cases above it, so it serves the same purpose as the
+      ( <literal>_</literal> ) wildcard. It matches anything not defined in
+      the cases above it, so it serves the same purpose as the
       <literal>default</literal> keyword in Java and C#
       <literal>switch</literal> statements.<indexterm>
           <primary>case statements</primary>
@@ -1267,7 +1266,7 @@ for (bool &lt;- bools) {
 
       <para id="para_in_this_example_we_assign_the">In the following example,
       we assign the wildcard case to a variable called
-      <literal>otherNumber</literal>, then print it in the subsequent
+      <literal>otherNum⁠ber</literal>, then print it in the subsequent
       expression. If we generate a seven, we’ll extoll that number’s virtues.
       Otherwise, we’ll curse fate for making us suffer an unlucky
       number:<indexterm>
@@ -1532,6 +1531,9 @@ for (person &lt;- List(alice, bob, charlie)) {
 Hi Bob!
 Who are you, 32 year-old person named Charlie?</screen>
 
+      <?dbfo-need height=”1in”
+?>
+
       <para id="para_we_first_define_a__case_class_">We first define a
       <emphasis>case class</emphasis>, a special type of class that we’ll
       learn more about in <xref linkend="CaseClasses" />. For now, it will
@@ -1767,7 +1769,8 @@ Person(Charlie,32,Developer) is underpaid.</screen>
         checked exceptions are treated as unchecked by Scala. There is also no
         <literal>throws</literal> clause on method declarations. However,
         there is a <literal>@throws</literal> annotation that is useful for
-        Java interoperability. See <xref linkend="Annotations" />.</para>
+        Java interoperability. See the section <xref
+        linkend="Annotations" />.</para>
       </note>
 
       <para id="para_thankfully_scala_treats_excep">Thankfully, Scala treats

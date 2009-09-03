@@ -13,8 +13,9 @@
     simply providing business logic, applications must support secure access,
     persistence of data, transactional behavior, and other advanced features.
     Applications must be highly available and scalable, requiring designs that
-    support concurrency and distribution. Applications are networked and
-    provide interfaces for both people and other applications to use.</para>
+    support <phrase role="keep-together">concurrency</phrase> and
+    distribution. Applications are networked and provide interfaces for both
+    people and other applications to use.</para>
 
     <para id="para_why_scala2">To meet these challenges, many developers are
     looking for new languages and tools. Venerable standbys like Java, C#, and
@@ -42,7 +43,7 @@
       <para id="para_however_java_was_a_child_of_i">However, Java was a child
       of its time. Now it shows its age. In 1995, Java provided a syntax
       similar enough to C++ to entice C++ developers, while avoiding many of
-      that language’s deficiencies and “sharp edges”. Java adopted the most
+      that language’s deficiencies and “sharp edges.” Java adopted the most
       useful ideas for the development problems of its era, such as
       object-oriented programming (OOP), while discarding more troublesome
       techniques, such as manual memory management. These design choices
@@ -54,7 +55,7 @@
 
       <para id="para_developers_want_languages_that">Developers want languages
       that are more succinct and flexible to improve their productivity. This
-      is one reason why so-called “scripting” languages like Ruby and Python
+      is one reason why so-called scripting languages like Ruby and Python
       have become more popular recently.<indexterm>
           <primary>scripting languages, popularity of</primary>
         </indexterm></para>
@@ -232,16 +233,19 @@
       <para id="para_static_languages_can_also_bene">Static languages can also
       benefit the development process. Integrated development environment
       (IDE) features like <emphasis>autocompletion</emphasis> (sometimes
-      called <emphasis>code sense</emphasis>) are easier to implement for
-      static languages, again because of the extra type information available.
-      The more explicit type information in static code promotes better
-      “self-documentation,” which can be important for communicating intent
-      among developers, especially as a project grows.</para>
+      called <emphasis>code sense</emphasis>) are <phrase
+      role="keep-together">easier to implement</phrase> for static languages,
+      again because of the extra type information available. The more explicit
+      type information in static code promotes better “<phrase
+      role="keep-together">self-</phrase><phrase
+      role="keep-together">documentation</phrase>,” which can be important for
+      communicating intent among developers, especially as a project
+      grows.</para>
 
       <para id="para_when_using_a_static_language_">When using a static
       language, you have to think about appropriate type choices more often,
-      whi**ch forces you to weigh design choices more carefully. While this
-      may slow down daily design decisions, thinking through the types in the
+      which forces you to weigh design choices more carefully. While this may
+      slow down daily design decisions, thinking through the types in the
       application can result in a more coherent design over time.</para>
 
       <para id="para_another_small_benefit_of_stati">Another small benefit of
@@ -253,7 +257,7 @@
       dynamically typed languages, the tests must cover possible type errors,
       too. If you are coming from a dynamically typed language, you may find
       that your test suites are a little smaller as a result, but not
-      <emphasis>that much</emphasis> smaller.</para>
+      <emphasis>that</emphasis> much smaller.</para>
 
       <para id="para_many_developers_who_find_stati">Many developers who find
       static languages too verbose often blame static typing for the verbosity
@@ -351,7 +355,7 @@
           <term>Mixed paradigm—functional programming</term>
 
           <listitem>
-            <para>Scala fully supports f<emphasis>unctional
+            <para>Scala fully supports <emphasis>functional
             programming</emphasis> (FP). FP is a programming paradigm that is
             older than OOP, but it has been sheltered in the ivory towers of
             academia until recently. Interest in FP is increasing because of
@@ -361,8 +365,8 @@
             shared access to mutable state. Instead, programs written in pure
             functional languages communicate by passing messages between
             concurrent, autonomous processes. Scala supports this model with
-            its <emphasis>Actors</emphasis> library, but it allows for both
-            mutable and immutable variables.<indexterm>
+            its Actors library, but it allows for both mutable and immutable
+            variables.<indexterm>
                 <primary>immutable variables</primary>
               </indexterm><indexterm>
                 <primary>Actors</primary>
@@ -399,7 +403,8 @@
             invocation can safely refer to the variables even when the
             variables have gone out of scope! Closures are such a powerful
             abstraction that object systems and fundamental control structures
-            are often implemented using them.<indexterm>
+            are often <phrase role="keep-together">implemented</phrase> using
+            them.<indexterm>
                 <primary>closures</primary>
 
                 <secondary>defined</secondary>
@@ -554,7 +559,7 @@
       <emphasis>scalable language</emphasis>. While this suggests that the
       pronunciation should be <emphasis>scale-ah</emphasis>, the creators of
       Scala actually pronounce it <emphasis>scah-lah</emphasis>, like the
-      Italian word for “stairs.” That is, the two “a”s are pronounced the
+      Italian word for “stairs.” The two “a”s are pronounced the
       same.<indexterm>
           <primary>scalable language (Scala)</primary>
         </indexterm></para>
@@ -1040,7 +1045,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <para id="para_in_the_example_the_upper_cl">In the example, the
     <literal>Upper</literal> class begins with the <literal>class</literal>
     keyword. The class body is inside the outermost curly braces
-    <literal>{...}</literal>.<indexterm>
+    (<literal>{...}</literal>).<indexterm>
         <primary>class keyword</primary>
       </indexterm><indexterm>
         <primary>{ } (curly braces)</primary>
@@ -1097,8 +1102,9 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     is a particular kind of collection. It is a <emphasis>parameterized
     type</emphasis> (like a <emphasis>generic</emphasis> type in Java),
     parameterized here with <literal>String</literal>. Note that Scala uses
-    square brackets <literal>[...]</literal> for parameterized types, whereas
-    Java uses angle brackets <literal>&lt;...&gt;</literal>.<indexterm>
+    square brackets (<literal>[...]</literal>) for parameterized types,
+    whereas Java uses angle brackets
+    (<literal>&lt;...&gt;</literal>).<indexterm>
         <primary>&lt; &gt; (angle brackets)</primary>
 
         <secondary sortas="method names">in method names</secondary>
@@ -1122,7 +1128,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <para id="para_the_body_of_the_upper_method">The body of the
     <literal>upper</literal> method comes after the equals sign
     (<literal>=</literal>). Why an equals sign? Why not just curly braces
-    <literal>{...}</literal>, like in Java? Because semicolons, function
+    (<literal>{...}</literal>), like in Java? Because semicolons, function
     return types, method arguments lists, and even the curly braces are
     sometimes omitted, using an equals sign prevents several possible parsing
     ambiguities. Using an equals sign also reminds us that even functions are
@@ -1527,7 +1533,7 @@ package shapes {
     override a concrete method. Unlike C#, you don’t have to use a <literal
     role="keep-together">virtual</literal> keyword on the original concrete
     method. In fact, there is no <literal>virtual</literal> keyword in Scala.
-    As before, we omit the curly braces “<literal>{...}</literal>” around the
+    As before, we omit the curly braces (<literal>{...}</literal>) around the
     body of <literal>toString</literal>, since it has only one
     expression.<indexterm>
         <primary>C#</primary>
@@ -1674,8 +1680,8 @@ package shapes {
     <para id="para_during_each_pass_in_the_loop_">During each pass in the
     loop, the <literal>receive</literal> method is called. It blocks until a
     new message arrives. Why is the code after <literal>receive</literal>
-    enclosed in curly braces (<literal>{...}</literal>) and not parentheses
-    (<literal>(...)</literal>)? We will learn later that there are cases where
+    enclosed in curly braces <literal>{...}</literal> and not parentheses
+    <literal>(...)</literal>? We will learn later that there are cases where
     this substitution is allowed and is quite useful (see <xref
     linkend="RoundingOutTheEssentials" />). For now, what you need to know is
     that the expressions inside the braces constitute a single
@@ -1775,6 +1781,9 @@ ShapeDrawingActor ! 3.14159
 
 ShapeDrawingActor ! "exit"</programlisting>
 
+    <?dbfo-need height=”1in”
+?>
+
     <para id="para_the_shapes_in_the_shapes_pac">The shapes in the
     <literal>shapes</literal> package are imported.</para>
 
@@ -1799,10 +1808,11 @@ ShapeDrawingActor ! "exit"</programlisting>
       </indexterm></para>
 
     <para id="para_to_try_out_the_actor_example_">To try out the Actor
-    example, start by compiling the first two files. You can get the sources
-    from the <ulink url="http://examples.oreilly.com/9780596155964/">O’Reilly
-    download site</ulink> (see <xref linkend="GettingCodeExamples" /> for
-    details) or you can create them yourself.</para>
+    example, start by compiling the first two files. You can get <phrase
+    role="keep-together">the sources</phrase> from the <ulink
+    url="http://examples.oreilly.com/9780596155964/">O’Reilly download
+    site</ulink> (see <xref linkend="GettingCodeExamples" /> for details), or
+    you can create them yourself.</para>
 
     <para id="para_use_the_following_command_to_c">Use the following command
     to compile the files:</para>
@@ -1829,10 +1839,10 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))
 Error: Unknown message! 3.14159
 exiting...</screen>
 
-    <para id="para_for_more_on_actors_see_co">For more on
-    <literal>Actors</literal>, see <xref linkend="Concurrency" />.<indexterm
-    class="endofrange" startref="ch01_actors"></indexterm><indexterm
-    class="endofrange" startref="ch01_concurrency"></indexterm></para>
+    <para id="para_for_more_on_actors_see_co">For more on Actors, see <xref
+    linkend="Concurrency" />.<indexterm class="endofrange"
+    startref="ch01_actors"></indexterm><indexterm class="endofrange"
+    startref="ch01_concurrency"></indexterm></para>
   </sect1>
 
   <sect1 id="_recap_and_what_8217_s_next">
@@ -1840,8 +1850,8 @@ exiting...</screen>
 
     <para id="para_we_made_the_case_for_scala_and">We made the case for Scala
     and got you started with two sample Scala programs, one of which gave you
-    a taste of Scala’s <emphasis>Actors</emphasis> library for concurrency.
-    Next, we’ll dive into more Scala syntax, emphasizing various
-    keystroke-economical ways of getting lots of work done.</para>
+    a taste of Scala’s Actors library for concurrency. Next, we’ll dive into
+    more Scala syntax, emphasizing various keystroke-economical ways of
+    getting lots of work done.</para>
   </sect1>
 </chapter>

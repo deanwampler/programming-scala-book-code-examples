@@ -292,11 +292,12 @@ List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
       <para
       id="para__whichlist_tries_to_determine"><literal>WhichList</literal>
       tries to determine the type of list passed in. It uses the value of the
-      <literal>Manifest</literal>’s <literal>toString</literal> method to
-      determine this information. Notice that it works when the list is
-      constructed inside the call to <literal>WhichList.apply</literal>. It
-      does <emphasis>not</emphasis> work when a previously constructed list is
-      passed to <literal>WhichList.apply</literal>.</para>
+      <literal role="keep-together">Manifest</literal>’s
+      <literal>toString</literal> method to determine this information. Notice
+      that it works when the list is constructed inside the call to
+      <literal>WhichList.apply</literal>. It does <emphasis>not</emphasis>
+      work when a previously constructed list is passed to
+      <literal>WhichList.apply</literal>.</para>
 
       <para id="para_the_compiler_exploits_the_type">The compiler exploits the
       type information it knows in the first case to construct the implicit
@@ -365,7 +366,7 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
     <literal>List[AnyRef]</literal>, can you pass a
     <literal>List[String]</literal> value? In other words, should a
     <literal>List[String]</literal> be considered a
-    <emphasis>subtype</emphasis> of <literal>List[AnyRef]</literal>. If so,
+    <emphasis>subtype</emphasis> of <literal>List[AnyRef]</literal>? If so,
     this kind of variance is called <emphasis>covariance</emphasis>, because
     the supertype-subtype relationship of the container (the parameterized
     type) “goes in the same direction” as the relationship between the type
@@ -1360,7 +1361,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       elements.</para>
 
       <para id="para_for_another_example_of_a_simil">For another example using
-      similar approaches, this time for defining a stack, see <ulink
+      similar approaches, this time for defining a stack, refer to <ulink
       url="http://www.scala-lang.org/node/129"></ulink>.<indexterm
       class="endofrange" startref="ch12_Listclass"></indexterm><indexterm
       class="endofrange" startref="ch12_typeboundsList"></indexterm></para>
@@ -1372,7 +1373,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       <para id="para_we_ve_seen_many_examples_where">We’ve seen many examples
       where an <literal>implicit</literal> method was used to convert one type
       to another—for example, to give the appearance of adding new methods to
-      an existing type, the so-called “pimp my library” pattern. We used this
+      an existing type, the so-called Pimp My Library pattern. We used this
       pattern extensively in <xref linkend="DomainSpecificLanguages" />. You
       can also use function values that have the <literal>implicit</literal>
       keyword. We’ll see examples of both shortly.<indexterm
@@ -1475,7 +1476,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       argument. You could also pass a function with the correct signature
       explicitly as the second argument list when you call
       <literal>m</literal>. However, there is one situation where this won’t
-      work, which we’ll describe after our example below.</para>
+      work, which we’ll describe after our upcoming example.</para>
 
       <para id="para_for_view_bounds_on_types_the_">For view bounds on types,
       the implicit view argument list would be added to the primary
@@ -1637,11 +1638,11 @@ VariantTypeParam ::= [‘+’ | ‘’] TypeParam</programlisting>
       <literal>&gt;: A</literal> and <literal>&lt;% Node[B]</literal>
       expressions on the right. Again, all the bounds expressions apply to the
       first <literal>id</literal> (<literal>B</literal>) or the underscore
-      <literal>_</literal>.</para>
+      ( <literal>_</literal> ).</para>
 
-      <para id="para_you_would_use_the_underscore_">The underscore
-      <literal>_</literal> is used for <emphasis>existential types</emphasis>,
-      which we’ll cover in <xref linkend="ExistentialTypes" />.<indexterm>
+      <para id="para_you_would_use_the_underscore_">The underscore is used for
+      <emphasis>existential types</emphasis>, which we’ll cover in <xref
+      linkend="ExistentialTypes" />.<indexterm>
           <primary>existential types</primary>
         </indexterm></para>
 
@@ -1726,10 +1727,10 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
     <title>Understanding Abstract Types</title>
 
     <para id="para_what_are_abstract_types">Besides parameterized types, which
-    are common in statically typed, object-oriented languages, Scala also
-    supports abstract types, which are common in functional languages. We
-    introduced abstract types in <xref
-    linkend="AbstractTypesAndParameterizedTypes" />.<indexterm
+    are common in statically typed, object-oriented <phrase
+    role="keep-together">languages</phrase>, Scala also supports abstract
+    types, which are common in functional languages. We introduced abstract
+    types in <xref linkend="AbstractTypesAndParameterizedTypes" />.<indexterm
         class="startofrange" id="ch12_abstracttypes">
         <primary>abstract types</primary>
       </indexterm><indexterm class="startofrange" id="ch12_datatypesabstract">
@@ -1856,8 +1857,8 @@ object example extends exampleTrait {
     linkend="TypeBounds" /> that we are making a declaration of the
     <emphasis>first</emphasis> type after the <literal>type</literal> keyword,
     <literal>t2</literal>, not the type in the middle, <literal>t3</literal>.
-    The rest of the expression is telling us the bounds of
-    <literal>t2</literal>.</para>
+    The rest of <phrase role="keep-together">the expression</phrase> is
+    telling us the bounds of <literal>t2</literal>.</para>
 
     <para id="para_consider_the_next_line_that_de">Consider the next line that
     declares <literal>t3</literal> to be a subtype of <literal>t1</literal>.
@@ -2126,11 +2127,12 @@ object MyService2 extends Service {
 one error found</screen>
 
     <para id="para_the_error_says_that_the_logge">The error says that the
-    <literal>logger</literal> value in <literal>MyService2</literal> on line
-    25 has type <literal>MyService2.Log⁠ger</literal>, even though it’s
-    declared to be of type <literal>Logger</literal> in the parent
-    <literal>Service</literal> trait. Also, we’re trying to assign it a value
-    of type <literal>MyService1.MyService1Logger</literal>.</para>
+    <literal>logger</literal> value in <literal
+    role="keep-together">MyService2</literal> on line 25 has type
+    <literal>MyService2.Log⁠ger</literal>, even though it’s declared to be of
+    type <literal>Logger</literal> in the parent <literal>Service</literal>
+    trait. Also, we’re trying to assign it a value of type
+    <literal>MyService1.MyService1Logger</literal>.</para>
 
     <para id="para_these_three_types_are_differen">These three types are
     different in Scala. <literal>Logger</literal> is nested in
@@ -3049,7 +3051,7 @@ trait Subject {
         types</secondary>
       </indexterm></para>
 
-    <orderedlist numeration="arabic">
+    <itemizedlist>
       <listitem>
         <para>The type parameters of generics are “erased” at the byte code
         level (called <emphasis>type erasure</emphasis>). For example, when a
@@ -3069,7 +3071,7 @@ trait Subject {
         type is unknown. (We discussed this earlier in <xref
         linkend="VarianceUnderInheritance" />.)</para>
       </listitem>
-    </orderedlist>
+    </itemizedlist>
 
     <para id="para_consider_the_case_of_pattern_m">Consider the case of
     pattern matching on <literal>List[A]</literal> objects. You might like to
@@ -3145,11 +3147,14 @@ object ProcessList {
           </row>
 
           <row>
-            <entry><para><literal role="keep-together">List[_ &lt;:
-            scala.actors.AbstractActor]</literal></para></entry>
+            <entry><para><literal role="keep-together">List[_ &lt;:</literal>
+            <literal
+            role="keep-together">scala.actors.AbstractActor]</literal></para></entry>
 
-            <entry><para><literal>List[T] forSome { type T &lt;:
-            scala.actors.AbstractActor }</literal></para></entry>
+            <entry><para><literal role="keep-together">List[T] forSome { type
+            T &lt;:</literal> <literal
+            role="keep-together">scala.actors.AbstractActor
+            }</literal></para></entry>
 
             <entry><para>T can be any subtype of <literal
             role="keep-together">AbstractActor</literal>.</para></entry>
@@ -3165,7 +3170,8 @@ object ProcessList {
 
             <entry><para>T can be any subtype of <literal
             role="keep-together">AbstractActor</literal> up to and including
-            the subtype <literal>MyFancyActor</literal>.</para></entry>
+            the subtype <literal
+            role="keep-together">MyFancyActor</literal>.</para></entry>
           </row>
         </tbody>
       </tgroup>
@@ -3393,7 +3399,7 @@ Calling first on List created from ints1 Seq:
     that you don’t have to master the intricacies of Scala’s rich type system
     to use Scala effectively. As you use Scala more and more, mastering the
     type system will help you create powerful, sophisticated libraries that
-    will accelerate your productivity.</para>
+    accelerate your productivity.</para>
 
     <para id="para_the_scalaspec2009_describe">The <link
     linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>

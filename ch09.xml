@@ -29,11 +29,12 @@
     particular variable hold when you have 2 threads running, or 5, or 50? How
     can you guarantee that your program’s many tendrils aren’t clobbering one
     another in a race to take action? A thread-based concurrency paradigm
-    poses more questions than it answers.</para>
+    poses more questions than it <phrase
+    role="keep-together">answers</phrase>.</para>
 
     <para id="para_thankfully_scala_offers_a_rea">Thankfully, Scala offers a
-    reasonable, flexible approach to concurrency that we’ll explore in this
-    chapter.</para>
+    reasonable, flexible approach to concurrency that we’ll <phrase
+    role="keep-together">explore</phrase> in this chapter.</para>
   </sect1>
 
   <sect1 id="_actors">
@@ -610,14 +611,15 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
       that indicate completion.</para>
 
       <para id="para_try_modifying_the_code_to_intr">Try modifying the code to
-      introduce more customers, additional message types, different delays, or
-      to remove the randomness altogether. If you’re an experienced
-      multithreaded programmer, you might try writing your own sleeping barber
+      introduce more customers, additional message types, <phrase
+      role="keep-together">different</phrase> delays, or to remove the
+      randomness altogether. If you’re an experienced multithreaded
+      programmer, you might try writing your own sleeping barber
       implementation just to compare and contrast. We’re willing to bet that
-      an implementation in Scala with Actors will be terser and easier to
-      maintain.<indexterm class="endofrange"
-      startref="ch09_sleepingbarber"></indexterm><indexterm class="endofrange"
-      startref="ch09_Actorsexample"></indexterm></para>
+      an implementation in <phrase role="keep-together">Scala</phrase> with
+      Actors will be terser and easier to maintain.<indexterm
+      class="endofrange" startref="ch09_sleepingbarber"></indexterm><indexterm
+      class="endofrange" startref="ch09_Actorsexample"></indexterm></para>
     </sect2>
 
     <sect2 id="_effective_actors">
@@ -955,7 +957,7 @@ hello from Thread 13</screen>
       source Naggati library (see <link linkend="Naggati"
       xrefstyle="select:nopage">[Naggati]</link>) adds a Scala-friendly layer
       atop MINA that, according to its author, “makes it easy to build
-      protocol filters [using a] sequential style”. Essentially, Naggati is a
+      protocol filters [using a] sequential style.” Essentially, Naggati is a
       DSL for parsing network protocols, with MINA’s powerful NIO abilities
       under the hood.<indexterm>
           <primary>Naggati library</primary>
@@ -971,9 +973,8 @@ hello from Thread 13</screen>
         </indexterm></para>
 
       <para id="para_we_ll_drive_our_experiment_wit">We’ll keep ourselves
-      honest with a test suite, facilitated by the <emphasis>Specs</emphasis>
-      Behavior-Driven Development library (see <xref
-      linkend="ScalaSpecs" />):</para>
+      honest with a test suite, facilitated by the Specs Behavior-Driven
+      Development library (see <xref linkend="ScalaSpecs" />):</para>
 
       <programlisting linenumbering="unnumbered">// .../smtpd/src/test/scala/com/programmingscala/smtpd/SmtpDecoderSpec.scala
 

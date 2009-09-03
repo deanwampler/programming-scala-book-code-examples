@@ -438,8 +438,9 @@
     <glossdef>
       <para>Scala follows the same comment conventions as Java, C#, C++, etc.
       A <literal>// <replaceable>comment</replaceable></literal> goes to the
-      end of a line, while a <literal>/* <replaceable>comment</replaceable>
-      */</literal> can cross line boundaries.<indexterm>
+      end of a line, while a <literal>/* <replaceable
+      role="keep-together">comment</replaceable> */</literal> can cross line
+      boundaries.<indexterm>
           <primary>comments</primary>
         </indexterm></para>
     </glossdef>
@@ -606,7 +607,8 @@
       needs to be used consistently for a set of classes, not just a single
       class. Hence, such concerns are said to be cross-cutting. Supporting
       these concerns should not involve duplication of code, etc. See also
-      a<emphasis>spect-oriented programming</emphasis>.<indexterm>
+      <emphasis>aspect-</emphasis><emphasis role="keep-together">oriented
+      programming</emphasis>.<indexterm>
           <primary>cross-cutting concerns</primary>
         </indexterm></para>
     </glossdef>
@@ -1086,8 +1088,8 @@
       <para>A method or function value that is marked with the
       <emphasis>implicit</emphasis> keyword, marking it as eligible for use as
       an <emphasis>implicit type conversion</emphasis>, whenever it is in
-      scope and conversion is needed (e.g., for the <emphasis>pimp my
-      library</emphasis> <phrase
+      scope and conversion is needed (e.g., for the <emphasis>Pimp My
+      Library</emphasis> <phrase
       role="keep-together">pattern</phrase>).<indexterm>
           <primary>implicit conversions</primary>
 
@@ -1199,8 +1201,9 @@
 
       <para id="para_instantiation_can_also_refer_t">Instantiation can also
       refer to creating a <emphasis>concrete type</emphasis> from a
-      <emphasis>parameterized type</emphasis> by specifying concrete types for
-      the <phrase role="keep-together">parameters</phrase>.</para>
+      <emphasis>parameterized type</emphasis> <phrase role="keep-together">by
+      specifying concrete</phrase> types for the <phrase
+      role="keep-together">parameters</phrase>.</para>
     </glossdef>
   </glossentry>
 
@@ -1215,8 +1218,8 @@
       annotation</emphasis>, and a type <literal>T[B]</literal> is a
       <emphasis>subtype</emphasis> of <literal>T[A]</literal> if and only if
       <literal>B</literal> equals <literal>A</literal>. That is, the type
-      can’t be changed. See also <emphasis>covariance</emphasis> and
-      <emphasis>contravariance</emphasis>.<indexterm>
+      can’t be changed. See also <emphasis>covariance</emphasis> and <emphasis
+      role="keep-together">contravariance</emphasis>.<indexterm>
           <primary>invariance and invariant</primary>
         </indexterm></para>
 
@@ -1341,7 +1344,8 @@
       they run on, including restarting <phrase
       role="keep-together">operations</phrase> that fail for some reason. The
       user of the framework only has to write the algorithms for mapping and
-      reducing the data sets and computing with the subsets.<indexterm>
+      reducing <phrase role="keep-together">the data sets and</phrase>
+      computing with the subsets.<indexterm>
           <primary>MapReduce</primary>
         </indexterm></para>
     </glossdef>
@@ -1514,8 +1518,8 @@
       etc. that are not letters, nor digits, nor reserved characters, like
       left and right parentheses, curly braces, square brackets, the
       semicolon, colon, or comma. These characters can be used in method names
-      to implement a form of <emphasis role="keep-together">operator
-      overloading</emphasis>.<indexterm>
+      to implement a form of <emphasis>operator</emphasis> <emphasis
+      role="keep-together">overloading</emphasis>.<indexterm>
           <primary>operator characters</primary>
 
           <secondary>defined</secondary>
@@ -1874,8 +1878,8 @@
 
     <glossdef>
       <para>A name given to interactive language interpreters, like the
-      <userinput>scala</userinput> command in interpreter mode. REPL is an
-      acronym for <emphasis>Read, Evaluate, Print, Loop</emphasis>.<indexterm>
+      <literal>scala</literal> command in interpreter mode. REPL is an acronym
+      for <emphasis>Read, Evaluate, Print, Loop</emphasis>.<indexterm>
           <primary>REPL (Read, Evaluate, Print, Loop)</primary>
         </indexterm></para>
     </glossdef>
@@ -1886,7 +1890,7 @@
 
     <glossdef>
       <para>The API documentation generated from Scala source code using the
-      <userinput>scaladoc</userinput> tool, analogous to Java’s
+      <literal>scaladoc</literal> tool, analogous to Java’s
       Javadocs.<indexterm>
           <primary>Scaladocs</primary>
         </indexterm></para>
@@ -2427,8 +2431,9 @@
 
       <para id="para_the_term__value_type__is_also_">The term <emphasis>value
       type</emphasis> is also used to mean the categories of types for
-      instances. That is, the type of every instance must fall into one of
-      several categories: <emphasis>annotated types</emphasis>, <emphasis
+      instances. That is, the type of every instance must fall into one
+      <phrase role="keep-together">of several</phrase> categories:
+      <emphasis>annotated types</emphasis>, <emphasis
       role="keep-together">compound types</emphasis>, <emphasis>function
       types</emphasis>, <emphasis>infix types</emphasis>,
       <emphasis>parameterized types</emphasis>, <emphasis>tuples</emphasis>,

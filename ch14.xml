@@ -460,10 +460,14 @@ g
         </indexterm></para>
 
       <table id="scala-command-options">
-        <title>The scala command options (in additions to the scalac
+        <title>The scala command options (in addition to the scalac
         options)</title>
 
         <tgroup cols="2">
+          <colspec colnum="1" colwidth="1.25in" />
+
+          <colspec colnum="2" colwidth="3.5in" />
+
           <thead valign="top">
             <row>
               <entry>Option</entry>
@@ -556,6 +560,10 @@ g
         <title>Commands available within the scala interactive mode</title>
 
         <tgroup cols="2">
+          <colspec colnum="1" colwidth="1.25in" />
+
+          <colspec colnum="2" colwidth="3.5in" />
+
           <thead valign="top">
             <row>
               <entry>Option</entry>
@@ -595,7 +603,7 @@ g
             <row>
               <entry><para><literal>:power</literal></para></entry>
 
-              <entry><para>Enable power user mode. (version
+              <entry><para>Enables power user mode. (version
               2.8)</para></entry>
             </row>
           </tbody>
@@ -1064,7 +1072,7 @@ case class Complex(real: Double, imaginary: Double) {
             </row>
 
             <row>
-              <entry><para><literal>sbaz install
+              <entry><para><literal role="keep-together">sbaz install
               scala-devel-docs</literal></para></entry>
 
               <entry><para>Install the invaluable
@@ -1174,11 +1182,11 @@ case class Complex(real: Double, imaginary: Double) {
     IDEs. Scala IDE support is not yet as good, but it is evolving rapidly in
     Eclipse, IntelliJ IDEA, and NetBeans. At the time of this writing, all the
     Scala plugins for these IDEs support syntax highlighting, project
-    management, limited support for automated refactorings, etc. While each of
-    the plugins has particular advantages over the others, they are all close
-    enough in functionality that you will probably find it acceptable to adopt
-    the plugin for the IDE that you already prefer.<indexterm
-        class="startofrange" id="ch14_IDEs">
+    management, limited <phrase role="keep-together">support</phrase> for
+    automated refactorings, etc. While each of the plugins has particular
+    advantages over the others, they are all close enough in functionality
+    that you will probably find it acceptable to adopt the plugin for the IDE
+    that you already prefer.<indexterm class="startofrange" id="ch14_IDEs">
         <primary>IDEs (integrated development environments)</primary>
       </indexterm></para>
 
@@ -1216,8 +1224,8 @@ case class Complex(real: Double, imaginary: Double) {
         install the plugin, invoke the “Software Updates” command in the Help
         menu.</para>
 
-        <para id="para_click_the__available_software_">Click the “Available
-        Software” tab and click the “Add Site…” button on the righthand side.
+        <para id="para_click_the__available_software_">Click the Available
+        Software tab and click the “Add Site…” button on the righthand side.
         You will see the dialog shown in <xref
         linkend="eclipse-add-site" />.</para>
 
@@ -1236,6 +1244,9 @@ case class Complex(real: Double, imaginary: Double) {
             </imageobject>
           </mediaobject>
         </figure>
+
+        <?dbfo-need height=”1in”
+?>
 
         <para id="para_enter_the_url_that_shown_in_th">Enter the URL that is
         shown in the figure, <ulink
@@ -1382,7 +1393,7 @@ case class Complex(real: Double, imaginary: Double) {
 
         <para id="para_right_click_the__scala__plugin">Right-click the Scala
         plugin name and select “Download and Install” from the menu. Repeat
-        for the “Scala Application” plugin. You will have to restart IDEA for
+        for the Scala Application plugin. You will have to restart IDEA for
         the plugins to be enabled.</para>
 
         <para id="para_after_idea_restarts_confirm_t">After IDEA restarts,
@@ -1524,7 +1535,7 @@ case class Complex(real: Double, imaginary: Double) {
 
         <para id="para_start_netbeans_and_invoke_the_">Start NetBeans and
         invoke the Tools → Plugins menu item. Select the Downloaded tab and
-        click the “Add Plugins…" button. Choose the directory where the Scala
+        click the “Add Plugins…” button. Choose the directory where the Scala
         plugins are unzipped, and select all the listed
         <filename>*.nbm</filename> files, as shown in <xref
         linkend="netbeans-add-plugins" />. Click Open.</para>
@@ -1652,7 +1663,7 @@ case class Complex(real: Double, imaginary: Double) {
         for Mac OS X. These bundles are currently being managed by Paul
         Phillips on the <ulink
         url="http://github.com/paulp/scala-textmate/tree/master">GitHub
-        site</ulink>. Hopefully, the best features of each bundle will be
+        website</ulink>. Hopefully, the best features of each bundle will be
         unified into an “authoritative” bundle and integrated back into the
         <literal>scala-tool-support</literal> <phrase
         role="keep-together">package</phrase>.</para>
@@ -1676,17 +1687,17 @@ case class Complex(real: Double, imaginary: Double) {
     Scala to your environment, so you can gain experience with it before
     making the commitment to Scala as your production code language. In
     particular, you might experiment with ScalaTest (see <xref
-    linkend="ScalaTest" /> next), which can be used with JUnit (<link
-    linkend="JUnit" xrefstyle="select:nopage">[JUnit]</link>) and TestNG
-    (<link linkend="TestNG" xrefstyle="select:nopage">[TestNG]</link>). You
-    might also consider ScalaCheck or Reductio (see <xref
-    linkend="ScalaCheck" />), which offer innovations that may not be
-    available in Java testing frameworks. All of the tools we describe here
-    integrate with Java testing and build tools, like JUnit, TestNG, various
-    mocking libraries, Ant (<link linkend="Ant"
-    xrefstyle="select:nopage">[Ant]</link>), and Maven (<link linkend="Maven"
-    xrefstyle="select:nopage">[Maven]</link>). All of them also offer
-    convenient Scala DSLs for testing.</para>
+    linkend="ScalaTest" xrefstyle="select:nopage" /> next), which can be used
+    with JUnit (<link linkend="JUnit"
+    xrefstyle="select:nopage">[JUnit]</link>) and TestNG (<link
+    linkend="TestNG" xrefstyle="select:nopage">[TestNG]</link>). You might
+    also consider ScalaCheck or Reductio (see <xref linkend="ScalaCheck" />),
+    which offer innovations that may not be available in Java testing
+    frameworks. All of the tools we describe here integrate with Java testing
+    and build tools, like JUnit, TestNG, various mocking libraries, Ant (<link
+    linkend="Ant" xrefstyle="select:nopage">[Ant]</link>), and Maven (<link
+    linkend="Maven" xrefstyle="select:nopage">[Maven]</link>). All of them
+    also offer convenient Scala DSLs for testing.</para>
 
     <sect2 id="ScalaTest">
       <title>ScalaTest</title>
@@ -1796,8 +1807,8 @@ All tests passed.</screen>
     <sect2 id="ScalaSpecs">
       <title>Specs</title>
 
-      <para id="para_the__specs__library_http_co">The
-      <emphasis>Specs</emphasis> library (<link linkend="ScalaSpecsTool"
+      <para id="para_the__specs__library_http_co">The Specs library (<link
+      linkend="ScalaSpecsTool"
       xrefstyle="select:nopage">[ScalaSpecsTool]</link>) is a Behavior-Driven
       Development (<link linkend="BDD" xrefstyle="select:nopage">[BDD]</link>)
       testing tool for Scala. It is inspired by Ruby’s RSpec (<link
@@ -1832,7 +1843,8 @@ All tests passed.</screen>
       Specs in several examples in the book, e.g.,
       <literal>ButtonObserverSpec</literal> in <xref
       linkend="TraitsAsMixins" />. Here is another example for the simple
-      <literal>Complex</literal> class we showed previously:</para>
+      <literal role="keep-together">Complex</literal> class we showed
+      previously:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/complex-spec.scala
 
@@ -1882,7 +1894,7 @@ object ComplexSpec extends Specification {
 
       <para id="para_the_next_level_clause__e_g__">The next level clause,
       e.g., the clause <literal>"return a number N' that is identical to
-      orig⁠inal number N" in {...}</literal> is called an “example” in BDD
+      orig⁠inal number N" in {...}</literal>, is called an “example” in BDD
       terminology. It is analogous to a single test. Like typical XUnit
       frameworks, the testing is done using “representative examples”, rather
       than by doing an exhaustive exploration of the entire “space” of
@@ -1892,7 +1904,7 @@ object ComplexSpec extends Specification {
       <para id="para_statements_like_c1_complex">Statements like <literal>(c1
       + Complex(0.0, 0.0)) mustEqual c1</literal> are called “expectations.”
       They do the actual verifications that conditions are satisfied. Hence,
-      “expectations” are analogous to assertions in XUnit tools.<indexterm>
+      expectations are analogous to assertions in XUnit tools.<indexterm>
           <primary>expectations</primary>
         </indexterm></para>
 
@@ -2052,20 +2064,22 @@ ComplexSpecification.check</programlisting>
       <literal>Complex</literal> instances.</para>
 
       <para id="para_we_also_need_an_implicit_conve">We also need an implicit
-      conversion visible in the scope of the test that generates new
-      <literal>Complex</literal> values. The <literal
-      role="keep-together">arbitraryComplex</literal> function provides this
-      generator. An <literal>Arbitrary[Complex]</literal> object (part of the
-      ScalaCheck API) is returned by this method. ScalaCheck invokes another
-      API method, <literal>Gen[Complex].sized</literal>. We provide a
-      <emphasis>function literal</emphasis> that assigns a passed-in
-      <literal>Int</literal> value to a variable <literal>s</literal>. We then
-      use a <literal>for</literal> comprehension to return
-      <literal>Complex</literal> numbers with real and imaginary parts that
-      range from <literal>-toD(s)</literal> to <literal>toD(s)</literal>
-      (i.e., <literal>-(s * .1)</literal> to <literal>(s * .1)</literal>).
-      Fortunately, you don’t have to define implicit conversions or generators
-      for most of the commonly used Scala and Java types.</para>
+      conversion visible in the scope of the test that generates <phrase
+      role="keep-together">new <literal>Complex</literal> </phrase>values. The
+      <literal role="keep-together">arbitraryComplex</literal> function
+      provides this generator. An <literal
+      role="keep-together">Arbitrary[Complex]</literal> object (part of the
+      ScalaCheck API) is returned by this method. <phrase
+      role="keep-together">ScalaCheck</phrase> invokes another API method,
+      <literal>Gen[Complex].sized</literal>. We provide a <emphasis>function
+      literal</emphasis> that assigns a passed-in <literal>Int</literal> value
+      to a variable <literal>s</literal>. We then use a <literal>for</literal>
+      comprehension to return <literal>Complex</literal> numbers with real and
+      imaginary parts that range from <literal>-toD(s)</literal> to
+      <literal>toD(s)</literal> (i.e., <literal>-(s * .1)</literal> to
+      <literal>(s * .1)</literal>). Fortunately, you don’t have to define
+      implicit conversions or generators for most of the commonly used Scala
+      and Java types.</para>
 
       <para id="para_the_most_interesting_part_is_t">The most interesting part
       is the definition and use of <literal>ComplexSpecification</literal>.
@@ -2227,8 +2241,8 @@ ComplexSpecification.check</programlisting>
     <sect2 id="JavaRebel">
       <title>JavaRebel</title>
 
-      <para
-      id="para__javarebel__is_a_commercial_to"><emphasis>JavaRebel</emphasis>
+      <para id="para__javarebel__is_a_commercial_to"><emphasis><ulink
+      url="http://www.zeroturnaround.com/javarebel/">JavaRebel</ulink></emphasis>
       is a commercial tool that permits dynamic reloading of classes in a
       running JVM (written in any language), beyond the limited support
       provided natively by the “HotSwap” feature of the JVM. JavaRebel is
@@ -2314,7 +2328,7 @@ ComplexSpecification.check</programlisting>
 
       <para id="para_we_ll_discuss_using_scala_with">We’ll discuss using Scala
       with several well-known Java libraries after we discuss Java
-      interoperability next.</para>
+      interoperability, next.</para>
     </sect2>
   </sect1>
 
@@ -2511,7 +2525,7 @@ required: scala.Option&lt;SMapTest.Name&gt;
 2 warnings</screen>
 
       <para id="para_the_warnings_occur_because_of_">The warnings occur
-      because of type erasure. In the compiled scala library, the return type
+      because of type erasure. In the compiled Scala library, the return type
       of <literal>Map.get</literal> is <literal>Option</literal> with no type
       parameter, or effectively <literal>Option&lt;Object&gt;</literal>. So we
       get warnings for the conversion to
@@ -2690,7 +2704,7 @@ public class SMapTestWithFunctions {
 
       <para id="para_we_saw_in_objectorientedprog">We saw in <xref
       linkend="BasicObjectOrientedProgramming" /> that Scala does not follow
-      the <emphasis>JavaBeans</emphasis> (<link linkend="JavaBeansSpec"
+      the JavaBeans (<link linkend="JavaBeansSpec"
       xrefstyle="select:nopage">[JavaBeansSpec]</link>) conventions for field
       reader and writer methods, for reasons described in <xref
       linkend="UniformAccessPrinciple" />. However, there are times when you
@@ -2801,7 +2815,7 @@ case class ComplexBean(
 
       <warning id="para_warning_the__scaladoc__page_f">
         <para>The Scaladoc page for <literal>@BeanProperty</literal> (version
-        2.7) say that you can’t call the bean setter methods from Scala. You
+        2.7) says that you can’t call the bean setter methods from Scala. You
         can call them, but as the <phrase
         role="keep-together">Scaladoc</phrase> page goes on to say, you should
         use the Scala-style writer (and reader) methods instead.</para>
@@ -3322,7 +3336,7 @@ public aspect LogComplex {
 
       <para id="para_the_next_before__advice__is_">The next
       <literal>before</literal> advice is executed for the
-      <literal>plusInvocations</literal> pointcut, that is before the
+      <literal>plusInvocations</literal> pointcut, that is, before the
       <literal>+</literal> method is executed. We log the value of
       <literal>self</literal> (i.e., <literal>this</literal> instance) and the
       other <phrase role="keep-together">number</phrase>.</para>
@@ -3434,11 +3448,13 @@ Complex(4.0,6.0)</screen>
       <para id="para_the_spring_framework_springf">The Spring Framework (see
       <link linkend="SpringFramework"
       xrefstyle="select:nopage">[SpringFramework]</link>) is an open source,
-      modular Java enterprise framework that provides a “pure” Java AOP API,
-      integrated support for AspectJ, a <emphasis>dependency
+      modular Java <phrase role="keep-together">enterprise</phrase> framework
+      that provides a “pure” Java AOP API, integrated support for <phrase
+      role="keep-together">AspectJ</phrase>, a <emphasis>dependency
       injection</emphasis> (DI) container, uniform and well-designed APIs for
-      invoking a variety of other Java third-party APIs, and additional
-      components for security, web development, etc.<indexterm>
+      <phrase role="keep-together">invoking</phrase> a variety of other Java
+      third-party APIs, and additional components for security, web
+      development, etc.<indexterm>
           <primary>libraries</primary>
 
           <secondary>Java library interoperability</secondary>
@@ -3633,8 +3649,8 @@ println("Object: " + obj)</programlisting>
       factory’s name, to see if it is correct.</para>
 
       <para id="para_next_we_ask_the_bean_s_factor">Next, we ask the bean’s
-      factory to make “something” with the string “Dean Wampler”. When we
-      print the returned object, it should be a
+      factory to make “something” with the string <literal>"Dean
+      Wampler"</literal>. When we print the returned object, it should be a
       <literal>NamedObject</literal>.</para>
 
       <para id="para_if_you_have_spring_installed_i">If you have Spring
@@ -3644,6 +3660,9 @@ println("Object: " + obj)</programlisting>
       <screen>scala -cp \
   spring-home/dist/spring.jar:spring-home/.../commons-logging.jar:. \
   spring/object-bean-script.scala</screen>
+
+      <?dbfo-need height=”1in”
+?>
 
       <para>(The current working directory “<filename>.</filename>” is needed
       in the classpath to find the XML file.) There are many lines of logging
@@ -3700,8 +3719,8 @@ Object: NamedObject(Dean Wampler)</screen>
       linkend="ScalaNamesInJavaCode" />. Finally, you have to add some more
       parameters to the <literal>java</literal> invocation command inside the
       <literal>scala</literal> script. Otherwise, clustering Scala
-      applications with Terracotta works just like it does for Java
-      applications.</para>
+      applications with Terracotta works just like it does for Java <phrase
+      role="keep-together">applications</phrase>.</para>
     </sect2>
 
     <sect2 id="HadoopInterop">
@@ -3737,6 +3756,9 @@ Object: NamedObject(Dean Wampler)</screen>
       applications.<indexterm>
           <primary>MapReduce</primary>
         </indexterm></para>
+
+      <?dbfo-need height=”2in”
+?>
 
       <para id="para_mapreduce_frameworks">MapReduce frameworks provide tools
       for mapping and reducing data sets, managing all phases of the

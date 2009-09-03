@@ -166,10 +166,11 @@
       better way to write concurrent software.</para>
 
       <para id="para_these_qualities_benefit_progra">These qualities benefit
-      programs in other ways. Almost all the constructs we have invented in
-      60-odd years of computer programming have been attempts to manage
-      complexity. Higher-order functions and referential transparency provide
-      very flexible building blocks for composing programs.</para>
+      programs in other ways. Almost all the constructs we have <phrase
+      role="keep-together">invented</phrase> in 60-odd years of computer
+      programming have been attempts to manage complexity. Higher-order
+      functions and referential transparency provide very flexible building
+      blocks for composing programs.</para>
 
       <para id="para_immutability_greatly_reduces_r">Immutability greatly
       reduces regression bugs, many of which are caused by
@@ -316,10 +317,11 @@ println(l2)</programlisting>
       <para id="para_we_defined_a_var_factor_to">We defined a variable,
       <literal>factor</literal>, to use as the multiplication factor, and we
       pulled out the previous anonymous function into a value called
-      <literal>multiplier</literal> that now uses <literal>factor</literal>.
-      Then we map over a list of integers, as we did before. After the first
-      call to <literal>map</literal>, we change <literal>factor</literal> and
-      map again. Here is the output:</para>
+      <literal>multiplier</literal> that now uses <literal
+      role="keep-together">factor</literal>. Then we map over a list of
+      integers, as we did before. After the first call to
+      <literal>map</literal>, we change <literal>factor</literal> and map
+      again. Here is the output:</para>
 
       <screen>List(3, 6, 9, 12, 15)
 List(5, 10, 15, 20, 25)</screen>
@@ -900,11 +902,12 @@ println(lengths)</programlisting>
       mind that all we usually care about are the low-level abstractions like
       lists, maps, and sets. In the case of functional data structures, the
       derived types we might implement using <phrase
-      role="keep-together">object-</phrase>oriented inheritance are most often
+      role="keep-together">object-</phrase><phrase
+      role="keep-together">oriented</phrase> inheritance are most often
       implementation optimizations. The Scala type hierarchy for containers
-      does have a few levels of abstractions at the bottom, e.g.,
-      <literal>Collec⁠tion</literal> extends <literal>Iterable</literal>
-      extends <literal>AnyRef</literal>, but above
+      does have a few levels of abstractions at the bottom, e.g., <literal
+      role="keep-together">Collec⁠tion</literal> extends
+      <literal>Iterable</literal> extends <literal>AnyRef</literal>, but above
       <literal>Collection</literal> are <literal>Seq</literal> (parent of
       <literal>List</literal>), <literal>Map</literal>,
       <literal>Set</literal>, etc.</para>
@@ -1435,7 +1438,7 @@ println(c2("pants"))</programlisting>
     <literal>concatUpper</literal> with an underscore ( <literal>_</literal> )
     turns the method into a function value. In the first part of the example,
     we’ve assigned a partially applied version of <literal
-    role="only">concatUpper</literal> to the value <literal>c</literal>. We
+    role="only">concatUp⁠per</literal> to the value <literal>c</literal>. We
     then <emphasis>apply</emphasis> it, implicitly calling the
     <literal>apply</literal> method on <literal>c</literal> by passing
     parameters to it directly. The returned value is then printed.</para>
@@ -1712,11 +1715,11 @@ println(name.capitalize.reverse)</programlisting>
       method for an “implicit” conversion from a <literal>String</literal> to
       a <literal>RichString</literal>, whenever the latter is required. The
       compiler detected an attempt to call a <literal>capitalize</literal>
-      method, and it determined that <literal>RichString</literal> has such a
-      method. Then it looked within the current scope for an
-      <literal>implicit</literal> method that converts
-      <literal>String</literal> to <literal>RichString</literal>, finding
-      <literal>stringWrapper</literal>.<indexterm>
+      method, and it determined that <literal>RichString</literal> <phrase
+      role="keep-together">has such</phrase> a method. Then it looked within
+      the current scope for an <literal>implicit</literal> method that
+      converts <literal>String</literal> to <literal>RichString</literal>,
+      finding <literal>stringWrapper</literal>.<indexterm>
           <primary>String class</primary>
 
           <secondary>implicit conversion to RichString</secondary>
@@ -1830,9 +1833,9 @@ println(fs.capitalize.reverse)</programlisting>
       <screen>alacS</screen>
 
       <para id="para_pimp_my_library">This pattern for effectively adding new
-      methods to classes has been called <emphasis>pimp my library</emphasis>
-      <link linkend="Odersky2006"
-      xrefstyle="select:nopage">[Odersky2006]</link>.<indexterm>
+      methods to classes has been called <emphasis>Pimp My Library</emphasis>
+      (see <link linkend="Odersky2006"
+      xrefstyle="select:nopage">[Odersky2006]</link>).<indexterm>
           <primary>Pimp My Library design pattern</primary>
         </indexterm><indexterm>
           <primary>methods</primary>
@@ -2032,7 +2035,7 @@ whileAwesome(count &lt; 5) {
     the order of initialization for fields in override scenarios can be
     problematic. We discussed one solution, <emphasis>pre-initialized
     fields</emphasis>. Now we discuss the other solution we mentioned
-    previously, <literal>lazy vals</literal>.<indexterm>
+    previously, <literal>lazy val</literal>s.<indexterm>
         <primary>fields</primary>
 
         <secondary>order of initialization, using lazy vals</secondary>

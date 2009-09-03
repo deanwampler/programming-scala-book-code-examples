@@ -222,8 +222,9 @@ class Button(val label: String) extends Widget with Clickable {
       <literal>this</literal>, but it binds to the parent type, which is the
       aggregation of the parent class and any mixed-in traits. The search for
       <literal>super.toString</literal> will find the “closest” parent type
-      <literal>toString</literal>, as determined by the linearization process
-      (see <xref linkend="Linearization" />). In this case, since
+      <literal>toString</literal>, as determined by the <phrase
+      role="keep-together">linearization</phrase> process (see <xref
+      linkend="Linearization" />). In this case, since
       <literal>Clickable</literal> doesn’t define <literal>toString</literal>,
       <literal>Widget.toString</literal> will be called.<indexterm>
           <primary>this keyword</primary>
@@ -369,12 +370,12 @@ ClassExtendsT1</screen>
       workarounds you can use with Scala version 2.7. The first is to use some
       advanced options for <literal>scala</literal> and
       <literal>scalac</literal>. The <literal>-Xfuture</literal> option will
-      enable the override behavior that is supported in version 2.8. The
+      enable the override behavior supported in version 2.8. The
       <literal>-Xcheckinit</literal> option will analyze your code and report
       whether the behavior change will break it. The option
       <literal>-Xexperimental</literal>, which enables many experimental
       changes, will also warn you that the <literal>val</literal> override
-      behavior is different.</para>
+      <phrase role="keep-together">behavior</phrase> is different.</para>
 
       <para id="para_second_val_override_workaround">The second workaround is
       to make the <literal>val</literal> abstract in the trait. This forces an
@@ -540,7 +541,8 @@ trait VetoableClicks extends Clickable {
   }
 }</programlisting>
 
-      <para id="para_here_is_a_new_specs_object">Here is a new “specs” object,
+      <para id="para_here_is_a_new_specs_object">Here is a new
+      <literal>specs</literal> object,
       <literal>ButtonClickableObserverVetoableSpec2</literal>, that
       demonstrates changing the value of <literal>maxAllowed</literal>:</para>
 
@@ -1300,7 +1302,7 @@ object Widget {
       <literal>apply</literal> can’t match the string, it returns
       <literal>None</literal>.</para>
 
-      <para id="para_specs_exercise">Here is a “specs”
+      <para id="para_specs_exercise">Here is a <literal>specs</literal>
       <literal>object</literal> that exercises
       <literal>Widget.apply</literal>:</para>
 
@@ -1351,10 +1353,10 @@ object WidgetApplySpec extends Specification {
       <link linkend="Meyer1997" xrefstyle="select:nopage">[Meyer1997]</link>
       and <link linkend="Martin2003"
       xrefstyle="select:nopage">[Martin2003]</link>). A better implementation
-      would use a factory design pattern from <link
-      linkend="GOF1995">GOF1995</link>. Nevertheless, the example illustrates
-      how an <literal>apply</literal> method can be used as a real
-      factory.</para>
+      would use a factory design pattern from <link linkend="GOF1995"
+      xrefstyle="select:nopage">[GOF1995]</link>. Nevertheless, the example
+      illustrates how an <literal role="keep-together">apply</literal> method
+      can be used as a real factory.</para>
 
       <para id="para_there_is_no_requirement_for_a">There is no requirement
       for <literal>apply</literal> in an <literal>object</literal> to be used
@@ -1770,13 +1772,13 @@ object PersonTest {
 
       <para id="para_the_objects_person_class_fil">The
       <literal>objects/Person.class</literal> file exists. If you decompile it
-      with <literal>javap -classpath ... objects.Person</literal> (see <xref
-      linkend="CommandLineToolDecompilers" />), you can see that it doesn’t
-      contain a <literal>main</literal> method. If you decompile
+      with <literal>javap -classpath ... objects.Person</literal> (refer to
+      <xref linkend="CommandLineToolDecompilers" />), you can see that it
+      doesn’t contain a <literal>main</literal> method. If you decompile
       <literal>objects/Person$.class</literal>, the file for the companion
       object’s byte code, it has a <literal>main</literal> method, but notice
       that it isn’t declared <literal>static</literal>. So, attempting to
-      invoke <literal>scala -cp ... objects.Person$</literal> also fails to
+      invoke <literal>scala -⁠cp ... objects.Person$</literal> also fails to
       find the “static” <literal>main</literal>:</para>
 
       <screen>java.lang.NoSuchMethodException: objects.Person$.main is not static</screen>
@@ -1787,7 +1789,7 @@ object PersonTest {
       <literal>javap -classpath ... objects.PersonTest</literal> shows that it
       has a <literal>static main</literal> method. If you invoke it using
       <literal>scala -cp ... objects.PersonTest</literal>, the
-      <literal>PersonTest.main</literal> method is invoked, which in turn
+      <literal>PersonT⁠est.main</literal> method is invoked, which in turn
       invokes <literal>Person.main</literal>. You get an assertion error from
       the second call to <literal>assert</literal>, which is
       intentional:</para>
@@ -1797,7 +1799,7 @@ object PersonTest {
     at objects.Person$.test(person.scala:15)
     at objects.PersonTest$.main(person.scala:20)
     at objects.PersonTest.main(person.scala)
-    ....</screen>
+    ...</screen>
 
       <para id="para_general_problem_with_statics_and_companions">In fact,
       this is a general issue with methods defined in companion objects that
@@ -2248,9 +2250,10 @@ println(circle2)</programlisting>
       definitions of <literal>id</literal>, the one in
       <literal>Shape</literal> and the one in <literal>Circle</literal>, are
       considered <literal>val</literal> field definitions! The error message
-      tells us the answer; use the <literal>override</literal> keyword, as we
-      discussed in <xref linkend="OverridingMembers" />. So, the complete set
-      of required modifications are as follows:</para>
+      tells us the answer; use the <literal
+      role="keep-together">override</literal> keyword, as we discussed in
+      <xref linkend="OverridingMembers" />. So, the complete set of required
+      modifications are as follows:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case-id.scala
 

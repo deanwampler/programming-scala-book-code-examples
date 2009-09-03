@@ -182,8 +182,8 @@ class SSN(
     follow-on block in curly braces.</para>
 
     <para id="para_testing_this_code_would_requir">Testing this code would
-    require the <emphasis>Contract4J</emphasis> library, build setup, etc. We
-    won’t cover those steps here. Refer to <link linkend="Contract4J"
+    require the Contract4J library, build setup, etc. We won’t cover those
+    steps here. Refer to <link linkend="Contract4J"
     xrefstyle="select:nopage">[Contract4J]</link> for more information.</para>
 
     <para id="para_scala_annotations_don_t_use_a_">Scala annotations don’t use
@@ -447,8 +447,8 @@ you want, you must write the annotation class in Java.
             <literal>case</literal> clauses are not “exhaustive.” You can
             still have a runtime <literal>MatchError</literal> occur if a
             value of <literal>x</literal> fails to match any of the
-            <literal>case</literal> clauses. See the example
-            later.</para></entry>
+            <literal>case</literal> clauses. See the upcoming
+            example.</para></entry>
           </row>
 
           <row>
@@ -623,8 +623,8 @@ you want, you must write the annotation class in Java.
             the <literal>AnyVal</literal> types corresponding to platform
             primitive types. Optionally, you can limit the
             <literal>AnyVal</literal> types for which specialized
-            implementations will be generated. See the discussion
-            below.</para></entry>
+            implementations will be generated. See the upcoming
+            discussion.</para></entry>
           </row>
 
           <row>
@@ -648,7 +648,7 @@ you want, you must write the annotation class in Java.
             <entry><para><literal>throws</literal> (keyword)</para></entry>
 
             <entry><para>Indicates which exceptions are thrown by the
-            annotated method. See the discussion later.</para></entry>
+            annotated method. See the upcoming discussion.</para></entry>
           </row>
 
           <row>
@@ -1068,8 +1068,9 @@ thrown in body of corresponding try statement
       </indexterm></para>
 
     <para id="para_recall_http_methods_script_">Recall the HTTP methods
-    scripts we wrote in <xref linkend="SealedClassHierarchies" />. We defined
-    the set of HTTP 1.1 methods using a sealed case class hierarchy:</para>
+    scripts that we wrote in <xref linkend="SealedClassHierarchies" />. We
+    defined the set of HTTP 1.1 methods using a sealed case class
+    hierarchy:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/sealed/http-script.scala
 
@@ -1788,8 +1789,9 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
 
       <para id="para_note_that_we_have_flatmap_ca">Note that we have
       <literal>flatMap</literal> calls until the most nested case, where
-      <literal>map</literal> is used (<literal>flatMap</literal> and
-      <literal>map</literal> behave equivalently in this case).</para>
+      <literal>map</literal> is used (<literal
+      role="keep-together">flatMap</literal> and <literal>map</literal> behave
+      equivalently in this case).</para>
 
       <para id="para_now_we_can_understand_why_the_">Now we can understand why
       the big conditional was unnecessary. Recall that <literal>user</literal>
@@ -1821,10 +1823,12 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
 
       <para id="para_finally_recall_from_partial">Finally, recall from <xref
       linkend="PartialFunctions" /> that the <literal>case user =&gt;
-      ...</literal> statements, for example, cause the compiler to generate a
-      <literal>PartialFunction</literal> to pass to <literal>flatMap</literal>
-      and <literal>map</literal>, so no corresponding <literal>foo match
-      {...}</literal> style wrappers are necessary.</para>
+      ...</literal> <phrase role="keep-together">statements</phrase>, for
+      example, cause the compiler to generate a
+      <literal>PartialFunction</literal> to pass to <literal
+      role="keep-together">flatMap</literal> and <literal>map</literal>, so no
+      corresponding <literal>foo match {...}</literal> style wrappers are
+      necessary.</para>
 
       <tip id="para_tip_using_options_with_for">
         <para>Using <literal>Options</literal> with <literal>for</literal>
@@ -2439,16 +2443,17 @@ abstract class SubjectObserver {
       type.</para>
 
       <para id="para_when_an_actual_concrete_subje">Are self-type annotations
-      a safe thing to use? When an actual concrete
-      <literal>SubjectOb⁠server</literal> is defined, <literal>S</literal> and
-      <literal>O</literal> will be specified and type checking will be
-      performed to ensure that the concrete <literal>S</literal> and
-      <literal>O</literal> are compatible with <literal>Subject</literal> and
-      <literal>Observer</literal>. In this case, because we also defined
-      <literal>S</literal> to be a subtype of <literal>Subject</literal> and
-      <literal>O</literal> to be a subtype of <literal>Observer</literal>, any
-      concrete types derived from <literal>Subject</literal> and
-      <literal>Observer</literal>, respectively, will work.</para>
+      a safe thing to use? When an actual concrete <literal
+      role="keep-together">SubjectOb⁠server</literal> is defined,
+      <literal>S</literal> and <literal>O</literal> will be specified and type
+      checking will be performed to ensure that the concrete
+      <literal>S</literal> and <literal>O</literal> are compatible with
+      <literal>Subject</literal> and <literal>Observer</literal>. In this
+      case, because we also defined <literal>S</literal> to be a subtype of
+      <literal>Subject</literal> and <literal>O</literal> to be a subtype of
+      <literal>Observer</literal>, any concrete types derived from
+      <literal>Subject</literal> and <literal>Observer</literal>,
+      respectively, will work.</para>
 
       <para id="para_comment_2_shows_that_we_now_p">Comment #2 shows that we
       pass <literal>self</literal> instead of <literal>this</literal> to
@@ -2686,12 +2691,11 @@ object ButtonObserver3Spec extends Specification {
     linkend="StackableTraits" />, where button clicks were counted and
     additional clicks were vetoed after a certain number of clicks occurred.
     Our simple <literal>Button</literal> class contributed only a
-    <literal>label</literal> <emphasis
-    role="keep-together">dimension</emphasis>, while
+    <literal>label</literal> dimension, while
     <literal>VetoableClicks</literal> contributed a <literal>count</literal>
-    <emphasis>dimension</emphasis> and a <literal>maxAllowed</literal>
-    constant. Here is a recap of these types, collected together into a single
-    script that also exercises the code:</para>
+    dimension and a <literal>maxAllowed</literal> constant. Here is a recap of
+    these types, collected together into a single script that also exercises
+    the code:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/vetoable-clicks1-script.scala
 
@@ -2900,7 +2904,7 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     in this case, an implicit conversion is invoked to convert the
     <literal>java.lang.String</literal> to a <literal>RichString</literal>,
     which has the <literal>foreach</literal> method. That’s an example of the
-    pattern called <emphasis>pimp my library</emphasis>, which we saw in <xref
+    pattern called <emphasis>Pimp My Library</emphasis>, which we saw in <xref
     linkend="ImplicitConversions" />.</para>
 
     <para id="para_pattern_ideas_language_better_alternatives">Other common
@@ -3848,20 +3852,21 @@ class TextClient(userProfile: TwitterUserProfile)
       <literal>userProfile</literal>.</para>
 
       <para id="para_for_the_ui_it_instantiates_">For the
-      <literal>ui</literal>, it instantiates an anonymous class derived from
-      <literal>TwitterClientUI</literal>. It defines
-      <literal>showTweet</literal> to print out the tweet.</para>
+      <literal>ui</literal>, it instantiates an anonymous class that is
+      derived from <literal role="keep-together">TwitterClientUI</literal>. It
+      defines <literal>showTweet</literal> to print out the tweet.</para>
 
       <para id="para_for_the_localcache_it_insta">For the
-      <literal>localCache</literal>, it instantiates an anonymous class
-      derived from <literal>TwitterLocalC⁠ache</literal>. It keeps the history
+      <literal>localCache</literal>, it instantiates an anonymous class that
+      is derived from <literal
+      role="keep-together">TwitterLocalC⁠ache</literal>. It keeps the history
       of tweets in a <literal>List</literal>.</para>
 
       <para id="para_finally_for_the_service_it">Finally, for the
-      <literal>service</literal>, it instantiates an anonymous class derived
-      from <literal>TwitterSer⁠vice</literal>. This “fake” defines
-      <literal>sendTweet</literal> to print out a message and to return an
-      empty list for the history.</para>
+      <literal>service</literal>, it instantiates an anonymous class that is
+      derived from <literal role="keep-together">TwitterSer⁠vice</literal>.
+      This “fake” defines <literal>sendTweet</literal> to print out a message
+      and to return an empty list for the history.</para>
 
       <para id="para_let_s_try_our_client_with_the_">Let’s try our client with
       the following script:</para>

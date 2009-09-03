@@ -207,7 +207,7 @@ for (condiment &lt;- (someXML \\ "condiment")) {
       (<literal>{}</literal>) escape back to standard Scala pattern matching
       syntax. To match all XML nodes in the escaped portion of a pattern
       match, use an underscore (wildcard) followed by an asterisk
-      (<literal>_*</literal>). To bind what you’ve matched on to a variable,
+      ( <literal>_*</literal>). To bind what you’ve matched on to a variable,
       prefix the match with the variable name and an <literal>@</literal>
       sign.<indexterm>
           <primary>pattern matching</primary>

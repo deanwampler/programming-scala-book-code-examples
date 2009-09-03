@@ -29,7 +29,8 @@
 
     <para>Sometimes, popularity derived from technical merit gives way to
     fashion and fanaticism. C++, Java, and Ruby have been the objects of
-    fanatical devotion among programmers.</para>
+    fanatical devotion among <phrase
+    role="keep-together">programmers</phrase>.</para>
 
     <para>Sometimes, a language becomes popular because it fits the needs of
     its era. Java was initially seen as a perfect fit for browser-based, rich
@@ -72,7 +73,7 @@
 
     <para>We assume that you are well versed in object-oriented programming,
     but we don’t assume that you have prior exposure to functional
-    programming. We assume you are experienced in one or more other
+    programming. We assume that you are experienced in one or more other
     programming languages. We draw parallels to features in Java, C#, Ruby,
     and other languages. If you know any of these languages, we’ll point out
     similar features in Scala, as well as many features that are new.</para>
@@ -85,7 +86,7 @@
 
     <para>In the end, we hope that you too will be seduced by Scala. Even if
     Scala does not end up becoming your day-to-day language, we hope you will
-    gain insights that you can apply regardless of what language you are
+    gain insights that you can apply regardless of which language you are
     using.</para>
   </sect1>
 
@@ -200,9 +201,10 @@
             <para>Files that end in <filename>-script.scala</filename> can be
             run on a command line using <literal>scala</literal>, e.g.,
             <literal>scala foo-script.scala</literal>. You can also start
-            <literal>scala</literal> in the interpreter mode (when you don’t
-            specify a script file) and load any script file in the interpreter
-            using the <literal>:load filename</literal> command.</para>
+            <literal>scala</literal> in the interpreter mode (when you <phrase
+            role="keep-together">don’t specify</phrase> a script file) and
+            load any script file in the interpreter using the <literal>:load
+            file⁠name</literal> command.</para>
           </listitem>
         </varlistentry>
 
@@ -280,7 +282,8 @@
 
       <member>Sebastopol, CA 95472</member>
 
-      <member>800-998-9938 (in the United States or Canada)</member>
+      <member>800-998-9938 (in the United States or Canada)<?dbfo-need height=”1in”
+?></member>
 
       <member>707-829-0515 (international or local)</member>
 

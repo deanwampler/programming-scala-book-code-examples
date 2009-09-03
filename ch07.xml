@@ -37,8 +37,8 @@
       <para>You can learn a lot of Scala by viewing the source for
       <literal>Predef</literal>. It is available by clicking the “source” link
       in the <literal>Predef</literal> Scaladoc page, or you can download the
-      full source code for Scala at <link linkend="Scala"
-      xrefstyle="select:nopage">[Scala]</link>.</para>
+      full source code for Scala at <ulink
+      url="http://www.scala-lang.org/"></ulink>.</para>
     </tip>
 
     <para id="para_here_is_a_partial_list_of_the_"><xref
@@ -49,7 +49,7 @@
         <secondary>items imported or defined by</secondary>
       </indexterm></para>
 
-    <table frame="all" id="table_7-1">
+    <table colsep="1" frame="all" id="table_7-1" rowsep="1">
       <title>Items imported or defined by Predef</title>
 
       <tgroup cols="2">
@@ -113,12 +113,12 @@
             role="strong">Methods</emphasis></para></entry>
 
             <entry><para>Factory methods to create
-            <emphasis>tuples</emphasis>, overloaded versions of
+            <emphasis>tuples</emphasis>; overloaded versions of
             <literal>exit</literal>, <literal>error</literal>,
             <literal>assert</literal>, <literal>assume</literal>, and
-            <literal>require</literal>, <emphasis>implicit</emphasis> type
-            conversion methods, I/O methods like <literal>readLine</literal>,
-            <literal>println</literal>, and <literal>format</literal>, and a
+            <literal>require</literal>; <emphasis>implicit</emphasis> type
+            conversion methods; I/O methods like <literal>readLine</literal>,
+            <literal>println</literal>, and <literal>format</literal>; and a
             method <literal>currentThread</literal>, which calls
             <literal>java.lang.Thread.currentThread</literal>.</para></entry>
           </row>
@@ -197,7 +197,8 @@
 
     <para id="para__map_and_set_appear_in_both"><literal>Map</literal> and
     <literal>Set</literal> appear in both the types and values lists. In the
-    values list, they are assigned the <emphasis>companion objects</emphasis>
+    values list, they are <phrase role="keep-together">assigned the</phrase>
+    <emphasis>companion objects</emphasis>
     <literal>scala.collection.immutable.Map</literal> and
     <literal>scala.collection.immuta⁠ble.Set</literal>, respectively. Hence,
     <literal>Map</literal> and <literal>Set</literal> in
@@ -205,8 +206,8 @@
     definitions, because they refer to objects defined elsewhere, whereas
     <literal>Pair</literal> and <literal>Triple</literal> are defined in
     <literal>Predef</literal> itself. The types <literal>Map</literal> and
-    <literal>Set</literal> are assigned the corresponding immutable
-    classes.<indexterm>
+    <literal>Set</literal> are assigned the corresponding <phrase
+    role="keep-together">immutable</phrase> classes.<indexterm>
         <primary>companion objects</primary>
 
         <secondary>Map and Set</secondary>
@@ -335,11 +336,11 @@
 
     <para id="para_next_recall_from_chapter_1_th">Next, recall from <xref
     linkend="IntroducingScala" /> that we were able to replace calls to
-    <literal>Console.println(...)</literal> with
+    <literal role="keep-together">Console.println(...)</literal> with
     <literal>println(...)</literal>. This “bare” <literal>println</literal>
-    method is defined in <literal>Predef</literal>, then imported <phrase
-    role="keep-together">automatically</phrase> by the compiler. The
-    definition calls the corresponding method in <literal
+    method is defined in <literal role="keep-together">Predef</literal>, then
+    imported <phrase role="keep-together">automatically</phrase> by the
+    compiler. The definition calls the corresponding method in <literal
     role="keep-together">Console</literal>. Similarly, all the other I/O
     methods defined by <literal>Predef</literal>, e.g.,
     <literal>readLine</literal> and <literal
@@ -399,7 +400,7 @@
 
     <para id="para_many_object_oriented_languages">Many object-oriented
     languages allow classes to have class-level constants, fields, and
-    methods, called “static” members in Java, C# and C++. These constants,
+    methods, called “static” members in Java, C#, and C++. These constants,
     fields, and methods are not associated with any
     <emphasis>instances</emphasis> of the class.<indexterm>
         <primary>static members, Scala and</primary>
@@ -712,9 +713,6 @@ val methods = List(
 
 methods.foreach { method =&gt; handle(method) }</programlisting>
 
-    <?dbfo-need height=”1in”
-?>
-
     <para id="para_output3">This script outputs the following:</para>
 
     <screen>connect: connect body...
@@ -920,6 +918,12 @@ body length? 13</screen>
       <title>Any, AnyVal, and AnyRef</title>
 
       <tgroup cols="3">
+        <colspec colnum="1" colwidth=".5in" />
+
+        <colspec colnum="2" colwidth=".5in" />
+
+        <colspec colnum="3" />
+
         <thead valign="top">
           <row>
             <entry>Name</entry>
@@ -941,7 +945,8 @@ body length? 13</screen>
             <literal>!=</literal>, <literal>isInstanceOf[T]</literal> (for
             type checking), and <literal>asInstanceOf[T]</literal> (for type
             casting), as well as default versions of
-            <literal>equals</literal>, <literal>hashCode</literal>, and
+            <literal>equals</literal>, <literal
+            role="keep-together">hashCode</literal>, and
             <literal>toString</literal>, which are designed to be overridden
             by subclasses.</para></entry>
           </row>
@@ -998,6 +1003,10 @@ body length? 13</screen>
       <title>Direct subtypes of AnyVal, the value types</title>
 
       <tgroup cols="2">
+        <colspec colnum="1" colwidth="1in" />
+
+        <colspec colnum="2" />
+
         <thead valign="top">
           <row>
             <entry>Name</entry>
@@ -1101,7 +1110,8 @@ body length? 13</screen>
 
         <tbody valign="top">
           <row>
-            <entry><para><literal>Collection[+T]</literal></para></entry>
+            <entry><para><literal
+            role="keep-together">Collection[+T]</literal></para></entry>
 
             <entry><para><literal
             role="keep-together">Iterable[T]</literal></para></entry>
@@ -1110,7 +1120,8 @@ body length? 13</screen>
           </row>
 
           <row>
-            <entry><para><literal>Either[+T1, +T2]</literal></para></entry>
+            <entry><para><literal role="keep-together">Either[+T1,
+            +T2]</literal></para></entry>
 
             <entry><para><literal>AnyRef</literal></para></entry>
 
@@ -1121,14 +1132,15 @@ body length? 13</screen>
             <literal>Right</literal> subtypes. (It is analogous to
             <literal>Option</literal>, with <literal>Some</literal> and
             <literal>None</literal>.) For the exception-handling idiom, it is
-            conventional to use <literal>Left</literal> for the
-            exception.</para></entry>
+            conventional to use <literal>Left</literal> for the <phrase
+            role="keep-together">exception</phrase>.</para></entry>
           </row>
 
           <row>
-            <entry><para><literal>FunctionN[-T</literal><subscript>1</subscript><literal>,
-            -T</literal><subscript>2</subscript><literal>,<?lb ?> ...,
-            -T</literal><subscript>N</subscript><literal>,
+            <entry><para><phrase
+            role="keep-together"><literal>FunctionN[-T</literal><subscript>1</subscript><literal>,
+            -T</literal><subscript>2</subscript><literal>,</literal></phrase><literal><?lb ?>
+            ..., -T</literal><subscript>N</subscript><literal>,
             +R]</literal></para></entry>
 
             <entry><para><literal>AnyRef</literal></para></entry>
@@ -1233,9 +1245,9 @@ body length? 13</screen>
           </row>
 
           <row>
-            <entry><para><literal>ScalaObject<indexterm>
+            <entry><para><literal>ScalaObject</literal><indexterm>
                 <primary>ScalaObject class</primary>
-              </indexterm></literal></para></entry>
+              </indexterm></para></entry>
 
             <entry><para><literal>AnyRef</literal></para></entry>
 
@@ -1274,8 +1286,9 @@ body length? 13</screen>
     collections are in <literal>scala.collection.mutable</literal>. Only an
     immutable version of <literal>List</literal> is provided; for a mutable
     list, use a <literal>ListBuffer</literal>, which can return a
-    <literal>List</literal> via the <literal>toList</literal> method. For
-    Scala version 2.8, the collections implementations reuse code from
+    <literal>List</literal> via the <literal>toList</literal> method. <phrase
+    role="keep-together">For Scala version</phrase> 2.8, the collections
+    implementations reuse code from
     <literal>scala.col⁠lec⁠tion.generic</literal>. Users of the collections
     would normally not use any types defined in this package. We’ll explore
     some of these collections in greater detail in <xref
@@ -1514,7 +1527,7 @@ println(clist.reverse)</programlisting>
     used an ad hoc <literal>m</literal> method to figure out the behavior by
     building up an output string.</para>
 
-    <para id="para_the_value_types_subclasse">The “value types”, subclasses of
+    <para id="para_the_value_types_subclasse">The “value types,” subclasses of
     <literal>AnyVal</literal>, are all declared <literal>abstract
     final</literal>. The compiler manages instantiation of them. Since we
     can’t subclass them, their linearizations are simple and

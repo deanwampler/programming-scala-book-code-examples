@@ -87,7 +87,7 @@ class ButtonWithCallbacks(val label: String,
     somehow, compromising modularity. The only other alternative is to use a
     specialized tool like <emphasis>aspect-oriented programming</emphasis>
     (AOP; see <link linkend="AOSD" xrefstyle="select:nopage">[AOSD]</link>),
-    as implemented by AspectJ (see <link linkend="AspectJ"
+    as implemented by AspectJ (refer to <link linkend="AspectJ"
     xrefstyle="select:nopage">[AspectJ]</link>), an extension of Java. AOP is
     primarily designed to separate the implementations of “<phrase
     role="keep-together">pervasive</phrase>” concerns that are repeated
@@ -316,8 +316,10 @@ trait Subject {
         <literal>Lists</literal> for the observers in this example. We could
         have used a <literal>val</literal> with a mutable type, like <literal
         role="keep-together">ListBuffer</literal>. That choice would make a
-        little more sense for a real application, but we wanted to avoid the
-        distraction of explaining new library classes.</para>
+        little more sense for a real <phrase
+        role="keep-together">application</phrase>, but we wanted to avoid the
+        distraction of explaining new <phrase
+        role="keep-together">library</phrase> classes.</para>
       </note>
 
       <para id="para_once_again_we_learned_a_lot_o">Once again, we learned a
@@ -341,7 +343,8 @@ class ObservableButton(name: String) extends Button(name) with Subject {
 
       <para id="para_we_start_by_importing_everythi">We start by importing
       everything in the <literal>observer</literal> package, using the
-      <literal>_</literal> wildcard. Actually, we have only defined the
+      <literal>_</literal> wildcard. <phrase
+      role="keep-together">Actually</phrase>, we have only defined the
       <literal>Subject</literal> trait in the package.</para>
 
       <para id="para_the_new_class_uses_the_with_">The new class uses the
@@ -349,9 +352,10 @@ class ObservableButton(name: String) extends Button(name) with Subject {
       trait to the class. <literal>ObservableButton</literal> overrides the
       <literal>click</literal> method. Using the <literal>super</literal>
       keyword (see <xref linkend="OverridingMethods" />), it first invokes the
-      “superclass” method, <literal>Button.click</literal>, and then it
-      notifies the observers. Since the new <literal>click</literal> method
-      overrides <literal>Button</literal>’s concrete implementation, the
+      “superclass” method, <literal
+      role="keep-together">Button.click</literal>, and then it notifies the
+      observers. Since the new <literal>click</literal> method overrides
+      <literal>Button</literal>’s concrete implementation, the
       <literal>override</literal> keyword is required.<indexterm>
           <primary>with keyword</primary>
         </indexterm><indexterm>
@@ -409,10 +413,9 @@ class ButtonCountObserver {
 }</programlisting>
 
       <para id="para_finally_let_s_write_a_test_th">Finally, let’s write a
-      test that exercises all these classes. We will use the
-      <emphasis>Specs</emphasis> library (discussed in <xref
-      linkend="ScalaSpecs" />) to write a <emphasis>Behavior-Driven
-      Development</emphasis> (<link linkend="BDD"
+      test that exercises all these classes. We will use the Specs library
+      (discussed in <xref linkend="ScalaSpecs" />) to write a
+      <emphasis>Behavior-Driven Development</emphasis> (<link linkend="BDD"
       xrefstyle="select:nopage">[BDD]</link>) “specification” that exercises
       the combined <literal>Button</literal> and <literal>Subject</literal>
       types:<indexterm>
@@ -711,12 +714,11 @@ object ButtonClickableObserverSpec extends Specification {
     <emphasis>composed declaratively</emphasis> when needed.</para>
 
     <para id="para_let_s_finish_our_example_by_ad">Let’s finish our example by
-    adding a second trait. The <emphasis>JavaBeans</emphasis> specification
-    (see <link linkend="JavaBeansSpec"
-    xrefstyle="select:nopage">[JavaBeansSpec]</link>) has the idea of
-    “vetoable” events, where listeners for changes to a JavaBean can veto the
-    change. Let’s implement something similar with a trait that vetoes more
-    than a set number of clicks:<indexterm>
+    adding a second trait. The JavaBeans specification (see <link
+    linkend="JavaBeansSpec" xrefstyle="select:nopage">[JavaBeansSpec]</link>)
+    has the idea of “vetoable” events, where listeners for changes to a
+    JavaBean can veto the change. Let’s implement something similar with a
+    trait that vetoes more than a set number of clicks:<indexterm>
         <primary>traits</primary>
 
         <secondary sortas="mixins">as mixins</secondary>
@@ -764,13 +766,12 @@ trait VetoableClicks extends Clickable {
         <primary>VetoableClicks trait (example)</primary>
       </indexterm></para>
 
-    <para id="para_specs_object_for_obs_clicks">Here is a
-    <emphasis>Specs</emphasis> object that demonstrates
-    <literal>ObservableClicks</literal> and <literal>VetoableClicks</literal>
-    working together. Note that a separate <literal>with</literal> keyword is
-    required for each trait, as opposed to using one keyword and separating
-    the names with commas, as Java does for <literal
-    role="keep-together">implements</literal> clauses:<indexterm>
+    <para id="para_specs_object_for_obs_clicks">Here is a Specs object that
+    demonstrates <literal>ObservableClicks</literal> and
+    <literal>VetoableClicks</literal> working together. Note that a separate
+    <literal>with</literal> keyword is required for each trait, as opposed to
+    using one keyword and separating the names with commas, as Java does for
+    <literal role="keep-together">implements</literal> clauses:<indexterm>
         <primary>ObservableClicks trait (example)</primary>
 
         <secondary>working with VetoableClicks trait (example)</secondary>
@@ -994,8 +995,9 @@ After Creating C12</screen>
       <tip id="para_tip_avoid_fields_in_traits_th">
         <para>Avoid concrete fields in traits that can’t be initialized to
         suitable default values. Use abstract fields instead, or convert the
-        trait to a class with a constructor. Of course, stateless traits don’t
-        have any issues with <phrase
+        trait to a class with <phrase role="keep-together">a
+        constructor.</phrase> Of course, stateless traits don’t have any
+        issues with <phrase
         role="keep-together">initialization</phrase>.</para>
       </tip>
 

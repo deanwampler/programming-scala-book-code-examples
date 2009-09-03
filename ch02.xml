@@ -7,12 +7,12 @@
   <sect1 id="_in_this_chapter">
     <title>In This Chapter</title>
 
-    <para id="para_we_ended_the_last_chapter_with">We ended the last chapter
-    with a few “teaser” examples of Scala code. This chapter discusses uses of
-    Scala that promote succinct, flexible code. We’ll discuss organization of
-    files and packages, importing other types, variable declarations,
-    miscellaneous syntax conventions, and a few other concepts. We’ll
-    emphasize how the concise syntax of Scala helps you work better and
+    <para id="para_we_ended_the_last_chapter_with">We ended the previous
+    chapter with a few “teaser” examples of Scala code. This chapter discusses
+    uses of Scala that promote succinct, flexible code. We’ll discuss
+    organization of files and packages, importing other types, variable
+    declarations, miscellaneous syntax conventions, and a few other concepts.
+    We’ll emphasize how the concise syntax of Scala helps you work better and
     faster.</para>
 
     <para id="para_scala_s_syntax_is_especially_u">Scala’s syntax is
@@ -247,7 +247,7 @@ scala&gt;</programlisting>
 
     <para id="para_if_a_method_body_has_more_than">If a method body has more
     than one expression, you must surround it with curly braces
-    <literal>{...}</literal>. You can omit the braces if the method body has
+    (<literal>{...}</literal>). You can omit the braces if the method body has
     just one expression.<indexterm>
         <primary>{ } (curly braces)</primary>
 
@@ -326,11 +326,11 @@ println(joiner(strings = List("Programming", "Scala"), separator = " "))</progra
       <para id="para_why_is_this_useful_first_if_">Why is this useful? First,
       if you choose good names for the method arguments, then your calls to
       those methods document each argument with a name. For example, compare
-      the two lines with comments <literal>#1</literal> and
-      <literal>#2</literal>. In the first line, it may not be obvious what the
-      second <literal>" "</literal> argument is for. In the second case, we
-      supply the name <literal role="keep-together">separator</literal>, which
-      suggests the purpose of the argument.<indexterm>
+      the two lines with comments #1 and #2. In the first line, it may not be
+      obvious what the second <literal>" "</literal> argument is for. In the
+      second case, we supply the name <literal
+      role="keep-together">separator</literal>, which suggests the purpose of
+      the argument.<indexterm>
           <primary>parameters</primary>
 
           <secondary>order of, named arguments and</secondary>
@@ -931,7 +931,8 @@ java.lang.NoSuchMethodError: StringUtil$.toCollection(...
 
     <para id="para_another_scenario_to_watch_for_">There is another scenario
     to watch for when using declarations of collections like <literal
-    role="keep-together">val map = Map()</literal>, as in this example:</para>
+    role="keep-together">val map = Map()</literal>, as in the following
+    example:</para>
 
     <programlisting linenumbering="unnumbered">val map = Map()
 
@@ -1004,9 +1005,10 @@ scala&gt; println(double(2))
     function definition and a function always returns a value in functional
     programming. On the other hand, when Scala sees a method body without the
     leading equals sign, it assumes the programmer intended the method to be a
-    “procedure” definition, intended for performing side effects only with the
-    return value <literal>Unit</literal>. In practice, it is more likely that
-    the programmer simply forget to insert the equals sign!</para>
+    “procedure” <phrase role="keep-together">definition</phrase>, meant for
+    performing side effects only with the return value
+    <literal>Unit</literal>. In practice, it is more likely that the
+    programmer simply forgot to insert the equals sign!</para>
 
     <warning id="para_warning_when_the_return_type_">
       <para>When the return type of a method is inferred and you don’t use an
@@ -1062,6 +1064,12 @@ scala&gt; println(double(2))
         <title>Integer literals</title>
 
         <tgroup cols="3">
+          <colspec colnum="1" colwidth=".75in" />
+
+          <colspec colnum="2" colwidth="2.75in" />
+
+          <colspec colnum="3" colwidth=".75in" />
+
           <thead valign="top">
             <row>
               <entry>Kind</entry>
@@ -1116,6 +1124,12 @@ scala&gt; println(double(2))
         inclusive)</title>
 
         <tgroup cols="3">
+          <colspec colnum="1" colwidth="1.42in" />
+
+          <colspec colnum="2" colwidth="1.42in" />
+
+          <colspec colnum="3" colwidth="1.42in" />
+
           <thead valign="top">
             <row>
               <entry>Target type</entry>
@@ -1192,15 +1206,15 @@ b: Byte = 127</screen>
       <title>Floating-Point Literals</title>
 
       <para id="para_floating_point_literals_are_ex">Floating-point literals
-      are expressions with zero or more digits, followed by a period
-      <literal>.</literal>, followed by zero or more digits. If there are no
-      digits before the period, i.e., the number is less than 1.0, then there
-      must be one or more digits after the period. For
-      <literal>Float</literal> literals, append the <literal>F</literal> or
-      <literal>f</literal> character at the end of the literal. Otherwise, a
-      <literal>Double</literal> is assumed. You can optionally append a
-      <literal>D</literal> or <literal>d</literal> for a
-      <literal>Double</literal>.<indexterm>
+      are expressions with zero or more digits, followed by a <phrase
+      role="keep-together">period</phrase> (<literal>.</literal>), followed by
+      zero or more digits. If there are no digits before the period, i.e., the
+      number is less than 1.0, then there must be one or more digits after the
+      period. For <literal>Float</literal> literals, append the
+      <literal>F</literal> or <literal>f</literal> character at the end of the
+      literal. Otherwise, a <literal>Double</literal> is assumed. You can
+      optionally append a <literal>D</literal> or <literal>d</literal> for a
+      <literal role="keep-together">Double</literal>.<indexterm>
           <primary>floating-point literals</primary>
         </indexterm><indexterm>
           <primary>literals</primary>
@@ -1283,7 +1297,7 @@ b2: Boolean = false</screen>
       either a printable Unicode character or an escape sequence, written
       between single quotes. A character with a Unicode value between 0 and
       255 may also be represented by an octal escape, i.e., a backslash
-      <literal>\</literal> followed by a sequence of up to three octal
+      (<literal>\</literal>) followed by a sequence of up to three octal
       characters. It is a compile-time error if a backslash character in a
       character or string literal does not start a valid escape
       sequence.<indexterm>
@@ -1498,7 +1512,7 @@ Fourth line"""</programlisting>
         </indexterm></para>
 
       <para id="para_a_symbol_literal_is_a_single_q">A symbol literal is a
-      single quote <literal>'</literal>, followed by a letter, followed by
+      single quote (<literal>'</literal>), followed by a letter, followed by
       zero or more digits and letters. Note that an expression like
       <literal>'1</literal> is invalid, because the compiler thinks it is an
       incomplete character literal.</para>
@@ -1905,12 +1919,15 @@ package com {
 
     <para id="para_two_packages_pkg1_and_pkg2_">Two packages,
     <literal>pkg1</literal> and <literal>pkg2</literal>, are defined under the
-    <literal>com.example</literal> package. A total of three classes are
-    defined between the two packages. The <literal>makeClass11</literal> and
-    <literal>makeClass12</literal> methods in <literal>Class21</literal>
-    illustrate how to reference a type in the “sibling” package,
-    <literal>pkg1</literal>. You can also reference these classes by their
-    full paths, <literal>com.example.pkg1.Class11</literal> and
+    <literal>com.example</literal> package. A total <phrase
+    role="keep-together">of three classes</phrase> are defined between the two
+    packages. The <literal>makeClass11</literal> and <literal
+    role="keep-together">makeClass12</literal> methods in
+    <literal>Class21</literal> illustrate how to reference a type in the
+    “sibling” <phrase role="keep-together">package,
+    <literal>pkg1</literal></phrase>. You can also reference these classes by
+    their full paths, <literal
+    role="keep-together">com.example.pkg1.Class11</literal> and
     <literal>com.example.pkg1.Class12</literal>, respectively.</para>
 
     <para id="para_the_package_pkg3_pkg31_pkg311">The package
@@ -1930,7 +1947,8 @@ package com {
       <para>Scala does not allow package declarations in scripts that are
       executed directly with the <literal>scala</literal> interpreter. The
       reason has to do with the way the interpreter converts statements in
-      scripts to valid Scala code before compiling to byte code. See <xref
+      scripts to valid Scala code <phrase role="keep-together">before
+      compiling</phrase> to byte code. See <xref
       linkend="CommandLineToolScala" /> for more details.</para>
     </warning>
   </sect1>
@@ -1968,7 +1986,7 @@ import java.io.File._
 import java.util.{Map, HashMap}</programlisting>
 
     <para id="para_you_can_import_all_types_in_a_">You can import all types in
-    a package, using the underscore <literal>_</literal> as a wildcard, as
+    a package, using the underscore ( <literal>_</literal> ) as a wildcard, as
     shown on the first line. You can also import individual Scala or Java
     types, as shown on the second line.<indexterm>
         <primary>_ (underscore)</primary>
@@ -1977,7 +1995,7 @@ import java.util.{Map, HashMap}</programlisting>
       </indexterm></para>
 
     <para id="para_star_vs_underscore">Java uses the “star” character
-    <literal>*</literal> as the wildcard for matching all types in a package
+    (<literal>*</literal>) as the wildcard for matching all types in a package
     or all static members of a type when doing “static imports.” In Scala,
     this character is allowed in method names, so <literal>_</literal> is used
     as a wildcard, as we saw previously.</para>
@@ -1994,8 +2012,8 @@ import java.util.{Map, HashMap}</programlisting>
     <literal>java.util.HashMap</literal> types from the
     <literal>java.util</literal> package. Compare this one-line import
     statement with the two-line import statements we used in our first example
-    in <xref linkend="InferringTypes" />. They are functionally
-    equivalent.</para>
+    in <xref linkend="InferringTypes" />. They are <phrase
+    role="keep-together">functionally</phrase> equivalent.</para>
 
     <para id="para_the_next_example_shows_more_ad">The next example shows more
     advanced options for import statements:</para>
@@ -2302,8 +2320,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             keyword is usually not required for abstract
             members.</para></entry>
 
-            <entry><para><xref linkend="ClassBasics" /> (<xref
-            linkend="BasicObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="ClassBasics" /></para></entry>
           </row>
 
           <row>
@@ -2312,8 +2329,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Start a case clause in a match
             expression.</para></entry>
 
-            <entry><para><xref linkend="PatternMatching" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="PatternMatching" /></para></entry>
           </row>
 
           <row>
@@ -2322,8 +2338,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Start a clause for catching thrown
             exceptions.</para></entry>
 
-            <entry><para><xref linkend="TryCatchFinally" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="TryCatchFinally" /></para></entry>
           </row>
 
           <row>
@@ -2331,8 +2346,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Start a class declaration.</para></entry>
 
-            <entry><para><xref linkend="ClassBasics" /> (<xref
-            linkend="BasicObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="ClassBasics" /></para></entry>
           </row>
 
           <row>
@@ -2340,8 +2354,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Start a method declaration.</para></entry>
 
-            <entry><para><xref linkend="MethodDeclarationsAndDefinitions" />
-            (<xref linkend="TypeLessDoMore" />)</para></entry>
+            <entry><para><xref
+            linkend="MethodDeclarationsAndDefinitions" /></para></entry>
           </row>
 
           <row>
@@ -2350,8 +2364,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Start a <literal>do ... while</literal>
             loop.</para></entry>
 
-            <entry><para><xref linkend="OtherLoopingConstructs" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref
+            linkend="OtherLoopingConstructs" /></para></entry>
           </row>
 
           <row>
@@ -2360,8 +2374,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Start an <literal>else</literal> clause for an
             <literal>if</literal> clause.</para></entry>
 
-            <entry><para><xref linkend="IfStatements" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="IfStatements" /></para></entry>
           </row>
 
           <row>
@@ -2370,8 +2383,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Indicates that the class or trait that follows is the
             parent type of the class or trait being declared.</para></entry>
 
-            <entry><para><xref linkend="ParentClasses" /> (<xref
-            linkend="BasicObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="ParentClasses" /></para></entry>
           </row>
 
           <row>
@@ -2380,8 +2392,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>Boolean</literal>
             <emphasis>false</emphasis>.</para></entry>
 
-            <entry><para><xref linkend="ScalaTypeHierarchy" /> (<xref
-            linkend="ScalaObjectSystem" />)</para></entry>
+            <entry><para><xref linkend="ScalaTypeHierarchy" /></para></entry>
           </row>
 
           <row>
@@ -2391,8 +2402,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             child types from it. Applied to a member to prohibit overriding it
             in a derived class or trait.</para></entry>
 
-            <entry><para><xref linkend="FinalDeclarations" /> (<xref
-            linkend="AdvancedObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="FinalDeclarations" /></para></entry>
           </row>
 
           <row>
@@ -2403,18 +2413,16 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             exception is thrown by the <literal>try</literal>
             clause.</para></entry>
 
-            <entry><para><xref linkend="TryCatchFinally" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="TryCatchFinally" /></para></entry>
           </row>
 
           <row>
             <entry><para><literal>for</literal></para></entry>
 
-            <entry><para>Start a <emphasis>for comprehension</emphasis>
+            <entry><para>Start a <literal>for</literal> comprehension
             (loop).</para></entry>
 
-            <entry><para><xref linkend="ForComprehensions" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="ForComprehensions" /></para></entry>
           </row>
 
           <row>
@@ -2424,8 +2432,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             declarations to constrain the allowed concrete types that can be
             used.</para></entry>
 
-            <entry><para><xref linkend="ExistentialTypes" /> (<xref
-            linkend="ScalasTypeSystem" />)</para></entry>
+            <entry><para><xref linkend="ExistentialTypes" /></para></entry>
           </row>
 
           <row>
@@ -2433,8 +2440,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Start an <literal>if</literal> clause.</para></entry>
 
-            <entry><para><xref linkend="IfStatements" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="IfStatements" /></para></entry>
           </row>
 
           <row>
@@ -2445,8 +2451,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             parameter as optional, as long as a type-compatible substitute
             object is in the scope where the method is called.</para></entry>
 
-            <entry><para><xref linkend="ImplicitConversions" /> (<xref
-            linkend="FunctionalProgramming" />)</para></entry>
+            <entry><para><xref linkend="ImplicitConversions" /></para></entry>
           </row>
 
           <row>
@@ -2455,8 +2460,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Import one or more types or members of types into the
             current scope.</para></entry>
 
-            <entry><para><xref linkend="Importing" /> (this
-            chapter)</para></entry>
+            <entry><para><xref linkend="Importing" /></para></entry>
           </row>
 
           <row>
@@ -2465,8 +2469,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Defer evaluation of a
             <literal>val</literal>.</para></entry>
 
-            <entry><para><xref linkend="LazyVals" /> (<xref
-            linkend="FunctionalProgramming" />)</para></entry>
+            <entry><para><xref linkend="LazyVals" /></para></entry>
           </row>
 
           <row>
@@ -2474,8 +2477,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Start a pattern matching clause.</para></entry>
 
-            <entry><para><xref linkend="PatternMatching" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="PatternMatching" /></para></entry>
           </row>
 
           <row>
@@ -2483,8 +2485,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Create a new instance of a class.</para></entry>
 
-            <entry><para><xref linkend="ClassBasics" /> (<xref
-            linkend="BasicObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="ClassBasics" /></para></entry>
           </row>
 
           <row>
@@ -2493,8 +2494,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Value of a reference variable that has not been
             assigned a value.</para></entry>
 
-            <entry><para><xref linkend="ScalaTypeHierarchy" /> (<xref
-            linkend="ScalaObjectSystem" />)</para></entry>
+            <entry><para><xref linkend="ScalaTypeHierarchy" /></para></entry>
           </row>
 
           <row>
@@ -2504,8 +2504,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <literal>class</literal> with only one <phrase
             role="keep-together">instance</phrase>.</para></entry>
 
-            <entry><para><xref linkend="ClassesAndObjects" /> (<xref
-            linkend="BasicObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="ClassesAndObjects" /></para></entry>
           </row>
 
           <row>
@@ -2515,8 +2514,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             class or trait, as long as the original is not marked
             <literal>final</literal>.</para></entry>
 
-            <entry><para><xref linkend="OverridingMembers" /> (<xref
-            linkend="AdvancedObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="OverridingMembers" /></para></entry>
           </row>
 
           <row>
@@ -2524,8 +2522,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Start a package scope declaration.</para></entry>
 
-            <entry><para><xref linkend="Packages" /> (<xref
-            linkend="TypeLessDoMore" />)</para></entry>
+            <entry><para><xref linkend="Packages" /></para></entry>
           </row>
 
           <row>
@@ -2533,8 +2530,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Restrict visibility of a declaration.</para></entry>
 
-            <entry><para><xref linkend="VisibilityRules" /> (<xref
-            linkend="BasicObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="VisibilityRules" /></para></entry>
           </row>
 
           <row>
@@ -2542,8 +2538,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Restrict visibility of a declaration.</para></entry>
 
-            <entry><para><xref linkend="VisibilityRules" /> (<xref
-            linkend="BasicObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="VisibilityRules" /></para></entry>
           </row>
 
           <row>
@@ -2552,8 +2547,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Deprecated. Was used for <emphasis>self
             typing</emphasis>.</para></entry>
 
-            <entry><para><xref linkend="ScalaTypeHierarchy" /> (<xref
-            linkend="ScalaObjectSystem" />)</para></entry>
+            <entry><para><xref linkend="ScalaTypeHierarchy" /></para></entry>
           </row>
 
           <row>
@@ -2561,19 +2555,17 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Return from a function.</para></entry>
 
-            <entry><para><xref linkend="ATasteOfScala" /> (<xref
-            linkend="IntroducingScala" />)</para></entry>
+            <entry><para><xref linkend="ATasteOfScala" /></para></entry>
           </row>
 
           <row>
             <entry><para><literal>sealed</literal></para></entry>
 
             <entry><para>Applied to a parent class to require all directly
-            derived classes to be declared in the same source
-            file.</para></entry>
+            derived <phrase role="keep-together">classes to be
+            declared</phrase> in the same source file.</para></entry>
 
-            <entry><para><xref linkend="CaseClasses" /> (<xref
-            linkend="AdvancedObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="CaseClasses" /></para></entry>
           </row>
 
           <row>
@@ -2582,8 +2574,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Analogous to <literal>this</literal>, but binds to
             the parent type.</para></entry>
 
-            <entry><para><xref linkend="OverridingMethods" /> (<xref
-            linkend="AdvancedObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="OverridingMethods" /></para></entry>
           </row>
 
           <row>
@@ -2592,8 +2583,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>How an object refers to itself. The method name for
             <emphasis>auxiliary constructors</emphasis>.</para></entry>
 
-            <entry><para><xref linkend="ClassBasics" /> (<xref
-            linkend="BasicObjectOrientedProgramming" />)</para></entry>
+            <entry><para><xref linkend="ClassBasics" /></para></entry>
           </row>
 
           <row>
@@ -2601,8 +2591,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Throw an exception.</para></entry>
 
-            <entry><para><xref linkend="TryCatchFinally" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="TryCatchFinally" /></para></entry>
           </row>
 
           <row>
@@ -2621,8 +2610,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Start a block that may throw an
             exception.</para></entry>
 
-            <entry><para><xref linkend="TryCatchFinally" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="TryCatchFinally" /></para></entry>
           </row>
 
           <row>
@@ -2631,8 +2619,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>Boolean</literal>
             <emphasis>true</emphasis>.</para></entry>
 
-            <entry><para><xref linkend="ScalaTypeHierarchy" /> (<xref
-            linkend="ScalaObjectSystem" />)</para></entry>
+            <entry><para><xref linkend="ScalaTypeHierarchy" /></para></entry>
           </row>
 
           <row>
@@ -2641,8 +2628,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Start a <emphasis>type</emphasis>
             declaration.</para></entry>
 
-            <entry><para><xref linkend="AbstractTypesAndParameterizedTypes" />
-            (<xref linkend="TypeLessDoMore" />)</para></entry>
+            <entry><para><xref
+            linkend="AbstractTypesAndParameterizedTypes" /></para></entry>
           </row>
 
           <row>
@@ -2651,18 +2638,18 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Start a read-only “variable”
             declaration.</para></entry>
 
-            <entry><para><xref linkend="VariableDeclarationsAndDefinitions" />
-            (<xref linkend="TypeLessDoMore" />)</para></entry>
+            <entry><para><xref
+            linkend="VariableDeclarationsAndDefinitions" /></para></entry>
           </row>
 
           <row>
             <entry><para><literal>var</literal></para></entry>
 
-            <entry><para>Start a read/write variable
+            <entry><para>Start a read-write variable
             declaration.</para></entry>
 
-            <entry><para><xref linkend="VariableDeclarationsAndDefinitions" />
-            (<xref linkend="TypeLessDoMore" />)</para></entry>
+            <entry><para><xref
+            linkend="VariableDeclarationsAndDefinitions" /></para></entry>
           </row>
 
           <row>
@@ -2670,8 +2657,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Start a <literal>while</literal> loop.</para></entry>
 
-            <entry><para><xref linkend="OtherLoopingConstructs" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref
+            linkend="OtherLoopingConstructs" /></para></entry>
           </row>
 
           <row>
@@ -2686,12 +2673,10 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           <row>
             <entry><para><literal>yield</literal></para></entry>
 
-            <entry><para>Return an element in a <emphasis>for
-            comprehension</emphasis> that becomes part of a
-            sequence.</para></entry>
+            <entry><para>Return an element in a <literal>for</literal>
+            comprehension that becomes part of a sequence.</para></entry>
 
-            <entry><para><xref linkend="Yielding" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="Yielding" /></para></entry>
           </row>
 
           <row>
@@ -2709,8 +2694,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Separator between identifiers and type
             annotations.</para></entry>
 
-            <entry><para><xref linkend="ATasteOfScala" /> (<xref
-            linkend="IntroducingScala" />)</para></entry>
+            <entry><para><xref linkend="ATasteOfScala" /></para></entry>
           </row>
 
           <row>
@@ -2718,8 +2702,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Assignment.</para></entry>
 
-            <entry><para><xref linkend="ATasteOfScala" /> (<xref
-            linkend="IntroducingScala" />)</para></entry>
+            <entry><para><xref linkend="ATasteOfScala" /></para></entry>
           </row>
 
           <row>
@@ -2728,18 +2711,17 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Used in <emphasis>function literals</emphasis> to
             separate the argument list from the function body.</para></entry>
 
-            <entry><para><xref linkend="FunctionLiteralsAndClosures" /> (<xref
-            linkend="FunctionalProgramming" />)</para></entry>
+            <entry><para><xref
+            linkend="FunctionLiteralsAndClosures" /></para></entry>
           </row>
 
           <row>
             <entry><para><literal>&lt;-</literal></para></entry>
 
-            <entry><para>Used in <emphasis>for comprehensions</emphasis> in
+            <entry><para>Used in <literal>for</literal> comprehensions in
             <emphasis>generator</emphasis> expressions.</para></entry>
 
-            <entry><para><xref linkend="ForComprehensions" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="ForComprehensions" /></para></entry>
           </row>
 
           <row>
@@ -2750,8 +2732,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             role="keep-together">constrain</phrase> the allowed
             types.</para></entry>
 
-            <entry><para><xref linkend="TypeBounds" /> (<xref
-            linkend="ScalasTypeSystem" />)</para></entry>
+            <entry><para><xref linkend="TypeBounds" /></para></entry>
           </row>
 
           <row>
@@ -2761,8 +2742,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <emphasis>abstract type</emphasis> “view bounds” <phrase
             role="keep-together">declarations</phrase>.</para></entry>
 
-            <entry><para><xref linkend="TypeBounds" /> (<xref
-            linkend="ScalasTypeSystem" />)</para></entry>
+            <entry><para><xref linkend="TypeBounds" /></para></entry>
           </row>
 
           <row>
@@ -2773,8 +2753,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             role="keep-together">constrain</phrase> the allowed
             types.</para></entry>
 
-            <entry><para><xref linkend="TypeBounds" /> (<xref
-            linkend="ScalasTypeSystem" />)</para></entry>
+            <entry><para><xref linkend="TypeBounds" /></para></entry>
           </row>
 
           <row>
@@ -2783,8 +2762,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Used in <emphasis>type
             projections.</emphasis></para></entry>
 
-            <entry><para><xref linkend="PathDependentTypes" /> (<xref
-            linkend="ScalasTypeSystem" />)</para></entry>
+            <entry><para><xref linkend="PathDependentTypes" /></para></entry>
           </row>
 
           <row>
@@ -2793,33 +2771,28 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para>Marks an
             <emphasis>annotation.</emphasis></para></entry>
 
-            <entry><para><xref linkend="Annotations" /> (<xref
-            linkend="ApplicationDesign" />)</para></entry>
+            <entry><para><xref linkend="Annotations" /></para></entry>
           </row>
 
           <row>
             <entry><para><literal>⇒</literal></para></entry>
 
-            <entry><para>(Unicode \u21D2.) Same as =&gt;.</para></entry>
+            <entry><para>(Unicode \u21D2) Same as =&gt;.</para></entry>
 
-            <entry><para><xref linkend="FunctionLiteralsAndClosures" /> (<xref
-            linkend="FunctionalProgramming" />)</para></entry>
+            <entry><para><xref
+            linkend="FunctionLiteralsAndClosures" /></para></entry>
           </row>
 
           <row>
             <entry><para><literal>←</literal></para></entry>
 
-            <entry><para>(Unicode \u2190.) Same as &lt;-.</para></entry>
+            <entry><para>(Unicode \u2190) Same as &lt;-.</para></entry>
 
-            <entry><para><xref linkend="ForComprehensions" /> (<xref
-            linkend="RoundingOutTheEssentials" />)</para></entry>
+            <entry><para><xref linkend="ForComprehensions" /></para></entry>
           </row>
         </tbody>
       </tgroup>
     </table>
-
-    <?dbfo-need height=”2in”
-?>
 
     <para id="para_no_break_and_continue">Notice that <literal>break</literal>
     and <literal>continue</literal> are not listed. These control keywords

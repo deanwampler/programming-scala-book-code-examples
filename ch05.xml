@@ -136,7 +136,7 @@ object Foo {
     <para id="para_as_we_discussed_in_variabled">As we discussed in <xref
     linkend="VariableDeclarationsAndDefinitions" />, read-only (“value”)
     fields are declared using the <literal>val</literal> keyword, and
-    read/write fields are declared using the <literal>var</literal> <phrase
+    read-write fields are declared using the <literal>var</literal> <phrase
     role="keep-together">keyword</phrase>.</para>
 
     <para id="para_scala_also_allows__types__to_b">Scala also allows types to
@@ -326,15 +326,14 @@ class ButtonWithCallbacks(val label: String,
       </indexterm></para>
 
     <note id="para_note_scala_doesn_t_follow_the">
-      <para>For you Java programmers, Scala doesn’t follow the
-      <emphasis>JavaBeans</emphasis> <link linkend="JavaBeansSpec"
-      xrefstyle="select:nopage">[JavaBeansSpec]</link> convention that field
-      reader and writer methods begin with <literal>get</literal> and
-      <literal>set</literal>, respectively, followed by the field name with
-      the first character capitalized. We’ll see why when we discuss the
-      <emphasis>Uniform Access Principle</emphasis> in <xref
-      linkend="UniformAccessPrinciple" />. However, you can get
-      JavaBeans-style <emphasis>getters</emphasis> and
+      <para>For you Java programmers, Scala doesn’t follow the JavaBeans <link
+      linkend="JavaBeansSpec" xrefstyle="select:nopage">[JavaBeansSpec]</link>
+      convention that field reader and writer methods begin with
+      <literal>get</literal> and <literal>set</literal>, respectively,
+      followed by the field name with the first character capitalized. We’ll
+      see why when we discuss the <emphasis>Uniform Access
+      Principle</emphasis> in <xref linkend="UniformAccessPrinciple" />.
+      However, you can get JavaBeans-style <emphasis>getters</emphasis> and
       <emphasis>setters</emphasis> when you need them using the
       <literal>scala.reflect.BeanProperty</literal> annotation, as we’ll
       discuss in <xref linkend="JavaBeanProperties" />.</para>
@@ -700,7 +699,7 @@ abstract class Widget {
       <para>You can also use an access modifier keyword on the primary
       constructor of a class. Put it after the type name and type parameters,
       if any, and before the argument list, as in this example: <literal>class
-      Restricted[+A] private (name: String) {...}</literal></para>
+      Restricted[+A] pri⁠vate (name: String) {...}</literal></para>
     </note>
 
     <para
@@ -946,7 +945,8 @@ package scopeB {
       <literal>nestedField</literal> in
       <literal>protectedClass1.nested</literal>. Also,
       <literal>ProtectedClass3</literal> can’t access protected members of the
-      <literal>ProtectedClass1</literal> instance it uses.</para>
+      <literal>ProtectedClass1</literal> <phrase
+      role="keep-together">instance</phrase> it uses.</para>
 
       <para id="para_finally_because_protectedcla">Finally, because
       <literal>ProtectedClass4</literal> is declared
@@ -1396,10 +1396,10 @@ package scopeA {
       <literal>private[PrivateClass1]</literal> member is visible to other
       instances, so the <literal>equalFields</literal> method now parses.
       Hence, <literal>private[T]</literal> is not as restrictive as
-      <literal>private[this]</literal>. Note that
-      <literal>PrivateClass1</literal> can’t see
+      <literal>private[this]</literal>. Note <phrase role="keep-together">that
+      <literal>PrivateClass1</literal> can’t</phrase> see
       <literal>Nested.nestedField</literal> because that field is declared
-      <literal>private[Nes⁠ted]</literal>.</para>
+      <literal role="keep-together">private[Nes⁠ted]</literal>.</para>
 
       <tip id="para_tip_when_members_of_t_are_d">
         <para>When members of <literal>T</literal> are declared
@@ -1620,8 +1620,7 @@ three errors found</screen>
 
     <para id="para_in_the_next_chapter_we_round_">In the next chapter we’ll
     explore Scala’s more advanced OOP features, including overriding,
-    <emphasis>companion objects</emphasis>, <emphasis>case classes</emphasis>,
-    and rules for equality between objects.<indexterm
-    class="endofrange"></indexterm></para>
+    companion objects, case classes, and rules for equality between
+    objects.<indexterm class="endofrange"></indexterm></para>
   </sect1>
 </chapter>

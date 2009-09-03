@@ -84,7 +84,7 @@
     <authorblurb>
       <para><emphasis role="strong">Dean Wampler</emphasis> is a consultant,
       trainer, and mentor with Object Mentor, Inc. He specializes in Scala,
-      Java, and Ruby. He works with clients on application design strategies
+      Java, and Ruby, and works with clients on application design strategies
       that combine object-oriented programming, functional programming, and
       <phrase role="keep-together">aspect-</phrase><phrase
       role="keep-together">oriented</phrase> programming. He also consults on
@@ -101,13 +101,13 @@
 
     <authorblurb>
       <para><emphasis role="strong">Alex Payne</emphasis> is Platform Lead at
-      Twitter, where he develops services that enable programmers to build
-      atop the popular social messaging service. Alex has previously built web
-      applications for political campaigns, non-profits, and early-stage
-      startups, and supported information security efforts for military and
-      intelligence customers. In his free time, Alex studies, speaks, and
-      writes about the history, present use, and evolution of programming
-      languages, as well as minimalist art and design.</para>
+      Twitter, Inc., where he develops services that enable programmers to
+      build atop the popular social messaging service. Alex has previously
+      built web applications for political campaigns, non-profits, and
+      early-stage startups, and supported information security efforts for
+      military and intelligence customers. In his free time, Alex studies,
+      speaks, and writes about the history, present use, and evolution of
+      programming languages, as well as minimalist art and design.</para>
     </authorblurb>
   </author>
 

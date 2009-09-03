@@ -111,8 +111,8 @@
   </variablelist>
 
   <para id="para_when_a_dsl_is_appropriate_for_">However, when a DSL is
-  appropriate for an application, e.g., when it would be used frequently to
-  implement and change functionality, a well-designed DSL can be a powerful
+  appropriate for an application—e.g., when it would be used frequently to
+  implement and change functionality—a well-designed DSL can be a powerful
   tool for building flexible and robust applications.</para>
 
   <para id="para_dsl_two_kinds">From the implementation point of view, DSLs
@@ -322,7 +322,7 @@ object Type2Money {
 
     <para id="para_the_deductions_are_calculated_">Deductions are calculated
     using four helper methods in
-    <literal>payroll.api.DeductionsCal⁠cu⁠lator</literal>:</para>
+    <literal>payroll.api.Deduction⁠sCal⁠cu⁠lator</literal>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/api/deductions-calc.scala
 
@@ -527,6 +527,9 @@ List(buck, jane).foreach { employee =&gt;
 
           <tertiary>implicit conversions and user-defined types</tertiary>
         </indexterm></para>
+
+      <?dbfo-need height=”1in”
+?>
 
       <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/duration.scala
 
@@ -896,13 +899,13 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
           <para>Call to
           <literal>rules.double2DeductionsBuilderDeductionHelper(25.)</literal>
           to create a new
-          <literal>DeductionsBuilderDeductionHelper(25.)</literal>.</para>
+          <literal>DeductionsBuilderDeductionHelper(25.)</literal></para>
         </listitem>
 
         <listitem>
           <para>Call to the helper’s <literal>percent_of(gross)</literal>
           method, where <literal>gross</literal> is a
-          <literal>DeductionsBuilder</literal>.</para>
+          <literal>DeductionsBuilder</literal></para>
         </listitem>
 
         <listitem>
@@ -1200,11 +1203,13 @@ doubleNumber = ...</screen>
       <emphasis>nonterminal</emphasis> appears on the lefthand side of the
       equals sign. The righthand side consists of terminals (e.g., the literal
       strings and characters we just mentioned) that require no further
-      parsing, other nonterminals (including possibly a recursive reference to
-      the lefthand side nonterminal), and operators that express relationships
-      between the items. Notice that the grammar forms have a hierarchical
-      <phrase role="keep-together">decomposition</phrase>; although not a
-      directed acyclic graph, as generally speaking, these <phrase
+      parsing, other nonterminals (including possibly a <phrase
+      role="keep-together">recursive</phrase> <phrase
+      role="keep-together">reference</phrase> to the lefthand side
+      nonterminal), and operators that express relationships between the
+      items. Notice that the grammar forms have a hierarchical <phrase
+      role="keep-together">decomposition</phrase>, although not a directed
+      acyclic graph, as generally speaking these <phrase
       role="keep-together">grammars</phrase> can have cycles.<indexterm>
           <primary>; (semicolon)</primary>
 
@@ -1263,9 +1268,9 @@ doubleNumber = ...</screen>
 
       <para id="para_finally_if_we_had_optional_te">Finally, if we had
       optional items in our grammar, we would enclose them in square brackets,
-      <literal>[ ... ]</literal>. There are other kinds of composition
-      operators possible (and <phrase role="keep-together">supported</phrase>
-      in the Scala library), a few of which we’ll discuss. See the <link
+      <literal>[...]</literal>. There are other kinds of composition operators
+      possible (and <phrase role="keep-together">supported</phrase> in the
+      Scala library), a few of which we’ll discuss. See the <link
       linkend="ScalaAPI2008" role="keep-together"
       xrefstyle="select:nopage">[ScalaAPI2008]</link> entry for
       <literal>Parsers</literal> for more details.<indexterm
@@ -1529,11 +1534,11 @@ p.parseAll(p.paycheck, input) match {
       <literal>Success</literal> is defined in the <literal>Parsers</literal>
       trait, the actual type of the instance is dependent on the
       <literal>PayrollParserCombinatorsV1</literal> instance we created. In
-      other words, if we had another parser, say <literal>p2</literal> of type
-      <literal>MyOtherParser</literal>, then
-      <literal>p2.Success[String]</literal> would be different from
-      <literal>p.Success[String]</literal> and one could not be substituted
-      for the other.<indexterm>
+      other words, if we had another parser, <phrase role="keep-together">say
+      <literal>p2</literal> </phrase>of type <literal>MyOtherParser</literal>,
+      then <literal>p2.Success[String]</literal> would be different from
+      <literal role="keep-together">p.Success[String]</literal> and one could
+      not be substituted for the other.<indexterm>
           <primary>path-dependent types</primary>
 
           <secondary>p.Success case class (example)</secondary>
@@ -1724,7 +1729,7 @@ scala&gt;</screen>
       in the string <literal>("Buck Trends"∼(2∼weeks))</literal>.</para>
 
       <para id="para_finally_at_the_outer_level_of">Finally, at the outermost
-      level, we have
+      level, we have the following:
       <literal>p.∼[p.∼[String,p.∼[String,String]],List[String]]</literal>.
       We’ve already discussed everything up to the the last
       <literal>List[String]</literal>, which comes from the
@@ -1738,13 +1743,14 @@ scala&gt;</screen>
       There are none in our example, so we get an empty list for which
       <literal>toString</literal> returns <literal>List()</literal>.
       Therefore, calling <literal>p.∼.toString</literal> on our outermost
-      type, the one that parameterizes <literal>p.Parser</literal>, returns
-      the string <literal>"Buck Trends"∼(2∼weeks∼List())</literal>. We’re
-      done!</para>
+      type, the one that parameterizes <literal>p.Parser</literal>, <phrase
+      role="keep-together">returns</phrase> the string <literal>"Buck
+      Trends"∼(2∼weeks∼List())</literal>. We’re done!</para>
 
       <para id="para_well_not_quite_we_re_still_n">Well, not quite. We’re
-      still not calculating an actual paycheck for ol’ Buck. Let’s complete
-      our implementation.<indexterm class="endofrange"
+      still not calculating an actual paycheck for ol’ Buck. Let’s <phrase
+      role="keep-together">complete</phrase> our implementation.<indexterm
+      class="endofrange"
       startref="ch11_parsercombScala"></indexterm><indexterm
       class="endofrange" startref="ch11_DSLsparser"></indexterm></para>
     </sect2>
@@ -2087,7 +2093,7 @@ object PayrollParserCombinatorsSpec
 }</programlisting>
 
       <para id="para_if_you_work_out_what_the_resul">If you work out what the
-      results should be from the the input strings, you’ll see that the
+      results should be from the input strings, you’ll see that the
       implementation correctly calculates the paycheck.</para>
 
       <para id="para_besides_the_many_small_details">Besides the many small
@@ -2119,7 +2125,8 @@ object PayrollParserCombinatorsSpec
       non-trivial DSL can be a challenge to implement and debug. For the
       examples in this chapter, the parser combinators implementation was
       easier to design and write than the implementation for the internal DSL.
-      However, we found that debugging the internal DSL was easier.<indexterm>
+      However, we found that debugging the <phrase
+      role="keep-together">internal</phrase> DSL was easier.<indexterm>
           <primary>external DSLs</primary>
 
           <secondary>internal DSLs versus</secondary>
@@ -2132,6 +2139,9 @@ object PayrollParserCombinatorsSpec
 
           <secondary>internal versus external</secondary>
         </indexterm></para>
+
+      <?dbfo-need height=”2in”
+?>
 
       <para id="para_another_problem_you_must_consi">You must also consider
       how robust the parser must be when handling invalid input. Depending on
@@ -2161,9 +2171,6 @@ object PayrollParserCombinatorsSpec
         </indexterm></para>
     </sect2>
   </sect1>
-
-  <?dbfo-need height=”2in”
-?>
 
   <sect1 id="_recap_and_what_s_next_3">
     <title>Recap and What’s Next</title>
