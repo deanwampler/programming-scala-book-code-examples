@@ -1540,12 +1540,12 @@ p.parseAll(p.paycheck, input) match {
         </indexterm></para>
 
       <para id="para_the_success_object_contains_">The
-      <literal>Success</literal> instance contains two fields: the result of
-      the parse, an instance of type <literal>T</literal> (assigned to
-      <literal>r</literal> in the <literal>case</literal> clause); and the
-      remaining input string to parse, which will be empty after a successful
-      parse (we will have parsed the whole string at this point). This string
-      is assigned to <literal>_</literal>.</para>
+      <literal>Success</literal> instance contains two fields. The first is
+      the result of the parse, an instance of type <literal>T</literal>
+      (assigned to <literal>r</literal> in the <literal>case</literal>
+      clause). The second is the remaining input string to parse, which will
+      be empty after a successful parse (we will have parsed the whole string
+      at this point). This string is assigned to <literal>_</literal>.</para>
 
       <para id="para_if_the_parse_fails_the_return">If the parse fails, the
       returned instance is either a <literal>p.Failure</literal> or

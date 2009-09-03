@@ -489,9 +489,8 @@ Finished in 0 second, 10 ms
       <programlisting linenumbering="unnumbered">assertEquals(3, buttonObserver.count)</programlisting>
 
       <note id="para_note_the__specs__library_see">
-        <para>The <emphasis>Specs</emphasis> library (see <xref
-        linkend="ScalaSpecs" />) and the <emphasis>ScalaTest</emphasis>
-        library (see <xref linkend="ScalaTest" />) both support
+        <para>The Specs library (see <xref linkend="ScalaSpecs" />) and the
+        ScalaTest library (see <xref linkend="ScalaTest" />) both support
         <emphasis>Behavior-Driven Development</emphasis> (<link linkend="BDD"
         xrefstyle="select:nopage">[BDD]</link>), a style of
         <emphasis>Test-Driven Development</emphasis> (<link linkend="TDD"
@@ -506,9 +505,8 @@ Finished in 0 second, 10 ms
       the instance.</para>
 
       <para id="para_the_next_example_shows_a_revis">The next example shows a
-      revised <emphasis>Specs</emphasis> file that instantiates a
-      <literal>Button</literal> with <literal>Subject</literal> mixed in as
-      part of the declaration:</para>
+      revised Specs file that instantiates a <literal>Button</literal> with
+      <literal>Subject</literal> mixed in as part of the declaration:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-observer-anon-spec.scala
 

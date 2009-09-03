@@ -1113,8 +1113,8 @@ of type scopeA.PrivateClass4
 
       <para id="para_let_s_begin_by_considering_the">Let’s begin by
       considering the only differences in behavior between scoped private and
-      scoped public—how they behave under inheritance when members have these
-      scopes:</para>
+      scoped protected—how they behave under inheritance when members have
+      these scopes:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/scope-inheritance-wont-compile.scala
 // WON'T COMPILE

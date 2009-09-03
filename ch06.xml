@@ -437,8 +437,8 @@ println("c2b.value = "+c2b.value+", inverse = "+c2b.inverse)</programlisting>
 
       <para id="para_while_it_appears_that_we_are_c">While it appears that we
       are creating an instance of the trait with <literal>new AbstractT2
-      ...</literal>, we are actually using an anonymous inner class that
-      implicitly extends the trait. This script shows what happens when
+      ...</literal>, we are actually using an anonymous class that implicitly
+      extends the trait. This script shows what happens when
       <literal>inverse</literal> is calculated:</para>
 
       <screen>In AbstractT2:
@@ -521,6 +521,9 @@ c2c.value = 10, inverse = 0.1</screen>
       <literal>VetoableClicks</literal> example, here is the modified
       <literal>VetoableClicks</literal> trait that uses a public
       <literal>var</literal> for <literal>maxAllowed</literal>:</para>
+
+      <?dbfo-need height=”1in”
+?>
 
       <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/vetoable-clicks.scala
 
@@ -1157,8 +1160,8 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
     <para id="para_we_mentioned_companion_objects">We mentioned companion
     objects briefly in <xref linkend="IntroducingScala" />, and we discussed
     the <literal>Pair</literal> example from the Scala library in <xref
-    linkend="TypeLessDoMore" /> and the last chapter. Let’s fill in the
-    remaining details now.</para>
+    linkend="TypeLessDoMore" />. Let’s fill in the remaining details
+    now.</para>
 
     <para id="para_first_recall_that_if_a_class">First, recall that if a
     <literal>class</literal> (or a <literal>type</literal> referring to a

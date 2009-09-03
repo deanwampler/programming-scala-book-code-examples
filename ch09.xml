@@ -84,7 +84,7 @@
       to their actions. This inherent eschewing of sequentiality, coupled with
       independence from shared global state, allow Actors to do their work in
       parallel. As we’ll see later on, the judicious use of immutable data
-      fits the Actor model ideally, and further aides in safe, comprehensible
+      fits the Actor model ideally, and further aids in safe, comprehensible
       concurrent programming.</para>
 
       <para id="para_enough_theory_let_s_see_actor">Enough theory. Let’s see

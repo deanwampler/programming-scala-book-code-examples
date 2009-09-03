@@ -350,7 +350,7 @@ object OptionalUserProfileInfo {
   val UnknownWebSite = ""
 }
 
-case class OptionalUserProfileInfo(
+class OptionalUserProfileInfo(
   location: String = OptionalUserProfileInfo.UnknownLocation,
   age: Int         = OptionalUserProfileInfo.UnknownAge,
   webSite: String  = OptionalUserProfileInfo.UnknownWebSite)
@@ -396,8 +396,7 @@ println( new OptionalUserProfileInfo(age = 29, location="Earth") )</programlisti
 
       <para id="para_we_ll_see_another_useful_examp">We’ll see another useful
       example of named and default arguments when we discuss <emphasis>case
-      classes</emphasis> in more detail in <xref
-      linkend="CaseClasses" />.</para>
+      classes</emphasis> in <xref linkend="CaseClasses" />.</para>
     </sect2>
 
     <sect2 id="NestingMethodDefinitions">
@@ -758,15 +757,15 @@ println( joiner(List("Programming", "Scala")) )</programlisting>
     following error:</para>
 
     <screen>... 9: error: overloaded method joiner needs result type
-    def joiner(strings: String*) = joiner(strings.toList)
-                                    ^</screen>
+    def joiner(strings: List[String]) = joiner(strings, "")
+                                         ^</screen>
 
     <para id="para_the_second_joiner_method_calls_the_first">Since the
     <emphasis>second</emphasis> <literal>joiner</literal> method calls the
     first, it requires an explicit <literal>String</literal> return type. It
     should look like this:</para>
 
-    <programlisting linenumbering="unnumbered">    def joiner(strings: String*): String = joiner(strings.toList)</programlisting>
+    <programlisting linenumbering="unnumbered">    def joiner(strings: List[String]): String = joiner(strings, " ")</programlisting>
 
     <para id="para_note_that_any_is_the_root_of">The final scenario can be
     subtle, when a more general return type is inferred than what you
@@ -1044,7 +1043,7 @@ scala&gt; println(double(2))
       <title>Integer Literals</title>
 
       <para id="para_integer_literals_can_be_expres">Integer literals can be
-      expresses in decimal, hexadecimal, or octal. The details are summarized
+      expressed in decimal, hexadecimal, or octal. The details are summarized
       in <xref linkend="integer-literals-table" />.<indexterm>
           <primary>octal integer literals</primary>
         </indexterm><indexterm>
@@ -2050,8 +2049,8 @@ writeAboutBigInteger()</programlisting>
 
       <para id="para_there_s_one_other_important_th">There’s one other
       important thing to know about imports: they are
-      <emphasis>relative</emphasis>. The following imports are all the
-      same:<indexterm>
+      <emphasis>relative</emphasis>. Note the comments for the following
+      imports:<indexterm>
           <primary>import statements</primary>
 
           <secondary>relative path used in</secondary>
@@ -2059,15 +2058,17 @@ writeAboutBigInteger()</programlisting>
           <primary>relative imports</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">import scala.collection.mutable._
-import collection.mutable._          // Since "scala" is already imported
-import _root_.scala.collection.mutable._ // full path from real "root"</programlisting>
+      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/relative-imports.scala
+import scala.collection.mutable._
+import collection.immutable._         // Since "scala" is already imported
+import _root_.scala.collection.jcl._  // full path from real "root"
+package scala.actors {
+  import remote._                     // We're in the scope of "scala.actors"
+}</programlisting>
 
-      <para id="para_this_is_useful_for_importing_f">This is useful for
-      importing from related packages, as in the following example:</para>
-
-      <programlisting linenumbering="unnumbered">import collection._   // Everything from the "collection" package
-import mutable._      // Everything from the "collection.mutable" package</programlisting>
+      <para id="para_this_is_useful_for_importing_f">Note that the last import
+      statement nested in the <literal>scala.actor</literal> package scope is
+      relative to that scope.</para>
 
       <para id="para_the_scalawiki_has_other_ex">The <link linkend="ScalaWiki"
       xrefstyle="select:nopage">[ScalaWiki]</link> has other examples at

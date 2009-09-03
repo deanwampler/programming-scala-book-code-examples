@@ -1038,9 +1038,9 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_the_upper_method_definition_">The <literal>upper</literal>
     method definition begins on the second line with the
-    <literal>def</literal> keyword, followed by an argument list, the return
-    type of the method, an equals sign <literal>=</literal>, and then the
-    method body.<indexterm>
+    <literal>def</literal> keyword, followed by the method name and an
+    argument list, the return type of the method, an equals sign
+    (<literal>=</literal>), and then the method body.<indexterm>
         <primary>methods</primary>
 
         <secondary>defining</secondary>
@@ -1109,7 +1109,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
 
     <para id="para_the_body_of_the_upper_method">The body of the
     <literal>upper</literal> method comes after the equals sign
-    <literal>=</literal>. Why an equals sign? Why not just curly braces
+    (<literal>=</literal>). Why an equals sign? Why not just curly braces
     <literal>{...}</literal>, like in Java? Because semicolons, function
     return types, method arguments lists, and even the curly braces are
     sometimes omitted, using an equals sign prevents several possible parsing
@@ -1423,7 +1423,7 @@ object Upper {
     <para id="para_in_the_actor_model_of_concurre">In the Actor model of
     concurrency (<link linkend="Agha1987"
     xrefstyle="select:nopage">[Agha1987]</link>), independent software
-    entities called <emphasis>actors</emphasis> share no state information
+    entities called <emphasis>Actors</emphasis> share no state information
     with each other. Instead, they communicate by <phrase
     role="keep-together">exchanging</phrase> messages. By eliminating the need
     to synchronize access to shared, mutable state, it is far easier to write
@@ -1435,11 +1435,11 @@ object Upper {
       </indexterm></para>
 
     <para id="para_in_this_example_instances_in_a_">In this example, instances
-    in a geometric <literal>Shape</literal> hierarchy are sent to an actor for
+    in a geometric <literal>Shape</literal> hierarchy are sent to an Actor for
     drawing on a display. Imagine a scenario where a rendering “farm”
     generates scenes in an animation. As the rendering of a scene is
     completed, the shape “primitives” that are part of the scene are sent to
-    an actor for a display subsystem.</para>
+    an Actor for a display subsystem.</para>
 
     <para id="para_to_begin_we_define_a_shape_">To begin, we define a
     <literal>Shape</literal> class hierarchy:</para>
@@ -1597,7 +1597,7 @@ package shapes {
     </note>
 
     <para id="para_now_that_we_have_defined_our_s">Now that we have defined
-    our shapes types, let’s return to actors. We define an
+    our shapes types, let’s return to Actors. We define an
     <literal>Actor</literal> that receives “messages” that are shapes to
     draw:</para>
 
@@ -1620,7 +1620,7 @@ package shapes {
   }
 }</programlisting>
 
-    <para id="para_the_actor_is_declared_to_be_pa">The actor is declared to be
+    <para id="para_the_actor_is_declared_to_be_pa">The Actor is declared to be
     part of the <literal>shapes</literal> package. Next, we have two import
     <phrase role="keep-together">statements</phrase>.<indexterm>
         <primary>import statements</primary>
@@ -1654,13 +1654,13 @@ package shapes {
         <secondary>Actor class and object</secondary>
       </indexterm></para>
 
-    <para id="para_our_actor_class_definition_s">Our actor class definition,
+    <para id="para_our_actor_class_definition_s">Our Actor class definition,
     <literal>ShapeDrawingActor</literal>, is an <literal>object</literal> that
     extends <literal>Actor</literal> (the type, not the
     <literal>object</literal>). The <literal>act</literal> method is
-    overridden to do the unique work of the actor. Because
+    overridden to do the unique work of the Actor. Because
     <literal>act</literal> is an abstract method, we don’t need to explicitly
-    override it with the <literal>override</literal> keyword. Our actor loops
+    override it with the <literal>override</literal> keyword. Our Actor loops
     indefinitely, waiting for incoming messages.</para>
 
     <para id="para_during_each_pass_in_the_loop_">During each pass in the
@@ -1703,13 +1703,13 @@ package shapes {
 
     <para id="para_if_the_message_is_not_a_shape">If the message is not a
     <literal>Shape</literal>, the second <literal>case</literal> is tried. If
-    the message is the string <literal>"exit"</literal>, the actor prints a
+    the message is the string <literal>"exit"</literal>, the Actor prints a
     message and terminates execution. Actors should usually have a way to exit
     gracefully!</para>
 
     <para id="para_the_last_case_handles_any_ot">The last
     <literal>case</literal> clause handles any other message instance, thereby
-    functioning as the <emphasis>default</emphasis> case. The actor reports an
+    functioning as the <emphasis>default</emphasis> case. The Actor reports an
     error and then drops the message. <literal>Any</literal> is the parent of
     all types in the Scala type hierarchy, like <literal>Object</literal> is
     the root type in Java and other languages. Hence, this case clause will
@@ -1750,7 +1750,7 @@ package shapes {
     </sidebar>
 
     <para id="para_finally_here_is_a_script_that">Finally, here is a script
-    that uses the <literal>ShapeDrawingActor</literal> actor:</para>
+    that uses the <literal>ShapeDrawingActor</literal> Actor:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes-actor-script.scala
 
@@ -1771,26 +1771,26 @@ ShapeDrawingActor ! "exit"</programlisting>
     <literal>shapes</literal> package are imported.</para>
 
     <para id="para_the_shapedrawingactor_actor_">The
-    <literal>ShapeDrawingActor</literal> actor is started. By default, it runs
+    <literal>ShapeDrawingActor</literal> Actor is started. By default, it runs
     in its own thread (there are alternatives we will discuss in <xref
     linkend="Concurrency" />), waiting for messages.</para>
 
     <para id="para_five_messages_are_sent_to_the_">Five messages are sent to
-    the actor, using the syntax <literal>actor ! message</literal>. The first
-    message sends a <literal>Circle</literal> instance. The actor “draws” the
+    the Actor, using the syntax <literal>actor ! message</literal>. The first
+    message sends a <literal>Circle</literal> instance. The Actor “draws” the
     circle. The second message sends a <literal>Rectangle</literal> message.
-    The actor “draws” the rectangle. The third message does the same thing for
+    The Actor “draws” the rectangle. The third message does the same thing for
     a <literal>Triangle</literal>. The fourth message sends a
     <literal>Double</literal> that is approximately equal to
-    <emphasis>Pi</emphasis>. This is an unknown message for the actor, so it
+    <emphasis>Pi</emphasis>. This is an unknown message for the Actor, so it
     just prints an error message. The final message sends an “exit” string,
-    which causes the actor to terminate.<indexterm>
+    which causes the Actor to terminate.<indexterm>
         <primary>! (exclamation point)</primary>
 
         <secondary>! method, sending messages to Actors</secondary>
       </indexterm></para>
 
-    <para id="para_to_try_out_the_actor_example_">To try out the actor
+    <para id="para_to_try_out_the_actor_example_">To try out the Actor
     example, start by compiling the first two files. You can get the sources
     from the <ulink url="http://examples.oreilly.com/9780596155964/">O’Reilly
     download site</ulink> (see <xref linkend="GettingCodeExamples" /> for
@@ -1808,7 +1808,7 @@ ShapeDrawingActor ! "exit"</programlisting>
     file names and locations must conform to the JVM requirements.</para>
 
     <para id="para_now_you_can_run_the_script_to_">Now you can run the script
-    to see the actor in action:</para>
+    to see the Actor in action:</para>
 
     <screen> scala -cp . shapes-actor-script.scala</screen>
 

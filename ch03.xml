@@ -324,6 +324,9 @@ List(1, 2, 3) size</programlisting>
     calls together into expressive, self-explanatory “sentences” of
     code:</para>
 
+    <?dbfo-need height=”1in”
+?>
+
     <programlisting linenumbering="unnumbered">// code-examples/Rounding/no-dot-better-script.scala
 
 def isEven(n: Int) = (n % 2) == 0
@@ -523,13 +526,11 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
         <emphasis>left</emphasis>.</para>
       </tip>
 
-      <note id="para_note_when_you_use_the_scala_">
-        <para>When you use the <literal>scala</literal> command, either
-        interactively or with scripts, it may appear that you can define
-        “global” variables and methods outside of types. This is actually an
-        illusion; the interpreter wraps all definitions in an anonymous type
-        before generating JVM or .NET CLR byte code.</para>
-      </note>
+      <para>Finally, note that when you use the <literal>scala</literal>
+      command, either interactively or with scripts, it may appear that you
+      can define “global” variables and methods outside of types. This is
+      actually an illusion; the interpreter wraps all definitions in an
+      anonymous type before generating JVM or .NET CLR byte code.</para>
     </sect2>
   </sect1>
 
@@ -881,6 +882,8 @@ for {
   <sect1 id="OtherLoopingConstructs">
     <title>Other Looping Constructs</title>
 
+    <para>Scala provides several other looping constructs.</para>
+
     <sect2 id="_scala_while_loops">
       <title>Scala while Loops</title>
 
@@ -1121,7 +1124,7 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
           </row>
 
           <row>
-            <entry><literal>=&gt;</literal></entry>
+            <entry><literal>&gt;=</literal></entry>
 
             <entry>greater than or equals</entry>
 
@@ -1833,10 +1836,10 @@ try {
           <secondary>pattern matching versus</secondary>
         </indexterm></para>
 
-      <para id="para_in_our_drawing_actor_example_">In our drawing actor
+      <para id="para_in_our_drawing_actor_example_">In our drawing Actor
       example, we used pattern matching to separate different “categories” of
       messages, but we used polymorphism to draw the shapes sent to it. We
-      could change the <literal>Shape</literal> hierarchy and the actor code
+      could change the <literal>Shape</literal> hierarchy and the Actor code
       would not require changes.</para>
 
       <para id="para_pattern_matching_is_also_usefu">Pattern matching is also
@@ -1853,10 +1856,13 @@ try {
 
       <para id="para_instead_consider_using_patter">Instead, consider using
       pattern matching for those “rare” times when you need to extract
-      information in a controlled way. An <literal>unapply</literal> method
-      can hide the implementation details of the objects it is decomposing. In
-      fact, the information returned by <literal>unapply</literal> might be a
-      transformation of the actual information in the type.</para>
+      information in a controlled way. As we will see in <xref
+      linkend="UnapplyMethod" />, the pattern matching examples we have shown
+      use <literal>unapply</literal> methods defined to extract information
+      from instances. These methods let you extract that information while
+      hiding the implementation details. In fact, the information returned by
+      <literal>unapply</literal> might be a transformation of the actual
+      information in the type.</para>
 
       <para id="para_note_be_wary_of_relying_on_a_">Finally, when designing
       pattern matching statements, be wary of relying on a default case

@@ -85,7 +85,7 @@
       <para>A concurrency model where autonomous <emphasis>Actors</emphasis>
       coordinate work by exchanging <phrase
       role="keep-together">messages</phrase>. An Actor’s messages are stored
-      in a <emphasis>mailbox</emphasis> until the actor processes
+      in a <emphasis>mailbox</emphasis> until the Actor processes
       them.<indexterm>
           <primary>concurrency</primary>
 
@@ -1306,7 +1306,7 @@
 
     <glossdef>
       <para>The queue where an <emphasis>Actor’s</emphasis> messages are
-      stored until the actor processes them in the A<emphasis>ctor model of
+      stored until the Actor processes them in the A<emphasis>ctor model of
       concurrency</emphasis>.<indexterm>
           <primary>mailbox for Actors</primary>
         </indexterm></para>
@@ -2150,9 +2150,9 @@
       <para>When testing the behavior of one object, a test double is another
       object that satisfies a dependency in the object under test. The test
       double may assist in the testing process, provide controlled test data
-      and behaviors, and very aspects of the interaction between the object
-      under test and the test double. Specific types of test doubles include
-      “fakes,” “mocks,” and “stubs.”<indexterm>
+      and behaviors, and modify the interaction between the object under test
+      and the test double. Specific types of test doubles include “fakes,”
+      “mocks,” and “stubs.”<indexterm>
           <primary>test double</primary>
         </indexterm></para>
     </glossdef>

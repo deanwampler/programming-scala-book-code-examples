@@ -1696,8 +1696,8 @@ validUsers.foreach (user =&gt; println(user))</programlisting>
 User(deanwampler,Dean Wampler,dean@....com,Scala passionista)
 User(al3x,Alex Payne,al3x@....com,Twitter API genius)</screen>
 
-      <para id="para_now_comment_out_the_two_lines">Now, comment out the two
-      lines with the #1 comment:</para>
+      <para id="para_now_comment_out_the_two_lines">Now, delete the two lines
+      with the #1 comment:</para>
 
       <programlisting linenumbering="unnumbered">...
 var validUsers = for {
@@ -2105,7 +2105,7 @@ package encodedstring {
       tab-separated values (TSVs). The <literal>encodedstring</literal>
       package exposes a trait <literal>EncodedString</literal> that is visible
       to clients. The concrete classes implementing CSVs and TSVs are declared
-      <literal>protected[encodedstring]</literal> in the
+      <literal>private[encodedstring]</literal> in the
       <literal>encodedstring.impl</literal> package. The trait defines two
       abstract <literal>val</literal> fields: one to hold the encoded
       <literal>string</literal>, which is protected from client access, and
@@ -2897,7 +2897,7 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     <screen>"Programming Scala" foreach {c =&gt; println(c)}</screen>
 
     <para id="para_pattern_ideas_language_features_string_foreach">Actually,
-    in this case, an implicit conversation is invoked to convert the
+    in this case, an implicit conversion is invoked to convert the
     <literal>java.lang.String</literal> to a <literal>RichString</literal>,
     which has the <literal>foreach</literal> method. That’s an example of the
     pattern called <emphasis>pimp my library</emphasis>, which we saw in <xref
@@ -2925,10 +2925,11 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
     xrefstyle="select:nopage">[ScalaWiki:Patterns]</link>, along with other
     patterns that are somewhat specific to Scala. Instead, we’ll discuss a few
     illustrative examples. We’ll start by discussing a replacement for the
-    <emphasis>Visitor Pattern</emphasis> that uses functional idioms and
-    implicit conversations. Then we’ll discuss a powerful way of implementing
-    <emphasis>dependency injection</emphasis> in Scala using the
-    <emphasis>Cake Pattern</emphasis>.</para>
+    <emphasis>Visitor Pattern</emphasis> that uses functional <phrase
+    role="keep-together">idioms</phrase> and implicit conversions. Then we’ll
+    discuss a powerful way of implementing <emphasis>dependency
+    injection</emphasis> in Scala using the <emphasis>Cake
+    Pattern</emphasis>.</para>
 
     <sect2 id="VisitorAlternativeInScala">
       <title>The Visitor Pattern: A Better Alternative</title>

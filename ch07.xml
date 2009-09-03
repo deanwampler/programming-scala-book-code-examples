@@ -49,7 +49,7 @@
         <secondary>items imported or defined by</secondary>
       </indexterm></para>
 
-    <table id="table_7-1">
+    <table frame="all" id="table_7-1">
       <title>Items imported or defined by Predef</title>
 
       <tgroup cols="2">
@@ -1525,18 +1525,19 @@ println(clist.reverse)</programlisting>
     closely.</para>
 
     <para id="para_all_our_classes_and_traits_def">All our classes and traits
-    define the method <literal>m</literal>. The one in <literal>C3</literal>
+    define the method <literal>m</literal>. The one in <literal>C2</literal>
     is called first, since the instance is of that type.
-    <literal>C3.m</literal> calls <literal>super.m</literal>, which resolves
+    <literal>C2.m</literal> calls <literal>super.m</literal>, which resolves
     to <literal>T3.m</literal>. The search appears to be
     <emphasis>breadth-first</emphasis>, rather than
-    <emphasis>depth-first</emphasis>. (If it were depth-first, it would invoke
-    <literal>C1.m</literal> after <literal>T3.m</literal>.) Afterward,
+    <emphasis>depth-first</emphasis>. If it were depth-first, it would invoke
+    <literal>C1.m</literal> after <literal>T3.m</literal>. Afterward,
     <literal>T3.m</literal>, <literal>T2.m</literal>, then
     <literal>T1.m</literal>, and finally <literal>C1.m</literal> are invoked.
     <literal>C1</literal> is the parent of the three traits. From which of the
-    traits did we traverse to <literal>C1</literal>? Let’s modify our first
-    example and see how we got to <literal>C1</literal>:</para>
+    traits did we traverse to <literal>C1</literal>? Actually, it is
+    breadth-first, with “delayed” evaluation, as we will see. Let’s modify our
+    first example and see how we got to <literal>C1</literal>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/linearization/linearization3-script.scala
 

@@ -2120,7 +2120,7 @@ c2d.value = 10, inverse = Infinity</screen>
 
     <para id="para_so_how_is_a_lazy_val_differ">So, how is a <literal>lazy
     val</literal> different from a method call? In a method call, the body is
-    executed <emphasis>every</emphasis> time the method in invoked. For a
+    executed <emphasis>every</emphasis> time the method is invoked. For a
     <literal>lazy val</literal>, the initialization “body” is evaluated only
     once, when the variable is used for the first time. This one-time
     evaluation makes little sense for a mutable field. Therefore, the

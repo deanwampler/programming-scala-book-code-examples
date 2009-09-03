@@ -834,9 +834,10 @@ two errors found</screen>
 
       <para id="para_because_variances_in_java_are_">A drawback of call-site
       variance specifications is that they force the users of Java generics to
-      understand the type system more thoroughly than is necessary for Scala
-      users, who don’t need to specify this behavior when using parameterized
-      types. (Scala users also benefit greatly from type inference.)</para>
+      understand the type system more thoroughly than is necessary for users
+      of Scala parameterized types, who don’t need to specify this behavior
+      when using parameterized types. (Scala users also benefit greatly from
+      type inference.)</para>
 
       <para id="para_let_s_look_at_a_java_example_">Let’s look at a Java
       example, a simplified Java version of Scala’s <literal>Option</literal>,
@@ -1205,7 +1206,7 @@ println(list)</programlisting>
       supertype.</para>
 
       <note id="para_note_the_type_signature_b_">
-        <para>The type signature <literal>B :&gt; A</literal> says that
+        <para>The type signature <literal>B &gt;: A</literal> says that
         <literal>B</literal> must be a <emphasis>supertype</emphasis> of
         <literal>A</literal>. There is no analog in Java; <literal>B super
         A</literal> is not supported.</para>
@@ -2431,7 +2432,7 @@ x: java.lang.Object with T1 with T2{type z = String; def zv: this.z} = \
       take two type arguments, e.g., <literal>scala.Either[+A,+B]</literal>.
       Scala allows you to declare instances of these types using an infix
       notation, e.g., <literal>a Either b</literal>. Consider the following
-      script that uses <literal>+Either</literal>:<indexterm>
+      script that uses <literal>Either</literal>:<indexterm>
           <primary>value types</primary>
 
           <secondary>infix types</secondary>
@@ -2453,10 +2454,10 @@ println(attempt { false })</programlisting>
 
       <para id="para_the_attempt_method_will_eval">The
       <literal>attempt</literal> method will evaluate the
-      <emphasis>call-by-value</emphasis> parameter
-      <literal>operation</literal> and return its <literal>Boolean</literal>
-      result, wrapped in a <literal>Right</literal>, <emphasis>or</emphasis>
-      any <literal>Throwable</literal> that is caught, wrapped in a
+      <emphasis>call-by-name</emphasis> parameter <literal>operation</literal>
+      and return its <literal>Boolean</literal> result, wrapped in a
+      <literal>Right</literal>, <emphasis>or</emphasis> any
+      <literal>Throwable</literal> that is caught, wrapped in a
       <literal>Left</literal>. The script produces this output:</para>
 
       <screen>Left(java.lang.RuntimeException: Boo!)
@@ -3144,7 +3145,7 @@ object ProcessList {
           </row>
 
           <row>
-            <entry><para><literal>List[_ &lt;:
+            <entry><para><literal role="keep-together">List[_ &lt;:
             scala.actors.AbstractActor]</literal></para></entry>
 
             <entry><para><literal>List[T] forSome { type T &lt;:
@@ -3155,8 +3156,9 @@ object ProcessList {
           </row>
 
           <row>
-            <entry><para><literal>List[_ &gt;: MyFancyActor &lt;:
-            scala.actors.AbstractActor]</literal></para></entry>
+            <entry><para><literal>List[_ &gt;: MyFancyActor &lt;:</literal>
+            <literal
+            role="keep-together">scala.actors.AbstractActor]</literal></para></entry>
 
             <entry><para><literal>List[T] forSome { type T &gt;: MyFancyActor
             &lt;: scala.actors.AbstractActor }</literal></para></entry>

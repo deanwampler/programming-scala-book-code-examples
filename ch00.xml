@@ -63,7 +63,7 @@
     this book, we strive to demonstrate why all these qualities make Scala a
     compelling and indispensable programming language.</para>
 
-    <para>If you’re an experienced developer who wants a fast, thorough
+    <para>If you are an experienced developer who wants a fast, thorough
     introduction to Scala, this book is for you. You may be evaluating Scala
     as a replacement for or complement to your current languages. Maybe you
     have already decided to use Scala, and you need to learn its features and
@@ -85,7 +85,7 @@
 
     <para>In the end, we hope that you too will be seduced by Scala. Even if
     Scala does not end up becoming your day-to-day language, we hope you will
-    gain insights that you can apply regardless of what language you’re
+    gain insights that you can apply regardless of what language you are
     using.</para>
   </sect1>
 
