@@ -1362,7 +1362,7 @@ println( HttpMethod )</programlisting>
       </indexterm><indexterm>
         <primary>application design</primary>
 
-        <secondary>enumerations vs. case classes and pattern
+        <secondary>enumerations versus case classes and pattern
         matching</secondary>
       </indexterm><indexterm>
         <primary>enumerations</primary>

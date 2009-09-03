@@ -186,6 +186,10 @@
       of these cases, although as you learn Scala it should become obvious
       from the contents of the files, in most cases:<indexterm>
           <primary>code examples in this book</primary>
+        </indexterm><indexterm>
+          <primary>web page for this book</primary>
+
+          <secondary>code examples</secondary>
         </indexterm></para>
 
       <variablelist id="para_script_file_convention">

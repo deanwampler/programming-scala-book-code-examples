@@ -97,7 +97,7 @@ class ButtonWithCallbacks(val label: String,
     runtime.<indexterm>
         <primary>Java</primary>
 
-        <secondary>aspect oriented programming, AspectJ</secondary>
+        <secondary>aspect-oriented programming, AspectJ</secondary>
       </indexterm><indexterm>
         <primary>aspect-oriented programming (AOP)</primary>
       </indexterm></para>
@@ -978,7 +978,7 @@ After Creating C12</screen>
         </indexterm><indexterm>
           <primary>inheritance</primary>
 
-          <secondary>definition, behaves as versus is a</secondary>
+          <secondary>definition</secondary>
         </indexterm><indexterm>
           <primary>classes</primary>
 

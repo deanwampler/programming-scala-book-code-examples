@@ -115,7 +115,13 @@
 
             <secondary>static versus dynamic typing</secondary>
           </indexterm><indexterm>
-            <primary>static typing versus dynamic typing</primary>
+            <primary>static typing</primary>
+
+            <secondary>versus dynamic typing</secondary>
+          </indexterm><indexterm>
+            <primary>dynamic typing</primary>
+
+            <secondary>versus static typing</secondary>
           </indexterm></para>
 
         <para id="para_the_word_typing_is_used_in">The word “typing” is used
@@ -198,7 +204,7 @@
         weak typing, Scala, Java, and Ruby are
         <emphasis>predominantly</emphasis> strongly typed languages. Some
         languages, like C and Perl, are more weakly typed.<indexterm>
-            <primary>weak versus string typing</primary>
+            <primary>weak versus strong typing</primary>
           </indexterm><indexterm>
             <primary>strong versus weak typing</primary>
           </indexterm></para>
@@ -471,7 +477,7 @@
               </indexterm><indexterm>
                 <primary>data types</primary>
 
-                <secondary>Scala's sophisticated type system</secondary>
+                <secondary>Scala’s sophisticated type system</secondary>
               </indexterm></para>
           </listitem>
         </varlistentry>
@@ -483,7 +489,7 @@
             <para>Scala is designed to scale from small, interpreted scripts
             to large, distributed applications. Scala provides four language
             mechanisms that promote scalable composition of systems: 1)
-            explicit <emphasis>selftypes</emphasis>; 2) abstract type members
+            explicit <emphasis>self types</emphasis>; 2) abstract type members
             and generics; 3) nested classes; and 4) <emphasis>mixin</emphasis>
             composition using <emphasis>traits</emphasis>.<indexterm>
                 <primary>scalability, Scala support for</primary>
@@ -492,7 +498,7 @@
               </indexterm><indexterm>
                 <primary>abstract type members</primary>
               </indexterm><indexterm>
-                <primary>selftypes</primary>
+                <primary>self types</primary>
               </indexterm><indexterm>
                 <primary>mixin composition</primary>
 
@@ -815,6 +821,12 @@
     can install it with the <literal>sbaz</literal> package tool, as
     follows:<indexterm>
         <primary>sbaz tool</primary>
+      </indexterm><indexterm>
+        <primary>code examples in this book</primary>
+      </indexterm><indexterm>
+        <primary>web page for this book</primary>
+
+        <secondary>code examples</secondary>
       </indexterm></para>
 
     <screen>sbaz install scala-devel-docs</screen>
@@ -1093,7 +1105,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
       </indexterm><indexterm>
         <primary>[ ] (square brackets)</primary>
 
-        <secondary>enclosing parameterized types in Scala</secondary>
+        <secondary>use with parameterized types</secondary>
       </indexterm><indexterm>
         <primary>parameterized types</primary>
       </indexterm></para>
@@ -1358,10 +1370,6 @@ object Upper {
     <para id="para_this_time_you_must_first_comp">This time, you must first
     compile the code to a JVM <filename>.class</filename> file using
     <literal>scalac</literal>:<indexterm>
-        <primary>classes</primary>
-
-        <secondary>compiling Java class</secondary>
-      </indexterm><indexterm>
         <primary>scalac compiler</primary>
 
         <secondary>compiling code into JVM .class file</secondary>

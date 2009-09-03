@@ -525,7 +525,7 @@ List(buck, jane).foreach { employee =&gt;
           <secondary>internal DSL for payroll application
           (example)</secondary>
 
-          <tertiary>implicit conversions and user defined types</tertiary>
+          <tertiary>implicit conversions and user-defined types</tertiary>
         </indexterm></para>
 
       <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/duration.scala
@@ -1915,9 +1915,9 @@ class PayrollParserCombinators(val employees: Map[Name, Employee])
       productions are unchanged, as the original parser instances are fine as
       is. Most of the changes reflect our desire to calculate the paycheck as
       we go.<indexterm>
-          <primary sortas="return annotations">@return annotations</primary>
+          <primary sortas="return annotations">@return annotation</primary>
         </indexterm><indexterm>
-          <primary>Javadoc-style @return annotations</primary>
+          <primary>Javadoc-style @return annotation</primary>
         </indexterm></para>
 
       <?dbfo-need height=”1in”

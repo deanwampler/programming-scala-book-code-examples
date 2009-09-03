@@ -546,7 +546,7 @@ val intToStringMap: Map[Integer, String] = new HashMap</programlisting>
     parameters.<indexterm>
         <primary>[ ] (square brackets)</primary>
 
-        <secondary>enclosing parameterized types in Scala</secondary>
+        <secondary>use with parameterized types</secondary>
       </indexterm></para>
 
     <para id="para_for_completeness_suppose_we_d">For completeness, suppose we
@@ -1863,7 +1863,7 @@ class MyClass {
     and the use of <literal>modules</literal> as namespaces in Ruby:<indexterm>
         <primary>namespaces</primary>
 
-        <secondary>relationship to Scala's nested package syntax</secondary>
+        <secondary>relationship to Scala’s nested package syntax</secondary>
       </indexterm><indexterm>
         <primary>packages</primary>
 
@@ -2109,7 +2109,7 @@ package scala.actors {
       </indexterm><indexterm>
         <primary>[ ] (square brackets)</primary>
 
-        <secondary>enclosing parameterized types in Scala</secondary>
+        <secondary>use with parameterized types</secondary>
       </indexterm><indexterm>
         <primary>parameterized types</primary>
       </indexterm><indexterm>
