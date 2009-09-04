@@ -613,7 +613,7 @@ if (2 + 2 == 5) {
     <para id="para_what_s_different_in_scala_is_t">What’s different in Scala
     is that <literal>if</literal> and almost all other statements are actually
     expressions themselves. So, we can assign the result of an
-    <literal>if</literal> expression, as shown in this example:<indexterm>
+    <literal>if</literal> expression, as shown here:<indexterm>
         <primary>expressions</primary>
 
         <secondary>if statements as</secondary>
@@ -1267,7 +1267,7 @@ for (bool &lt;- bools) {
       <para id="para_in_this_example_we_assign_the">In the following example,
       we assign the wildcard case to a variable called
       <literal>otherNum⁠ber</literal>, then print it in the subsequent
-      expression. If we generate a seven, we’ll extoll that number’s virtues.
+      expression. If we generate a 7, we’ll extol that number’s virtues.
       Otherwise, we’ll curse fate for making us suffer an unlucky
       number:<indexterm>
           <primary>variables</primary>
@@ -1646,7 +1646,8 @@ for (item &lt;- catalog) {
       the righthand side of the <literal>case</literal> clause, as we have in
       the previous example. The variable names <literal>title</literal> and
       <literal>author</literal> within the extractor are arbitrary; matches
-      from capture groups are simply assigned from left to right, and you can
+      from capture groups are simply <phrase
+      role="keep-together">assigned</phrase> from left to right, and you can
       call them whatever you’d like.</para>
 
       <para id="para_that_s_regexes_in_scala_in_nut">That’s regexes in Scala

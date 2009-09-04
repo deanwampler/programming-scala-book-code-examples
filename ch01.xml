@@ -1611,9 +1611,8 @@ package shapes {
     </note>
 
     <para id="para_now_that_we_have_defined_our_s">Now that we have defined
-    our shapes types, let’s return to Actors. We define an
-    <literal>Actor</literal> that receives “messages” that are shapes to
-    draw:</para>
+    our shapes types, let’s return to Actors. We define an Actor that receives
+    “messages” that are shapes to draw:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes-actor.scala
 

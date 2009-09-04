@@ -34,7 +34,8 @@
 
     <para>Sometimes, a language becomes popular because it fits the needs of
     its era. Java was initially seen as a perfect fit for browser-based, rich
-    client applications. Smalltalk captured the essence of object-oriented
+    client applications. Smalltalk <phrase
+    role="keep-together">captured</phrase> the essence of object-oriented
     programming (OOP) as that model of programming entered the
     mainstream.</para>
 

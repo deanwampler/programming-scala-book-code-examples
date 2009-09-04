@@ -766,7 +766,7 @@ one error found</screen>
     <para id="para_let_s_look_at_an_example_of_">Let’s look at an example of
     <literal>@unchecked</literal> in use (adapted from the Scaladoc entry for
     <literal>@unchecked</literal>). Consider the following code
-    fragement:<indexterm>
+    fragment:<indexterm>
         <primary>exceptions</primary>
 
         <secondary>@unchecked annotation and</secondary>
@@ -3852,21 +3852,20 @@ class TextClient(userProfile: TwitterUserProfile)
       <literal>userProfile</literal>.</para>
 
       <para id="para_for_the_ui_it_instantiates_">For the
-      <literal>ui</literal>, it instantiates an anonymous class that is
-      derived from <literal role="keep-together">TwitterClientUI</literal>. It
-      defines <literal>showTweet</literal> to print out the tweet.</para>
+      <literal>ui</literal>, it instantiates an anonymous class derived from
+      <literal role="keep-together">TwitterClientUI</literal>. It defines
+      <literal>showTweet</literal> to print out the tweet.</para>
 
       <para id="para_for_the_localcache_it_insta">For the
-      <literal>localCache</literal>, it instantiates an anonymous class that
-      is derived from <literal
-      role="keep-together">TwitterLocalC⁠ache</literal>. It keeps the history
-      of tweets in a <literal>List</literal>.</para>
+      <literal>localCache</literal>, it instantiates an anonymous class
+      derived from <literal role="keep-together">TwitterLocalC⁠ache</literal>.
+      It keeps the history of tweets in a <literal>List</literal>.</para>
 
       <para id="para_finally_for_the_service_it">Finally, for the
-      <literal>service</literal>, it instantiates an anonymous class that is
-      derived from <literal role="keep-together">TwitterSer⁠vice</literal>.
-      This “fake” defines <literal>sendTweet</literal> to print out a message
-      and to return an empty list for the history.</para>
+      <literal>service</literal>, it instantiates an anonymous class derived
+      from <literal role="keep-together">TwitterSer⁠vice</literal>. This
+      “fake” defines <literal>sendTweet</literal> to print out a message and
+      to return an empty list for the history.</para>
 
       <para id="para_let_s_try_our_client_with_the_">Let’s try our client with
       the following script:</para>

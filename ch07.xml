@@ -1160,9 +1160,10 @@ body length? 13</screen>
             <entry><para><literal>AnyRef</literal></para></entry>
 
             <entry><para>Trait with methods for operating on collections of
-            instances. Users implement the abstract
-            <literal>elements</literal> method to return an
-            <literal>Iterable</literal> instance.</para></entry>
+            instances. Users <phrase role="keep-together">implement</phrase>
+            the abstract <literal>elements</literal> method to return an
+            <literal>Iterable</literal> <phrase
+            role="keep-together">instance</phrase>.</para></entry>
           </row>
 
           <row>
@@ -1238,10 +1239,10 @@ body length? 13</screen>
             <entry><para><literal>AnyRef</literal></para></entry>
 
             <entry><para>Trait with methods for determining arity and getting
-            the n<superscript>th</superscript> item in a “cartesian product.”
+            the n<superscript>th</superscript> item in a “Cartesian product.”
             Subtraits are defined for <literal>Product</literal>, called
-            <literal>ProductN</literal>, for dimension <literal>N</literal>
-            from 1 through 22.</para></entry>
+            <literal role="keep-together">ProductN</literal>, for dimension
+            <literal>N</literal> from 1 through 22.</para></entry>
           </row>
 
           <row>

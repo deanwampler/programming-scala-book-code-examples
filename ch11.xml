@@ -322,7 +322,7 @@ object Type2Money {
 
     <para id="para_the_deductions_are_calculated_">Deductions are calculated
     using four helper methods in
-    <literal>payroll.api.Deduction⁠sCal⁠cu⁠lator</literal>:</para>
+    <literal>payroll.api.DeductionsCal⁠cu⁠lator</literal>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/api/deductions-calc.scala
 
@@ -991,7 +991,7 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       <para id="para_in_contrast_if_your_dsl_steps">By contrast, if your DSL
       steps are stateless, chained method invocation works just fine. In this
       case, it doesn’t matter when you stop calling chained methods. If you
-      chain methods that build up state, you’ll have to add some some sort of
+      chain methods that build up state, you’ll have to add some sort of
       <literal>done</literal> method and trust the users to always use it at
       the end.<indexterm class="endofrange"
       startref="ch11_DSLinternal"></indexterm></para>
@@ -1729,9 +1729,9 @@ scala&gt;</screen>
       in the string <literal>("Buck Trends"∼(2∼weeks))</literal>.</para>
 
       <para id="para_finally_at_the_outer_level_of">Finally, at the outermost
-      level, we have the following:
+      level, you can see we have the following:
       <literal>p.∼[p.∼[String,p.∼[String,String]],List[String]]</literal>.
-      We’ve already discussed everything up to the the last
+      We’ve already discussed everything up to the last
       <literal>List[String]</literal>, which comes from the
       <literal>deduct</literal> production:</para>
 

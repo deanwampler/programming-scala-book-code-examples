@@ -1789,7 +1789,7 @@ object PersonTest {
       <literal>javap -classpath ... objects.PersonTest</literal> shows that it
       has a <literal>static main</literal> method. If you invoke it using
       <literal>scala -cp ... objects.PersonTest</literal>, the
-      <literal>PersonT⁠est.main</literal> method is invoked, which in turn
+      <literal>PersonTest.main</literal> method is invoked, which in turn
       invokes <literal>Person.main</literal>. You get an assertion error from
       the second call to <literal>assert</literal>, which is
       intentional:</para>

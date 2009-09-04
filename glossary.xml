@@ -816,8 +816,8 @@
 
     <glossdef>
       <para>A high-performance form of concurrency where events are used to
-      signal important state changes and handlers are used to respond to the
-      events.<indexterm>
+      signal important state changes and handlers are used to <phrase
+      role="keep-together">respond</phrase> to the events.<indexterm>
           <primary>events</primary>
 
           <secondary>using for concurrency</secondary>
@@ -1345,7 +1345,8 @@
       role="keep-together">operations</phrase> that fail for some reason. The
       user of the framework only has to write the algorithms for mapping and
       reducing <phrase role="keep-together">the data sets and</phrase>
-      computing with the subsets.<indexterm>
+      computing with the <phrase
+      role="keep-together">subsets</phrase>.<indexterm>
           <primary>MapReduce</primary>
         </indexterm></para>
     </glossdef>
@@ -1607,8 +1608,8 @@
       <para>Scala’s analog of <emphasis>generics</emphasis> in Java.
       Parameterized types are defined with placeholder parameters for types
       they use. When an instance of a parameterized type is created, specific
-      types must be specified to replace all the type parameters. See also
-      <emphasis>type</emphasis> <emphasis
+      types must be specified to replace <phrase role="keep-together">all the
+      type</phrase> parameters. See also <emphasis>type</emphasis> <emphasis
       role="keep-together">constructor</emphasis>.<indexterm>
           <primary>parameterized types</primary>
 
@@ -1679,8 +1680,8 @@
 
     <glossdef>
       <para>A nested type T is unique based on its “path,” the hierarchical,
-      period-delimited list of the the enclosing packages, the enclosing
-      types, and finally the type T itself. Instances of T can have different,
+      period-delimited list of the enclosing packages, the enclosing types,
+      and finally the type T itself. Instances of T can have different,
       incompatible types. For example, if T is nested in a trait and the trait
       appears in the <emphasis>linearizations</emphasis> of different types,
       then the instances in those Ts will have different types.<indexterm>

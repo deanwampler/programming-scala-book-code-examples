@@ -5,10 +5,28 @@
   <title>Colophon</title>
 
   <para>The animal on the cover of <citetitle>Programming Scala</citetitle> is
-  a Malayan tapir. &lt;<emphasis>More info to come.</emphasis>&gt;</para>
+  a Malayan tapir (<emphasis>Tapirus indicus</emphasis>), also called an Asian
+  tapir. It is a black-and-white hoofed mammal with a round, stocky body
+  similar to that of a pig. At 6–8 feet long and 550–700 pounds, the Malayan
+  is the largest of the four tapir species. It lives in tropical rain forests
+  in Southeast Asia.</para>
 
-  <para>The cover image is from &lt;<emphasis>info to come</emphasis>&gt;. The
-  cover font is Adobe ITC Garamond. The text font is Linotype Birka; the
-  heading font is Adobe Myriad Condensed; and the code font is LucasFont’s
-  TheSans Mono Condensed.</para>
+  <para>The Malayan tapir’s appearance is striking: its front half and hind
+  legs are solid black, and its midsection is marked with a white saddle. This
+  pattern provides perfect camouflage for the tapir in a moonlit jungle. Other
+  physical characteristics include a thick hide, a stumpy tail, and a short,
+  flexible snout. Despite its body shape, the Malayan tapir is an agile
+  climber and a fast runner.</para>
+
+  <para>The tapir is a solitary and mainly nocturnal animal. It tends to have
+  very poor vision, so it relies on smell and hearing as it roams large
+  territories in search of food, tracking other tapirs’ scents and
+  communicating via high-pitched whistles. The Malayan tapir’s predators are
+  tigers, leopards, and humans, and it is considered endangered due to habitat
+  destruction and overhunting.</para>
+
+  <para>The cover image is from the Dover Pictorial Archive. The cover font is
+  Adobe ITC Garamond. The text font is Linotype Birka; the heading font is
+  Adobe Myriad Condensed; and the code font is LucasFont’s <phrase
+  role="keep-together">TheSansMonoCondensed</phrase>.</para>
 </colophon>

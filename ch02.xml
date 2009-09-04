@@ -1212,9 +1212,10 @@ b: Byte = 127</screen>
       number is less than 1.0, then there must be one or more digits after the
       period. For <literal>Float</literal> literals, append the
       <literal>F</literal> or <literal>f</literal> character at the end of the
-      literal. Otherwise, a <literal>Double</literal> is assumed. You can
-      optionally append a <literal>D</literal> or <literal>d</literal> for a
-      <literal role="keep-together">Double</literal>.<indexterm>
+      literal. Otherwise, a <literal role="keep-together">Double</literal> is
+      assumed. You can optionally append a <literal>D</literal> or
+      <literal>d</literal> for a <literal
+      role="keep-together">Double</literal>.<indexterm>
           <primary>floating-point literals</primary>
         </indexterm><indexterm>
           <primary>literals</primary>
@@ -2361,7 +2362,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
           <row>
             <entry><para><literal>do</literal></para></entry>
 
-            <entry><para>Start a <literal>do ... while</literal>
+            <entry><para>Start a <literal>do...while</literal>
             loop.</para></entry>
 
             <entry><para><xref
@@ -2429,8 +2430,9 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>forSome</literal></para></entry>
 
             <entry><para>Used in <emphasis>existential type</emphasis>
-            declarations to constrain the allowed concrete types that can be
-            used.</para></entry>
+            declarations to <phrase role="keep-together">constrain</phrase>
+            the allowed <phrase role="keep-together">concrete</phrase> types
+            that can be used.</para></entry>
 
             <entry><para><xref linkend="ExistentialTypes" /></para></entry>
           </row>
@@ -2448,8 +2450,10 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
 
             <entry><para>Marks a method as eligible to be used as an
             <emphasis>implicit</emphasis> type converter. Marks a method
-            parameter as optional, as long as a type-compatible substitute
-            object is in the scope where the method is called.</para></entry>
+            parameter as optional, as long as a <phrase
+            role="keep-together">type-</phrase><phrase
+            role="keep-together">compatible</phrase> substitute object is in
+            the scope where the method is called.</para></entry>
 
             <entry><para><xref linkend="ImplicitConversions" /></para></entry>
           </row>
@@ -2581,7 +2585,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>this</literal></para></entry>
 
             <entry><para>How an object refers to itself. The method name for
-            <emphasis>auxiliary constructors</emphasis>.</para></entry>
+            <emphasis>auxiliary con⁠structors</emphasis>.</para></entry>
 
             <entry><para><xref linkend="ClassBasics" /></para></entry>
           </row>
@@ -2598,8 +2602,8 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
             <entry><para><literal>trait</literal></para></entry>
 
             <entry><para>A <emphasis>mixin module</emphasis> that adds
-            additional state and behavior to an instance of a
-            class.</para></entry>
+            additional state and behavior to an <phrase
+            role="keep-together">instance</phrase> of a class.</para></entry>
 
             <entry><para><xref linkend="Traits" /></para></entry>
           </row>

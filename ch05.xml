@@ -1411,7 +1411,7 @@ package scopeA {
 
       <para id="para_what_if_we_change_the_scope_of">What if we change the
       scope of <literal>Nested.nestedField</literal> to be
-      <literal>private[PrivateClass1]</literal>? Let’s see see how
+      <literal>private[PrivateClass1]</literal>? Let’s see how
       <literal>private[T]</literal> affects nested types:</para>
 
       <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-type-nested-wont-compile.scala

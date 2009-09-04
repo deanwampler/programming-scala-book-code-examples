@@ -84,10 +84,11 @@ class ButtonWithCallbacks(val label: String,
     <para id="para_this_separation_is_difficult_t">This separation is
     difficult to do in Java, even if we define an interface for the callback
     behavior. We still have to embed the implementation code in the class
-    somehow, compromising modularity. The only other alternative is to use a
-    specialized tool like <emphasis>aspect-oriented programming</emphasis>
-    (AOP; see <link linkend="AOSD" xrefstyle="select:nopage">[AOSD]</link>),
-    as implemented by AspectJ (refer to <link linkend="AspectJ"
+    somehow, <phrase role="keep-together">compromising</phrase> modularity.
+    The only other alternative is to use a specialized tool like
+    <emphasis>aspect-oriented programming</emphasis> (AOP; see <link
+    linkend="AOSD" xrefstyle="select:nopage">[AOSD]</link>), as implemented by
+    AspectJ (see <link linkend="AspectJ"
     xrefstyle="select:nopage">[AspectJ]</link>), an extension of Java. AOP is
     primarily designed to separate the implementations of “<phrase
     role="keep-together">pervasive</phrase>” concerns that are repeated
@@ -250,11 +251,11 @@ trait Subject {
       <para id="para_we_ll_discuss_scala_list_s_m">We’ll discuss Scala
       <literal>List</literal>s more in <xref linkend="ScalaTypeHierarchy" />
       and also in <xref linkend="FunctionalProgramming" />. For now, notice
-      that <literal>addObserver</literal> uses the the list
-      <emphasis>cons</emphasis> “operator” method (<literal>::</literal>) to
+      that <literal>addObserver</literal> uses the list cons “operator” method
+      <phrase role="keep-together">(<literal>::</literal>)</phrase> to
       <emphasis>prepend</emphasis> an <literal>observer</literal> to the list
-      of <literal>observers</literal>. The scala compiler is smart enough to
-      turn the following statement:</para>
+      of <literal>observers</literal>. The <literal>scala</literal> compiler
+      is smart enough to turn the following statement:</para>
 
       <programlisting linenumbering="unnumbered">observers ::= observer</programlisting>
 

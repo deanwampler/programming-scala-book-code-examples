@@ -596,7 +596,7 @@ var f: C =&gt; C = (c: C)      =&gt; new C       // #1
 
     <para id="para_okay_but__why__is_all_this_co">Why is the behavior correct
     in these cases? Here’s where Design by Contract thinking comes in handy.
-    Let’s see how a client might use use some of these definitions of
+    Let’s see how a client might use some of these definitions of
     <literal>f</literal>:</para>
 
     <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/func2-script.scala
@@ -1449,7 +1449,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       <para id="para_a_method_or_class_containing_s">A method or class
       containing such a type parameter is treated as being equivalent to a
       corresponding method or class with an extra argument list with one
-      element, a view. For example, consider the following method defintion
+      element, a view. For example, consider the following method definition
       with a view bound:</para>
 
       <programlisting linenumbering="unnumbered">def m [A &lt;% B](arglist): R = ...</programlisting>
@@ -1729,8 +1729,9 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
     <para id="para_what_are_abstract_types">Besides parameterized types, which
     are common in statically typed, object-oriented <phrase
     role="keep-together">languages</phrase>, Scala also supports abstract
-    types, which are common in functional languages. We introduced abstract
-    types in <xref linkend="AbstractTypesAndParameterizedTypes" />.<indexterm
+    types, which are common in functional <phrase
+    role="keep-together">languages</phrase>. We introduced abstract types in
+    <xref linkend="AbstractTypesAndParameterizedTypes" />.<indexterm
         class="startofrange" id="ch12_abstracttypes">
         <primary>abstract types</primary>
       </indexterm><indexterm class="startofrange" id="ch12_datatypesabstract">

@@ -176,7 +176,7 @@
       reduces regression bugs, many of which are caused by
       <emphasis>unintended</emphasis> state changes in one part of a program
       due to <emphasis>intended</emphasis> changes in another part. There are
-      other contributers to such <emphasis>non-local</emphasis> effects, but
+      other contributors to such <emphasis>non-local</emphasis> effects, but
       mutability is one of the most important.</para>
 
       <para id="para_it_s_common_in_object_oriented">It’s common in
@@ -1377,7 +1377,7 @@ for (option &lt;- List(noneNumber, someNumber)) {
 
     <para id="para_however_the_other_problem_wit">However, exposing
     constituent parts potentially couples clients to the
-    <emphasis>types</emphasis> of those parts. we can’t change how the parts
+    <emphasis>types</emphasis> of those parts. We can’t change how the parts
     are implemented without breaking the clients. A way to minimize this risk
     is to expose the lowest-level abstractions possible. When clients access a
     person’s addresses, do they really need to know that they are stored in a
@@ -1436,12 +1436,13 @@ println(c2("pants"))</programlisting>
 
     <para id="para_calling_concatupper_with_an_">Calling
     <literal>concatUpper</literal> with an underscore ( <literal>_</literal> )
-    turns the method into a function value. In the first part of the example,
-    we’ve assigned a partially applied version of <literal
-    role="only">concatUp⁠per</literal> to the value <literal>c</literal>. We
-    then <emphasis>apply</emphasis> it, implicitly calling the
-    <literal>apply</literal> method on <literal>c</literal> by passing
-    parameters to it directly. The returned value is then printed.</para>
+    turns the method into a function value. <phrase role="keep-together">In
+    the first part</phrase> of the example, we’ve assigned a partially applied
+    version of <literal role="keep-together">concatUp⁠per</literal> to the
+    value <literal>c</literal>. We then <emphasis>apply</emphasis> it,
+    implicitly calling the <literal>apply</literal> method on
+    <literal>c</literal> by passing parameters to it directly. The returned
+    value is then printed.</para>
 
     <para id="para_in_the_second_part_we_ve_spec">In the second part, we’ve
     specified the first parameter to <literal>concatUpper</literal> but not

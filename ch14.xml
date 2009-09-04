@@ -1896,7 +1896,7 @@ object ComplexSpec extends Specification {
       e.g., the clause <literal>"return a number N' that is identical to
       orig⁠inal number N" in {...}</literal>, is called an “example” in BDD
       terminology. It is analogous to a single test. Like typical XUnit
-      frameworks, the testing is done using “representative examples”, rather
+      frameworks, the testing is done using “representative examples,” rather
       than by doing an exhaustive exploration of the entire “space” of
       possible states. Hence, the term “example.” (However, see the discussion
       of <phrase role="keep-together">ScalaCheck</phrase> next.)</para>
@@ -2233,9 +2233,9 @@ ComplexSpecification.check</programlisting>
 
       <para id="para_many_of_the_features_of_scala_">Many of the features of
       Scala obviate the need for metaprogramming, compared to languages like
-      Ruby, but sometimes metaprogramming is still useful.
-      <emphasis>MetaScala</emphasis> attempts to address those needs more
-      fully than Scala’s built-in reflection support.</para>
+      Ruby, but sometimes metaprogramming is still useful. MetaScala attempts
+      to address those needs more fully than Scala’s built-in reflection
+      support.</para>
     </sect2>
 
     <sect2 id="JavaRebel">
@@ -3453,8 +3453,8 @@ Complex(4.0,6.0)</screen>
       role="keep-together">AspectJ</phrase>, a <emphasis>dependency
       injection</emphasis> (DI) container, uniform and well-designed APIs for
       <phrase role="keep-together">invoking</phrase> a variety of other Java
-      third-party APIs, and additional components for security, web
-      development, etc.<indexterm>
+      third-party APIs, and additional components for <phrase
+      role="keep-together">security</phrase>, web development, etc.<indexterm>
           <primary>libraries</primary>
 
           <secondary>Java library interoperability</secondary>

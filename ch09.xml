@@ -889,7 +889,7 @@ hello from Thread 10
 hello from Thread 13</screen>
 
       <para id="para_this_is_of_course_just_scrat">This is, of course, just
-      scratching the surface of what’s available in
+      scratching the surface of what is available in
       <literal>java.util.con⁠cur⁠rent</literal>. You’ll find that your
       existing knowledge of Java’s approach to multithreading still applies in
       Scala. What’s more, you’ll be able to accomplish the same tasks using
@@ -940,7 +940,7 @@ hello from Thread 13</screen>
       primitives for non-blocking <phrase role="keep-together">I/O</phrase>
       (buffers, channels, etc.), it’s still a fair bit of work to cobble
       together an event-based concurrent program from those simple parts.
-      Enter Apache MINA, built atop Java NIO and described on its homepage as
+      Enter Apache MINA, built atop Java NIO and described on its home page as
       “a network application framework which helps users develop high
       performance and high scalability network applications easily” (see <link
       linkend="MINA" xrefstyle="select:nopage">[MINA]</link>).<indexterm>
