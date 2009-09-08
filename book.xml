@@ -1534,7 +1534,7 @@ scala&gt;</screen>
     <filename>upper1-script.scala</filename> in a directory of your
     choosing:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/upper1-script.scala
+    <programlisting language="scala">// code-examples/IntroducingScala/upper1-script.scala
 
 class Upper {
   def upper(strings: String*): Seq[String] = {
@@ -1578,7 +1578,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     meaning it is compiled and executed in one step. You should get the
     following output:</para>
 
-    <programlisting linenumbering="unnumbered">Array(A, FIRST, SCALA, PROGRAM)</programlisting>
+    <programlisting language="scala">Array(A, FIRST, SCALA, PROGRAM)</programlisting>
 
     <sidebar>
       <title>Interpreting Versus Compiling and Running Scala Code</title>
@@ -1743,7 +1743,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     <para id="para_in_this_case_the_function_lit">In this case, we passed in
     the following function literal:</para>
 
-    <programlisting linenumbering="unnumbered">(s:String) =&gt; s.toUpperCase()</programlisting>
+    <programlisting language="scala">(s:String) =&gt; s.toUpperCase()</programlisting>
 
     <para id="para_takes_a_single_string_argume">It takes an argument list
     with a single <literal>String</literal> argument named
@@ -1793,7 +1793,7 @@ Console.println(up.upper("A", "First", "Scala", "Program"))</programlisting>
     our script even further. Consider this simplified version of the
     script:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/upper2-script.scala
+    <programlisting language="scala">// code-examples/IntroducingScala/upper2-script.scala
 
 object Upper {
   def upper(strings: String*) = strings.map(_.toUpperCase())
@@ -1849,12 +1849,12 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
     shorthand for the function literal. Previously we wrote it as
     follows:</para>
 
-    <programlisting linenumbering="unnumbered">(s:String) =&gt; s.toUpperCase()</programlisting>
+    <programlisting language="scala">(s:String) =&gt; s.toUpperCase()</programlisting>
 
     <para id="para_we_can_shorten_it_to_the_follo">We can shorten it to the
     following expression:</para>
 
-    <programlisting linenumbering="unnumbered">_.toUpperCase()</programlisting>
+    <programlisting language="scala">_.toUpperCase()</programlisting>
 
     <para id="para_because_map_takes_one_argume">Because
     <literal>map</literal> takes one argument, a function, we can use the
@@ -1901,7 +1901,7 @@ println(Upper.upper("A", "First", "Scala", "Program"))</programlisting>
         <primary>compiled, command-line tool, converting script to</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/upper3.scala
+    <programlisting language="scala">// code-examples/IntroducingScala/upper3.scala
 
 object Upper {
   def main(args: Array[String]) = {
@@ -1930,7 +1930,7 @@ object Upper {
     <literal>main</literal> method uses the same shorthand notation for
     <literal>map</literal> that we just examined:</para>
 
-    <programlisting linenumbering="unnumbered">args.map(_.toUpperCase())...</programlisting>
+    <programlisting language="scala">args.map(_.toUpperCase())...</programlisting>
 
     <para id="para_the_call_to_map_returns_a_ne">The call to
     <literal>map</literal> returns a new collection. We iterate through it
@@ -1944,7 +1944,7 @@ object Upper {
         <secondary>passing to foreach</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">...foreach(printf("%s ",_))</programlisting>
+    <programlisting language="scala">...foreach(printf("%s ",_))</programlisting>
 
     <para id="para_to_be_clear_these_two_uses_of">To be clear, these two uses
     of <literal>_</literal> are completely independent of each other. Method
@@ -2038,7 +2038,7 @@ object Upper {
     <para id="para_to_begin_we_define_a_shape_">To begin, we define a
     <literal>Shape</literal> class hierarchy:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes.scala
+    <programlisting language="scala">// code-examples/IntroducingScala/shapes.scala
 
 package shapes {
   class Point(val x: Double, val y: Double) {
@@ -2191,7 +2191,7 @@ package shapes {
     our shapes types, let&#x2019;s return to Actors. We define an Actor that receives
     &#x201C;messages&#x201D; that are shapes to draw:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes-actor.scala
+    <programlisting language="scala">// code-examples/IntroducingScala/shapes-actor.scala
 
 package shapes {
   import scala.actors._
@@ -2339,7 +2339,7 @@ package shapes {
     <para id="para_finally_here_is_a_script_that">Finally, here is a script
     that uses the <literal>ShapeDrawingActor</literal> Actor:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes-actor-script.scala
+    <programlisting language="scala">// code-examples/IntroducingScala/shapes-actor-script.scala
 
 import shapes._
 
@@ -2467,7 +2467,7 @@ exiting...</screen>
         <secondary>ending statements in Scala code</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/semicolon-example-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/semicolon-example-script.scala
 
 // Trailing equals sign indicates more code on next line
 def equalsign = {
@@ -2494,12 +2494,12 @@ def commas(s1: String,
     semicolons to separate them. We used this technique in the
     <literal>ShapeDrawingActor</literal> example in <xref linkend="ATasteOfConcurrency"/>:</para>
 
-    <programlisting linenumbering="unnumbered">case "exit" =&gt; println("exiting..."); exit</programlisting>
+    <programlisting language="scala">case "exit" =&gt; println("exiting..."); exit</programlisting>
 
     <para id="para_this_line_could_also_be_writte">This code could also be
     written as follows:</para>
 
-    <programlisting linenumbering="unnumbered">...
+    <programlisting language="scala">...
 case "exit" =&gt;
       println("exiting...")
       exit
@@ -2544,14 +2544,14 @@ case "exit" =&gt;
         <secondary>declarations</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">val array: Array[String] = new Array(5)</programlisting>
+    <programlisting language="scala">val array: Array[String] = new Array(5)</programlisting>
 
     <para id="para_immutable_precise">To be more precise, the
     <literal>array</literal> reference cannot be changed to point to a
     different <literal>Array</literal>, but the array itself can be modified,
     as shown in the following <literal>scala</literal> session:</para>
 
-    <programlisting linenumbering="unnumbered">scala&gt; val array: Array[String] = new Array(5)
+    <programlisting language="scala">scala&gt; val array: Array[String] = new Array(5)
 array: Array[String] = Array(null, null, null, null, null)
 
 scala&gt; array = new Array(2)
@@ -2574,7 +2574,7 @@ scala&gt;</programlisting>
     <para id="para_a_mutable_variable_is_declared">A mutable variable is
     declared with the keyword <literal>var</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">scala&gt; var stockPrice: Double = 100.
+    <programlisting language="scala">scala&gt; var stockPrice: Double = 100.
 stockPrice: Double = 100.0
 
 scala&gt; stockPrice = 10.
@@ -2687,7 +2687,7 @@ scala&gt;</programlisting>
           <tertiary>default and named arguments</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-v1-script.scala
+      <programlisting language="scala">// code-examples/TypeLessDoMore/string-util-v1-script.scala
 // Version 1 of "StringUtil".
 
 object StringUtil {
@@ -2708,7 +2708,7 @@ println( joiner(List("Programming", "Scala")) )</programlisting>
       <literal>joiner</literal> has a default value. In fact, in Scala version
       2.8, you can now do this:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-v2-v28-script.scala
+      <programlisting language="scala">// code-examples/TypeLessDoMore/string-util-v2-v28-script.scala
 // Version 2 of "StringUtil" for Scala v2.8 only.
 
 object StringUtil {
@@ -2732,7 +2732,7 @@ println(joiner(List("Programming", "Scala")))</programlisting>
           <primary>named arguments</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">println(joiner(List("Programming", "Scala")))
+      <programlisting language="scala">println(joiner(List("Programming", "Scala")))
 println(joiner(strings = List("Programming", "Scala")))
 println(joiner(List("Programming", "Scala"), " "))   // #1
 println(joiner(List("Programming", "Scala"), separator = " ")) // #2
@@ -2755,7 +2755,7 @@ println(joiner(strings = List("Programming", "Scala"), separator = " "))</progra
       by name. Combined with default values, you can write code like the
       following:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/user-profile-v28-script.scala
+      <programlisting language="scala">// code-examples/TypeLessDoMore/user-profile-v28-script.scala
 // Scala v2.8 only.
 
 object OptionalUserProfileInfo {
@@ -2824,7 +2824,7 @@ println( new OptionalUserProfileInfo(age = 29, location="Earth") )</programlisti
           <tertiary>nesting method definitions</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/factorial-script.scala
+      <programlisting language="scala">// code-examples/TypeLessDoMore/factorial-script.scala
 
 def factorial(i: Int): Int = {
   def fact(i: Int, accumulator: Int): Int = {
@@ -2876,7 +2876,7 @@ println( factorial(5) )</programlisting>
       variable that is defined outside a nested function? Consider this
       contrived example:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/count-to-script.scala
+      <programlisting language="scala">// code-examples/TypeLessDoMore/count-to-script.scala
 
 def countTo(n: Int):Unit = {
   def count(i: Int): Unit = {
@@ -2919,7 +2919,7 @@ countTo(5)</programlisting>
         <secondary>inferring type information</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">import java.util.Map;
+    <programlisting language="scala">import java.util.Map;
 import java.util.HashMap;
 ...
 Map&lt;Integer, String&gt; intToStringMap = new HashMap&lt;Integer, String&gt;();</programlisting>
@@ -2937,7 +2937,7 @@ Map&lt;Integer, String&gt; intToStringMap = new HashMap&lt;Integer, String&gt;()
     explicit type annotations. Here&#x2019;s the same declaration rewritten in Scala,
     with inferred type information:</para>
 
-    <programlisting linenumbering="unnumbered">import java.util.Map
+    <programlisting language="scala">import java.util.Map
 import java.util.HashMap
 ...
 val intToStringMap: Map[Integer, String] = new HashMap</programlisting>
@@ -2959,7 +2959,7 @@ val intToStringMap: Map[Integer, String] = new HashMap</programlisting>
     Java interface type). It can be of type <literal>HashMap</literal> for all
     we care:</para>
 
-    <programlisting linenumbering="unnumbered">import java.util.Map
+    <programlisting language="scala">import java.util.Map
 import java.util.HashMap
 ...
 val intToStringMap2 = new HashMap[Integer, String]</programlisting>
@@ -3063,7 +3063,7 @@ val intToStringMap2 = new HashMap[Integer, String]</programlisting>
         <secondary>required explicit declarations of</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-nested-return-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/method-nested-return-script.scala
 // ERROR: Won't compile until you put a String return type on upCase.
 
 def upCase(s: String) = {
@@ -3086,7 +3086,7 @@ println( upCase("Hello") )</programlisting>
     <para>You can fix this error by changing the first line of the method to
     the following:</para>
 
-    <programlisting linenumbering="unnumbered">def upCase(s: String): String = {</programlisting>
+    <programlisting language="scala">def upCase(s: String): String = {</programlisting>
 
     <para id="para_actually_for_this_particular_">Actually, for this
     particular script, an alternative fix is to remove the
@@ -3105,7 +3105,7 @@ println( upCase("Hello") )</programlisting>
         <secondary>explicit return type annotation</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-recursive-return-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/method-recursive-return-script.scala
 // ERROR: Won't compile until you put an Int return type on "fact".
 
 def factorial(i: Int) = {
@@ -3134,7 +3134,7 @@ def factorial(i: Int) = {
         <secondary>explicit return type requirement</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-overloaded-return-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/method-overloaded-return-script.scala
 // Version 1 of "StringUtil" (with a compilation error).
 // ERROR: Won't compile: needs a String return type on the second "joiner".
 
@@ -3166,7 +3166,7 @@ println( joiner(List("Programming", "Scala")) )</programlisting>
     first, it requires an explicit <literal>String</literal> return type. It
     should look like this:</para>
 
-    <programlisting linenumbering="unnumbered">    def joiner(strings: List[String]): String = joiner(strings, " ")</programlisting>
+    <programlisting language="scala">    def joiner(strings: List[String]): String = joiner(strings, " ")</programlisting>
 
     <para id="para_note_that_any_is_the_root_of">The final scenario can be
     subtle, when a more general return type is inferred than what you
@@ -3176,7 +3176,7 @@ println( joiner(List("Programming", "Scala")) )</programlisting>
     <literal>Any</literal> for the returned object. Let&#x2019;s see a contrived
     example that reflects a bug where this scenario can occur:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/method-broad-inference-return-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/method-broad-inference-return-script.scala
 // ERROR: Won't compile; needs a String return type on the second "joiner".
 
 def makeList(strings: String*) = {
@@ -3233,7 +3233,7 @@ val list: List[String] = makeList()
     <literal>StringUtil</literal> &#x201C;API&#x201D; again with a new method,
     <literal>toCollection</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-v3.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/string-util-v3.scala
 // Version 3 of "StringUtil" (for all versions of Scala).
 
 object StringUtil {
@@ -3253,7 +3253,7 @@ object StringUtil {
     of <literal role="keep-together">StringUtil</literal> that uses this
     method:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/string-util-client.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/string-util-client.scala
 
 import StringUtil._
 
@@ -3288,7 +3288,7 @@ Scala</screen>
     maintainers of <literal>StringUtil</literal> decide to return a
     <literal>List</literal> instead of the default:</para>
 
-    <programlisting linenumbering="unnumbered">object StringUtil {
+    <programlisting language="scala">object StringUtil {
   ...
 
   def toCollection(string: String) = string.split(' ').toList  // changed!
@@ -3330,7 +3330,7 @@ java.lang.NoSuchMethodError: StringUtil$.toCollection(...
     to watch for when using declarations of collections like <literal role="keep-together">val map = Map()</literal>, as in the following
     example:</para>
 
-    <programlisting linenumbering="unnumbered">val map = Map()
+    <programlisting language="scala">val map = Map()
 
 map.update("book", "Programming Scala")</programlisting>
 
@@ -3622,7 +3622,7 @@ b: Byte = 127</screen>
       <para id="para_here_are_some_example_floating">Here are some example
       floating-point literals:</para>
 
-      <programlisting linenumbering="unnumbered">0.
+      <programlisting language="scala">0.
 .0
 0.0
 3.
@@ -3715,7 +3715,7 @@ b2: Boolean = false</screen>
       <para id="para_character_literal_examples_">Here are some
       examples:</para>
 
-      <programlisting linenumbering="unnumbered">'A'
+      <programlisting language="scala">'A'
 '\u0041'  // 'A' in Unicode
 '\n'
 '\012'    // '\n' in octal
@@ -3835,7 +3835,7 @@ b2: Boolean = false</screen>
           <secondary>escaping double quotes in string literals</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">"Programming\nScala"
+      <programlisting language="scala">"Programming\nScala"
 "He exclaimed, \"Scala is great!\""
 "First\tSecond"</programlisting>
 
@@ -3858,7 +3858,7 @@ b2: Boolean = false</screen>
       <para id="para_3quote_string_literal_examples_">Here are three example
       strings:</para>
 
-      <programlisting linenumbering="unnumbered">"""Programming\nScala"""
+      <programlisting language="scala">"""Programming\nScala"""
 """He exclaimed, "Scala is great!" """
 """First line\n
 Second line\t
@@ -3946,7 +3946,7 @@ Fourth line"""</programlisting>
     <para id="para_the_following_example_demonstr">The following example
     demonstrates the use of tuples:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/tuple-example-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/tuple-example-script.scala
 
 def tupleator(x1: Any, x2: Any, x3: Any) = (x1, x2, x3)
 
@@ -4074,7 +4074,7 @@ res2: (Int, Int) = (1,2)</screen>
     <literal>None</literal> in action in the following example, where we
     create a map of state capitals in the United States:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/state-capitals-subset-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/state-capitals-subset-script.scala
 
 val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
@@ -4188,7 +4188,7 @@ Unknown: Oops2!</screen>
     <literal>scala.col&#x2060;lection.immutable.HashMap</literal> in the Scala
     library source code distribution:</para>
 
-    <programlisting linenumbering="unnumbered">def get(key: A): Option[B] = {
+    <programlisting language="scala">def get(key: A): Option[B] = {
   if (contains(key))
     new Some(getValue(key))
   else
@@ -4239,7 +4239,7 @@ Unknown: Oops2!</screen>
     <literal>com.example.mypkg</literal> using the conventional Java
     syntax:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/package-example1.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/package-example1.scala
 
 package com.example.mypkg
 
@@ -4260,7 +4260,7 @@ class MyClass {
         <secondary>defining using nested package syntax in Scala</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/package-example2.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/package-example2.scala
 
 package com {
   package example {
@@ -4350,7 +4350,7 @@ package com {
         <secondary>importing types and their members</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/import-example1.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/import-example1.scala
 
 import java.awt._
 import java.io.File
@@ -4389,7 +4389,7 @@ import java.util.{Map, HashMap}</programlisting>
     <para id="para_the_next_example_shows_more_ad">The next example shows more
     advanced options for import statements:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/import-example2-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/import-example2-script.scala
 
 def writeAboutBigInteger() = {
 
@@ -4447,7 +4447,7 @@ writeAboutBigInteger()</programlisting>
           <primary>relative imports</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/relative-imports.scala
+      <programlisting language="scala">// code-examples/TypeLessDoMore/relative-imports.scala
 import scala.collection.mutable._
 import collection.immutable._         // Since "scala" is already imported
 import _root_.scala.collection.jcl._  // full path from real "root"
@@ -4507,7 +4507,7 @@ package scala.actors {
     <para id="para_for_example_a_list_of_strings">For example, a list of
     strings would be declared as follows:</para>
 
-    <programlisting linenumbering="unnumbered">val languages: List[String] = ...</programlisting>
+    <programlisting language="scala">val languages: List[String] = ...</programlisting>
 
     <para id="para_there_are_other_important_diff">There are other important
     differences with Java&#x2019;s generics, which we&#x2019;ll explore in <xref linkend="ParameterizedTypes"/>.</para>
@@ -4556,7 +4556,7 @@ package scala.actors {
     <para id="para_here_is_an_example_that_uses_a">Here is an example that
     uses an abstract type:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
 import java.io._
 
@@ -4619,7 +4619,7 @@ abstract class BulkReader {
     parameterized type. In fact, we could rewrite this example as follows,
     where we show only what would be different:</para>
 
-    <programlisting linenumbering="unnumbered">abstract class BulkReader[In] {
+    <programlisting language="scala">abstract class BulkReader[In] {
   val source: In
   ...
 }
@@ -5231,7 +5231,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
         <primary>operators</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Rounding/one-plus-two-script.scala
+    <programlisting language="scala">// code-examples/Rounding/one-plus-two-script.scala
 
 1 + 2</programlisting>
 
@@ -5519,7 +5519,7 @@ class FileBulkReader(val source: File) extends BulkReader[File] {...}</programli
     only one argument. With this in mind, our <literal>List(1, 2,
     3).size</literal> example could be written as:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Rounding/no-dot-script.scala
+    <programlisting language="scala">// code-examples/Rounding/no-dot-script.scala
 
 List(1, 2, 3) size</programlisting>
 
@@ -5531,7 +5531,7 @@ List(1, 2, 3) size</programlisting>
     <?dbfo-need height=”1in”
 ?>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Rounding/no-dot-better-script.scala
+    <programlisting language="scala">// code-examples/Rounding/no-dot-better-script.scala
 
 def isEven(n: Int) = (n % 2) == 0
 
@@ -5666,7 +5666,7 @@ List(1, 2, 3, 4) filter isEven foreach println</programlisting>
       precedence, the two lines in the following <literal>scala</literal>
       session behave the same:</para>
 
-      <programlisting linenumbering="unnumbered">scala&gt; 2.0 * 4.0 / 3.0 * 5.0
+      <programlisting language="scala">scala&gt; 2.0 * 4.0 / 3.0 * 5.0
 res2: Double = 13.333333333333332
 
 scala&gt; (((2.0 * 4.0) / 3.0) * 5.0)
@@ -5696,7 +5696,7 @@ res3: Double = 13.333333333333332</programlisting>
           <primary>left-associative method invocations</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">scala&gt; val list = List('b', 'c', 'd')
+      <programlisting language="scala">scala&gt; val list = List('b', 'c', 'd')
 list: List[Char] = List(b, c, d)
 
 scala&gt; 'a' :: list
@@ -5708,7 +5708,7 @@ res4: List[Char] = List(a, b, c, d)</programlisting>
       right to left. What about a mixture of left-binding and right-binding
       expressions?</para>
 
-      <programlisting linenumbering="unnumbered">scala&gt; 'a' :: list ++ List('e', 'f')
+      <programlisting language="scala">scala&gt; 'a' :: list ++ List('e', 'f')
 res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
 
       <para>(The <literal>++</literal> method appends two lists.) In this
@@ -5765,7 +5765,7 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
     <link linkend="BDD" xrefstyle="select:nopage">[BDD]</link>) using the
     Specs library (see <xref linkend="ScalaSpecs"/>):</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Rounding/specs-script.scala
+    <programlisting language="scala">// code-examples/Rounding/specs-script.scala
 
 "nerd finder" should {
   "identify nerds from a List" in {
@@ -5802,7 +5802,7 @@ res5: List[Char] = List(a, b, c, d, e, f)</programlisting>
         <primary>if statements</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Rounding/if-script.scala
+    <programlisting language="scala">// code-examples/Rounding/if-script.scala
 
 if (2 + 2 == 5) {
   println("Hello from 1984.")
@@ -5821,7 +5821,7 @@ if (2 + 2 == 5) {
         <secondary>if statements as</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Rounding/assigned-if-script.scala
+    <programlisting language="scala">// code-examples/Rounding/assigned-if-script.scala
 
 val configFile = new java.io.File("~/.myapprc")
 
@@ -5853,7 +5853,7 @@ val configFilePath = if (configFile.exists()) {
     <literal>else</literal> clause in the previous example? Typing the code in
     the <literal>scala</literal> interpreter will tell us what happens:</para>
 
-    <programlisting linenumbering="unnumbered">scala&gt; val configFile = new java.io.File("~/.myapprc")
+    <programlisting language="scala">scala&gt; val configFile = new java.io.File("~/.myapprc")
 configFile: java.io.File = ~/.myapprc
 
 scala&gt; val configFilePath = if (configFile.exists()) {
@@ -5910,7 +5910,7 @@ scala&gt;</programlisting>
           <secondary>simple example</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/basic-for-script.scala
+      <programlisting language="scala">// code-examples/Rounding/basic-for-script.scala
 
 val dogBreeds = List("Doberman", "Yorkshire Terrier", "Dachshund",
                      "Scottish Terrier", "Great Dane", "Portuguese Water Dog")
@@ -5958,7 +5958,7 @@ for (breed &lt;- dogBreeds)
           <secondary>filters in</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/filtered-for-script.scala
+      <programlisting language="scala">// code-examples/Rounding/filtered-for-script.scala
 
 for (breed &lt;- dogBreeds
   if breed.contains("Terrier")
@@ -5972,7 +5972,7 @@ for (breed &lt;- dogBreeds
           <secondary>separators in for expression</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/double-filtered-for-script.scala
+      <programlisting language="scala">// code-examples/Rounding/double-filtered-for-script.scala
 
 for (breed &lt;- dogBreeds
   if breed.contains("Terrier");
@@ -6005,7 +6005,7 @@ for (breed &lt;- dogBreeds
           <primary>yield keyword</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/yielding-for-script.scala
+      <programlisting language="scala">// code-examples/Rounding/yielding-for-script.scala
 
 val filteredBreeds = for {
   breed &lt;- dogBreeds
@@ -6056,7 +6056,7 @@ val filteredBreeds = for {
           <secondary>expanded variable scope</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/scoped-for-script.scala
+      <programlisting language="scala">// code-examples/Rounding/scoped-for-script.scala
 
 for {
   breed &lt;- dogBreeds
@@ -6096,7 +6096,7 @@ for {
           <secondary>while</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/while-script.scala
+      <programlisting language="scala">// code-examples/Rounding/while-script.scala
 // WARNING: This script runs for a LOOOONG time!
 
 import java.util.Calendar
@@ -6136,7 +6136,7 @@ while (!isFridayThirteen(Calendar.getInstance())) {
           <primary>do-while loops</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/do-while-script.scala
+      <programlisting language="scala">// code-examples/Rounding/do-while-script.scala
 
 var count = 0
 
@@ -6170,7 +6170,7 @@ do {
           <primary>arrow operator (&lt;-)</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/generator-script.scala
+      <programlisting language="scala">// code-examples/Rounding/generator-script.scala
 
 for (i &lt;- 1 to 10) println(i)</programlisting>
 
@@ -6405,7 +6405,7 @@ for (i &lt;- 1 to 10) println(i)</programlisting>
           <secondary>simple match of boolean values</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-boolean-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-boolean-script.scala
 
 val bools = List(true, false)
 
@@ -6473,7 +6473,7 @@ for (bool &lt;- bools) {
           <secondary>variables in matches</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-variable-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-variable-script.scala
 
 import scala.util.Random
 
@@ -6500,7 +6500,7 @@ randomInt match {
           <secondary sortas="type">on type</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-type-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-type-script.scala
 
 val sundries = List(23, "Hello", 8.5, 'q')
 
@@ -6543,7 +6543,7 @@ for (sundry &lt;- sundries) {
           <secondary>matching on</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-seq-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-seq-script.scala
 
 val willWork = List(1, 3, 23, 90)
 val willNotWork = List(4, 18, 52)
@@ -6574,7 +6574,7 @@ for (l &lt;- List(willWork, willNotWork, empty)) {
       <literal>a</literal> to a list. You can also use this operator to
       extract the head and tail of a list:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-list-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-list-script.scala
 
 val willWork = List(1, 3, 23, 90)
 val willNotWork = List(4, 18, 52)
@@ -6597,7 +6597,7 @@ for (l &lt;- List(willWork, willNotWork, empty)) {
       <literal>List</literal> argument l. It may look strange to start the
       method definition like the following:</para>
 
-      <programlisting linenumbering="unnumbered">def processList(l: List[Any]): Unit = l match {
+      <programlisting language="scala">def processList(l: List[Any]): Unit = l match {
   ...
 }</programlisting>
 
@@ -6634,7 +6634,7 @@ for (l &lt;- List(willWork, willNotWork, empty)) {
           <secondary>matching on tuples and guards</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-tuple-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-tuple-script.scala
 
 val tupA = ("Good", "Morning!")
 val tupB = ("Guten", "Tag!")
@@ -6701,7 +6701,7 @@ for (tup &lt;- List(tupA, tupB)) {
           <primary>deep matching</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-deep-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-deep-script.scala
 
 case class Person(name: String, age: Int)
 
@@ -6775,7 +6775,7 @@ Who are you, 32 year-old person named Charlie?</screen>
       contain no surprises if you&#x2019;ve used them in other programming languages.
       Let&#x2019;s see an example:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-regex-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-regex-script.scala
 
 val BookExtractorRE = """Book: title=([^,]+),\s+authors=(.+)""".r
 val MagazineExtractorRE = """Magazine: title=([^,]+),\s+issue=(.+)""".r
@@ -6886,7 +6886,7 @@ for (item &lt;- catalog) {
           <primary>case clauses, binding nested variables in</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/match-deep-pair-script.scala
+      <programlisting language="scala">// code-examples/Rounding/match-deep-pair-script.scala
 
 class Role
 case object Manager extends Role
@@ -6923,7 +6923,7 @@ Person(Charlie,32,Developer) is underpaid.</screen>
       write <literal>p: Person</literal>. For example, the previous
       <literal>match</literal> clause could be written this way:</para>
 
-      <programlisting linenumbering="unnumbered">item match {
+      <programlisting language="scala">item match {
   case (id, p: Person) =&gt; p.role match {
     case Manager =&gt; format("%s is overpaid.\n", p)
     case _ =&gt; format("%s is underpaid.\n", p)
@@ -6968,7 +6968,7 @@ Person(Charlie,32,Developer) is underpaid.</screen>
       smart choices when presented with a multiplicity of potential
       exceptions. Let&#x2019;s see this in action:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Rounding/try-catch-script.scala
+      <programlisting language="scala">// code-examples/Rounding/try-catch-script.scala
 
 import java.util.Calendar
 
@@ -7091,7 +7091,7 @@ try {
 
     <para id="para_enumeration_example">Here is an example:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Rounding/enumeration-script.scala
+    <programlisting language="scala">// code-examples/Rounding/enumeration-script.scala
 
 object Breed extends Enumeration {
   val doberman = Value("Doberman Pinscher")
@@ -7160,7 +7160,7 @@ Scottish Terrier</screen>
     sometimes you may not need them. Here&#x2019;s another enumeration example
     adapted from the Scaladoc entry for <literal>Enumeration</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Rounding/days-enumeration-script.scala
+    <programlisting language="scala">// code-examples/Rounding/days-enumeration-script.scala
 
 object WeekDay extends Enumeration {
   type WeekDay = Value
@@ -7271,7 +7271,7 @@ Main$$anon$1$WeekDay(4)</screen>
     code for a button in a graphical user interface, which uses callbacks for
     &#x201C;clicks&#x201D;:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-callbacks.scala
+    <programlisting language="scala">// code-examples/Traits/ui/button-callbacks.scala
 
 package ui
 
@@ -7373,7 +7373,7 @@ class ButtonWithCallbacks(val label: String,
       <para id="para_first_let_s_simplify_our_butt">First, let&#x2019;s define a
       simple <literal>Button</literal> class:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button.scala
+      <programlisting language="scala">// code-examples/Traits/ui/button.scala
 
 package ui
 
@@ -7386,7 +7386,7 @@ class Button(val label: String) extends Widget {
       <para id="para_simplified_widget">Here is the parent class,
       <literal>Widget</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/widget.scala
+      <programlisting language="scala">// code-examples/Traits/ui/widget.scala
 
 package ui
 
@@ -7409,7 +7409,7 @@ abstract class Widget</programlisting>
           <secondary>trait implementing</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Traits/observer/observer.scala
+      <programlisting language="scala">// code-examples/Traits/observer/observer.scala
 
 package observer
 
@@ -7478,11 +7478,11 @@ trait Subject {
       of <literal>observers</literal>. The <literal>scala</literal> compiler
       is smart enough to turn the following statement:</para>
 
-      <programlisting linenumbering="unnumbered">observers ::= observer</programlisting>
+      <programlisting language="scala">observers ::= observer</programlisting>
 
       <para id="para_into_this_statement_">into this statement:</para>
 
-      <programlisting linenumbering="unnumbered">observers = observer :: observers</programlisting>
+      <programlisting language="scala">observers = observer :: observers</programlisting>
 
       <para id="para_note_that_we_wrote_observer_">Note that we wrote
       <literal>observer :: observers</literal>, with the existing
@@ -7491,7 +7491,7 @@ trait Subject {
       to the <emphasis>right</emphasis>. So, the previous statement is
       equivalent to the following statement:</para>
 
-      <programlisting linenumbering="unnumbered">observers = observers.::(observer)</programlisting>
+      <programlisting language="scala">observers = observers.::(observer)</programlisting>
 
       <para id="para_the_notifyobservers_method_i">The
       <literal>notifyObservers</literal> method iterates through the
@@ -7501,11 +7501,11 @@ trait Subject {
       <literal>observers.foreach</literal>.) We use the placeholder
       <literal>_</literal> to shorten the following expression:</para>
 
-      <programlisting linenumbering="unnumbered">(obs) =&gt; obs.receiveUpdate(this)</programlisting>
+      <programlisting language="scala">(obs) =&gt; obs.receiveUpdate(this)</programlisting>
 
       <para id="para_into_this_expression_">into this expression:</para>
 
-      <programlisting linenumbering="unnumbered">_.receiveUpdate(this)</programlisting>
+      <programlisting language="scala">_.receiveUpdate(this)</programlisting>
 
       <para id="para_this_expression_is_actually_th">This expression is
       actually the body of an &#x201C;anonymous function,&#x201D; called a
@@ -7545,7 +7545,7 @@ trait Subject {
       <literal>ObservableButton</literal>, which subclasses
       <literal>Button</literal> and mixes in <literal role="keep-together">Subject</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/observable-button.scala
+      <programlisting language="scala">// code-examples/Traits/ui/observable-button.scala
 
 package ui
 import observer._
@@ -7598,7 +7598,7 @@ class ObservableButton(name: String) extends Button(name) with Subject {
       <literal>extends</literal> for the first trait, e.g., you write the
       following:</para>
 
-      <programlisting linenumbering="unnumbered">// ERROR:
+      <programlisting language="scala">// ERROR:
 class ObservableButton(name: String) with Button(name) with Subject {...}</programlisting>
 
       <para id="para_you_ll_get_an_error_like_this_">You&#x2019;ll get an error like
@@ -7616,7 +7616,7 @@ class ObservableButton(name: String) with Button(name) with Subject {...}</progr
       let&#x2019;s start with a class for observing button clicks that simply counts
       the number of clicks:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-count-observer.scala
+      <programlisting language="scala">// code-examples/Traits/ui/button-count-observer.scala
 
 package ui
 import observer._
@@ -7643,7 +7643,7 @@ class ButtonCountObserver {
           and Subject types</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-observer-spec.scala
+      <programlisting language="scala">// code-examples/Traits/ui/button-observer-spec.scala
 
 package ui
 import org.specs._
@@ -7699,7 +7699,7 @@ Finished in 0 second, 10 ms
           <primary>TDD (Test-Driven Development)</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">assertEquals(3, buttonObserver.count)</programlisting>
+      <programlisting language="scala">assertEquals(3, buttonObserver.count)</programlisting>
 
       <note id="para_note_the__specs__library_see">
         <para>The Specs library (see <xref linkend="ScalaSpecs"/>) and the
@@ -7719,7 +7719,7 @@ Finished in 0 second, 10 ms
       revised Specs file that instantiates a <literal>Button</literal> with
       <literal>Subject</literal> mixed in as part of the declaration:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-observer-anon-spec.scala
+      <programlisting language="scala">// code-examples/Traits/ui/button-observer-anon-spec.scala
 
 package ui
 import org.specs._
@@ -7780,7 +7780,7 @@ object ButtonObserverAnonSpec extends Specification {
         <primary>Clickable trait (example)</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/clickable.scala
+    <programlisting language="scala">// code-examples/Traits/ui2/clickable.scala
 
 package ui2
 
@@ -7805,7 +7805,7 @@ trait Clickable {
     <para id="para_here_is_the_refactored_button_">Here is the refactored
     button, which uses the trait:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button.scala
+    <programlisting language="scala">// code-examples/Traits/ui2/button.scala
 
 package ui2
 
@@ -7832,7 +7832,7 @@ class Button(val label: String) extends Widget with Clickable {
     care about observing clicks. Here is a trait that focuses solely on
     observing <literal>Clickable</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/observable-clicks.scala
+    <programlisting language="scala">// code-examples/Traits/ui2/observable-clicks.scala
 
 package ui2
 import observer._
@@ -7886,7 +7886,7 @@ trait ObservableClicks extends Clickable with Subject {
     <literal>Button</literal> and its concrete <literal>click</literal> method
     in a <emphasis>Specs</emphasis> test:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button-clickable-observer-spec.scala
+    <programlisting language="scala">// code-examples/Traits/ui2/button-clickable-observer-spec.scala
 
 package ui2
 import org.specs._
@@ -7931,7 +7931,7 @@ object ButtonClickableObserverSpec extends Specification {
         <secondary>vetoable events</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/vetoable-clicks.scala
+    <programlisting language="scala">// code-examples/Traits/ui2/vetoable-clicks.scala
 
 package ui2
 import observer._
@@ -7977,7 +7977,7 @@ trait VetoableClicks extends Clickable {
         <secondary>working with VetoableClicks trait (example)</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button-clickable-observer-vetoable-spec.scala
+    <programlisting language="scala">// code-examples/Traits/ui2/button-clickable-observer-vetoable-spec.scala
 
 package ui2
 import org.specs._
@@ -8002,7 +8002,7 @@ object ButtonClickableObserverVetoableSpec extends Specification {
     is 1. The <literal>observableButton</literal> is declared as
     follows:</para>
 
-    <programlisting linenumbering="unnumbered">new Button("Okay") with ObservableClicks with VetoableClicks</programlisting>
+    <programlisting language="scala">new Button("Okay") with ObservableClicks with VetoableClicks</programlisting>
 
     <para id="para_we_can_infer_that_the_click_">We can infer that the
     <literal>click</literal> override in <literal>VetoableClicks</literal> is
@@ -8015,7 +8015,7 @@ object ButtonClickableObserverVetoableSpec extends Specification {
     <para id="para_in_the_meantime_what_happens_">In the meantime, what
     happens if we use the traits in the reverse order?</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui2/button-vetoable-clickable-observer-spec.scala
+    <programlisting language="scala">// code-examples/Traits/ui2/button-vetoable-clickable-observer-spec.scala
 
 package ui2
 import org.specs._
@@ -8078,7 +8078,7 @@ object ButtonVetoableClickableObserverSpec extends Specification {
     body of a trait is executed every time an instance is created that uses
     the trait, as demonstrated by the following script:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/trait-construction-script.scala
+    <programlisting language="scala">// code-examples/Traits/trait-construction-script.scala
 
 trait T1 {
   println( "  in T1: x = " + x )
@@ -8311,7 +8311,7 @@ After Creating C12</screen>
         <primary>type erasure</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/type-erasure-wont-compile.scala
+    <programlisting language="scala">// code-examples/BasicOOP/type-erasure-wont-compile.scala
 // WON'T COMPILE
 
 object Foo {
@@ -8414,7 +8414,7 @@ object Foo {
     of parent and child classes. Here are snippets of one of the first we saw,
     in <xref linkend="AbstractTypesAndParameterizedTypes"/>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
+    <programlisting language="scala">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
 import java.io._
 
@@ -8469,7 +8469,7 @@ class FileBulkReader(val source: File) extends BulkReader {
         <primary>constructors</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-callbacks.scala
+    <programlisting language="scala">// code-examples/Traits/ui/button-callbacks.scala
 
 package ui
 
@@ -8564,7 +8564,7 @@ class ButtonWithCallbacks(val label: String,
     specification for <literal>ButtonWithCallbacks</literal> that demonstrates
     the <literal>require</literal> statement in use:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-callbacks-spec.scala
+    <programlisting language="scala">// code-examples/Traits/ui/button-callbacks-spec.scala
 package ui
 import org.specs._
 
@@ -8685,7 +8685,7 @@ object ButtonWithCallbacksSpec extends Specification {
           <secondary>parent class constructors, calling</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/ui/radio-button-callbacks.scala
+      <programlisting language="scala">// code-examples/BasicOOP/ui/radio-button-callbacks.scala
 
 package ui
 
@@ -8754,7 +8754,7 @@ class RadioButtonWithCallbacks(
     <para id="para_here_is_one_way_way_we_might_e">Here is one way we might
     expand our original <literal>Widget</literal> example from <xref linkend="TraitsAsMixins"/> to add this feature:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/ui/widget.scala
+    <programlisting language="scala">// code-examples/BasicOOP/ui/widget.scala
 
 package ui
 
@@ -9000,7 +9000,7 @@ abstract class Widget {
           <secondary>public</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/public.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/public.scala
 
 package scopeA {
   class PublicClass1 {
@@ -9061,7 +9061,7 @@ package scopeB {
       protected members visible throughout the enclosing package. Scala
       handles this case with scoped private and protected access:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/protected-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/protected-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9158,7 +9158,7 @@ package scopeB {
           <primary>private visibility</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/private-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9302,7 +9302,7 @@ of type scopeA.PrivateClass4
       scoped protected&#x2014;how they behave under inheritance when members have
       these scopes:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/scope-inheritance-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/scope-inheritance-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9380,7 +9380,7 @@ package scopeB {
       the most restrictive visibility, <literal>private[this]</literal>, as it
       affects type members:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-this-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/private-this-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9459,7 +9459,7 @@ package scopeA {
       <literal>private[this]</literal>, use of <literal>this</literal>
       effectively binds to the enclosing package, as shown here:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-this-pkg-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/private-this-pkg-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9518,7 +9518,7 @@ four errors found</screen>
       type-level visibility, <literal>private[T]</literal>, where
       <literal>T</literal> is a type:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-type-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/private-type-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9599,7 +9599,7 @@ package scopeA {
       <literal>private[PrivateClass1]</literal>? Let&#x2019;s see how
       <literal>private[T]</literal> affects nested types:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-type-nested-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/private-type-nested-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9642,7 +9642,7 @@ two errors found</screen>
       <para id="para_let_s_examine_scoping_using_a_">Let&#x2019;s examine scoping
       using a package name:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-pkg-type-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/private-pkg-type-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9686,7 +9686,7 @@ two errors found</screen>
       <para id="para_finally_let_s_look_at_the_eff">Finally, let&#x2019;s look at the
       effect of package-level scoping of type members:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/BasicOOP/scoping/private-pkg-wont-compile.scala
+      <programlisting language="scala">// code-examples/BasicOOP/scoping/private-pkg-wont-compile.scala
 // WON'T COMPILE
 
 package scopeA {
@@ -9884,7 +9884,7 @@ three errors found</screen>
           <secondary>final declarations</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/final-member-wont-compile.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/final-member-wont-compile.scala
 // WON'T COMPILE.
 
 class NotFixed {
@@ -9900,7 +9900,7 @@ class Changeable2 extends NotFixed {
       <literal>Fixed</literal> is declared <literal>final</literal>, so an
       attempt to derive a new type from it will also fail to compile:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/final-class-wont-compile.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/final-class-wont-compile.scala
 // WON'T COMPILE.
 
 final class Fixed {
@@ -9957,7 +9957,7 @@ class Changeable1 extends Fixed     // ERROR</programlisting>
       <literal>Widget</literal> class, with <literal>draw</literal> and
       <literal>toString</literal> methods:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/widget.scala
+      <programlisting language="scala">// code-examples/AdvOOP/ui3/widget.scala
 
 package ui3
 
@@ -9990,7 +9990,7 @@ abstract class Widget {
       <literal>Button</literal> class, with <literal>draw</literal> and
       <literal>toString</literal> methods:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/button.scala
+      <programlisting language="scala">// code-examples/AdvOOP/ui3/button.scala
 
 package ui3
 
@@ -10177,7 +10177,7 @@ ClassExtendsT1</screen>
       design choice, when there is no appropriate default value to assign to
       the <literal>val</literal> in the trait:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/trait-abs-val-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/trait-abs-val-script.scala
 
 trait AbstractT1 {
   val name: String
@@ -10212,7 +10212,7 @@ ClassExtendsAbstractT1</screen>
       occur until after the trait&#x2019;s body has executed. Consider the following
       example:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/trait-invalid-init-val-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/trait-invalid-init-val-script.scala
 // ERROR: "value" read before initialized.
 
 trait AbstractT2 {
@@ -10268,7 +10268,7 @@ c2b.value = 10, inverse = Infinity</screen>
           <primary>lazy values</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/trait-pre-init-val-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/trait-pre-init-val-script.scala
 
 trait AbstractT2 {
   println("In AbstractT2:")
@@ -10318,7 +10318,7 @@ c2c.value = 10, inverse = 0.1</screen>
       <?dbfo-need height=”1in”
 ?>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/vetoable-clicks.scala
+      <programlisting language="scala">// code-examples/AdvOOP/ui3/vetoable-clicks.scala
 
 package ui3
 import observer._
@@ -10338,7 +10338,7 @@ trait VetoableClicks extends Clickable {
       <literal>ButtonClickableObserverVetoableSpec2</literal>, that
       demonstrates changing the value of <literal>maxAllowed</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/ui3/button-clickable-observer-vetoable2-spec.scala
+      <programlisting language="scala">// code-examples/AdvOOP/ui3/button-clickable-observer-vetoable2-spec.scala
 package ui3
 
 import org.specs._
@@ -10418,7 +10418,7 @@ object ButtonClickableObserverVetoableSpec2 extends Specification {
           classes</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/class-field-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/class-field-script.scala
 
 class C1 {
   val name = "C1"
@@ -10453,7 +10453,7 @@ println(c.count)</programlisting>
       modified so that both the <literal>val</literal> and the
       <literal>var</literal> are abstract in the base class:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/class-abs-field-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/class-abs-field-script.scala
 
 abstract class AbstractC1 {
   val name: String
@@ -10503,7 +10503,7 @@ println(c.count)</programlisting>
           <secondary>overriding</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
+      <programlisting language="scala">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
 import java.io._
 
@@ -10559,7 +10559,7 @@ println( new FileBulkReader(new File("abstract-types-script.scala")).read )</pro
       Observers must have this &#x201C;structure.&#x201D; Let&#x2019;s generalize the
       implementation now, using an abstract type:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/observer2.scala
+      <programlisting language="scala">// code-examples/AdvOOP/observer/observer2.scala
 
 package observer
 
@@ -10613,7 +10613,7 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
       that exercises these two variations, observing button clicks as
       before:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/button-observer2-spec.scala
+      <programlisting language="scala">// code-examples/AdvOOP/observer/button-observer2-spec.scala
 
 package ui
 import org.specs._
@@ -10705,7 +10705,7 @@ object ButtonObserver2Spec extends Specification {
           overriding</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Traits/ui/button-count-observer-script.scala
+      <programlisting language="scala">// code-examples/Traits/ui/button-count-observer-script.scala
 
 val bco = new ui.ButtonCountObserver
 val oldCount = bco.count
@@ -10721,12 +10721,12 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
       following two definitions are functionally equivalent, from the
       perspective of the user:</para>
 
-      <programlisting linenumbering="unnumbered">class ButtonCountObserver {
+      <programlisting language="scala">class ButtonCountObserver {
   var count = 0  // public field access (original definition)
   // ...
 }</programlisting>
 
-      <programlisting linenumbering="unnumbered">class ButtonCountObserver {
+      <programlisting language="scala">class ButtonCountObserver {
   private var cnt = 0  // private field
   def count = cnt      // reader method
   def count_=(newCount: Int) = cnt = newCount  // writer method
@@ -10759,7 +10759,7 @@ println(newCount + " == 5 and " + oldCount + " == 0?")</programlisting>
       compiler allows invocations of methods with this format to be written in
       either of the following ways:</para>
 
-      <programlisting linenumbering="unnumbered">obj.field_=(newValue)
+      <programlisting language="scala">obj.field_=(newValue)
 // or
 obj.field = newValue</programlisting>
 
@@ -10778,7 +10778,7 @@ obj.field = newValue</programlisting>
       caller&#x2019;s perspective, they are also in the same namespace as methods and
       fields. Hence, the following class would not compile:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/member-namespace-wont-compile.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/member-namespace-wont-compile.scala
 // WON'T COMPILE
 
 class IllegalMemberNameUse {
@@ -10795,7 +10795,7 @@ class IllegalMemberNameUse {
       <literal>val</literal>. If the parent&#x2019;s method is concrete, then the
       <literal>override</literal> keyword is required:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/method-field-class-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/method-field-class-script.scala
 
 class Parent {
   def name = "Parent"
@@ -10811,7 +10811,7 @@ println(new Child().name)   // =&gt; "Child"</programlisting>
       abstract, then the <literal>override</literal> keyword is
       optional:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/abs-method-field-class-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/abs-method-field-class-script.scala
 
 abstract class AbstractParent {
   def name: String
@@ -10832,7 +10832,7 @@ println(new ConcreteChild().name)   // =&gt; "Child"</programlisting>
           fields</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/method-field-trait-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/method-field-trait-script.scala
 
 trait NameTrait {
   def name = "NameTrait"
@@ -10847,7 +10847,7 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       <para id="para_if_the_trait_s_method_is_abstr">If the trait&#x2019;s method is
       abstract, we have the following:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/overrides/abs-method-field-trait-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/overrides/abs-method-field-trait-script.scala
 
 trait AbstractNameTrait {
   def name: String
@@ -10873,7 +10873,7 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
       <literal>Person</literal> implements a hypothetical
       <literal>PersonInterface</literal> from some legacy Java code:</para>
 
-      <programlisting linenumbering="unnumbered">class Person(val getName: String) extends PersonInterface</programlisting>
+      <programlisting language="scala">class Person(val getName: String) extends PersonInterface</programlisting>
 
       <para id="para_if_you_only_have_a_few_accesso">If you only have a few
       accessors in the Java code you&#x2019;re integrating with, this technique makes
@@ -10976,7 +10976,7 @@ println(new ConcreteNameClass().name)   // =&gt; "ConcreteNameClass"</programlis
           <primary>factory methods, apply method as</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">type Pair[+A, +B] = Tuple2[A, B]
+      <programlisting language="scala">type Pair[+A, +B] = Tuple2[A, B]
 object Pair {
   def apply[A, B](x: A, y: B) = Tuple2(x, y)
   def unapply[A, B](x: Tuple2[A, B]): Option[Tuple2[A, B]] = Some(x)
@@ -10985,7 +10985,7 @@ object Pair {
       <para id="para_so_you_can_create_a_new_pair_">So, you can create a new
       <literal>Pair</literal> as follows:</para>
 
-      <programlisting linenumbering="unnumbered">val p = Pair(1, "one")</programlisting>
+      <programlisting language="scala">val p = Pair(1, "one")</programlisting>
 
       <para id="para_it_looks_like_we_are_some_how_">It looks like we are
       somehow creating a <literal>Pair</literal> instance without a
@@ -11012,7 +11012,7 @@ object Pair {
       occurs, the subclass is instantiated and the new instance is
       returned:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/widget.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/widget.scala
 
 package objects
 
@@ -11044,7 +11044,7 @@ object Widget {
       <literal>match</literal> expression applies each regular expression to
       the string. A case expression like:</para>
 
-      <programlisting linenumbering="unnumbered">case ButtonExtractorRE(label) =&gt; new Some(new Button(label))</programlisting>
+      <programlisting language="scala">case ButtonExtractorRE(label) =&gt; new Some(new Button(label))</programlisting>
 
       <para id="para_means_that_the_string_is_match">means that the string is
       matched against the <literal>ButtonExtractorRE</literal> regular
@@ -11064,7 +11064,7 @@ object Widget {
       <literal>object</literal> that exercises
       <literal>Widget.apply</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/widget-apply-spec.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/widget-apply-spec.scala
 
 package objects
 import org.specs._
@@ -11135,7 +11135,7 @@ object WidgetApplySpec extends Specification {
           <secondary>apply method</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">val a = Array(1,2,3,4)
+      <programlisting language="scala">val a = Array(1,2,3,4)
 println(a(2))  // =&gt; 3</programlisting>
 
       <para id="para_finally_as_a_reminder_althou">Finally, as a reminder,
@@ -11172,7 +11172,7 @@ println(a(2))  // =&gt; 3</programlisting>
       <literal>object</literal> that defines an <literal>unapply</literal>
       extractor method:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/button.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/button.scala
 
 package objects
 import ui3.Clickable
@@ -11205,7 +11205,7 @@ object Button {
       <literal>object</literal> that exercises
       <literal>Button.unapply</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/button-unapply-spec.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/button-unapply-spec.scala
 
 package objects
 import org.specs._
@@ -11276,7 +11276,7 @@ object ButtonUnapplySpec extends Specification {
       as shown in this updated version of
       <literal>RadioButton</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/radio-button.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/radio-button.scala
 
 package objects
 
@@ -11299,7 +11299,7 @@ object RadioButton {
       <literal>specs</literal> <literal>object</literal> that tests
       it<indexterm class="endofrange" startref="ch06_unapply"/><indexterm class="endofrange" startref="ch06_companionunapply"/>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/radio-button-unapply-spec.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/radio-button-unapply-spec.scala
 
 package objects
 import org.specs._
@@ -11373,7 +11373,7 @@ object RadioButtonUnapplySpec extends Specification {
           <primary>unapplySeq method for collections</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">def apply[A](xs: A*): List[A] = xs.toList
+      <programlisting language="scala">def apply[A](xs: A*): List[A] = xs.toList
 
 def unapplySeq[A](x: List[A]): Some[List[A]] = Some(x)</programlisting>
 
@@ -11401,7 +11401,7 @@ def unapplySeq[A](x: List[A]): Some[List[A]] = Some(x)</programlisting>
       <para id="para_here_is_an_example_script_that">Here is an example script
       that uses <literal>List.apply</literal> implicitly:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/list-apply-example-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/list-apply-example-script.scala
 
 val list1 = List()
 val list2 = List(1, 2.2, "three", 'four)
@@ -11430,7 +11430,7 @@ println("3: "+list3)</programlisting>
       list wrapped in a <literal>Some</literal>. However, this is sufficient
       for pattern matching, as shown in this example:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/list-unapply-example-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/list-unapply-example-script.scala
 
 val list = List(1, 2.2, "three", 'four)
 list match {
@@ -11483,7 +11483,7 @@ list match {
           <secondary>Java static methods and</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/person.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/person.scala
 
 package objects
 
@@ -11552,7 +11552,7 @@ object PersonTest {
       instead. Consider the following Java class that attempts to create a
       user with <literal>Person.apply</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/PersonUserWontCompile.java
+      <programlisting language="java">// code-examples/AdvOOP/objects/PersonUserWontCompile.java
 // WON'T COMPILE
 
 package objects;
@@ -11579,7 +11579,7 @@ location: class objects.Person
       <para id="para_however_we_can_use_the_follow">However, we can use the
       following singleton object:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/person-factory.scala
+      <programlisting language="scala">// code-examples/AdvOOP/objects/person-factory.scala
 
 package objects
 
@@ -11590,7 +11590,7 @@ object PersonFactory {
       <para id="para_now_the_following_java_class_w">Now the following Java
       class will compile:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/objects/PersonUser.java
+      <programlisting language="java">// code-examples/AdvOOP/objects/PersonUser.java
 
 package objects;
 
@@ -11635,7 +11635,7 @@ public class PersonUser {
     <literal>Shape</literal> example we used in <xref linkend="ATasteOfConcurrency"/> to use case classes. Here is the original
     implementation:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/IntroducingScala/shapes.scala
+    <programlisting language="scala">// code-examples/IntroducingScala/shapes.scala
 
 package shapes {
   class Point(val x: Double, val y: Double) {
@@ -11673,7 +11673,7 @@ package shapes {
         <secondary>case class example</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case.scala
+    <programlisting language="scala">// code-examples/AdvOOP/shapes/shapes-case.scala
 
 package shapes {
   case class Point(x: Double, y: Double)
@@ -11722,7 +11722,7 @@ package shapes {
     <para id="para_the_following_script_uses_thes">The following script uses
     these methods that are now in the shapes:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example1-script.scala
+    <programlisting language="scala">// code-examples/AdvOOP/shapes/shapes-usage-example1-script.scala
 
 import shapes._
 
@@ -11802,7 +11802,7 @@ shape2: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0)). 1 == 2 ? false</
         <secondary>use in pattern matching case statements</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example2-script.scala
+    <programlisting language="scala">// code-examples/AdvOOP/shapes/shapes-usage-example2-script.scala
 
 import shapes._
 
@@ -11845,7 +11845,7 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
           <secondary>binary operations</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">def processList(l: List[Any]): Unit = l match {
+      <programlisting language="scala">def processList(l: List[Any]): Unit = l match {
   case head :: tail =&gt; ...
   ...
 }</programlisting>
@@ -11853,7 +11853,7 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
       <para id="para_it_turns_out_that_the_followin">It turns out that the
       following expressions are identical:</para>
 
-      <programlisting linenumbering="unnumbered">  case head :: tail =&gt; ...
+      <programlisting language="scala">  case head :: tail =&gt; ...
   case ::(head, tail) =&gt; ...</programlisting>
 
       <para id="para_we_are_using_the_companion_obj">We are using the
@@ -11867,7 +11867,7 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
       or more arguments. We could rewrite our <literal>matchOn</literal>
       method this way:</para>
 
-      <programlisting linenumbering="unnumbered">def matchOn(shape: Shape) = shape match {
+      <programlisting language="scala">def matchOn(shape: Shape) = shape match {
   case center Circle radius =&gt; ...
   case ll Rectangle (h, w) =&gt; ...
   case p1 Triangle (p2, p3) =&gt; ...
@@ -11878,7 +11878,7 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
       <literal>unapply</literal> that takes one argument, you would have to
       insert an empty set of parentheses to avoid a parsing ambiguity:</para>
 
-      <programlisting linenumbering="unnumbered">  case arg Foo () =&gt; ...</programlisting>
+      <programlisting language="scala">  case arg Foo () =&gt; ...</programlisting>
 
       <para id="para_from_the_point_of_view_of_clar">From the point of view of
       clarity, this syntax is elegant for some cases when there are two
@@ -11902,7 +11902,7 @@ Triangle: point1 = Point(0.0,0.0), point2 = Point(1.0,0.0), point3 = Point(0.0,1
           <secondary>copy method in Scala 2.8</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-usage-example3-v28-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/shapes/shapes-usage-example3-v28-script.scala
 // Scala version 2.8 only.
 
 import shapes._
@@ -11921,7 +11921,7 @@ println(circle2)</programlisting>
       implementation of <literal>Circle.copy</literal> looks roughly like the
       following:</para>
 
-      <programlisting linenumbering="unnumbered">case class Circle(center: Point, radius: Double) extends Shape() {
+      <programlisting language="scala">case class Circle(center: Point, radius: Double) extends Shape() {
   ...
   def copy(center: Point = this.center, radius: Double = this.radius) =
     new Circle(center, radius)
@@ -11957,7 +11957,7 @@ println(circle2)</programlisting>
           <secondary>inheritance</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">abstract case class Shape(id: String) {
+      <programlisting language="scala">abstract case class Shape(id: String) {
   def draw(): Unit
 }</programlisting>
 
@@ -11966,7 +11966,7 @@ println(circle2)</programlisting>
       constructor. For example, <literal>Circle</literal> would become the
       following:</para>
 
-      <programlisting linenumbering="unnumbered">case class Circle(id: String, center: Point, radius: Double) extends Shape(id){
+      <programlisting language="scala">case class Circle(id: String, center: Point, radius: Double) extends Shape(id){
   def draw(): Unit
 }</programlisting>
 
@@ -11986,7 +11986,7 @@ println(circle2)</programlisting>
       <xref linkend="OverridingMembers"/>. So, the complete set of required
       modifications are as follows:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case-id.scala
+      <programlisting language="scala">// code-examples/AdvOOP/shapes/shapes-case-id.scala
 
 package shapesid {
   case class Point(x: Double, y: Double)
@@ -12026,7 +12026,7 @@ package shapesid {
           <secondary>case class comparisons</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case-equals-ambiguity-script.scala
+      <programlisting language="scala">// code-examples/AdvOOP/shapes/shapes-case-equals-ambiguity-script.scala
 
 import shapesid._
 
@@ -12391,7 +12391,7 @@ res1: Boolean = true</screen>
         <secondary>declaring types and exceptions</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">type String = java.lang.String</programlisting>
+    <programlisting language="scala">type String = java.lang.String</programlisting>
 
     <para id="para_in_this_case_the_declaration_">In this case, the
     declaration has the same net effect as an <literal>import
@@ -12409,7 +12409,7 @@ res1: Boolean = true</screen>
         <primary>Pair class</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">type Pair[+A, +B] = Tuple2[A, B]</programlisting>
+    <programlisting language="scala">type Pair[+A, +B] = Tuple2[A, B]</programlisting>
 
     <para id="para_as_you_would_expect_there_are">There are two type
     parameters, <literal>A</literal> and <literal>B</literal>, one for each
@@ -12475,7 +12475,7 @@ res1: Boolean = true</screen>
     The utility of these methods was demonstrated previously in <xref linkend="OptionSomeNone"/>, where we created a map of U.S. state
     capitals:</para>
 
-    <programlisting linenumbering="unnumbered">val stateCapitals = Map(
+    <programlisting language="scala">val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
   "Alaska"  -&gt; "Juneau",
   // ...
@@ -12503,7 +12503,7 @@ res1: Boolean = true</screen>
         <primary>Map.apply method</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">object Map {
+    <programlisting language="scala">object Map {
   ...
   def apply[A, B](elems : (A, B)*) : Map[A, B] = ...
 }</programlisting>
@@ -12544,7 +12544,7 @@ res1: Boolean = true</screen>
         <secondary>any2ArrowAssoc method</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">implicit def any2ArrowAssoc[A](x: A): ArrowAssoc[A] = new ArrowAssoc(x)</programlisting>
+    <programlisting language="scala">implicit def any2ArrowAssoc[A](x: A): ArrowAssoc[A] = new ArrowAssoc(x)</programlisting>
 
     <para id="para_it_is_applied_to_each_item_to_">It is applied to each item
     to the left of an arrow <literal>-&gt;</literal>, e.g., the
@@ -12553,7 +12553,7 @@ res1: Boolean = true</screen>
     <literal>-&gt;</literal> method is then invoked. This method has the
     following implementation:</para>
 
-    <programlisting linenumbering="unnumbered">class ArrowAssoc[A](x: A) {
+    <programlisting language="scala">class ArrowAssoc[A](x: A) {
     ...
     def -&gt; [B](y: B): Tuple2[A, B] = Tuple2(x, y)
 }</programlisting>
@@ -12707,7 +12707,7 @@ res1: Boolean = true</screen>
     previously for tests, and the <literal>Pair</literal> type and its
     <emphasis>companion object</emphasis>, which we explored in <xref linkend="PredefObject"/>:</para>
 
-    <programlisting linenumbering="unnumbered">type Pair[+A, +B] = Tuple2[A, B]
+    <programlisting language="scala">type Pair[+A, +B] = Tuple2[A, B]
 object Pair {
   def apply[A, B](x: A, y: B) = Tuple2(x, y)
   def unapply[A, B](x: Tuple2[A, B]): Option[Tuple2[A, B]] = Some(x)
@@ -12789,7 +12789,7 @@ object Pair {
       object definition (at the time of this writing; it could change before
       the 2.8.0 final version is released):</para>
 
-      <programlisting linenumbering="unnumbered">package object scala {
+      <programlisting language="scala">package object scala {
   type Iterable[+A] = scala.collection.Iterable[A]
   val Iterable = scala.collection.Iterable
 
@@ -12846,7 +12846,7 @@ object Pair {
       <literal>List</literal> would have to be handled without a package
       object:</para>
 
-      <programlisting linenumbering="unnumbered">package scala {
+      <programlisting language="scala">package scala {
   object toplevel {
     ...
     type List[+A] = scala.collection.immutable.List[A]
@@ -12913,7 +12913,7 @@ import scala.toplevel._
     change very often, so we declare a &#x201C;sealed&#x201D; set of case classes for
     them:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/sealed/http-script.scala
+    <programlisting language="scala">// code-examples/ObjectSystem/sealed/http-script.scala
 
 sealed abstract class HttpMethod()
 case class Connect(body: String) extends HttpMethod
@@ -13021,7 +13021,7 @@ def handle (method: HttpMethod) = method match {
     <literal>HttpMethod</literal>, then use it as we see fit. The following
     example demonstrates this technique:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/sealed/http-body-script.scala
+    <programlisting language="scala">// code-examples/ObjectSystem/sealed/http-body-script.scala
 
 sealed abstract class HttpMethod() {
     def body: String
@@ -13549,7 +13549,7 @@ body length? 13</screen>
         <primary>Either object</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/typehierarchy/either-script.scala
+    <programlisting language="scala">// code-examples/ObjectSystem/typehierarchy/either-script.scala
 
 def exceptionToLeft[T](f: =&gt; T): Either[java.lang.Throwable, T] = try {
   Right(f)
@@ -13589,12 +13589,12 @@ Oops, got exception java.lang.RuntimeException: 3 is odd!</screen>
         <primary>FunctionN object</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">(t1: T1, ..., tN: TN) =&gt; new R(...)</programlisting>
+    <programlisting language="scala">(t1: T1, ..., tN: TN) =&gt; new R(...)</programlisting>
 
     <para id="para_it_is_syntactic_sugar_for_the_">It is syntactic sugar for
     the following creation of an anonymous class:</para>
 
-    <programlisting linenumbering="unnumbered">new FunctionN {
+    <programlisting language="scala">new FunctionN {
   def apply(t1: T1, ..., tN: TN): R = new R(...)
 
   // other methods
@@ -13631,7 +13631,7 @@ Oops, got exception java.lang.RuntimeException: 3 is odd!</screen>
     trait, they bind right to left, as declared. Consider the following
     example of linearization:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/linearization/linearization1-script.scala
+    <programlisting language="scala">// code-examples/ObjectSystem/linearization/linearization1-script.scala
 
 class C1 {
   def m = List("C1")
@@ -13672,7 +13672,7 @@ println(c2.m)</programlisting>
         <secondary>linearization algorithm for</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/linearization/linearization2-script.scala
+    <programlisting language="scala">// code-examples/ObjectSystem/linearization/linearization2-script.scala
 
 var clist = List[String]()
 
@@ -13754,7 +13754,7 @@ println(clist.reverse)</programlisting>
     breadth-first, with &#x201C;delayed&#x201D; evaluation, as we will see. Let&#x2019;s modify our
     first example and see how we got to <literal>C1</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/linearization/linearization3-script.scala
+    <programlisting language="scala">// code-examples/ObjectSystem/linearization/linearization3-script.scala
 
 class C1 {
   def m(previous: String) = List("C1("+previous+")")
@@ -13845,7 +13845,7 @@ println(c2.m(""))</programlisting>
     <para id="para_let_s_work_through_the_algorit">Let&#x2019;s work through the
     algorithm using a slightly more involved example:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/linearization/linearization4-script.scala
+    <programlisting language="scala">// code-examples/ObjectSystem/linearization/linearization4-script.scala
 
 class C1 {
   def m = List("C1")
@@ -14112,7 +14112,7 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
           <primary>mathematics, functions in</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">y = sin(x)</programlisting>
+      <programlisting language="scala">y = sin(x)</programlisting>
 
       <para id="para_no_matter_how_much_work_y_s">No matter how much work
       <literal>sin(x)</literal> does, all the results are returned and
@@ -14289,7 +14289,7 @@ C1 :  List(C1, ScalaObject, AnyRef, Any)</screen>
     <literal>List.map</literal> takes a function to transform each element of
     the list to something else:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-map-example-script.scala
+    <programlisting language="scala">// code-examples/FP/basics/list-map-example-script.scala
 
 List(1, 2, 3, 4, 5) map { _ * 2 }</programlisting>
 
@@ -14301,7 +14301,7 @@ List(1, 2, 3, 4, 5) map { _ * 2 }</programlisting>
     Here&#x2019;s an example that &#x201C;reduces&#x201D; the same list by multiplying all the
     elements together:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-reduceLeft-example-script.scala
+    <programlisting language="scala">// code-examples/FP/basics/list-reduceLeft-example-script.scala
 
 List(1, 2, 3, 4, 5) reduceLeft { _ * _ }</programlisting>
 
@@ -14336,7 +14336,7 @@ List(1, 2, 3, 4, 5) reduceLeft { _ * _ }</programlisting>
           <tertiary>function literals and closures</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/basics/list-map-closure-example-script.scala
+      <programlisting language="scala">// code-examples/FP/basics/list-map-closure-example-script.scala
 
 var factor = 3
 val multiplier = (i:Int) =&gt; i * factor
@@ -14441,7 +14441,7 @@ List(5, 10, 15, 20, 25)</screen>
     <para id="para_loop_by_recursion_example_">Calculating factorials provides
     a good example. Here is an imperative loop <phrase role="keep-together">implementation</phrase>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-loop-script.scala
+    <programlisting language="scala">// code-examples/FP/recursion/factorial-loop-script.scala
 
 def factorial_loop(i: BigInt): BigInt = {
   var result = BigInt(1)
@@ -14472,7 +14472,7 @@ for (i &lt;- 1 to 10)
     <para id="para_fact_recur1_impl">Here&#x2019;s a first pass at a recursive
     implementation:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-recur1-script.scala
+    <programlisting language="scala">// code-examples/FP/recursion/factorial-recur1-script.scala
 
 def factorial(i: BigInt): BigInt = i match {
   case _ if i == 1 =&gt; i
@@ -14535,7 +14535,7 @@ for (i &lt;- 1 to 10)
     comprehensions and pattern matching. So, here&#x2019;s a new implementation of
     <literal>factorial</literal>, calculated with tail-call recursion:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/recursion/factorial-recur2-script.scala
+    <programlisting language="scala">// code-examples/FP/recursion/factorial-recur2-script.scala
 
 def factorial(i: BigInt): BigInt = {
   def fact(i: BigInt, accumulator: BigInt): BigInt = i match {
@@ -14658,7 +14658,7 @@ for (i &lt;- 1 to 10)
       It is conventional to prepend the new element to the list, as we&#x2019;ve seen
       before:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/list-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/list-script.scala
 
 val list1 = List("Programming", "Scala")
 val list2 = "People" :: "should" :: "read" :: list1
@@ -14669,7 +14669,7 @@ println(list2)</programlisting>
       <literal>list2</literal> is equivalent to both of the following
       variations:</para>
 
-      <programlisting linenumbering="unnumbered">val list2 = ("People" :: ("should" :: ("read" :: list1)))
+      <programlisting language="scala">val list2 = ("People" :: ("should" :: ("read" :: list1)))
 val list2 = list1.::("read").::("should").::("People")</programlisting>
 
       <para id="para_in_terms_of_performance_prepe">In terms of performance,
@@ -14710,7 +14710,7 @@ val list2 = list1.::("read").::("should").::("People")</programlisting>
       <para id="para_scala_supports_the_special_ini">Scala supports the
       special initialization syntax we saw previously:</para>
 
-      <programlisting linenumbering="unnumbered">val stateCapitals = Map(
+      <programlisting language="scala">val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
   "Alaska"  -&gt; "Juneau",
   // ...
@@ -14810,7 +14810,7 @@ val list2 = list1.::("read").::("should").::("People")</programlisting>
           <secondary>traversal of data structures</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foreach-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/foreach-script.scala
 
 List(1, 2, 3, 4, 5) foreach { i =&gt; println("Int: " + i) }
 
@@ -14824,7 +14824,7 @@ stateCapitals foreach { kv =&gt; println(kv._1 + ": " + kv._2) }</programlisting
       <para id="para_the_signature_of_foreach_is_">The signature of
       <literal>foreach</literal> is the following:</para>
 
-      <programlisting linenumbering="unnumbered">trait Iterable[+A] {
+      <programlisting language="scala">trait Iterable[+A] {
   ...
   def foreach(f : (A) =&gt; Unit) : Unit = ...
   ...
@@ -14866,7 +14866,7 @@ stateCapitals foreach { kv =&gt; println(kv._1 + ": " + kv._2) }</programlisting
           <secondary>mapping operations</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">trait Iterable[+A] {
+      <programlisting language="scala">trait Iterable[+A] {
   ...
   def map[B](f : (A) =&gt; B) : Iterable[B] = ...
   ...
@@ -14880,7 +14880,7 @@ stateCapitals foreach { kv =&gt; println(kv._1 + ": " + kv._2) }</programlisting
       <literal>A</literal> to a new type <literal>B</literal>. Here is an
       example:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/map-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/map-script.scala
 
 val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
@@ -14938,7 +14938,7 @@ println(lengths)</programlisting>
       <para id="para_however_if_you_really_need_a_">That said, if you really
       need a <literal>Map</literal>, you can create one easily enough:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/map2-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/map2-script.scala
 
 val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
@@ -14960,7 +14960,7 @@ println(lengths)</programlisting>
           <primary>Map.apply method</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">object Map {
+      <programlisting language="scala">object Map {
   ...
   def apply[A, B](elems : (A, B)*) : Map[A, B] = ...
   ...
@@ -14987,7 +14987,7 @@ println(lengths)</programlisting>
       elements, etc. Hence, unlike <literal>map</literal>, it may not return a
       new collection of the same size as the original collection:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/flatmap-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/flatmap-script.scala
 
 val graph = List(
   "a", List("b1", "b2", "b3"), List("c1", List("c21", Nil, "c22"), Nil, "e")
@@ -15013,7 +15013,7 @@ println(flatten(graph))</programlisting>
       <literal>flatMap</literal>, along with <literal>map</literal>, for
       comparison:</para>
 
-      <programlisting linenumbering="unnumbered">trait Iterable[+A] {
+      <programlisting language="scala">trait Iterable[+A] {
   ...
   def map[B]    (f : (A) =&gt; B) : Iterable[B] = ...
   def flatMap[B](f : (A) =&gt; Iterable[B]) : Iterable[B]
@@ -15044,7 +15044,7 @@ println(flatten(graph))</programlisting>
           <secondary>filtering operations</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/filter-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/filter-script.scala
 
 val stateCapitals = Map(
   "Alabama" -&gt; "Montgomery",
@@ -15142,7 +15142,7 @@ println( map2 )</programlisting>
           <secondary>folding</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldreduce-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/foldreduce-script.scala
 
 List(1,2,3,4,5,6) reduceLeft(_ + _)
 
@@ -15162,7 +15162,7 @@ List(1,2,3,4,5,6).foldLeft(10)(_ * _)</programlisting>
       options for the final result. Here is a &#x201C;fold&#x201D; operation that is really
       a map operation:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldleft-map-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/foldleft-map-script.scala
 
 List(1, 2, 3, 4, 5, 6).foldLeft(List[String]()) {
   (list, x) =&gt; ("&lt;" + x + "&gt;") :: list
@@ -15182,7 +15182,7 @@ List(1, 2, 3, 4, 5, 6).foldLeft(List[String]()) {
           <secondary>fold and reduce methods</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">trait Iterable[+A] {
+      <programlisting language="scala">trait Iterable[+A] {
   ...
   // Combines the elements of this iterable object together using the
   // binary function op, from left to right, and starting with the value z.
@@ -15224,7 +15224,7 @@ List(1, 2, 3, 4, 5, 6).foldLeft(List[String]()) {
       Consider a <literal>foldRight</literal> version of our last example that
       used fold to map the integers to strings:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/foldright-map-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/foldright-map-script.scala
 
 List(1, 2, 3, 4, 5, 6).foldRight(List[String]()) {
   (x, list) =&gt; ("&lt;" + x + "&gt;") :: list
@@ -15289,7 +15289,7 @@ List(1, 2, 3, 4, 5, 6).foldRight(List[String]()) {
       the first line prints 1784293664, while the second line causes a stack
       overflow:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/reduceleftright-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/reduceleftright-script.scala
 
 println((1 to 1000000) reduceLeft(_ + _))
 println((1 to 1000000) reduceRight(_ + _))</programlisting>
@@ -15326,7 +15326,7 @@ println((1 to 1000000) reduceRight(_ + _))</programlisting>
       <para id="para_let_s_see_this_in_practice_">Let&#x2019;s see this in
       practice:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/datastructs/option-script.scala
+      <programlisting language="scala">// code-examples/FP/datastructs/option-script.scala
 
 val someNumber = Some(5)
 val noneNumber = None
@@ -15438,7 +15438,7 @@ for (option &lt;- List(noneNumber, someNumber)) {
     <para id="para_this_is_a_bit_confusing_until_">This is a bit confusing
     until we see it in practice:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/partial/partial-script.scala
+    <programlisting language="scala">// code-examples/FP/partial/partial-script.scala
 
 def concatUpper(s1: String, s2: String): String = (s1 + " " + s2).toUpperCase
 
@@ -15470,7 +15470,7 @@ println(c2("pants"))</programlisting>
     <para id="para_we_ve_seen_partially_applied_f">We&#x2019;ve seen partially
     applied functions without the underscore syntax as well:</para>
 
-    <programlisting linenumbering="unnumbered">List("short", "pants").map(println)</programlisting>
+    <programlisting language="scala">List("short", "pants").map(println)</programlisting>
 
     <para id="para_in_this_example_println_is_">In this example,
     <literal>println</literal> is the partially applied function. It&#x2019;s applied
@@ -15495,7 +15495,7 @@ println(c2("pants"))</programlisting>
     <para id="para_again_this_is_easier_understo">Again, this is easier
     understood in practice:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/partial/orelse-script.scala
+    <programlisting language="scala">// code-examples/FP/partial/orelse-script.scala
 
 val truthier: PartialFunction[Boolean, String] = { case true =&gt; "truthful" }
 val fallback: PartialFunction[Boolean, String] = { case x =&gt; "sketchy" }
@@ -15520,7 +15520,7 @@ println(tester(2 + 2 == 5))</programlisting>
     feature of the <literal>PartialFunction</literal> trait used to specify
     the boundaries of a partial function&#x2019;s domain:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/partial/isdefinedat-script.scala
+    <programlisting language="scala">// code-examples/FP/partial/isdefinedat-script.scala
 
 val pantsTest: PartialFunction[String, String] = {
   case "pants" =&gt; "yes, we have pants!"
@@ -15558,7 +15558,7 @@ println(pantsTest.isDefinedAt("skort"))</programlisting>
     <para id="para_in_scala_curried_functions_ar">In Scala, curried functions
     are defined with multiple parameter lists, as follows:</para>
 
-    <programlisting linenumbering="unnumbered">def cat(s1: String)(s2: String) = s1 + s2</programlisting>
+    <programlisting language="scala">def cat(s1: String)(s2: String) = s1 + s2</programlisting>
 
     <para id="para_of_course_we_could_define_mor">Of course, we could define
     more than two parameters on a curried function, if we like.</para>
@@ -15566,7 +15566,7 @@ println(pantsTest.isDefinedAt("skort"))</programlisting>
     <para id="para_you_also_use_the_syntax_below_">We can also use the
     following syntax to define a curried function:</para>
 
-    <programlisting linenumbering="unnumbered">def cat(s1: String) = (s2: String) =&gt; s1 + s2</programlisting>
+    <programlisting language="scala">def cat(s1: String) = (s2: String) =&gt; s1 + s2</programlisting>
 
     <para>While the previous syntax is more readable, in our estimation, using
     this syntax eliminates the requirement of a trailing underscore when
@@ -15617,7 +15617,7 @@ res3: java.lang.String = foobar</screen>
     approach, the following code provides specialized forms of a base function
     that handles multiplication:</para>
 
-    <programlisting linenumbering="unnumbered">def multiplier(i: Int)(factor: Int) = i * factor
+    <programlisting language="scala">def multiplier(i: Int)(factor: Int) = i * factor
 val byFive = multiplier(5) _
 val byTen = multiplier(10) _</programlisting>
 
@@ -15688,7 +15688,7 @@ res5: Int = 20</screen>
       <para id="para_consider_the_following_code_fr">Consider the following
       code fragment:</para>
 
-      <programlisting linenumbering="unnumbered">val name: String = "scala"
+      <programlisting language="scala">val name: String = "scala"
 println(name.capitalize.reverse)</programlisting>
 
       <para id="para_it_prints_the_following_">It prints the following:</para>
@@ -15721,7 +15721,7 @@ println(name.capitalize.reverse)</programlisting>
           <secondary>stringWrapper method</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">implicit def stringWrapper(x: String) = new runtime.RichString(x)</programlisting>
+      <programlisting language="scala">implicit def stringWrapper(x: String) = new runtime.RichString(x)</programlisting>
 
       <para id="para_the_implicit_keyword_tells_t">The
       <literal>implicit</literal> keyword tells the compiler it can use this
@@ -15813,7 +15813,7 @@ println(name.capitalize.reverse)</programlisting>
           <secondary>defining custom object and conversion method</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/FP/implicits/implicit-conversion-script.scala
+      <programlisting language="scala">// code-examples/FP/implicits/implicit-conversion-script.scala
 import scala.runtime.RichString
 
 class FancyString(val str: String)
@@ -15881,7 +15881,7 @@ println(fs.capitalize.reverse)</programlisting>
     <para id="para_let_s_examine_how_implicit_val">Let&#x2019;s examine how implicit
     values work:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/implicits/implicit-parameter-script.scala
+    <programlisting language="scala">// code-examples/FP/implicits/implicit-parameter-script.scala
 import scala.runtime.RichString
 
 def multiplier(i: Int)(implicit factor: Int) {
@@ -15986,12 +15986,12 @@ multiplier(2)(3)</programlisting>
         <primary>by-name parameters</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">def myCallByNameFunction(callByNameParameter: =&gt; ReturnType)</programlisting>
+    <programlisting language="scala">def myCallByNameFunction(callByNameParameter: =&gt; ReturnType)</programlisting>
 
     <para id="para_without_this_syntactic_shortcu">Without this syntactic
     shortcut, this method definition would look like the following:</para>
 
-    <programlisting linenumbering="unnumbered">def myCallByNameFunction(callByNameParameter: () =&gt; ReturnType)</programlisting>
+    <programlisting language="scala">def myCallByNameFunction(callByNameParameter: () =&gt; ReturnType)</programlisting>
 
     <para id="para_and_what_s_more_we_d_have_to_">And what&#x2019;s more, we would
     have to include those unsightly, empty parentheses in every call to that
@@ -16007,7 +16007,7 @@ multiplier(2)(3)</programlisting>
     Let&#x2019;s go crazy and implement our own <literal>while</literal> loop,
     throwing currying into the mix:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/overrides/call-by-name-script.scala
+    <programlisting language="scala">// code-examples/FP/overrides/call-by-name-script.scala
 
 def whileAwesome(conditional: =&gt; Boolean)(f: =&gt; Unit) {
   if (conditional) {
@@ -16059,7 +16059,7 @@ whileAwesome(count &lt; 5) {
     <para id="para_here_is_ui3_vetoable_clicks_">Here is that example
     rewritten with a <literal>lazy val</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/FP/overrides/trait-lazy-init-val-script.scala
+    <programlisting language="scala">// code-examples/FP/overrides/trait-lazy-init-val-script.scala
 
 trait AbstractT2 {
   println("In AbstractT2:")
@@ -16323,7 +16323,7 @@ c2d.value = 10, inverse = Infinity</screen>
         <tertiary>Actors in Scala</tertiary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Concurrency/simple-actor-script.scala
+    <programlisting language="scala">// code-examples/Concurrency/simple-actor-script.scala
 
 import scala.actors.Actor
 
@@ -16356,7 +16356,7 @@ robert.start</programlisting>
         <secondary>factory method for creating</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Concurrency/factory-actor-script.scala
+    <programlisting language="scala">// code-examples/Concurrency/factory-actor-script.scala
 
 import scala.actors.Actor
 import scala.actors.Actor._
@@ -16389,7 +16389,7 @@ val paulNewman = actor {
           <secondary>sending messages to</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/pattern-match-actor-script.scala
+      <programlisting language="scala">// code-examples/Concurrency/pattern-match-actor-script.scala
 
 import scala.actors.Actor
 import scala.actors.Actor._
@@ -16455,7 +16455,7 @@ I have no idea what I just got.</screen>
           <secondary>mailbox</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/actor-mailbox-script.scala
+      <programlisting language="scala">// code-examples/Concurrency/actor-mailbox-script.scala
 
 import scala.actors.Actor
 import scala.actors.Actor._
@@ -16535,7 +16535,7 @@ I've got 4 messages in my mailbox.</screen>
       <para id="para_let_s_start_with_the_customers">Let&#x2019;s start with the
       sleeping barber&#x2019;s customers, as they have the simplest <phrase role="keep-together">responsibilities</phrase>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/sleepingbarber/customer.scala
+      <programlisting language="scala">// code-examples/Concurrency/sleepingbarber/customer.scala
 
 package sleepingbarber
 
@@ -16593,7 +16593,7 @@ class Customer(val id: Int) extends Actor {
       create him. For testing purposes, we&#x2019;ve instead defined our own
       <literal>Barber</literal> class:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/sleepingbarber/barber.scala
+      <programlisting language="scala">// code-examples/Concurrency/sleepingbarber/barber.scala
 
 package sleepingbarber
 
@@ -16648,7 +16648,7 @@ class Barber extends Actor {
       <para id="para_next_up_we_have_a_simple_clas">Next up, we have a simple
       class to represent the barbershop itself:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/sleepingbarber/shop.scala
+      <programlisting language="scala">// code-examples/Concurrency/sleepingbarber/shop.scala
 
 package sleepingbarber
 
@@ -16684,7 +16684,7 @@ class Shop extends Actor {
       <para id="para_finally_we_have_a_driver_for_">Finally, we have a driver
       for our simulation:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/sleepingbarber/barbershop-simulator.scala
+      <programlisting language="scala">// code-examples/Concurrency/sleepingbarber/barbershop-simulator.scala
 
 package sleepingbarber
 
@@ -16930,7 +16930,7 @@ scala -classpath . sleepingbarber.BarbershopSimulator</screen>
           <primary>futures</primary>
         </indexterm></para>
 
-      <programlisting>// code-examples/Concurrency/future-script.scala 
+      <programlisting language="scala">// code-examples/Concurrency/future-script.scala 
 import scala.actors.Futures._ 
 
 val eventually = future(5 * 42) 
@@ -16996,7 +16996,7 @@ println(eventually())</programlisting>
           <tertiary>one-off threads</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/by-block-script.scala
+      <programlisting language="scala">// code-examples/Concurrency/threads/by-block-script.scala
 
 new Thread { println("this will run in a new thread") }</programlisting>
 
@@ -17005,7 +17005,7 @@ new Thread { println("this will run in a new thread") }</programlisting>
       method on the <literal>ops</literal> object to run a block
       asynchronously with <literal>spawn</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/spawn.scala
+      <programlisting language="scala">// code-examples/Concurrency/threads/spawn.scala
 
 import scala.concurrent.ops._
 
@@ -17044,7 +17044,7 @@ object SpawnExample {
           <secondary>using java.util.concurrent</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/Concurrency/threads/util-concurrent-script.scala
+      <programlisting language="scala">// code-examples/Concurrency/threads/util-concurrent-script.scala
 
 import java.util.concurrent._
 
@@ -17160,7 +17160,7 @@ hello from Thread 13</screen>
       honest with a test suite, facilitated by the Specs Behavior-Driven
       Development library (see <xref linkend="ScalaSpecs"/>):</para>
 
-      <programlisting linenumbering="unnumbered">// .../smtpd/src/test/scala/com/programmingscala/smtpd/SmtpDecoderSpec.scala
+      <programlisting language="scala">// .../smtpd/src/test/scala/com/programmingscala/smtpd/SmtpDecoderSpec.scala
 
 package com.programmingscala.smtpd
 
@@ -17230,7 +17230,7 @@ object SmtpDecoderSpec extends Specification {
           <primary>codec for SMTP (example)</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// .../smtpd/src/main/scala/com/programmingscala/smtpd/Codec.scala
+      <programlisting language="scala">// .../smtpd/src/main/scala/com/programmingscala/smtpd/Codec.scala
 
 package com.programmingscala.smtpd
 
@@ -17294,7 +17294,7 @@ object Codec {
           <secondary>setup</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// .../smtpd/src/main/scala/com/programmingscala/smtpd/Main.scala
+      <programlisting language="scala">// .../smtpd/src/main/scala/com/programmingscala/smtpd/Main.scala
 
 package com.programmingscala.smtpd
 
@@ -17365,7 +17365,7 @@ object Main {
           <primary>IOHandlerActorAdapter object</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// .../smtpd/src/main/scala/com/programmingscala/smtpd/SmtpHandler.scala
+      <programlisting language="scala">// .../smtpd/src/main/scala/com/programmingscala/smtpd/SmtpHandler.scala
 
 package com.programmingscala.smtpd
 
@@ -17544,7 +17544,7 @@ Connection closed by foreign host.</screen>
         <secondary>reading</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/XML/reading/from-string-script.scala
+    <programlisting language="scala">// code-examples/XML/reading/from-string-script.scala
 
 import scala.xml._
 
@@ -17575,7 +17575,7 @@ assert(someXML.isInstanceOf[scala.xml.Elem])</programlisting>
     just assign a chunk of markup to a <literal>val</literal> or
     <literal>var</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/XML/reading/inline-script.scala
+    <programlisting language="scala">// code-examples/XML/reading/inline-script.scala
 
 import scala.xml._
 
@@ -17683,7 +17683,7 @@ res6: scala.xml.NodeSeq = true</screen>
           <secondary>looping and matching</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/XML/reading/for-loop-script.scala
+      <programlisting language="scala">// code-examples/XML/reading/for-loop-script.scala
 
 for (condiment &lt;- (someXML \\ "condiment")) {
   if ((condiment \ "@expired").text == "true")
@@ -17717,7 +17717,7 @@ for (condiment &lt;- (someXML \\ "condiment")) {
       together into one example. We&#x2019;ll include the original XML document again
       so you can follow along as we pattern match on XML:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/XML/reading/pattern-matching-script.scala
+      <programlisting language="scala">// code-examples/XML/reading/pattern-matching-script.scala
 
 import scala.xml._
 
@@ -17805,7 +17805,7 @@ bobXML: scala.xml.Elem =
           <tertiary>blogging system (example)</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/XML/writing/post.scala
+      <programlisting language="scala">// code-examples/XML/writing/post.scala
 
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -17848,7 +17848,7 @@ class Post(val title: String, val body: String, val updated: Date) {
           <secondary>AtomFeed class</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/XML/writing/atom-feed.scala
+      <programlisting language="scala">// code-examples/XML/writing/atom-feed.scala
 
 import scala.xml.XML
 
@@ -18091,7 +18091,7 @@ class AtomFeed(posts: Seq[Post]) {
         <tertiary>payroll API</tertiary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/api/payroll-api-script.scala
+    <programlisting language="scala">// code-examples/DSLs/payroll/api/payroll-api-script.scala
 
 import payroll.api._
 import payroll.api.DeductionsCalculator._
@@ -18135,7 +18135,7 @@ List(buck, jane).foreach { employee =&gt;
     <para id="para_here_is_the_simple_paycheck_">Here is the simple
     <literal>Paycheck</literal> class used in the script:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/paycheck.scala
+    <programlisting language="scala">// code-examples/DSLs/payroll/paycheck.scala
 
 package payroll
 
@@ -18152,7 +18152,7 @@ case class Paycheck(gross: Money, net: Money, deductions: Money) {
     <literal>Employee</literal> type uses a <literal>Name</literal>
     type:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/employee.scala
+    <programlisting language="scala">// code-examples/DSLs/payroll/employee.scala
 
 package payroll
 
@@ -18168,7 +18168,7 @@ case class Employee(name: Name, annualGrossSalary: Money)</programlisting>
     but it&#x2019;s close enough for our purposes. <link linkend="MoneyInJava" xrefstyle="select:nopage">[MoneyInJava]</link> provides useful information
     on doing real money calculations:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/money.scala
+    <programlisting language="scala">// code-examples/DSLs/payroll/money.scala
 
 package payroll
 import java.math.{BigDecimal =&gt; JBigDecimal,
@@ -18241,7 +18241,7 @@ object Type2Money {
     using four helper methods in
     <literal>payroll.api.DeductionsCal&#x2060;cu&#x2060;lator</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/api/deductions-calc.scala
+    <programlisting language="scala">// code-examples/DSLs/payroll/api/deductions-calc.scala
 
 package payroll.api
 import payroll.Type2Money._
@@ -18328,7 +18328,7 @@ Jane Doe: Paycheck($3461.54,$1576.92,$1884.62)</screen>
       Here is one of them, again in a script, which produces the same output
       as before:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/payroll-dsl-script.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/dsl/payroll-dsl-script.scala
 
 import payroll._
 import payroll.dsl._
@@ -18379,12 +18379,12 @@ List(buck, jane).foreach { employee =&gt;
           <primary>infix operator notation</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">employee salary_for 2.weeks minus_deductions_for { gross =&gt;</programlisting>
+      <programlisting language="scala">employee salary_for 2.weeks minus_deductions_for { gross =&gt;</programlisting>
 
       <para id="para_this_infix_notation_is_equival">This infix notation is
       equivalent to the following less-readable form:</para>
 
-      <programlisting linenumbering="unnumbered">employee.salary_for(2.weeks).minus_deductions_for { gross =&gt;</programlisting>
+      <programlisting language="scala">employee.salary_for(2.weeks).minus_deductions_for { gross =&gt;</programlisting>
 
       <para id="para_you_can_see_why_we_wrote_2_we">You can see why we wrote
       <literal>2.weeks</literal> earlier, because the result of this
@@ -18412,7 +18412,7 @@ List(buck, jane).foreach { employee =&gt;
       <literal>minus</literal>, and <literal>deductions</literal>, allowing us
       to write the following expression:</para>
 
-      <programlisting linenumbering="unnumbered">employee salary for 2.weeks minus deductions for { gross =&gt;</programlisting>
+      <programlisting language="scala">employee salary for 2.weeks minus deductions for { gross =&gt;</programlisting>
 
       <para id="para_note_that_calls_to_for_are_p">Note that calls to
       <literal>for</literal> are preceded by different calls with very
@@ -18446,7 +18446,7 @@ List(buck, jane).foreach { employee =&gt;
       <?dbfo-need height=”1in”
 ?>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/duration.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/dsl/duration.scala
 
 package payroll.dsl
 
@@ -18504,7 +18504,7 @@ case class Duration(val amount: Int) {
           <tertiary>payroll rules DSL implementation</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/payroll.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/dsl/payroll.scala
 
 package payroll.dsl
 import payroll._
@@ -18533,7 +18533,7 @@ import rules._
       <literal>PayrollBuilderRules</literal> that will process the specified
       rules. It is used at the very beginning of the DSL.</para>
 
-      <programlisting linenumbering="unnumbered">val payrollCalculator = rules { employee =&gt; ...</programlisting>
+      <programlisting language="scala">val payrollCalculator = rules { employee =&gt; ...</programlisting>
 
       <para id="para_the_rules_object_also_define">The
       <literal>rules</literal> object also defines implicit conversions. The
@@ -18554,7 +18554,7 @@ import rules._
       evaluates the function literal for the whole rule set, wrapped in a
       <literal>try/catch</literal> block:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/payroll.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/dsl/payroll.scala
 ...
 class PayrollException(message: String, cause: Throwable)
     extends RuntimeException(message, cause)
@@ -18592,7 +18592,7 @@ protected[dsl] class PayrollBuilderRules(rules: Employee =&gt; Paycheck) {
       concerning the context, consider the part of our script that uses the
       payroll DSL, where the deductions are specified:</para>
 
-      <programlisting linenumbering="unnumbered">... { gross =&gt;
+      <programlisting language="scala">... { gross =&gt;
   federalIncomeTax            is  (25.  percent_of gross)
   stateIncomeTax              is  (5.   percent_of gross)
   insurancePremiums           are (500. in gross.currency)
@@ -18637,7 +18637,7 @@ protected[dsl] class PayrollBuilderRules(rules: Employee =&gt; Paycheck) {
       <para id="para_here_is_a_possible_alternative">Here is a possible
       alternative design that would have avoided the problem:</para>
 
-      <programlisting linenumbering="unnumbered">... { builder =&gt;
+      <programlisting language="scala">... { builder =&gt;
   builder federalIncomeTax            (25.  percent_of gross)
   builder stateIncomeTax              (5.   percent_of gross)
   builder insurancePremiums           500.
@@ -18657,7 +18657,7 @@ protected[dsl] class PayrollBuilderRules(rules: Employee =&gt; Paycheck) {
       <para id="para_here_is_grosspaybuilder_">Here is
       <literal>GrossPayBuilder</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/payroll.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/dsl/payroll.scala
 ...
 import payroll.Type2Money._
 
@@ -18693,7 +18693,7 @@ protected[dsl] class GrossPayBuilder(val employee: Employee) {
       <literal>rules</literal> from the <literal>GrossPayBuilder</literal> to
       a <literal>DeductionsBuilder</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/payroll.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/dsl/payroll.scala
 ...
 protected[dsl] class DeductionsBuilder(gpb: GrossPayBuilder) {
 
@@ -18739,7 +18739,7 @@ protected[dsl] class DeductionsBuilder(gpb: GrossPayBuilder) {
       <literal>DeductionsBuilderDeductionHelper</literal>, which we show
       now:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/dsl/payroll.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/dsl/payroll.scala
 ...
 class DeductionCalculator {
   def is(builder: DeductionsBuilder) = apply(builder)
@@ -18774,7 +18774,7 @@ protected[dsl] class DeductionsBuilderDeductionHelper(val factor: Double) {
       effectively bubble words that the user could omit. That is, the
       following two DSL lines are equivalent:</para>
 
-      <programlisting linenumbering="unnumbered">federalIncomeTax is (25. percent_of gross)
+      <programlisting language="scala">federalIncomeTax is (25. percent_of gross)
 federalIncomeTax    (25. percent_of gross)</programlisting>
 
       <para id="para_the_apply_method_takes_dedu">The <literal>apply</literal>
@@ -18983,7 +18983,7 @@ federalIncomeTax    (25. percent_of gross)</programlisting>
       <para id="para_compare_this_example_of_our_ex">Compare this example to
       the internal DSL we defined in <xref linkend="APayrollInternalDSL"/>:</para>
 
-      <programlisting linenumbering="unnumbered">... = rules { employee =&gt;
+      <programlisting language="scala">... = rules { employee =&gt;
   employee salary_for 2.weeks minus_deductions_for { gross =&gt;
     federalIncomeTax            is  (25.  percent_of gross)
     stateIncomeTax              is  (5.   percent_of gross)
@@ -19191,7 +19191,7 @@ doubleNumber = ...</screen>
           <tertiary>Scala implementation of external DSL grammar</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-v1.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-v1.scala
 
 package payroll.pcdsl
 import scala.util.parsing.combinator._
@@ -19269,7 +19269,7 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
           <secondary>~, ~&gt;, and &lt;~ combinator operators</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">def paycheck = empl ~ gross ~ deduct</programlisting>
+      <programlisting language="scala">def paycheck = empl ~ gross ~ deduct</programlisting>
 
       <para id="para_we_use_another_sequential_comp">We use another sequential
       composition combinator <literal>&#x223C;&gt;</literal> when we no longer need
@@ -19278,7 +19278,7 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       want to keep the parse result for the last production,
       <literal>employeeName</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">def empl = "paycheck" ~&gt; "for" ~&gt; "employee" ~&gt; employeeName</programlisting>
+      <programlisting language="scala">def empl = "paycheck" ~&gt; "for" ~&gt; "employee" ~&gt; employeeName</programlisting>
 
       <para id="para_similarly_we_use_when_we">Similarly, we use
       <literal>&lt;&#x223C;</literal> when we no longer need the result for the
@@ -19286,7 +19286,7 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       processing the <literal>tax</literal> production, we only want to keep
       the result of the first production, <literal>fedState</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">def tax = fedState &lt;~ "income" &lt;~ "tax"</programlisting>
+      <programlisting language="scala">def tax = fedState &lt;~ "income" &lt;~ "tax"</programlisting>
 
       <para id="para_our_heavy_use_of_sequenti">Our heavy use of the
       <literal>&lt;&#x223C;</literal> sequential combinator in the various
@@ -19306,14 +19306,14 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
           <secondary>or case in parser grammar</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">def weeksDays = "weeks" | "week" | "days" | "day"</programlisting>
+      <programlisting language="scala">def weeksDays = "weeks" | "week" | "days" | "day"</programlisting>
 
       <para id="para_the_rep_method_can_be_used_f">The <literal>rep</literal>
       method can be used for zero or more repetitions. We actually use a
       similar method, <literal>repsep</literal>, which lets us specify a
       separator, in our case a comma (<literal>,</literal>):</para>
 
-      <programlisting linenumbering="unnumbered">def deduct = ... ~&gt; "{" ~&gt; repsep(deductItem, "," ) &lt;~ "}"</programlisting>
+      <programlisting language="scala">def deduct = ... ~&gt; "{" ~&gt; repsep(deductItem, "," ) &lt;~ "}"</programlisting>
 
       <para id="para_note_that_deduct_combines_se">Note that
       <literal>deduct</literal> combines several features we have just
@@ -19346,7 +19346,7 @@ class PayrollParserCombinatorsV1 extends JavaTokenParsers {
       a specification that exercises the parser for two cases, without and
       with deductions:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-v1-spec.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-v1-spec.scala
 
 package payroll.pcdsl
 import scala.util.parsing.combinator._
@@ -19391,7 +19391,7 @@ object PayrollParserCombinatorsV1Spec
       <para id="para_this_part_of_the_specification">This part of the
       specification shows us how to instantiate and use the parser:</para>
 
-      <programlisting linenumbering="unnumbered">val p = new PayrollParserCombinatorsV1
+      <programlisting language="scala">val p = new PayrollParserCombinatorsV1
 
 p.parseAll(p.paycheck, input) match {
   case p.Success(r,_) =&gt; r.toString mustEqual "..."
@@ -19573,7 +19573,7 @@ scala&gt;</screen>
           <secondary>case class defined by Parsers trait</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">case class ~[+a, +b](_1: a, _2: b) {
+      <programlisting language="scala">case class ~[+a, +b](_1: a, _2: b) {
   override def toString = "("+ _1 +"~"+ _2 +")"
 }</programlisting>
 
@@ -19615,7 +19615,7 @@ scala&gt;</screen>
       <literal>List[String]</literal>, which comes from the
       <literal>deduct</literal> production:</para>
 
-      <programlisting linenumbering="unnumbered">def deduct = "minus" ~&gt; "deductions" ~&gt; "for" ~&gt;
+      <programlisting language="scala">def deduct = "minus" ~&gt; "deductions" ~&gt; "for" ~&gt;
              "{" ~&gt; repsep(deductItem, "," ) &lt;~ "}"</programlisting>
 
       <para id="para_we_discard_everything_except_f">We discard everything
@@ -19667,7 +19667,7 @@ scala&gt;</screen>
       <para id="para_here_is_our_final_payrollpars">Here is our final
       <literal>PayrollParserCombinators</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb.scala
 
 package payroll.pcdsl
 import scala.util.parsing.combinator._
@@ -19804,7 +19804,7 @@ class PayrollParserCombinators(val employees: Map[Name, Employee])
       <para id="para_consider_the_new_paycheck_pr">Consider the new
       <literal>paycheck</literal> production:</para>
 
-      <programlisting linenumbering="unnumbered">/** @return Parser[(Employee, Paycheck)] */
+      <programlisting language="scala">/** @return Parser[(Employee, Paycheck)] */
 def paycheck = empl ~ gross ~ deduct ^^ {
   case e ~ g ~ d =&gt; (e, Paycheck(g, g-d, d))
 }</programlisting>
@@ -19844,7 +19844,7 @@ def paycheck = empl ~ gross ~ deduct ^^ {
       production assumes the employee&#x2019;s first name and last name are given.
       (Obviously, this would be inadequate in a real application.)</para>
 
-      <programlisting linenumbering="unnumbered">/** @return Parser[Employee] */
+      <programlisting language="scala">/** @return Parser[Employee] */
 def empl = "paycheck" ~&gt; "for" ~&gt; "employee" ~&gt; employeeName ^^ { name =&gt;
    val names = name.substring(1, name.length-1).split(" ") // remove ""
    val n = Name(names(0), names(1));
@@ -19899,7 +19899,7 @@ def empl = "paycheck" ~&gt; "for" ~&gt; "employee" ~&gt; employeeName ^^ { name 
       incomplete) specification shows the calculation of paychecks when there
       are no deductions and when there are several deductions:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-spec.scala
+      <programlisting language="scala">// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-spec.scala
 
 package payroll.pcdsl
 import scala.util.parsing.combinator._
@@ -20140,7 +20140,7 @@ object PayrollParserCombinatorsSpec
         <tertiary>reflection methods</tertiary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/reflection/jvm-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/reflection/jvm-script.scala
 
 trait T[A] {
   val vT: A
@@ -20321,7 +20321,7 @@ res1: java.lang.Class[_] = class C</screen>
       generates one automatically. Here is an example that illustrates some of
       the strengths and weaknesses of <literal>Manifest</literal>s:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/manifests/manifest-script.scala
+      <programlisting language="scala">// code-examples/TypeSystem/manifests/manifest-script.scala
 
 import scala.reflect.Manifest
 
@@ -20393,7 +20393,7 @@ List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
           <secondary>apply method, parameterized</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">def apply[A](xs: A*): List[A] = xs.toList</programlisting>
+      <programlisting language="scala">def apply[A](xs: A*): List[A] = xs.toList</programlisting>
 
       <para id="para_so_the_following_declarations">The
       <literal>apply</literal> methods takes a variable length list of
@@ -20401,7 +20401,7 @@ List(List(1, 2, 3), List(1.1, 2.2, 3.3), List("one", "two", "three")) foreach {
       arguments, and returns a list created from the arguments. Here is an
       example:</para>
 
-      <programlisting linenumbering="unnumbered">val languages = List("Scala", "Java", "Ruby", "C#", "C++", "Python", ...)
+      <programlisting language="scala">val languages = List("Scala", "Java", "Ruby", "C#", "C++", "Python", ...)
 val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
 
       <para id="para_we_ll_look_at_other_parameteri">We&#x2019;ll look at other
@@ -20563,7 +20563,7 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
     <literal>T</literal><subscript>sub</subscript> types, the following
     definition would be legal:</para>
 
-    <programlisting>val f: Function1[T, T] = new Function1[T<superscript>sup</superscript>, T<subscript>sub</subscript>] { ... }</programlisting>
+    <programlisting language="scala">val f: Function1[T, T] = new Function1[T<superscript>sup</superscript>, T<subscript>sub</subscript>] { ... }</programlisting>
 
     <para id="para_hence_the_function_traits_are">Hence, the function traits
     are covariant in the return type parameter <literal>R</literal> and
@@ -20580,7 +20580,7 @@ val positiveInts = List(1, 2, 3, 4, 5, 6, 7, ...)</programlisting>
     Contract briefly in <xref linkend="DesignByContractExample"/>.) This
     script demonstrates variance under inheritance:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/func-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/variances/func-script.scala
 // WON'T COMPILE
 
 class CSuper                { def msuper = println("CSuper") }
@@ -20649,7 +20649,7 @@ var f: C =&gt; C = (c: C)      =&gt; new C       // #1
     Let&#x2019;s see how a client might use some of these definitions of
     <literal>f</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/func2-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/variances/func2-script.scala
 // WON'T COMPILE
 
 class CSuper                { def msuper = println("CSuper") }
@@ -20751,7 +20751,7 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
     described in the last lines of the examples. Suppose you attempted to
     define your own function type this way:</para>
 
-    <programlisting linenumbering="unnumbered">trait MyFunction2[+T1, +T2, -R] {
+    <programlisting language="scala">trait MyFunction2[+T1, +T2, -R] {
   def apply(v1:T1, v2:T2): R = { ... }
   ...
 }</programlisting>
@@ -20788,7 +20788,7 @@ useF((c: CSub)   =&gt; {println(c.msub); new CSuper})   // #7: ERROR!</programli
           <secondary>variance of mutable types</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/mutable-type-variance-script.scala
+      <programlisting language="scala">// code-examples/TypeSystem/variances/mutable-type-variance-script.scala
 // WON'T COMPILE: Mutable parameterized types can't have variance annotations
 
 class ContainerPlus[+A](var value: A)      // ERROR
@@ -20891,7 +20891,7 @@ two errors found</screen>
       example, a simplified Java version of Scala&#x2019;s <literal>Option</literal>,
       <literal>Some</literal>, and <literal>None</literal> types:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/Option.java
+      <programlisting language="java">// code-examples/TypeSystem/variances/Option.java
 
 package variances;
 
@@ -20905,7 +20905,7 @@ abstract public class Option&lt;T&gt; {
   }
 }</programlisting>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/Some.java
+      <programlisting language="java">// code-examples/TypeSystem/variances/Some.java
 
 package variances;
 
@@ -20926,7 +20926,7 @@ public class Some&lt;T&gt; extends Option&lt;T&gt; {
   }
 }</programlisting>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/None.java
+      <programlisting language="java">// code-examples/TypeSystem/variances/None.java
 
 package variances;
 
@@ -20944,7 +20944,7 @@ public class None&lt;T&gt; extends Option&lt;T&gt; {
       <para id="para_here_is_an_example_that_uses_t">Here is an example that
       uses this Java <literal>Option</literal> hierarchy:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/variances/OptionExample.java
+      <programlisting language="java">// code-examples/TypeSystem/variances/OptionExample.java
 
 package variances;
 import java.io.*;
@@ -20993,7 +20993,7 @@ public class OptionExample {
       exploit features that we&#x2019;ve learned since then, such as
       <literal>case</literal> classes:<indexterm class="endofrange" startref="ch12_Javavariance"/></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/shapes/shapes.scala
+      <programlisting language="scala">// code-examples/TypeSystem/shapes/shapes.scala
 
 package shapes {
   case class Point(x: Double, y: Double) {
@@ -21118,7 +21118,7 @@ Unknown? None</screen>
           <secondary>upper</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">object Array {
+      <programlisting language="scala">object Array {
   ...
   def apply[A &lt;: AnyRef](xs: A*): Array[A] = {
     val array = new Array[A](xs.length)
@@ -21199,7 +21199,7 @@ Unknown? None</screen>
       <literal>List[+A]</literal>. Recall that this operator is used to create
       a new list by prepending an element to a list:</para>
 
-      <programlisting linenumbering="unnumbered">class List[+A] {
+      <programlisting language="scala">class List[+A] {
   ...
   def ::[B &gt;: A](x : B) : List[B] = new scala.::(x, this)
   ...
@@ -21220,7 +21220,7 @@ Unknown? None</screen>
       that supertype as <literal>B</literal>. Here&#x2019;s an example that prepends
       a different type of object on a list:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/bounds/list-ab-script.scala
+      <programlisting language="scala">// code-examples/TypeSystem/bounds/list-ab-script.scala
 
 val languages = List("Scala", "Java", "Ruby", "C#", "C++", "Python")
 val list = 3.14 :: languages
@@ -21275,7 +21275,7 @@ println(list)</programlisting>
           <secondary>Scala implementation</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/bounds/abbrev-list.scala
+      <programlisting language="scala">// code-examples/TypeSystem/bounds/abbrev-list.scala
 // Adapted from scala/List.scala in the Scala version 2.7.5 distribution.
 
 package bounds.abbrevlist
@@ -21479,12 +21479,12 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
       element, a view. For example, consider the following method definition
       with a view bound:</para>
 
-      <programlisting linenumbering="unnumbered">def m [A &lt;% B](arglist): R = ...</programlisting>
+      <programlisting language="scala">def m [A &lt;% B](arglist): R = ...</programlisting>
 
       <para id="para_it_is_effectively_this_method_">It is effectively the
       same as this method definition:</para>
 
-      <programlisting linenumbering="unnumbered">def m [A](arglist)(implicit viewAB: A =&gt; B): R = ...</programlisting>
+      <programlisting language="scala">def m [A](arglist)(implicit viewAB: A =&gt; B): R = ...</programlisting>
 
       <para id="para_the_implicit_parameter_view_">(The implicit parameter
       <literal>viewAB</literal> would be given a unique name by the compiler.)
@@ -21527,7 +21527,7 @@ res1: bounds.abbrevlist.AbbrevList[Int] = ::(1,::(2,::(3,AbbrevNil)))</screen>
           <secondary>implementing LinkedList class that uses Nodes</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/bounds/node.scala
+      <programlisting language="scala">// code-examples/TypeSystem/bounds/node.scala
 
 package bounds
 
@@ -21560,7 +21560,7 @@ object NilNode extends Node[Nothing] {
       defines a <literal>LinkedList</literal> type that uses
       <literal>Nodes</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/bounds/view-bounds-script.scala
+      <programlisting language="scala">// code-examples/TypeSystem/bounds/view-bounds-script.scala
 
 import bounds._
 
@@ -21596,7 +21596,7 @@ println(list4)</programlisting>
       function value that converts <literal>Any</literal> to
       <literal>Node[Any]</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">implicit val any2Node = (a: Any) =&gt; bounds.::[Any](a, NilNode)</programlisting>
+      <programlisting language="scala">implicit val any2Node = (a: Any) =&gt; bounds.::[Any](a, NilNode)</programlisting>
 
       <para id="para_otherwise_the_script_would_ru">Otherwise, the script
       would run the same, except that some of the temporary lists would be
@@ -21606,7 +21606,7 @@ println(list4)</programlisting>
       <para id="para_look_at_the_declaration_of_li">Look at the declaration of
       <literal>LinkedList</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">case class LinkedList[A &lt;% Node[A]](val head: Node[A]) { ... }</programlisting>
+      <programlisting language="scala">case class LinkedList[A &lt;% Node[A]](val head: Node[A]) { ... }</programlisting>
 
       <para id="para_it_defines_a_view_bound_on_a_">It defines a view bound on
       <literal>A</literal> and takes a single argument, the head
@@ -21622,7 +21622,7 @@ println(list4)</programlisting>
       <para id="para_the_class_also_has_a_cons_">The class also has a &#x201C;cons&#x201D;
       operator:</para>
 
-      <programlisting linenumbering="unnumbered">def ::[B &gt;: A &lt;% Node[B]](x: Node[B]) = ...</programlisting>
+      <programlisting language="scala">def ::[B &gt;: A &lt;% Node[B]](x: Node[B]) = ...</programlisting>
 
       <para id="para_the_type_parameter_means_b_">The type parameter means
       ``<literal>B</literal> is lower bounded by (i.e., is a supertype of)
@@ -21653,7 +21653,7 @@ println(list4)</programlisting>
       <literal>B</literal>. The grammar for type parameters, including view
       bounds, is the following (see <link linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link>):</para>
 
-      <programlisting linenumbering="unnumbered">TypeParam ::= (id | &#x2018;_&#x2019;) [TypeParamClause] [&#x2018;&gt;:&#x2019; Type] [&#x2018;&lt;:&#x2019; Type] [&#x2018;&lt;%&#x2019; Type]
+      <programlisting language="scala">TypeParam ::= (id | &#x2018;_&#x2019;) [TypeParamClause] [&#x2018;&gt;:&#x2019; Type] [&#x2018;&lt;:&#x2019; Type] [&#x2018;&lt;%&#x2019; Type]
 TypeParamClause ::= &#x2018;[&#x2019; VariantTypeParam {&#x2018;,&#x2019; VariantTypeParam} &#x2018;]&#x2019;
 VariantTypeParam ::= [&#x2018;+&#x2019; | &#x2018;&#x2019;] TypeParam</programlisting>
 
@@ -21767,7 +21767,7 @@ FOUR! :: 3 :: 2 :: 1 :: *</screen>
     <para id="para_recall_our_version_of_observe">Recall our version of
     <literal>Observer</literal> that uses abstract types in <xref linkend="AdvancedObjectOrientedProgramming"/>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/observer2.scala
+    <programlisting language="scala">// code-examples/AdvOOP/observer/observer2.scala
 
 package observer
 
@@ -21828,7 +21828,7 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
         <primary>lower type bounds</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/abstracttypes/abs-type-examples-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/abstracttypes/abs-type-examples-script.scala
 
 trait exampleTrait {
   type t1               // Unconstrained
@@ -21893,7 +21893,7 @@ object example extends exampleTrait {
     <para id="para_finally_abstract_types_don_t_">Finally, abstract types
     don&#x2019;t have variance annotations:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/abstracttypes/abs-type-variances-wont-compile.scala
+    <programlisting language="scala">// code-examples/TypeSystem/abstracttypes/abs-type-variances-wont-compile.scala
 // WON'T COMPILE
 
 trait T1 { val name1: String }
@@ -21940,12 +21940,12 @@ trait T {
           <secondary>parameterized types versus</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">case final class Some[+A](val x : A) { ... }</programlisting>
+      <programlisting language="scala">case final class Some[+A](val x : A) { ... }</programlisting>
 
       <para id="para_if_we_tried_to_convert_this_to">If we tried to convert
       this to use abstract types, we might start with the following:</para>
 
-      <programlisting linenumbering="unnumbered">case final class Some(val x : ???) {
+      <programlisting language="scala">case final class Some(val x : ???) {
   type A
   ...
 }</programlisting>
@@ -21974,7 +21974,7 @@ trait T {
           <secondary>abstract types as arguments</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">class List[+A] {
+      <programlisting language="scala">class List[+A] {
   ...
   def ::[B &gt;: A](x : B) : List[B] = new scala.::(x, this)
   ...
@@ -22003,7 +22003,7 @@ trait T {
       a parameterized type. Refining an abstract type declaration through a
       series of enclosing type refinements can be quite elegant:</para>
 
-      <programlisting linenumbering="unnumbered">trait T1 {
+      <programlisting language="scala">trait T1 {
   type t
   val v: t
 }
@@ -22036,7 +22036,7 @@ class C extends T3 {
       arguments in the brief <literal>BulkReader</literal> example we
       presented in <xref linkend="AbstractTypesAndParameterizedTypes"/>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/abstract-types-script.scala
+      <programlisting language="scala">// code-examples/TypeLessDoMore/abstract-types-script.scala
 
 import java.io._
 
@@ -22091,7 +22091,7 @@ println( new FileBulkReader(new File("abstract-types-script.scala")).read )</pro
     <para id="para_path_dependent_types">Consider the following
     example:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/typepaths/type-path-wont-compile.scala
+    <programlisting language="scala">// code-examples/TypeSystem/typepaths/type-path-wont-compile.scala
 // ERROR: Won't compile
 
 trait Service {
@@ -22172,7 +22172,7 @@ one error found</screen>
           <secondary>C.this</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">class C1 {
+      <programlisting language="scala">class C1 {
   var x = "1"
   def setX1(x:String) = this.x = x
   def setX2(x:String) = C1.this.x = x
@@ -22187,7 +22187,7 @@ one error found</screen>
       outside a method definition, <literal>this</literal> refers to the type
       itself:</para>
 
-      <programlisting linenumbering="unnumbered">trait T1 {
+      <programlisting language="scala">trait T1 {
   class C
   val c1 = new C
   val c2 = new this.C
@@ -22212,7 +22212,7 @@ one error found</screen>
           <primary>C.super type</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">class C2 extends C1
+      <programlisting language="scala">class C2 extends C1
 class C3 extends C2 {
   def setX3(x:String) = super.setX1(x)
   def setX4(x:String) = C3.super.setX1(x)
@@ -22241,7 +22241,7 @@ class C3 extends C2 {
       <literal>this</literal>, you can use <literal>super</literal> to refer
       to the parent type in a type body outside a method:</para>
 
-      <programlisting linenumbering="unnumbered">class C4 {
+      <programlisting language="scala">class C4 {
   class C5
 }
 class C6 extends C4 {
@@ -22267,7 +22267,7 @@ class C6 extends C4 {
           <secondary>period-delimited path expressions</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">package P1 {
+      <programlisting language="scala">package P1 {
   object O1 {
     object O2 {
       val name = "name"
@@ -22285,7 +22285,7 @@ class C7 {
       objects, or type declarations that alias the same. The last element in
       the path can be a class or trait. See <link linkend="ScalaSpec2009" xrefstyle="select:nopage">[ScalaSpec2009]</link> for the details:</para>
 
-      <programlisting linenumbering="unnumbered">object O3 {
+      <programlisting language="scala">object O3 {
   object O4 {
     type t = java.io.File
     class C
@@ -22339,7 +22339,7 @@ class C8 {
           <primary>type designators</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">class Person              // "Person" is a type designator
+      <programlisting language="scala">class Person              // "Person" is a type designator
 object O { type t }       // "O" and "t" are type designators
 ...</programlisting>
 
@@ -22444,7 +22444,7 @@ x: java.lang.Object with T1 with T2{type z = String; def zv: this.z} = \
           <primary>infix types</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/infix-types-script.scala
+      <programlisting language="scala">// code-examples/TypeSystem/valuetypes/infix-types-script.scala
 
 def attempt(operation: =&gt; Boolean): Throwable Either Boolean = try {
   Right(operation)
@@ -22514,7 +22514,7 @@ Right(false)</screen>
           <secondary>defining traits for</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// From Scala version 2.7.5: scala.Function3 (excerpt).
+      <programlisting language="scala">// From Scala version 2.7.5: scala.Function3 (excerpt).
 package scala
 
 trait Function3[-T1, -T2, -T3, +R] extends AnyRef {
@@ -22548,7 +22548,7 @@ trait Function3[-T1, -T2, -T3, +R] extends AnyRef {
       function value, the compiler instantiates the appropriate <literal role="keep-together">FunctionN</literal> object and uses your definition
       of the function as the body of <literal>apply</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/function-types-script.scala
+      <programlisting language="scala">// code-examples/TypeSystem/valuetypes/function-types-script.scala
 
 val capitalizer = (s: String) =&gt; s.toUpperCase
 
@@ -22572,7 +22572,7 @@ println( List("Programming", "Scala") map capitalizer2)</programlisting>
           <primary>curried functions</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/curried-function-script.scala
+      <programlisting language="scala">// code-examples/TypeSystem/valuetypes/curried-function-script.scala
 
 val f  = (x: Double, y: Double, z: Double) =&gt; x * y / z
 val fc = f.curry
@@ -22662,7 +22662,7 @@ println( answer3 + " == " + answer2 + "? " + (answer3 == answer2))</programlisti
           <secondary>type projections</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/valuetypes/type-projection-script.scala
+      <programlisting language="scala">// code-examples/TypeSystem/valuetypes/type-projection-script.scala
 
 trait T {
   type t &lt;: AnyRef
@@ -22710,7 +22710,7 @@ println(ic2)</programlisting>
       <para id="para_this_example_uses_the_singleto">This example uses the
       singleton type for one value in a declaration of another:</para>
 
-      <programlisting linenumbering="unnumbered">class C {
+      <programlisting language="scala">class C {
   val x = "Cx"
 }
 val c = new C
@@ -22748,7 +22748,7 @@ val x: c.x.type = c.x</programlisting>
     <literal>this</literal>, and they can be used to create aliases for
     <literal>this</literal>. Let&#x2019;s consider the latter case first:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/selftype/this-alias-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/selftype/this-alias-script.scala
 
 class C1 { self =&gt;
   def talk(message: String) = println("C1.talk: " + message)
@@ -22781,7 +22781,7 @@ C1.talk: C3.talk: World</screen>
     <para id="para_if_the_self_type_annotation_ha">If the self-type annotation
     has types in the annotation, we get some very different <phrase role="keep-together">benefits</phrase>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/selftype/selftype-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/selftype/selftype-script.scala
 
 trait Persistence {
   def startPersistence: Unit
@@ -22867,7 +22867,7 @@ MyApp.run</programlisting>
     <para id="para_if_you_think_about_it_we_coul">We could have declared
     <literal>App</literal> using inheritance instead:</para>
 
-    <programlisting linenumbering="unnumbered">trait App with Persistence with Midtier with UI {
+    <programlisting language="scala">trait App with Persistence with Midtier with UI {
 
   def run = { ... }
 }</programlisting>
@@ -22894,7 +22894,7 @@ MyApp.run</programlisting>
     your language doesn&#x2019;t support mixin composition, like Java. For example,
     you might write <literal>App</literal> in Java this way:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/selftype/JavaApp.java
+    <programlisting language="java">// code-examples/TypeSystem/selftype/JavaApp.java
 
 package selftype;
 
@@ -22980,7 +22980,7 @@ public abstract class JavaApp {
     beginning of <xref linkend="Traits"/>. Here is the example we saw then, a
     variation of the Observer Pattern:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/Traits/observer/observer.scala
+    <programlisting language="scala">// code-examples/Traits/observer/observer.scala
 
 package observer
 
@@ -23064,7 +23064,7 @@ trait Subject {
     pattern matching on <literal>List[A]</literal> objects. You might like to
     write code like the following:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/existentials/type-erasure-wont-work.scala
+    <programlisting language="scala">// code-examples/TypeSystem/existentials/type-erasure-wont-work.scala
 // WARNINGS: Does not work as you might expect.
 
 object ProcessList {
@@ -23094,7 +23094,7 @@ object ProcessList {
     parameter, but since we don&#x2019;t know what it is, we use the wildcard
     <literal>_</literal> character for the type parameter, e.g.:</para>
 
-    <programlisting linenumbering="unnumbered">case l: List[_] =&gt; // do something "generic" with the list</programlisting>
+    <programlisting language="scala">case l: List[_] =&gt; // do something "generic" with the list</programlisting>
 
     <para id="para_when_used_in_a_type_context_li">When used in a type context
     like this, the <literal>List[_]</literal> is actually shorthand for the
@@ -23201,7 +23201,7 @@ object ProcessList {
         <primary>Fibonacci sequence, calculating</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">def fib(n: Int): Int = n match {
+    <programlisting language="scala">def fib(n: Int): Int = n match {
   case 0 | 1 =&gt; n
   case _ =&gt; fib(n-1) + fib(n-2)
 }</programlisting>
@@ -23210,7 +23210,7 @@ object ProcessList {
     we could imagine a definition of the Fibonacci sequence like the following
     and it wouldn&#x2019;t create an infinite loop:</para>
 
-    <programlisting linenumbering="unnumbered">fibonacci_sequence = for (i &lt;- 0 to infinity) yield fib(i)</programlisting>
+    <programlisting language="scala">fibonacci_sequence = for (i &lt;- 0 to infinity) yield fib(i)</programlisting>
 
     <para id="para_scala_isn_t_lazy_by_default_b">Scala isn&#x2019;t lazy by default
     (and there is no <literal>infinity</literal> value or keyword&#x2026;), but the
@@ -23222,7 +23222,7 @@ object ProcessList {
         <primary>Stream class</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/lazy/lazy-ints-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/lazy/lazy-ints-script.scala
 
 def from(n: Int): Stream[Int] = Stream.cons(n, from(n+1))
 
@@ -23260,7 +23260,7 @@ evens.take(10).print</programlisting>
     exploits the <literal>zip</literal> operation (see, e.g., <link linkend="Abelson1996" xrefstyle="select:nopage">[Abelson1996]</link>). Our
     discussion for Scala is adapted from <link linkend="Ortiz2007" xrefstyle="select:nopage">[Ortiz2007]</link>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/lazy/lazy-fibonacci-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/lazy/lazy-fibonacci-script.scala
 
 lazy val fib: Stream[Int] =
   Stream.cons(0, Stream.cons(1, fib.zip(fib.tail).map(p =&gt; p._1 + p._2)))
@@ -23309,7 +23309,7 @@ fib.take(10).print</programlisting>
         <primary>Range object</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/TypeSystem/lazy/lazy-range-danger-script.scala
+    <programlisting language="scala">// code-examples/TypeSystem/lazy/lazy-range-danger-script.scala
 
 def mkRandomInts() = {
   val randInts = for {
@@ -23459,7 +23459,7 @@ Calling first on List created from ints1 Seq:
         <secondary>annotations</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/annotations/Pre.java
+    <programlisting language="java">// code-examples/AppDesign/annotations/Pre.java
 
 package org.contract4j5.contract;
 import java.lang.annotation.Documented;
@@ -23586,7 +23586,7 @@ class SSN(
     <literal>SerialVersionUID</literal> (again with the comments removed for
     clarity):</para>
 
-    <programlisting linenumbering="unnumbered">package scala
+    <programlisting language="scala">package scala
 
 class SerialVersionUID(uid: Long) extends StaticAnnotation</programlisting>
 
@@ -23647,7 +23647,7 @@ class SerialVersionUID(uid: Long) extends StaticAnnotation</programlisting>
     with other arguments, such as boolean values and maps, as shown in this
     example:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/annotations/anno-example.scala
+    <programlisting language="scala">// code-examples/AppDesign/annotations/anno-example.scala
 
 import scala.StaticAnnotation
 
@@ -24072,7 +24072,7 @@ you want, you must write the annotation class in Java.
         <secondary>available only in Scala version 2.8 or later</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">import scala.annotation.tailrec
+    <programlisting language="scala">import scala.annotation.tailrec
 
 @tailrec
 def fib(i: Int): Int = i match {
@@ -24108,7 +24108,7 @@ one error found</screen>
         <primary sortas="switch annotation">@switch annotation</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">import scala.annotation.switch
+    <programlisting language="scala">import scala.annotation.switch
 
 def fib(i: Int): Int = (i: @switch) match {
   case _ if i &lt;= 1 =&gt; i
@@ -24144,7 +24144,7 @@ one error found</screen>
         <primary sortas="unchecked annotation">@unchecked annotation</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">...
+    <programlisting language="scala">...
 def process(x: Option[int]) = x match {
   case Some(value) =&gt; ...
 }
@@ -24163,7 +24163,7 @@ one warning found</screen>
     the warning message in situations like this, change the method as
     follows:</para>
 
-    <programlisting linenumbering="unnumbered">...
+    <programlisting language="scala">...
 def process(x: Option[int]) = (x: @unchecked) match {
   case Some(value) =&gt; ...
 }
@@ -24221,7 +24221,7 @@ def process(x: Option[int]) = (x: @unchecked) match {
     <literal>AnyVal</literal>. Here is an example of how the annotation is
     used:</para>
 
-    <programlisting linenumbering="unnumbered">class SpecialCollection[@specialized +T](...) {
+    <programlisting language="scala">class SpecialCollection[@specialized +T](...) {
   ...
 }</programlisting>
 
@@ -24271,7 +24271,7 @@ def process(x: Option[int]) = (x: @unchecked) match {
         <primary>java.io.IOException class</primary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/annotations/file-printer.scala
+    <programlisting language="scala">// code-examples/AppDesign/annotations/file-printer.scala
 
 import java.io._
 
@@ -24319,7 +24319,7 @@ class FilePrinter(val file: File) {
     uses <literal>FilePrinter</literal>. It provides the
     <literal>main</literal> routine:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/annotations/FilePrinterMain.java
+    <programlisting language="scala">// code-examples/AppDesign/annotations/FilePrinterMain.java
 
 import java.io.*;
 
@@ -24435,7 +24435,7 @@ thrown in body of corresponding try statement
     defined the set of HTTP 1.1 methods using a sealed case class
     hierarchy:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/ObjectSystem/sealed/http-script.scala
+    <programlisting language="scala">// code-examples/ObjectSystem/sealed/http-script.scala
 
 sealed abstract class HttpMethod()
 case class Connect(body: String) extends HttpMethod
@@ -24480,7 +24480,7 @@ methods.foreach { method =&gt; handle(method) }</programlisting>
         <secondary>HttpMethod object (example)</secondary>
       </indexterm></para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/enumerations/http-enum-script.scala
+    <programlisting language="scala">// code-examples/AppDesign/enumerations/http-enum-script.scala
 
 object HttpMethod extends Enumeration {
   type Method = Value
@@ -24584,7 +24584,7 @@ Main$$anon$1$HttpMethod(6), Main$$anon$1$HttpMethod(7)}</screen>
     In the first approach, we pass the name to <literal>Value</literal> when
     creating the fields:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/enumerations/http-enum2-script.scala
+    <programlisting language="scala">// code-examples/AppDesign/enumerations/http-enum2-script.scala
 
 object HttpMethod extends Enumeration {
   type Method = Value
@@ -24635,7 +24635,7 @@ Trace: 7
     pass the list of names to the <literal>Enumeration</literal>
     constructor:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/enumerations/http-enum3-script.scala
+    <programlisting language="scala">// code-examples/AppDesign/enumerations/http-enum3-script.scala
 
 object HttpMethod extends Enumeration(
     "Connect", "Delete", "Get", "Head", "Options", "Post", "Put", "Trace") {
@@ -24740,7 +24740,7 @@ println( HttpMethod )</programlisting>
       and it has <literal>name</literal> and <literal>id</literal>
       methods:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/enumerations/http-case-script.scala
+      <programlisting language="scala">// code-examples/AppDesign/enumerations/http-case-script.scala
 
 sealed abstract class HttpMethod(val id: Int) {
   def name = getClass getSimpleName
@@ -24854,7 +24854,7 @@ Main$$anon$1$Trace$: 7</screen>
     designs? The <literal>Map</literal> API offers some useful examples.
     Consider these two <literal>Map</literal> methods:</para>
 
-    <programlisting linenumbering="unnumbered">trait Map[A,+B] {
+    <programlisting language="scala">trait Map[A,+B] {
   ...
   def get(key: A) : Option[B]
   def getOrElse [B2 &gt;: B](key : A, default : =&gt; B2) : B2 = ...
@@ -24870,7 +24870,7 @@ Main$$anon$1$Trace$: 7</screen>
     that a value might not exist, and it forces you to handle that situation
     gracefully:</para>
 
-    <programlisting linenumbering="unnumbered">val stateCapitals = Map("Alabama" -&gt; "Montgomery", ...)
+    <programlisting language="scala">val stateCapitals = Map("Alabama" -&gt; "Montgomery", ...)
 ...
 
 stateCapitals.get("North Hinterlandia") match {
@@ -24884,7 +24884,7 @@ stateCapitals.get("North Hinterlandia") match {
     default value can actually be an instance of a supertype relative to the
     map&#x2019;s value type:</para>
 
-    <programlisting linenumbering="unnumbered">println(stateCapitals.getOrElse("North Hinterlandia", "No such state!"))</programlisting>
+    <programlisting language="scala">println(stateCapitals.getOrElse("North Hinterlandia", "No such state!"))</programlisting>
 
     <para id="para_a_lot_of_java_and_net_apis_al">A lot of Java and .NET APIs
     allow <literal>null</literal> method arguments and can return
@@ -24901,7 +24901,7 @@ stateCapitals.get("North Hinterlandia") match {
     checked <literal>IOExceptions</literal> in our own unchecked exception,
     called <literal>ScalaIOException</literal>:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/options-nulls/file-printer-refactored-script.scala
+    <programlisting language="scala">// code-examples/AppDesign/options-nulls/file-printer-refactored-script.scala
 
 import java.io._
 
@@ -24999,7 +24999,7 @@ args.foreach { fileName =&gt;
           <secondary>using with for comprehensions</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/options-nulls/option-for-comp-v1-script.scala
+      <programlisting language="scala">// code-examples/AppDesign/options-nulls/option-for-comp-v1-script.scala
 
 case class User(userName: String, name: String, email: String, bio: String)
 
@@ -25048,7 +25048,7 @@ User(al3x,Alex Payne,al3x@....com,Twitter API genius)</screen>
       <para id="para_now_comment_out_the_two_lines">Now, delete the two lines
       with the #1 comment:</para>
 
-      <programlisting linenumbering="unnumbered">...
+      <programlisting language="scala">...
 var validUsers = for {
   user     &lt;- newUserProfiles
   userName &lt;- user get "userName"
@@ -25079,7 +25079,7 @@ validUsers.foreach (user =&gt; println(user))</programlisting>
           comprehensions</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">for (p1 &lt;- e1) yield e2          // for comprehension
+      <programlisting language="scala">for (p1 &lt;- e1) yield e2          // for comprehension
 
 e1 map ( case p1 =&gt; e2 )         // translation</programlisting>
 
@@ -25087,7 +25087,7 @@ e1 map ( case p1 =&gt; e2 )         // translation</programlisting>
       a single generator followed by an arbitrary expression (which could be
       several expressions in braces, etc.):</para>
 
-      <programlisting linenumbering="unnumbered">for (p1 &lt;- e1) e2                // for comprehension
+      <programlisting language="scala">for (p1 &lt;- e1) e2                // for comprehension
 
 e1 foreach ( case p1 =&gt; e2 )     // translation</programlisting>
 
@@ -25096,11 +25096,11 @@ e1 foreach ( case p1 =&gt; e2 )     // translation</programlisting>
       <literal>flatMap</literal> in the <literal>yield</literal> expressions,
       but <literal>foreach</literal> is unchanged:</para>
 
-      <programlisting linenumbering="unnumbered">for (p1 &lt;- e1; p2 &lt;- e2 ...) yield eN       // for comprehension
+      <programlisting language="scala">for (p1 &lt;- e1; p2 &lt;- e2 ...) yield eN       // for comprehension
 
 e1 flatMap ( case p1 =&gt; for (p2 &lt;- e2 ...) yield eN )  // translation</programlisting>
 
-      <programlisting linenumbering="unnumbered">for (p1 &lt;- e1; p2 &lt;- e2 ...) eN             // for comprehension
+      <programlisting language="scala">for (p1 &lt;- e1; p2 &lt;- e2 ...) eN             // for comprehension
 
 e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</programlisting>
 
@@ -25119,7 +25119,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
       translation process on our example, you get the following
       expansion:</para>
 
-      <programlisting linenumbering="unnumbered">var validUsers = newUserProfiles flatMap {
+      <programlisting language="scala">var validUsers = newUserProfiles flatMap {
   case user =&gt; user.get("userName") flatMap {
     case userName =&gt; user.get("name") flatMap {
       case name =&gt; user.get("email") flatMap {
@@ -25145,7 +25145,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
       lets us treat <literal>Options</literal> like other collections. Here is
       the definition of <literal>flatMap</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">def flatMap[B](f: A =&gt; Option[B]): Option[B] =
+      <programlisting language="scala">def flatMap[B](f: A =&gt; Option[B]): Option[B] =
   if (isEmpty) None else f(this.get)</programlisting>
 
       <para id="para_if_user_get_returns_">If
@@ -25398,7 +25398,7 @@ e1 foreach ( case p1 =&gt; for (p2 &lt;- e2 ...) eN )       // translation</prog
       the following example of a component in package
       <literal>encodedstring</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/encoded-string.scala
+      <programlisting language="scala">// code-examples/AppDesign/abstractions/encoded-string.scala
 
 package encodedstring {
 
@@ -25489,7 +25489,7 @@ package encodedstring {
       <para id="para_encoded_strings_script">The following script demonstrates
       the component in use:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/encoded-string-script.scala
+      <programlisting language="scala">// code-examples/AppDesign/abstractions/encoded-string-script.scala
 
 import encodedstring._
 import encodedstring.EncodedString._
@@ -25576,7 +25576,7 @@ scala&gt;</screen>
       <para id="para_in_overridingabstracttypes_">For example, in <xref linkend="OverridingAbstractTypes"/>, we discussed our second version of
       the Observer Pattern:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/observer/observer2.scala
+      <programlisting language="scala">// code-examples/AdvOOP/observer/observer2.scala
 
 package observer
 
@@ -25665,7 +25665,7 @@ trait SubjectForFunctionalObservers extends AbstractSubject {
       (Note that the Scala syntax has changed somewhat since that paper was
       written.)</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/observer3-wont-compile.scala
+      <programlisting language="scala">// code-examples/AppDesign/abstractions/observer3-wont-compile.scala
 // WON'T COMPILE
 
 package observer
@@ -25732,7 +25732,7 @@ one error found</screen>
       our current compilation problem. Here is the same code again with a
       self-type annotation:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/observer3.scala
+      <programlisting language="scala">// code-examples/AppDesign/abstractions/observer3.scala
 
 package observer
 
@@ -25790,7 +25790,7 @@ abstract class SubjectObserver {
       implementation of the pattern, let&#x2019;s specialize it for observing button
       clicks:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/button-observer3.scala
+      <programlisting language="scala">// code-examples/AppDesign/abstractions/button-observer3.scala
 
 package ui
 import observer._
@@ -25862,7 +25862,7 @@ class ButtonClickObserver extends ButtonSubjectObserver.ButtonObserver {
       <para id="para_finally_here_is_a_specificati">Finally, here is a
       specification that exercises the code:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/button-observer3-spec.scala
+      <programlisting language="scala">// code-examples/AppDesign/abstractions/button-observer3-spec.scala
 
 package ui
 import org.specs._
@@ -26012,7 +26012,7 @@ object ButtonObserver3Spec extends Specification {
     these types, collected together into a single script that also exercises
     the code:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/vetoable-clicks1-script.scala
+    <programlisting language="scala">// code-examples/AppDesign/abstractions/vetoable-clicks1-script.scala
 
 trait Clickable {
   def click()
@@ -26082,7 +26082,7 @@ click!</screen>
     class. To see an example, let&#x2019;s refactor the script to move the click
     <literal>count</literal> to the <literal role="keep-together">Clickable</literal> trait:</para>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/abstractions/vetoable-clicks2-script.scala
+    <programlisting language="scala">// code-examples/AppDesign/abstractions/vetoable-clicks2-script.scala
 
 trait Clickable {
   private var clicks = 0
@@ -26256,7 +26256,7 @@ for (i &lt;- 1 to 3 ) button2.click()</programlisting>
       of the pattern using the <literal>Shape</literal> class hierarchy we
       have used previously. We&#x2019;ll start with the case class version from <xref linkend="CaseClasses"/>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AdvOOP/shapes/shapes-case.scala
+      <programlisting language="scala">// code-examples/AdvOOP/shapes/shapes-case.scala
 
 package shapes {
   case class Point(x: Double, y: Double)
@@ -26292,7 +26292,7 @@ package shapes {
       <literal>Shape</literal> hierarchy to support the Visitor Pattern,
       following the example in <link linkend="GOF1995" xrefstyle="select:nopage">[GOF1995]</link>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-visitor.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes-visitor.scala
 
 package shapes {
   trait ShapeVisitor {
@@ -26347,7 +26347,7 @@ package shapes {
       visitor that supports our original <literal>draw</literal>
       operation:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-drawing-visitor.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes-drawing-visitor.scala
 
 package shapes {
   class ShapeDrawingVisitor extends ShapeVisitor {
@@ -26367,7 +26367,7 @@ package shapes {
       instance appropriately. Finally, here is a script that exercises the
       code:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-drawing-visitor-script.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes-drawing-visitor-script.scala
 
 import shapes._
 
@@ -26415,7 +26415,7 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))</screen>
       <literal>ShapeVisitor</literal> code to remove the Visitor Pattern
       logic:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes.scala
 
 package shapes2 {
   case class Point(x: Double, y: Double)
@@ -26436,7 +26436,7 @@ package shapes2 {
       then we will have to use an implicit conversion to a wrapper class with
       the <literal>draw</literal> method:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-drawing-implicit.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes-drawing-implicit.scala
 
 package shapes2 {
   class ShapeDrawer(val shape: Shape) {
@@ -26464,7 +26464,7 @@ package shapes2 {
       <para id="para_implicit_script_exercises_code">This script exercises the
       code:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-drawing-implicit-script.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes-drawing-implicit-script.scala
 
 import shapes2._
 
@@ -26515,7 +26515,7 @@ list foreach { _.draw }</programlisting>
       be isolated to one place. Indeed, this approach would be a conventional
       functional approach, as illustrated in the following script:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-drawing-pattern-script.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes-drawing-pattern-script.scala
 
 import shapes2._
 
@@ -26620,7 +26620,7 @@ Triangle.draw: Triangle(Point(0.0,0.0),Point(1.0,0.0),Point(0.0,1.0))
       through a single factory, you can modify the factory to mix in traits
       that add new behaviors as needed:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-drawing-factory.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes-drawing-factory.scala
 
 package shapes2 {
   trait Drawing {
@@ -26677,7 +26677,7 @@ package shapes2 {
       <para id="para_factory_script">The following script exercises the
       factory:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/patterns/shapes-drawing-factory-script.scala
+      <programlisting language="scala">// code-examples/AppDesign/patterns/shapes-drawing-factory-script.scala
 
 import shapes2._
 
@@ -26858,7 +26858,7 @@ scala&gt;</screen>
           <primary>Twitter client, component model for (example)</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/dep-injection/twitter-client.scala
+      <programlisting language="scala">// code-examples/AppDesign/dep-injection/twitter-client.scala
 
 package twitterclient
 import java.util.Date
@@ -27037,7 +27037,7 @@ trait TwitterClientComponent {
           <secondary>TwitterClientComponent (example)</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">self: TwitterClientUIComponent with
+      <programlisting language="scala">self: TwitterClientUIComponent with
       TwitterLocalCacheComponent with
       TwitterServiceComponent =&gt;</programlisting>
 
@@ -27069,7 +27069,7 @@ trait TwitterClientComponent {
       in-memory local cache, and fakes the interaction with the Twitter
       service:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/dep-injection/twitter-text-client.scala
+      <programlisting language="scala">// code-examples/AppDesign/dep-injection/twitter-text-client.scala
 
 package twitterclient
 
@@ -27151,7 +27151,7 @@ class TextClient(userProfile: TwitterUserProfile)
       <para id="para_let_s_try_our_client_with_the_">Let&#x2019;s try our client with
       the following script:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/dep-injection/twitter-text-client-script.scala
+      <programlisting language="scala">// code-examples/AppDesign/dep-injection/twitter-text-client-script.scala
 
 import twitterclient._
 
@@ -27272,7 +27272,7 @@ Chat history:
     <?dbfo-need height=”1in”
 ?>
 
-    <programlisting linenumbering="unnumbered">// code-examples/AppDesign/design-by-contract/bank-account.scala
+    <programlisting language="scala">// code-examples/AppDesign/design-by-contract/bank-account.scala
 
 class BankAccount(val balance: Double) {
   require(balance &gt;= 0.0)
@@ -27305,7 +27305,7 @@ class BankAccount(val balance: Double) {
       <title>design-by-contract/bank-account-spec.scala: Testing the
       contract</title>
 
-      <programlisting linenumbering="unnumbered">// code-examples/AppDesign/design-by-contract/bank-account-spec.scala
+      <programlisting language="scala">// code-examples/AppDesign/design-by-contract/bank-account-spec.scala
 
 import org.specs._
 
@@ -27802,7 +27802,7 @@ object BankAccountSpec extends Specification {
       the <literal>args</literal> array. Here is an example script that
       implements the same &#x201C;upper&#x201D; feature:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/upper-script.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/upper-script.scala
 
 args.map(_.toUpperCase()).foreach(printf("%s ",_))
 println("")</programlisting>
@@ -28004,7 +28004,7 @@ g
       following somewhat contrived <emphasis>bash</emphasis> script
       example:</para>
 
-      <programlisting linenumbering="unnumbered">#!/usr/bin/env bash
+      <programlisting language="sh">#!/usr/bin/env bash
 # code-examples/ToolsLibs/pipe-example.sh
 
 h=Hello
@@ -28033,7 +28033,7 @@ commands | scala</programlisting>
       Remember that you have to make the permissions executable, e.g.,
       <literal>chmod +x secho</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">#!/bin/sh
+      <programlisting language="sh">#!/bin/sh
 exec scala "$0" "$@"
 !#
 print("You entered: ")
@@ -28049,7 +28049,7 @@ You entered: Hello World</screen>
       <para id="para_similarly_here_is_an_example_">Similarly, here is an
       example Windows <literal>.bat</literal> command:</para>
 
-      <programlisting linenumbering="unnumbered">::#!
+      <programlisting language="sh">::#!
 @echo off
 call scala %0 %*
 goto :eof
@@ -28087,7 +28087,7 @@ println</programlisting>
         <literal>object</literal> that looks more or less like the following
         example:</para>
 
-        <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/script-wrapper.scala
+        <programlisting language="scala">// code-examples/ToolsLibs/script-wrapper.scala
 
 object Script {
   def main(args: Array[String]): Unit = {
@@ -28103,7 +28103,7 @@ object Script {
         in this book that declare packages must be compiled and executed
         separately, such as this example from <xref linkend="TypeLessDoMore"/>:</para>
 
-        <programlisting linenumbering="unnumbered">// code-examples/TypeLessDoMore/package-example1.scala
+        <programlisting language="scala">// code-examples/TypeLessDoMore/package-example1.scala
 
 package com.example.mypkg
 
@@ -28118,7 +28118,7 @@ class MyClass {
         outside of types are not allowed. The following example runs fine with
         <literal>scala</literal>:</para>
 
-        <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/example-script.scala
+        <programlisting language="scala">// code-examples/ToolsLibs/example-script.scala
 
 case class Message(name: String)
 
@@ -28338,7 +28338,7 @@ public final class MessagePrinter extends java.lang.Object{
       <literal>javap</literal>, and <literal>jad</literal> on the resulting
       class files:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/complex.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/complex.scala
 
 case class Complex(real: Double, imaginary: Double) {
   def +(that: Complex) =
@@ -29054,7 +29054,7 @@ case class Complex(real: Double, imaginary: Double) {
       ScalaTest test for the simple <literal>Complex</literal> class we used
       in <xref linkend="CommandLineToolDecompilers"/>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/complex-test.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/complex-test.scala
 
 import org.scalatest.FunSuite
 
@@ -29161,7 +29161,7 @@ All tests passed.</screen>
       <literal role="keep-together">Complex</literal> class we showed
       previously:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/complex-spec.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/complex-spec.scala
 
 import org.specs._
 
@@ -29328,7 +29328,7 @@ Complex addition with (0.0, 0.0) should
       <para id="para_here_is_a__scalacheck__test_fo">Here is a ScalaCheck test
       for <literal>Complex</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/complex-check-script.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/complex-check-script.scala
 
 import org.scalacheck._
 import org.scalacheck.Prop._
@@ -29665,7 +29665,7 @@ ComplexSpecification.check</programlisting>
           <tertiary>Java and Scala generics</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/JStack.java
+      <programlisting language="java">// code-examples/ToolsLibs/JStack.java
 
 import java.util.*;
 
@@ -29685,7 +29685,7 @@ public class JStack&lt;T&gt; {
       <example id="example_14-1">
         <title>A Scala &#x201C;spec&#x201D; to test the simple Java stack</title>
 
-        <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/JStack-spec.scala
+        <programlisting language="scala">// code-examples/ToolsLibs/JStack-spec.scala
 
 import org.specs._
 
@@ -29715,7 +29715,7 @@ object JStackSpec extends Specification {
           <secondary>Scala, using from Java</secondary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/SMapTest.java
+      <programlisting language="java">// code-examples/ToolsLibs/SMapTest.java
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -29837,7 +29837,7 @@ required: scala.Option&lt;SMapTest.Name&gt;
           <tertiary>using Scala functions in Java</tertiary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/SMapTestWithFunctions.java
+      <programlisting language="java">// code-examples/ToolsLibs/SMapTestWithFunctions.java
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -29920,7 +29920,7 @@ public class SMapTestWithFunctions {
       <literal>usingMapGetOrElse</literal>. The signature of
       <literal>getOrElse</literal> is the following:</para>
 
-      <programlisting linenumbering="unnumbered">def getOrElse[B2 &gt;: B](key : A, default : =&gt; B2) : B2</programlisting>
+      <programlisting language="scala">def getOrElse[B2 &gt;: B](key : A, default : =&gt; B2) : B2</programlisting>
 
       <para id="para_where_a_is_the_key_type_para">Where <literal>A</literal>
       is the key type parameter, <literal>B</literal> is the value type
@@ -30018,7 +30018,7 @@ public class SMapTestWithFunctions {
       annotation to each constructor argument, which is a field in the
       <literal>case</literal> class:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/complex-javabean.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/complex-javabean.scala
 
 case class ComplexBean(
   @scala.reflect.BeanProperty real: Double,
@@ -30034,7 +30034,7 @@ case class ComplexBean(
       then decompile it with <literal>javap -classpath ...
       ComplexBean</literal>, you get the following output:</para>
 
-      <programlisting linenumbering="unnumbered">public class ComplexBean extends java.lang.Object
+      <programlisting language="java">public class ComplexBean extends java.lang.Object
   implements scala.ScalaObject,scala.Product,java.io.Serializable{
   public ComplexBean(double, double);
   public java.lang.Object productElement(int);
@@ -30056,7 +30056,7 @@ case class ComplexBean(
       with the result of decompiling the original
       <filename>Complex.class</filename> file:</para>
 
-      <programlisting linenumbering="unnumbered">public class Complex extends java.lang.Object
+      <programlisting language="java">public class Complex extends java.lang.Object
   implements scala.ScalaObject,scala.Product,java.io.Serializable{
   public Complex(double, double);
   public java.lang.Object productElement(int);
@@ -30349,7 +30349,7 @@ case class ComplexBean(
       declare an abstract method that takes no arguments and returns
       <literal>Unit</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/all-op-chars.scala
+      <programlisting language="java">// code-examples/ToolsLibs/all-op-chars.scala
 
 trait AllOpChars {
   def == : Unit   // $eq$eq
@@ -30380,7 +30380,7 @@ trait AllOpChars {
       rearranged the output order of the methods to match the order in the
       original Scala file.)</para>
 
-      <programlisting linenumbering="unnumbered">Compiled from "all-op-chars.scala"
+      <programlisting language="scala">Compiled from "all-op-chars.scala"
 public interface AllOpChars{
   public abstract void $eq$eq();
   public abstract void $greater();
@@ -30499,7 +30499,7 @@ public interface AllOpChars{
       previously in this chapter. We&#x2019;ll add a package declaration this time to
       provide some scope:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/aspectj/complex.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/aspectj/complex.scala
 
 package example.aspectj
 
@@ -30513,7 +30513,7 @@ case class Complex(real: Double, imaginary: Double) {
       <para id="para_here_is_an_object_that_uses_">Here is an
       <literal>object</literal> that uses <literal>Complex</literal>:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/aspectj/complex-main.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/aspectj/complex-main.scala
 
 package example.aspectj
 
@@ -30534,7 +30534,7 @@ object ComplexMain {
       <?dbfo-need height=”1in”
 ?>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/aspectj/LogComplex.aj
+      <programlisting language="scala">// code-examples/ToolsLibs/aspectj/LogComplex.aj
 
 package example.aspectj;
 
@@ -30623,7 +30623,7 @@ public aspect LogComplex {
           <primary>load-time weaving</primary>
         </indexterm></para>
 
-      <programlisting linenumbering="unnumbered">&lt;!-- code-examples/ToolsLibs/META-INF/aop.xml --&gt;
+      <programlisting language="xml">&lt;!-- code-examples/ToolsLibs/META-INF/aop.xml --&gt;
 
 &lt;aspectj&gt;
   &lt;aspects&gt;
@@ -30776,7 +30776,7 @@ Complex(4.0,6.0)</screen>
       <para id="para_here_is_an_example_that_illust">Here is an example that
       illustrates &#x201C;wiring together&#x201D; objects with Spring:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/spring/object-bean.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/spring/object-bean.scala
 
 package example.spring
 
@@ -30829,7 +30829,7 @@ case class FactoryUsingBean(factory: Factory)</programlisting>
       dependency &#x201C;wiring&#x201D; using a standard Spring XML configuration
       file:</para>
 
-      <programlisting linenumbering="unnumbered">&lt;!-- code-examples/ToolsLibs/spring/scala-spring.xml --&gt;
+      <programlisting language="xml">&lt;!-- code-examples/ToolsLibs/spring/scala-spring.xml --&gt;
 
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -30869,7 +30869,7 @@ case class FactoryUsingBean(factory: Factory)</programlisting>
       <para id="para_spring_di_script">Finally, here is a script that uses
       these types to demonstrate Spring DI with Scala:</para>
 
-      <programlisting linenumbering="unnumbered">// code-examples/ToolsLibs/spring/object-bean-script.scala
+      <programlisting language="scala">// code-examples/ToolsLibs/spring/object-bean-script.scala
 
 import example.spring._
 import org.springframework.context.support._
