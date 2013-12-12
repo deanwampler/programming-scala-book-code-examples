@@ -154,6 +154,12 @@
       </formalpara>
     </printhistory>
 
+    <mediaobject role="cover"> <!-- source in the cover -->
+      <imageobject role="front-large" remap="lrg">
+        <imagedata format="PNG" fileref="images/cover.png"/>
+      </imageobject>
+    </mediaobject>
+
     <mediaobject id="coverd1e4" role="cover">
       <imageobject remap="lrg" role="front-large">
         <imagedata fileref="covers/9780596155957_lrg.jpg" format="JPG" />
