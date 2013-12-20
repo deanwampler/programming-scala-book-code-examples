@@ -1,0 +1,6 @@
+#!/bin/sh
+exec scala "$0" "$@"
+!#
+print("You entered: ")
+argv.toList foreach { s => format("%s ", s) }
+println

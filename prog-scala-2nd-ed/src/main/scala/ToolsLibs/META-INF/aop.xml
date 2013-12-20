@@ -1,0 +1,14 @@
+<!-- code-examples/ToolsLibs/META-INF/aop.xml -->
+
+<aspectj>
+  <aspects>
+    <aspect name="example.aspectj.LogComplex" />
+    <include within="example.aspectj.*" />
+  </aspects>
+  
+  <weaver options="-verbose">
+    <dump within="example.aspectj.*" beforeandafter="true">
+      <include within="example.aspectj.*" />
+    </dump>
+  </weaver>
+</aspectj>
