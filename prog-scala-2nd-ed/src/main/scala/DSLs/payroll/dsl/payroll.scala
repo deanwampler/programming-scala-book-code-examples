@@ -65,7 +65,7 @@ protected[dsl] class DeductionsBuilder(gpb: GrossPayBuilder) {
     paycheck = paycheck plusDeductions amount
 
   def addDeductionsPercentageOfGross(percentage: Double) = {
-    val amount = paycheck.gross * (percentage/100.)
+    val amount = paycheck.gross * (percentage/100.0)
     addDeductions(amount)
   }
 }

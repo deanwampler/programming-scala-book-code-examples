@@ -78,7 +78,7 @@ class PayrollParserCombinators(val employees: Map[Name, Employee])
   
   /** @return Parser[Money] */
   def percentage = toBe ~> doubleNumber <~ "percent" <~ "of" <~ "gross"  ^^ {
-    percentage => grossAmount * (percentage / 100.)
+    percentage => grossAmount * (percentage/100.0)
   }
       
   def amount = toBe ~> doubleNumber <~ "in" <~ "gross" <~ "currency" ^^ {
