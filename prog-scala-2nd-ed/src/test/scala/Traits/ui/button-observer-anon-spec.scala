@@ -1,12 +1,12 @@
 // code-examples/Traits/ui/button-observer-anon-spec.scala
 
 package ui
-import org.specs2.mutable._
+import org.scalatest.{ FunSpec, ShouldMatchers }
 import observer._
 
-object ButtonObserverAnonSpec extends Specification {
-  "A Button Observer" should {
-    "observe button clicks" in {
+class ButtonObserverAnonSpec extends FunSpec with ShouldMatchers {
+  describe ("A Button Observer") {
+    it ("observe button clicks") {
       val observableButton = new Button("Okay") with Subject {
         override def click() = {
           super.click()

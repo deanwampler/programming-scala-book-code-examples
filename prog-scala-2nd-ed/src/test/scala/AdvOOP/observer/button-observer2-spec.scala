@@ -1,12 +1,12 @@
 // code-examples/AdvOOP/observer/button-observer2-spec.scala
 
 package ui
-import org.specs2.mutable._
+import org.scalatest.{ FunSpec, ShouldMatchers }
 import observer._
 
-object ButtonObserver2Spec extends Specification {
-  "An Observer watching a SubjectForReceiveUpdateObservers button" should {
-    "observe button clicks" in {
+class ButtonObserver2Spec extends FunSpec with ShouldMatchers {
+  describe ("An Observer watching a SubjectForReceiveUpdateObservers button") {
+    it ("observe button clicks") {
       val observableButton = 
         new Button(name) with SubjectForReceiveUpdateObservers {
         override def click() = { 
@@ -20,8 +20,8 @@ object ButtonObserver2Spec extends Specification {
       buttonObserver.count mustEqual 3
     }
   }
-  "An Observer watching a SubjectForFunctionalObservers button" should {
-    "observe button clicks" in {
+  describe ("An Observer watching a SubjectForFunctionalObservers button") {
+    it ("observe button clicks") {
       val observableButton = 
         new Button(name) with SubjectForFunctionalObservers {
         override def click() = { 

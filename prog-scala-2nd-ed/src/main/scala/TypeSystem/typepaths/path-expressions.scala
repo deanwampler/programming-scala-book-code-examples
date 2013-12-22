@@ -54,5 +54,5 @@ class C8 {
   type t1 = O3.O4.t
   type t2 = O3.O4.C
   type t3 = O3.O4.T
-//  type t4 = O3.C2.t   // ERROR: C2 is not a "value" in O3
+//  type t4 = O3.C2.t   // ERROR: C2 is not a it ("value") O3
 }

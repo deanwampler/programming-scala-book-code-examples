@@ -1,7 +1,7 @@
 // code-examples/AppDesign/annotations/anno-example.scala
 
 package appdesign.annotations
-import scala.StaticAnnotation
+import scala.annotation.StaticAnnotation
 
 class Persist(tableName: String, params: Map[String,Any]) 
   extends StaticAnnotation

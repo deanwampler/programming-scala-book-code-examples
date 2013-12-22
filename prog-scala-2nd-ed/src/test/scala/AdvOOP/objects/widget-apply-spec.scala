@@ -1,11 +1,11 @@
 // code-examples/AdvOOP/objects/widget-apply-spec.scala
 
 package objects
-import org.specs2.mutable._
+import org.scalatest.{ FunSpec, ShouldMatchers }
 
-object WidgetApplySpec extends Specification {
-  "Widget.apply with a valid widget specification string" should {
-    "return a widget instance with the correct fields set" in {
+class WidgetApplySpec extends FunSpec with ShouldMatchers {
+  describe ("Widget.apply with a valid widget specification string") {
+    it ("return a widget instance with the correct fields set") {
       Widget("(button: label=click me, (Widget))") match {
         case Some(w) => w match {
           case b:Button => b.label mustEqual "click me"
@@ -22,8 +22,8 @@ object WidgetApplySpec extends Specification {
       }
     }
   }
-  "Widget.apply with an invalid specification string" should {
-    "return None" in {
+  describe ("Widget.apply with an invalid specification string") {
+    it ("return None") {
       Widget("(button: , (Widget)") mustEqual None
     }
   }

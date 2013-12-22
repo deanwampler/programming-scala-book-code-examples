@@ -1,13 +1,13 @@
 // code-examples/AdvOOP/ui3/button-clickable-observer-vetoable2-spec.scala
 package ui3
 
-import org.specs2.mutable._
+import org.scalatest.{ FunSpec, ShouldMatchers }
 import observer._
 import ui.ButtonCountObserver
 
-object ButtonClickableObserverVetoableSpec2 extends Specification {
-  "A Button Observer with Vetoable Clicks" should {
-    "observe only the first 'maxAllowed' clicks" in {
+class ButtonClickableObserverVetoableSpec2 extends FunSpec with ShouldMatchers {
+  describe ("A Button Observer with Vetoable Clicks") {
+    it ("observe only the first 'maxAllowed' clicks") {
       val observableButton = 
         new Button("Okay") with ObservableClicks with VetoableClicks {
           maxAllowed = 2

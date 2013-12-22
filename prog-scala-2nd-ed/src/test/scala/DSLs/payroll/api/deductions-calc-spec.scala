@@ -1,12 +1,12 @@
 // code-examples/DSLs/payroll/api/deductions-calc-spec.scala
 
-package payroll.api
-import org.specs2.mutable._ 
+package dsls.payroll.api
+import org.scalatest.{ FunSpec, ShouldMatchers } 
 import org.scalacheck._
 import org.scalacheck.Prop._
-import payroll.Type2Money._
+import dsls.payroll.Type2Money._
 
-object DeductionsCalculatorSpec extends Specification 
+class DeductionsCalculatorSpec extends FunSpec with ShouldMatchers 
         with ScalaCheck with ArbitraryMoney { 
 
   val employee = Employee(Name("Buck", "Trends"), Money(80000))

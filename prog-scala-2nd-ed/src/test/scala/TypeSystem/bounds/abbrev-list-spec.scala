@@ -1,28 +1,28 @@
 // code-examples/TypeSystem/bounds/abbrev-list-spec.scala
 package bounds.abbrevlist
 
-import org.specs2.mutable._ 
+import org.scalatest.{ FunSpec, ShouldMatchers } 
 
 // Not very complete...
-object AbbrevListSpec extends Specification("AbbrevList") {
+class AbbrevListSpec extends FunSpec with ShouldMatchers {
 
   def support = addToSusVerb("support") // add new "keyword"
 
-  "AbbrevNil" should support {
-    "item :: AbbrevNil == AbbrevList(item)" in {
+  describe ("AbbrevNil") support {
+    it ("item :: AbbrevNil == AbbrevList(item)") {
       val list = (1 :: AbbrevNil) 
       list.head mustEqual 1
       list.tail mustEqual AbbrevNil
     } 
-    "AbbrevNil.foreach(...) does nothing" in {
+    it ("AbbrevNil.foreach(...) does nothing") {
       var failed = false
       AbbrevNil.foreach { x => failed = true }
       failed must beFalse
     } 
   }
 
-  "::" should support {
-    "item :: nonEmptyAbbrevList == AbbrevList(item, ...)" in {
+  describe ("::") support {
+    it ("item :: nonEmptyAbbrevList == AbbrevList(item, ...)") {
       val list  = 1 :: 2 :: AbbrevNil
       val list2 = 3 :: list
       list2.head mustEqual 3
@@ -30,7 +30,7 @@ object AbbrevListSpec extends Specification("AbbrevList") {
       list2.tail.tail.head mustEqual 2
       list2.tail.tail.tail mustEqual AbbrevNil
     } 
-    "nonEmptyAbbrevList.foreach(...) does something for each element" in {
+    it ("nonEmptyAbbrevList.foreach(...) does something for each element") {
       var count = 0
       (1 :: 2 :: AbbrevNil).foreach { x => count += 1 }
       count mustBe 2

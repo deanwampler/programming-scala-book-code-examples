@@ -1,18 +1,20 @@
 // code-examples/IntroducingScala/shapes-actor.scala
 
 package intro.shapes {
-  import scala.actors._
-  import scala.actors.Actor._
+  import akka.actor.{Actor, ActorLogging}
 
-  object ShapeDrawingActor extends Actor {
-    def act() {
-      loop {
-        receive {
-          case s: Shape => s.draw()
-          case "exit"   => println("exiting..."); exit
-          case x: Any   => println("Error: Unknown message! " + x)
-        }
-      }
+  class ShapesDrawingActor extends Actor with ActorLogging {
+    def receive = {
+      case s: Shape => 
+        s.draw(s => log.info(s))
+        sender ! s"$s drawn"
+      case "exit" => 
+        log.info("exiting...")
+        sender ! "finished."
+      case message =>  // default. Equivalent to "message: Any"
+        val response = s"ERROR: Unknown message: $message"
+        log.info(response)
+        sender ! response
     }
   }
 }

@@ -1,12 +1,12 @@
 // code-examples/Traits/ui/button-observer-spec.scala
 
 package ui
-import org.specs2.mutable._
+import org.scalatest.{ FunSpec, ShouldMatchers }
 import observer._
 
-object ButtonObserverSpec extends Specification {
-  "A Button Observer" should {
-    "observe button clicks" in {
+class ButtonObserverSpec extends FunSpec with ShouldMatchers {
+  describe ("A Button Observer") {
+    it ("observe button clicks") {
       val observableButton = new ObservableButton("Okay")
       val buttonObserver = new ButtonCountObserver
       observableButton.addObserver(buttonObserver)

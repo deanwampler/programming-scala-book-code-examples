@@ -1,15 +1,15 @@
 // code-examples/Traits/ui/button-callbacks-spec.scala
 package ui
-import org.specs2.mutable._ 
+import org.scalatest.{ FunSpec, ShouldMatchers } 
 
-object ButtonWithCallbacksSpec extends Specification { 
-  "A ButtonWithCallbacks" should { 
-    "be constructable with just a label" in { 
+class ButtonWithCallbacksSpec extends FunSpec with ShouldMatchers { 
+  describe ("A ButtonWithCallbacks") { 
+    it ("be constructable with just a label") { 
       val button = new ButtonWithCallbacks("button1")
       button.label mustEqual "button1"
       button.clickedCallbacks.isEmpty mustEqual true
     } 
-    "be constructable with a label and one click callback" in {
+    it ("be constructable with a label and one click callback") {
       var message = ""
       val button = new ButtonWithCallbacks(
               "button1", () => message = "clicked!")
@@ -17,7 +17,7 @@ object ButtonWithCallbacksSpec extends Specification {
       button.click
       message mustEqual "clicked!"
     } 
-    "be constructable with a label and a list of click callbacks" in {
+    it ("be constructable with a label and a list of click callbacks") {
       var message = ""
       val button = new ButtonWithCallbacks("button1", 
           List(() => message  = "clicked!", 
@@ -26,7 +26,7 @@ object ButtonWithCallbacksSpec extends Specification {
       button.click
       message mustEqual "clicked! clicked again!"
     } 
-    "not be constructable with a null callback list" in { 
+    it ("not be constructable with a null callback list") { 
       val nullList:List[() => Unit] = null
       val errorMessage = 
         "requirement failed: Callback list can't be null!"

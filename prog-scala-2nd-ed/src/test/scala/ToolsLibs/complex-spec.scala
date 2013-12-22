@@ -1,21 +1,21 @@
 // code-examples/ToolsLibs/complex-spec.scala
 
-import org.specs2.mutable._ 
+import org.scalatest.{ FunSpec, ShouldMatchers } 
 
-object ComplexSpec extends Specification { 
-  "Complex addition with (0.0, 0.0)" should { 
-    "return a number N' that is identical to original number N" in {
+class ComplexSpec extends FunSpec with ShouldMatchers { 
+  describe ("Complex addition with (0.0, 0.0)") { 
+    it ("return a number N' that is identical to original number N") {
       val c1 = Complex(1.2, 3.4)
       (c1 + Complex(0.0, 0.0)) mustEqual c1
     }
   }
-  "Complex subtraction with (0.0, 0.0)" should { 
-    "return a number N' that is identical to original number N" in {
+  describe ("Complex subtraction with (0.0, 0.0)") { 
+    it ("return a number N' that is identical to original number N") {
       val c1 = Complex(1.2, 3.4)
       (c1 - Complex(0.0, 0.0)) mustEqual c1
     }
   }
-  "Complex addition" should { 
+  describe ("Complex addition") { 
     """return a new number where 
     the real and imaginary parts are the sums of the 
     input values' real and imaginary parts, respectively.""" in {
@@ -25,7 +25,7 @@ object ComplexSpec extends Specification {
       (c1 + c2).imaginary mustEqual (c1.imaginary + c2.imaginary)
     }
   }
-  "Complex subtraction" should { 
+  describe ("Complex subtraction") { 
     """return a new number where 
     the real and imaginary parts are the differences of the 
     input values' real and imaginary parts, respectively.""" in {

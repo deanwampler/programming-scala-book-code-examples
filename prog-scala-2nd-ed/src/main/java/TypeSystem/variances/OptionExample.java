@@ -2,7 +2,7 @@
 
 package variances;
 import java.io.*;
-import shapes.*;  // From "Introducing Scala" chapter
+import intro.shapes.*;  // From "Introducing Scala" chapter
 
 public class OptionExample {
   static String[] shapeNames = {"Rectangle", "Circle", "Triangle", "Unknown"};

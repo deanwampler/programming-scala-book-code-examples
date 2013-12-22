@@ -1,21 +1,21 @@
 // code-examples/TypeLessDoMore/string-util-spec.scala
 
-import org.specs2.mutable._ 
+import org.scalatest.{ FunSpec, ShouldMatchers } 
 import StringUtil4._
 
-object StringUtilSpec extends Specification {
-  "joiner(list)" should {
-    "return a string with the list items separated by a space" in {
+class StringUtilSpec extends FunSpec with ShouldMatchers {
+  describe ("joiner(list)") {
+    it ("return a string with the list items separated by a space") {
       joiner(List("Programming", "Scala")) mustEqual "Programming Scala"
     }
   }
-  "joiner(list, separator)" should {
-    "return a string with the list items separated by the given separator" in {
+  describe ("joiner(list, separator)") {
+    it ("return a string with the list items separated by the given separator") {
       joiner(List("Programming", "Scala"), "|") mustEqual "Programming|Scala"
     }
   }
-  "toCollection" should {
-    "split a string on whitespace and return a collection of tokens" in {
+  describe ("toCollection") {
+    it ("split a string on whitespace and return a collection of tokens") {
       val collection = toCollection("Now is the time for all good men")
         collection(0) mustEqual "Now"
         collection(1) mustEqual "is"

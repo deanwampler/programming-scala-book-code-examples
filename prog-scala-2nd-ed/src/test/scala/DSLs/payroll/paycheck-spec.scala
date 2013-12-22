@@ -1,11 +1,11 @@
 // code-examples/DSLs/payroll/paycheck-spec.scala
-package payroll
+package dsls.payroll
 
-import org.specs2.mutable._ 
+import org.scalatest.{ FunSpec, ShouldMatchers } 
 import org.scalacheck._
 import org.scalacheck.Prop._
 
-object PaycheckSpec extends Specification("Paycheck") 
+class PaycheckSpec extends FunSpec with ShouldMatchers
         with ScalaCheck with ArbitraryMoney { 
 
     implicit def arbitraryPaycheck: Arbitrary[Paycheck] = Arbitrary {

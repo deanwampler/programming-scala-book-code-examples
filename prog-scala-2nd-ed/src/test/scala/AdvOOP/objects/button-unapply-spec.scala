@@ -1,39 +1,39 @@
 // code-examples/AdvOOP/objects/button-unapply-spec.scala
 
 package objects
-import org.specs2.mutable._
+import org.scalatest.{ FunSpec, ShouldMatchers }
 
-object ButtonUnapplySpec extends Specification {
-  "Button.unapply" should {
-    "match a Button object" in {
+class ButtonUnapplySpec extends FunSpec with ShouldMatchers {
+  describe ("Button.unapply") {
+    it ("match a Button object") {
       val b = new Button("click me")
       b match {
         case Button(label) => label mustEqual "click me"
         case _ => fail()
       }
     }
-    "match a RadioButton object" in {
+    it ("match a RadioButton object") {
       val b = new RadioButton(false, "click me")
       b match {
         case Button(label) => label mustEqual "click me"
         case _ => fail()
       }
     }
-    "not match a non-Button object" in {
+    it ("not match a non-Button object") {
       val tf = new TextField("hello world!")
       tf match {
         case Button(label) => fail()
         case x => x must notBeNull // hack to make Specs not ignore this test.
       }
     }
-    "extract the Button's label" in {
+    it ("extract the Button's label") {
       val b = new Button("click me")
       b match {
         case Button(label) => label mustEqual "click me"
         case _ => fail()
       }
     }
-    "extract the RadioButton's label" in {
+    it ("extract the RadioButton's label") {
       val rb = new RadioButton(false, "click me, too")
       rb match {
         case Button(label) => label mustEqual "click me, too"

@@ -1,5 +1,7 @@
 // code-examples/AppDesign/annotations/FilePrinterMain.java
 
+package appdesign.annotations;
+
 import java.io.*;
 
 public class FilePrinterMain {
