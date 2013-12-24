@@ -1,7 +1,7 @@
 // code-examples/AdvOOP/objects/button-unapply-spec.scala
 
 package objects
-import org.scalatest.{ FunSpec, ShouldMatchers }
+import org.scalatest.{ FunSpec, ShouldMatchers } 
 
 class ButtonUnapplySpec extends FunSpec with ShouldMatchers {
   describe ("Button.unapply") {
