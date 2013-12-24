@@ -4,6 +4,7 @@ import dsls.payroll.api._
 import dsls.payroll.api.DeductionsCalculator._
 import dsls.payroll._
 import dsls.payroll.Type2Money._
+import scala.language.implicitConversions
 
 val buck = Employee(Name("Buck", "Trends"), Money(80000))
 val jane = Employee(Name("Jane", "Doe"), Money(90000))

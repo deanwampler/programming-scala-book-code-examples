@@ -1,6 +1,10 @@
 // code-examples/AppDesign/patterns/shapes-drawing-implicit.scala
 
+import scala.language.reflectiveCalls
+import scala.language.implicitConversions
+
 package appdesign.patterns.shapes {  
+
   class ShapeDrawer(val shape: Shape) {
     def draw = shape match {
       case c: Circle    => println("Circle.draw: " + c)

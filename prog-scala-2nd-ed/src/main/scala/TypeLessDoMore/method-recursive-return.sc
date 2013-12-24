@@ -1,7 +1,10 @@
 // code-examples/TypeLessDoMore/method-recursive-return-script.scala
 // ERROR: Won't compile until you put an Int return type on "fact".
 
+import scala.annotation.tailrec
+
 def factorial(i: Int) = {
+  @tailrec
   def fact(i: Int, accumulator: Int) = {
     if (i <= 1)
       accumulator

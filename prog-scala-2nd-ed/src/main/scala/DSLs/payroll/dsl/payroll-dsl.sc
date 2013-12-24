@@ -3,6 +3,7 @@
 import dsls.payroll._
 import dsls.payroll.dsl._
 import dsls.payroll.dsl.rules._
+import scala.language.implicitConversions
 
 val payrollCalculator = rules { employee =>
   employee salary_for 2.weeks minus_deductions_for { gross =>

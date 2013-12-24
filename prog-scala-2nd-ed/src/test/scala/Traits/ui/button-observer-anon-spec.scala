@@ -1,8 +1,8 @@
 // code-examples/Traits/ui/button-observer-anon-spec.scala
 
-package ui
+package traits.ui
 import org.scalatest.{ FunSpec, ShouldMatchers }
-import observer._
+import traits.observer._
 
 class ButtonObserverAnonSpec extends FunSpec with ShouldMatchers {
   describe ("A Button Observer") {
@@ -18,7 +18,7 @@ class ButtonObserverAnonSpec extends FunSpec with ShouldMatchers {
       observableButton.addObserver(buttonObserver)
 
       for (i <- 1 to 3) observableButton.click()
-      buttonObserver.count mustEqual 3
+      buttonObserver.count shouldEqual 3
     }
   }
 }

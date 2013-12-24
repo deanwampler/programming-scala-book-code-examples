@@ -2,6 +2,7 @@
 
 package dsls.payroll.dsl
 import dsls.payroll._
+import scala.language.implicitConversions
 
 object rules {
   def apply(rules: Employee => Paycheck) = new PayrollBuilderRules(rules)

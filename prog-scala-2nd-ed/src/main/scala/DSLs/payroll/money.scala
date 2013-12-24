@@ -1,6 +1,7 @@
 // code-examples/DSLs/payroll/money.scala
 
 package dsls.payroll
+import scala.language.implicitConversions
 import java.math.{BigDecimal => JBigDecimal, 
     MathContext => JMathContext, RoundingMode => JRoundingMode}
 

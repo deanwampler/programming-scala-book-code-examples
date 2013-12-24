@@ -8,4 +8,4 @@ def factorial_loop(i: BigInt): BigInt = {
 }
 
 for (i <- 1 to 10)
-  format("%s: %s\n", i, factorial_loop(i))
+  println(s"$i: ${factorial(i)}")

@@ -1,6 +1,7 @@
 // code-examples/DSLs/payroll/paycheck.scala
 
 package dsls.payroll
+import scala.language.implicitConversions
 
 /** We're ignoring invalid (?) cases like a negative net 
  *  when deductions exceed the gross.

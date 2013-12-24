@@ -3,6 +3,7 @@
 package dsls.payroll.api
 import dsls.payroll._
 import dsls.payroll.Type2Money._
+import scala.language.implicitConversions
 
 object DeductionsCalculator {
   def federalIncomeTax(empl: Employee, gross: Money) = gross * .25

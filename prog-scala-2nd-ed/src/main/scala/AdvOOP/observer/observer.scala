@@ -1,6 +1,7 @@
 // code-examples/AdvOOP/observer/observer2.scala
 
 package advoop.observer
+import scala.language.reflectiveCalls
 
 trait AbstractSubject {
   type Observer

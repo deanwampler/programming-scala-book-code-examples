@@ -1,6 +1,7 @@
 // code-examples/Traits/observer/observer.scala
 
 package traits.observer
+import scala.language.reflectiveCalls
 
 trait Subject {
   type Observer = { def receiveUpdate(subject: Any) }

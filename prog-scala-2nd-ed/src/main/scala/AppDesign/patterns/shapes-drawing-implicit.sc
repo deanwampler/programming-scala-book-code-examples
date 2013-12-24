@@ -1,6 +1,8 @@
 // code-examples/AppDesign/patterns/shapes-drawing-implicit-script.scala
 
 import appdesign.shapes._
+import scala.language.reflectiveCalls
+import scala.language.implicitConversions
 
 val p00 = Point(0.0, 0.0)
 val p10 = Point(1.0, 0.0)
