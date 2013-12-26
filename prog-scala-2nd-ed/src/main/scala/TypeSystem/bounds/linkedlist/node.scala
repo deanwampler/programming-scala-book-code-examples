@@ -1,6 +1,6 @@
 // code-examples/TypeSystem/bounds/node.scala
 
-package typesystem.bounds
+package typesystem.bounds.linkedlist
 
 abstract trait Node[+A] {
   def payload: A

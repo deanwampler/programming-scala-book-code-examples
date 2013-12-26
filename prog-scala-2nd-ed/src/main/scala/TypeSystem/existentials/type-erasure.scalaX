@@ -1,7 +1,7 @@
 // code-examples/TypeSystem/existentials/type-erasure-wont-work.scala
 // WARNINGS: Does not work as you might expect.
 
-package abstracttypes.existentials
+package typesystem.existentials
 
 object ProcessList {
   def apply[B](list: List[B]) = list match {

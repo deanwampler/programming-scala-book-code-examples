@@ -1,7 +1,7 @@
 // code-examples/TypeSystem/typepaths/type-path-wont-compile.scala
 // ERROR: Won't compile
 
-package abstracttypes.typepaths
+package typesystem.typepaths
 
 trait Service {
   trait Logger {

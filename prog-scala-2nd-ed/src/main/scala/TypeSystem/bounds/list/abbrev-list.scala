@@ -1,7 +1,7 @@
 // code-examples/TypeSystem/bounds/abbrev-list.scala
-// Adapted from scala/List.scala in the Scala version 2.7.5 distribution.
+// Loosely adapted from scala/List.scala in the Scala library.
 
-package typesystem.bounds.abbrevlist
+package typesystem.bounds.list
 
 sealed abstract class AbbrevList[+A] {
 
@@ -9,7 +9,7 @@ sealed abstract class AbbrevList[+A] {
   def head: A
   def tail: AbbrevList[A]
 
-  def ::[B >: A] (x: B): AbbrevList[B] = new typesystem.bounds.abbrevlist.::(x, this)
+  def ::[B >: A] (x: B): AbbrevList[B] = new typesystem.bounds.list.::(x, this)
 
   final def foreach(f: A => Unit) = {
     var these = this
@@ -35,7 +35,7 @@ case object AbbrevNil extends AbbrevList[Nothing] {
 // A non-empty AbbrevList characterized by a head and a tail.
 
 final case class ::[B](private var hd: B, 
-    private[abbrevlist] var tl: AbbrevList[B]) extends AbbrevList[B] {
+    private[list] var tl: AbbrevList[B]) extends AbbrevList[B] {
 
   override def isEmpty: Boolean = false
   def head : B = hd

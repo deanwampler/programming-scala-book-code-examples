@@ -1,5 +1,7 @@
 // code-examples/XML/writing/post.scala
 
+package XML
+
 import java.text.SimpleDateFormat
 import java.util.Date
 

@@ -23,6 +23,6 @@ class ComplexSuite extends FunSuite {
 
   test("subtraction") {
     assert((c1 - c2).real === (c1.real - c2.real))
-    assert((c1 - c2).imaginary === (c1.imaginary - c2.imaginary))
+    assert((c1 - c2).imaginary ===  (c1.imaginary - c2.imaginary))
   }
 }

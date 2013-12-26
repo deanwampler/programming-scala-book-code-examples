@@ -1,6 +1,6 @@
 // code-examples/TypeSystem/bounds/view-bounds3-script.scala
 
-import bounds._
+import typesystem.bounds.linkedlist._
 
 case class LinkedList[A <% Node[A]](val head: Node[A]) {
 

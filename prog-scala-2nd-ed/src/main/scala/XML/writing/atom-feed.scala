@@ -1,5 +1,7 @@
 // code-examples/XML/writing/atom-feed.scala
 
+package XML
+
 import scala.xml.XML
 
 class AtomFeed(posts: Seq[Post]) {

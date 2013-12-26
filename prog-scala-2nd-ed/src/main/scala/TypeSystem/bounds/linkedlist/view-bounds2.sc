@@ -1,6 +1,6 @@
 // code-examples/TypeSystem/bounds/view-bounds2-script.scala
 
-import bounds._
+import typesystem.bounds.linkedlist._
 
 // Variation showing a view function value.
 

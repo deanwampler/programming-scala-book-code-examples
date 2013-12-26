@@ -1,5 +1,7 @@
 // code-examples/ToolsLibs/complex-check-script.scala
 
+package toolslibs
+
 import org.scalacheck._
 import org.scalacheck.Prop._
 

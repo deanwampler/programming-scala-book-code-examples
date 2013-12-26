@@ -1,6 +1,6 @@
 // code-examples/TypeSystem/typepaths/path-expressions.scala
 
-package abstracttypes.typepaths
+package typesystem.typepaths
 
 class C1 {
 	var x = "1"
