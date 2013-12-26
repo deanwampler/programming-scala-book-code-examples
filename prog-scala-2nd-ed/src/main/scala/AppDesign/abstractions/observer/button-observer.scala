@@ -1,7 +1,6 @@
-// code-examples/AppDesign/abstractions/button-observer.scala
+// code-examples/AppDesign/abstractions/observer/button-observer.scala
 
-package appdesign.abstractions
-import appdesign.abstractions.observer._
+package appdesign.abstractions.observer
 import traits.ui._
 
 object ButtonSubjectObserver extends SubjectObserver {

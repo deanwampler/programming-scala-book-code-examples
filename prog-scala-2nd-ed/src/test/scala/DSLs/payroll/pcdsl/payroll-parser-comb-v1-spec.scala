@@ -1,27 +1,28 @@
 // code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-v1-spec.scala
 
-package payroll.pcdsl
+package dsls.payroll.pcdsl
+import dsls.payroll._
+import dsls.payroll.Type2Money._
 import scala.util.parsing.combinator._
+import scala.language.implicitConversions
 import org.scalatest.{ FunSpec, ShouldMatchers } 
  
-import payroll._
-import payroll.Type2Money._
 
-class PayrollParserCombinatorsV1Spec extends FunSpec with ShouldMatchers("PayrollParserCombinatorsV1") { 
+class PayrollParserCombinatorsV1Spec extends FunSpec with ShouldMatchers { 
     
-  describe "PayrollParserCombinatorsV1" {
-    it "parse rules when there are no deductions" {
+  describe ("PayrollParserCombinatorsV1") {
+    it ("parse rules when there are no deductions") {
       val input = """paycheck for employee "Buck Trends"
                      is salary for 2 weeks minus deductions for {}"""
       val p = new PayrollParserCombinatorsV1
       p.parseAll(p.paycheck, input) match {
-        case p.Success(r,_) => r.toString mustEqual
+        case p.Success(r,_) => r.toString shouldEqual
                     """(("Buck Trends"~(2~weeks))~List())"""
         case x => fail(x.toString)
       }
     }
 
-    it "calculate the gross, net, and deductions for the pay period" {
+    it ("calculate the gross, net, and deductions for the pay period") {
       val input = 
           """paycheck for employee "Buck Trends" 
              is salary for 2 weeks minus deductions for {
@@ -32,7 +33,7 @@ class PayrollParserCombinatorsV1Spec extends FunSpec with ShouldMatchers("Payrol
              }"""
       val p = new PayrollParserCombinatorsV1
       p.parseAll(p.paycheck, input) match {
-        case p.Success(r,_) => r.toString mustEqual 
+        case p.Success(r,_) => r.toString shouldEqual 
             """(("Buck Trends"~(2~weeks))~List(25., 5., 500., 10.))"""
         case x => fail(x.toString)
       }

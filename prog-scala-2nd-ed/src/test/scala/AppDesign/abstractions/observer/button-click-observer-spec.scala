@@ -1,13 +1,13 @@
-// code-examples/AppDesign/abstractions/button-observer3-spec.scala
+// code-examples/AppDesign/abstractions/observer/button-observer-spec.scala
 
-package ui
+package appdesign.abstractions.observer
+
+import traits.ui._
 import org.scalatest.{ FunSpec, ShouldMatchers } 
 
-import observer._
-
-class ButtonObserver3Spec extends FunSpec with ShouldMatchers {
-  describe "An Observer counting button clicks" {
-    it "see all clicks" {
+class ButtonClickObserverSpec extends FunSpec with ShouldMatchers {
+  describe ("An Observer counting button clicks") {
+    it ("see all clicks") {
       val button1 = new ButtonSubjectObserver.ObservableButton("button1")
       val button2 = new ButtonSubjectObserver.ObservableButton("button2")
       val button3 = new ButtonSubjectObserver.ObservableButton("button3")
@@ -18,9 +18,9 @@ class ButtonObserver3Spec extends FunSpec with ShouldMatchers {
       clickButton(button1, 1)
       clickButton(button2, 2)
       clickButton(button3, 3)
-      buttonObserver.clicks("button1") mustEqual 1
-      buttonObserver.clicks("button2") mustEqual 2
-      buttonObserver.clicks("button3") mustEqual 3
+      buttonObserver.clicks("button1") shouldEqual 1
+      buttonObserver.clicks("button2") shouldEqual 2
+      buttonObserver.clicks("button3") shouldEqual 3
     }
   }
 

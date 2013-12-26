@@ -1,66 +1,118 @@
 // code-examples/DSLs/payroll/money-spec.scala
-package payroll
+
+package dsls.payroll
 
 import org.scalatest.{ FunSpec, ShouldMatchers } 
- 
-import org.scalacheck._
+import org.scalatest.prop.Checkers
+import org.scalacheck.Arbitrary._
 import org.scalacheck.Prop._
 
-class MoneySpec extends FunSpec with ShouldMatchers("Money") 
-        with ScalaCheck with ArbitraryMoney { 
-
-    "Money +" verifies { 
-        (a: Money, b: Money) => (a + b) == Money(a.amount + b.amount)
-    }
-    "Money -" verifies { 
-        (a: Money, b: Money) => (a - b) == Money(a.amount - b.amount)
-    }
-    "Money *" verifies { 
-        (a: Money, b: Money) => (a * b) == Money(a.amount * b.amount)
-    }
-    "Money *" verifies { 
-        // Don't divide by zero!
-        (a: Money, b: Money) => b == 0.0 || (a * b) == Money(a.amount*b.amount)
-    }
-
-    "Money <" verifies { 
-        (a: Money, b: Money) => (a < b)  == (a.amount <  b.amount)
-    }
-    "Money <=" verifies { 
-        (a: Money, b: Money) => (a <= b) == (a.amount <= b.amount)
-    }
-    "Money >" verifies { 
-        (a: Money, b: Money) => (a > b)  == (a.amount >  b.amount)
-    }
-    "Money >=" verifies { 
-        (a: Money, b: Money) => (a >= b) == (a.amount >= b.amount)
-    }
-    "Money ==" verifies { 
-        (a: Money, b: Money) => (a == b) == (a.amount == b.amount)
-    }
-    "Money !=" verifies { 
-        (a: Money, b: Money) => (a != b) == (a.amount != b.amount)
-    }
+class MoneySpec extends FunSpec with ShouldMatchers 
+  with Checkers with ArbitraryMoney { 
+  def monoidCheck(sym: String, name: String,
+    bdop: (BigDecimal,BigDecimal) => BigDecimal, mop: (Money,Money) => Money) {
     
-    for (i <- -4 to 4; delta = i * .00001) {
-        "Two Moneys equal if amounts are within .0001 (" + delta + 
-                ") of each other" verifies {
-            (a: Money) => (a + Money(delta)) == a
+    describe(sym) {
+      it (s"$name the amounts") {
+        check ((a: Money, b: Money) => mop(a,b) == Money(bdop(a.amount, b.amount)))
+      }
+      it ("is pairwise groupable") {
+        check { (a: Money, b: Money, c: Money) => 
+          mop(mop(a, b), c) == mop(Money(bdop(a.amount, b.amount)), Money(c.amount)) &&
+          mop(a, mop(b, c)) == mop(Money(a.amount), Money(bdop(b.amount, c.amount)))
         }
+      }
+      it ("is commutative") {
+        check ((a: Money, b: Money) => mop(a, b) == mop(b, a))
+      }
+      it ("is associative") {
+        check ((a: Money, b: Money, c: Money) => mop(mop(a, b), c) == mop(a, mop(b, c)))
+      }
     }
-    "Money equals is true if two amounts are within .0001 " + 
-            "(-.000049) of each other" verifies {
-        (a: Money) => (a + Money(-.000049)) == a
-    }
-    "Money equals is true if two amounts are within .0001 " + 
-            "(.000049) of each other" verifies {
-        (a: Money) => (a + Money(.000049)) == a
-    }
-    for (delta <- List(-.01, -.001, -.0001, -.000051, 
-                        .000051, .0001, .001, .01)) {
-        "Money equals is false if two amounts are > .0001 (" + delta +
-                ") of each other" verifies {
-            (a: Money) => (a + Money(delta)) != a && (a - Money(delta)) != a
+  }
+
+  private def commutativeCheck(isCommutative: Boolean, sym: String,
+    bdop: (BigDecimal,BigDecimal) => Boolean, mop: (Money,Money) => Boolean) {
+
+    describe (sym) { 
+      it ("compares the two amounts") {
+        check ((a: Money, b: Money) => mop(a, b) == bdop(a.amount,  b.amount))
+      }
+      if (isCommutative) {
+        it ("is commutative") {
+          check ((a: Money, b: Money) => a == b || mop(a, b) == mop(b, a)) 
         }
+      } else {
+        it ("is anti-commutative") {
+          check ((a: Money, b: Money) => a == b || mop(a, b) != mop(b, a))
+        }
+      }
     }
+  }
+
+  describe ("Money") {
+    monoidCheck("+", "adds", (d1,d2) => d1 + d2, (m1,m2) => m1 + m2)
+    monoidCheck("*", "multiplies", (d1,d2) => d1 * d2, (m1,m2) => m1 * m2)
+  
+    describe("-") { 
+      it ("subtracts the amounts") {
+        check((a: Money, b: Money) => (a - b) == Money(a.amount - b.amount))
+      }
+      it ("is pairwise groupable") {
+        check { (a: Money, b: Money, c: Money) => 
+          ((a - b) - c) == (Money(a.amount - b.amount) - Money(c.amount)) &&
+          (a - (b - c)) == (Money(a.amount) - Money(b.amount - c.amount))
+        }
+      }
+      it ("is anti-commutative") {
+        check ((a: Money, b: Money) => (a - b) == -(b - a))
+      }
+      it ("is not associative") {
+        check ((a: Money, b: Money, c: Money) => ((a - b) - c) == (a - (b + c)))
+      }
+    }
+  
+    // Hack: Avoid 1/0, by shortcircuiting to true when nearZero returns true.
+    // A better approach would be a custom example generator that avoids
+    // values near zero.
+    def nearZero(m: Money): Boolean = m.amount <= 0.0001
+
+    describe("/") { 
+      it ("is undefined if you divide by zero!") {
+        check((a: Money, b: Money) => nearZero(b) || (a * b) == Money(a.amount*b.amount))
+      }
+      it ("divides the amounts") {
+        check((a: Money, b: Money) => nearZero(b) || (a / b) == Money(a.amount / b.amount))
+      }
+      it ("is pairwise groupable") {
+        check { (a: Money, b: Money, c: Money) => 
+          nearZero(b) || nearZero(c) || 
+          ((a / b) / c) == (Money(a.amount / b.amount) / Money(c.amount)) &&
+          (a / (b / c)) == (Money(a.amount) / Money(b.amount / c.amount))
+        }
+      }
+      it ("is not commutative") {
+        check { (a: Money, b: Money) => 
+          a == b || nearZero(a) || nearZero(b) || (a / b) != (b / a)
+        }
+      }
+      it ("is not associative") {
+        check { (a: Money, b: Money, c: Money) => 
+          (a == b && b == c) || nearZero(b) || nearZero(c) || 
+          ((a / b) / c) != (a / (b + c))
+        }
+      }
+    }
+
+    List(
+      ("<",  false, (d1:BigDecimal, d2:BigDecimal) => d1 <  d2, (m1:Money, m2:Money) => m1 <  m2),
+      ("<=", false, (d1:BigDecimal, d2:BigDecimal) => d1 <= d2, (m1:Money, m2:Money) => m1 <= m2),
+      (">",  false, (d1:BigDecimal, d2:BigDecimal) => d1 >  d2, (m1:Money, m2:Money) => m1 >  m2),
+      (">=", false, (d1:BigDecimal, d2:BigDecimal) => d1 >= d2, (m1:Money, m2:Money) => m1 >= m2),
+      ("==", true,  (d1:BigDecimal, d2:BigDecimal) => d1 == d2, (m1:Money, m2:Money) => m1 == m2),
+      ("!=", true,  (d1:BigDecimal, d2:BigDecimal) => d1 != d2, (m1:Money, m2:Money) => m1 != m2)
+    ) foreach { case (sym, tf, bdop, mop) => 
+      commutativeCheck(tf, sym, bdop, mop)
+    }
+  }
 }

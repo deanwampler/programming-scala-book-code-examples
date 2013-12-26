@@ -1,30 +1,31 @@
 // code-examples/AdvOOP/objects/text-field-unapply-spec.scala
-package objects
+
+package advoop.objects
+
 import org.scalatest.{ FunSpec, ShouldMatchers } 
 
-
 class TextFieldUnapplySpec extends FunSpec with ShouldMatchers {
-    describe "TextField.unapply" {
-        it "should match a TextField object" {
-            val tf = new TextField("hello world!")
-            tf match {
-                case TextField(text) => text mustEqual "hello world!"
-                case _ => fail()
-            }
-        }
-        it "not match a non-TextField object" {
-            val b = new Button("click me")
-            b match {
-                case TextField(text) => fail()
-                case x => x must notBeNull
-            }
-        }
-        it "extract the text field's text" {
-            val tf = new TextField("hello world!")
-            tf match {
-                case TextField(text) => text mustEqual "hello world!"
-                case _ => fail()
-            }
-        }
+  describe ("TextField.unapply") {
+    it ("matches a TextField object") {
+      val tf: Widget = new TextField("hello world!")
+      tf match {
+        case TextField("hello world!") => // success
+        case _ => fail()
+      }
     }
+    it ("does not match a non-TextField object") {
+      val b: Widget = new Button("click me")
+      b match {
+        case TextField(text) => fail()
+        case Button(label) => // success
+      }
+    }
+    it ("extracts the text field's text") {
+      val tf: Widget = new TextField("hello world!")
+      tf match {
+        case TextField(text) => text shouldEqual "hello world!"
+        case _ => fail()
+      }
+    }
+  }
 }

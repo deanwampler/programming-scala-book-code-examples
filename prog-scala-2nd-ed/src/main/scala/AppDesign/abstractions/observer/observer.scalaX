@@ -1,7 +1,7 @@
 // code-examples/AppDesign/abstractions/observer3-wont-compile.scala
 // WON'T COMPILE
 
-package appdesign.abstractions2
+import appdesign.abstractions.observer
 
 abstract class SubjectObserver {
   type S <: Subject

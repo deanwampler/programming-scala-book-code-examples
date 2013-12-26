@@ -1,35 +1,36 @@
 // code-examples/DSLs/payroll/api/deductions-calc-spec.scala
 
-package payroll.api
-import org.scalatest.{ FunSpec, ShouldMatchers } 
- 
-import org.scalacheck._
-import org.scalacheck.Prop._
-import payroll.Type2Money._
+package dsls.payroll.api
 
-class DeductionsCalculatorSpec extends FunSpec with ShouldMatchers 
-        with ScalaCheck with ArbitraryMoney { 
+import dsls.payroll.Type2Money._
+import dsls.payroll.{Money, ArbitraryMoney, Employee, Name}
+import scala.language.implicitConversions
+import org.scalatest.PropSpec
+import org.scalatest.prop.Checkers 
+import org.scalacheck.Arbitrary._
+import org.scalacheck.Prop._
+
+/**
+ * We'll use PropSpec for these tests to show a different ScalaTest style
+ * especially useful for property testing.
+ */
+class DeductionsCalculatorSpec extends PropSpec with Checkers with ArbitraryMoney {
 
   val employee = Employee(Name("Buck", "Trends"), Money(80000))
   
-  "federalIncomeTax" verifies { 
-    (gross: Money) => 
-      DeductionsCalculator.federalIncomeTax(
-        employee, gross) == gross * .25
+  import DeductionsCalculator._
+
+  property ("Federal Income Tax is calculated from the gross pay") {
+    check((gross: Money) => federalIncomeTax(employee, gross) == gross * 0.25)
   }
-  "stateIncomeTax" verifies { 
-    (gross: Money) => 
-      DeductionsCalculator.stateIncomeTax(
-        employee, gross) == gross * .05
+  property ("State Income Tax is calculated from the gross pay") {
+    check((gross: Money) => stateIncomeTax(employee, gross) == gross * 0.05)
   }
-  "insurancePremiums" verifies { 
-    (gross: Money) => 
-      DeductionsCalculator.insurancePremiums(
-        employee, gross) == Money(500)
+  property ("Insurance Premiums are not tied to the gross pay") {
+    check((gross: Money) => insurancePremiums(employee, gross) == Money(500))
   }
-  "retirementFundContributions" verifies { 
-    (gross: Money) => 
-      DeductionsCalculator.retirementFundContributions(
-        employee, gross) == gross * .10
+  property ("Retirement Fund Contributions are calculated from the gross pay"){
+    check((gross: Money) => 
+      retirementFundContributions(employee, gross) == gross * 0.10)
   }
 }

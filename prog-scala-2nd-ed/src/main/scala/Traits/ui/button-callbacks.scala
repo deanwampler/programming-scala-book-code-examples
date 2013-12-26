@@ -12,7 +12,7 @@ class ButtonWithCallbacks(val label: String,
 
   def this(label: String) = {
     this(label, Nil)
-    println("Warning: button has no click callbacks!")
+    // println("Warning: button has no click callbacks!")
   }
 
   def click() = {

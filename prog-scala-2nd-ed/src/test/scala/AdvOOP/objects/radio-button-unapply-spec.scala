@@ -1,38 +1,40 @@
 // code-examples/AdvOOP/objects/radio-button-unapply-spec.scala
 
-package objects
+package advoop.objects
+
 import org.scalatest.{ FunSpec, ShouldMatchers } 
 
-
 class RadioButtonUnapplySpec extends FunSpec with ShouldMatchers {
-  describe "RadioButton.unapply" {
-    it "should match a RadioButton object" {
-      val b = new RadioButton(true, "click me")
+  describe ("RadioButton.unapply") {
+    it ("matches a RadioButton object") {
+      val b: Widget = new RadioButton(true, "click me")
       b match {
-        case RadioButton(on, label) => label mustEqual "click me"
+        case RadioButton(true, "click me") => // success
         case _ => fail()
       }
     }
-    it "not match a Button (parent class) object" {
-      val b = new Button("click me")
+    it ("does not match a Button (parent class) object") {
+      val b: Widget = new Button("click me")
       b match {
         case RadioButton(on, label) => fail()
-        case x => x must notBeNull
+        case Button(label) => // success
+        case x => fail(s"$x is not a Button!")
       }
     }
-    it "not match a non-RadioButton object" {
-      val tf = new TextField("hello world!")
+    it ("does not match a non-RadioButton object") {
+      val tf: Widget = new TextField("hello world!")
       tf match {
         case RadioButton(on, label) => fail()
-        case x => x must notBeNull
+        case TextField(label) => // success
+        case x => fail()
       }
     }
-    it "extract the RadioButton's on/off state and label" {
-      val b = new RadioButton(true, "click me")
+    it ("extracts the RadioButton's on/off state and label") {
+      val b: Widget = new RadioButton(true, "click me")
       b match {
         case RadioButton(on, label) => {
-          label mustEqual "click me"
-          on    mustEqual true
+          label shouldEqual "click me"
+          on    shouldEqual true
         }
         case _ => fail()
       }

@@ -14,6 +14,7 @@ abstract class SubjectObserver {
   }
   
   trait Observer {
+    self: O =>
     def receiveUpdate(subject: S)
   }
 }
