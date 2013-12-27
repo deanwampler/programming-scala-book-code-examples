@@ -7,4 +7,4 @@ class Upper {
 }
 
 val up = new Upper
-Console.println(up.upper("A", "First", "Scala", "Program"))
+Console.println(up.upper("Hello", "World!"))
