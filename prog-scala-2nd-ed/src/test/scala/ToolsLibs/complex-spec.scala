@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/complex-spec.scala
+// src/test/scala/ToolsLibs/complex-spec.scala
 
 package toolslibs
 

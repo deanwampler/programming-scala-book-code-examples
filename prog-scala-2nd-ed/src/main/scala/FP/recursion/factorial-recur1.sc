@@ -1,4 +1,4 @@
-// code-examples/FP/recursion/factorial-recur1-script.scala
+// src/main/scala/FP/recursion/factorial-recur1.sc
 
 import scala.annotation.tailrec
 

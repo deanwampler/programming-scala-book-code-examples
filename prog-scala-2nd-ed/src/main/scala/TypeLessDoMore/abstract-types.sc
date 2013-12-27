@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/abstract-types-script.scala
+// src/main/scala/TypeLessDoMore/abstract-types.sc
 
 import java.io._
 

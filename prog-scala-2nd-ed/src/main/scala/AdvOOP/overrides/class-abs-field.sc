@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/overrides/class-abs-field-script.scala
+// src/main/scala/AdvOOP/overrides/class-abs-field.sc
 
 abstract class AbstractC1 {
   val name: String

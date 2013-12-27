@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/method-overloaded-return-v1-script.scala
+// src/main/scala/TypeLessDoMore/method-overloaded-return-v3.sc
 // Version 3 of "StringUtil" (New variable argument list methods).
 
 object StringUtilV3 {

@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/ui3/button.scala
+// src/main/scala/AdvOOP/ui/button.scala
 
 package advoop.ui
 

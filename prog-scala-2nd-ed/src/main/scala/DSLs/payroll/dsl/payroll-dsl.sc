@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/dsl/payroll-dsl-script.scala
+// src/main/scala/DSLs/payroll/dsl/payroll-dsl.sc
 
 import dsls.payroll._
 import dsls.payroll.dsl._

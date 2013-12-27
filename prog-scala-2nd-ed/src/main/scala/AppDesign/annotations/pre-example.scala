@@ -1,4 +1,4 @@
-// code-examples/AppDesign/annotations/pre-example.scala
+// src/main/scala/AppDesign/annotations/pre-example.scala
 
 package appdesign.annotations
 import org.contract4j5.contract._

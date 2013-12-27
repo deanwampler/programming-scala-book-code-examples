@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/twitter-shouting-script.scala
+// src/main/scala/AppDesign/abstractions/twitter-shouting.sc
 
 import appdesign.abstractions._
 

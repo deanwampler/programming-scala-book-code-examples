@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/encoded-string.scala
+// src/main/scala/AppDesign/abstractions/encoded-string.scala
 
 package appdesign.abstractions.encodedstring {
 

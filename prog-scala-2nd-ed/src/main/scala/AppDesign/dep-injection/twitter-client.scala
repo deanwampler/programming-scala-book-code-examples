@@ -1,4 +1,4 @@
-// code-examples/AppDesign/dep-injection/twitter-client.scala
+// src/main/scala/AppDesign/dep-injection/twitter-client.scala
 
 package appdesign.twitterclient
 import java.util.Date

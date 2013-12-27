@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/complex-javabean.scala
+// src/main/scala/ToolsLibs/complex-javabean.scala
 
 package toolslibs
 

@@ -1,4 +1,4 @@
-// code-examples/Rounding/match-type-script.scala
+// src/main/scala/Rounding/match-type.sc
 
 val sundries = List(23, "Hello", 8.5, 'q')
 

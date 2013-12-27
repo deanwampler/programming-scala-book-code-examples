@@ -1,4 +1,4 @@
-// code-examples/AppDesign/patterns/shapes-visitor.scala
+// src/main/scala/AppDesign/patterns/shapes-visitor.scala
 
 package appdesign.patterns.shapes.visitor {  
   trait ShapeVisitor {

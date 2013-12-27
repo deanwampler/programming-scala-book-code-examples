@@ -1,4 +1,4 @@
-// code-examples/AppDesign/patterns/shapes-drawing-implicit.scala
+// src/main/scala/AppDesign/patterns/shapes-drawing-implicit.scala
 
 import scala.language.reflectiveCalls
 import scala.language.implicitConversions

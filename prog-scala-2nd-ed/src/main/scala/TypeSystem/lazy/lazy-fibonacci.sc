@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/lazy/lazy-fibonacci-script.scala
+// src/main/scala/TypeSystem/lazy/lazy-fibonacci.sc
 
 lazy val fib: Stream[Int] = 
   Stream.cons(0, Stream.cons(1, fib.zip(fib.tail).map(p => p._1 + p._2)))

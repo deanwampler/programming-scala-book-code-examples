@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/money.scala
+// src/main/scala/DSLs/payroll/money.scala
 
 package dsls.payroll
 import scala.language.implicitConversions

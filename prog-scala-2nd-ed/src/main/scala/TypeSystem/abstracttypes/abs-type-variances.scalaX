@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/abstracttypes/abs-type-variances-wont-compile.scala
+// src/main/scala/TypeSystem/abstracttypes/abs-type-variances.scalaX
 // WON'T COMPILE
 
 package typesystem.abstracttypes

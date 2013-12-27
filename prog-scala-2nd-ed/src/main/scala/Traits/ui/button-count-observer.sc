@@ -1,4 +1,4 @@
-// code-examples/Traits/ui/button-count-observer-script.scala
+// src/main/scala/Traits/ui/button-count-observer.sc
 
 import traits._
 

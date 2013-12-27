@@ -1,4 +1,4 @@
-// code-examples/AppDesign/dep-injection/twitter-text-client-script.scala
+// src/main/scala/AppDesign/dep-injection/twitter-text-client.sc
 
 import appdesign.abstractions.twitterclient._
 

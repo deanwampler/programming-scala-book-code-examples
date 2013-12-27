@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/overrides/class-field-script.scala
+// src/main/scala/AdvOOP/overrides/class-field.sc
 
 class C1 {
   val name = "C1"

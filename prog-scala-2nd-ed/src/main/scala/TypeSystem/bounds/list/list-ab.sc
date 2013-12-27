@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/bounds/list-ab-script.scala
+// src/main/scala/TypeSystem/bounds/list/list-ab.sc
 
 import typesystem.bounds.list._
 

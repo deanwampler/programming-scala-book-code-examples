@@ -1,4 +1,4 @@
-// code-examples/BasicOOP/scoping/scope-inheritance-wont-compile.scala
+// src/main/scala/BasicOOP/scoping/scope-inheritance.scalaX
 // WON'T COMPILE
 
 package scopeA {

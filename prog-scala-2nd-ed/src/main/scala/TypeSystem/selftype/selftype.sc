@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/selftype/selftype-script.scala
+// src/main/scala/TypeSystem/selftype/selftype.sc
 
 trait Persistence {
   def startPersistence: Unit

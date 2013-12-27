@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/import-example1.scala
+// src/main/scala/TypeLessDoMore/import-example1.scala
 
 import java.awt._
 import java.io.File

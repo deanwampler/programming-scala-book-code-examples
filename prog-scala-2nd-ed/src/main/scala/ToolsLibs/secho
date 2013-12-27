@@ -1,3 +1,4 @@
+// src/main/scala/ToolsLibs/secho
 #!/bin/sh
 exec scala "$0" "$@"
 !#

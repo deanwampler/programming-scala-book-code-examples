@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/method-recursive-return-script.scala
+// src/main/scala/TypeLessDoMore/method-recursive-return.sc
 // ERROR: Won't compile until you put an Int return type on "fact".
 
 import scala.annotation.tailrec

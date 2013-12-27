@@ -1,4 +1,4 @@
-// code-examples/BasicOOP/scoping/private-type-nested-wont-compile.scala
+// src/main/scala/BasicOOP/scoping/private-type-nested.scalaX
 // WON'T COMPILE
 
 package scopeA {

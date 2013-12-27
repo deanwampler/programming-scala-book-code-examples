@@ -1,4 +1,4 @@
-// code-examples/FP/datastructs/option-script.scala
+// src/main/scala/FP/datastructs/option.sc
 
 val someNumber = Some(5)
 val noneNumber = None

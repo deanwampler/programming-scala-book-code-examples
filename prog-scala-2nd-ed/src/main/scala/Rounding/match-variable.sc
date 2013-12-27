@@ -1,4 +1,4 @@
-// code-examples/Rounding/match-variable-script.scala
+// src/main/scala/Rounding/match-variable.sc
 
 import scala.util.Random
 

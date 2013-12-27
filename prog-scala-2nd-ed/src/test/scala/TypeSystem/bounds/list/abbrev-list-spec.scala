@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/bounds/abbrev-list-spec.scala
+// src/test/scala/TypeSystem/bounds/list/abbrev-list-spec.scala
 
 package typesystem.bounds.list
 

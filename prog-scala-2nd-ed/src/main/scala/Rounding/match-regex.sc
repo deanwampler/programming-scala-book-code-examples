@@ -1,4 +1,4 @@
-// code-examples/Rounding/match-regex-script.scala
+// src/main/scala/Rounding/match-regex.sc
 
 val BookExtractorRE = """Book: title=([^,]+),\s+authors=(.+)""".r
 val MagazineExtractorRE = """Magazine: title=([^,]+),\s+issue=(.+)""".r

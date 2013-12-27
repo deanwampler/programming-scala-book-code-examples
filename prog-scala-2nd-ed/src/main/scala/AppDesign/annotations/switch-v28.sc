@@ -1,4 +1,4 @@
-// code-examples/AppDesign/annotations/switch-v28-script.scala
+// src/main/scala/AppDesign/annotations/switch-v28.sc
 import scala.annotation.switch
 
 def fib(i: Int): Int = (i: @switch) match {

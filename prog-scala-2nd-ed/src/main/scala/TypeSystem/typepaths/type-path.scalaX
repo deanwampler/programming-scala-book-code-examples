@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/typepaths/type-path-wont-compile.scala
+// src/main/scala/TypeSystem/typepaths/type-path.scalaX
 // ERROR: Won't compile
 
 package typesystem.typepaths

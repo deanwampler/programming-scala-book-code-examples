@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/shapes/shapes.scala
+// src/main/scala/TypeSystem/shapes/shapes.scala
 
 package typesystem.shapes {  
   case class Point(x: Double, y: Double) {

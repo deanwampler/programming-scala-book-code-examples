@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/observer/observer.scala
+// src/main/scala/AdvOOP/observer/observer.scala
 
 package advoop.observer
 import scala.language.reflectiveCalls

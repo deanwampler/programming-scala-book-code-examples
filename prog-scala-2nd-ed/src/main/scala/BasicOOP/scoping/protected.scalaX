@@ -1,4 +1,4 @@
-// code-examples/BasicOOP/scoping/protected-wont-compile.scala
+// src/main/scala/BasicOOP/scoping/protected.scalaX
 // WON'T COMPILE
 
 package scopeA {

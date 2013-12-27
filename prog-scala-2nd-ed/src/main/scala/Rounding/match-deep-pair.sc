@@ -1,4 +1,4 @@
-// code-examples/Rounding/match-deep-pair-script.scala
+// src/main/scala/Rounding/match-deep-pair.sc
 
 class Role
 case object Manager extends Role

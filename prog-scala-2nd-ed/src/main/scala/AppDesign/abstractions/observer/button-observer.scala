@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/observer/button-observer.scala
+// src/main/scala/AppDesign/abstractions/observer/button-observer.scala
 
 package appdesign.abstractions.observer
 import traits.ui._

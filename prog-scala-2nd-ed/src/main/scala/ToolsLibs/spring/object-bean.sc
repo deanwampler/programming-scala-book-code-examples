@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/spring/object-bean-script.scala
+// src/main/scala/ToolsLibs/spring/object-bean.sc
 
 import toolslibs.spring._
 import org.springframework.context.support._

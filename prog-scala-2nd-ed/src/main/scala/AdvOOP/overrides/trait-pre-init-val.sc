@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/overrides/trait-pre-init-val-script.scala
+// src/main/scala/AdvOOP/overrides/trait-pre-init-val.sc
 
 trait AbstractT2 {
   println("In AbstractT2:")

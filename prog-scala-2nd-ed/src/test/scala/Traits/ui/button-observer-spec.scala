@@ -1,4 +1,4 @@
-// code-examples/Traits/ui/button-observer-spec.scala
+// src/test/scala/Traits/ui/button-observer-spec.scala
 
 package traits.ui
 import org.scalatest.{ FunSpec, ShouldMatchers }

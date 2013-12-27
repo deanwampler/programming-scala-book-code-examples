@@ -1,4 +1,4 @@
-// code-examples/Rounding/match-deep-script.scala
+// src/main/scala/Rounding/match-deep.sc
 
 case class Person(name: String, age: Int)
 

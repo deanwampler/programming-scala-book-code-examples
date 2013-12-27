@@ -1,4 +1,4 @@
-// code-examples/BasicOOP/scoping/private-wont-compile.scala
+// src/main/scala/BasicOOP/scoping/private.scalaX
 // WON'T COMPILE
 
 package scopeA {

@@ -1,4 +1,4 @@
-// code-examples/Traits/ui2/clickable.scala
+// src/main/scala/Traits/ui2/clickable.scala
 
 package traits.ui2
 

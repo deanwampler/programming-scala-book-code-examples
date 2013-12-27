@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/variances/OptionExample.java
+// src/main/java/TypeSystem/variances/OptionExample.java
 
 package variances;
 import java.io.*;

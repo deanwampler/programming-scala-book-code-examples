@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/tuple-example-script.scala
+// src/main/scala/TypeLessDoMore/tuple-example.sc
 
 def tupleator(x1: Any, x2: Any, x3: Any) = (x1, x2, x3)
 

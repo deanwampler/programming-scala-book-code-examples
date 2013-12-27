@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/variances/None.java
+// src/main/java/TypeSystem/variances/None.java
 
 package variances;
 

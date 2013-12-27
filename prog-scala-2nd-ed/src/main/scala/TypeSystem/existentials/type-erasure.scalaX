@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/existentials/type-erasure-wont-work.scala
+// src/main/scala/TypeSystem/existentials/type-erasure.scalaX
 // WARNINGS: Does not work as you might expect.
 
 package typesystem.existentials

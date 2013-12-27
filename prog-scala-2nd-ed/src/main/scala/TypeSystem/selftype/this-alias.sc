@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/selftype/this-alias-script.scala
+// src/main/scala/TypeSystem/selftype/this-alias.sc
 
 class C1 { self => 
   def talk(message: String) = println("C1.talk: " + message)

@@ -1,4 +1,4 @@
-// code-examples/FP/datastructs/foldreduce-script.scala
+// src/main/scala/FP/datastructs/foldreduce.sc
 
 List(1,2,3,4,5,6) reduceLeft(_ + _)
 

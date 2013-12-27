@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/semicolon-example-script.scala
+// src/main/scala/TypeLessDoMore/semicolon-example.sc
 
 // Trailing equals sign indicates more code on next line
 def equalsign = {

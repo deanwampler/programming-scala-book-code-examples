@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/example-script.scala
+// src/main/scala/ToolsLibs/example.sc
 
 case class Message(name: String)
 

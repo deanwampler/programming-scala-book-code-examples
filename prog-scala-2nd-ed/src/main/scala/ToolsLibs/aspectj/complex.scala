@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/aspectj/complex.scala
+// src/main/scala/ToolsLibs/aspectj/complex.scala
 
 package toolslibs.aspectj
 

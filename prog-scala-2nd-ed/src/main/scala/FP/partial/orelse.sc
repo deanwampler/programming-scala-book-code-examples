@@ -1,4 +1,4 @@
-// code-examples/FP/partial/orelse-script.scala
+// src/main/scala/FP/partial/orelse.sc
 
 val truthier: PartialFunction[Boolean, String] = { case true => "truthful" }
 val fallback: PartialFunction[Boolean, String] = { case x => "sketchy" }

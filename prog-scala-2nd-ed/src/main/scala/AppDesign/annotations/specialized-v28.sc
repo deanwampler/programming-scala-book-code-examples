@@ -1,4 +1,4 @@
-// code-examples/AppDesign/annotations/specialized-v28-script.scala
+// src/main/scala/AppDesign/annotations/specialized-v28.sc
 class MyStack[@specialized T](val list: List[T]) {
     def push(t: T) = new MyStack(t :: list)
     def peek = list.head

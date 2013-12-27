@@ -1,4 +1,4 @@
-// code-examples/Traits/ui/button.scala
+// src/main/scala/Traits/ui/button.scala
 
 package traits.ui
 

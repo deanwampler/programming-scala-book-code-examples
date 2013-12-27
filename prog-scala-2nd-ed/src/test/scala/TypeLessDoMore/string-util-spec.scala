@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/string-util-spec.scala
+// src/test/scala/TypeLessDoMore/string-util-spec.scala
 
 import typeless.StringUtilV4._
 import org.scalatest.{ FunSpec, ShouldMatchers } 

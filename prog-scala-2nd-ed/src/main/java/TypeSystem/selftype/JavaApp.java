@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/selftype/JavaApp.java
+// src/main/java/TypeSystem/selftype/JavaApp.java
 
 package selftype;
 

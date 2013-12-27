@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/overrides/method-field-trait-script.scala
+// src/main/scala/AdvOOP/overrides/method-field-trait.sc
 
 trait NameTrait {
   def name = "NameTrait"

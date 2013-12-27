@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/all-op-chars.scala
+// src/main/scala/ToolsLibs/all-op-chars.scala
 
 package toolslibs
 

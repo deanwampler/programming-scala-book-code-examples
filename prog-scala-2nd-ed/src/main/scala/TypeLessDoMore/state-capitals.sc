@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/state-capitals-script.scala
+// src/main/scala/TypeLessDoMore/state-capitals.sc
 // The full list of U.S. state capitals.
 // A truncated version was used in the book: state-capitals-subset-script.scala.
 

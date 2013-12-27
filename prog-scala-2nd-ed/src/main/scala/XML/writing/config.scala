@@ -1,4 +1,4 @@
-// code-examples/XML/writing/config.scala
+// src/main/scala/XML/writing/config.scala
 // "Fake" Config object for the atom-feed.scala example.
 
 package XML

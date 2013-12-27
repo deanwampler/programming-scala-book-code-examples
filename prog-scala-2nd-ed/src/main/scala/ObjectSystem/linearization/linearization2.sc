@@ -1,4 +1,4 @@
-// code-examples/ObjectSystem/linearization/linearization2-script.scala
+// src/main/scala/ObjectSystem/linearization/linearization2.sc
 
 var clist = List[String]()
 

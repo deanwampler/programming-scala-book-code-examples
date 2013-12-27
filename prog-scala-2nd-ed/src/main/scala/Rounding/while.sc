@@ -1,4 +1,4 @@
-// code-examples/Rounding/while-script.scala
+// src/main/scala/Rounding/while.sc
 // WARNING: This script runs for a LOOOONG time!
 
 import java.util.Calendar

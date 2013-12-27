@@ -1,4 +1,4 @@
-// code-examples/AppDesign/annotations/FilePrinterMain.java
+// src/main/java/AppDesign/annotations/FilePrinterMain.java
 
 package appdesign.annotations;
 

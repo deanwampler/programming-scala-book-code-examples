@@ -1,4 +1,4 @@
-// code-examples/Rounding/assigned-if-bug-script.scala
+// src/main/scala/Rounding/assigned-if-bug.sc
 
 val configFile = new java.io.File("~/.myapprc")
 

@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/SMapTestWithFunctions.java
+// src/test/java/ToolsLibs/SMapTestWithFunctions.javaX
 
 // TODO: We can't use Scala Functions anymore because of specialization,
 // so port this to Java8 collections or do something else.

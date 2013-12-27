@@ -1,3 +1,4 @@
+// src/main/scala/ToolsLibs/pipe-example.sh
 #!/usr/bin/env bash
 # code-examples/ToolsLibs/pipe-example.sh
 

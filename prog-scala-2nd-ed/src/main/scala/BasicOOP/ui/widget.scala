@@ -1,4 +1,4 @@
-// code-examples/BasicOOP/ui/widget.scala
+// src/main/scala/BasicOOP/ui/widget.scala
 
 package basicoop.ui
 

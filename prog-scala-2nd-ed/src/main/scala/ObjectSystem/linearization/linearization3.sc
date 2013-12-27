@@ -1,4 +1,4 @@
-// code-examples/ObjectSystem/linearization/linearization3-script.scala
+// src/main/scala/ObjectSystem/linearization/linearization3.sc
 
 class C1 {
   def m(previous: String) = List("C1("+previous+")")

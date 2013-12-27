@@ -1,4 +1,4 @@
-// code-examples/BasicOOP/scoping/public.scala
+// src/main/scala/BasicOOP/scoping/public.scala
 
 package scopeA {
   class PublicClass1 {

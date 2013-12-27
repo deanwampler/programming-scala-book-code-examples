@@ -1,4 +1,4 @@
-// code-examples/XML/reading/pattern-matching-script.scala
+// src/main/scala/XML/reading/pattern-matching.sc
 
 import scala.xml._
 

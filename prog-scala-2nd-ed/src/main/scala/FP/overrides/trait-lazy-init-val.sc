@@ -1,4 +1,4 @@
-// code-examples/FP/overrides/trait-lazy-init-val-script.scala
+// src/main/scala/FP/overrides/trait-lazy-init-val.sc
 
 trait AbstractT2 {
   println("In AbstractT2:")

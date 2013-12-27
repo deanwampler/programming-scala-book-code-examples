@@ -1,4 +1,4 @@
-// code-examples/AppDesign/options-nulls/option-for-comp-v1-script.scala
+// src/main/scala/AppDesign/options-nulls/option-for-comp-v1.sc
 
 case class User(userName: String, name: String, email: String, bio: String)
 

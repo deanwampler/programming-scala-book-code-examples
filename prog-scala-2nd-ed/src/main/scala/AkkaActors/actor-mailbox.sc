@@ -1,4 +1,4 @@
-// code-examples/Concurrency/actor-mailbox-script.scala
+// src/main/scala/AkkaActors/actor-mailbox.sc
 
 import scala.actors.Actor
 import scala.actors.Actor._

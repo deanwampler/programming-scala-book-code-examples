@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/valuetypes/function-types-script.scala
+// src/main/scala/TypeSystem/valuetypes/function-types.sc
 
 val capitalizer = (s: String) => s.toUpperCase
 

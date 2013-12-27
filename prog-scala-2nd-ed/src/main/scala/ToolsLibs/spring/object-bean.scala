@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/spring/object-bean.scala
+// src/main/scala/ToolsLibs/spring/object-bean.scala
 
 package toolslibs.spring
 

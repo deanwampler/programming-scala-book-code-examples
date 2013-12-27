@@ -1,4 +1,4 @@
-// code-examples/Traits/ui/widget.scala
+// src/main/scala/Traits/ui/widget.scala
 
 package traits.ui
 

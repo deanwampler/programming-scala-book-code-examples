@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/lazy/lazy-ints-script.scala
+// src/main/scala/TypeSystem/lazy/lazy-ints.sc
 
 def from(n: Int): Stream[Int] = Stream.cons(n, from(n+1))
 

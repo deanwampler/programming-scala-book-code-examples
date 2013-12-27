@@ -1,4 +1,4 @@
-// code-examples/IntroducingScala/shapes-actor-driver.scala
+// src/main/scala/IntroScala/shapes-actor-driver.scala
 
 package intro.shapes {
 

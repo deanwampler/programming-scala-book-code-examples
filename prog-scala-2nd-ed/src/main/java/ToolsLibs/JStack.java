@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/JStack.java
+// src/main/java/ToolsLibs/JStack.java
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/method-overloaded-return-v1-script.scala
+// src/main/scala/TypeLessDoMore/method-overloaded-return-v1.sc
 // Version 1 of "StringUtil" (with a compilation error).
 // ERROR: Won't compile: needs a String return type on the second "joiner".
 

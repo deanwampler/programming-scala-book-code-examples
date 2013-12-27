@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/twitter-clean-script.scala
+// src/main/scala/AppDesign/abstractions/twitter-clean.sc
 
 import appdesign.abstractions._
 

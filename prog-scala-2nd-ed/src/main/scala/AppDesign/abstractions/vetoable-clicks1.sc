@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/vetoable-clicks1-script.scala
+// src/main/scala/AppDesign/abstractions/vetoable-clicks1.sc
 
 import appdesign.abstractions._
 

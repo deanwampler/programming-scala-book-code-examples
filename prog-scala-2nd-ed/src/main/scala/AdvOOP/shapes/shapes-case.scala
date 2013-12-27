@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/shapes/shapes-case.scala
+// src/main/scala/AdvOOP/shapes/shapes-case.scala
 
 package advoop.shapes.caseexample {  
   case class Point(x: Double, y: Double)

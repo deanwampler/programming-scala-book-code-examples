@@ -1,4 +1,4 @@
-// code-examples/Traits/ui2/button-clickable-observer-vetoable2-spec.scala
+// src/test/scala/Traits/ui2/button-clickable-observer-vetoable2-spec.scala
 
 package traits.ui2
 import org.scalatest.{ FunSpec, ShouldMatchers }

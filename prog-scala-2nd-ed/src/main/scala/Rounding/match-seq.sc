@@ -1,4 +1,4 @@
-// code-examples/Rounding/match-seq-script.scala
+// src/main/scala/Rounding/match-seq.sc
 
 val willWork = List(1, 3, 23, 90)
 val willNotWork = List(4, 18, 52)

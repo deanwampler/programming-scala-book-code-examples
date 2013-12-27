@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/package-example2.scala
+// src/main/scala/TypeLessDoMore/package-example2.scala
 
 package com {
   package example {

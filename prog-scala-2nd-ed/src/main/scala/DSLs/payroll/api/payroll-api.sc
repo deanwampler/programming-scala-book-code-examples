@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/api/payroll-api-script.scala
+// src/main/scala/DSLs/payroll/api/payroll-api.sc
 
 import dsls.payroll.api._
 import dsls.payroll.api.DeductionsCalculator._

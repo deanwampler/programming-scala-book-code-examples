@@ -1,4 +1,4 @@
-// code-examples/Traits/ui2/button.scala
+// src/main/scala/Traits/ui2/button.scala
 
 package traits.ui2
 import traits.ui.Widget

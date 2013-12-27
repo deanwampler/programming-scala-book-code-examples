@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/string-util-v3.scala
+// src/main/scala/TypeLessDoMore/string-util-v4.scala
 // Version 4 (final) of "StringUtil" (Adds toCollection).
 
 package typeless

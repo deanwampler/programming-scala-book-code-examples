@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/observer/button-click-observer.scala
+// src/main/scala/AppDesign/abstractions/observer/button-click-observer.scala
 
 package appdesign.abstractions.observer
 import ButtonSubjectObserver._

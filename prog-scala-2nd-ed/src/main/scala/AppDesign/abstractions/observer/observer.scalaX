@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/observer3-wont-compile.scala
+// src/main/scala/AppDesign/abstractions/observer/observer.scalaX
 // WON'T COMPILE
 
 import appdesign.abstractions.observer

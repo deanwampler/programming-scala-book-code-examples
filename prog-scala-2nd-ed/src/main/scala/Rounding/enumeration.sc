@@ -1,4 +1,4 @@
-// code-examples/Rounding/enumeration-script.scala
+// src/main/scala/Rounding/enumeration.sc
 
 object Breed extends Enumeration {
   val doberman = Value("Doberman Pinscher")

@@ -1,4 +1,4 @@
-// code-examples/AppDesign/enumerations/http-enum3-script.scala
+// src/main/scala/AppDesign/enumerations/http-enum3.sc
 
 object HttpMethod extends Enumeration(
     "Connect", "Delete", "Get", "Head", "Options", "Post", "Put", "Trace") {

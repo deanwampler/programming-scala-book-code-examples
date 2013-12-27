@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-script.scala
+// src/main/scala/DSLs/payroll/pcdsl/payroll-parser-comb.sc
 
 import scala.util.parsing.combinator._
 import dsls.payroll.pcdsl._

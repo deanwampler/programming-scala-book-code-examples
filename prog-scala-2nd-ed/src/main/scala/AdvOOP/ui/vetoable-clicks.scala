@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/ui3/vetoable-clicks.scala
+// src/main/scala/AdvOOP/ui/vetoable-clicks.scala
 
 package advoop.ui
 import traits.observer._

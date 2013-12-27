@@ -1,4 +1,4 @@
-// code-examples/Rounding/days-enumeration-script.scala
+// src/main/scala/Rounding/days-enumeration.sc
 
 object WeekDay extends Enumeration {
   type WeekDay = Value

@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/objects/button.scala
+// src/main/scala/AdvOOP/objects/button.scala
 
 package advoop.objects
 import advoop.ui.Clickable

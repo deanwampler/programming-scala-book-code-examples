@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/overrides/trait-invalid-init-val-script.scala
+// src/main/scala/AdvOOP/overrides/trait-invalid-init-val.sc
 // ERROR: "value" read before initialized.
 
 trait AbstractT2 {

@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/paycheck-spec.scala
+// src/test/scala/DSLs/payroll/paycheck-spec.scala
 package dsls.payroll
 
 import org.scalatest.{ FunSpec, ShouldMatchers } 

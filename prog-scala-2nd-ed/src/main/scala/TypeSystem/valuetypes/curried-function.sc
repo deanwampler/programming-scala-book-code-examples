@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/valuetypes/curried-function-script.scala
+// src/main/scala/TypeSystem/valuetypes/curried-function.sc
 
 val f  = (x: Double, y: Double, z: Double) => x * y / z
 val fc = f.curry

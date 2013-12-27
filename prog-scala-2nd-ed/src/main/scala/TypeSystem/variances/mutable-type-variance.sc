@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/variances/mutable-type-variance-script.scala
+// src/main/scala/TypeSystem/variances/mutable-type-variance.sc
 // WON'T COMPILE: Mutable parameterized types can't have variance annotations
 
 class ContainerPlus[+A](var value: A)      // ERROR

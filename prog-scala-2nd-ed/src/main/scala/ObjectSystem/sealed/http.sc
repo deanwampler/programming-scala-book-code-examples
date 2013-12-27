@@ -1,4 +1,4 @@
-// code-examples/ObjectSystem/sealed/http-script.scala
+// src/main/scala/ObjectSystem/sealed/http.sc
 
 sealed abstract class HttpMethod()
 case class Connect(body: String) extends HttpMethod

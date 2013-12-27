@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/objects/list-unapply-example-script.scala
+// src/main/scala/AdvOOP/objects/list-unapply-example.sc
 
 val list = List(1, 2.2, "three", 'four)
 list match {

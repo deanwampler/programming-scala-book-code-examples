@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/bounds/view-bounds2-script.scala
+// src/main/scala/TypeSystem/bounds/linkedlist/view-bounds2.sc
 
 import typesystem.bounds.linkedlist._
 

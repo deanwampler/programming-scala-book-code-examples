@@ -1,4 +1,4 @@
-// code-examples/FP/recursion/factorial-loop-script.scala
+// src/main/scala/FP/recursion/factorial-loop.sc
 
 def factorial_loop(i: BigInt): BigInt = {
   var result = BigInt(1)

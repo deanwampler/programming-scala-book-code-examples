@@ -1,4 +1,4 @@
-// code-examples/Concurrency/threads/util-concurrent-script.scala
+// src/main/scala/Concurrency/threads/util-concurrent.sc
 
 import java.util.concurrent._
 

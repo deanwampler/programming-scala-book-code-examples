@@ -1,4 +1,4 @@
-// code-examples/ObjectSystem/sealed/http-body-script.scala
+// src/main/scala/ObjectSystem/sealed/http-body.sc
 
 sealed abstract class HttpMethod() {
     def body: String

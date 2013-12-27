@@ -1,4 +1,4 @@
-// code-examples/Concurrency/sleepingbarber/barbershop-simulator.scala
+// src/main/scala/AkkaActors/sleepingbarber/barbershop-simulator.scalaX
 
 package concurrency.sleepingbarber
 

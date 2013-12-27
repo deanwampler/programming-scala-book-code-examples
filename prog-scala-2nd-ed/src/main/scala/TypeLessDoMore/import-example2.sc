@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/import-example2-script.scala
+// src/main/scala/TypeLessDoMore/import-example2.sc
 
 def writeAboutBigInteger() = {
 

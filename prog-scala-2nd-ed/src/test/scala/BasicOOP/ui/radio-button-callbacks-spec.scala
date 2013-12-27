@@ -1,4 +1,4 @@
-// code-examples/BasicOOP/ui/radio-button-callbacks-spec.scala
+// src/test/scala/BasicOOP/ui/radio-button-callbacks-spec.scala
 package basicoop.ui
 
 import org.scalatest.{ FunSpec, ShouldMatchers } 

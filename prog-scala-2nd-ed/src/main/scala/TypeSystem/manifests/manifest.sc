@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/manifests/manifest-script.scala
+// src/main/scala/TypeSystem/manifests/manifest.sc
 
 import scala.reflect.Manifest
 

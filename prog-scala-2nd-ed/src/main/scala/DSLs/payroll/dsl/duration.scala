@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/dsl/duration.scala
+// src/main/scala/DSLs/payroll/dsl/duration.scala
 
 package dsls.payroll.dsl
 

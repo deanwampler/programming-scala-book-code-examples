@@ -1,4 +1,4 @@
-// code-examples/AppDesign/dep-injection/twitter-text-client.scala
+// src/main/scala/AppDesign/dep-injection/twitter-text-client.scala
 
 package appdesign.twitterclient
 

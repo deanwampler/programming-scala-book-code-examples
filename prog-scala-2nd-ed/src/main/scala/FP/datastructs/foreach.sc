@@ -1,4 +1,4 @@
-// code-examples/FP/datastructs/foreach-script.scala
+// src/main/scala/FP/datastructs/foreach.sc
 
 List(1, 2, 3, 4, 5) foreach { i => println("Int: " + i) }
 

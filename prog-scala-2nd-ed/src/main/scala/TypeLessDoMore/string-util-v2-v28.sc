@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/string-util-v2-v28-script.scala
+// src/main/scala/TypeLessDoMore/string-util-v2-v28.sc
 // Version 2 of "StringUtil" for Scala v2.8 only.
 
 object StringUtil {

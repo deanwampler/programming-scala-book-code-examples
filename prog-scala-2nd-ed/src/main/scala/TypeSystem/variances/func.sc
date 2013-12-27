@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/variances/func-script.scala
+// src/main/scala/TypeSystem/variances/func.sc
 
 class CSuper                { def msuper = println("CSuper") }
 class C      extends CSuper { def m      = println("C") }

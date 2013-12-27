@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/arbitrary-money.scala
+// src/test/scala/DSLs/payroll/arbitrary-money.scala
 
 package dsls.payroll
 

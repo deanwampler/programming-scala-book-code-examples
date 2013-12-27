@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/reflection/jvm-script.scala
+// src/main/scala/TypeSystem/reflection/jvm.sc
 
 trait T[A] {
   val vT: A

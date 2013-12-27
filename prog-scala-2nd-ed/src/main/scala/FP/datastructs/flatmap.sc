@@ -1,4 +1,4 @@
-// code-examples/FP/datastructs/flatmap-script.scala
+// src/main/scala/FP/datastructs/flatmap.sc
 
 val graph = List(
   "a", List("b1", "b2", "b3"), List("c1", List("c21", Nil, "c22"), Nil, "e")

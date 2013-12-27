@@ -1,3 +1,3 @@
-// code-examples/Rounding/one-plus-two-script.scala
+// src/main/scala/Rounding/one-plus-two.sc
 
 1 + 2

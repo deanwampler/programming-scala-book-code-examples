@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/overrides/final-member-wont-compile.scala
+// src/main/scala/AdvOOP/overrides/final-member.scalaX
 // WON'T COMPILE.
 
 package advoop.overrides

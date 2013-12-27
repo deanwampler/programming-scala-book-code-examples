@@ -1,4 +1,4 @@
-// code-examples/XML/writing/post.scala
+// src/main/scala/XML/writing/post.scala
 
 package XML
 

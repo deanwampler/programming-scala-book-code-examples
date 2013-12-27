@@ -1,4 +1,4 @@
-// code-examples/XML/reading/for-loop-script.scala
+// src/main/scala/XML/reading/for-loop.sc
 
 for (condiment <- (someXML \\ "condiment")) {
   if ((condiment \ "@expired").text == "true")

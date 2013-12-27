@@ -1,4 +1,4 @@
-// code-examples/FP/datastructs/filter-script.scala
+// src/main/scala/FP/datastructs/filter.sc
 
 val stateCapitals = Map(
   "Alabama" -> "Montgomery",

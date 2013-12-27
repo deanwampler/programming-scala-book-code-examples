@@ -1,4 +1,4 @@
-// code-examples/Rounding/no-dot-better-script.scala
+// src/main/scala/Rounding/no-dot-better.sc
 
 def isEven(n: Int) = (n % 2) == 0
 

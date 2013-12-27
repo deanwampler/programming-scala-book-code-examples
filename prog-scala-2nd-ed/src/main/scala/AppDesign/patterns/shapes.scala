@@ -1,4 +1,4 @@
-// code-examples/AppDesign/patterns/shapes.scala
+// src/main/scala/AppDesign/patterns/shapes.scala
 
 package appdesign.patterns.shapes {  
   case class Point(x: Double, y: Double)

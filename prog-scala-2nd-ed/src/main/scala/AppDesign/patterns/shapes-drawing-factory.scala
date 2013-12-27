@@ -1,4 +1,4 @@
-// code-examples/AppDesign/patterns/shapes-drawing-factory.scala
+// src/main/scala/AppDesign/patterns/shapes-drawing-factory.scala
 
 package appdesign.patterns.shapes {
   trait Drawing {

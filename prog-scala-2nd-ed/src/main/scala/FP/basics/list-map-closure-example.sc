@@ -1,4 +1,4 @@
-// code-examples/FP/basics/list-map-closure-example-script.scala
+// src/main/scala/FP/basics/list-map-closure-example.sc
 
 var factor = 3
 val multiplier = (i:Int) => i * factor

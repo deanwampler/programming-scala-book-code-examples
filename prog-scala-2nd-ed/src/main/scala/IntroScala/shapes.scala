@@ -1,4 +1,4 @@
-// code-examples/IntroducingScala/shapes.scala
+// src/main/scala/IntroScala/shapes.scala
 
 package intro.shapes {  
   case class Point(x: Double, y: Double)

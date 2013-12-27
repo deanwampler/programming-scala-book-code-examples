@@ -1,4 +1,4 @@
-// code-examples/Concurrency/pattern-match-actor-script.scala
+// src/main/scala/AkkaActors/pattern-match-actor.sc
 
 import scala.actors.Actor
 import scala.actors.Actor._

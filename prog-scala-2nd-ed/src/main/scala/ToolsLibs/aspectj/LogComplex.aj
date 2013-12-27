@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/aspectj/LogComplex.aj
+// src/main/scala/ToolsLibs/aspectj/LogComplex.aj
 
 package toollibs.aspectj;
 

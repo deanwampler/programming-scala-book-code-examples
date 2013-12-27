@@ -1,4 +1,4 @@
-// code-examples/Traits/trait-construction-script.scala
+// src/main/scala/Traits/trait-construction.sc
 
 trait T1 {
   println( "  in T1: x = " + x )

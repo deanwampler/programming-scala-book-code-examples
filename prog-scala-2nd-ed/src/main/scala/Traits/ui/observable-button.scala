@@ -1,4 +1,4 @@
-// code-examples/Traits/ui/observable-button.scala
+// src/main/scala/Traits/ui/observable-button.scala
 
 package traits.ui
 import traits.observer._

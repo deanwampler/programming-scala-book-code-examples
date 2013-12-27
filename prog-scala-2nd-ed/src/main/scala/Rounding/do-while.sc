@@ -1,4 +1,4 @@
-// code-examples/Rounding/do-while-script.scala
+// src/main/scala/Rounding/do-while.sc
 
 var count = 0
 

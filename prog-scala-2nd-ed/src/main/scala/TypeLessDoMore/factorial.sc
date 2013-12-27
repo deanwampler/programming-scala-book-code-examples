@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/factorial-script.scala
+// src/main/scala/TypeLessDoMore/factorial.sc
 
 def factorial(i: Int): Int = {
   def fact(i: Int, accumulator: Int): Int = {

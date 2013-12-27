@@ -1,4 +1,4 @@
-// code-examples/ObjectSystem/typehierarchy/either-script.scala
+// src/main/scala/ObjectSystem/typehierarchy/either.sc
 
 def exceptionToLeft[T](f: => T): Either[java.lang.Throwable, T] = try {
   Right(f)

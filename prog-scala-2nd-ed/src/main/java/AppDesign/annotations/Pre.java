@@ -1,4 +1,4 @@
-// code-examples/AppDesign/annotations/Pre.java
+// src/main/java/AppDesign/annotations/Pre.java
 
 package org.contract4j5.contract;
 import java.lang.annotation.Documented;

@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/upper-script.scala
+// src/main/scala/ToolsLibs/upper.sc
 
 args.map(_.toUpperCase()).foreach(printf("%s ",_))
 println("")

@@ -1,4 +1,4 @@
-// code-examples/AppDesign/annotations/file-printer.scala
+// src/main/scala/AppDesign/annotations/file-printer.scala
 
 package appdesign.annotations
 import java.io._

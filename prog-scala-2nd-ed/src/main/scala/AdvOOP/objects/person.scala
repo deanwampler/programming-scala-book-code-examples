@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/objects/person.scala
+// src/main/scala/AdvOOP/objects/person.scala
 
 package advoop.objects
 

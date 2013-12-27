@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/complex-test.scala
+// src/test/scala/ToolsLibs/complex-test.scala
 
 package toolslibs
 import org.scalatest.FunSuite

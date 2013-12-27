@@ -1,4 +1,4 @@
-// code-examples/FP/pfunk/foreach-partial-func-script.scala
+// src/main/scala/FP/pfunk/foreach-partial-func.sc
 
 val stateCapitals = Map(
   "Alabama" -> "Montgomery",

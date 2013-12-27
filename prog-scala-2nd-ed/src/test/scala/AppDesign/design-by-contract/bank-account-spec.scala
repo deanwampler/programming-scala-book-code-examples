@@ -1,4 +1,4 @@
-// code-examples/AppDesign/design-by-contract/bank-account-spec.scala
+// src/test/scala/AppDesign/design-by-contract/bank-account-spec.scala
 
 package appdesign.designbycontract
 

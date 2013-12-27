@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/complex-check-script.scala
+// src/main/scala/ToolsLibs/complex-check.sc
 
 package toolslibs
 

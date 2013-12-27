@@ -1,4 +1,4 @@
-// code-examples/IntroducingScala/upper3.scala
+// src/main/scala/IntroScala/upper.scala
 
 package intro
 

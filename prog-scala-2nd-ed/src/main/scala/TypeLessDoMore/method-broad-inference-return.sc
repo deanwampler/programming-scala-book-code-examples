@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/method-broad-inference-return-script.scala
+// src/main/scala/TypeLessDoMore/method-broad-inference-return.sc
 // ERROR: Won't compile. Method actually returns List[Any], which is too "broad".
 
 def makeList(strings: String*) = {

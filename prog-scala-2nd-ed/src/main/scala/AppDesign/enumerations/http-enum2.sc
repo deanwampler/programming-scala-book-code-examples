@@ -1,4 +1,4 @@
-// code-examples/AppDesign/enumerations/http-enum2-script.scala
+// src/main/scala/AppDesign/enumerations/http-enum2.sc
 
 object HttpMethod extends Enumeration {
   type Method = Value

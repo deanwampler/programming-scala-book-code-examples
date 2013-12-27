@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/user-profile-v28-script.scala
+// src/main/scala/TypeLessDoMore/user-profile-v28.sc
 // Scala v2.8 only.
 
 object OptionalUserProfileInfo {

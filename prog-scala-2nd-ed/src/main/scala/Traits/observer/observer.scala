@@ -1,4 +1,4 @@
-// code-examples/Traits/observer/observer.scala
+// src/main/scala/Traits/observer/observer.scala
 
 package traits.observer
 import scala.language.reflectiveCalls

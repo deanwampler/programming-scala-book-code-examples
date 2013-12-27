@@ -1,4 +1,4 @@
-// code-examples/FP/implicits/implicit-conversion-script.scala
+// src/main/scala/FP/implicits/implicit-conversion.sc
 import scala.runtime.RichString
 
 class FancyString(val str: String)

@@ -1,4 +1,4 @@
-// code-examples/Rounding/basic-for-script.scala
+// src/main/scala/Rounding/basic-for.sc
 
 val dogBreeds = List("Doberman", "Yorkshire Terrier", "Dachshund",
                      "Scottish Terrier", "Great Dane", "Portuguese Water Dog")

@@ -1,4 +1,4 @@
-// code-examples/Concurrency/simple-actor-script.scala
+// src/main/scala/AkkaActors/simple-actor.sc
 
 import scala.actors.Actor
 

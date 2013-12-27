@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/JStack-spec.scala
+// src/test/scala/ToolsLibs/JStack-spec.scala
 
 import org.scalatest.{ FunSpec, ShouldMatchers }  
 

@@ -1,4 +1,4 @@
-// code-examples/XML/writing/atom-feed.scala
+// src/main/scala/XML/writing/atom-feed.scala
 
 package XML
 

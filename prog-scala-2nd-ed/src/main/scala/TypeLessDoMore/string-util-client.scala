@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/string-util-client.scala
+// src/main/scala/TypeLessDoMore/string-util-client.scala
 
 package typeless
 

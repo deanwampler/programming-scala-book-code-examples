@@ -1,4 +1,4 @@
-// code-examples/XML/reading/from-string-script.scala
+// src/main/scala/XML/reading/from-string.sc
 
 import scala.xml._
 

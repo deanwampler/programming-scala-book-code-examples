@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/state-capitals-subset-script.scala
+// src/main/scala/TypeLessDoMore/state-capitals-subset.sc
 
 val stateCapitals = Map(
   "Alabama" -> "Montgomery",

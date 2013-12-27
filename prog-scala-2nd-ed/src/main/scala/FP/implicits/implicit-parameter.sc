@@ -1,4 +1,4 @@
-// code-examples/FP/implicits/implicit-parameter-script.scala
+// src/main/scala/FP/implicits/implicit-parameter.sc
 import scala.runtime.RichString
 
 def multiplier(i: Int)(implicit factor: Int) {

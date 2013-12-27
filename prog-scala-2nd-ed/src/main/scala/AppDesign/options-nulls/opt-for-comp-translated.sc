@@ -1,4 +1,4 @@
-// code-examples/AppDesign/options-nulls/opt-for-comp-translated-script.scala
+// src/main/scala/AppDesign/options-nulls/opt-for-comp-translated.sc
 
 case class User(userName: String, name: String, email: String, bio: String)
 

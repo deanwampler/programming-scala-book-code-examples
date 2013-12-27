@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/SMapTest.java
+// src/test/java/ToolsLibs/SMapTest.java
 
 import org.junit.*;
 import static org.junit.Assert.*;

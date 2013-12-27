@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/ui/button-clickable-observer-vetoable-spec.scala
+// src/test/scala/AdvOOP/ui/button-clickable-observer-vetoable-spec.scala
 
 package advoop.ui
 

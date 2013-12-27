@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/parameterized-types-script.scala
+// src/main/scala/TypeLessDoMore/parameterized-types.sc
 import java.io._
 
 abstract class BulkReader[In] {

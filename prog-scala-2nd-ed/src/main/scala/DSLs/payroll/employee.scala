@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/employee.scala
+// src/main/scala/DSLs/payroll/employee.scala
 
 package dsls.payroll
 

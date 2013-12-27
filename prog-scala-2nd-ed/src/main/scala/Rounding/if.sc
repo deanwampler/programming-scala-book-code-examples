@@ -1,4 +1,4 @@
-// code-examples/Rounding/if-script.scala
+// src/main/scala/Rounding/if.sc
 
 if (2 + 2 == 5) {
   println("Hello from 1984.")

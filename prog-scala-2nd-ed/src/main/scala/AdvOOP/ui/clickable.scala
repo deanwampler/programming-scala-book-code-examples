@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/ui3/clickable.scala
+// src/main/scala/AdvOOP/ui/clickable.scala
 
 package advoop.ui
 

@@ -1,4 +1,4 @@
-// code-examples/AppDesign/patterns/shapes-drawing-factory-script.scala
+// src/main/scala/AppDesign/patterns/shapes-drawing-factory.sc
 
 import appdesign.shapes._
 

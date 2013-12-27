@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/observer.scala
+// src/main/scala/AppDesign/abstractions/observer/observer.scala
 
 package appdesign.abstractions.observer
 

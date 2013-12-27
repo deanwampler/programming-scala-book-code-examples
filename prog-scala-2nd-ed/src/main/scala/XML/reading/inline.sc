@@ -1,4 +1,4 @@
-// code-examples/XML/reading/inline-script.scala
+// src/main/scala/XML/reading/inline.sc
 
 import scala.xml._
 

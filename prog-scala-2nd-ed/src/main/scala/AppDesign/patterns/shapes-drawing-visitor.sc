@@ -1,4 +1,4 @@
-// code-examples/AppDesign/patterns/shapes-drawing-visitor-script.scala
+// src/main/scala/AppDesign/patterns/shapes-drawing-visitor.sc
 
 import appdesign.shapes._
 

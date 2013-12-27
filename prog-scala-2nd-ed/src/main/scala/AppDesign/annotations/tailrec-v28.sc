@@ -1,4 +1,4 @@
-// code-examples/AppDesign/annotations/tailrec-v28-script.scala
+// src/main/scala/AppDesign/annotations/tailrec-v28.sc
 import scala.annotation.tailrec
 
 @tailrec

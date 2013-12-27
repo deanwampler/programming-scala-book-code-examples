@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/pcdsl/payroll-parser-comb-complete-spec.scala
+// src/test/scala/DSLs/payroll/pcdsl/payroll-parser-comb-complete-spec.scala
 package dsls.payroll.pcdsl
 
 import dsls.payroll._

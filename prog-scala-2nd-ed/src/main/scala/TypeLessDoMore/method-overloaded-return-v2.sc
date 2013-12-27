@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/method-overloaded-return-v1-script.scala
+// src/main/scala/TypeLessDoMore/method-overloaded-return-v2.sc
 // Version 2 of "StringUtil" (with a fixed compilation error).
 
 object StringUtilV2 {

@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/string-util-v1-script.scala
+// src/main/scala/TypeLessDoMore/string-util-v1.sc
 // Version 1 of "StringUtil".
 
 object StringUtil {

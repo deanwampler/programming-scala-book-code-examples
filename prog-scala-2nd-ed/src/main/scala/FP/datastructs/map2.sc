@@ -1,4 +1,4 @@
-// code-examples/FP/datastructs/map2-script.scala
+// src/main/scala/FP/datastructs/map2.sc
 
 val stateCapitals = Map(
   "Alabama" -> "Montgomery",

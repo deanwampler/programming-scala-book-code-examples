@@ -1,4 +1,4 @@
-// code-examples/Rounding/specs-script.scala
+// src/main/scala/Rounding/specs.sc
 // Example fragment of a Specs script. Doesn't run standalone
 
 describe ("nerd finder") {

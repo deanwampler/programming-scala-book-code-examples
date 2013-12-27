@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/overrides/member-namespace-wont-compile.scala
+// src/main/scala/AdvOOP/overrides/member-namespace.scalaX
 // WON'T COMPILE
 
 package advoop.overrides

@@ -1,4 +1,4 @@
-// code-examples/AppDesign/annotations/anno-example.scala
+// src/main/scala/AppDesign/annotations/anno-example.scala
 
 package appdesign.annotations
 import scala.annotation.StaticAnnotation

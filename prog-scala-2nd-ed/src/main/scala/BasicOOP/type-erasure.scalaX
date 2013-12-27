@@ -1,4 +1,4 @@
-// code-examples/BasicOOP/type-erasure-wont-compile.scala
+// src/main/scala/BasicOOP/type-erasure.scalaX
 // WON'T COMPILE
 
 package basicoop

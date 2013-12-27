@@ -1,4 +1,4 @@
-// code-examples/IntroducingScala/shapes-actor.scala
+// src/main/scala/IntroScala/shapes-actor.scala
 
 package intro.shapes {
   import akka.actor.{Actor, ActorLogging}

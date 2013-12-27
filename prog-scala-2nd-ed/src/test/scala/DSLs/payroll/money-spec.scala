@@ -1,4 +1,4 @@
-// code-examples/DSLs/payroll/money-spec.scala
+// src/test/scala/DSLs/payroll/money-spec.scala
 
 package dsls.payroll
 

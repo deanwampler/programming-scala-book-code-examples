@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/objects/widget.scala
+// src/main/scala/AdvOOP/objects/widget.scala
 
 package advoop.objects
 

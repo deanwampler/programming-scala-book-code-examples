@@ -1,4 +1,4 @@
-// code-examples/Concurrency/factory-actor-script.scala
+// src/main/scala/AkkaActors/factory-actor.sc
 
 import scala.actors.Actor
 import scala.actors.Actor._

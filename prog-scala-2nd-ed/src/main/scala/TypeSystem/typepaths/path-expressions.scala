@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/typepaths/path-expressions.scala
+// src/main/scala/TypeSystem/typepaths/path-expressions.scala
 
 package typesystem.typepaths
 

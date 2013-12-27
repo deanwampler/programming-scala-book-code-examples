@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/overrides/abs-method-field-class-script.scala
+// src/main/scala/AdvOOP/overrides/abs-method-field-class.sc
 
 abstract class AbstractParent {
   def name: String

@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/lazy/lazy-range-danger-script.scala
+// src/main/scala/TypeSystem/lazy/lazy-range-danger.sc
 
 def mkRandomInts() = {
   val randInts = for {

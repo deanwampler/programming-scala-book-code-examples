@@ -1,4 +1,4 @@
-// code-examples/AppDesign/abstractions/observer/button-observer-spec.scala
+// src/test/scala/AppDesign/abstractions/observer/button-click-observer-spec.scala
 
 package appdesign.abstractions.observer
 

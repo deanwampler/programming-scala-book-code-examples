@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/abstracttypes/abs-type-examples-script.scala
+// src/main/scala/TypeSystem/abstracttypes/abs-type-examples.sc
 
 trait exampleTrait {
   type t1               // Unconstrained

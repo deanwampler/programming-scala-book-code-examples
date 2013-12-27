@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/valuetypes/infix-types-script.scala
+// src/main/scala/TypeSystem/valuetypes/infix-types.sc
 
 def attempt(operation: => Boolean): Throwable Either Boolean = try {
   Right(operation)

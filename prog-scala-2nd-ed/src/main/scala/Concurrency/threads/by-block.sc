@@ -1,3 +1,3 @@
-// code-examples/Concurrency/threads/by-block-script.scala
+// src/main/scala/Concurrency/threads/by-block.sc
 
 new Thread { println("this will run in a new thread") }

@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/bounds/node.scala
+// src/main/scala/TypeSystem/bounds/linkedlist/node.scala
 
 package typesystem.bounds.linkedlist
 

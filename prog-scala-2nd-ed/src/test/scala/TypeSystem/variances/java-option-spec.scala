@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/variances/java-option-spec.scala
+// src/test/scala/TypeSystem/variances/java-option-spec.scala
 
 package typesystem.variances
  

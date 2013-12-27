@@ -1,4 +1,4 @@
-// code-examples/ToolsLibs/script-wrapper.scala
+// src/main/scala/ToolsLibs/script-wrapper.sc
 
 object Script {
   def main(args: Array[String]): Unit = {

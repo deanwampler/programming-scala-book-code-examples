@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/objects/list-apply-example-script.scala
+// src/main/scala/AdvOOP/objects/list-apply-example.sc
 
 val list1 = List()
 val list2 = List(1, 2.2, "three", 'four)

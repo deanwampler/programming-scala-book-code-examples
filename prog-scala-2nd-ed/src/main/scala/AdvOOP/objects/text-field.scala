@@ -1,4 +1,4 @@
-// code-examples/AdvOOP/objects/text-field.scala
+// src/main/scala/AdvOOP/objects/text-field.scala
 
 package advoop.objects
 import advoop.ui.Clickable

@@ -1,4 +1,4 @@
-// code-examples/AppDesign/enumerations/http-case-script.scala
+// src/main/scala/AppDesign/enumerations/http-case.sc
 
 sealed abstract class HttpMethod(val id: Int) {
   def name = getClass getSimpleName

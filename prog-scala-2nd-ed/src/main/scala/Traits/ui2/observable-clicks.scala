@@ -1,4 +1,4 @@
-// code-examples/Traits/ui2/observable-clicks.scala
+// src/main/scala/Traits/ui2/observable-clicks.scala
 
 package traits.ui2
 import traits.observer._

@@ -1,4 +1,4 @@
-// code-examples/ObjectSystem/linearization/linearization4-script.scala
+// src/main/scala/ObjectSystem/linearization/linearization4.sc
 
 class C1 {
   def m = List("C1")

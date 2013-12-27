@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/abstracttypes/shapes-events-script.scala
+// src/main/scala/TypeSystem/abstracttypes/shapes-events.sc
 
 import typesystem.shapes._
 

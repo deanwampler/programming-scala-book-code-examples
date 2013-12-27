@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/valuetypes/type-projection-script.scala
+// src/main/scala/TypeSystem/valuetypes/type-projection.sc
 
 trait T {      
   type t <: AnyRef

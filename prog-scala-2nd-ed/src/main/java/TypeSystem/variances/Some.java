@@ -1,4 +1,4 @@
-// code-examples/TypeSystem/variances/Some.java
+// src/main/java/TypeSystem/variances/Some.java
 
 package variances;
 

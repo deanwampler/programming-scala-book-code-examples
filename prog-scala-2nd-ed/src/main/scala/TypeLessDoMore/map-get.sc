@@ -1,4 +1,4 @@
-// code-examples/TypeLessDoMore/map-get-script.scala
+// src/main/scala/TypeLessDoMore/map-get.sc
 // Very limited version of a map; it can hold only one key-value
 // pair! The "get" method is used in the text, by itself...
 
