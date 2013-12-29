@@ -2,7 +2,7 @@
 
 package intro.shapes {
 
-  import akka.actor.{Props, Actor, ActorRef, ActorSystem, ActorLogging}
+  import akka.actor.{Props, Actor, ActorRef, ActorSystem}
   import com.typesafe.config._
 
   // Message used only in this file:
@@ -17,23 +17,26 @@ package intro.shapes {
     }
   }
 
-  class ShapesDrawingDriver extends Actor with ActorLogging {
-    // Using null is HORRIBLY UNSAFE!! We'll see a better way
-    // later when we discuss the Option type.
+  class ShapesDrawingDriver extends Actor {
+    // Using null is HORRIBLY UNSAFE!! We'll see a better techniques later.
     var drawer: ActorRef = null
 
+    import Messages._
+
     def receive = {
-      case Start(drawerActor) ⇒
+      case Start(drawerActor) =>
         drawer = drawerActor
         drawerActor ! Circle(Point(0.0, 0.0), 1.0)
         drawerActor ! Rectangle(Point(0.0, 0.0), 2, 5)
         drawerActor ! 3.14159
-        drawerActor ! "exit"
-      case "good bye!" ⇒
-        log.info("cleaning up...")
+        drawerActor ! Exit
+      case Finished =>
+        println(s"$this: cleaning up...")
         context.system.shutdown()
-      case message ⇒
-        log.info(s"Response: $message")
+      case response: Response =>
+        println(s"$this: Response = $response")
+      case unexpected =>
+        println(s"$this: ERROR: Received an unexpected message = $unexpected")
     }
   }
 }
