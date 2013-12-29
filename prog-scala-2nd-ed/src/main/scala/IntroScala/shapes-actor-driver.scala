@@ -3,7 +3,7 @@
 package intro.shapes {
 
   import akka.actor.{Props, Actor, ActorRef, ActorSystem}
-  import com.typesafe.config._
+  import com.typesafe.config.ConfigFactory
 
   // Message used only in this file:
   case class Start(drawer: ActorRef)
@@ -26,17 +26,18 @@ package intro.shapes {
     def receive = {
       case Start(drawerActor) =>
         drawer = drawerActor
-        drawerActor ! Circle(Point(0.0, 0.0), 1.0)
-        drawerActor ! Rectangle(Point(0.0, 0.0), 2, 5)
+        drawerActor ! Circle(Point(0.0,0.0), 1.0)
+        drawerActor ! Rectangle(Point(0.0,0.0), 2, 5)
         drawerActor ! 3.14159
+        drawerActor ! Triangle(Point(0.0,0.0), Point(2.0,0.0), Point(1.0,2.0))
         drawerActor ! Exit
       case Finished =>
-        println(s"$this: cleaning up...")
+        println(s"ShapesDrawingDriver: cleaning up...")
         context.system.shutdown()
       case response: Response =>
-        println(s"$this: Response = $response")
+        println(s"ShapesDrawingDriver: Response = $response")
       case unexpected =>
-        println(s"$this: ERROR: Received an unexpected message = $unexpected")
+        println(s"ShapesDrawingDriver: ERROR: Received an unexpected message = $unexpected")
     }
   }
 }

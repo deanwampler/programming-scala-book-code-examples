@@ -15,14 +15,14 @@ package intro.shapes {
 
     def receive = {
       case s: Shape => 
-        s.draw(str => println(s"$this: $str"))
-        sender ! Response(s"$this: $s drawn")
+        s.draw(str => println(s"ShapesDrawingActor: $str"))
+        sender ! Response(s"ShapesDrawingActor: $s drawn")
       case Exit => 
-        println(s"$this: exiting...")
+        println(s"ShapesDrawingActor: exiting...")
         sender ! Finished
       case unexpected =>  // default. Equivalent to "unexpected: Any"
         val response = Response(s"ERROR: Unknown message: $unexpected")
-        println(s"$this: $response")
+        println(s"ShapesDrawingActor: $response")
         sender ! response
     }
   }

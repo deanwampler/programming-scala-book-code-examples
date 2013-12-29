@@ -16,6 +16,6 @@ package intro.shapes {
   case class Rectangle(lowerLeft: Point, height: Double, width: Double)
         extends Shape
 
-  class Triangle(val point1: Point, val point2: Point, val point3: Point) 
+  case class Triangle(point1: Point, point2: Point, point3: Point) 
         extends Shape
 }
