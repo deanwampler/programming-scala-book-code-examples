@@ -1,11 +1,16 @@
 // src/test/java/ToolsLibs/SMapTest.java
 
 import org.junit.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import static org.junit.Assert.*;
 import scala.*;
 import scala.collection.mutable.LinkedHashMap;
 
-public class SMapTest {
+/**
+ * @note SBT's JUnit plugin did not detect this test until I extended JUnitSuite.
+ */
+public class SMapTest extends org.scalatest.junit.JUnitSuite {
   static class Name {
     public String firstName;
     public String lastName;
