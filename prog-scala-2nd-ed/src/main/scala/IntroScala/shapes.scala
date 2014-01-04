@@ -1,7 +1,9 @@
 // src/main/scala/IntroScala/shapes.scala
 
 package intro.shapes {  
+  // BEGIN POINT_DEF
   case class Point(x: Double = 0.0, y: Double = 0.0)
+  // END POINT_DEF
 
   abstract class Shape() { 
     /** 
