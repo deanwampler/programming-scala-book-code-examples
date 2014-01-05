@@ -12,7 +12,7 @@ class MoneySpec extends FunSpec with ShouldMatchers
   def monoidCheck(sym: String, name: String,
     bdop: (BigDecimal,BigDecimal) => BigDecimal, mop: (Money,Money) => Money) {
     
-    describe(sym) {
+    describe (s"operator: $sym") { 
       it (s"$name the amounts") {
         check ((a: Money, b: Money) => mop(a,b) == Money(bdop(a.amount, b.amount)))
       }
@@ -34,7 +34,7 @@ class MoneySpec extends FunSpec with ShouldMatchers
   private def commutativeCheck(isCommutative: Boolean, sym: String,
     bdop: (BigDecimal,BigDecimal) => Boolean, mop: (Money,Money) => Boolean) {
 
-    describe (sym) { 
+    describe (s"operator: $sym") { 
       it ("compares the two amounts") {
         check ((a: Money, b: Money) => mop(a, b) == bdop(a.amount,  b.amount))
       }
@@ -54,7 +54,7 @@ class MoneySpec extends FunSpec with ShouldMatchers
     monoidCheck("+", "adds", (d1,d2) => d1 + d2, (m1,m2) => m1 + m2)
     monoidCheck("*", "multiplies", (d1,d2) => d1 * d2, (m1,m2) => m1 * m2)
   
-    describe("-") { 
+    describe("operator: -") { 
       it ("subtracts the amounts") {
         check((a: Money, b: Money) => (a - b) == Money(a.amount - b.amount))
       }
@@ -77,7 +77,7 @@ class MoneySpec extends FunSpec with ShouldMatchers
     // values near zero.
     def nearZero(m: Money): Boolean = m.amount <= 0.0001
 
-    describe("/") { 
+    describe("operator: /") { 
       it ("is undefined if you divide by zero!") {
         check((a: Money, b: Money) => nearZero(b) || (a * b) == Money(a.amount*b.amount))
       }

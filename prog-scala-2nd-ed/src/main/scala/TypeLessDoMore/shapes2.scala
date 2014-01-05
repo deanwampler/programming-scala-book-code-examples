@@ -3,12 +3,15 @@
 // BEGIN DRAWER_DEF
 package typeless.drawing {  
   abstract class Drawer {
+    import typeless.shapes2.Point
+
     def apply(representation: String, offset: Point = Point(0.0, 0.0)): Unit = 
       println(s"draw(offset = $offset), ${this.toString}")
+  }
 }
 // END DRAWER_DEF
 
-package typeless.shapes3 {  
+package typeless.shapes2 {  
   case class Point(x: Double = 0.0, y: Double = 0.0) {
 
     def shift(deltax: Double = 0.0, deltay: Double = 0.0) = 
@@ -22,8 +25,9 @@ package typeless.shapes3 {
      * object, whereas previously we explicitly passed a function argument.
      */
     // BEGIN DRAW_DEF
+    import typeless.drawing.Drawer
     def draw(offset: Point = Point(0.0, 0.0))(implicit drawer: Drawer): Unit = 
-      f(s"draw(offset = $offset), ${this.toString}")
+      drawer(s"draw(offset = $offset), ${this.toString}")
     // END DRAW_DEF
 
     /**
