@@ -2,7 +2,9 @@
 
 class Upper {
   def upper(strings: String*): Seq[String] = {
+    // BEGIN ANON_FUNC
     strings.map((s:String) => s.toUpperCase())
+    // END ANON_FUNC
   }
 }
 

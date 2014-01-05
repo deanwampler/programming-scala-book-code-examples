@@ -1,22 +1,30 @@
-// src/main/scala/TypeLessDoMore/shapes.scala
+// src/main/scala/TypeLessDoMore/shapes2.scala
 
-package typeless.shapes {  
-  // BEGIN POINT_DEF
+// BEGIN DRAWER_DEF
+package typeless.drawing {  
+  abstract class Drawer {
+    def apply(representation: String, offset: Point = Point(0.0, 0.0)): Unit = 
+      println(s"draw(offset = $offset), ${this.toString}")
+}
+// END DRAWER_DEF
+
+package typeless.shapes3 {  
   case class Point(x: Double = 0.0, y: Double = 0.0) {
 
     def shift(deltax: Double = 0.0, deltay: Double = 0.0) = 
       copy (x + deltax, y + deltay)
   }
-  // END POINT_DEF
 
-  // BEGIN SHAPE_DEF
   abstract class Shape() { 
     /** 
      * Draw takes two arguments, one list with an offset for drawing,
-     * and the other list that is the function argument we used previously.
+     * and the other list that is an implicit parameter for a drawing
+     * object, whereas previously we explicitly passed a function argument.
      */
-    def draw(offset: Point = Point(0.0, 0.0))(f: String => Unit): Unit = 
+    // BEGIN DRAW_DEF
+    def draw(offset: Point = Point(0.0, 0.0))(implicit drawer: Drawer): Unit = 
       f(s"draw(offset = $offset), ${this.toString}")
+    // END DRAW_DEF
 
     /**
      * Return a new shape scaled in both x and y dimensions by factor.
@@ -28,7 +36,6 @@ package typeless.shapes {
 
     protected def doscale(factor: Double): Shape
   }
-  // END SHAPE_DEF
 
   case class Circle(center: Point, radius: Double) extends Shape {
 
