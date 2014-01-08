@@ -18,7 +18,7 @@ package intro.shapes {
   }
 
   class ShapesDrawingDriver extends Actor {
-    // Using null is HORRIBLY UNSAFE!! We'll see a better techniques later.
+    // Using null is UNSAFE!! We'll see a better techniques later.
     var drawer: ActorRef = null
 
     import Messages._
@@ -35,9 +35,10 @@ package intro.shapes {
         println(s"ShapesDrawingDriver: cleaning up...")
         context.system.shutdown()
       case response: Response =>
-        println(s"ShapesDrawingDriver: Response = $response")
+        println("ShapesDrawingDriver: Response = " + response)
       case unexpected =>
-        println(s"ShapesDrawingDriver: ERROR: Received an unexpected message = $unexpected")
+        println("ShapesDrawingDriver: ERROR: Received an unexpected message = "
+          + unexpected)
     }
   }
 }

@@ -1,6 +1,5 @@
 // src/main/scala/TypeLessDoMore/shapes2.scala
 
-// BEGIN DRAWER_DEF
 package typeless.drawing {  
   abstract class Drawer {
     import typeless.shapes2.Point
@@ -9,7 +8,6 @@ package typeless.drawing {
       println(s"draw(offset = $offset), ${this.toString}")
   }
 }
-// END DRAWER_DEF
 
 package typeless.shapes2 {  
   case class Point(x: Double = 0.0, y: Double = 0.0) {
@@ -24,11 +22,9 @@ package typeless.shapes2 {
      * and the other list that is an implicit parameter for a drawing
      * object, whereas previously we explicitly passed a function argument.
      */
-    // BEGIN DRAW_DEF
     import typeless.drawing.Drawer
     def draw(offset: Point = Point(0.0, 0.0))(implicit drawer: Drawer): Unit = 
       drawer(s"draw(offset = $offset), ${this.toString}")
-    // END DRAW_DEF
 
     /**
      * Return a new shape scaled in both x and y dimensions by factor.

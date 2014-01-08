@@ -5,9 +5,7 @@ version := "2.0-M002"
 organization := "org.programming-scala"
 
 // Build against several versions of Scala
-// BEGIN CROSS_VERSIONS
 crossScalaVersions := Seq("2.10.3", "2.11.0-M5")
-// END CROSS_VERSIONS
 
 // It's tricky findng versions of the dependencies for the 2.11 milestone releases!
 // Also, Scala XML is a separate library in 2.11. 

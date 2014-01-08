@@ -15,9 +15,7 @@ package intro.shapes {
 
     def receive = {
       case s: Shape => 
-        // BEGIN SHAPE_DRAW
         s.draw(str => println(s"ShapesDrawingActor: $str"))
-        // END SHAPE_DRAW
         sender ! Response(s"ShapesDrawingActor: $s drawn")
       case Exit => 
         println(s"ShapesDrawingActor: exiting...")

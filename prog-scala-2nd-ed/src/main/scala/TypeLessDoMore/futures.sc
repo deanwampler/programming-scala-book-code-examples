@@ -14,11 +14,9 @@ def doWork(index: Int) = {
 }
 
 (1 to 5) foreach { index => 
-  // BEGIN FUTURE
   val future = Future.apply {
     doWork(index)
   }
-  // END FUTURE
   future onSuccess { 
     case answer: Int => println(s"Success! returned: $answer")
   }
