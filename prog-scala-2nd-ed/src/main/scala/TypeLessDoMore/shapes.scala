@@ -9,7 +9,7 @@ package typeless.shapes {
 
   abstract class Shape() { 
     /** 
-     * Draw takes two arguments, one list with an offset for drawing,
+     * Draw takes two argument LISTS, one list with an offset for drawing,
      * and the other list that is the function argument we used previously.
      */
     def draw(offset: Point = Point(0.0, 0.0))(f: String => Unit): Unit = 

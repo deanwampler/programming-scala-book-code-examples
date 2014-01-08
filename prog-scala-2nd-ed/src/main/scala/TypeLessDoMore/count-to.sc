@@ -1,6 +1,6 @@
 // src/main/scala/TypeLessDoMore/count-to.sc
 
-def countTo(n: Int):Unit = {
+def countTo(n: Int): Unit = {
   def count(i: Int): Unit = {
     if (i <= n) {
       println(i)
