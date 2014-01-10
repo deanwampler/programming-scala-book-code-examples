@@ -3,7 +3,6 @@
 def makeList(strings: String*) = {
   if (strings.length == 0)
     Nil  // #1
-    // List.empty  // #1
   else
     strings.toList
 }
