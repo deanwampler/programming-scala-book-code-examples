@@ -27,6 +27,10 @@ libraryDependencies ++= Seq(
       "org.scala-lang.modules" %% "scala-xml" % "1.0.0-RC5")
   else Seq.empty)
 
+// enable improved (experimental) incremental compilation algorithm called 
+// "name hashing"
+incOptions := incOptions.value.withNameHashing(true)
+
 // Options passed to the Scala and Java compilers:
 scalacOptions ++= Seq(
 "-encoding", "UTF-8", "-optimise", "-deprecation", "-unchecked", "-feature")
