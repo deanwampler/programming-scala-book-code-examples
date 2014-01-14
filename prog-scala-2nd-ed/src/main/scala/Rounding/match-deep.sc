@@ -1,16 +1,20 @@
 // src/main/scala/Rounding/match-deep.sc
 
-case class Person(name: String, age: Int)
+// Simplicistic address type. Using all strings is bad.
+case class Address(street: String, city: String, country: String)
 
-val alice = new Person("Alice", 25)
-val bob = new Person("Bob", 32)
-val charlie = new Person("Charlie", 32)
+case class Person(name: String, age: Int, address: Address)
+
+val alice   = Person("Alice",   25, Address("1 Scala Lane", "Chicago", "USA"))
+val bob     = Person("Bob",     29, Address("2 Java Ave.",  "Miami",   "USA"))
+val charlie = Person("Charlie", 32, Address("3 Python Ct.", "Boston",  "USA"))
 
 for (person <- List(alice, bob, charlie)) {
   person match {
-    case Person("Alice", 25) => println("Hi Alice!")
-    case Person("Bob", 32) => println("Hi Bob!")
-    case Person(name, age) => 
+    case Person("Alice", 25, _) => println("Hi Alice!")
+    case Person("Bob", 29, Address("2 Java Ave.", "Miami", "USA")) => 
+      println("Hi Bob!")
+    case Person(name, age, _) => 
       println("Who are you, " + age + " year-old person named " + name + "?")
   }
 }

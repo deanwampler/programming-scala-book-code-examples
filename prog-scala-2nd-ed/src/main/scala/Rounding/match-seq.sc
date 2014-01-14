@@ -1,12 +1,26 @@
 // src/main/scala/Rounding/match-seq.sc
 
-val willWork = List(1, 3, 23, 90)
-val willNotWork = List(4, 18, 52)
-val empty = List()
+val nonEmptySeq    = Seq(1, 2, 3, 4, 5)
+val emptySeq       = Seq()
+val nonEmptyList   = List(1, 2, 3, 4, 5)
+val emptyList      = List()
+val nonEmptyVector = Vector(1, 2, 3, 4, 5)
+val emptyVector    = Vector()
+val nonEmptyMap    = Map("one" -> 1, "two" -> 2, "three" -> 3, "four" -> 4)
+val emptyMap       = Map.empty
 
-for (l <- List(willWork, willNotWork, empty)) {
-  l match {
-    case List(_, 3, _, _) => println("Four elements, with the 2nd being '3'.")
-    case List(_*) => println("Any other list with 0 or more elements.")
-  }
+def processSeq[T](l: Seq[T]): Unit = l match {
+  case head +: tail => 
+    printf("%s +: ", head)
+    processSeq(tail)
+  case Nil => println("Nil")
+}
+
+for (l <- Seq(
+    nonEmptySeq, emptySeq, 
+    nonEmptyList, emptyList, 
+    nonEmptyVector, emptyVector, 
+    nonEmptyMap.toSeq, emptyMap.toSeq)) {
+  print("Seq: ")
+  processSeq(l)
 }

@@ -1,17 +1,16 @@
 // src/main/scala/Rounding/match-list.sc
 
-val willWork = List(1, 3, 23, 90)
-val willNotWork = List(4, 18, 52)
-val empty = List()
+val nonEmptyList = List(1, 2, 3, 4, 5)
+val emptyList    = List()
 
-def processList(l: List[Any]): Unit = l match {
+def processList[T](l: List[T]): Unit = l match {
   case head :: tail => 
-    format("%s ", head)
+    printf("%s :: ", head)
     processList(tail)
-  case Nil => println("")
+  case Nil => println("Nil")
 }
 
-for (l <- List(willWork, willNotWork, empty)) {
+for (l <- List(nonEmptyList, emptyList)) {
   print("List: ")
   processList(l)
 }

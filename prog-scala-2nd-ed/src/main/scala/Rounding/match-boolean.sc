@@ -6,6 +6,9 @@ for (bool <- bools) {
   bool match {
     case true => println("heads")
     case false => println("tails")
-    case _ => println("something other than heads or tails (yikes!)")
   }
+}
+
+for (bool <- bools) {
+  println(if (bool == true) "head" else "tails")
 }
