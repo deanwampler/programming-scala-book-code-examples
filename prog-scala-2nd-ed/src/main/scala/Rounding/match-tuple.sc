@@ -1,13 +1,13 @@
 // src/main/scala/Rounding/match-tuple.sc
 
-val tupA = ("Good", "Morning!")
-val tupB = ("Guten", "Tag!")
+val langs = List(
+  ("Scala",   "Martin", "Odersky"),
+  ("Clojure", "Rich",   "Hickey"),
+  ("Lisp",    "John",   "McCarthy"))
 
-for (tup <- List(tupA, tupB)) {
-  tup match {
-    case (thingOne, thingTwo) if thingOne == "Good" =>
-        println("A two-tuple starting with 'Good'.")
-    case (thingOne, thingTwo) =>
-        println("This has two things: " + thingOne + " and " + thingTwo)
+for (tuple <- langs) {
+  tuple match {
+    case ("Scala", _, _) => println("Found Scala")
+    case (lang, first, last) => println(s"Other language: $lang ($first, $last)")
   }
 }

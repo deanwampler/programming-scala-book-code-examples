@@ -1,22 +1,22 @@
 // src/main/scala/Rounding/match-regex.sc
 
-val BookExtractorRE = """Book: title=([^,]+),\s+authors=(.+)""".r
+val BookExtractorRE = """Book: title=([^,]+),\s+author=(.+)""".r
 val MagazineExtractorRE = """Magazine: title=([^,]+),\s+issue=(.+)""".r
 
 val catalog = List(
-  "Book: title=Programming Scala, authors=Dean Wampler, Alex Payne",
-  "Magazine: title=The New Yorker, issue=January 2009",
-  "Book: title=War and Peace, authors=Leo Tolstoy",
-  "Magazine: title=The Atlantic, issue=February 2009",
+  "Book: title=Programming Scala, author=Dean Wampler",
+  "Magazine: title=The New Yorker, issue=January 2014",
+  "Book: title=War and Peace, author=Leo Tolstoy",
+  "Magazine: title=The Atlantic, issue=February 2014",
   "BadData: text=Who put this here??"
 )
 
 for (item <- catalog) {
   item match {
-    case BookExtractorRE(title, authors) =>
-      println("Book \"" + title + "\", written by " + authors)
+    case BookExtractorRE(title, author) =>
+      println(s"""Book "$title", written by $author""")
     case MagazineExtractorRE(title, issue) =>
-      println("Magazine \"" + title + "\", issue " + issue)
-    case entry => println("Unrecognized entry: " + entry)
+      println(s"""Magazine "title", issue $issue""")
+    case entry => println(s"Unrecognized entry: $entry")
   }
 }

@@ -13,7 +13,7 @@ def processSeq[T](l: Seq[T]): Unit = l match {
   case head +: tail => 
     printf("%s +: ", head)
     processSeq(tail)
-  case Nil => println("Nil")
+  case Nil => print("Nil")
 }
 
 for (l <- Seq(
@@ -23,4 +23,5 @@ for (l <- Seq(
     nonEmptyMap.toSeq, emptyMap.toSeq)) {
   print("Seq: ")
   processSeq(l)
+  println()
 }
