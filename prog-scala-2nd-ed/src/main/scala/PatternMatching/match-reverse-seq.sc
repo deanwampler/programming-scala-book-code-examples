@@ -1,4 +1,4 @@
-// src/main/scala/Rounding/match-reverse-seq.sc
+// src/main/scala/PatternMatching/match-reverse-seq.sc
 // Compare to match-seq.sc
 
 val nonEmptyList   = List(1, 2, 3, 4, 5)

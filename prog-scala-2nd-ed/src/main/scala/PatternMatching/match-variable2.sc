@@ -1,4 +1,4 @@
-// src/main/scala/Rounding/match-variable2.sc
+// src/main/scala/PatternMatching/match-variable2.sc
 
 for {
   x <- List (1, 2, 2.7, 3.14159, "one", "two", 'four)

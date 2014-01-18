@@ -1,4 +1,4 @@
-// src/main/scala/Rounding/match-boolean.sc
+// src/main/scala/PatternMatching/match-boolean.sc
 
 val bools = List(true, false)
 

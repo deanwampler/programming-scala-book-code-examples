@@ -1,4 +1,4 @@
-// src/main/scala/Rounding/match-tuple.sc
+// src/main/scala/PatternMatching/match-tuple.sc
 
 for (i <- List(1,2,3,4,5,6,7)) {
   i match {

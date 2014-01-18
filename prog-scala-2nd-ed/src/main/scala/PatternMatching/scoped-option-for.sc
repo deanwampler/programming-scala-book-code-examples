@@ -1,4 +1,4 @@
-// src/main/scala/Rounding/scoped-option-for.sc
+// src/main/scala/PatternMatching/scoped-option-for.sc
 
 val dogBreeds = List(Some("Doberman"), None, Some("Yorkshire Terrier"), 
                      Some("Dachshund"), None, Some("Scottish Terrier"),

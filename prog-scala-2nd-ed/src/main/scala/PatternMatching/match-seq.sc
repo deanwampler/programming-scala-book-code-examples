@@ -1,4 +1,4 @@
-// src/main/scala/Rounding/match-seq.sc
+// src/main/scala/PatternMatching/match-seq.sc
 
 val nonEmptySeq    = Seq(1, 2, 3, 4, 5)
 val emptySeq       = Seq()
