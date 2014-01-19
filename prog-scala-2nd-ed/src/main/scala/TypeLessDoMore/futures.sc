@@ -14,7 +14,7 @@ def doWork(index: Int) = {
 }
 
 (1 to 5) foreach { index => 
-  val future = Future.apply {
+  val future = Future {
     doWork(index)
   }
   future onSuccess { 

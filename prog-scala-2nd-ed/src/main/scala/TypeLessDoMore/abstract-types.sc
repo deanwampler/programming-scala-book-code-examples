@@ -25,4 +25,5 @@ class FileBulkReader(val source: File) extends BulkReader {
 }
 
 println( new StringBulkReader("Hello Scala!").read )
-println( new FileBulkReader(new File("abstract-types.sc")).read )
+println( new FileBulkReader(
+  new File("src/main/scala/TypeLessDoMore/abstract-types.sc")).read )
