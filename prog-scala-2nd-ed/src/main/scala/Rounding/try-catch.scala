@@ -15,9 +15,11 @@ object TryCatch {
     var source: Option[Source] = None
     try {
       source = Some(Source.fromFile(fileName))
-      // Calling get is safe here, but calling getLines is a bit inefficient.
+      // Calling get is safe here, because if the previous line succeeded,
+      // we know we have a Some, not a None.
       val size = source.get.getLines.size
       println(s"file $fileName has $size lines")
+      // Simulate an error.
       if (size > 20) throw new RuntimeException("Big file!")
     } catch {
       case ex: Throwable => println(s"Exception! $ex")
