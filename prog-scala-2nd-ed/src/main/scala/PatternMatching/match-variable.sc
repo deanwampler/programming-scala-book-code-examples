@@ -6,7 +6,7 @@ for {
   val str = x match {
     case 1          => "int 1"
     case i: Int     => "other int: "+i
-    case d: Double => "a double: "+x
+    case d: Double  => "a double: "+x
     case "one"      => "string one"
     case s: String  => "other string: "+s
     case unexpected => "unexpected value: " + unexpected
