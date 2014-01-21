@@ -1,4 +1,4 @@
-// src/main/scala/PatternMatching/match-seq-unapplySeq.sc
+// src/main/scala/PatternMatching/match-seq-without-unapplySeq.sc
 
 val nonEmptySeq    = Seq(1, 2, 3, 4, 5)
 val emptySeq       = Seq()
