@@ -4,11 +4,12 @@ val bools = List(true, false)
 
 for (bool <- bools) {
   bool match {
-    case true => println("heads")
-    case false => println("tails")
+    case true => println("Got heads")
+    case false => println("Got tails")
   }
 }
 
 for (bool <- bools) {
-  println(if (bool == true) "head" else "tails")
+  val which = if (bool == true) "head" else "tails"
+  println("Got " + which)
 }

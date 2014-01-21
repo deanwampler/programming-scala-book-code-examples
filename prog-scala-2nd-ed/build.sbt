@@ -7,7 +7,7 @@ organization := "org.programming-scala"
 // Build against several versions of Scala
 crossScalaVersions := Seq("2.10.3", "2.11.0-M5")
 
-// It's tricky findng versions of the dependencies for the 2.11 milestone releases!
+// It's tricky findng versions of the deps. for the 2.11 milestone releases!
 // Also, Scala XML is a separate library in 2.11. 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.2.1",
