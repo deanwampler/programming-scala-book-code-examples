@@ -32,7 +32,12 @@ libraryDependencies ++= Seq(
 incOptions := incOptions.value.withNameHashing(true)
 
 // Options passed to the Scala and Java compilers:
-scalacOptions ++= Seq(
-"-encoding", "UTF-8", "-optimise", "-deprecation", "-unchecked", "-feature")
+scalacOptions <<= scalaVersion map { version: String => 
+  val commonOptions = Seq(
+    "-encoding", "UTF-8", "-optimise", 
+    "-deprecation", "-unchecked", "-feature")
+  if (version.startsWith("2.10")) commonOptions
+  else commonOptions ++ Seq("-Ywarn-infer-any") // Warn if "Any" is inferred
+}
 
 javacOptions  ++= Seq("-Xlint:unchecked", "-Xlint:deprecation")
