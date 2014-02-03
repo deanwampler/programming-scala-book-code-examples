@@ -1,4 +1,4 @@
-// src/main/scala/TypeLessDoMore/implicit-conversions.sc
+// src/main/scala/Implicits/implicit-conversions.sc
 
 object Implicits {
   implicit final class DarthVadarShip[A](val self: A) {
