@@ -1,3 +1,4 @@
-// src/main/scala/FP/basics/list-map-example.sc
+// src/main/scala/FP/basics/hofs-example.sc
 
-List(1, 2, 3, 4, 5) map (_ * 2)
+(1 to 10) filter (_ % 2 == 0) map (_ * 2) reduce (_ * _)
+

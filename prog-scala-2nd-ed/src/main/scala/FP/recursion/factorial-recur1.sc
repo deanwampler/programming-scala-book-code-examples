@@ -10,4 +10,4 @@ def factorial(i: BigInt): BigInt = i match {
 }
 
 for (i <- 1 to 10)
-  println(s"$i: ${factorial(i)}")
+  println(s"$i:\t${factorial(i)}")
