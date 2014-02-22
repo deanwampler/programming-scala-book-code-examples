@@ -1,5 +1,15 @@
 // src/main/scala/FP/datastructs/foldreduce.sc
 
-List(1,2,3,4,5,6) reduceLeft(_ + _)
+List(1,2,3,4,5,6) reduce (_ + _)
 
-List(1,2,3,4,5,6).foldLeft(10)(_ * _)
+List(1,2,3,4,5,6).fold (10) (_ * _)
+(List(1,2,3,4,5,6) fold 10) (_ * _)
+
+val fold1 = (List(1,2,3,4,5,6) fold 10) _
+fold1(_ * _)
+
+(List.empty[Int] fold 10) (_ + _)
+List.empty[Int] reduce (_ + _)
+
+List.empty[Int] reduceOption (_ + _)
+List(1,2,3,4,5,6) reduceOption (_ * _)

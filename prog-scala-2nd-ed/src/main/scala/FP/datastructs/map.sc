@@ -11,7 +11,8 @@ val lengths = stateCapitals map {
 println(lengths)
 
 val caps = stateCapitals map { 
-  case (k, v) => (k, v.toUpperCase) }
+  case (k, v) => (k, v.toUpperCase)
+}
 println(caps)
 
 val stateCapitals2 = stateCapitals + ("Virginia" -> "Richmond")
