@@ -1,4 +1,4 @@
-// src/main/scala/FP/datastructs/option.sc
+// src/main/scala/forcomp/option.sc
 
 val list: List[Option[Int]] = List(Some(10), None, Some(20))
 
