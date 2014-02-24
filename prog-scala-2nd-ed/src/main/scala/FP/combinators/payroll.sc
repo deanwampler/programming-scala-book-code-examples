@@ -21,7 +21,9 @@ val netPay = employees map { e =>
 
 // "Print" paychecks:
 println("** Paychecks:")
-netPay foreach { case (e, net) => println(f"  ${e.name+':'}%-16s ${net}%10.2f") }
+netPay foreach { 
+  case (e, net) => println(f"  ${e.name+':'}%-16s ${net}%10.2f") 
+}
 
 // Generate report:
 val report = (netPay foldLeft (0.0, 0.0, 0.0)) { 
