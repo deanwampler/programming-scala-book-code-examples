@@ -1,9 +1,9 @@
-// src/main/scala/forcomp/foreach.sc
+// src/main/scala/ForComps/map.sc
 
 val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
 for {
   s <- states
-} println(s)
+} yield s.toUpperCase
 
-states foreach println
+states map (_.toUpperCase)

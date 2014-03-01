@@ -1,4 +1,4 @@
-// src/main/scala/forcomp/option.sc
+// src/main/scala/ForComps/option.sc
 
 val list: List[Option[Int]] = List(Some(10), None, Some(20))
 

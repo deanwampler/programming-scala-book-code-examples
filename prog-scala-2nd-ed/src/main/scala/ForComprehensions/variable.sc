@@ -1,4 +1,4 @@
-// src/main/scala/forcomp/flatmap.sc
+// src/main/scala/ForComps/flatmap.sc
 
 val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
