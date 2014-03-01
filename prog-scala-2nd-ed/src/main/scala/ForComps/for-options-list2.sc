@@ -7,3 +7,7 @@ for {
   Some(i) <- list
   i2  =  2 * i
 } yield i2
+
+list filter { 
+  case Some(i) => 2 * i
+} map
