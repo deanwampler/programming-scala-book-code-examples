@@ -9,7 +9,7 @@ for {
   c2 = s"$c-${c.toUpper} "
 } yield c2
 
-states flatMap (_.toSeq filter (_.isLower) map { c => 
+states flatMap (_.toSeq withFilter (_.isLower) map { c => 
   val c2 = s"$c-${c.toUpper} "
   c2
 })
