@@ -1,4 +1,4 @@
-// src/main/scala/ForComps/for-options-good2.sc
+// src/main/scala/ForComps/for-options-seq.sc
 
 val successfulCounts = List(Some(5), Some(10), Some(25))
 val partiallySuccessfulCounts = List(Some(5), None, Some(25))
