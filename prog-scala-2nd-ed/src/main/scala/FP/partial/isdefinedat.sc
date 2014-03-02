@@ -1,4 +1,4 @@
-// src/main/scala/FP/partial/isdefinedat.sc
+// src/main/scala/FP/partialfunc/isdefinedat.sc
 
 val pantsTest: PartialFunction[String, String] = {
   case "pants" => "yes, we have pants!"
