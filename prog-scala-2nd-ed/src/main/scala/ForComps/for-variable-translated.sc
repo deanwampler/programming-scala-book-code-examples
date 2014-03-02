@@ -8,6 +8,7 @@ val list1 = for {
 } yield (i10)
 // Result: list1: scala.collection.immutable.Iterable[Int] = List(11, 12)
 
+// Translation:
 val list2 = for {
   (i, i10) <- for {
     x1 @ (key, value) <- map
