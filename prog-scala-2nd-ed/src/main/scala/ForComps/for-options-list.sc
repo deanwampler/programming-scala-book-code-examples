@@ -2,9 +2,25 @@
 
 val list: List[Option[Int]] = List(Some(10), None, Some(20))
 
-// Returns: List[Int] = List(20, 40)
-for {
-  opt <- list    // <1>
-  i   <- opt     // <2>
-  i2  =  2 * i   // <3>
-} yield i2       // <4>
+val list2a = for {
+  Some(i) <- list
+} yield (2 * i)
+// Returns: list2a: List[Int] = List(20, 40)
+
+// Translation step #1
+val list2b = for {
+  Some(i) <- list withFilter { 
+    case Some(i) => true
+    case None => false 
+  }
+} yield (2 * i)
+// Returns: list2b: List[Int] = List(20, 40)
+
+// Translation step #2
+val list2c = list withFilter { 
+  case Some(i) => true
+  case None => false 
+} map {
+  case Some(i) => (2 * i)
+}
+// Returns: list2c: List[Int] = List(20, 40)
