@@ -1,52 +1,49 @@
 // src/main/scala/ForComps/for-eithers-steps.sc
 
-val successfulCounts = List(Right(5), Right(10), Right(25))
-val partiallySuccessfulCounts = List(
-  Right(5), Left("EPIC"), Right(25), Left("FAIL!"))
+import scala.util.{ Either, Left, Right }
 
-// Combine two Eithers[A,B] by applying a function on their values.
-// Note that two functions are required, for the left and right values:
-def eitherMap2[A,B](                                  // <1>
-    either1: Either[A,B], either2: Either[A,B])(
-    fleft:  (A,A) => A)(                              // <2>
-    fright: (B,B) => B): Either[A,B] =                // <3>
-  (either1, either2) match {
-    case (Left(a), Left(b))   => Left(fleft(a,b))     // <4>
-    case (l @ Left(t), _       )   => l               // <5>
-    case (_,        l @ Left(t))   => l               
-    case (Right(a), Right(b)) => Right(fright(a,b))   // <6>
-  }
+// Alias the long function signature:
+type Step = Int => Either[RuntimeException,Int]
 
-def sumCounts1(counts: Seq[Either[String,Int]]): Either[String,Int] = {
-  val seed: Either[String,Int] = Right(0)             // <7>
-  (counts foldLeft seed) {                            // <8>
-    (sumEither, either) => eitherMap2(sumEither, either)(
-      (s1,s2) => s"$s1 $s2")(_ + _)                   // <9>
+val successfulSteps: Seq[Step] = List(
+  (i:Int) => Right(i + 5), 
+  (i:Int) => Right(i + 10), 
+  (i:Int) => Right(i + 25))
+val partiallySuccessfulSteps: Seq[Step] = List(
+  (i:Int) => Right(i + 5), 
+  (i:Int) => Left(new RuntimeException("FAIL!")),
+  (i:Int) => Right(i + 25))
+
+def sumCounts1(countSteps: Seq[Step]): Either[RuntimeException,Int] = {
+  val zero: Either[RuntimeException,Int] = Right(0)
+  (countSteps foldLeft zero) {
+    (sumEither, step) => sumEither.right flatMap (i => step(i))
   }
 }
 
-sumCounts1(successfulCounts)
-// Returns: Either[String,Int] = Right(40)
+sumCounts1(successfulSteps)
+// Returns: .Either[RuntimeException,Int] = Right(40)
 
-sumCounts1(partiallySuccessfulCounts)
-// Returns: Either[String,Int] = Left(EPIC FAIL!)
+sumCounts1(partiallySuccessfulSteps)
+// Returns: Either[RuntimeException,Int] = Left(RuntimeException: FAIL!)
 
-// More verbose, but stops the "counts" iteration at the first Left:
-def sumCounts2(counts: Seq[Either[String,Int]]): Either[String,Int] = {
+// More verbose, but it stops the "counts" iteration at the first Left.
+// and it doesn't create intermediate Rights:
+def sumCounts2(countSteps: Seq[Step]): Either[RuntimeException,Int] = {
   @annotation.tailrec
-  def sum(accum: Int, counts2: Seq[Either[String,Int]]): Either[String,Int] = 
-    counts2 match {
-      case head +: tail => head match {
-        case l @ Left(s)  => l
-        case r @ Right(i) => sum(accum + i, tail)
+  def sum(accum: Int, countSteps2: Seq[Step]): Either[RuntimeException,Int] = 
+    countSteps2 match {
+      case Nil          => Right(accum)
+      case step +: tail => step(accum) match {
+        case l @ Left(x) => l
+        case Right(i2)   => sum(i2, tail)
       }
-      case Nil => Right(accum)
     } 
-  sum(0, counts)
+  sum(0, countSteps)
 }
 
-sumCounts2(successfulCounts)
-// Returns: Either[String,Int] = Right(40)
+sumCounts2(successfulSteps)
+// Returns: .Either[RuntimeException,Int] = Right(40)
 
-sumCounts2(partiallySuccessfulCounts)
-// Returns: Either[String,Int] = Left(EPIC)
+sumCounts2(partiallySuccessfulSteps)
+// Returns: Either[RuntimeException,Int] = Left(RuntimeException: FAIL!)

@@ -1,43 +1,45 @@
 // src/main/scala/ForComps/for-options-steps.sc
 
-val successfulCounts = List(Some(5), Some(10), Some(25))
-val partiallySuccessfulCounts = List(Some(5), None, Some(25))
+// Alias the function signature:
+type Step = Int => Option[Int]
 
-// A function to combine two Options by applying a function on their values.
-def optionMap2[T1,T2,T3](                              // <1>
-    opt1: Option[T1], opt2: Option[T2])(f: (T1,T2) => T3): Option[T3] = 
-  (opt1, opt2) match {
-    case (None, _)            => None                  // <2>
-    case (_, None)            => None
-    case (Some(t1), Some(t2)) => Option(f(t1, t2))     // <3>
+val successfulSteps = List(  // <1>
+  (i:Int) => Some(i + 5), 
+  (i:Int) => Some(i + 10), 
+  (i:Int) => Some(i + 25))
+val partiallySuccessfulSteps = List(
+  (i:Int) => Some(i + 5), 
+  (i:Int) => None,   // FAIL!   <2>
+  (i:Int) => Some(i + 25))
+
+def sumCounts1(countSteps: Seq[Step]): Option[Int] = 
+  (countSteps foldLeft Option(0)) {                   // <3>
+    (sumOpt, step) => sumOpt flatMap (i => step(i))   // <4>
   }
 
-def sumCounts1(counts: Seq[Option[Int]]): Option[Int] = 
-  (counts foldLeft Some(0)) {                          // <4>
-    (sumOpt, opt) => optionMap2(sumOpt, opt)(_ + _)    // <5>
-  }
-
-sumCounts1(successfulCounts)
+sumCounts1(successfulSteps)
 // Returns: Option[Int] = Some(40)
 
-sumCounts1(partiallySuccessfulCounts)
+sumCounts1(partiallySuccessfulSteps)
 // Returns: Option[Int] = None
 
 // More verbose, but it stops the "counts" iteration at the first None
 // and it doesn't create intermediate Options:
-def sumCounts2(counts: Seq[Option[Int]]): Option[Int] = {  // <6>
+def sumCounts2(countSteps: Seq[Step]): Option[Int] = {  // <5>
   @annotation.tailrec
-  def sum(accum: Int, counts2: Seq[Option[Int]]): Option[Int] = 
-    counts2 match {
-      case None    +: tail => None                   // <7>
-      case Some(i) +: tail => sum(accum + i, tail)   // <8>
-      case Nil             => Some(accum)            // <9>
+  def sum(accum: Int, countSteps2: Seq[Step]): Option[Int] = 
+    countSteps2 match {
+      case Nil          => Some(accum)            // <6>
+      case step +: tail => step(accum) match {    // <7>
+        case None     => None                     // <8>
+        case Some(i2) => sum(i2, tail)            // <9>
+      }
     } 
-  sum(0, counts)                                     // <10>
+  sum(0, countSteps)                              // <10>
 }
 
-sumCounts2(successfulCounts)
+sumCounts2(successfulSteps)
 // Returns: Option[Int] = Some(40)
 
-sumCounts2(partiallySuccessfulCounts)
+sumCounts2(partiallySuccessfulSteps)
 // Returns: Option[Int] = None
