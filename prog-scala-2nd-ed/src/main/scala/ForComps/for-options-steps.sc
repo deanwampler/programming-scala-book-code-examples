@@ -23,16 +23,17 @@ sumCounts1(successfulCounts)
 sumCounts1(partiallySuccessfulCounts)
 // Returns: Option[Int] = None
 
-// More verbose, but stops the "counts" iteration at the first None:
-def sumCounts2(counts: Seq[Option[Int]]): Option[Int] = {   // <6>
+// More verbose, but it stops the "counts" iteration at the first None
+// and it doesn't create intermediate Options:
+def sumCounts2(counts: Seq[Option[Int]]): Option[Int] = {  // <6>
   @annotation.tailrec
-  def sum(accum: Option[Int], counts2: Seq[Option[Int]]): Option[Int] = 
+  def sum(accum: Int, counts2: Seq[Option[Int]]): Option[Int] = 
     counts2 match {
-      case None    +: tail => None                           // <7>
-      case Some(i) +: tail => sum(accum map (_ + i), tail)   // <8>
-      case Nil             => accum                          // <9>
+      case None    +: tail => None                   // <7>
+      case Some(i) +: tail => sum(accum + i, tail)   // <8>
+      case Nil             => Some(accum)            // <9>
     } 
-  sum(Some(0), counts)                                       // <10>
+  sum(0, counts)                                     // <10>
 }
 
 sumCounts2(successfulCounts)
