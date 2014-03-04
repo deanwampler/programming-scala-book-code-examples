@@ -1,4 +1,4 @@
-// src/main/scala/ForComps/for-monadic-eithers-steps.sc
+// src/main/scala/ForComps/monads/for-eithers-steps.sc
 
 import ForComps.Process
 import scala.util.{ Either, Left, Right }

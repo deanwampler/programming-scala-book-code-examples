@@ -1,4 +1,4 @@
-// src/main/scala/ForComps/for-monadic-steps.scala
+// src/main/scala/ForComps/monads/for-steps.scala
 
 package ForComps
 

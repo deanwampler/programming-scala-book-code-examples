@@ -1,4 +1,4 @@
-// src/main/scala/ForComps/for-monadic-tries-steps.sc
+// src/main/scala/ForComps/monads/for-tries-steps.sc
 
 import ForComps.Process
 import scala.util.{ Try, Success, Failure }
