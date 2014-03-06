@@ -17,13 +17,13 @@ val partiallySuccessfulEitherSteps: Seq[Int => ES[Int]] =
   (i:Int) => Right(i + 25))
 
 val eitherProcess = new Process[Int, ES] {
-  def flatMap[T2 >: Int](                           // <2>
+  def flatMap[T2 >: Int](
       source: ES[Int])(
       f: Int => ES[T2]): ES[T2] =
     source.right flatMap f
 }
 
-eitherProcess.run(successfulEitherSteps)(Right(0))  // <3>
+eitherProcess.run(successfulEitherSteps)(Right(0))
 // Returns: ES[Int] = Right(40)
 
 eitherProcess.run(partiallySuccessfulEitherSteps)(Right(0))
