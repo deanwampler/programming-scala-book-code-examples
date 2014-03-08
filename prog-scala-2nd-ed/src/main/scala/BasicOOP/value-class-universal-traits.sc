@@ -5,8 +5,8 @@ trait Digitizer extends Any {
 }
 
 trait Formatter extends Any {             // <2>
-  def format(areaCode: String, exchange: String, whatsit: String): String =
-    s"($areaCode) $exchange-$whatsit"
+  def format(areaCode: String, exchange: String, subnumber: String): String =
+    s"($areaCode) $exchange-$subnumber"
 }
 
 class USPhoneNumber(val s: String) extends AnyVal 
@@ -16,8 +16,8 @@ class USPhoneNumber(val s: String) extends AnyVal
     val digs = digits(s)
     val areaCode = digs.substring(0,3)
     val exchange = digs.substring(3,6)
-    val whatsit  = digs.substring(6,10)
-    format(areaCode, exchange, whatsit)   // <3>
+    val subnumber  = digs.substring(6,10)
+    format(areaCode, exchange, subnumber)   // <3>
   }
 }
 
