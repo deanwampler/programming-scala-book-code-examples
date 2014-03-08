@@ -1,7 +1,7 @@
 // src/main/scala/Implicits/java-database-api.scala
 
 // A Java-like Database API, written in Scala for convenience.
-package databaseAPI {
+package database_api {
 
   case class InvalidColumnName(name: String)
     extends RuntimeException(s"Invalid column name $name")
@@ -14,7 +14,7 @@ package databaseAPI {
 }
 
 package javadb {
-  import databaseAPI._
+  import database_api._
 
   case class JRow(representation: Map[String,Any]) extends Row {
     private def get(colName: String): Any = 

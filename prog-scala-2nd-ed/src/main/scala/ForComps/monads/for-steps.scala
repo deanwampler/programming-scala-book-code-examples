@@ -1,6 +1,6 @@
 // src/main/scala/ForComps/monads/for-steps.scala
 
-package ForComps
+package forcomps
 
 import scala.language.higherKinds   // <1>
 

@@ -1,6 +1,6 @@
 // src/main/scala/BasicOOP/ui/radio-button-callbacks.scala
 
-package basicoop.ui
+package oop.ui
 import traits.ui._
 
 /**

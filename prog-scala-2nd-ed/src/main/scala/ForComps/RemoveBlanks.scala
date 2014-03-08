@@ -1,6 +1,6 @@
 // src/main/scala/ForComps/remove-blanks.scala
 
-package ForComps
+package forcomps
 
 object RemoveBlanks {
   

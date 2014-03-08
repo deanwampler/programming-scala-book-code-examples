@@ -1,5 +1,5 @@
 // src/test/scala/BasicOOP/ui/widget-spec.scala
-package basicoop.ui
+package oop.ui
 
 import org.scalatest.{ FunSpec, ShouldMatchers } 
 

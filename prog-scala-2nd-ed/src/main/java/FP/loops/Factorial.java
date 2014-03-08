@@ -1,6 +1,6 @@
 // src/main/java/FP/loops/Factorial.java
 
-package FP.loops;
+package fp.loops;
 
 public class Factorial {
   public static long factorial(long l) {

@@ -1,6 +1,6 @@
 // src/main/scala/BasicOOP/ui/widget.scala
 
-package basicoop.ui
+package oop.ui
 
 abstract class Widget {
   class Properties {
