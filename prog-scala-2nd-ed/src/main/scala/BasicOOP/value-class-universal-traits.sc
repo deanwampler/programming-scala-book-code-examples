@@ -1,6 +1,6 @@
 // src/main/scala/BasicOOP/value-class-universal-traits.sc
 
-trait AllDigits extends Any {
+trait Digitizer extends Any {
   def digits(s: String): String = s.replaceAll("""\D""", "")   // <1>
 }
 
@@ -10,7 +10,7 @@ trait Formatter extends Any {             // <2>
 }
 
 class USPhoneNumber(val s: String) extends AnyVal 
-    with AllDigits with Formatter {
+    with Digitizer with Formatter {
 
   override def toString = {
     val digs = digits(s)
