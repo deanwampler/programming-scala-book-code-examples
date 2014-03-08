@@ -22,9 +22,9 @@ object CalculatePayroll2 {
 
     val e = Employee("Buck Trends", 100000.0F, 0.25F, 200F, 0.10F, 0.05F)
     val pay = start(e) |> 
-      minus401k |> 
-      minusInsurance |> 
-      minusTax |> 
+      minus401k        |> 
+      minusInsurance   |> 
+      minusTax         |> 
       minusFinalDeductions
     val twoWeekGross = e.annualSalary / 26.0F
     val twoWeekNet   = pay.netPay
