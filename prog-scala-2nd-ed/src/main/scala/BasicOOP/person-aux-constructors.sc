@@ -7,6 +7,6 @@ val a2 = new Address("98765")
 
 new Person("Buck Trends1")
 new Person("Buck Trends2", Some(20), Some(a1))
-new Person("Buck Trends2", 20, a2)
-new Person("Buck Trends2", 20)
+new Person("Buck Trends3", 20, a2)
+new Person("Buck Trends4", 20)
 

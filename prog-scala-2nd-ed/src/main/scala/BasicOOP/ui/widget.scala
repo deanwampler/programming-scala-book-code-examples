@@ -3,16 +3,16 @@
 package oop.ui
 
 abstract class Widget {
-  class Properties {
-    import scala.collection.immutable.HashMap
 
-    private var values: Map[String, Any] = new HashMap
+  class Properties {
+
+    private var values = Map.empty[String, Any]
 
     def size = values.size
 
-    def get(key: String) = values.get(key)
+    def get(key: String): Any = values.get(key)
 
-    def update(key: String, value: Any) = {
+    def update(key: String, value: Any): Unit = {
       // Do some preprocessing, e.g., filtering.
       values = values.updated(key, value)
       // Do some postprocessing.

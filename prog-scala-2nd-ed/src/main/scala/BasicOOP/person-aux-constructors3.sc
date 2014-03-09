@@ -25,26 +25,26 @@ object Person3 {
 }
 
 Person3("Buck Trends1")                                    // <2>
-// Result: Person3 = Person3(Buck Trends1,None,None)
+// Result: Person3(Buck Trends1,None,None)
 
 Person3("Buck Trends2", Some(20), Some(a1))                // <2>
-// Result: Person3 = Person3(Buck Trends2,Some(20),
+// Result: Person3(Buck Trends2,Some(20),
 //           Some(Address(1 Scala Lane,Anytown,CA,98765)))
 
-Person3("Buck Trends2", 20, a1)
-// Result: Person3 = Person3(Buck Trends2,Some(20),
+Person3("Buck Trends3", 20, a1)
+// Result: Person3(Buck Trends3,Some(20),
 //           Some(Address(1 Scala Lane,Anytown,CA,98765)))
 
-Person3("Buck Trends2", Some(20))                          // <2>
-// Result: Person3 = Person3(Buck Trends2,Some(20),None)
+Person3("Buck Trends4", Some(20))                          // <2>
+// Result: Person3(Buck Trends4,Some(20),None)
 
-Person3("Buck Trends2", 20)
-// Result: Person3 = Person3(Buck Trends2,Some(20),None)
+Person3("Buck Trends5", 20)
+// Result: Person3(Buck Trends5,Some(20),None)
 
-Person3("Buck Trends2", address = Some(a2))                // <2>
-// Result: Person3 = Person3(Buck Trends2,None,
+Person3("Buck Trends6", address = Some(a2))                // <2>
+// Result: Person3(Buck Trends6,None,
 //           Some(Address(<unknown>,Anytown,CA,98765)))
 
-Person3("Buck Trends2", address = a2)
-// Result: Person3 = Person3(Buck Trends2,None,
+Person3("Buck Trends7", address = a2)
+// Result: Person3(Buck Trends7,None,
 //           Some(Address(<unknown>,Anytown,CA,98765)))
