@@ -1,4 +1,4 @@
-// src/main/scala/BasicOOP/aged-person-subclass.sc
+// src/main/scala/BasicOOP/employee-subclass.sc
 
 import oop.Address
 
@@ -7,14 +7,15 @@ case class Person(    // This was Person2 previously, now renamed.
   age: Option[Int] = None, 
   address: Option[Address] = None) 
 
-class Employee(
+class Employee(                                            // <1>
   name: String, 
   age: Option[Int] = None, 
   address: Option[Address] = None,
-  title: String = "<unknown>", 
-  manager: Option[Employee] = None) extends Person(name, age, address) {
+  val title: String = "<unknown>",                         // <2>
+  val manager: Option[Employee] = None) extends Person(name, age, address) {
 
-  override def toString = s"Employee($name, $age, $address, $title, $manager)"
+  override def toString =                                  // <3>
+    s"Employee($name, $age, $address, $title, $manager)"
 }
 
 val a1 = new Address("1 Scala Lane", "Anytown", "CA", "98765")

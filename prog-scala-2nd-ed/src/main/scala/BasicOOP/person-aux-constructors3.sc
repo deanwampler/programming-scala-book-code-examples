@@ -24,10 +24,10 @@ object Person3 {
     new Person3(name, address = Some(address))  
 }
 
-Person3("Buck Trends1")                                    // <2>
+Person3("Buck Trends1")                                    // <2> Primary
 // Result: Person3(Buck Trends1,None,None)
 
-Person3("Buck Trends2", Some(20), Some(a1))                // <2>
+Person3("Buck Trends2", Some(20), Some(a1))                // Primary
 // Result: Person3(Buck Trends2,Some(20),
 //           Some(Address(1 Scala Lane,Anytown,CA,98765)))
 
@@ -35,13 +35,13 @@ Person3("Buck Trends3", 20, a1)
 // Result: Person3(Buck Trends3,Some(20),
 //           Some(Address(1 Scala Lane,Anytown,CA,98765)))
 
-Person3("Buck Trends4", Some(20))                          // <2>
+Person3("Buck Trends4", Some(20))                          // Primary
 // Result: Person3(Buck Trends4,Some(20),None)
 
 Person3("Buck Trends5", 20)
 // Result: Person3(Buck Trends5,Some(20),None)
 
-Person3("Buck Trends6", address = Some(a2))                // <2>
+Person3("Buck Trends6", address = Some(a2))                // Primary
 // Result: Person3(Buck Trends6,None,
 //           Some(Address(<unknown>,Anytown,CA,98765)))
 

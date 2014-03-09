@@ -8,7 +8,7 @@ object Database {                                          // <1>
     RuntimeException(message, cause)
 
   trait Status
-  case object Disconnected extends Status                  // <3>
+  case object Disconnected extends Status                  // <4>
   case class  Connected(connection: Connection)  extends Status
   case class  QuerySucceeded(results: ResultSet) extends Status
   case class  QueryFailed(e: DatabaseException)  extends Status
@@ -17,7 +17,7 @@ object Database {                                          // <1>
 class Database {
   import Database._
   
-  def connect(server: String): Status = ???                // <4>
+  def connect(server: String): Status = ???                // <5>
   def disconnect(): Status = ???
 
   def query(/*...*/): Status = ???
