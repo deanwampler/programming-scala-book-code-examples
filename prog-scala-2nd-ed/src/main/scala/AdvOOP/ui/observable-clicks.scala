@@ -2,11 +2,12 @@
 
 package advoop.ui
 
-import traits.observer._
+import traits.ui2.Clickable
+import traits.observer.Subject
 
-trait ObservableClicks extends Clickable with Subject {
-    abstract override def click() = { 
+trait ObservableClicks extends Clickable with Subject[Clickable] {
+    abstract override def click(): Unit = { 
         super.click()
-        notifyObservers
+        notifyObservers(this)
     }
 }

@@ -12,7 +12,7 @@ object Widget {
   val TextFieldExtractorRE = """\(textfield: text=([^,]+),\s+\(Widget\)\)""".r
 
   def apply(specification: String): Option[Widget] = specification match {
-    case ButtonExtractorRE(label)   => new Some(new Button(label))
+    case ButtonExtractorRE(label)   => new Some(new Button2(label))
     case TextFieldExtractorRE(text) => new Some(new TextField(text))
     case _ => None
   }

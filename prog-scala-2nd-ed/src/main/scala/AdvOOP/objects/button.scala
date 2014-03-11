@@ -1,13 +1,12 @@
 // src/main/scala/AdvOOP/objects/button.scala
 
 package advoop.objects
-import advoop.ui.Clickable
 
-class Button(val label: String) extends Widget with Clickable {
+import traits.ui2.Clickable
+
+class Button2(val label: String) extends Widget with Clickable {
   
-  def click() = {
-    // Logic to give the appearance of clicking a button...
-  }
+  def updateUI() = { /* Logic to update appearance of the button. */ }
   
   def draw() = {
     // Logic to draw the button on the display, web page, etc.
@@ -16,6 +15,6 @@ class Button(val label: String) extends Widget with Clickable {
   override def toString() = "(button: label="+label+", "+super.toString()+")"
 }
 
-object Button {
-  def unapply(button: Button) = Some(button.label)
+object Button2 {
+  def unapply(button: Button2) = Some(button.label)
 }

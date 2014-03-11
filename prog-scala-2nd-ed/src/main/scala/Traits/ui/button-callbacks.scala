@@ -3,20 +3,22 @@
 package traits.ui
 
 class ButtonWithCallbacks(val label: String, 
-    val clickedCallbacks: List[() => Unit]) extends Widget {
+    val callbacks: List[() => Unit] = Nil) extends Widget {
 
-  require(clickedCallbacks != null, "Callback list can't be null!")
-
-  def this(label: String, clickedCallback: () => Unit) =
-    this(label, List(clickedCallback))
-
-  def this(label: String) = {
-    this(label, Nil)
-    // println("Warning: button has no click callbacks!")
+  def click(): Unit = {
+    updateUI()       
+    callbacks.foreach(f => f())
   }
 
-  def click() = {
-    // ... logic to give the appearance of clicking a physical button ...
-    clickedCallbacks.foreach(f => f())
-  }
+  protected def updateUI(): Unit = { /* logic to change GUI appearance */ }
 }
+
+object ButtonWithCallbacks {
+
+  def apply(label: String, callback: () => Unit) =
+    new ButtonWithCallbacks(label, List(callback))
+
+  def apply(label: String) =
+    new ButtonWithCallbacks(label, Nil)
+}
+

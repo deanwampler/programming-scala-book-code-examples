@@ -1,13 +1,12 @@
 // src/main/scala/AdvOOP/objects/text-field.scala
 
 package advoop.objects
-import advoop.ui.Clickable
+
+import traits.ui2.Clickable
 
 class TextField(var text: String) extends Widget with Clickable {
     
-    def click() = {
-        // ... logic to select the appropriate point in the text.
-    }
+    def updateUI() = { /* Logic to update appearance of the text field. */ }
     
     def draw() = {
         // ... logic to draw the text field on the display, web page, etc.

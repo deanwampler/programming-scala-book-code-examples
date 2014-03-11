@@ -3,7 +3,8 @@
 package traits.ui
 
 class Button(val label: String) extends Widget {
-  def click() = {
-    // Logic to give the appearance of clicking a button...
-  }
+  
+  def click(): Unit = updateUI()       
+
+  def updateUI(): Unit = { /* logic to change GUI appearance */ }
 }

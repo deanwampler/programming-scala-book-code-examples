@@ -2,6 +2,8 @@
 
 package advoop.objects
 
+import traits.ui._
+
 /**
  * Button with two states, on or off, like an old-style, 
  * channel-selection botton on a radio.

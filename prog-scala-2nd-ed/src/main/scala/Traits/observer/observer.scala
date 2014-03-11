@@ -1,12 +1,17 @@
 // src/main/scala/Traits/observer/observer.scala
 
 package traits.observer
-import scala.language.reflectiveCalls
 
-trait Subject {
-  type Observer = { def receiveUpdate(subject: Any) }
+trait Observer[-State] {                                             // <1>
+  def receiveUpdate(state: State): Unit
+}
 
-  private var observers = List[Observer]()
-  def addObserver(observer:Observer) = observers ::= observer
-  def notifyObservers = observers foreach (_.receiveUpdate(this))
+trait Subject[State] {                                               // <2>
+  private var observers: List[Observer[State]] = Nil                 // <3>
+
+  def addObserver(observer:Observer[State]): Unit =                  // <4>
+    observers ::= observer                                           // <5>
+
+  def notifyObservers(state: State): Unit =                          // <6>
+    observers foreach (_.receiveUpdate(state))
 }

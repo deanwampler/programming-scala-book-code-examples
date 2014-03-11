@@ -3,9 +3,9 @@
 package traits.ui2
 import traits.observer._
 
-trait ObservableClicks extends Clickable with Subject {
-  abstract override def click() = {
+trait ObservableClicks extends Clickable with Subject[Clickable] {
+  abstract override def click(): Unit = {        // <1>
     super.click()
-    notifyObservers
+    notifyObservers(this)
   }
 }
