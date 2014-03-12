@@ -8,4 +8,4 @@ import WeekDay._
 
 def isWorkingDay(d: WeekDay) = ! (d == Sat || d == Sun)
 
-WeekDay filter isWorkingDay foreach println
+WeekDay.values filter isWorkingDay foreach println
