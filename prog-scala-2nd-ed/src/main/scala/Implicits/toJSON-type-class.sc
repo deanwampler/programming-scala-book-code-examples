@@ -18,7 +18,7 @@ implicit class AddressToJSON(address: Address) extends ToJSON {
       |${indent}"street": "${address.street}", 
       |${indent}"city":   "${address.city}", 
       |${indent}"state":  "${address.state}", 
-      |${indent}"zip":    "${address.zip}" 
+      |${indent}"zip":    ${address.zip} 
       |$outdent}""".stripMargin
   }
 }
@@ -28,7 +28,7 @@ implicit class PersonToJSON(person: Person) extends ToJSON {
     val (outdent, indent) = indentation(level)
     s"""{
       |${indent}"name":    "${person.name}", 
-      |${indent}"age":     "${person.age}", 
+      |${indent}"age":     ${person.age}, 
       |${indent}"address": ${person.address.toJSON(level + 1)} 
       |$outdent}""".stripMargin
   }
