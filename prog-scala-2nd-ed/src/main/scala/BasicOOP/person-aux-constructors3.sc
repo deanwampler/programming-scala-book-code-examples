@@ -43,8 +43,8 @@ Person3("Buck Trends5", 20)
 
 Person3("Buck Trends6", address = Some(a2))                // Primary
 // Result: Person3(Buck Trends6,None,
-//           Some(Address(<unknown>,Anytown,CA,98765)))
+//           Some(Address([unknown],Anytown,CA,98765)))
 
 Person3("Buck Trends7", address = a2)
 // Result: Person3(Buck Trends7,None,
-//           Some(Address(<unknown>,Anytown,CA,98765)))
+//           Some(Address([unknown],Anytown,CA,98765)))

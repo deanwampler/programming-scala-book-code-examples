@@ -22,4 +22,4 @@ new Person2("Buck Trends3", Some(20))
 
 new Person2("Buck Trends4", address = Some(a2))
 // Result: Person2(Buck Trends4,None,
-//           Some(Address(<unknown>,Anytown,CA,98765)))
+//           Some(Address([unknown],Anytown,CA,98765)))

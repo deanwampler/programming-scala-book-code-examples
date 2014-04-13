@@ -5,7 +5,7 @@ package oop
 case class Address(street: String, city: String, state: String, zip: String) {
 
   def this(zip: String) =                                       // <1>
-    this("<unknown>", Address.zipToCity(zip), Address.zipToState(zip), zip)
+    this("[unknown]", Address.zipToCity(zip), Address.zipToState(zip), zip)
 }
 
 object Address {
