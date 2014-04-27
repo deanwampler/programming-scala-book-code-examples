@@ -1,4 +1,4 @@
-// src/main/scala/AdvOOP/shapes/shapes-usage-example3-v28.sc
+// src/main/scala/ObjectSystem/shapes/shapes-usage-example3-v28.sc
 // Scala version 2.8 only.
 
 import advoop.shapes._

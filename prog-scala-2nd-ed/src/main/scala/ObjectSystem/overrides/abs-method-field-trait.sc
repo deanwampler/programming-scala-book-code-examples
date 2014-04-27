@@ -1,4 +1,4 @@
-// src/main/scala/AdvOOP/overrides/abs-method-field-trait.sc
+// src/main/scala/ObjectSystem/overrides/abs-method-field-trait.sc
 
 trait AbstractNameTrait {
   def name: String

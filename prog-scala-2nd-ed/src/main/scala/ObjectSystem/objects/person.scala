@@ -1,6 +1,6 @@
-// src/main/scala/AdvOOP/objects/person.scala
+// src/main/scala/ObjectSystem/objects/person.scala
 
-package advoop.objects
+package oop.objects
 
 class Person(val name: String, val age: Int) {
   override def toString = "name: " + name + ", age: " + age

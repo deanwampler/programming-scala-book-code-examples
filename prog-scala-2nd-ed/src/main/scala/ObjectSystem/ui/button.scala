@@ -1,20 +1,17 @@
-// src/main/scala/AdvOOP/objects/button.scala
+// src/main/scala/ObjectSystem/ui/button.scala
 
-package advoop.objects
+package oop.ui
 
 import traits.ui2.Clickable
 
-class Button2(val label: String) extends Widget with Clickable {
-  
-  def updateUI() = { /* Logic to update appearance of the button. */ }
-  
-  def draw() = {
-    // Logic to draw the button on the display, web page, etc.
-  }
-  
-  override def toString() = "(button: label="+label+", "+super.toString()+")"
+class Button(val label: String) extends Widget with Clickable {
+
+  // Simple hack for demonstration purposes:
+  def draw(): Unit = println(s"Drawing: $this")
+
+  // From Clickable:
+  protected def updateUI(): Unit = println(s"$this clicked; updating UI")
+
+  override def toString() = s"(button: label=$label, ${super.toString()})"
 }
 
-object Button2 {
-  def unapply(button: Button2) = Some(button.label)
-}

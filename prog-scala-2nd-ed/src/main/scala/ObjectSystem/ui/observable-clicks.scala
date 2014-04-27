@@ -1,6 +1,6 @@
-// src/main/scala/AdvOOP/ui/observable-clicks.scala
+// src/main/scala/ObjectSystem/ui/observable-clicks.scala
 
-package advoop.ui
+package oop.ui
 
 import traits.ui2.Clickable
 import traits.observer.Subject

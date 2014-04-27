@@ -1,4 +1,4 @@
-// src/main/scala/AdvOOP/overrides/method-field-class.sc
+// src/main/scala/ObjectSystem/overrides/method-field-class.sc
 
 class Parent {
   def name = "Parent"

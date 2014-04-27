@@ -1,7 +1,7 @@
-// src/main/scala/AdvOOP/overrides/final-member.scalaX
+// src/main/scala/ObjectSystem/overrides/final-member.scalaX
 // WON'T COMPILE.
 
-package advoop.overrides
+package oop.overrides
 
 class NotFixed {
   final def fixedMethod = "fixed"

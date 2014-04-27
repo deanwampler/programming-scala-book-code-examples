@@ -1,6 +1,6 @@
-// src/test/scala/AdvOOP/objects/widget-apply-spec.scala
+// src/test/scala/ObjectSystem/objects/widget-apply-spec.scala
 
-package advoop.objects
+package oop.objects
 
 import org.scalatest.{ FunSpec, ShouldMatchers } 
 

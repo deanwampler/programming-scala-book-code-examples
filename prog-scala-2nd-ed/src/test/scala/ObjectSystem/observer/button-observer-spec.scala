@@ -1,6 +1,6 @@
-// src/test/scala/AdvOOP/observer/button-observer-spec.scala
+// src/test/scala/ObjectSystem/observer/button-observer-spec.scala
 
-package advoop.ui
+package oop.ui
 
 import advoop.observer._
 import traits.ui.ButtonCountObserver

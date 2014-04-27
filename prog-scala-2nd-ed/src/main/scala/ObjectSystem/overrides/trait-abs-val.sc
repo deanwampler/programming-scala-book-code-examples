@@ -1,4 +1,4 @@
-// src/main/scala/AdvOOP/overrides/trait-abs-val.sc
+// src/main/scala/ObjectSystem/overrides/trait-abs-val.sc
 
 trait AbstractT1 {
   val name: String

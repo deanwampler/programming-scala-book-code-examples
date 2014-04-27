@@ -1,6 +1,6 @@
-// src/main/scala/AdvOOP/shapes/shapes-case-id.scala
+// src/main/scala/ObjectSystem/shapes/shapes-case-id.scala
 
-package advoop.shapes.id {  
+package oop.shapes.id {  
   case class Point(x: Double, y: Double)
 
   abstract class Shape(val id: String) { 

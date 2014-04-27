@@ -1,4 +1,4 @@
-// src/main/scala/AdvOOP/shapes/shapes-case-equals-ambiguity.sc
+// src/main/scala/ObjectSystem/shapes/shapes-case-equals-ambiguity.sc
 
 import advoop.shapes.id._
 

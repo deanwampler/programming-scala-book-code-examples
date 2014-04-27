@@ -1,6 +1,6 @@
-// src/test/scala/AdvOOP/ui/button-clickable-observer-vetoable-spec.scala
+// src/test/scala/ObjectSystem/ui/button-clickable-observer-vetoable-spec.scala
 
-package advoop.ui
+package oop.ui
 
 import advoop.observer._
 import traits.ui.ButtonCountObserver

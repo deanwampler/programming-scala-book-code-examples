@@ -1,4 +1,4 @@
-// src/main/scala/AdvOOP/shapes/shapes-usage-example1.sc
+// src/main/scala/ObjectSystem/shapes/shapes-usage-example1.sc
 
 import advoop.shapes._
 

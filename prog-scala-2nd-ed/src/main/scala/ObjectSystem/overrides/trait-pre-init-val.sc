@@ -1,4 +1,4 @@
-// src/main/scala/AdvOOP/overrides/trait-pre-init-val.sc
+// src/main/scala/ObjectSystem/overrides/trait-pre-init-val.sc
 
 trait AbstractT2 {
   println("In AbstractT2:")
@@ -7,10 +7,9 @@ trait AbstractT2 {
   println("AbstractT2: value = "+value+", inverse = "+inverse)
 }
 
-val c2c = new {
-  // Only initializations are allowed in pre-init. blocks.
-  // println("In c2c:")  
+val obj = new {
+  // println("In obj:")      // <1>
   val value = 10
 } with AbstractT2
 
-println("c2c.value = "+c2c.value+", inverse = "+c2c.inverse)
+println("obj.value = "+obj.value+", inverse = "+obj.inverse)

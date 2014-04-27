@@ -1,6 +1,6 @@
-// src/test/scala/AdvOOP/objects/text-field-unapply-spec.scala
+// src/test/scala/ObjectSystem/objects/text-field-unapply-spec.scala
 
-package advoop.objects
+package oop.objects
 
 import org.scalatest.{ FunSpec, ShouldMatchers } 
 
