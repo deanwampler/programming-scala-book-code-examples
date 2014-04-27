@@ -1,30 +1,11 @@
 // src/main/scala/BasicOOP/person-aux-constructors3.sc
 
-import oop.Address
+import oop.{Address, Person3}
 
 val a1 = new Address("1 Scala Lane", "Anytown", "CA", "98765")
 val a2 = new Address("98765")
 
-// NOTE: Use :paste in the REPL for the case class and companion object
-case class Person3(
-  name: String, 
-  age: Option[Int] = None, 
-  address: Option[Address] = None) 
-
-object Person3 {
-
-  def apply(name: String): Person3 = new Person3(name)     // <1>  
-
-  def apply(name: String, age: Int): Person3 = new Person3(name, Some(age))
-  
-  def apply(name: String, age: Int, address: Address): Person3 = 
-    new Person3(name, Some(age), Some(address))
-  
-  def apply(name: String, address: Address): Person3 = 
-    new Person3(name, address = Some(address))  
-}
-
-Person3("Buck Trends1")                                    // <2> Primary
+Person3("Buck Trends1")                                    // <1> Primary
 // Result: Person3(Buck Trends1,None,None)
 
 Person3("Buck Trends2", Some(20), Some(a1))                // Primary
