@@ -1,24 +1,24 @@
 // src/main/scala/ObjectSystem/linearization/linearization3.sc
 
 class C1 {
-  def m(previous: String) = List("C1("+previous+")")
+  def m(previous: String) = print(s"C1($previous)")
 }
 
 trait T1 extends C1 {
-  override def m(p: String) = { "T1" :: super.m("T1") }
+  override def m(p: String) = { super.m(s"T1($p)") }
 }
 
 trait T2 extends C1 {
-  override def m(p: String) = { "T2" :: super.m("T2") }
+  override def m(p: String) = { super.m(s"T2($p)") }
 }
 
 trait T3 extends C1 {
-  override def m(p: String) = { "T3" :: super.m("T3") }
+  override def m(p: String) = { super.m(s"T3($p)") }
 }
 
 class C2 extends T1 with T2 with T3 {
-  override def m(p: String) = { "C2" :: super.m("C2") }
+  override def m(p: String) = { super.m(s"C2($p)") }
 }
 
 val c2 = new C2
-println(c2.m(""))
+c2.m("")
