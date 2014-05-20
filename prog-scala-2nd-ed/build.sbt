@@ -1,16 +1,17 @@
 name := "Programming Scala, Second Edition: Code examples"
 
-version := "2.0-M002"
+version := "2.0"
 
 organization := "org.programming-scala"
 
 // Build against several versions of Scala
-crossScalaVersions := Seq("2.10.4", "2.11.0")
+crossScalaVersions := Seq("2.10.4", "2.11.1")
 
-// It's tricky findng versions of the deps. for the 2.11 milestone releases!
-// Also, Scala XML is a separate library in 2.11. 
+// Scala 2.11 split the standard library into smaller components.
+// The XML and parser combinator support are now separate jars.
+// I use the if condition to conditionally add these extra dependencies. 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-actor" % "2.3.2",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.3",
   "org.scalacheck"    %% "scalacheck" % "1.11.3" % "test",
   "org.scalatest"     %% "scalatest"  % "2.1.4"  % "test",
   // JUnit is used for some Java interop. examples. A driver for JUnit:
