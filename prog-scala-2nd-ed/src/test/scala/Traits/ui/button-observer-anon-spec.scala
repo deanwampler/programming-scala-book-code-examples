@@ -10,7 +10,7 @@ class ButtonObserverAnonSpec extends FunSpec with ShouldMatchers {
       val observableButton = new Button("Okay") with Subject {
         override def click() = {
           super.click()
-          notifyObservers
+          notifyObservers()
         }
       }
 

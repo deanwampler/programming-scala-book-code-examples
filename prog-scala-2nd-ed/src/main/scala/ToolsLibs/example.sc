@@ -6,5 +6,4 @@ def printMessage(msg: Message) = {
   println(msg)
 }
 
-printMessage(new Message(
-    "Must compile this script with scalac -Xscript <name>!"))
+printMessage(new Message("This works fine with the REPL"))

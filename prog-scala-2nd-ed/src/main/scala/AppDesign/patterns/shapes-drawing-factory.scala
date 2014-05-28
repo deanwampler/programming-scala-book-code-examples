@@ -2,17 +2,17 @@
 
 package appdesign.patterns.shapes {
   trait Drawing {
-    def draw: Unit
+    def draw(): Unit
   }
 
   trait CircleDrawing extends Drawing {
-    def draw = println("Circle.draw " + this)
+    def draw() = println("Circle.draw " + this)
   }
   trait RectangleDrawing extends Drawing {
-    def draw = println("Rectangle.draw: " + this)
+    def draw() = println("Rectangle.draw: " + this)
   }
   trait TriangleDrawing extends Drawing {
-    def draw = println("Triangle.draw: " + this)
+    def draw() = println("Triangle.draw: " + this)
   }
   
   object ShapeFactory {

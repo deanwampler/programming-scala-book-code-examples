@@ -6,7 +6,7 @@ import scala.language.implicitConversions
 package appdesign.patterns.shapes {  
 
   class ShapeDrawer(val shape: Shape) {
-    def draw = shape match {
+    def draw() = shape match {
       case c: Circle    => println("Circle.draw: " + c)
       case r: Rectangle => println("Rectangle.draw: " + r)
       case t: Triangle  => println("Triangle.draw: " + t)

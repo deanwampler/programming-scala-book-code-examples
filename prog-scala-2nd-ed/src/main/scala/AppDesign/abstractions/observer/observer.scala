@@ -10,7 +10,7 @@ abstract class SubjectObserver {
     self: S =>    // #1
     private var observers = List[O]()
     def addObserver(observer: O) = observers ::= observer
-    def notifyObservers = observers foreach (_.receiveUpdate(self))  // #2
+    def notifyObservers() = observers foreach (_.receiveUpdate(self))  // #2
   }
   
   trait Observer {

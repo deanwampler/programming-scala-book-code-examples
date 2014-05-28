@@ -13,7 +13,7 @@ class ButtonObserverSpec extends FunSpec with ShouldMatchers {
         new Button("button") with SubjectForReceiveUpdateObservers {
         override def click() = { 
           super.click()
-          notifyObservers
+          notifyObservers()
         }
       }
       val buttonObserver = new ButtonCountObserver
@@ -28,7 +28,7 @@ class ButtonObserverSpec extends FunSpec with ShouldMatchers {
         new Button("button") with SubjectForFunctionalObservers {
         override def click() = { 
           super.click()
-          notifyObservers
+          notifyObservers()
         }
       }
       var count = 0

@@ -30,7 +30,9 @@ incOptions := incOptions.value.withNameHashing(true)
 
 val commonOptions = Seq(
   "-encoding", "UTF-8", "-optimise", 
-  "-deprecation", "-unchecked", "-feature")
+  "-deprecation", "-unchecked", "-feature", "-Xlint")
+// "-explaintypes" - Add this when you need more explanatory messages for type
+// errors.
 // "-Yinline-warnings" - Warns if constructs have the @inline annotation, but
 // inlining isn't possible. More annoying than useful, most of the time...
 
