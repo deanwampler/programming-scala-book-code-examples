@@ -1,7 +1,6 @@
-// src/main/scala/ObjectSystem/shapes/shapes-usage-example3-v28.sc
-// Scala version 2.8 only.
+// src/main/scala/ObjectSystem/shapes/shapes-usage-example3.sc
 
-import advoop.shapes._
+import oop.shapes._
 
 val circle1 = Circle(Point(0.0, 0.0), 2.0)
 val circle2 = circle1 copy (radius = 4.0)

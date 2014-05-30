@@ -1,6 +1,6 @@
 // src/main/scala/ObjectSystem/shapes/shapes-case-equals-ambiguity.sc
 
-import advoop.shapes.id._
+import oop.shapes.id._
 
 case class FancyCircle(name: String, override val id: String, 
     override val center: Point, override val radius: Double)

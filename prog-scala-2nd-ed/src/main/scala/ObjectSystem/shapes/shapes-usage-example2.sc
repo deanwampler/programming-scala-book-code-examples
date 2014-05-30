@@ -1,6 +1,6 @@
 // src/main/scala/ObjectSystem/shapes/shapes-usage-example2.sc
 
-import advoop.shapes._
+import oop.shapes._
 
 val shapesList = List(
   Circle(Point(0.0, 0.0), 1.0),

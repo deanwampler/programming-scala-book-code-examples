@@ -5,7 +5,7 @@ version := "2.0"
 organization := "org.programming-scala"
 
 // Build against several versions of Scala
-crossScalaVersions := Seq("2.10.4", "2.11.1")
+crossScalaVersions := Seq("2.11.1", "2.10.4")
 
 // Scala 2.11 split the standard library into smaller components.
 // The XML and parser combinator support are now separate jars.
