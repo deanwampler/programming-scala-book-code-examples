@@ -5,7 +5,6 @@ package dsls.payroll.dsl
 import dsls.payroll._
 import dsls.payroll.dsl.rules._
 import dsls.payroll.Type2Money._
-import dsls.payroll.{Money, ArbitraryMoney, Employee, Name}
 import scala.language.implicitConversions
 import org.scalatest.{ FunSpec, ShouldMatchers } 
 
@@ -35,7 +34,7 @@ class PayrollSpec extends FunSpec with ShouldMatchers {
         val actual = payrollCalculator(buck).asInstanceOf[Paycheck] 
         actual.gross      shouldEqual expectedGross
         actual.net        shouldEqual expectedNet
-        actual.deductions shouldEqual  expectedDeductions
+        actual.deductions shouldEqual expectedDeductions
       }
     }
   }

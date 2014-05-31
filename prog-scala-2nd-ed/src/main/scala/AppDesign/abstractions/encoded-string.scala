@@ -23,7 +23,7 @@ package appdesign.abstractions.encodedstring {
       case Separator.TAB   => impl.TSV(s)
     }
 
-    def unapply(es: EncodedString) = Some(Pair(es.string, es.separator))
+    def unapply(es: EncodedString) = Some((es.string, es.separator))
   }
   
   package impl {

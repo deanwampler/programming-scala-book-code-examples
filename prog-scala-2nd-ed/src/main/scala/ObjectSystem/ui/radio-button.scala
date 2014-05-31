@@ -12,5 +12,5 @@ class RadioButton(val on: Boolean, label: String) extends Button(label)
 
 object RadioButton {
   def unapply(button: RadioButton) = Some((button.on, button.label))
-                 // equivalent to: = Some(Pair(button.on, button.label))
+                 // equivalent to: = Some(Tuple2(button.on, button.label))
 }

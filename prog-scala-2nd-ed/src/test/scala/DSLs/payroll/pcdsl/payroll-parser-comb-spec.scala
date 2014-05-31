@@ -24,7 +24,7 @@ class PayrollParserCombinatorsSpec extends FunSpec with ShouldMatchers {
                      is salary for 2 weeks minus deductions for {}"""
       val p = new PayrollParserCombinators(employees)
       p.parseAll(p.paycheck, input) match {
-        case p.Success(Pair(employee, paycheck),_) =>
+        case p.Success(Tuple2(employee, paycheck),_) =>
           employee shouldEqual buck
           paycheck.gross shouldEqual gross
           paycheck.net   shouldEqual gross
@@ -46,7 +46,7 @@ class PayrollParserCombinatorsSpec extends FunSpec with ShouldMatchers {
 
       val p = new PayrollParserCombinators(employees)
       p.parseAll(p.paycheck, input) match {
-        case p.Success(Pair(employee, paycheck),_) =>
+        case p.Success(Tuple2(employee, paycheck),_) =>
           employee shouldEqual buck
           val deductions = (gross * .4) + Money(500)
           val net = gross - deductions

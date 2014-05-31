@@ -9,7 +9,7 @@ import java.math.{BigDecimal => JBigDecimal,
  * If you've worked in Finance, you know that doing Money arithmetic
  * is notoriously difficult, due to rounding errors, etc. This class
  * does NOT solve that problem and it shouldn't be used as is in
- * production. See the notes for {@link equals(obj: Any)}.
+ * production.
  */
 case class Money(amount: BigDecimal) {
 
@@ -40,11 +40,10 @@ case class Money(amount: BigDecimal) {
 }
 
 object Money {
-  def apply(amount: JBigDecimal) = new Money(scaled(BigDecimal(amount, context)))
   def apply(amount: Double)      = new Money(scaled(BigDecimal(amount, context)))
   def apply(amount: Long)        = new Money(scaled(BigDecimal(amount, context)))
   def apply(amount: Int)         = new Money(scaled(BigDecimal(amount, context)))
-  
+
   protected def scaled(d: BigDecimal) = d.setScale(scale, roundingMode)
   
   val scale = 12
@@ -55,7 +54,6 @@ object Money {
 
 object Type2Money {
   implicit def bigDecimal2Money(b: BigDecimal)   = Money(b)
-  implicit def jBigDecimal2Money(b: JBigDecimal) = Money(b)
   implicit def double2Money(d: Double)           = Money(d)
   implicit def long2Money(l: Long)               = Money(l)
   implicit def int2Money(i: Int)                 = Money(i)
