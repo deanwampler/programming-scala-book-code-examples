@@ -4,6 +4,8 @@ version := "2.0"
 
 organization := "org.programming-scala"
 
+scalaVersion := "2.11.1"
+
 // Build against several versions of Scala
 crossScalaVersions := Seq("2.11.1", "2.10.4")
 
@@ -20,8 +22,10 @@ libraryDependencies ++= Seq(
 ) ++ (
   if (scalaVersion.value startsWith "2.11") 
     Seq(
-      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.0",
-      "org.scala-lang.modules" %% "scala-xml" % "1.0.0")
+      // Could use this to get everything:
+      // "org.scala-lang.modules" %% "scala-library-all" % "2.11.1")
+      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1",
+      "org.scala-lang.modules" %% "scala-xml" % "1.0.2")
   else Seq.empty)
 
 // enable improved (experimental) incremental compilation algorithm called 
@@ -43,6 +47,10 @@ scalacOptions <<= scalaVersion map { version: String =>
 }
 
 javacOptions  ++= Seq("-Xlint:unchecked", "-Xlint:deprecation")
+
+// Enable improved incremental compilation feature in 2.11.X.
+// see http://www.scala-lang.org/news/2.11.1
+incOptions := incOptions.value.withNameHashing(true)
 
 // Options passed to the Scala REPL:
 //consoleOptions ++= commonOptions
