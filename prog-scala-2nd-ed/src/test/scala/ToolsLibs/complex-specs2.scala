@@ -1,4 +1,4 @@
-// src/test/scala/ToolsLibs/complex-specs2.scalaX
+// src/test/scala/ToolsLibs/complex-specs2.scala
 // This file has the "X" suffix because the SBT build doesn't
 // include the specs2 dependencies. Hence, it won't compile,
 // but the book's example is here for your convenience.

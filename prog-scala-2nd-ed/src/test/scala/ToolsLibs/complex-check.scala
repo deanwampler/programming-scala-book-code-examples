@@ -1,28 +1,52 @@
-// src/test/scala/ToolsLibs/complex-test.scala
+// src/main/scala/ToolsLibs/complex-check.sc
 
 package toolslibs
 import org.scalatest.FunSuite
+import org.scalatest.prop.PropertyChecks
 
-class ComplexSuite extends FunSuite {
-
-  val c1 = Complex(1.2, 3.4)
-  val c2 = Complex(5.6, 7.8)
-
-  test("addition with (0, 0)") {
-    assert(c1 + Complex(0.0, 0.0) === c1)
+class ComplexProperties extends FunSuite with PropertyChecks {
+  
+  def additionTest(a: Complex, b: Complex) = {
+    assert( (a + b).real === (a.real + b.real) )
+    assert( (a + b).imaginary === (a.imaginary + b.imaginary) )
   }
 
-  test("subtraction with (0, 0)") {
-    assert(c1 - Complex(0.0, 0.0) === c1)
+  def subtractionTest(a: Complex, b: Complex) = {
+    assert( (a - b).real === (a.real - b.real) )
+    assert( (a - b).imaginary === (a.imaginary - b.imaginary) )
   }
 
-  test("addition") {
-    assert((c1 + c2).real === (c1.real + c2.real))
-    assert((c1 + c2).imaginary === (c1.imaginary + c2.imaginary))
+  val zero = Complex(0.0, 0.0)
+  
+  test ("Complex addition with the identity element (zero)") {
+    forAll { (real: Double, imag: Double) => 
+      val c = Complex(real, imag)
+      additionTest(zero, c)
+      additionTest(c, zero)
+    }
   }
 
-  test("subtraction") {
-    assert((c1 - c2).real === (c1.real - c2.real))
-    assert((c1 - c2).imaginary ===  (c1.imaginary - c2.imaginary))
+  test ("Complex subtraction with the identity element (zero)") {
+    forAll { (real: Double, imag: Double) => 
+      val c = Complex(real, imag)
+      subtractionTest(zero, c)
+      subtractionTest(c, zero)
+    }
+  }
+
+  test ("Complex addition with two values") {
+    forAll { (real1: Double, imag1: Double, real2: Double, imag2: Double) => 
+      val c1 = Complex(real1, imag1)
+      val c2 = Complex(real2, imag2)
+      additionTest(c1, c2)
+    }
+  }
+
+  test ("Complex subtraction with two values") {
+    forAll { (real1: Double, imag1: Double, real2: Double, imag2: Double) => 
+      val c1 = Complex(real1, imag1)
+      val c2 = Complex(real2, imag2)
+      subtractionTest(c1, c2)
+    }
   }
 }

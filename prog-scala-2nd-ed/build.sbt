@@ -16,6 +16,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.3.3",
   "org.scalacheck"    %% "scalacheck" % "1.11.3" % "test",
   "org.scalatest"     %% "scalatest"  % "2.1.4"  % "test",
+  "org.specs2"        %% "specs2"     % "2.3.12" % "test",
   // JUnit is used for some Java interop. examples. A driver for JUnit:
   "junit"        % "junit-dep"       % "4.10" % "test",
   "com.novocode" % "junit-interface" % "0.10" % "test"
