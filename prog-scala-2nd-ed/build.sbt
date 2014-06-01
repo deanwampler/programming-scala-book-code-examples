@@ -28,17 +28,13 @@ libraryDependencies ++= Seq(
       "org.scala-lang.modules" %% "scala-xml" % "1.0.2")
   else Seq.empty)
 
-// enable improved (experimental) incremental compilation algorithm called 
-// "name hashing"
-incOptions := incOptions.value.withNameHashing(true)
-
 val commonOptions = Seq(
   "-encoding", "UTF-8", "-optimise", 
   "-deprecation", "-unchecked", "-feature", "-Xlint")
-// "-explaintypes" - Add this when you need more explanatory messages for type
-// errors.
+// "-explaintypes" - Use when you need more detailed messages for type errors.
 // "-Yinline-warnings" - Warns if constructs have the @inline annotation, but
-// inlining isn't possible. More annoying than useful, most of the time...
+// inlining isn't possible. Can be annoying than useful most of the time, but
+// consider using it for performance critical code.
 
 // Options passed to the Scala and Java compilers:
 scalacOptions <<= scalaVersion map { version: String => 
@@ -51,6 +47,3 @@ javacOptions  ++= Seq("-Xlint:unchecked", "-Xlint:deprecation")
 // Enable improved incremental compilation feature in 2.11.X.
 // see http://www.scala-lang.org/news/2.11.1
 incOptions := incOptions.value.withNameHashing(true)
-
-// Options passed to the Scala REPL:
-//consoleOptions ++= commonOptions
