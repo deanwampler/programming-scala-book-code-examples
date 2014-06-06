@@ -1,0 +1,17 @@
+// src/test/java/JavaInterop/ScalaFunctions.java
+
+package javainterop;
+
+import scala.Function1;
+
+public class ScalaFunctions {
+  public static void main(String[] args) {
+    Function1 stringToInteger = new Function1<String,Integer>() {
+      public Integer apply(String s) {
+        Integer.parseInt(s);
+      }
+    };
+
+    System.out.println(stringToInteger("101"));
+  }
+}
