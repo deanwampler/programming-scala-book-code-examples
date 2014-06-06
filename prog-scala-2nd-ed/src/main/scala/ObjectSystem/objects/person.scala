@@ -12,7 +12,7 @@ object Person {
   
   def main(args: Array[String]) = {
     // Test the constructor...
-    val person = new Person("Buck Trends", 18)
+    val person = new Person("Buck Trends", 21)
     assert(person.name == "Buck Trends")
     assert(person.age  == 21)
   }

@@ -1,6 +1,6 @@
-// src/test/scala/ToolsLibs/complex-test.scala
+// src/test/scala/Tools/complex-test.scala
 
-package toolslibs
+package tools
 import org.scalatest.FunSuite
 
 class ComplexSuite extends FunSuite {

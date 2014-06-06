@@ -1,6 +1,6 @@
-// src/test/scala/ToolsLibs/complex-spec.scala
+// src/test/scala/Tools/complex-spec.scala
 
-package toolslibs
+package tools
 
 import org.scalatest.{ FunSpec, ShouldMatchers } 
  

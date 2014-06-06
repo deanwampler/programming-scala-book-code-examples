@@ -1,6 +1,6 @@
-// src/main/scala/ToolsLibs/all-op-chars.scala
+// src/main/scala/Tools/all-op-chars.scala
 
-package toolslibs
+package tools
 
 trait AllOpChars {
   def == : Int   // $eq$eq  - arbitrary return type

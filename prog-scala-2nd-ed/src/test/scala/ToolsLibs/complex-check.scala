@@ -1,6 +1,6 @@
-// src/main/scala/ToolsLibs/complex-check.sc
+// src/main/scala/Tools/complex-check.sc
 
-package toolslibs
+package tools
 import org.scalatest.FunSuite
 import org.scalatest.prop.PropertyChecks
 

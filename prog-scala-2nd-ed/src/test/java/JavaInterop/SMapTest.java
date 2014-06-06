@@ -1,4 +1,4 @@
-// src/test/java/ToolsLibs/SMapTest.java
+// src/test/java/javaInterop/SMapTest.java
 
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -8,7 +8,8 @@ import scala.*;
 import scala.collection.mutable.LinkedHashMap;
 
 /**
- * @note SBT's JUnit plugin did not detect this test until I extended JUnitSuite.
+ * NOTE: You must extend this ScalaTest-specific JUnitSuite for ScalaTest to
+ * find the test.
  */
 public class SMapTest extends org.scalatest.junit.JUnitSuite {
   static class Name {
@@ -31,10 +32,10 @@ public class SMapTest extends org.scalatest.junit.JUnitSuite {
   }
   
   @Test
-  public void usingMapGetWithWarnings() {
+  public void usingMapGetWithOptionName() {
     assertEquals(2, map.size());
-    Option<Name> n1 = map.get(1);  // warning
-    Option<Name> n2 = map.get(2);  // warning
+    Option<Name> n1 = map.get(1);  // Note: Option<Name>
+    Option<Name> n2 = map.get(2);  // Note: Option<Name>
     assertTrue(n1.isDefined());
     assertTrue(n2.isDefined());
     assertEquals("Dean", n1.get().firstName);
@@ -42,10 +43,10 @@ public class SMapTest extends org.scalatest.junit.JUnitSuite {
   }
   
   @Test
-  public void usingMapGetWithoutWarnings() {
+  public void usingMapGetWithOptionExistential() {
     assertEquals(2, map.size());
-    Option<?> n1 = map.get(1);
-    Option<?> n2 = map.get(2);
+    Option<?> n1 = map.get(1);    // Note: Option<?>
+    Option<?> n2 = map.get(2);    // Note: Option<?>
     assertTrue(n1.isDefined());
     assertTrue(n2.isDefined());
     assertEquals("Dean", ((Name) n1.get()).firstName);
