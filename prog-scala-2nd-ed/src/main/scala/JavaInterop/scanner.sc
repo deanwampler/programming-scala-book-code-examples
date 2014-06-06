@@ -1,4 +1,4 @@
-// src/main/scala/ToolsLibs/scanner.sc
+// src/main/scala/JavaInterop/scanner.sc
 
 import java.util.Scanner
 import java.util.regex.MatchResult

@@ -43,7 +43,8 @@ scalacOptions <<= scalaVersion map { version: String =>
   else commonOptions ++ Seq("-Ywarn-infer-any") // Warn if "Any" is inferred
 }
 
-javacOptions  ++= Seq("-Xlint:unchecked", "-Xlint:deprecation")
+javacOptions  ++= Seq(
+  "-Xlint:unchecked", "-Xlint:deprecation", "-Xdiags:verbose")
 
 // Enable improved incremental compilation feature in 2.11.X.
 // see http://www.scala-lang.org/news/2.11.1

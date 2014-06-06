@@ -1,6 +1,6 @@
-// src/main/scala/Tools/all-op-chars.scala
+// src/main/scala/JavaInterop/all-op-chars.scala
 
-package tools
+package javainterop
 
 trait AllOpChars {
   def == : Int   // $eq$eq  - arbitrary return type
@@ -19,6 +19,6 @@ trait AllOpChars {
   def ^  : Int   // $up
   def &  : Int   // $amp
   def @@ : Int   // $at$at
-//def ## : Int   // $hash$hash (there is already a ## method in AnyRef)
+//  def ## : Int   // $hash$hash (there is already a ## method in AnyRef)
   def ~  : Int   // $tilde
 }

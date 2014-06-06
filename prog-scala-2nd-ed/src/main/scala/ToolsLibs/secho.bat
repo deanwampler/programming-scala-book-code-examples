@@ -1,4 +1,4 @@
-// src/main/scala/ToolsLibs/secho.bat
+// src/main/scala/Tools/secho.bat
 ::#!
 @echo off
 call scala %0 %*

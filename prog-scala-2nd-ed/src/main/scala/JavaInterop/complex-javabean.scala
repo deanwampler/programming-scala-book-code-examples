@@ -1,9 +1,11 @@
-// src/main/scala/ToolsLibs/complex-javabean.sc
+// src/main/scala/JavaInterop/complex-javabean.scala
+
+package javainterop
 
 // Scala v2.11. For Scala 2.10 and earlier, use scala.reflect.BeanProperty.
 case class ComplexBean(
-  @scala.bean.BeanProperty real: Double, 
-  @scala.bean.BeanProperty imaginary: Double) {
+  @scala.beans.BeanProperty real: Double, 
+  @scala.beans.BeanProperty imaginary: Double) {
 
   def +(that: ComplexBean) = 
     new ComplexBean(real + that.real, imaginary + that.imaginary)
