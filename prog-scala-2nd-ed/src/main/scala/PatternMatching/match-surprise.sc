@@ -1,13 +1,15 @@
 // src/main/scala/PatternMatching/match-surprise.sc
 
-val y = 100
-for {
-  x <- List (99, 100, 101)
-} {
-  val str = x match {
-    case y => "found y!"
-    case i: Int => "int: "+i
+def checkY(y: Int) = {
+  for {
+    x <- List (99, 100, 101)
+  } {
+    val str = x match {
+      case y => "found y!"
+      case i: Int => "int: "+i
+    }
+    println(str)
   }
-  println(str)
 }
 
+checkY(100)
