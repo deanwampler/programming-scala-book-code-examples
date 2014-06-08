@@ -14,8 +14,8 @@ crossScalaVersions := Seq("2.11.1", "2.10.4")
 // I use the if condition to conditionally add these extra dependencies. 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.3.3",
-  "org.scalacheck"    %% "scalacheck" % "1.11.3" % "test",
-  "org.scalatest"     %% "scalatest"  % "2.1.4"  % "test",
+  "org.scalacheck"    %% "scalacheck" % "1.11.4" % "test",
+  "org.scalatest"     %% "scalatest"  % "2.2.0"  % "test",
   "org.specs2"        %% "specs2"     % "2.3.12" % "test",
   // JUnit is used for some Java interop. examples. A driver for JUnit:
   "junit"        % "junit-dep"       % "4.10" % "test",

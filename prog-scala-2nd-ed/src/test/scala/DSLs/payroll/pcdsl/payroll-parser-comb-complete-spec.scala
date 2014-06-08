@@ -25,9 +25,8 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
       it ("matches an integer followed by week, weeks, day, days") {
         val p = new PayrollParserCombinators(Map())
         List("1 week", "1 weeks", "5 day", "5 days").foreach { str =>
-          p.parseAll(p.duration, str) match {
-            case p.Success(d,_) => d shouldEqual 5
-            case x => fail(x.toString)
+          p.parseAll(p.duration, str) should matchPattern {
+            case p.Success(5, _) =>
           }
         }
       }
@@ -35,11 +34,11 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
     
     describe ("amount") {
       it ("matches are X in gross currency") {
+        val twenty = Money(20.0)
         val p = new PayrollParserCombinators(Map())
         List("20", "20.0").foreach { m => 
-          p.parseAll(p.amount, s"are $m in gross currency") match {
-            case p.Success(m,_) => m shouldEqual Money(20.0)
-            case x => fail(x.toString)
+          p.parseAll(p.amount, s"are $m in gross currency") should matchPattern{
+            case p.Success(`twenty`, _) =>
           }
         }
       }
@@ -47,14 +46,14 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
         
     describe ("percentage") {
       it ("matches X percent of gross") {
+        val twoThousand = Money(2000.0)
         val p = new PayrollParserCombinators(Map())
         p.grossAmount = Money(10000.0)
         List("20", "20.", "20.0").foreach { m => 
           List("is", "are").foreach { preposition =>
             val input = s"$preposition $m percent of gross"
-            p.parseAll(p.percentage, input) match {
-              case p.Success(m,_) => m shouldEqual Money(2000.0)
-              case x => fail(x.toString)
+            p.parseAll(p.percentage, input) should matchPattern {
+              case p.Success(`twoThousand`, _) =>
             }
           }
         }
@@ -69,9 +68,8 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
       it ("matches an employee name to an item in the employee map") {
         val p = new PayrollParserCombinators(employees)
         val input = "paycheck for employee \"Buck Trends\""
-        p.parseAll(p.empl, input) match {
-          case p.Success(e,_) => e shouldEqual buck
-          case x => fail(x.toString)
+        p.parseAll(p.empl, input) should matchPattern {
+          case p.Success(`buck`, _) =>
         }
       }
       it ("throws an exception if the employee isn't known") {
@@ -84,6 +82,7 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
     describe ("deductItem") {
       it ("matches tax, insurance, and retirement fund deductions " +
           "specified as percentages or values.") {
+        val twoThousand = Money(2000.0)
         val p = new PayrollParserCombinators(Map())
         p.grossAmount = Money(10000.0)
         List("federal income tax", 
@@ -94,9 +93,8 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
              " are 20.0 percent of gross", 
              " is 2000.0 in gross currency",
              " are 2000.0 in gross currency").foreach {suffix =>
-            p.parseAll(p.deductItem, prefix + suffix) match {
-              case p.Success(m,_) => m shouldEqual Money(2000.0)
-              case x => fail(x.toString)
+            p.parseAll(p.deductItem, prefix + suffix) should matchPattern {
+              case p.Success(`twoThousand`, _) => 
             }
           }
         }
@@ -105,6 +103,7 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
         
     describe ("deduct") {
       it ("matches a set of deduction items") {
+        val fortyFiveHundred = Money(4500.0)
         val p = new PayrollParserCombinators(Map())
         p.grossAmount = Money(10000.0)
         val input = """minus deductions for {
@@ -114,9 +113,8 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
             retirement fund contributions are 10.0  percent of gross
         }
         """
-        p.parseAll(p.deduct, input) match {
-          case p.Success(m,_) => m shouldEqual Money(4500.0)
-          case x => fail(x.toString)
+        p.parseAll(p.deduct, input) should matchPattern {
+          case p.Success(`fortyFiveHundred`, _) =>
         }
       }
     }
@@ -128,17 +126,15 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
         val salary = Money(10000.0)
         val buck = Employee(Name("Buck", "Trends"), salary)
         val expectedGross = salary / 26.0
+        val expectedDeductions = Money(0.0)
         val employees = Map(buck.name -> buck)
         val input = """paycheck for employee "Buck Trends" is
          salary for 2 weeks minus deductions for {}"""      
         val p = new PayrollParserCombinators(employees)
-        p.parseAll(p.paycheck, input) match {
-          case p.Success(Tuple2(employee, paycheck),_) =>
-            employee            shouldEqual buck
-            paycheck.gross      shouldEqual expectedGross
-            paycheck.net        shouldEqual expectedGross
-            paycheck.deductions shouldEqual Money(0.0)
-          case x => fail(x.toString)
+        p.parseAll(p.paycheck, input) should matchPattern {
+          case p.Success(Tuple2(`buck`, 
+            Paycheck(`expectedGross`, `expectedGross`, 
+              `expectedDeductions`)), _) =>
         }
       }
       
@@ -160,13 +156,10 @@ class PayrollParserCombinatorsCompleteSpec extends FunSpec with ShouldMatchers{
           val expectedNet = expectedGross - expectedDeductions
           val employees = Map(buck.name -> buck)
           val p = new PayrollParserCombinators(employees)
-          p.parseAll(p.paycheck, input) match {
-            case p.Success(Tuple2(employee, paycheck),_) =>
-              employee            shouldEqual buck
-              paycheck.gross      shouldEqual expectedGross
-              paycheck.net        shouldEqual expectedNet
-              paycheck.deductions shouldEqual expectedDeductions
-            case _ => fail
+          p.parseAll(p.paycheck, input) should matchPattern {
+            case p.Success(Tuple2(`buck`, 
+              Paycheck(`expectedGross`, `expectedNet`, 
+                `expectedDeductions`)), _) =>
           }
         }
       }

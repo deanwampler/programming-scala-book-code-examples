@@ -12,17 +12,17 @@ class PayrollParserCombinatorsV1Spec extends FunSpec with ShouldMatchers {
     
   describe ("PayrollParserCombinatorsV1") {
     it ("parse rules when there are no deductions") {
+      val resultStr = """(("Buck Trends"~(2~weeks))~List())"""
       val input = """paycheck for employee "Buck Trends"
                      is salary for 2 weeks minus deductions for {}"""
       val p = new PayrollParserCombinatorsV1
       p.parseAll(p.paycheck, input) match {
-        case p.Success(r,_) => r.toString shouldEqual
-                    """(("Buck Trends"~(2~weeks))~List())"""
-        case x => fail(x.toString)
+        case p.Success(result, _) => result.toString shouldEqual resultStr
       }
     }
 
     it ("calculate the gross, net, and deductions for the pay period") {
+      val resultStr = """(("Buck Trends"~(2~weeks))~List(25., 5., 500., 10.))"""
       val input = 
           """paycheck for employee "Buck Trends" 
              is salary for 2 weeks minus deductions for {
@@ -33,9 +33,7 @@ class PayrollParserCombinatorsV1Spec extends FunSpec with ShouldMatchers {
              }"""
       val p = new PayrollParserCombinatorsV1
       p.parseAll(p.paycheck, input) match {
-        case p.Success(r,_) => r.toString shouldEqual 
-            """(("Buck Trends"~(2~weeks))~List(25., 5., 500., 10.))"""
-        case x => fail(x.toString)
+        case p.Success(result, _) => result.toString shouldEqual resultStr
       }
     }
   }
