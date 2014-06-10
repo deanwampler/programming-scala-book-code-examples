@@ -34,8 +34,8 @@ val commonOptions = Seq(
   "-deprecation", "-unchecked", "-feature", "-Xlint")
 // "-explaintypes" - Use when you need more detailed messages for type errors.
 // "-Yinline-warnings" - Warns if constructs have the @inline annotation, but
-// inlining isn't possible. Can be annoying than useful most of the time, but
-// consider using it for performance critical code.
+// inlining isn't possible. Can be more annoying than useful most of the time,
+// but consider using it for performance critical code.
 
 // Options passed to the Scala and Java compilers:
 scalacOptions <<= scalaVersion map { version: String => 
