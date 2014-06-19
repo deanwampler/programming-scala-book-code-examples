@@ -2,6 +2,10 @@
 
 import scala.util.{ Either, Left, Right }
 
+// Example of using Either handling on an arbitrarily-long 
+// sequence of functions that return Either[X,Int]. When the sequence
+// is arbitrary, you can't use a for comprehension.
+  
 // Alias the long function signature:
 type Step = Int => Either[RuntimeException,Int]
 

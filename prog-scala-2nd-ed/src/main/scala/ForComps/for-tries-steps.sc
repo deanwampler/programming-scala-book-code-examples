@@ -2,6 +2,10 @@
 
 import scala.util.{ Try, Success, Failure }
 
+// Example of using try handling on an arbitrarily-long 
+// sequence of functions that return Try[Int]. When the sequence
+// is arbitrary, you can't use a for comprehension.
+  
 // Alias the function signature:
 type Step = Int => Try[Int]
 
