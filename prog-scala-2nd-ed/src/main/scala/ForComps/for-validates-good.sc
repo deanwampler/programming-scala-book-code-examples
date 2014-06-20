@@ -1,4 +1,4 @@
-// src/main/scala/ForComps/for-tries-good.sc
+// src/main/scala/ForComps/for-validates-good.sc
 
 import scala.util.{ Try, Success, Failure }
 

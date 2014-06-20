@@ -161,39 +161,42 @@ sup {
 <h2>README for the Code Examples</h2>
 
 <p>Dean Wampler
-January 31, 2014</p>
+May 1, 2014</p>
 
-<p>This archive contains all the code examples found in <a href="http://shop.oreilly.com/product/9780596155964.do">Programming Scala, Second Edition</a> (with the exception of some trivial code snippets in the text). In the book, all the examples for which there are corresponding files here begin with a path comment like this:</p>
+<p>This archive contains all the code examples found in <a href="http://shop.oreilly.com/product/9780596155964.do">Programming Scala, Second Edition</a>, with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book. In the book's text, when an example corresponds to a file in this distribution, the listing begins with a path in a comment with the following format:</p>
 
-<pre><code>// chapter/../filename
+<pre><code>// src/main/scala/chapter/../filename
 </code></pre>
 
-<p>Use these comments to find the corresponding file in this distribution. In addition, this archive contains <em>ScalaTest</em> and <em>ScalaCheck</em> unit tests to validate the code, most of which are not reproduced in the text of the book, except when discussing testing itself; see for example the <em>Tools and Libraries</em> chapter of the book.</p>
+<p>(Tests are in <code>src/test/scala/...</code>.)</p>
+
+<p>Use these comments to find the corresponding source file. This archive also contains <em>ScalaTest</em> and <em>ScalaCheck</em> unit tests to validate some of the code. Most of these tests are not reproduced in the text of the book, except when discussing testing itself.</p>
 
 <h2>Naming Conventions</h2>
 
-<p>The examples include "scripts" that are run with the <code>scala</code> command, source files that are compiled with <code>scalac</code>, and source files that deliberately fail to compile to demonstrate common errors. To keep then straight and to support the build process, the following naming conventions are used for the files.</p>
+<p>The examples include "scripts" that are run with the <code>scala</code> command (or within SBT using the <code>console</code>), source files that are compiled with <code>scalac</code>, and source files that deliberately fail to compile to demonstrate common errors. To keep then straight and to support building with SBT, the following naming conventions are used for the files.</p>
 
 <ul>
 <li><code>build.sbt</code> - The SBT build script (described below).</li>
-<li><code>*.scala</code> - Source files that are compiled with <code>scalar</code>. In fact, this is the community-standard extension for all Scala files, code to be compiled or scripts. But to keep the build process simple, I use different conventions for other files, discussed next.</li>
-<li><code>*.sc</code> - Script files that executed directory, e.g., <code>scala foo-script.sc</code>. This file extension is not a standard, but it is used by the newer IDE <em>worksheet</em> feature we discuss in the first chapter. So, we stole the convention; the SBT compile process will ignore these scripts. These script don't have tests to verify them.</li>
-<li><code>*.scalaX</code> and <code>*.scX</code> - Scala code files and scripts with deliberate errors, so they don't compile and run. They do contain comments explaining what's wrong with them. The <code>X</code> suffix means the build will ignore them.</li>
-<li><code>*-v2N-*</code> - Scala version 2.N only. Some features only work with particular Scala versions. These files demonstrate these features.</li>
+<li><code>*.scala</code> - Source files that are compiled with <code>scala</code>. In fact, this is the community-standard extension for all Scala files, code to be compiled or scripts. But to keep the build process simple, I use different conventions for files that aren't compiled, discussed next.</li>
+<li><code>*.sc</code> - Script files that are executed directory, e.g., <code>scala foo-script.sc</code>. This file extension is not a standard, but it is used by the newer IDE <em>worksheet</em> feature I discuss in the the book. So, I stole the convention; SBT will ignore these scripts when compiling. These script don't have tests to verify them (TODO).</li>
+<li><code>*.scalaX</code> and <code>*.scX</code> - Scala code files and scripts with deliberate errors, so they don't compile and run. They contain comments explaining what's wrong with them.</li>
 </ul>
 
 
 <h2>Required and Optional Tools</h2>
 
-<p>To build and run the examples, all you need to do is install SBT driver script. SBT is the de-facto standard build tool for Scala. When you run SBT, it will bootstrap itself with the correct version of its jar file, Scala, and project dependencies, which are specified in the <code>build.sbt</code> file in the root directory and other build files in the <code>project</code> directory.</p>
+<p>To build and run the examples, all you need to do is install <a href="http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html">SBT</a>. SBT is the de-facto standard build tool for Scala. When you run SBT, it will bootstrap itself with the correct version of its jar file, Scala, and project dependencies, which are specified in the <code>build.sbt</code> file in the root directory and other build files in the <code>project</code> directory.</p>
 
 <p>Follow these <a href="http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html">installation instructions</a>.</p>
 
-<p>If you want to install Scala separate, e.g., to also grab the <em>Scaladocs</em>, go to <a href="http://scala-lang.org">scala-lang.org</a>, but this isn't strictly required.</p>
+<p>If you want to install Scala separate and the the <em>Scaladocs</em> (recommended), go to <a href="http://scala-lang.org">scala-lang.org</a>, but this isn't strictly required.</p>
 
 <h3>Editors, Eclipse, and IntelliJ</h3>
 
-<p>Most editors now include Scala support or plugins are available. Similarly, there are plugins for Eclipse and IntelliJ.</p>
+<p>Most editors now include Scala support or plugins are available. Similarly, there are plugins for Eclipse and IntelliJ. See their respective documentation for details on using Scala.</p>
+
+<p>Note that IntelliJ can import the SBT project for this example code. For eclipse, run <code>sbt eclipse</code> to generate project files, then important them. For both IDEs, the Scala plugin must be installed first.</p>
 
 <h2>Building the Code Examples</h2>
 
@@ -207,7 +210,8 @@ January 31, 2014</p>
 
 <p>If you start <code>sbt</code> without any arguments, it puts you into an interactive mode where you can type commands. Use control-D to exit this mode. Once at the SBT prompt (a <code>&gt;</code>), try the following commands, where each <code>#</code> starts a comment; don't type those!</p>
 
-<pre><code>clean      # delete all build outputs
+<pre><code>help       # help on tasks and settings
+clean      # delete all build outputs
 compile    # compile the source, but not test code
 test       # compile source and test code, if necessary and run the tests.
 +test      # compile and test for all versions of Scala supported.
@@ -227,10 +231,10 @@ tasks -V   # REALLY show ALL tasks
 
 <p>For example, if build artifacts are required on the class path, use the following command from the <em>root</em> directory of the distribution:</p>
 
-<pre><code>scala -classpath target/scala-2.10/classes /path/to/foo.sc
+<pre><code>scala -classpath target/scala-2.11/classes /path/to/foo.sc
 </code></pre>
 
-<p>Note that SBT directs compiled output to <code>target/scala-2.10/classes</code> by default. For Scala version 2.11 builds, replace the <code>10</code> by an <code>11</code>.</p>
+<p>As configured, the build defaults to Scala 2.11.X. Hence, SBT directs compiled output to <code>target/scala-2.11/classes</code>.</p>
 
 <h2>Feedback</h2>
 
