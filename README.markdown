@@ -75,4 +75,4 @@ As configured, the build defaults to Scala 2.11.X. Hence, SBT directs compiled o
 
 ## Feedback ##
 
-I welcome feedback on the examples. Please post comments, corrections, etc. at the books site, [Programming Scala, Second Edition](http://shop.oreilly.com/product/9780596155964.do), or you can post feedback on the [O'Reilly forum](http://forums.oreilly.com/). There is also a dedicated site for the book where occasional updates, clarifications, corrections, and lame excuses will be posted: [programming-scala.org](http://programming-scala.org).
+I welcome feedback on the examples. Please post comments, corrections, etc. at the books site, [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do), or you can post feedback on the [O'Reilly forum](http://forums.oreilly.com/). There is also a dedicated site for the book where occasional updates, clarifications, corrections, and lame excuses will be posted: [programming-scala.org](http://programming-scala.org).
