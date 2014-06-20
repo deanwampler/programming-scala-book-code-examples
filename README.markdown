@@ -1,8 +1,9 @@
 # Programming Scala, 2nd Edition#
+
 ## README for the Code Examples ##
 
 Dean Wampler
-May 1, 2014
+June 20, 2014
 
 This archive contains all the code examples found in [Programming Scala, Second Edition](http://shop.oreilly.com/product/9780596155964.do), with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book. In the book's text, when an example corresponds to a file in this distribution, the listing begins with a path in a comment with the following format:
 
@@ -74,4 +75,4 @@ As configured, the build defaults to Scala 2.11.X. Hence, SBT directs compiled o
 
 ## Feedback ##
 
-I welcome feedback on the examples. Please post comments, corrections, etc. at the books site, [Programming Scala, Second Edition](http://shop.oreilly.com/product/9780596155964.do), or you can post feedback on the [O'Reilly forum](http://forums.oreilly.com/). There is also a dedicated site for the book where occasional updates, clarifications, and corrections will be posted: [programming-scala.org](http://programming-scala.org).
+I welcome feedback on the examples. Please post comments, corrections, etc. at the books site, [Programming Scala, Second Edition](http://shop.oreilly.com/product/9780596155964.do), or you can post feedback on the [O'Reilly forum](http://forums.oreilly.com/). There is also a dedicated site for the book where occasional updates, clarifications, corrections, and lame excuses will be posted: [programming-scala.org](http://programming-scala.org).
