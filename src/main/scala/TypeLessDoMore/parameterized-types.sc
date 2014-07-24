@@ -21,4 +21,6 @@ class FileBulkReader(val source: File) extends BulkReader[File] {
 }
 
 println( new StringBulkReader("Hello Scala!").read )
-println( new FileBulkReader(new File("parameterized-types-script.scala")).read )
+// Assumes the current directory is src/main/scala:
+println( new FileBulkReader(
+  new File("TypeLessDoMore/parameterized-types.sc")).read )

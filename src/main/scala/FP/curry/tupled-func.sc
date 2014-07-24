@@ -1,4 +1,4 @@
-// src/main/scala/FP/pfunk/tupled-func.sc
+// src/main/scala/FP/curry/tupled-func.sc
 
 def mult(d1: Double, d2: Double, d3: Double) = d1 * d2 * d3
 

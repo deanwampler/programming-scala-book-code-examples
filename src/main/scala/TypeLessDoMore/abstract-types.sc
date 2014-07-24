@@ -5,17 +5,17 @@ import java.io._
 abstract class BulkReader {
   type In 
   val source: In
-  def read: String
+  def read: String  // Read source and return a String
 }
 
 class StringBulkReader(val source: String) extends BulkReader {
   type In = String
-  def read = source
+  def read: String = source
 }
 
 class FileBulkReader(val source: File) extends BulkReader {
   type In = File
-  def read = {
+  def read: String = {
     val in = new BufferedInputStream(new FileInputStream(source))
     val numBytes = in.available()
     val bytes = new Array[Byte](numBytes)
@@ -25,5 +25,6 @@ class FileBulkReader(val source: File) extends BulkReader {
 }
 
 println(new StringBulkReader("Hello Scala!").read)
+// Assumes the current directory is src/main/scala:
 println(new FileBulkReader(
-  new File("src/main/scala/TypeLessDoMore/abstract-types.sc")).read)
+  new File("TypeLessDoMore/abstract-types.sc")).read)

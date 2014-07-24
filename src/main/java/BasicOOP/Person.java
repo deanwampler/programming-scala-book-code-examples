@@ -1,4 +1,4 @@
-// src/main/scala/BasicOOP/Person.java
+// src/main/java/BasicOOP/Person.java
 
 package BasicOOP;
 

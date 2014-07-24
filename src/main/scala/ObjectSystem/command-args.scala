@@ -1,4 +1,4 @@
-// src/main/scala/ObjectSystem/command-args.sc
+// src/main/scala/ObjectSystem/command-args.scala
 package objectsystem
 
 object CommandArgs {

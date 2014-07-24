@@ -1,6 +1,6 @@
 // src/main/scala/FP/datastructs/package.scala
 
-package fp
+package FP
 package object datastructs {
   type Seq[+A] = scala.collection.immutable.Seq[A]
   val Seq = scala.collection.immutable.Seq

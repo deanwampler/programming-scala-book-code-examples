@@ -1,4 +1,4 @@
-// src/main/scala/FP/pfunk/lifted-func.sc
+// src/main/scala/FP/curry/lifted-func.sc
 
 val finicky: PartialFunction[String,String] = {
   case "finicky" => "FINICKY"
@@ -7,7 +7,11 @@ val finicky: PartialFunction[String,String] = {
 val finickyOption = finicky.lift
 
 finicky("finicky")
-finicky("other")
+try {
+  finicky("other")
+} catch {
+  case e: scala.MatchError => e
+}
 
 finickyOption("finicky")
 finickyOption("other")
@@ -15,4 +19,8 @@ finickyOption("other")
 val finicky2 = Function.unlift(finickyOption)
 
 finicky2("finicky")
-finicky2("other")
+try {
+  finicky2("other")
+} catch {
+  case e: scala.MatchError => e
+}

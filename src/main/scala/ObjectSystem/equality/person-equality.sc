@@ -1,4 +1,4 @@
-// src/main/scala/ObjectSystem/person-equality.sc
+// src/main/scala/ObjectSystem/equality/person-equality.sc
 
 case class Person(firstName: String, lastName: String, age: Int)
 
@@ -10,36 +10,44 @@ p1a equals p1a     // = true
 p1a equals p1b     // = true
 p1a equals p2      // = false
 p1a equals null    // = false
-null equals p1a    // throws java.lang.NullPointerException
-null equals null   // throws java.lang.NullPointerException
+try {
+  null equals p1a  // throws java.lang.NullPointerException
+} catch {
+  case e: java.lang.NullPointerException => e
+}
+try {
+  null equals null // throws java.lang.NullPointerException
+} catch {
+  case e: java.lang.NullPointerException => e
+}
 
 p1a == p1a         // = true
 p1a == p1b         // = true
 p1a == p2          // = false
 p1a == null        // = false
 null == p1a        // = false
-null == null       // = true
+null == null       // = true  (compiler warns that it's always true.)
 
 p1a != p1a         // = false
 p1a != p1b         // = false
 p1a != p2          // = true
 p1a != null        // = true
 null != p1a        // = true
-null != null       // = false
+null != null       // = false (compiler warns that it's always false.)
 
 p1a eq p1a         // = true
 p1a eq p1b         // = false
 p1a eq p2          // = false
 p1a eq null        // = false
 null eq p1a        // = false
-null eq null       // = true
+null eq null       // = true  (compiler warns that it's always true.)
 
 p1a ne p1a         // = false
 p1a ne p1b         // = true
 p1a ne p2          // = true
 p1a ne null        // = true
 null ne p1a        // = true
-null ne null       // = false
+null ne null       // = false (compiler warns that it's always false.)
 
 Array(1, 2) == Array(1, 2)              // = false
 Array(1, 2) sameElements Array(1, 2)    // = true

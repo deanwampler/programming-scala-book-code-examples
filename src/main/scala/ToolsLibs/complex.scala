@@ -1,6 +1,6 @@
-// src/main/scala/Tools/complex.scala
+// src/main/scala/ToolsLibs/complex.scala
 
-package tools
+package toolslibs
 
 case class Complex(real: Double, imaginary: Double) {
   def +(that: Complex) = 

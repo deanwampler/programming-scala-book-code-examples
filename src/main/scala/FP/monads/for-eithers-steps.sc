@@ -1,6 +1,6 @@
-// src/main/scala/ForComps/monads/for-eithers-steps.sc
+// src/main/scala/FP/monads/for-eithers-steps.sc
 
-import ForComps.Process
+import FP.monads.Process
 import scala.util.{ Either, Left, Right }
 
 // We need a type with a single type parameter:

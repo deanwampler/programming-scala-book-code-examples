@@ -3,7 +3,7 @@
 package rounding
 
 object TryCatch {
-  /** Usage: scala TryCatch filename1 filename2 ... */
+  /** Usage: scala rounding.TryCatch filename1 filename2 ... */
   def main(args: Array[String]) = {
     args foreach (arg => countLines(arg))
   }

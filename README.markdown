@@ -3,7 +3,7 @@
 ## README for the Code Examples ##
 
 *Dean Wampler*<br/>
-*June 20, 2014*
+*July 24, 2014*
 
 This archive contains all the code examples found in [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do), with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book. In the book's text, when an example corresponds to a file in this distribution, the listing begins with a path in a comment with the following format:
 
@@ -11,7 +11,7 @@ This archive contains all the code examples found in [Programming Scala, Second 
 // src/main/scala/chapter/../filename
 ```
 
-(Tests are in `src/test/scala/...`.)
+And similarly for Java files (yes, there are Java files!). Following the usual conventions, tests are in `src/test/...`.
 
 Use these comments to find the corresponding source file. This archive also contains *ScalaTest* and *ScalaCheck* unit tests to validate some of the code. Most of these tests are not reproduced in the text of the book, except when discussing testing itself.
 
@@ -34,9 +34,9 @@ If you want to install Scala separate and the the *Scaladocs* (recommended), go 
 
 ### Editors, Eclipse, and IntelliJ
 
-Most editors now include Scala support or plugins are available. Similarly, there are plugins for Eclipse and IntelliJ. See their respective documentation for details on using Scala. 
+Most editors and IDEs now include Scala plugins. For Eclipse, see the [Scala IDE](http://scala-ide.org) project. For IntelliJ use the plugin browser to find and install the Scala plugin. For NetBeans, see the [Scala page](http://wiki.netbeans.org/Scala) in their wiki. For other editors, Google is your friend. ;)
 
-Note that IntelliJ can import the SBT project for this example code. For eclipse, run `sbt eclipse` to generate project files, then important them. For both IDEs, the Scala plugin must be installed first.
+After installing the required plugin, to load this project in your IDE, IntelliJ can import the SBT project directly. For eclipse, run `sbt eclipse` task to generate project files, then import them. For Netbeans, see the [Scala wiki page](http://wiki.netbeans.org/Scala).
 
 ## Building the Code Examples
 
@@ -61,17 +61,17 @@ If you start `sbt` without any arguments, it puts you into an interactive mode w
 
 Note the `+test` example. It looks at a property named `crossScalaVersions` in the build file, `build.sbt` to know which versions of Scala to use. The `+` can be used for any task, although for some it will make little sense. Similarly, the `~` prefix causes the task to be run continuously each time source code changes are saved. This promotes continuous TDD (test-driven development) is one of my favorite features!
 
-Exiting from SBT, you can run the script files manually at the console/terminal prompt.
+Outside of SBT, you could, in principle, run the script files manually at the console/terminal prompt.
 
-    scala foo.sc
+    scala src/main/scala/.../foo.sc
     
-Some examples require code that has been compiled and some may require additional arguments, either to pass to `scala` or to the script itself. The book and the comments in the files themselves will provide the details.
+However, many of the scripts require other project code that has been compiled (which is in `target/scala-2.11/classes`) and occasionally third-party libraries that are part of the project dependencies. 
 
 For example, if build artifacts are required on the class path, use the following command from the *root* directory of the distribution:
 
-    scala -classpath target/scala-2.11/classes /path/to/foo.sc
+    scala -classpath target/scala-2.11/classes src/main/scala/.../foo.sc
     
-As configured, the build defaults to Scala 2.11.X. Hence, SBT directs compiled output to `target/scala-2.11/classes`. 
+Usually, the best way to run the scripts is to start `sbt` and run `console` to start the Scala REPL with all the dependencies added to the classpath. Then, use the REPL `:load src/main/scala/.../foo.sc` to load and run the script.
 
 ## Feedback ##
 

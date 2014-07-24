@@ -1,4 +1,4 @@
-// src/main/scala/ObjectSystem/ui/button.scala
+// src/main/scala/ObjectSystem/ui/button.sc
 
 import oop.ui.Button
 

@@ -1,6 +1,6 @@
-// src/main/scala/ForComps/monads/for-options-steps.sc
+// src/main/scala/FP/monads/for-options-steps.sc
 
-import ForComps.Process
+import FP.monads.Process
 
 val successfulOptionSteps: Seq[Int => Option[Int]] = List(  // <1>
   (i:Int) => Some(i + 5), 

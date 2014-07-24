@@ -7,4 +7,5 @@ val stateCapitals = Map(
   "Alaska"  -> "Juneau",
   "Wyoming" -> "Cheyenne")
 
-stateCapitals foreach { kv => println(kv._1 + ": " + kv._2) }
+//stateCapitals foreach { kv => println(kv._1 + ": " + kv._2) }
+stateCapitals foreach { case (k, v) => println(k + ": " + v) }

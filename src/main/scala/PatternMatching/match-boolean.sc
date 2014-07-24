@@ -10,6 +10,6 @@ for (bool <- bools) {
 }
 
 for (bool <- bools) {
-  val which = if (bool == true) "head" else "tails"
+  val which = if (bool) "head" else "tails"
   println("Got " + which)
 }

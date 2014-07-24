@@ -1,4 +1,4 @@
-// src/main/scala/FP/pfunk/curried-func2.sc
+// src/main/scala/FP/curry/curried-func2.sc
 
 val f1: String =>  String => String  = (s1: String) => (s2: String) => s1 + s2
 val f2: String => (String => String) = (s1: String) => (s2: String) => s1 + s2

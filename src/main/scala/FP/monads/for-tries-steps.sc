@@ -1,6 +1,6 @@
-// src/main/scala/ForComps/monads/for-tries-steps.sc
+// src/main/scala/FP/monads/for-tries-steps.sc
 
-import ForComps.Process
+import FP.monads.Process
 import scala.util.{ Try, Success, Failure }
 
 val successfulTrySteps: Seq[Int => Try[Int]] = List(

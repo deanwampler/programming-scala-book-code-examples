@@ -1,4 +1,4 @@
-// src/main/scala/FP/pfunk/curried-func.sc
+// src/main/scala/FP/curry/curried-func.sc
 
 def cat1(s1: String)(s2: String) = s1 + s2
 def cat2(s1: String) = (s2: String) => s1 + s2

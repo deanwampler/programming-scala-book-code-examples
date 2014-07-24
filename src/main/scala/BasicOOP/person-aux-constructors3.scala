@@ -1,4 +1,4 @@
-// src/main/scala/BasicOOP/person-aux-constructors3.sc
+// src/main/scala/BasicOOP/person-aux-constructors3.scala
 
 package oop
 

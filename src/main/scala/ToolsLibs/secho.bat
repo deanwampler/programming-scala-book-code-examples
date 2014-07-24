@@ -1,4 +1,3 @@
-// src/main/scala/Tools/secho.bat
 ::#!
 @echo off
 call scala %0 %*

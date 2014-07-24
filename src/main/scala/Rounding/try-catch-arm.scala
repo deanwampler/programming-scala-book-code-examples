@@ -4,11 +4,11 @@ package rounding
 
 import scala.language.reflectiveCalls
 
-case object manage {
+object manage {
   def apply[R <: { def close():Unit }, T](resource: => R)(f: R => T) = {
     var res: Option[R] = None
     try {
-      val res = Some(resource) 
+      val res = Some(resource)         // Only reference "resource" once!!
       f(res.get)
     } catch {
       case ex: Throwable => println(s"Exception! $ex")
@@ -22,7 +22,7 @@ case object manage {
 }
 
 object TryCatchARM {
-  /** Usage: scala TryCatch filename1 filename2 ... */
+  /** Usage: scala rounding.TryCatch filename1 filename2 ... */
   def main(args: Array[String]) = {
     args foreach (arg => countLines(arg))
   }

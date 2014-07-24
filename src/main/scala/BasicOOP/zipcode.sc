@@ -11,10 +11,14 @@ ZipCode(12345, Some(6789))
 ZipCode(12345, 6789)
 // Result: ZipCode = 12345-6789
 
-ZipCode(0, 6789)
-// Result: java.lang.IllegalArgumentException: requirement failed: 
-//   Invalid Zip+4 specified: 0-6789
+try {
+  ZipCode(0, 6789)  // Invalid Zip+4 specified: 0-6789
+} catch {
+  case e: java.lang.IllegalArgumentException => e
+}
 
-ZipCode(12345, 0)
-// Result: java.lang.IllegalArgumentException: requirement failed: 
-//   Invalid Zip+4 specified: 12345-0
+try {
+  ZipCode(12345, 0)  // Invalid Zip+4 specified: 12345-0
+} catch {
+  case e: java.lang.IllegalArgumentException => e
+}

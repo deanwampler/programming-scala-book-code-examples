@@ -14,6 +14,12 @@ implicit class AnyStringizer(a: Any) extends Stringizer[Any] {
   }
 }
 
-val list = List(1, 2.2F, "three", 'symbol)
+val list: List[Any] = List(1, 2.2F, "three", 'symbol)
 
-list foreach ((x:Any) => println(s"$x: ${x.stringize}"))
+list foreach { (x:Any) => 
+  try {
+    println(s"$x: ${x.stringize}")
+  } catch {
+    case e: java.lang.UnsupportedOperationException => println(e)
+  }
+}

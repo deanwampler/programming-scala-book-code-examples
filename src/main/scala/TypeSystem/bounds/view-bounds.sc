@@ -1,23 +1,25 @@
 // src/main/scala/TypeSystem/bounds/view-bounds.sc
 
-import typesystem.bounds.linkedlist._
+import scala.language.implicitConversions
 
-implicit def any2Node[A](x: A): Node[A] = bounds.::[A](x, NilNode)
+object Serialization { 
+  case class Writable(value: Any) {
+    def serialized: String = s"-- $value --"               // <1> 
+  }
 
-case class LinkedList[A <% Node[A]](val head: Node[A]) {
-
-  def ::[B >: A <% Node[B]](x: Node[B]) = 
-    LinkedList(bounds.::(x.payload, head))
-    
-  override def toString = head.toString
+  implicit def fromInt(i: Int) = Writable(i)               // <2>
+  implicit def fromFloat(f: Float) = Writable(f)
+  implicit def fromString(s: String) = Writable(s)
 }
 
-val list1 = LinkedList(1)
-val list2 = 2 :: list1
-val list3 = 3 :: list2
-val list4 = "FOUR!" :: list3
+import Serialization._
 
-println(list1)
-println(list2)
-println(list3)
-println(list4)
+object RemoteConnection {                                  // <3>
+  def write[T <% Writable](t: T): Unit =                   // <4>
+    println(t.serialized)  // Use stdout as the "remote connection"
+}
+
+RemoteConnection.write(100)       // Prints -- 100 --
+RemoteConnection.write(3.14f)     // Prints -- 3.14 --
+RemoteConnection.write("hello!")  // Prints -- hello! --
+// RemoteConnection.write((1, 2))                             <5>

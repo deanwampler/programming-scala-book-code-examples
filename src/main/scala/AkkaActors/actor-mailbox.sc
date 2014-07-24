@@ -20,3 +20,4 @@ countActor ! "how many?"
 countActor ! "how many?"
 countActor ! 4
 countActor ! "how many?"
+countActor.exit()

@@ -1,6 +1,6 @@
 // src/main/scala/Traits/ui/button-count-observer2.sc
 
-import traits.ui2._
+import traits.ui._
 import traits.observer._
 
 val button = new Button("Click Me!") with Subject[Button] {
