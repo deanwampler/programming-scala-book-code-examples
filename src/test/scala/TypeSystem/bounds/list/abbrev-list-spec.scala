@@ -1,6 +1,6 @@
 // src/test/scala/TypeSystem/bounds/list/abbrev-list-spec.scala
 
-package typesystem.bounds.list
+package TypeSystem.bounds.list
 
 import org.scalatest.{ FunSpec, ShouldMatchers } 
 

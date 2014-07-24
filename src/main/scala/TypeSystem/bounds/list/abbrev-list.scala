@@ -1,7 +1,7 @@
 // src/main/scala/TypeSystem/bounds/list/abbrev-list.scala
 // Loosely adapted from scala/List.scala in the Scala library.
 
-package typesystem.bounds.list
+package TypeSystem.bounds.list
 
 sealed abstract class AbbrevList[+A] {
 
@@ -9,7 +9,7 @@ sealed abstract class AbbrevList[+A] {
   def head: A
   def tail: AbbrevList[A]
 
-  def ::[B >: A] (x: B): AbbrevList[B] = new typesystem.bounds.list.::(x, this)
+  def ::[B >: A] (x: B): AbbrevList[B] = new TypeSystem.bounds.list.::(x, this)
 
   final def foreach(f: A => Unit) = {
     var these = this
