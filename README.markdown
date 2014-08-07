@@ -8,7 +8,7 @@
 This archive contains all the code examples found in [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do), with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book. In the book's text, when an example corresponds to a file in this distribution, the listing begins with a path in a comment with the following format:
 
 ```
-// src/main/scala/chapter/../filename
+// src/main/scala/progscala2/chapter/../filename
 ```
 
 And similarly for Java files (yes, there are Java files!). Following the usual conventions, tests are in `src/test/...`.
@@ -22,7 +22,7 @@ The examples include "scripts" that are run with the `scala` command (or within 
 - `build.sbt` - The SBT build script (described below).
 - `*.scala` - Source files that are compiled with `scala`. In fact, this is the community-standard extension for all Scala files, code to be compiled or scripts. But to keep the build process simple, I use different conventions for files that aren't compiled, discussed next. 
 - `*.sc` - Script files that are executed directory, e.g., `scala foo-script.sc`. This file extension is not a standard, but it is used by the newer IDE *worksheet* feature I discuss in the the book. So, I stole the convention; SBT will ignore these scripts when compiling. These script don't have tests to verify them (TODO).
-- `*.scalaX` and `*.scX` - Scala code files and scripts with deliberate errors, so they don't compile and run. They contain comments explaining what's wrong with them.
+- `*.javaX`, `*.scalaX` and `*.scX` - Java and Scala source files and scripts with deliberate errors, so they don't compile and run, or building them would require significant changes to the build that were deemed unnecessary. Most contain comments explaining what's wrong with them or in some cases, the corresponding section of the book provides the details.
 
 ## Required and Optional Tools
 
