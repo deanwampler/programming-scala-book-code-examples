@@ -2,7 +2,7 @@
 
 package progscala2.typesystem.variances
  
-import progscala2.introscala._  // From "Introducing Scala" chapter
+import progscala2.introscala.shapes._
 import progscala2.typesystem.variances.{Option => JOption, None => JNone, Some => JSome, _}
 import scala.language.existentials
 import org.scalatest.{ FunSpec, ShouldMatchers } 
