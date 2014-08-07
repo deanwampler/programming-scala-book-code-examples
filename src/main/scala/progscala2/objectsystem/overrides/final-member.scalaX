@@ -1,0 +1,12 @@
+// src/main/scala/progscala2/objectsystem/overrides/final-member.scalaX
+// WON'T COMPILE.
+
+package progscala2.objectsystem.overrides
+
+class NotFixed {
+  final def fixedMethod = "fixed"
+}
+
+class Changeable2 extends NotFixed {
+  override def fixedMethod = "not fixed"   // ERROR
+}

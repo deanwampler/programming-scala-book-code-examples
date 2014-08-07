@@ -1,0 +1,66 @@
+h
+c 1  one
+c 2  two
+c 3  three
+c 4  four
+c 5  five
+c 6  six
+c 7  seven
+c 8  eight
+c 9  nine
+c 10 ten
+c 11 eleven
+c 12 twelve
+c 13 thirteen
+c 14 fourteen
+c 15 fifteen
+c 16 sixteen
+c 17 seventeen
+c 18 eighteen
+c 19 nineteen
+c 20 twenty
+dump
+dump 2
+
+u 1  ONE
+u 2  TWO
+u 3  THREE
+u 4  FOUR
+u 5  FIVE
+u 6  SIX
+u 7  SEVEN
+u 8  EIGHT
+u 9  NINE
+u 10 TEN
+dump
+
+r 1
+r 3
+r 11
+r 20
+
+d 1
+d 3
+d 11
+d 20
+dump
+
+r 1
+r 3
+r 11
+r 20
+
+crash 1
+dump
+
+r 1 
+r 2 
+r 3 
+r 4 
+r 5 
+r 6 
+r 7 
+r 8 
+r 9 
+r 10
+dump

@@ -1,0 +1,12 @@
+// src/main/scala/progscala2/objectsystem/overrides/member-namespace.scalaX
+// WON'T COMPILE
+
+package progscala2.objectsystem.overrides
+
+class IllegalMemberNameUse {
+  def member(i: Int) = 2 * i
+  val member = 2         // ERROR
+  object member {        // ERROR 
+    def apply() = 2
+  }
+}

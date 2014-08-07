@@ -3,7 +3,7 @@
 ## README for the Code Examples ##
 
 *Dean Wampler*<br/>
-*July 24, 2014*
+*August 7, 2014*
 
 This archive contains all the code examples found in [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do), with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book. In the book's text, when an example corresponds to a file in this distribution, the listing begins with a path in a comment with the following format:
 
