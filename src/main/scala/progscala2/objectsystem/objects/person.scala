@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/objectsystem/objects/person.scala
+// src/main/scala/progscala2/objectsystem/objects/Person.scala
 
 package progscala2.objectsystem.objects
 

@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/typesystem/higherkinded/reduce1.scala
+// src/main/scala/progscala2/typesystem/higherkinded/Reduce1.scala
 package progscala2.typesystem.higherkinded
 import scala.language.higherKinds
 

@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/traits/observer/observer.scala
+// src/main/scala/progscala2/traits/observer/Observer.scala
 
 package progscala2.traits.observer
 

@@ -1,11 +1,11 @@
 // src/main/scala/progscala2/patternmatching/http.sc
 
-sealed abstract class HttpMethod() {                  // <1>
-    def body: String                                  // <2>
+sealed abstract class HttpMethod() {                                 // <1>
+    def body: String                                                 // <2>
     def bodyLength = body.length
 }
 
-case class Connect(body: String) extends HttpMethod   // <3>
+case class Connect(body: String) extends HttpMethod                  // <3>
 case class Delete (body: String) extends HttpMethod
 case class Get    (body: String) extends HttpMethod
 case class Head   (body: String) extends HttpMethod
@@ -14,7 +14,7 @@ case class Post   (body: String) extends HttpMethod
 case class Put    (body: String) extends HttpMethod
 case class Trace  (body: String) extends HttpMethod
 
-def handle (method: HttpMethod) = method match {      // <4>
+def handle (method: HttpMethod) = method match {                     // <4>
   case Connect (body) => s"connect: (length: ${method.bodyLength}) $body"
   case Delete  (body) => s"delete:  (length: ${method.bodyLength}) $body"
   case Get     (body) => s"get:     (length: ${method.bodyLength}) $body"

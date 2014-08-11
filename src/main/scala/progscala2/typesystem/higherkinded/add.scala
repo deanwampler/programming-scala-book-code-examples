@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/typesystem/higherkinded/add.scala
+// src/main/scala/progscala2/typesystem/higherkinded/Add.scala
 package progscala2.typesystem.higherkinded
 
 trait Add[T] {                                                 // <1>

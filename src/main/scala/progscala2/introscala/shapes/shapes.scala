@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/introscala/shapes/shapes.scala
+// src/main/scala/progscala2/introscala/shapes/Shapes.scala
 
 package progscala2.introscala.shapes
 

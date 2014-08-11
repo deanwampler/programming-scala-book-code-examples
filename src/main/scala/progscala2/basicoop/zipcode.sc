@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/basicoop/zipcode.sc
+// src/main/scala/progscala2/basicoop/Zipcode.sc
 
 import progscala2.basicoop.ZipCode
 

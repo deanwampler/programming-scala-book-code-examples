@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/objectsystem/ui/button.scala
+// src/main/scala/progscala2/objectsystem/ui/Button.scala
 
 package progscala2.objectsystem.ui
 

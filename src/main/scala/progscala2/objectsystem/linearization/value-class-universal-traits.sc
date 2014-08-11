@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/objectsystem/value-class-universal-traits.sc
+// src/main/scala/progscala2/objectsystem/ValueClassUniversalTraits.sc
 
 trait M extends Any {
   def m = print("M ")

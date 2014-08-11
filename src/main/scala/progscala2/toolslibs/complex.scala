@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/toolslibs/complex.scala
+// src/main/scala/progscala2/toolslibs/Complex.scala
 
 package progscala2.toolslibs
 

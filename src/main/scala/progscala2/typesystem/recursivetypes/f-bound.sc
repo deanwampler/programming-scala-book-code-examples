@@ -1,10 +1,10 @@
 // src/main/scala/progscala2/typesystem/recursivetypes/f-bound.sc
 
-trait Parent[T <: Parent[T]] {                             // <1>
+trait Parent[T <: Parent[T]] {                                       // <1>
   def make: T 
 }
 
-case class Child1(s: String) extends Parent[Child1] {      // <2>
+case class Child1(s: String) extends Parent[Child1] {                // <2>
   def make: Child1 = Child1(s"Child1: make: $s")
 }
 

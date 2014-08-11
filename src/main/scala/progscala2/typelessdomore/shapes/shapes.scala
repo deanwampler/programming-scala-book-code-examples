@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/typelessdomore/shapes/shapes.scala
+// src/main/scala/progscala2/typelessdomore/shapes/Shapes.scala
 
 package progscala2.typelessdomore.shapes
 

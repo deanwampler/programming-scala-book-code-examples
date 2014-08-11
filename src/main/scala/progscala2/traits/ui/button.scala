@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/traits/ui/button.scala
+// src/main/scala/progscala2/traits/ui/Button.scala
 
 package progscala2.traits.ui
 

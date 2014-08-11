@@ -1,4 +1,4 @@
-// src/main/java/bigdata/HadoopWordCount.javaX                          <1>
+// src/main/java/bigdata/HadoopWordCount.javaX
 
 package bigdata;
 import org.apache.hadoop.io.*;

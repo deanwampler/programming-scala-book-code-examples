@@ -15,13 +15,13 @@ object EventKind extends Enumeration {
 import EventKind._  // Expose members of enum. in scope 
 
 trait Event {
-  type s <: Shape                                // <1>
-  val shape: s                                   // <2>
-  val kind: EventKind                            // <3>
-  val args: List[Any] = Nil                      // <4>
+  type s <: Shape                                                    // <1>
+  val shape: s                                                       // <2>
+  val kind: EventKind                                                // <3>
+  val args: List[Any] = Nil                                          // <4>
 }
 
-trait CircleEvent extends Event {                // <5>
+trait CircleEvent extends Event {                                    // <5>
   type s = Circle
 }
 case class DrawCircle(val shape: Circle) extends CircleEvent {

@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/typesystem/shapes/shapes.scala
+// src/main/scala/progscala2/typesystem/shapes/Shapes.scala
 
 package progscala2.typesystem.shapes {  
   case class Point(x: Double, y: Double) {

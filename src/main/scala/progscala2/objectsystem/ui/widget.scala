@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/objectsystem/ui/widget.scala
+// src/main/scala/progscala2/objectsystem/ui/Widget.scala
 
 package progscala2.objectsystem.ui
 

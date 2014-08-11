@@ -4,7 +4,7 @@ import progscala2.fp.monads.Process
 import scala.util.{ Either, Left, Right }
 
 // We need a type with a single type parameter:
-type ES[T] = Either[RuntimeException,T]             // <1>
+type ES[T] = Either[RuntimeException,T]                              // <1>
 
 val successfulEitherSteps: Seq[Int => ES[Int]] = List(
   (i:Int) => Right(i + 5), 

@@ -1,7 +1,7 @@
 // src/main/scala/progscala2/patternmatching/match-regex.sc
 
-val BookExtractorRE = """Book: title=([^,]+),\s+author=(.+)""".r         // <1>
-val MagazineExtractorRE = """Magazine: title=([^,]+),\s+issue=(.+)""".r  // <2>
+val BookExtractorRE = """Book: title=([^,]+),\s+author=(.+)""".r     // <1>
+val MagazineExtractorRE = """Magazine: title=([^,]+),\s+issue=(.+)""".r
 
 val catalog = Seq(
   "Book: title=Programming Scala Second Edition, author=Dean Wampler",
@@ -11,7 +11,7 @@ val catalog = Seq(
 
 for (item <- catalog) {
   item match {
-    case BookExtractorRE(title, author) =>                           // <3>
+    case BookExtractorRE(title, author) =>                           // <2>
       println(s"""Book "$title", written by $author""")
     case MagazineExtractorRE(title, issue) =>
       println(s"""Magazine "title", issue $issue""")
