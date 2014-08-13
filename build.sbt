@@ -24,7 +24,7 @@ libraryDependencies ++= Seq(
 )
 
 scalacOptions ++= Seq(
-  "-encoding", "UTF-8", "-optimise", 
+  "-encoding", "UTF-8", "-optimise",
   "-deprecation", "-unchecked", "-feature", "-Xlint", "-Ywarn-infer-any")
 
 javacOptions  ++= Seq(

@@ -9,8 +9,8 @@ case class ThatsOdd(i: Int) extends RuntimeException(                // <1>
 import scala.util.{Try, Success, Failure}                            // <2>
 
 val doComplete: PartialFunction[Try[String],Unit] = {                // <3>
-  case s @ Success(string) => println(s)                             // <4>
-  case f @ Failure(ex) => println(f)
+  case s @ Success(_) => println(s)                                  // <4>
+  case f @ Failure(_) => println(f)
 }
 
 val futures = (0 to 9) map {                                         // <5>

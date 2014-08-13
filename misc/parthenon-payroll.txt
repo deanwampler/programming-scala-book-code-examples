@@ -1,0 +1,7 @@
+# Input for the Parthenon Payroll example.h
+# See the "Application Design" Chapter and
+# src/main/scala/progscala2/appdesign/parthenon/payroll-use-cases.scala
+# Name, annual salary, fed tax, state tax, insurance premiums, retirement
+Joe CEO,    200000.0, 20.0, 5.0, 200.0,  5.0
+Jane CFO,   180000.0, 20.0, 5.0, 250.0,  7.0
+Phil Coder, 120000.0, 15.0, 5.0, 150.0, 10.0
