@@ -9,7 +9,7 @@ object manage {
   def apply[R <: { def close():Unit }, T](resource: => R)(f: R => T) = {
     var res: Option[R] = None
     try {
-      val res = Some(resource)         // Only reference "resource" once!!
+      res = Some(resource)         // Only reference "resource" once!!
       f(res.get)
     } catch {
       case NonFatal(ex) => println(s"Non fatal exception! $ex")
