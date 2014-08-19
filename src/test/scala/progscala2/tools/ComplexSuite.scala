@@ -1,5 +1,4 @@
 // src/test/scala/progscala2/toolslibs/ComplexSuite.scala
-
 package progscala2.toolslibs
 import org.scalatest.FunSuite
 

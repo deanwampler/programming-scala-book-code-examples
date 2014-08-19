@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/selftype/ButtonSubjectObserver.sc
-
 import progscala2.typesystem.selftype._
 
 val buttons = Vector(new ObservableButton("one"), new ObservableButton("two"))

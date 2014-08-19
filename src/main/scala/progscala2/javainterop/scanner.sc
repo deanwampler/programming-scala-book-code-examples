@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/javainterop/scanner.sc
-
 import java.util.Scanner
 import java.util.regex.MatchResult
 
@@ -10,4 +9,3 @@ val result: MatchResult = s.`match`
 for (i <- 1 to result.groupCount) print(result.group(i) + " ")
 println()
 s.close()
- 

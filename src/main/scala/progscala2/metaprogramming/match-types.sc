@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/metaprogramming/match-types.sc
-
 import scala.reflect.ClassTag
 
 def useClassTag[T : ClassTag](seq: Seq[T]): String = seq match { // <1>

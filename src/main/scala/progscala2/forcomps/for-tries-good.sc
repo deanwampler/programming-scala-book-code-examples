@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/forcomps/for-tries-good.sc
-
 import scala.util.{ Try, Success, Failure }
 
 def positive(i: Int): Try[Int] = Try {

@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/metaprogramming/mkArray.sc
-
 import scala.reflect.ClassTag
 
 def mkArray[T : ClassTag](elems: T*) = Array[T](elems: _*)

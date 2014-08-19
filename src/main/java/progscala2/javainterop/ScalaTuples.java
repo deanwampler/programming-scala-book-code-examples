@@ -1,7 +1,5 @@
 // src/test/java/progscala2/javainterop/ScalaTuples.java
-
 package progscala2.javainterop;
-
 import scala.Tuple2;
 
 public class ScalaTuples {

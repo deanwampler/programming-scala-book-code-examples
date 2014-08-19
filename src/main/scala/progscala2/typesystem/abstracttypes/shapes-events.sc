@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/abstracttypes/shapes-events.sc
-
 import progscala2.typesystem.shapes._
 
 // Kinds of events
@@ -12,7 +11,7 @@ object EventKind extends Enumeration {
   val Rotate = Value("Rotate")
 }
 
-import EventKind._  // Expose members of enum. in scope 
+import EventKind._  // Expose members of enum. in scope
 
 trait Event {
   type s <: Shape                                                    // <1>
@@ -49,4 +48,4 @@ List(
   new ResizeCircle(circle2, 200.0),
   new RemoveCircle(circle2),
   new RemoveCircle(circle1)).foreach { event => println(event) }
-  
+

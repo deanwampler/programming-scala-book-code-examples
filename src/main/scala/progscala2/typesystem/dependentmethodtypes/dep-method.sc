@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/dependentmethodtypes/dep-method.sc
-
 import scala.concurrent.{Await, Future}
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global

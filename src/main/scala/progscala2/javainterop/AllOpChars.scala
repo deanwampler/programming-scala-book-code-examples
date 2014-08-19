@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/javainterop/AllOpChars.scala
-
 package progscala2.javainterop
 
 trait AllOpChars {

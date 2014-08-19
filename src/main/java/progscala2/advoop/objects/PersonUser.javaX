@@ -1,6 +1,5 @@
 // src/main/java/progscala2/advoop/objects/PersonUser.javaX
 // WON'T COMPILE
-
 package progscala2.advoop.objects;
 
 public class PersonUserWontCompile {

@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/basicoop/PersonEmployeeTraits.scala
-
 package progscala2.basicoop2                                         // <1>
 
 case class Address(street: String, city: String, state: String, zip: String)
@@ -22,8 +21,8 @@ trait PersonState {                                                  // <3>
 }
 
 case class Person(                                                   // <4>
-  name: String, 
-  age: Option[Int] = None, 
+  name: String,
+  age: Option[Int] = None,
   address: Option[Address] = None) extends PersonState
 
 trait EmployeeState {                                                // <5>
@@ -32,9 +31,9 @@ trait EmployeeState {                                                // <5>
 }
 
 case class Employee(                                                 // <6>
-  name: String, 
+  name: String,
   age: Option[Int] = None,                                           // <7>
   address: Option[Address] = None,
   title: String = "[unknown]",
-  manager: Option[Employee] = None) 
+  manager: Option[Employee] = None)
 extends PersonState with EmployeeState

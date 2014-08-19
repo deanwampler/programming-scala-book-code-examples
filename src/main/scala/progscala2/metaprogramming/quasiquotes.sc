@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/metaprogramming/quasiquotes.sc
-
 import reflect.runtime.universe._
 
 // Bring in the "toolbox":
@@ -19,7 +18,7 @@ showRaw(tq)
 q equalsStructure tq
 
 // "Unquoting", analogous to textual substitution in source code.
-Seq(tq"Int", tq"String") map { param => 
+Seq(tq"Int", tq"String") map { param =>
   q"case class C(s: $param)"
 } foreach { q =>
   println(showCode(q))

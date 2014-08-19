@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typelessdomore/futures.sc
-
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -13,11 +12,11 @@ def doWork(index: Int) = {
   index
 }
 
-(1 to 5) foreach { index => 
+(1 to 5) foreach { index =>
   val future = Future {
     doWork(index)
   }
-  future onSuccess { 
+  future onSuccess {
     case answer: Int => println(s"Success! returned: $answer")
   }
   future onFailure {

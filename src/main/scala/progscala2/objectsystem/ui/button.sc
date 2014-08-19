@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/objectsystem/ui/button.sc
-
 import progscala2.objectsystem.ui.Button
 
 val b = new Button("Submit")

@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/objectsystem/shapes/shapes-usage-example1.sc
-
 import progscala2.objectsystem.shapes._
 
 val shapesList = List(

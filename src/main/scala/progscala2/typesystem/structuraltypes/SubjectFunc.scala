@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/structuraltypes/SubjectFunc.scala
-
 package progscala2.typesystem.structuraltypes
 
 trait SubjectFunc {                                                  // <1>

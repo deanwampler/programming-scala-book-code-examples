@@ -8,4 +8,4 @@ var f: C => C = (c: C)      => new C             // <2>
     f         = (c: CSuper) => new CSub          // <3>
     f         = (c: CSuper) => new C             // <4>
     f         = (c: C)      => new CSub          // <5>
-    f         = (c: CSub)   => new CSuper        // <6> ERROR!
+    f         = (c: CSub)   => new CSuper        // <6> COMPILATION ERROR!

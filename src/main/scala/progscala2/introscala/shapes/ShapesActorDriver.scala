@@ -1,7 +1,5 @@
 // src/main/scala/progscala2/introscala/shapes/ShapesActorDriver.scala
-
 package progscala2.introscala.shapes
-
 import akka.actor.{Props, Actor, ActorRef, ActorSystem}
 import com.typesafe.config.ConfigFactory
 
@@ -20,7 +18,7 @@ object ShapesDrawingDriver {                                         // <2>
 }
 
 class ShapesDrawingDriver(drawerActor: ActorRef) extends Actor {     // <5>
-  import Messages._ 
+  import Messages._
 
   def receive = {
     case Start =>                                                    // <6>

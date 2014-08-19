@@ -1,5 +1,4 @@
 // src/main/java/progscala2/fp/loops/Factorial.java
-
 package progscala2.fp.loops;
 
 public class Factorial {

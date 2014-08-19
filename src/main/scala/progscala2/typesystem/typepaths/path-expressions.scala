@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/typepaths/path-expressions.scala
-
 package progscala2.typesystem.typepaths
 
 class C1 {
@@ -14,7 +13,7 @@ trait T1 {
   val c2: C = new this.C
 }
 
-trait X { 
+trait X {
   def setXX(x:String): Unit = {} // Do Nothing!
 }
 class C2 extends C1

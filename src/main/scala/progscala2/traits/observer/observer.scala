@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/traits/observer/Observer.scala
-
 package progscala2.traits.observer
 
 trait Observer[-State] {                                             // <1>

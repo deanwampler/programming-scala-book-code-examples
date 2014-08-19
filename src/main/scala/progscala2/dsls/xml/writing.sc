@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/dsls/xml/writing.sc
-
 import scala.xml._
 
 val xml2 =

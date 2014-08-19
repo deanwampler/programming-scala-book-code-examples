@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/manifests/manifest.sc
-
 import scala.reflect.Manifest
 
 object WhichList {

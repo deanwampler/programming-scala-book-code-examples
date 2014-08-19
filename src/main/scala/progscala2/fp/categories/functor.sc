@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/fp/categories/Functor.sc
-
 import progscala2.fp.categories._
 import scala.language.higherKinds
 

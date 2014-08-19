@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/structuraltypes/SubjectFunc.sc
-
 import progscala2.typesystem.structuraltypes.SubjectFunc
 
 val observer: Int => Unit = (state: Int) => println("got one! "+state)
@@ -11,7 +10,7 @@ val subject = new SubjectFunc {
   def increment(): Unit = {
     count += 1
     notifyObservers(count)
-  } 
+  }
 }
 
 subject.increment()

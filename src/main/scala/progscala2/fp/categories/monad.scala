@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/fp/categories/Monad.scala
-
 package progscala2.fp.categories
 import scala.language.higherKinds
 

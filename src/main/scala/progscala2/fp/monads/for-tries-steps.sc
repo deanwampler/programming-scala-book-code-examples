@@ -1,14 +1,13 @@
 // src/main/scala/progscala2/fp/monads/for-tries-steps.sc
-
 import progscala2.fp.monads.Process
 import scala.util.{ Try, Success, Failure }
 
 val successfulTrySteps: Seq[Int => Try[Int]] = List(
-  (i:Int) => Success(i + 5), 
-  (i:Int) => Success(i + 10), 
+  (i:Int) => Success(i + 5),
+  (i:Int) => Success(i + 10),
   (i:Int) => Success(i + 25))
 val partiallySuccessfulTrySteps: Seq[Int => Try[Int]] = List(
-  (i:Int) => Success(i + 5), 
+  (i:Int) => Success(i + 5),
   (i:Int) => Failure(new RuntimeException("FAIL!")),
   (i:Int) => Success(i + 25))
 

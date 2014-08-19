@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/basicoop/PersonAuxConstructors.scala
-
 package progscala2.basicoop
 
 case class Address(street: String, city: String, state: String, zip: String) {
@@ -20,9 +19,9 @@ case class Person(
   def this(name: String) = this(name, None, None)                    // <4>
 
   def this(name: String, age: Int) = this(name, Some(age), None)
-  
-  def this(name: String, age: Int, address: Address) = 
+
+  def this(name: String, age: Int, address: Address) =
     this(name, Some(age), Some(address))
-  
+
   def this(name: String, address: Address) = this(name, None, Some(address))
 }

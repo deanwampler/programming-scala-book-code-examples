@@ -1,20 +1,19 @@
 // src/main/scala/progscala2/fp/categories/for-tries-steps.sc
-
 import scala.util.{ Try, Success, Failure }
 
-// Example of using try handling on an arbitrarily-long 
+// Example of using try handling on an arbitrarily-long
 // sequence of functions that return Try[Int]. When the sequence
 // is arbitrary, you can't use a for comprehension.
-  
+
 // Alias the function signature:
 type Step = Int => Try[Int]
 
 val successfulSteps: Seq[Step] = List(
-  (i:Int) => Success(i + 5), 
-  (i:Int) => Success(i + 10), 
+  (i:Int) => Success(i + 5),
+  (i:Int) => Success(i + 10),
   (i:Int) => Success(i + 25))
 val partiallySuccessfulSteps: Seq[Step] = List(
-  (i:Int) => Success(i + 5), 
+  (i:Int) => Success(i + 5),
   (i:Int) => Failure(new RuntimeException("FAIL!")),
   (i:Int) => Success(i + 25))
 
@@ -35,14 +34,14 @@ sumCounts1(partiallySuccessfulSteps)
 // and it doesn't create intermediate Successes:
 def sumCounts2(countSteps: Seq[Step]): Try[Int] = {
   @annotation.tailrec
-  def sum(accum: Int, countSteps2: Seq[Step]): Try[Int] = 
+  def sum(accum: Int, countSteps2: Seq[Step]): Try[Int] =
     countSteps2 match {
       case Nil          => Success(accum)
       case step +: tail => step(accum) match {
         case f @ Failure(ex) => f
         case Success(i2)     => sum(i2, tail)
       }
-    } 
+    }
   sum(0, countSteps)
 }
 

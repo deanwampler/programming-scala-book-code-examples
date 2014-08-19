@@ -8,4 +8,4 @@ def makeList(strings: String*) = {
     strings.toList
 }
 
-val list: List[String] = makeList()  // ERROR
+val list: List[String] = makeList()  // COMPILATION ERROR

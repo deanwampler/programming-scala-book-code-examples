@@ -1,5 +1,4 @@
 // src/main/java/progscala2/typesystem/selftype/JavaApp.java
-
 package progscala2.typesystem.selftype;
 
 public abstract class JavaApp {
@@ -24,7 +23,7 @@ public abstract class JavaApp {
     this.midtier = midtier;
     this.ui = ui;
   }
-  
+
   public void run() {
     persistence.startPersistence();
     midtier.startMidtier();

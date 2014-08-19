@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/selftype/SubjectObserver.scala
-
 package progscala2.typesystem.selftype
 
 abstract class SubjectObserver {

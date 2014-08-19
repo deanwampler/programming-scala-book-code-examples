@@ -1,6 +1,5 @@
 // src/main/scala/progscala2/typesystem/bounds/list/AbbrevList.scala
 // Loosely adapted from scala/List.scala in the Scala library.
-
 package progscala2.typesystem.bounds.list
 
 sealed abstract class AbbrevList[+A] {
@@ -9,7 +8,7 @@ sealed abstract class AbbrevList[+A] {
   def head: A
   def tail: AbbrevList[A]
 
-  def ::[B >: A] (x: B): AbbrevList[B] = 
+  def ::[B >: A] (x: B): AbbrevList[B] =
     new progscala2.typesystem.bounds.list.::(x, this)
 
   final def foreach(f: A => Unit) = {
@@ -35,7 +34,7 @@ case object AbbrevNil extends AbbrevList[Nothing] {
 
 // A non-empty AbbrevList characterized by a head and a tail.
 
-final case class ::[B](private var hd: B, 
+final case class ::[B](private var hd: B,
     private[list] var tl: AbbrevList[B]) extends AbbrevList[B] {
 
   override def isEmpty: Boolean = false

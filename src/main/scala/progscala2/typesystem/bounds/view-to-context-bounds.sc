@@ -1,12 +1,11 @@
 // src/main/scala/progscala2/typesystem/bounds/view-to-context-bounds.sc
-
 import scala.language.implicitConversions
 
-object Serialization { 
-  case class Rem[A](value: A) { 
+object Serialization {
+  case class Rem[A](value: A) {
     def serialized: String = s"-- $value --"
   }
-  type Writable[A] = A => Rem[A]                                     // <1> 
+  type Writable[A] = A => Rem[A]                                     // <1>
   implicit val fromInt: Writable[Int]       = (i: Int)    => Rem(i)
   implicit val fromFloat: Writable[Float]   = (f: Float)  => Rem(f)
   implicit val fromString: Writable[String] = (s: String) => Rem(s)
@@ -14,7 +13,7 @@ object Serialization {
 
 import Serialization._
 
-object RemoteConnection {                                  
+object RemoteConnection {
   def write[T : Writable](t: T): Unit =                              // <2>
     println(t.serialized)  // Use stdout as the "remote connection"
 }

@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/basicoop/Zipcode.scala
-
 package progscala2.basicoop
 
 case class ZipCode(zip: Int, extension: Option[Int] = None) {
@@ -10,7 +9,7 @@ case class ZipCode(zip: Int, extension: Option[Int] = None) {
     if (0 < z && z <= 99999) e match {
       case None    => validUSPS(z, 0)
       case Some(e) => 0 < e && e <= 9999 && validUSPS(z, e)
-    } 
+    }
     else false
   }
 
@@ -22,6 +21,6 @@ case class ZipCode(zip: Int, extension: Option[Int] = None) {
 }
 
 object ZipCode {
-  def apply (zip: Int, extension: Int): ZipCode = 
+  def apply (zip: Int, extension: Int): ZipCode =
     new ZipCode(zip, Some(extension))
 }

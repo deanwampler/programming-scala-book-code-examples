@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/valuetypes/type-projection.sc
-
 import progscala2.typesystem.valuetypes._
 
 val l1: Service.Log   = new ConsoleLogger    // ERROR: No Service "value"

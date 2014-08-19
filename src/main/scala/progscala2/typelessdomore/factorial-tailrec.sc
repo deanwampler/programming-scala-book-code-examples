@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typelessdomore/factorial-tailrec.sc
-
 import scala.annotation.tailrec
 
 def factorial(i: Int): Long = {
@@ -8,7 +7,7 @@ def factorial(i: Int): Long = {
     if (i <= 1) accumulator
     else fact(i - 1, i * accumulator)
   }
-    
+
   fact(i, 1)
 }
 

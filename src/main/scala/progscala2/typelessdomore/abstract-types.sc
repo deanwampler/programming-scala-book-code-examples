@@ -1,9 +1,8 @@
 // src/main/scala/progscala2/typelessdomore/abstract-types.sc
-
 import java.io._
 
 abstract class BulkReader {
-  type In 
+  type In
   val source: In
   def read: String  // Read source and return a String
 }

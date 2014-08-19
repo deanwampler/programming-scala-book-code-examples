@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typelessdomore/package-example2.scala
-
 package com {
   package example {
     package pkg1 {
@@ -21,7 +20,7 @@ package com {
           new pkg1.Class12
         }
       }
-    }        
+    }
 
     package pkg3.pkg31.pkg311 {
       class Class311 {

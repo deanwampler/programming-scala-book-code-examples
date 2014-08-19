@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/metaprogramming/Reflect.java
-
 package progscala2.metaprogramming;
 import java.util.Arrays;
 
@@ -13,7 +12,7 @@ public class JavaReflect {
     public String vT = "T";
     public String vC = "C";
     public String mC() { return vC; }
-    
+
     public static class C2 {}
   }
 

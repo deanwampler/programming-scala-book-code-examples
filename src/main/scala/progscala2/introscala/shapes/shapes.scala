@@ -1,11 +1,10 @@
 // src/main/scala/progscala2/introscala/shapes/Shapes.scala
-
 package progscala2.introscala.shapes
 
 case class Point(x: Double = 0.0, y: Double = 0.0)                   // <1>
 
 abstract class Shape() {                                             // <2>
-  /** 
+  /**
    * Draw takes a function argument. Each shape will pass a stringized
    * version of itself to this function, which does the "drawing".
    */

@@ -1,6 +1,5 @@
 // src/main/scala/progscala2/fp/recursion/trampoline.sc
 // From: scala-lang.org/api/current/index.html#scala.util.control.TailCalls$
-
 import scala.util.control.TailCalls._
 
 def isEven(xs: List[Int]): TailRec[Boolean] =

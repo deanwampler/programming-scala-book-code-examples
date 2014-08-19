@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/objectsystem/objects/Person.scala
-
 package progscala2.objectsystem.objects
 
 class Person(val name: String, val age: Int) {
@@ -9,7 +8,7 @@ class Person(val name: String, val age: Int) {
 object Person {
   def apply(name: String, age: Int) = new Person(name, age)
   def unapply(person: Person) = Some((person.name, person.age))
-  
+
   def main(args: Array[String]) = {
     // Test the constructor...
     val person = new Person("Buck Trends", 21)

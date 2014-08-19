@@ -5,11 +5,9 @@
  * Copyright (c) 2007-2013 Concurrent, Inc. All Rights Reserved.
  * See that project for additional copyright information.
  */
-
 package impatient;
 
 import java.util.Properties;
-
 import cascading.flow.Flow;
 import cascading.flow.FlowDef;
 import cascading.flow.hadoop.HadoopFlowConnector;
@@ -42,7 +40,7 @@ public class CascadingWordCount {
     // into a token stream.
     Fields token = new Fields( "token" );                            // <4>
     Fields text = new Fields( "text" );
-    RegexSplitGenerator splitter = 
+    RegexSplitGenerator splitter =
         new RegexSplitGenerator( token, "[ \\[\\]\\(\\),.]" );
     // Only returns "token"
     Pipe docPipe =                                                   // <5>

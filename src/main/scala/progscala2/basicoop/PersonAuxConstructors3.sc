@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/basicoop/PersonAuxConstructors3.sc
-
 import progscala2.basicoop.Address
 import progscala2.basicoop3.Person3
 

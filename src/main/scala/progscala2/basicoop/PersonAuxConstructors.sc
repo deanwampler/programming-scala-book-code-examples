@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/basicoop/PersonAuxConstructors.sc
-
 import progscala2.basicoop.{Address, Person}
 
 val a1 = new Address("1 Scala Lane", "Anytown", "CA", "98765")

@@ -1,12 +1,11 @@
 // src/main/scala/progscala2/metaprogramming/match-type-tags.sc
-
 import scala.reflect.runtime.universe._                              // <1>
 
 def toType2[T](t: T)(implicit tag: TypeTag[T]): Type = tag.tpe       // <2>
 def toType[T : TypeTag](t: T): Type = typeOf[T]                      // <3>
 
 /**
- * Return a tuple of the type "prefix", the type's symbol and its 
+ * Return a tuple of the type "prefix", the type's symbol and its
  * possibly empty list of type parameters.
  */
 def toTypeRefInfo[T : TypeTag](x: T): (Type, Symbol, Seq[Type]) = {  // <4>

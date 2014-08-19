@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/traits/ui2/ObservableClicks.scala
-
 package progscala2.traits.ui2
 import progscala2.traits.observer._
 

@@ -1,11 +1,10 @@
 // src/main/scala/progscala2/traits/ui/button-count-observer2.sc
-
 import progscala2.traits.ui._
 import progscala2.traits.observer._
 
 val button = new Button("Click Me!") with Subject[Button] {
 
-  override def click(): Unit = {                            
+  override def click(): Unit = {
     super.click()
     notifyObservers(this)
   }

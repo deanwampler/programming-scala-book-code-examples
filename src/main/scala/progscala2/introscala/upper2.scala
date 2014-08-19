@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/introscala/upper2.scala
-
 package progscala2.introscala
 
 object Upper2 {

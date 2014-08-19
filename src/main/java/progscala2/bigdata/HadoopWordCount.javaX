@@ -1,6 +1,6 @@
 // src/main/java/bigdata/HadoopWordCount.javaX
-
 package bigdata;
+
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 import java.util.StringTokenizer;
@@ -31,15 +31,15 @@ public class HadoopWordCount {
     }
   }
 
-  class WordCountMapper extends MapReduceBase 
+  class WordCountMapper extends MapReduceBase
       implements Mapper<IntWritable, Text, Text, IntWritable> {
 
     static final IntWritable one  = new IntWritable(1);
     // Value will be set in a non-thread-safe way!
-    static final Text word = new Text;   
+    static final Text word = new Text;
 
     @Override
-    public void map(IntWritable key, Text valueDocContents, 
+    public void map(IntWritable key, Text valueDocContents,
         OutputCollector<Text, IntWritable> output, Reporter reporter) {
     String[] tokens = valueDocContents.toString.split("\\s+");       // <2>
       for (String wordString: tokens) {
@@ -51,10 +51,10 @@ public class HadoopWordCount {
     }
   }
 
-  class WordCountReduce extends MapReduceBase 
+  class WordCountReduce extends MapReduceBase
     implements Reducer<Text, IntWritable, Text, IntWritable> {
 
-    public void reduce(Text keyWord, java.util.Iterator<IntWritable> counts, 
+    public void reduce(Text keyWord, java.util.Iterator<IntWritable> counts,
       OutputCollector<Text, IntWritable> output, Reporter reporter) {
     int totalCount = 0;
     while (counts.hasNext) {                                         // <3>

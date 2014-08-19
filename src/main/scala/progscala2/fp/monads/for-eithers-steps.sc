@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/fp/monads/for-eithers-steps.sc
-
 import progscala2.fp.monads.Process
 import scala.util.{ Either, Left, Right }
 
@@ -7,12 +6,12 @@ import scala.util.{ Either, Left, Right }
 type ES[T] = Either[RuntimeException,T]                              // <1>
 
 val successfulEitherSteps: Seq[Int => ES[Int]] = List(
-  (i:Int) => Right(i + 5), 
-  (i:Int) => Right(i + 10), 
+  (i:Int) => Right(i + 5),
+  (i:Int) => Right(i + 10),
   (i:Int) => Right(i + 25))
 val partiallySuccessfulEitherSteps: Seq[Int => ES[Int]] =
  List(
-  (i:Int) => Right(i + 5), 
+  (i:Int) => Right(i + 5),
   (i:Int) => Left(new RuntimeException("FAIL!")),
   (i:Int) => Right(i + 25))
 

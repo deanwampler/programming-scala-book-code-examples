@@ -1,8 +1,7 @@
 // src/main/scala/progscala2/forcomps/for-tries-seq.sc
-
 import scala.util.{ Try, Success, Failure }
 
-val results: Seq[Try[Int]] = 
+val results: Seq[Try[Int]] =
   Vector(Success(10), Failure(new RuntimeException("boo!")), Success(20))
 
 val results2a = for {

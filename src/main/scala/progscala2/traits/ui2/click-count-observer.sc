@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/traits/ui2/click-count-observer.sc
-
 import progscala2.traits.ui2._
 import progscala2.traits.observer._
 

@@ -5,7 +5,7 @@
 object StringUtilV1 {
   def joiner(strings: String*): String = strings.mkString("-")
 
-  def joiner(strings: List[String]) = joiner(strings :_*)   // ERROR
+  def joiner(strings: List[String]) = joiner(strings :_*)   // COMPILATION ERROR
 }
 
 println( StringUtilV1.joiner(List("Programming", "Scala")) )

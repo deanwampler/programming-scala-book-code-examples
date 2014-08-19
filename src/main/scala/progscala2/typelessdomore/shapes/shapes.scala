@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typelessdomore/shapes/Shapes.scala
-
 package progscala2.typelessdomore.shapes
 
 case class Point(x: Double = 0.0, y: Double = 0.0) {
@@ -8,12 +7,12 @@ case class Point(x: Double = 0.0, y: Double = 0.0) {
     copy (x + deltax, y + deltay)
 }
 
-abstract class Shape() { 
-  /** 
+abstract class Shape() {
+  /**
    * Draw takes TWO argument LISTS, one list with an offset for drawing,
    * and the other list that is the function argument we used previously.
    */
-  def draw(offset: Point = Point(0.0, 0.0))(f: String => Unit): Unit = 
+  def draw(offset: Point = Point(0.0, 0.0))(f: String => Unit): Unit =
     f(s"draw(offset = $offset), ${this.toString}")
 }
 

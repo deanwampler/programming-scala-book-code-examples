@@ -3,10 +3,9 @@
 // A nicer way of driving the payroll workflow.
 
 package progscala.implicits.payroll
-
 import scala.language.implicitConversions
 
-// Adapted from 
+// Adapted from
 // http://james-iry.blogspot.ch/2010/10/phantom-types-in-haskell-and-scala.html
 // which was inspired by F# and Haskell.
 object Pipeline {
@@ -21,10 +20,10 @@ object CalculatePayroll2 {
     import Payroll._
 
     val e = Employee("Buck Trends", 100000.0F, 0.25F, 200F, 0.10F, 0.05F)
-    val pay = start(e) |> 
-      minus401k        |> 
-      minusInsurance   |> 
-      minusTax         |> 
+    val pay = start(e) |>
+      minus401k        |>
+      minusInsurance   |>
+      minusTax         |>
       minusFinalDeductions
     val twoWeekGross = e.annualSalary / 26.0F
     val twoWeekNet   = pay.netPay

@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/dynamic/clinq-example.sc
-
 import progscala2.dynamic.CLINQ
 
 def makeMap(name: String, capital: String, statehood: Int) =

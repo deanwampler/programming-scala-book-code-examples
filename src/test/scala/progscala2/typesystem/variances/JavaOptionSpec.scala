@@ -1,16 +1,14 @@
 // src/test/scala/progscala2/typesystem/variances/JavaOptionSpec.scala
-
 package progscala2.typesystem.variances
- 
 import progscala2.introscala.shapes._
 import progscala2.typesystem.variances.{Option => JOption, None => JNone, Some => JSome, _}
 import scala.language.existentials
-import org.scalatest.{ FunSpec, ShouldMatchers } 
+import org.scalatest.{ FunSpec, ShouldMatchers }
 
-class JavaOptionSpec extends FunSpec with ShouldMatchers { 
+class JavaOptionSpec extends FunSpec with ShouldMatchers {
   def toD(d: Double) = new java.lang.Double(d)
 
-  describe ("Java Option") { 
+  describe ("Java Option") {
     val shapeNames = List("Rectangle", "Circle", "Triangle");
     var shapeOptions = List(
       OptionExample.makeShape(shapeNames(0), Point(0.0,0.0), toD(2.0), toD(5.0)),

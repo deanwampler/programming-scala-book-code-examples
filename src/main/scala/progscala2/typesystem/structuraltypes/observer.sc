@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/structuraltypes/Observer.sc
-
 import progscala2.typesystem.structuraltypes.Subject
 import scala.language.reflectiveCalls
 
@@ -14,7 +13,7 @@ val subject = new Subject {                                          // <2>
   def increment(): Unit = {
     count += 1
     notifyObservers(count)
-  } 
+  }
 }
 
 subject.increment()

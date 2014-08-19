@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/selftype/ButtonSubjectObserver.scala
-
 package progscala2.typesystem.selftype
 
 case class Button(label: String) {                                   // <1>

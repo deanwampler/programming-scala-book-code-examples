@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/rounding/TryCatch.scala
-
 package progscala2.rounding
 
 object TryCatch {

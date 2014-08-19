@@ -1,10 +1,9 @@
 // src/main/scala/progscala2/typesystem/bounds/view-bounds.sc
-
 import scala.language.implicitConversions
 
-object Serialization { 
+object Serialization {
   case class Writable(value: Any) {
-    def serialized: String = s"-- $value --"                         // <1> 
+    def serialized: String = s"-- $value --"                         // <1>
   }
 
   implicit def fromInt(i: Int) = Writable(i)                         // <2>

@@ -1,6 +1,5 @@
 // src/main/scala/progscala2/rounding/while.sc
 // WARNING: This script runs for a LOOOONG time!
-
 import java.util.Calendar
 
 def isFridayThirteen(cal: Calendar): Boolean = {

@@ -1,7 +1,5 @@
 // src/main/scala/progscala2/objectsystem/ui/Button.scala
-
 package progscala2.objectsystem.ui
-
 import progscala2.traits.ui2.Clickable
 
 class Button(val label: String) extends Widget with Clickable {

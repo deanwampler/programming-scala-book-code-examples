@@ -1,7 +1,5 @@
 // src/main/scala/progscala2/rounding/TryCatchArm.scala
-
 package progscala2.rounding
-
 import scala.language.reflectiveCalls
 import scala.util.control.NonFatal
 

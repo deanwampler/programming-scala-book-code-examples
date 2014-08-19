@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/dsls/xml/reading.sc
-
 import scala.xml._                                                   // <1>
 
 val xmlAsString = "<sammich>...</sammich>"                           // <2>
@@ -15,18 +14,18 @@ val xml2 =                                                           // <3>
   </condiments>
 </sammich>
 
-for {                                                                // <4> 
+for {                                                                // <4>
   condiment <- (xml2 \\ "condiment")
   if (condiment \ "@expired").text == "true"
 } println(s"the ${condiment.text} has expired!")
 
 def isExpired(condiment: Node): String =                             // <5>
-  condiment.attribute("expired") match { 
+  condiment.attribute("expired") match {
     case Some(Nil) | None => "unknown!"
     case Some(nodes) => nodes.head.text
   }
 
-xml2 match {                                                         // <6> 
+xml2 match {                                                         // <6>
   case <sammich>{ingredients @ _*}</sammich> => {
     for {
       condiments @ <condiments>{_*}</condiments> <- ingredients

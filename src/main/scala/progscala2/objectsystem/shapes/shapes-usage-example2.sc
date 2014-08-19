@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/objectsystem/shapes/shapes-usage-example2.sc
-
 import progscala2.objectsystem.shapes._
 
 val shapesList = List(
@@ -10,11 +9,11 @@ val shapesList = List(
   Triangle(Point(0.0, 0.0), Point(1.0, 0.0), Point(0.0, 1.0)))
 
 def matchOn(shape: Shape) = shape match {
-  case Circle(center, radius) => 
+  case Circle(center, radius) =>
     println("Circle: center = "+center+", radius = "+radius)
-  case Rectangle(ll, h, w) => 
+  case Rectangle(ll, h, w) =>
     println("Rectangle: lower-left = "+ll+", height = "+h+", width = "+w)
-  case Triangle(p1, p2, p3) => 
+  case Triangle(p1, p2, p3) =>
     println("Triangle: point1 = "+p1+", point2 = "+p2+", point3 = "+p3)
   case _ =>
     println("Unknown shape!"+shape)

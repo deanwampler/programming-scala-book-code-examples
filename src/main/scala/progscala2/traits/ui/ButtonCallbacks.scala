@@ -1,12 +1,11 @@
 // src/main/scala/progscala2/traits/ui/ButtonCallbacks.scala
-
 package progscala2.traits.ui
 
-class ButtonWithCallbacks(val label: String, 
+class ButtonWithCallbacks(val label: String,
     val callbacks: List[() => Unit] = Nil) extends Widget {
 
   def click(): Unit = {
-    updateUI()       
+    updateUI()
     callbacks.foreach(f => f())
   }
 

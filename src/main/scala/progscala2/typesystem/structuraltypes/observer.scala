@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/typesystem/structuraltypes/Observer.scala
-
 package progscala2.typesystem.structuraltypes
 
 trait Subject {                                                      // <1>

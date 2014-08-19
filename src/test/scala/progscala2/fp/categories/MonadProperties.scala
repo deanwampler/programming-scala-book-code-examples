@@ -1,5 +1,4 @@
 // src/test/scala/progscala2/fp/categories/MonadProperties.scala
-
 package progscala2.fp.categories
 import org.scalatest.FunSpec
 import org.scalatest.prop.PropertyChecks

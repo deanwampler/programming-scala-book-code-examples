@@ -1,5 +1,4 @@
 // src/main/scala/progscala2/implicits/implicitly-args.sc
-
 import math.Ordering
 
 case class MyList[A](list: List[A]) {
