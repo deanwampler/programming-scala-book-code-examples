@@ -7,6 +7,7 @@ import org.scalatest.{FunSpec, ShouldMatchers}
 import org.scalatest.prop.Checkers._
 import org.scalacheck._
 
+// TODO: Really this should be a ScalaCheck properties test.
 class DSLSpec extends FunSpec with ShouldMatchers {
   import dsl._
 

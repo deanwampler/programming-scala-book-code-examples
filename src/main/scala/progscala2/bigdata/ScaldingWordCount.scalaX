@@ -1,8 +1,8 @@
-// src/main/scala/bigdata/WordCountScalding.scalaX
+// src/main/scala/progscala2/bigdata/ScaldingWordCount.scalaX
 // Adapted from: https://github.com/deanwampler/scalding-workshop
 import com.twitter.scalding._                                        // <1>
 
-class WordCount(args : Args) extends Job(args) {
+class ScaldingWordCount(args : Args) extends Job(args) {
 
   TextLine(args("input"))                                            // <2>
     .read

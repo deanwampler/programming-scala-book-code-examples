@@ -1,13 +1,10 @@
 // src/main/scala/progscala2/implicits/phantom-types-pipeline.scala
-
-// A nicer way of driving the payroll workflow.
-
+// A nicer way of driving the payroll workflow. Adapted from
+// http://james-iry.blogspot.ch/2010/10/phantom-types-in-haskell-and-scala.html
+// which was inspired by F# and Haskell.
 package progscala.implicits.payroll
 import scala.language.implicitConversions
 
-// Adapted from
-// http://james-iry.blogspot.ch/2010/10/phantom-types-in-haskell-and-scala.html
-// which was inspired by F# and Haskell.
 object Pipeline {
   implicit class toPiped[V](value:V) {
     def |>[R] (f : V => R) = f(value)
