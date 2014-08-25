@@ -25,7 +25,8 @@ libraryDependencies ++= Seq(
 
 scalacOptions ++= Seq(
   "-encoding", "UTF-8", "-optimise",
-  "-deprecation", "-unchecked", "-feature", "-Xlint", "-Ywarn-infer-any")
+  "-deprecation", "-unchecked", "-feature", "-Xlint",
+  "-Ywarn-infer-any", "-Ywarn-value-discard ")
 
 javacOptions  ++= Seq(
   "-Xlint:unchecked", "-Xlint:deprecation") // Java 8: "-Xdiags:verbose")
