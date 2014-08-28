@@ -7,7 +7,7 @@ package scopeA {
 
     def equalFields(other: ProtectedClass1) =
       (protectedField1 == other.protectedField1) &&
-      (protectedField1 == other.protectedField1) &&
+      (protectedField2 == other.protectedField2) &&
       (nested == other.nested)
 
     class Nested {
