@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/objectsystem/overrides/trait-invalid-init-val.sc
+// src/main/scala/progscala2/objectsystem/overrides/trait-bad-init-val.sc
 // ERROR: "value" read before initialized.
 
 trait AbstractT2 {
