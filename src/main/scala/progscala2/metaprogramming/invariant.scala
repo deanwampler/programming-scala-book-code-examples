@@ -1,17 +1,16 @@
 // src/main/scala/progscala2/metaprogramming/invariant.scala
 package metaprogramming
-import reflect.runtime.universe._                                    // <1>
-import scala.language.experimental.macros
+import scala.language.experimental.macros                            // <1>
 import scala.reflect.macros.blackbox.Context                         // <2>
 
-/** 
+/**
  * A Macro written using the current macro syntax along with quasiquotes.
  * Requires a predicate for an invariant to be true before each expression
  * is evaluated.
  */
 object invariant {                                                   // <3>
   case class InvariantFailure(msg: String) extends RuntimeException(msg)
-  
+
   def apply[T](predicate: => Boolean)(block: => T): T = macro impl   // <4>
 
   def impl(c: Context)(predicate: c.Tree)(block: c.Tree) = {         // <5>
