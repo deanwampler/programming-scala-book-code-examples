@@ -1,4 +1,8 @@
 // src/main/scala/progscala2/metaprogramming/match-types.sc
+// NOTE: This example is actually nonsense. I don't know what I was thinking.
+// implicitly(seq.head) just returns seq.head and that call to `getClass` does
+// the real work I was intending `ClassTag` to do. So, ignore this and look at
+// mkArray.sc in this package instead, which is far better.
 import scala.reflect.ClassTag
 
 def useClassTag[T : ClassTag](seq: Seq[T]): String = seq match { // <1>
