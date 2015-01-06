@@ -1,12 +1,20 @@
 // src/test/java/progscala2/javainterop/SMapTest.java
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import static org.junit.Assert.*;
-import scala.*;
+package progscala2.javainterop;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import scala.Option;
 import scala.collection.mutable.LinkedHashMap;
 
 public class SMapTest extends org.scalatest.junit.JUnitSuite {       // <1>
+  
+	// Apparently JUnitSuite is serializable, so we need this:
+	private static final long serialVersionUID = 693445694552874517L;
+
   static class Name {
     public String firstName;
     public String lastName;
