@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/implicits/implicit-conversions-resolution.sc
+// src/main/scala/progscala2/implicits/implicit-conversions-resolution2.sc
 import scala.language.implicitConversions
 
 case class Foo(s: String)
