@@ -21,7 +21,7 @@ Use these comments to find the corresponding source file. This archive also cont
 
 ## Naming Conventions
 
-The examples include "scripts" that are run with the `scala` command (or within SBT using the `console`), source files that are compiled with `scalac`, and source files that deliberately fail to compile to demonstrate common errors. To keep then straight and to support building with SBT, the following naming conventions are used for the files.
+The examples include "scripts" that are run with the `scala` command (or within SBT using the `console`), source files that are compiled with `scalac`, and source files that deliberately fail to compile to demonstrate common errors. To keep them straight and to support building with SBT, the following naming conventions are used for the files:
 
 - `build.sbt` - The SBT build script (described below).
 - `*.scala` - Source files that are compiled with `scala`. In fact, this is the community-standard extension for all Scala files, code to be compiled or scripts. But to keep the build process simple, I use different conventions for files that aren't compiled, discussed next. 
