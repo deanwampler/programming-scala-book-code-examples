@@ -34,7 +34,7 @@ To build and run the examples, all you need to do is install [SBT](http://www.sc
 
 Follow these [installation instructions](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html).
 
-If you want to install Scala separate and the the *Scaladocs* (recommended), go to [scala-lang.org](http://scala-lang.org), but this isn't strictly required.
+If you want to install Scala separately and *Scaladocs* (recommended), go to [scala-lang.org](http://scala-lang.org), but this isn't strictly required.
 
 ### Editors, Eclipse, and IntelliJ
 
