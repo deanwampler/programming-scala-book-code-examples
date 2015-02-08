@@ -1,4 +1,4 @@
-name := "Programming Scala, Second Edition: Code examples"
+name := "Programming Scala, Second Edition - Code examples"
 
 version := "2.0"
 
