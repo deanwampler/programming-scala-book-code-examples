@@ -4,7 +4,7 @@ version := "2.0"
 
 organization := "org.programming-scala"
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-async"     % "0.9.2",
