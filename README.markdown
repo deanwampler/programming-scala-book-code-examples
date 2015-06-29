@@ -25,7 +25,7 @@ The examples include "scripts" that are run with the `scala` command (or within 
 
 - `build.sbt` - The SBT build script (described below).
 - `*.scala` - Source files that are compiled with `scala`. In fact, this is the community-standard extension for all Scala files, code to be compiled or scripts. But to keep the build process simple, I use different conventions for files that aren't compiled, discussed next. 
-- `*.sc` - Script files that are executed directory, e.g., `scala foo-script.sc`. This file extension is not a standard, but it is used by the newer IDE *worksheet* feature I discuss in the the book. So, I stole the convention; SBT will ignore these scripts when compiling. These script don't have tests to verify them (TODO).
+- `*.sc` - Script files that are executed directly, e.g., `scala foo-script.sc`. This file extension is not a standard, but it is used by the newer IDE *worksheet* feature I discuss in the book. So, I stole the convention; SBT will ignore these scripts when compiling. These script don't have tests to verify them (TODO).
 - `*.javaX`, `*.scalaX` and `*.scX` - Java and Scala source files and scripts with deliberate errors, so they don't compile and run, or building them would require significant changes to the build that were deemed unnecessary. Most contain comments explaining what's wrong with them or in some cases, the corresponding section of the book provides the details.
 
 ## Required and Optional Tools
@@ -63,7 +63,7 @@ If you start `sbt` without any arguments, it puts you into an interactive mode w
 	tasks      # show the most common tasks (commands). 
 	tasks -V   # REALLY show ALL tasks
 
-Note the `+test` example. It looks at a property named `crossScalaVersions` in the build file, `build.sbt` to know which versions of Scala to use. The `+` can be used for any task, although for some it will make little sense. Similarly, the `~` prefix causes the task to be run continuously each time source code changes are saved. This promotes continuous TDD (test-driven development) is one of my favorite features!
+Note the `+test` example. It looks at a property named `crossScalaVersions` in the build file, `build.sbt` to know which versions of Scala to use. The `+` can be used for any task, although for some it will make little sense. Similarly, the `~` prefix causes the task to be run continuously each time source code changes are saved. This promotes continuous TDD (test-driven development) and is one of my favorite features!
 
 Outside of SBT, you could, in principle, run the script files manually at the console/terminal prompt.
 
