@@ -10,4 +10,4 @@ object StringUtilV3 {
 
 }
 
-println( StringUtilV1.joiner(List("Programming", "Scala")) )
+println( StringUtilV3.joiner(List("Programming", "Scala")) )
