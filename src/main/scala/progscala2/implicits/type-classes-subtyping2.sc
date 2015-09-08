@@ -12,7 +12,7 @@ trait ToJSON[+T] {
     (INDENTATION * level, INDENTATION * (level+1))
 }
 
-class AddressToJSON(address: Address) extends ToJSON[Address] {
+implicit class AddressToJSON(address: Address) extends ToJSON[Address] {
   def toJSON(level: Int = 0): String = {
     val (outdent, indent) = indentation(level)
     s"""{
@@ -24,7 +24,7 @@ class AddressToJSON(address: Address) extends ToJSON[Address] {
   }
 }
 
-class PersonToJSON(person: Person) extends ToJSON[Person] {
+implicit class PersonToJSON(person: Person) extends ToJSON[Person] {
   def toJSON(level: Int = 0): String = {
     val (outdent, indent) = indentation(level)
     s"""{
