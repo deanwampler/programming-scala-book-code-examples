@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/introscala/shapes/Shapes.scala
+// src/main/scala/progscala2/introscala/shapes/shapes.scala
 package progscala2.introscala.shapes
 
 case class Point(x: Double = 0.0, y: Double = 0.0)                   // <1>
