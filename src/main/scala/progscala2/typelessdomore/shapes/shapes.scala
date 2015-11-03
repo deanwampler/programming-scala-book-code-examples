@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/typelessdomore/shapes/Shapes.scala
+// src/main/scala/progscala2/typelessdomore/shapes/shapes.scala
 package progscala2.typelessdomore.shapes
 
 case class Point(x: Double = 0.0, y: Double = 0.0) {
