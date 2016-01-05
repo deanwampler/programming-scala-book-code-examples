@@ -1,10 +1,10 @@
 name := "Programming Scala, Second Edition - Code examples"
 
-version := "2.0"
+version := "2.1"
 
 organization := "org.programming-scala"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-async"     % "0.9.2",
@@ -15,8 +15,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka"      %% "akka-slf4j"      % "2.3.4",
   "ch.qos.logback"          % "logback-classic" % "1.1.2",
   "org.scalaz"             %% "scalaz-core"     % "7.1.0",
-  "org.scalacheck"         %% "scalacheck"      % "1.11.5" % "test",
-  "org.scalatest"          %% "scalatest"       % "2.2.1"  % "test",
+  "org.scalacheck"         %% "scalacheck"      % "1.12.5" % "test",
+  "org.scalatest"          %% "scalatest"       % "2.2.4"  % "test",
   "org.specs2"             %% "specs2"          % "2.4"    % "test",
   // JUnit is used for some Java interop. examples. A driver for JUnit:
   "junit"                   % "junit-dep"       % "4.10"   % "test",
