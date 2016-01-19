@@ -1,6 +1,6 @@
 // src/main/scala/progscala2/typelessdomore/person.sc
 
-class Person(val mame: String, var age: Int)
+class Person(val name: String, var age: Int)
 
 val p = new Person("Dean Wampler", 29)
 
