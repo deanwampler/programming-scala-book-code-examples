@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/patternmatching/match-variable2.sc
+// src/main/scala/progscala2/patternmatching/match-variable3.sc
 
 for {
   x <- Seq(1, 2, 2.7, "one", "two", 'four)
