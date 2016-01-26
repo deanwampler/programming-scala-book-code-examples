@@ -14,7 +14,7 @@ for (item <- catalog) {
     case BookExtractorRE(title, author) =>                           // <2>
       println(s"""Book "$title", written by $author""")
     case MagazineExtractorRE(title, issue) =>
-      println(s"""Magazine "title", issue $issue""")
+      println(s"""Magazine "$title", issue $issue""")
     case entry => println(s"Unrecognized entry: $entry")
   }
 }
