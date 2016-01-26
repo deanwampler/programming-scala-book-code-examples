@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/rounding/infix.sc
+// src/main/scala/progscala2/patternmatching/infix.sc
 
 case class With[A,B](a: A, b: B)
 
