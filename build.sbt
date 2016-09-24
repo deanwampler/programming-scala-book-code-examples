@@ -10,7 +10,7 @@ libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-async"     % "0.9.2",
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.2",
   "org.scala-lang.modules" %% "scala-xml"       % "1.0.2",
-  "org.scala-lang"          % "scala-reflect"   % "2.11.2",
+  "org.scala-lang"          % "scala-reflect"   % scalaVersion.value,
   "com.typesafe.akka"      %% "akka-actor"      % "2.3.4",
   "com.typesafe.akka"      %% "akka-slf4j"      % "2.3.4",
   "ch.qos.logback"          % "logback-classic" % "1.1.2",
@@ -26,7 +26,8 @@ libraryDependencies ++= Seq(
 scalacOptions ++= Seq(
   "-encoding", "UTF-8", "-optimise",
   "-deprecation", "-unchecked", "-feature", "-Xlint",
-  "-Ywarn-infer-any") // Nice, but hard to eliminate these warnings: "-Ywarn-value-discard")
+  "-Ywarn-infer-any", // Nice, but hard to eliminate these warnings: "-Ywarn-value-discard")
+  "-language:experimental.macros")
 
 javacOptions  ++= Seq(
   "-Xlint:unchecked", "-Xlint:deprecation") // Java 8: "-Xdiags:verbose")
