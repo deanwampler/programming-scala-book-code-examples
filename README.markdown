@@ -1,6 +1,6 @@
-# Programming Scala, 2nd Edition#
+# Programming Scala, 2nd Edition
 
-## README for the Code Examples ##
+## README for the Code Examples
 
 *Dean Wampler*<br/>
 *August 11, 2014*
