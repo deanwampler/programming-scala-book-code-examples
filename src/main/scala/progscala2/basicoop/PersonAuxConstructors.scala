@@ -9,8 +9,9 @@ case class Address(street: String, city: String, state: String, zip: String) {
 
 object Address {
 
-  def zipToCity(zip: String)  = "Anytown"                            // <2>
-  def zipToState(zip: String) = "CA"
+  // Fake implementation
+  def zipToCity(zip: String)  = s"Anytown-$zip"                      // <2>
+  def zipToState(zip: String) = s"CA-$zip"
 }
 
 case class Person(

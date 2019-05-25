@@ -20,7 +20,7 @@ object RemoveBlanks {
    * @param args list of file paths. Prefix each with an optional "-" to
    *             compress remaining whitespace in the file.
    */
-  def main(args: Array[String]) = for {
+  def main(args: Array[String]): Unit = for {
     path2 <- args                                                    // <5>
     (compress, path) = if (path2 startsWith "-") (true, path2.substring(1))
                        else (false, path2)                           // <6>

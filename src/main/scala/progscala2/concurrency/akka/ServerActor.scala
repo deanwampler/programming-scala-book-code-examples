@@ -5,7 +5,7 @@ import scala.util.control.NonFatal
 import scala.concurrent.duration._
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
-import akka.actor.{Actor, ActorLogging, ActorRef, 
+import akka.actor.{Actor, ActorLogging, ActorRef,
   ActorSystem, Props, OneForOneStrategy, SupervisorStrategy}
 import akka.pattern.ask
 import akka.util.Timeout
@@ -19,7 +19,7 @@ class ServerActor extends Actor with ActorLogging {                  // <1>
   override val supervisorStrategy: SupervisorStrategy = {            // <2>
     val decider: SupervisorStrategy.Decider = {
       case WorkerActor.CrashException => SupervisorStrategy.Restart
-      case NonFatal(ex) => SupervisorStrategy.Resume
+      case NonFatal(_) => SupervisorStrategy.Resume
     }
     OneForOneStrategy()(decider orElse super.supervisorStrategy.decider)
   }
@@ -29,7 +29,7 @@ class ServerActor extends Actor with ActorLogging {                  // <1>
   def receive = initial                                              // <4>
 
   val initial: Receive = {                                           // <5>
-    case Start(numberOfWorkers) => 
+    case Start(numberOfWorkers) =>
       workers = ((1 to numberOfWorkers) map makeWorker).toVector
       context become processRequests                                 // <6>
   }
@@ -37,32 +37,37 @@ class ServerActor extends Actor with ActorLogging {                  // <1>
   val processRequests: Receive = {                                   // <7>
     case c @ Crash(n) => workers(n % workers.size) ! c
     case DumpAll =>                                                  // <8>
-      Future.fold(workers map (_ ? DumpAll))(Vector.empty[Any])(_ :+ _)
+      // The original book implementation used the next line:
+      // Future.foldLeft(workers map (_ ? DumpAll))(Vector.empty[Any])(_ :+ _)
+      // I replaced it with the following, because the 2.11 Future.fold was
+      // deprecated and replaced with Future.foldLeft in 2.12. So, to eliminate
+      // warnings...
+      Future.traverse(workers)(_ ? DumpAll)
         .onComplete(askHandler("State of the workers"))
-    case Dump(n) => 
+    case Dump(n) =>
       (workers(n % workers.size) ? DumpAll).map(Vector(_))
         .onComplete(askHandler(s"State of worker $n"))
-    case request: Request => 
+    case request: KeyedRequest =>
       val key = request.key.toInt
       val index = key % workers.size
       workers(index) ! request
-    case Response(Success(message)) => printResult(message) 
-    case Response(Failure(ex)) => printResult(s"ERROR! $ex") 
+    case Response(Success(message)) => printResult(message)
+    case Response(Failure(ex)) => printResult(s"ERROR! $ex")
   }
 
   def askHandler(prefix: String): PartialFunction[Try[Any],Unit] = {
     case Success(suc) => suc match {
-      case vect: Vector[_] => 
+      case vect: Vector[_] =>
         printResult(s"$prefix:\n")
         vect foreach {
-          case Response(Success(message)) => 
+          case Response(Success(message)) =>
             printResult(s"$message")
-          case Response(Failure(ex)) => 
-            printResult(s"ERROR! Success received wrapping $ex")      
+          case Response(Failure(ex)) =>
+            printResult(s"ERROR! Success received wrapping $ex")
         }
       case _ => printResult(s"BUG! Expected a vector, got $suc")
     }
-    case Failure(ex) => printResult(s"ERROR! $ex")      
+    case Failure(ex) => printResult(s"ERROR! $ex")
   }
 
   protected def printResult(message: String) = {

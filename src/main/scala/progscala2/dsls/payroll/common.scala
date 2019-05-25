@@ -28,11 +28,11 @@ object common {
 
     def gross(annualSalary: Double): Double =                        // <5>
       annualSalary / divisorFromAnnualPay
-    
+
     def net(annualSalary: Double): Double = {
       val g = gross(annualSalary)
-      (deductions foldLeft g) { 
-        case (total, Deduction(deduction, amount)) => amount match {
+      (deductions foldLeft g) {
+        case (total, Deduction(deduction@_, amount)) => amount match {
           case Percentage(value) => total - (g * value / 100.0)
           case Dollars(value) => total - value
         }

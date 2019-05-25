@@ -15,6 +15,6 @@ abstract class SubjectObserver {
   }
 
   trait Observer {
-    def receiveUpdate(subject: S)
+    def receiveUpdate(subject: S): Unit
   }
 }

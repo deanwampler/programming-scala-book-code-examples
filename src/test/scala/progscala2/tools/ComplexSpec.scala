@@ -1,8 +1,8 @@
 // src/test/scala/progscala2/toolslibs/ComplexSpec.scala
 package progscala2.toolslibs
-import org.scalatest.{ FunSpec, ShouldMatchers }
+import org.scalatest.{ FunSpec, Matchers }
 
-class ComplexSpec extends FunSpec with ShouldMatchers {
+class ComplexSpec extends FunSpec with Matchers {
   describe ("Complex addition with (0.0, 0.0)") {
     it ("returns a number N' that is identical to original number N") {
       val c1 = Complex(1.2, 3.4)

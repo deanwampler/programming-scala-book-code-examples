@@ -1,12 +1,11 @@
 // src/test/scala/progscala2/metaprogramming/InvariantSpec.scala
 package metaprogramming
-import reflect.runtime.universe._
 import org.scalatest.FunSpec
- 
-class InvariantSpec extends FunSpec { 
+
+class InvariantSpec extends FunSpec {
   case class Variable(var i: Int, var s: String)
 
-  describe ("invariant.apply") { 
+  describe ("invariant.apply") {
     def succeed() = {                                                // <1>
       val v = Variable(0, "Hello!")
       val i1 = invariant(v.s == "Hello!") {                          // <2>
@@ -20,7 +19,7 @@ class InvariantSpec extends FunSpec {
     it ("should not fail if the invariant holds") { succeed() }
 
     it ("should return the value returned by the expressions") { succeed() }
-  
+
     it ("should fail if the invariant is broken") {
       intercept[invariant.InvariantFailure] {                        // <3>
         val v = Variable(0, "Hello!")

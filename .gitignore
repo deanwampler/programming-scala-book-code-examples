@@ -5,3 +5,5 @@ snapshots
 project/project
 project/target
 target
+.metals
+.vscode

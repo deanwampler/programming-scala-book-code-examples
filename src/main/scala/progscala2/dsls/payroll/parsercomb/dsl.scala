@@ -4,17 +4,17 @@ import scala.util.parsing.combinator._
 import progscala2.dsls.payroll.common._                              // <1>
 
 object Payroll {
-  
+
   import dsl.PayrollParser                                           // <2>
 
-  def main(args: Array[String]) = {                                  // <3> 
-    val input = """biweekly {      
+  def main(args: Array[String]): Unit = {                            // <3>
+    val input = """biweekly {
       federal tax          20.0  percent,
       state tax            3.0   percent,
       insurance premiums   250.0 dollars,
       retirement savings   15.0  percent
     }"""
-    val parser = new PayrollParser                                   // <4> 
+    val parser = new PayrollParser                                   // <4>
     val biweeklyDeductions = parser.parseAll(parser.biweekly, input).get
 
     println(biweeklyDeductions)                                      // <5>
@@ -26,12 +26,12 @@ object Payroll {
   }
 }
 
-object dsl {                                    
+object dsl {
 
   class PayrollParser extends JavaTokenParsers {                     // <1>
 
     /** @return Parser[(Deductions)] */
-    def biweekly = "biweekly" ~> "{" ~> deductions <~ "}" ^^ { ds => // <2> 
+    def biweekly = "biweekly" ~> "{" ~> deductions <~ "}" ^^ { ds => // <2>
       Deductions("Biweekly", 26.0, ds)
     }
 
@@ -49,8 +49,8 @@ object dsl {
     def insurance   = parseDeduction("insurance", "premiums")
     def retirement  = parseDeduction("retirement", "savings")
 
-    private def parseDeduction(word1: String, word2: String) =       // <6> 
-      word1 ~> word2 ~> amount ^^ { 
+    private def parseDeduction(word1: String, word2: String) =       // <6>
+      word1 ~> word2 ~> amount ^^ {
         amount => Deduction(s"${word1} ${word2}", amount)
       }
 

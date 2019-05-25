@@ -10,7 +10,7 @@ sealed trait Final
 
 // For simplicity, use Float for money. Not recommended...
 case class Employee(
-  name: String, 
+  name: String,
   annualSalary: Float,
   taxRate: Float,  // For simplicity, just 1 rate covering all taxes.
   insurancePremiumsPerPayPeriod: Float,
@@ -21,7 +21,7 @@ case class Pay[Step](employee: Employee, netPay: Float)
 
 object Payroll {
   // Biweekly paychecks. Assume exactly 52 weeks/year for simplicity.
-  def start(employee: Employee): Pay[PreTaxDeductions] = 
+  def start(employee: Employee): Pay[PreTaxDeductions] =
     Pay[PreTaxDeductions](employee, employee.annualSalary / 26.0F)
 
   def minusInsurance(pay: Pay[PreTaxDeductions]): Pay[PreTaxDeductions] = {
@@ -46,7 +46,7 @@ object Payroll {
 }
 
 object CalculatePayroll {
-  def main(args: Array[String]) = {
+  def main(args: Array[String]): Unit = {
     val e = Employee("Buck Trends", 100000.0F, 0.25F, 200F, 0.10F, 0.05F)
     val pay1 = Payroll start e
     // 401K and insurance can be calculated in either order.

@@ -2,7 +2,7 @@
 
 object ScriptWrapper {
   def main(args: Array[String]): Unit = {
-    new AnyRef {
+    val ignore = new AnyRef {
       // Your script code is inserted here.
     }
   }
