@@ -4,15 +4,15 @@
 
 *Dean Wampler*<br/>
 *August 11, 2014*<br/>
-*May 27, 2019* - Updated for Scala 2.12 and 2.13
+*May 27, 2019* - Updated for Scala 2.12 (with preliminary support for 2.13)
 
 [![Join the chat at https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples](https://badges.gitter.im/deanwampler/prog-scala-2nd-ed-code-examples.svg)](https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This archive contains all the code examples found in [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do), with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book.
 
-When the book was published, the examples used Scala 2.11. The code was recently updated to also compile with Scala 2.12.8 and 2.13.0-RC2. The examples are unchanged, except where necessary to compile with these newer versions and with the stricter compiler flags now used.
+When the book was published, the examples used Scala 2.11. The code was recently updated to also compile with Scala 2.12.8 and (mostly) 2.13.0-RC2. The examples are unchanged, except where necessary to compile with these newer versions and with the stricter compiler flags now used.
 
-If you want the original code (with a few bug fixes), download the tagged `2.1.0` build or check out the `release-2.1.0` branch. The `2.2.0` release and `release-2.2.0` branch include all the updates for 2.12 and 2.13.
+If you want the original code (with a few bug fixes), download the tagged `2.1.0` build or check out the `release-2.1.0` branch. The `2.2.0` release and `release-2.2.0` branch include all the updates for 2.12. The project doesn't yet compile fully with Scala 2.13; we need a stable release of ScalaTest that is at least API-compatible across all three versions.
 
 ## How the Code Is Used in the Book
 

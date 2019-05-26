@@ -5,24 +5,34 @@ version := "2.2"
 organization := "org.programming-scala"
 
 scalaVersion := "2.12.8"
-crossScalaVersions := Seq("2.11.12", "2.12.8") //, "2.13.0-M2")
+crossScalaVersions := Seq("2.11.12", "2.12.8") // 2.13 is not yet supported; need a stable scalatest, "2.13.0-RC2")
 
-libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-async"     % "0.9.7",  // 0.10.0 is the latest, but doesn't support 2.11
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
-  "org.scala-lang.modules" %% "scala-xml"       % "1.2.0",
-  "org.scala-lang"          % "scala-reflect"   % scalaVersion.value,
-  "com.typesafe.akka"      %% "akka-actor"      % "2.5.22",
-  "com.typesafe.akka"      %% "akka-slf4j"      % "2.5.22",
-  "ch.qos.logback"          % "logback-classic" % "1.2.3",
-  "org.scalaz"             %% "scalaz-core"     % "7.2.27",
-  "org.scalacheck"         %% "scalacheck"      % "1.14.0" % "test",
-  "org.scalatest"          %% "scalatest"       % "3.0.5"  % "test",
-  "org.specs2"             %% "specs2-core"     % "4.5.1"  % "test",
-  // JUnit is used for some Java interop. examples. A driver for JUnit:
-  "junit"                   % "junit-dep"       % "4.11"   % "test",
-  "com.novocode"            % "junit-interface" % "0.11"   % "test"
-)
+libraryDependencies ++= {
+  lazy val versions =
+    CrossVersion.partialVersion(scalaVersion.value) match {
+      case Some((2, 11)) => Map("async" -> "0.9.7",  "scalatest" -> "3.0.5",        "akka" -> "2.5.22")
+      case Some((2, 12)) => Map("async" -> "0.10.0", "scalatest" -> "3.0.5",        "akka" -> "2.5.22")
+      case Some((2, 13)) => Map("async" -> "0.10.0", "scalatest" -> "3.1.0-SNAP11", "akka" -> "2.6.0-M2")
+      case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
+      case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
+    }
+  Seq(
+    "org.scala-lang.modules" %% "scala-async"     % versions("async"),
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
+    "org.scala-lang.modules" %% "scala-xml"       % "1.2.0",
+    "org.scala-lang"          % "scala-reflect"   % scalaVersion.value,
+    "com.typesafe.akka"      %% "akka-actor"      % versions("akka"),
+    "com.typesafe.akka"      %% "akka-slf4j"      % versions("akka"),
+    "ch.qos.logback"          % "logback-classic" % "1.2.3",
+    "org.scalaz"             %% "scalaz-core"     % "7.2.27",
+    "org.scalacheck"         %% "scalacheck"      % "1.14.0" % "test",
+    "org.scalatest"          %% "scalatest"       % versions("scalatest") % "test",
+    "org.specs2"             %% "specs2-core"     % "4.5.1"  % "test",
+    // JUnit is used for some Java interop. examples. A driver for JUnit:
+    "junit"                   % "junit-dep"       % "4.11"   % "test",
+    "com.novocode"            % "junit-interface" % "0.11"   % "test"
+  )
+}
 
 // The compiler flags adapted from @tpolecat's Doobie project. https://github.com/tpolecat/doobie
 
@@ -103,19 +113,6 @@ scalacOptions ++= (
   }
 )
 
-// scalacOptions in (Test, compile) --=
-//   CrossVersion.partialVersion(scalaVersion.value) match {
-//     case Some((2, n)) if n <= 11 =>
-//       Seq("-Yno-imports")
-//     case _ =>
-//       Seq(
-//         "-Ywarn-unused:privates",
-//         "-Ywarn-unused:locals",
-//         "-Ywarn-unused:imports",
-//         "-Yno-imports"
-//       )
-//   }
-
 scalacOptions in (Compile, console) ++= (
   CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, 11)) => scalacOptions11 ++ scalacOptionsAllConsole
@@ -128,7 +125,3 @@ scalacOptions in (Compile, console) ++= (
 
 javacOptions  ++= Seq(
   "-Xlint:unchecked", "-Xlint:deprecation") // Java 8: "-Xdiags:verbose")
-
-// Enable improved incremental compilation feature in 2.11.X (but doesn't appear to be supported in newer releases)
-// see http://www.scala-lang.org/news/2.11.1
-// incOptions := incOptions.value.withNameHashing(true)
