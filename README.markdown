@@ -94,9 +94,9 @@ Usually, the best way to run the scripts is to start `sbt` and run `console` to 
 
 I welcome feedback on the Book and these examples. Please post comments, corrections, etc. to one of the following places:
 
-* The book site, [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do)
-* The [O'Reilly forum](http://forums.oreilly.com/)
 * This GitHub repo's [Gitter channel](https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples) or [Issues](https://github.com/deanwampler/prog-scala-2nd-ed-code-examples/issues)
 * The book's Twitter account, [@ProgScala](https://twitter.com/ProgScala)
+* The O'Reilly book site, [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do)
+* The [O'Reilly errata page](http://oreilly.com/catalog/errata.csp?isbn=0636920033073)
 
 There is also a dedicated site for the book where occasional updates, clarifications, corrections, and lame excuses will be posted: [programming-scala.org](http://programming-scala.org).
