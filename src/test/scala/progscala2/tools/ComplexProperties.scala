@@ -1,9 +1,9 @@
 // src/main/scala/progscala2/toolslibs/toolslibs/ComplexProperties.scala
 package progscala2.toolslibs
 import org.scalatest.FunSuite
-import org.scalatest.prop.PropertyChecks
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class ComplexProperties extends FunSuite with PropertyChecks {
+class ComplexProperties extends FunSuite with ScalaCheckPropertyChecks {
 
   def additionTest(a: Complex, b: Complex) = {
     assert( (a + b).real === (a.real + b.real) )

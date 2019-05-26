@@ -5,14 +5,14 @@ version := "2.2"
 organization := "org.programming-scala"
 
 scalaVersion := "2.12.8"
-crossScalaVersions := Seq("2.11.12", "2.12.8") // 2.13 is not yet supported; need a stable scalatest, "2.13.0-RC2")
+crossScalaVersions := Seq("2.11.12", "2.12.8", "2.13.0-RC2")
 
 libraryDependencies ++= {
   lazy val versions =
     CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, 11)) => Map("async" -> "0.9.7",  "scalatest" -> "3.0.5",        "akka" -> "2.5.22")
-      case Some((2, 12)) => Map("async" -> "0.10.0", "scalatest" -> "3.0.5",        "akka" -> "2.5.22")
-      case Some((2, 13)) => Map("async" -> "0.10.0", "scalatest" -> "3.1.0-SNAP11", "akka" -> "2.6.0-M2")
+      case Some((2, 11)) => Map("async" -> "0.9.7",  "akka" -> "2.5.22")
+      case Some((2, 12)) => Map("async" -> "0.10.0", "akka" -> "2.5.22")
+      case Some((2, 13)) => Map("async" -> "0.10.0", "akka" -> "2.6.0-M2")
       case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
       case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
     }
@@ -26,7 +26,7 @@ libraryDependencies ++= {
     "ch.qos.logback"          % "logback-classic" % "1.2.3",
     "org.scalaz"             %% "scalaz-core"     % "7.2.27",
     "org.scalacheck"         %% "scalacheck"      % "1.14.0" % "test",
-    "org.scalatest"          %% "scalatest"       % versions("scalatest") % "test",
+    "org.scalatest"          %% "scalatest"       % "3.0.8-RC4" % "test", // threading the needle on versions...
     "org.specs2"             %% "specs2-core"     % "4.5.1"  % "test",
     // JUnit is used for some Java interop. examples. A driver for JUnit:
     "junit"                   % "junit-dep"       % "4.11"   % "test",
@@ -45,15 +45,12 @@ lazy val scalacOptionsAll = Seq(
   "-language:existentials",            // Existential types (besides wildcard types) can be written and inferred
   "-language:higherKinds",             // Allow higher-kinded types
   "-language:implicitConversions",     // Allow definition of implicit functions called views
-  "-Ywarn-infer-any",                  // Warn if Any is inferred for a type
   "-Ywarn-dead-code",                  // Warn when dead code is identified.
   "-Ywarn-numeric-widen",              // Warn when numerics are widened.
   "-Ywarn-value-discard",              // Warn when non-Unit expression results are unused.
   "-Xcheckinit",                       // Wrap field accessors to throw an exception on uninitialized access.
   "-Xfatal-warnings",                  // Fail the compilation if there are any warnings
-  "-Xfuture",                          // Turn on future language features.
   "-Xlint:adapted-args",               // Warn if an argument list is modified to match the receiver.
-  "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
   "-Xlint:delayedinit-select",         // Selecting member of DelayedInit.
   "-Xlint:doc-detached",               // A Scaladoc comment appears to be detached from its element.
   "-Xlint:inaccessible",               // Warn about inaccessible types in method signatures.
@@ -66,8 +63,7 @@ lazy val scalacOptionsAll = Seq(
   "-Xlint:poly-implicit-overload",     // Parameterized overloaded implicit methods are not visible as view bounds.
   "-Xlint:private-shadow",             // A private field (or class parameter) shadows a superclass field.
   "-Xlint:stars-align",                // Pattern sequence wildcard must align with sequence component.
-  "-Xlint:type-parameter-shadow",      // A local type parameter shadows a type already in scope.
-  "-Xlint:unsound-match"               // Pattern match may not be typesafe.
+  "-Xlint:type-parameter-shadow"       // A local type parameter shadows a type already in scope.
 )
 lazy val scalacOptionsAllCompile = Seq(
   // "-Yno-imports"                    // Compile without importing scala.*, java.lang.*, or Predef
@@ -79,8 +75,12 @@ lazy val scalacOptionsAllConsole = Seq(
 
 lazy val scalacOptions11 = Seq(
   "-language:experimental.macros",
+  "-Xfuture",                          // Turn on future language features.
+  "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
+  "-Xlint:unsound-match",              // Pattern match may not be typesafe.
   "-Ypartial-unification",             // Enable partial unification in type constructor inference
   "-Ywarn-unused-import",              // Warn when imports are unused
+  "-Ywarn-infer-any",                  // Warn if Any is inferred for a type
   "-optimise"
 ) ++ scalacOptionsAll
 
@@ -99,6 +99,10 @@ lazy val scalacOptions1213 = Seq(
 
 // Removed in Scala 2.13:
 lazy val scalacOptions12 = scalacOptions1213 ++ Seq(
+  "-Xfuture",                          // Turn on future language features.
+  "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
+  "-Xlint:unsound-match",              // Pattern match may not be typesafe.
+  "-Ywarn-infer-any",                  // Warn if Any is inferred for a type
   "-Yno-adapted-args",                 // Do not adapt an argument list (either by inserting () or creating a tuple) to match the receiver.
   "-Ypartial-unification"              // Enable partial unification in type constructor inference
 )

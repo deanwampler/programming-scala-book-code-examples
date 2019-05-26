@@ -1,6 +1,5 @@
 // src/main/scala/progscala2/typesystem/higherkinded/Reduce1.scala
 package progscala2.typesystem.higherkinded
-import scala.language.higherKinds
 
 trait Reduce1[-M[_]] {                                               // <1>
   def reduce[T](m: M[T])(f: (T, T) => T): T
@@ -12,6 +11,6 @@ object Reduce1 {                                                     // <2>
   }
 
   implicit val optionReduce = new Reduce1[Option] {
-    def reduce[T](opt: Option[T])(f: (T, T) => T): T = opt reduce f
+    def reduce[T](opt: Option[T])(f: (T, T) => T): T = opt.iterator reduce f
   }
 }

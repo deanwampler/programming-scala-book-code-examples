@@ -1,6 +1,5 @@
 // src/main/scala/progscala2/fp/categories/Monad.scala
 package progscala2.fp.categories
-import scala.language.higherKinds
 
 trait Monad[M[_]] {                                                // <1>
   def flatMap[A, B](fa: M[A])(f: A => M[B]): M[B]                  // <2>
