@@ -6,12 +6,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.scalatestplus.junit.JUnitSuite;
 
 import scala.Option;
 import scala.collection.mutable.LinkedHashMap;
 
-public class SMapTest extends org.scalatest.junit.JUnitSuite {       // <1>
-  
+public class SMapTest extends JUnitSuite {       // <1>
+
 	// Apparently JUnitSuite is serializable, so we need this:
 	private static final long serialVersionUID = 693445694552874517L;
 

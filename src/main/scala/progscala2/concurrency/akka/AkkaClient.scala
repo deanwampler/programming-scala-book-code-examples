@@ -13,7 +13,7 @@ object AkkaClient {                                                  // <1>
   private var system: Option[ActorSystem] = None                     // <2>
 
   def main(args: Array[String]): Unit = {                            // <3>
-    processArgs(args)
+    processArgs(args.toIndexedSeq)
     val sys = ActorSystem("AkkaClient")                              // <4>
     system = Some(sys)
     val server = ServerActor.make(sys)                               // <5>

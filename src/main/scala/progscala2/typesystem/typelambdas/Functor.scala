@@ -1,6 +1,5 @@
 // src/main/scala/progscala2/typesystem/typelambdas/Functor.scala
 package progscala2.typesystem.typelambdas
-import scala.language.higherKinds
 
 trait Functor[A,+M[_]] {                                             // <1>
   def map2[B](f: A => B): M[B]

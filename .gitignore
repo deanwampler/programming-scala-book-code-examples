@@ -7,3 +7,4 @@ project/target
 target
 .metals
 .vscode
+.bloop/
