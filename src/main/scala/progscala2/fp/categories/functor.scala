@@ -16,8 +16,9 @@ object OptionF extends Functor[Option] {
 
 object FunctionF {                                                   // <4>
   def map[A,A2,B](func: A => A2)(f: A2 => B): A => B = {             // <5>
-    val functor = new Functor[({type λ[β] = A => β})#λ] {            // <6>
-      def map[A3,B2](func: A => A3)(f: A3 => B2): A => B2 = (a: A) => f(func(a))
+    //type C[T] = A => T
+    val functor = new Functor[({type L[T] = A => T})#L] {            // <6>
+      def map[A3,B2](func: A=>A3)(f: A3 => B2): A => B2 = (a: A) => f(func(a))
     }
     functor.map(func)(f)                                             // <7>
   }

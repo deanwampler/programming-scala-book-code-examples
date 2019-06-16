@@ -37,7 +37,7 @@ object dsl {
 
     /** @return Parser[Vector[Deduction]] */
     def deductions = repsep(deduction, ",") ^^ { ds =>               // <3>
-      ds.foldLeft(Vector.empty[Deduction]) (_ :+ _)
+      ds.toVector
     }
 
     /** @return Parser[Deduction] */

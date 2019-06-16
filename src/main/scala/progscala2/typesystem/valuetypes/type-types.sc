@@ -8,4 +8,5 @@ val l1: Logger = s11.logger                      // Okay
 val l2: Logger = s12.logger                      // Okay
 
 val l11: s11.logger.type = s11.logger            // Okay
+val l13: s12.logger.type = s11.logger            // Okay
 val l12: s11.logger.type = s12.logger            // ERROR

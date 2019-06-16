@@ -7,7 +7,7 @@ case class Button(label: String) {                                   // <1>
 
 object ButtonSubjectObserver extends SubjectObserver {               // <2>
   type S = ObservableButton
-  type O = ButtonObserver
+  type O = Observer
 
   class ObservableButton(label: String) extends Button(label) with Subject {
     override def click() = {
@@ -15,15 +15,11 @@ object ButtonSubjectObserver extends SubjectObserver {               // <2>
       notifyObservers()
     }
   }
-
-  trait ButtonObserver extends Observer {
-    def receiveUpdate(button: ObservableButton)
-  }
 }
 
 import ButtonSubjectObserver._
 
-class ButtonClickObserver extends ButtonObserver {                   // <3>
+class ButtonClickObserver extends Observer {                   // <3>
  val clicks = new scala.collection.mutable.HashMap[String,Int]()
 
   def receiveUpdate(button: ObservableButton) = {

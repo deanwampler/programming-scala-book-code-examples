@@ -27,18 +27,18 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic {
   }
 
   protected class Where(field: String) extends Dynamic {             // <8>
-    def filter(value: T)(op: (T,T) => Boolean): CLINQ[T] = {         // <9>
+    def filter(op: T => Boolean): CLINQ[T] = {         // <9>
       val newRecords = records filter {
         _ exists {
-          case (k, v) => field == k && op(value, v)
+          case (k, v) => field == k && op(v)
         }
       }
       CLINQ(newRecords)
     }
 
     def applyDynamic(op: String)(value: T): CLINQ[T] = op match {
-      case "EQ" => filter(value)(_ == _)                             // <10>
-      case "NE" => filter(value)(_ != _)                             // <11>
+      case "EQ" => filter(value == _)                             // <10>
+      case "NE" => filter(value != _)                             // <11>
       case _ => throw CLINQ.BadOperation(field, """Expected "EQ" or "NE".""")
     }
   }
