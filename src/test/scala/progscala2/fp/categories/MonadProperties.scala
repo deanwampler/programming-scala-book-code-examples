@@ -1,9 +1,9 @@
 // src/test/scala/progscala2/fp/categories/MonadProperties.scala
 package progscala2.fp.categories
 import org.scalatest.FunSpec
-import org.scalatest.prop.PropertyChecks
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class MonadProperties extends FunSpec with PropertyChecks {
+class MonadProperties extends FunSpec with ScalaCheckPropertyChecks {
 
   // Arbitrary function:
   val f1: Int => Seq[Int] = i => 0 until 10 by ((math.abs(i) % 10) + 1)

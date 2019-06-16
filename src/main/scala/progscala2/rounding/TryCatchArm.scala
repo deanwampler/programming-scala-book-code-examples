@@ -27,7 +27,7 @@ object manage {
 
 object TryCatchARM {
   /** Usage: scala rounding.TryCatch filename1 filename2 ... */
-  def main(args: Array[String]) = {
+  def main(args: Array[String]): Unit = {
     val sizes = args map (arg => returnFileLength(arg))
     println("Returned sizes: " + (sizes.mkString(", ")))
   }

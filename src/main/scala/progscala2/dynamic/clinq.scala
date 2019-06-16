@@ -12,7 +12,7 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic {
       val newRecords = (records foldLeft seed) {
         (results, record) =>
           val projection = record filter {                           // <5>
-            case (key, value) => fields contains key
+            case (key, _) => fields contains key
           }
           // Drop records with no projection.
           if (projection.size > 0) results :+ projection

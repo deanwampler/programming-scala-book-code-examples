@@ -4,10 +4,10 @@ import scala.language.postfixOps                                     // <1>
 import progscala2.dsls.payroll.common._
 
 object Payroll {                                                     // <2>
-  
+
   import dsl._                                                       // <3>
 
-  def main(args: Array[String]) = {
+  def main(args: Array[String]): Unit = {
     val biweeklyDeductions = biweekly { deduct =>                    // <4>
       deduct federal_tax          (25.0  percent)
       deduct state_tax            (5.0   percent)

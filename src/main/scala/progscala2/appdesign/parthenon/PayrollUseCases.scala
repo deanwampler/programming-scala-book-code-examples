@@ -54,8 +54,8 @@ object PayrollParthenon {                                            // <1>
   }
                                                                      // <8>
   def biweeklyPayrollTotalsReportUseCase(data: Seq[EmployeeData]): Unit = {
-    val (gross, net) = (data foldLeft (0.0, 0.0)) {
-      case ((gross, net), (name, salary, deductions)) =>
+    val (gross, net) = data.foldLeft(0.0 -> 0.0) {
+      case ((gross, net), (name@_, salary, deductions)) =>
       val g = deductions.gross(salary.amount)
       val n = deductions.net(salary.amount)
       (gross + g, net + n)
@@ -64,7 +64,7 @@ object PayrollParthenon {                                            // <1>
       gross, net, gross - net)
   }
 
-  def main(args: Array[String]) = {
+  def main(args: Array[String]): Unit = {
     val inputFileName =
       if (args.length > 0) args(0) else "misc/parthenon-payroll.txt"
     val data = processRules(inputFileName)

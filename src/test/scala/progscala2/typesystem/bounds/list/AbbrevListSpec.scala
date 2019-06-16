@@ -1,9 +1,9 @@
 // src/test/scala/progscala2/typesystem/bounds/list/AbbrevListSpec.scala
 package progscala2.typesystem.bounds.list
-import org.scalatest.{ FunSpec, ShouldMatchers }
+import org.scalatest.{ FunSpec, Matchers }
 
 /** Test the example "AbbrevList". Not very comprehensive... */
-class AbbrevListSpec extends FunSpec with ShouldMatchers {
+class AbbrevListSpec extends FunSpec with Matchers {
 
   describe ("AbbrevNil") {
     it ("item :: AbbrevNil == AbbrevList(item)") {
@@ -12,9 +12,10 @@ class AbbrevListSpec extends FunSpec with ShouldMatchers {
       list.tail shouldEqual AbbrevNil
     }
     it ("AbbrevNil.foreach(...) does nothing") {
-      var failed = false
-      AbbrevNil.foreach { x => failed = true }
-      failed shouldEqual false
+      // If you call foreach directly on AbbrevNil, the compiler warns about dead code,
+      // which is true!
+      val al: AbbrevList[Any] = AbbrevNil
+      al.foreach(_ => throw new RuntimeException("AbbrevNil.foreach"))
     }
   }
 
@@ -29,8 +30,8 @@ class AbbrevListSpec extends FunSpec with ShouldMatchers {
     }
     it ("nonEmptyAbbrevList.foreach(...) does something for each element") {
       var count = 0
-      (1 :: 2 :: AbbrevNil).foreach { x => count += 1 }
-      count shouldEqual 2
+      (1 :: 2 :: AbbrevNil).foreach(i => count += i)
+      count shouldEqual 3
     }
   }
 }

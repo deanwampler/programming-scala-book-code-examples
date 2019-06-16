@@ -14,7 +14,8 @@ trait T1 {
 }
 
 trait X {
-  def setXX(x:String): Unit = {} // Do Nothing!
+  var xx = "xx"
+  def setXX(x:String): Unit = xx = x
 }
 class C2 extends C1
 class C3 extends C2 with X {

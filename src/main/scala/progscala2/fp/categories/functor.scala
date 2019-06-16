@@ -1,6 +1,5 @@
 // src/main/scala/progscala2/fp/categories/Functor.scala
 package progscala2.fp.categories
-import scala.language.higherKinds
 
 trait Functor[F[_]] {                                                // <1>
   def map[A, B](fa: F[A])(f: A => B): F[B]                           // <2>

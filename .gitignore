@@ -5,5 +5,8 @@ snapshots
 project/project
 project/target
 target
+.metals
+.vscode
+.bloop/
 .idea/
 *.iml

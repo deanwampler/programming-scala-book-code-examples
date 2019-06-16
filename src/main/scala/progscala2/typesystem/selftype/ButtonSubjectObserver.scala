@@ -22,7 +22,7 @@ import ButtonSubjectObserver._
 class ButtonClickObserver extends Observer {                   // <3>
  val clicks = new scala.collection.mutable.HashMap[String,Int]()
 
-  def receiveUpdate(button: ObservableButton) = {
+  def receiveUpdate(button: ObservableButton): Unit = {
     val count = clicks.getOrElse(button.label, 0) + 1
     clicks.update(button.label, count)
   }

@@ -3,7 +3,6 @@
 // http://james-iry.blogspot.ch/2010/10/phantom-types-in-haskell-and-scala.html
 // which was inspired by F# and Haskell.
 package progscala.implicits.payroll
-import scala.language.implicitConversions
 
 object Pipeline {
   implicit class toPiped[V](value:V) {
@@ -12,7 +11,7 @@ object Pipeline {
 }
 
 object CalculatePayroll2 {
-  def main(args: Array[String]) = {
+  def main(args: Array[String]): Unit = {
     import Pipeline._
     import Payroll._
 

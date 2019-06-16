@@ -8,8 +8,8 @@ object Address {
     new Address(
       "[unknown]", Address.zipToCity(zip), Address.zipToState(zip), zip)
 
-  def zipToCity(zip: String)  = "Anytown"
-  def zipToState(zip: String) = "CA"
+  def zipToCity(zip: String)  = s"Anytown-$zip"
+  def zipToState(zip: String) = s"CA-$zip"
 }
 
 trait PersonState {                                                  // <3>

@@ -16,7 +16,7 @@ object invariant {                                                   // <3>
   def impl(c: Context)(predicate: c.Tree)(block: c.Tree) = {         // <5>
     import c.universe._                                              // <6>
     val predStr = showCode(predicate)                                // <7>
-    val q"..$stmts" = block                                          // <8>
+    val q"{ ..$stmts }" = block                                          // <8>
     val invariantStmts = stmts.flatMap { stmt =>                     // <9>
       val msg = s"FAILURE! $predStr == false, for statement: " + showCode(stmt)
       val tif = q"throw new metaprogramming.invariant.InvariantFailure($msg)"
