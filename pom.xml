@@ -19,33 +19,24 @@
     <vscaladoc.links.liftweb.baseurl>http://scala-tools.org/mvnsites/liftweb</vscaladoc.links.liftweb.baseurl>
   </properties>
 
-
   <repositories>
     <repository>
-      <id>scala-tools.releases</id>
-      <name>Scala-Tools Dependencies Repository for Releases</name>
-      <url>https://oss.sonatype.org/content/repositories/releases/</url>
+      <id>central</id>
+      <name>central</name>
+      <url>https://repo.typesafe.com/typesafe/ivy-releases/</url>
     </repository>
     <repository>
-      <id>java.net.maven3</id>
-      <name>java.net Maven3 Repository</name>
-      <url>http://download.java.net/maven/3/</url>
+      <id>Sonatype Release</id>
+      <name>Sonatype Releases</name>
+      <url>http://oss.sonatype.org/content/repositories/releases</url>
     </repository>
     <repository>
-      <id>scala-tools.snapshots</id>
-      <name>Scala-Tools Dependencies Repository for Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-    </repository>
-    <repository>
-      <id>git-OpenBankProject</id>
-      <name>OpenBankProject Git based repo</name>
-      <url>https://raw.githubusercontent.com/OpenBankProject/OBP-M2-REPO/master/</url>
-    </repository>
-    <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
+      <id>Sonatype snapshots</id>
+      <name>Sonatype snapshotsy</name>
+      <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
   </repositories>
+
 
   <pluginRepositories>
     <pluginRepository>
@@ -99,19 +90,20 @@
     <dependency>
       <groupId>org.scalacheck</groupId>
       <artifactId>scalacheck_${scala.version}</artifactId>
-      <version>1.12.6</version>
+      <version>1.14.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.scalatest</groupId>
-      <artifactId>scalatest_2.12.0-M1</artifactId>
-      <version>2.2.5-M1</version>
+      <artifactId>scalatest_${scala.version}</artifactId>
+      <version>3.0.8-RC5</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.specs2</groupId>
-      <artifactId>specs2_${scala.version}</artifactId>
-      <version>2.4.17</version>
+      <artifactId>specs2-core_${scala.version}</artifactId>
+      <version>4.5.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
