@@ -36,7 +36,7 @@ libraryDependencies ++= {
 
 // The compiler flags adapted from @tpolecat's Doobie project. https://github.com/tpolecat/doobie
 
-lazy val scalacOptionsAll = Seq(
+lazy val scalacOptionsAllCommon = Seq(
   "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
   "-encoding", "utf-8",                // Specify character encoding used by source files.
   "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
@@ -44,7 +44,10 @@ lazy val scalacOptionsAll = Seq(
   "-explaintypes",                     // Explain type errors in more detail.
   "-language:existentials",            // Existential types (besides wildcard types) can be written and inferred
   "-language:higherKinds",             // Allow higher-kinded types
-  "-language:implicitConversions",     // Allow definition of implicit functions called views
+  "-language:implicitConversions"      // Allow definition of implicit functions called views
+)
+
+lazy val scalacOptionsAll = scalacOptionsAllCommon ++ Seq(
   "-Ywarn-dead-code",                  // Warn when dead code is identified.
   "-Ywarn-numeric-widen",              // Warn when numerics are widened.
   "-Ywarn-value-discard",              // Warn when non-Unit expression results are unused.
@@ -65,15 +68,25 @@ lazy val scalacOptionsAll = Seq(
   "-Xlint:stars-align",                // Pattern sequence wildcard must align with sequence component.
   "-Xlint:type-parameter-shadow"       // A local type parameter shadows a type already in scope.
 )
-lazy val scalacOptionsAllCompile = Seq(
+
+lazy val scalacOptionsAllCompile = scalacOptionsAll ++ Seq(
   // "-Yno-imports"                    // Compile without importing scala.*, java.lang.*, or Predef
 )
 
-lazy val scalacOptionsAllConsole = Seq(
+lazy val scalacOptionsAllConsole = scalacOptionsAllCommon ++ Seq(
   "-Ydelambdafy:inline"                // Strategy used for translating lambdas into JVM code. (inline,method) default:inline
 )
 
-lazy val scalacOptions11 = Seq(
+lazy val scalacOptions11Console = Seq(
+  "-language:experimental.macros",
+  "-Xfuture",                          // Turn on future language features.
+  "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
+  "-Xlint:unsound-match",              // Pattern match may not be typesafe.
+  "-Ypartial-unification",             // Enable partial unification in type constructor inference
+  "-Ywarn-infer-any"                   // Warn if Any is inferred for a type
+) ++ scalacOptionsAllConsole
+
+lazy val scalacOptions11Compile = Seq(
   "-language:experimental.macros",
   "-Xfuture",                          // Turn on future language features.
   "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
@@ -82,10 +95,16 @@ lazy val scalacOptions11 = Seq(
   "-Ywarn-unused-import",              // Warn when imports are unused
   "-Ywarn-infer-any",                  // Warn if Any is inferred for a type
   "-optimise"
-) ++ scalacOptionsAll
+) ++ scalacOptionsAllCompile
 
 // Common for 2.12 and 2.13:
-lazy val scalacOptions1213 = Seq(
+lazy val scalacOptions1213Console = Seq(
+  "-Xlint:constant",                   // Evaluation of a constant arithmetic expression results in an error.
+  "-Ywarn-extra-implicit"              // Warn when more than one implicit parameter section is defined.
+) ++ scalacOptionsAllConsole
+
+// Common for 2.12 and 2.13:
+lazy val scalacOptions1213Compile = Seq(
   "-Xlint:constant",                   // Evaluation of a constant arithmetic expression results in an error.
   "-Ywarn-extra-implicit",             // Warn when more than one implicit parameter section is defined.
   "-Ywarn-unused:implicits",           // Warn if an implicit parameter is unused.
@@ -94,34 +113,44 @@ lazy val scalacOptions1213 = Seq(
   "-Ywarn-unused:params",              // Warn if a value parameter is unused.
   // Recommended, but turned off because it causes problems with the macro example, metaprogramming.invariant
   //"-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
-  "-Ywarn-unused:privates",            // Warn if a private member is unused.
-) ++ scalacOptionsAll
+  "-Ywarn-unused:privates"             // Warn if a private member is unused.
+) ++ scalacOptionsAllCompile
 
 // Removed in Scala 2.13:
-lazy val scalacOptions12 = scalacOptions1213 ++ Seq(
+lazy val scalacOptions12Console = Seq(
   "-Xfuture",                          // Turn on future language features.
   "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
   "-Xlint:unsound-match",              // Pattern match may not be typesafe.
   "-Ywarn-infer-any",                  // Warn if Any is inferred for a type
   "-Yno-adapted-args",                 // Do not adapt an argument list (either by inserting () or creating a tuple) to match the receiver.
   "-Ypartial-unification"              // Enable partial unification in type constructor inference
-)
+) ++ scalacOptions1213Console
 
-scalacOptions ++= (
+// Removed in Scala 2.13:
+lazy val scalacOptions12Compile = Seq(
+  "-Xfuture",                          // Turn on future language features.
+  "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
+  "-Xlint:unsound-match",              // Pattern match may not be typesafe.
+  "-Ywarn-infer-any",                  // Warn if Any is inferred for a type
+  "-Yno-adapted-args",                 // Do not adapt an argument list (either by inserting () or creating a tuple) to match the receiver.
+  "-Ypartial-unification"              // Enable partial unification in type constructor inference
+) ++ scalacOptions1213Compile
+
+scalacOptions in Compile := (
   CrossVersion.partialVersion(scalaVersion.value) match {
-    case Some((2, 11)) => scalacOptions11 ++ scalacOptionsAllCompile
-    case Some((2, 12)) => scalacOptions12 ++ scalacOptionsAllCompile
-    case Some((2, 13)) => scalacOptions1213 ++ scalacOptionsAllCompile
+    case Some((2, 11)) => scalacOptions11Compile
+    case Some((2, 12)) => scalacOptions12Compile
+    case Some((2, 13)) => scalacOptions1213Compile
     case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
     case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
   }
 )
 
-scalacOptions in (Compile, console) ++= (
+scalacOptions in (Compile, console) := (
   CrossVersion.partialVersion(scalaVersion.value) match {
-    case Some((2, 11)) => scalacOptions11 ++ scalacOptionsAllConsole
-    case Some((2, 12)) => scalacOptions12 ++ scalacOptionsAllConsole
-    case Some((2, 13)) => scalacOptions1213 ++ scalacOptionsAllConsole
+    case Some((2, 11)) => scalacOptions11Console
+    case Some((2, 12)) => scalacOptions12Console
+    case Some((2, 13)) => scalacOptions1213Console
     case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
     case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
   }
