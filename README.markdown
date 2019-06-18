@@ -5,6 +5,7 @@
 *Dean Wampler*<br/>
 *August 11, 2014*<br/>
 *May 27, 2019* - Updated for Scala 2.12 and 2.13
+*June 18, 2019* - New support for Maven builds, courtesy of [oldbig](https://github.com/oldbig)
 
 [![Join the chat at https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples](https://badges.gitter.im/deanwampler/prog-scala-2nd-ed-code-examples.svg)](https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -26,7 +27,9 @@ And similarly for Java files (yes, there are Java files!). Following the usual c
 
 > **NOTE:** When I upgraded support for 2.12 and 2.13, a few of the `*.scala` files were converted to `*.sc` script files (see below), because they are no long compilable as is with the new, stricter compile flags I'm using.
 
-Use these comments to find the corresponding source file. This archive also contains *ScalaTest* and *ScalaCheck* unit tests to validate some of the code. Most of these tests are not reproduced in the text of the book, except when discussing testing itself.
+Use these comments to find the corresponding source file. This archive also contains *ScalaTest*, *ScalaCheck*, and *Specs2* unit tests to validate some of the code. Most of these tests are not reproduced in the text of the book, except when discussing testing itself.
+
+> **WARNING:** Despite attempts by [oldbig](https://github.com/oldbig) and me, the Maven build currently does _not_ run the *Specs2* example, `src/test/scala/progscala2/tools/ComplexSpecs2.scala`, when running `mvn test`. It is properly executed by `sbt test`.
 
 ## Naming Conventions
 
