@@ -1,11 +1,12 @@
 // src/main/scala/progscala2/dsls/payroll/parsercomb/DSLSpec.scala
 package progscala2.dsls.payroll.parsercomb
-import org.scalatest.{FunSpec, Matchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.Checkers
 import org.scalacheck._
 
 // TODO: Really this should be a ScalaCheck properties test.
-class DSLSpec extends FunSpec with Matchers with Checkers {
+class DSLSpec extends AnyFunSpec with Matchers with Checkers {
   import dsl.PayrollParser
 
   val input = """biweekly {
