@@ -1,17 +1,17 @@
 name := "Programming Scala, Second Edition - Code examples"
 
-version := "2.2"
+version := "2.3"
 
 organization := "org.programming-scala"
 
-scalaVersion := "2.12.8"
-crossScalaVersions := Seq("2.11.12", "2.12.8", "2.13.0-RC2")
+scalaVersion := "2.13.1"
+crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1")
 
 libraryDependencies ++= {
   lazy val versions =
     CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, 11)) => Map("async" -> "0.9.7",  "akka" -> "2.5.22")
-      case Some((2, 12)) => Map("async" -> "0.10.0", "akka" -> "2.5.22")
+      case Some((2, 11)) => Map("async" -> "0.9.7",  "akka" -> "2.5.25")
+      case Some((2, 12)) => Map("async" -> "0.10.0", "akka" -> "2.5.25")
       case Some((2, 13)) => Map("async" -> "0.10.0", "akka" -> "2.6.0-M2")
       case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
       case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
