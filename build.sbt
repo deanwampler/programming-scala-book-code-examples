@@ -28,6 +28,7 @@ libraryDependencies ++= {
     "org.scalacheck"         %% "scalacheck"      % "1.14.0" % "test",
     "org.scalatest"          %% "scalatest"       % "3.0.8-RC4" % "test", // threading the needle on versions...
     "org.specs2"             %% "specs2-core"     % "4.5.1"  % "test",
+    "org.specs2"             %% "specs2-junit"    % "4.5.1"  % "test",
     // JUnit is used for some Java interop. examples. A driver for JUnit:
     "junit"                   % "junit-dep"       % "4.11"   % "test",
     "com.novocode"            % "junit-interface" % "0.11"   % "test"
