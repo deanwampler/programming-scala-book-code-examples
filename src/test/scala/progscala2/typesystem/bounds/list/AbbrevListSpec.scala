@@ -1,6 +1,7 @@
 // src/test/scala/progscala2/typesystem/bounds/list/AbbrevListSpec.scala
 package progscala2.typesystem.bounds.list
-import org.scalatest.{ FunSpec, Matchers }
+import org.scalatest.FunSpec
+import org.scalatest.Matchers
 
 /** Test the example "AbbrevList". Not very comprehensive... */
 class AbbrevListSpec extends FunSpec with Matchers {

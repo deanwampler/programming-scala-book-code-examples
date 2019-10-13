@@ -1,6 +1,7 @@
 // src/test/scala/progscala2/toolslibs/ComplexSpec.scala
 package progscala2.toolslibs
-import org.scalatest.{ FunSpec, Matchers }
+import org.scalatest.FunSpec
+import org.scalatest.Matchers
 
 class ComplexSpec extends FunSpec with Matchers {
   describe ("Complex addition with (0.0, 0.0)") {

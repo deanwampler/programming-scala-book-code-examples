@@ -1,8 +1,10 @@
 // src/main/scala/progscala2/dsls/payroll/parsercomb/DSLSpec.scala
 package progscala2.dsls.payroll.parsercomb
-import org.scalatest.{FunSpec, Matchers}
+import org.scalatest.FunSpec
+import org.scalatest.Matchers
+import org.scalatest.prop._
 import org.scalatestplus.scalacheck.Checkers
-import org.scalacheck._
+import org.scalacheck.{Gen, Prop}
 
 // TODO: Really this should be a ScalaCheck properties test.
 class DSLSpec extends FunSpec with Matchers with Checkers {

@@ -1,18 +1,19 @@
 name := "Programming Scala, Second Edition - Code examples"
 
-version := "2.2"
+version := "2.3"
 
 organization := "org.programming-scala"
 
-scalaVersion := "2.12.8"
-crossScalaVersions := Seq("2.11.12", "2.12.8", "2.13.0-RC2")
+scalaVersion := "2.13.1"
+crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1")
+maxErrors := 10
 
 libraryDependencies ++= {
   lazy val versions =
     CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, 11)) => Map("async" -> "0.9.7",  "akka" -> "2.5.22")
-      case Some((2, 12)) => Map("async" -> "0.10.0", "akka" -> "2.5.22")
-      case Some((2, 13)) => Map("async" -> "0.10.0", "akka" -> "2.6.0-M2")
+      case Some((2, 11)) => Map("async" -> "0.9.7",  "akka" -> "2.5.25")
+      case Some((2, 12)) => Map("async" -> "0.10.0", "akka" -> "2.5.25")
+      case Some((2, 13)) => Map("async" -> "0.10.0", "akka" -> "2.6.0-M8")
       case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
       case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
     }
@@ -25,8 +26,8 @@ libraryDependencies ++= {
     "com.typesafe.akka"      %% "akka-slf4j"      % versions("akka"),
     "ch.qos.logback"          % "logback-classic" % "1.2.3",
     "org.scalaz"             %% "scalaz-core"     % "7.2.27",
-    "org.scalacheck"         %% "scalacheck"      % "1.14.0" % "test",
-    "org.scalatest"          %% "scalatest"       % "3.0.8-RC4" % "test", // threading the needle on versions...
+    "org.scalacheck"         %% "scalacheck"      % "1.14.1" % "test",
+    "org.scalatest"          %% "scalatest"       % "3.0.8"  % "test", // threading the needle on versions...
     "org.specs2"             %% "specs2-core"     % "4.5.1"  % "test",
     "org.specs2"             %% "specs2-junit"    % "4.5.1"  % "test",
     // JUnit is used for some Java interop. examples. A driver for JUnit:
