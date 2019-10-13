@@ -1,9 +1,9 @@
 // src/test/scala/progscala2/fp/categories/FunctorProperties.scala
 package progscala2.fp.categories
-import org.scalatest.funspec.AnyFunSpec
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
+import org.scalatest.FunSpec
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 
-class FunctorProperties extends AnyFunSpec with ScalaCheckPropertyChecks {
+class FunctorProperties extends FunSpec with ScalaCheckDrivenPropertyChecks {
 
   def id[A] = identity[A] _    // Lift identity method to a function
 

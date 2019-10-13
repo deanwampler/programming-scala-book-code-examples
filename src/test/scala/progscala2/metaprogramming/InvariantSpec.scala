@@ -1,8 +1,8 @@
 // src/test/scala/progscala2/metaprogramming/InvariantSpec.scala
 package metaprogramming
-import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.FunSpec
 
-class InvariantSpec extends AnyFunSpec {
+class InvariantSpec extends FunSpec {
   case class Variable(var i: Int, var s: String)
 
   describe ("invariant.apply") {
