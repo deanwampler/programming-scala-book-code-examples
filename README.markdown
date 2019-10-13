@@ -1,4 +1,4 @@
-# Programming Scala, 2nd Edition
+# Programming Scala, 2nd and 3rd (Forthcoming) Editions
 
 ## README for the Code Examples
 
@@ -6,15 +6,16 @@
 *August 11, 2014*<br/>
 *May 27, 2019* - Updated for Scala 2.12 and 2.13<br/>
 *June 18, 2019* - New support for Maven builds, courtesy of [oldbig](https://github.com/oldbig)<br/>
-*October 13, 2019* - Updated for Scala 2.13.1, sbt 1.3.2, and other updated dependencies. Also now compiles with JDK 11<br/>
+*October 12, 2019* - Updated for Scala 2.13.1, sbt 1.3.2, and other updated dependencies. Also now compiles with JDK 11<br/>
+*October 13, 2019* - Renamed the repo from `prog-scala-2nd-ed-code-examples` to `programming-scala-book-code-examples`.
 
 [![Join the chat at https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples](https://badges.gitter.im/deanwampler/prog-scala-2nd-ed-code-examples.svg)](https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This archive contains all the code examples found in [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do), with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book.
+This repo contains all the code examples found in [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do), with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book. The planned third edition will use this repo, too.
 
-When the book was published, the examples used Scala 2.11. The code was recently updated to also compile with Scala 2.12.10 and 2.13.1. The examples are mostly unchanged, except where necessary to compile with these newer versions and with the stricter compiler flags now used.
+When the second edition was published, the examples used Scala 2.11. The code has since been updated to also compile with Scala 2.12 and 2.13. The examples are mostly unchanged, except where necessary to compile with these newer versions, with the stricter compiler flags now used, and because of changes in newer versions of libraries, especially ScalaTest.
 
-If you want the original code (with a few bug fixes), download the tagged `2.1.0` build or check out the `release-2.1.0` branch. The `2.3.0` release and `release-2.3.0` branch include all the updates for 2.12 and 2.13.
+If you want the original second-edition code (with a few bug fixes), download the tagged [2.1.0](https://github.com/deanwampler/programming-scala-book-code-examples/releases/tag/2.1.0) build or check out the `release-2.1.0` branch. The latest `2.X.Y` release and `release-2.X.Y` branch include all the updates for 2.12 and 2.13. The third edition releases for Scala 3 and Scala 2.14 will be tagged with `release-3.X.Y`.
 
 ## How the Code Is Used in the Book
 
@@ -30,7 +31,7 @@ And similarly for Java files (yes, there are Java files!). Following the usual c
 
 Use these comments to find the corresponding source file. This archive also contains *ScalaTest*, *ScalaCheck*, and *Specs2* unit tests to validate some of the code. Most of these tests are not reproduced in the text of the book, except when discussing testing itself.
 
-> **WARNING:** Despite attempts by [oldbig](https://github.com/oldbig) and me, the Maven build currently does _not_ run the *Specs2* example, `src/test/scala/progscala2/tools/ComplexSpecs2.scala`, when running `mvn test`. It is properly executed by `sbt test`.
+> **WARNING:** Despite attempts by [oldbig](https://github.com/oldbig) and others assisting me, the Maven build currently does _not_ run the *Specs2* example, `src/test/scala/progscala2/tools/ComplexSpecs2.scala`, when running `mvn test`. It is properly executed by `sbt test`.
 
 ## Naming Conventions
 
