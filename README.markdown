@@ -9,7 +9,7 @@
 *October 12, 2019* - Updated for Scala 2.13.1, sbt 1.3.2, and other updated dependencies. Also now compiles with JDK 11<br/>
 *October 13, 2019* - Renamed the repo from `prog-scala-2nd-ed-code-examples` to `programming-scala-book-code-examples`.
 
-[![Join the chat at https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples](https://badges.gitter.im/deanwampler/prog-scala-2nd-ed-code-examples.svg)](https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This repo contains all the code examples found in [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do), with the exception of some trivial code snippets in the text. There are also some examples in this distribution that aren't actually in the book. The planned third edition will use this repo, too.
 
@@ -99,7 +99,7 @@ Usually, the best way to run the scripts is to start `sbt` and run `console` to 
 
 I welcome feedback on the Book and these examples. Please post comments, corrections, etc. to one of the following places:
 
-* This GitHub repo's [Gitter channel](https://gitter.im/deanwampler/prog-scala-2nd-ed-code-examples) or [Issues](https://github.com/deanwampler/prog-scala-2nd-ed-code-examples/issues)
+* This GitHub repo's [Gitter channel](https://gitter.im/deanwampler/programming-scala-book-code-examples) or [Issues](https://github.com/deanwampler/programming-scala-book-code-examples/issues)
 * The book's Twitter account, [@ProgScala](https://twitter.com/ProgScala)
 * The O'Reilly book site, [Programming Scala, Second Edition](http://shop.oreilly.com/product/0636920033073.do)
 * The [O'Reilly errata page](http://oreilly.com/catalog/errata.csp?isbn=0636920033073)
