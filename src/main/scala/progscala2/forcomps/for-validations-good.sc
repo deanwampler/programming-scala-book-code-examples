@@ -1,5 +1,5 @@
 // src/main/scala/progscala2/forcomps/for-validations-good.sc
-import scalaz._, std.AllInstances._
+import scalaz._, scalaz.Validation.FlatMap._, std.AllInstances._
 
 def positive(i: Int): Validation[List[String], Int] = {
   if (i > 0) Success(i)                                              // <1>
