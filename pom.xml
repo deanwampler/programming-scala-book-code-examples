@@ -4,12 +4,12 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.programming-scala</groupId>
-    <artifactId>programming-scala-second</artifactId>
-    <version>2.1</version>
+    <artifactId>programming-scala-third</artifactId>
+    <version>3.0</version>
     <packaging>jar</packaging>
     <properties>
-        <scala.version>2.12</scala.version>
-        <scala.compiler>2.12.4</scala.compiler>
+        <scala.version>2.13</scala.version>
+        <scala.compiler>2.13.1</scala.compiler>
         <!-- Common plugin settings -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
