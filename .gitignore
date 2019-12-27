@@ -11,3 +11,5 @@ target
 .idea/
 *.imlscala.txt
 misc/classpath.txt
+sammich.xml
+.DS_Store
