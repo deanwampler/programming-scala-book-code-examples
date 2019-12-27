@@ -1,7 +1,17 @@
 // src/main/scala/progscala2/dsls/xml/reading.sc
 import scala.xml._                                                   // <1>
 
-val xmlAsString = "<sammich>...</sammich>"                           // <2>
+val xmlAsString =                                                    // <2>
+"""
+<sammich>
+  <bread>wheat</bread>
+  <meat>salami</meat>
+  <condiments>
+    <condiment expired="true">mayo</condiment>
+    <condiment expired="false">mustard</condiment>
+  </condiments>
+</sammich>
+"""
 val xml1 = XML.loadString(xmlAsString)
 
 val xml2 =                                                           // <3>
@@ -13,6 +23,8 @@ val xml2 =                                                           // <3>
     <condiment expired="false">mustard</condiment>
   </condiments>
 </sammich>
+
+assert(xml1 == xml2)
 
 for {                                                                // <4>
   condiment <- (xml2 \\ "condiment")
