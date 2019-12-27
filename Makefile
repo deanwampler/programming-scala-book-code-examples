@@ -11,11 +11,17 @@
 #    so that diffs work between different runs.
 # 2. Runs SBT to dump the full CLASSPATH.
 
+.ONESHELL:
+SHELL = /bin/bash
+.SHELLFLAGS = -o pipefail
+
 script_output_dir := output
 script_files := $(shell find src/main/scala -name '*.sc')
 golden_output_files := $(script_files:src/main/%.sc=src/test/%.golden.txt)
 output_files := $(script_files:src/main/%.sc=$(script_output_dir)/%.txt)
 output_diffs := $(output_files:%.txt=%.diff)
+
+classpath := $(shell misc/determine_classpath.sh)
 
 # Most of the same options used in the SBT build.
 scala_options_base = \
@@ -44,23 +50,23 @@ scala_options_base = \
   -Xlint:poly-implicit-overload \
   -Xlint:private-shadow \
   -Xlint:stars-align \
-  -Xlint:type-parameter-shadow
+  -Xlint:type-parameter-shadow \
+  -classpath $(classpath)
 
-scala_options := $(scala_options_base) \
+scala_options := \
   -Ywarn-extra-implicit \
   -Ywarn-unused:implicits \
   -Ywarn-unused:imports \
   -Ywarn-unused:locals \
   -Ywarn-unused:privates \
-  -Xfatal-warnings
+  -Xfatal-warnings \
+  $(scala_options_base)
 
 # Options used in the SBT build, but not for the scripts:
 scala_options_unused = \
   -Xlint:infer-any \
   -Ywarn-unused:params \
   -Ywarn-value-discard
-
-classpath := $(shell misc/determine_classpath.sh)
 
 all: verify_scripts
 
@@ -92,9 +98,7 @@ run-scripts: $(golden_output_files)
 $(script_output_dir)/%.txt src/test/%.golden.txt: src/main/%.sc
 	@echo "Making $@ ..."
 	@mkdir -p $$(dirname $@)
-	@{ echo ':paste'; \
-		cat $<; \
-	} | scala $(scala_options) -classpath $(classpath) | sed \
+	@{ echo ':paste'; cat $<; } | scala $(scala_options) | sed \
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' > $@
 
@@ -102,9 +106,7 @@ $(script_output_dir)/%.txt src/test/%.golden.txt: src/main/%.sc
 $(script_output_dir)/%.notxt: src/main/%.sc
 	@echo "Making $@ ..."
 	@mkdir -p $$(dirname $@)
-	@{ echo ':paste'; \
-		cat $<; \
-	} | scala $(scala_options_base) -classpath $(classpath) | sed \
+	@{ echo ':paste'; cat $<; } | scala $(scala_options_base) | sed \
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' 
 
@@ -114,8 +116,8 @@ scala_options_base:
 scala_options:
 	@echo $(scala_options)
 classpath:
-  @echo $(classpath)
-  
+	@echo $(classpath)
+
 console:
 	@scala $(scala_options_base)
 

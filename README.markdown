@@ -15,7 +15,7 @@ This repo contains all the code examples found in [Programming Scala, Second Edi
 
 When the second edition was published, the examples used Scala 2.11. The code has since been updated to also compile with Scala 2.12 and 2.13. The examples are mostly unchanged, except where necessary to compile with these newer versions, with the stricter compiler flags now used, and because of changes in newer versions of libraries, especially ScalaTest.
 
-If you want the original second-edition code (with a few bug fixes), download the tagged [2.1.0](https://github.com/deanwampler/programming-scala-book-code-examples/releases/tag/2.1.0) build or check out the `release-2.1.0` branch. The latest `2.X.Y` release and `release-2.X.Y` branch include all the updates for 2.12 and 2.13. The third edition releases for Scala 3 and Scala 2.14 will be tagged with `release-3.X.Y`.
+If you want the original second-edition code (with a few bug fixes), download the tagged [2.1.0](https://github.com/deanwampler/programming-scala-book-code-examples/releases/tag/2.1.0) build or check out the `release-2.1.0` branch. The latest `2.X.Y` release and `release-2.X.Y` branch include all the updates for 2.12 and 2.13. The third edition releases for Scala 3 and Scala 2.13 will be tagged with `release-3.X.Y`.
 
 ## How the Code Is Used in the Book
 
@@ -29,9 +29,7 @@ And similarly for Java files (yes, there are Java files!). Following the usual c
 
 > **NOTE:** When I upgraded support for 2.12 and 2.13, a few of the `*.scala` files were converted to `*.sc` script files (see below), because they are no long compilable as is with the new, stricter compile flags I'm using.
 
-Use these comments to find the corresponding source file. This archive also contains *ScalaTest*, *ScalaCheck*, and *Specs2* unit tests to validate some of the code. Most of these tests are not reproduced in the text of the book, except when discussing testing itself.
-
-> **WARNING:** Despite attempts by [oldbig](https://github.com/oldbig) and others assisting me, the Maven build currently does _not_ run the *Specs2* example, `src/test/scala/progscala2/tools/ComplexSpecs2.scala`, when running `mvn test`. It is properly executed by `sbt test`.
+Use these comments to find the corresponding source file. This archive also contains *ScalaTest* and *ScalaCheck* unit tests to validate some of the code. Most of these tests are not reproduced in the text of the book, except when discussing testing itself.
 
 ## Naming Conventions
 
