@@ -11,7 +11,8 @@ val futures = (0 to 9) map {                                         // <1>
   }
 }
  
-val f = Future.reduce(futures)((s1, s2) => s1 + s2)                  // <3>
- 
-val n = Await.result(f, Duration.Inf)                                // <4>
+val f = Future.reduceLeft(futures)((s1, s2) => s1 + s2)              // <3>
+println(f) 
 
+val n = Await.result(f, Duration.Inf)                                // <4>
+assert(n == "0123456789")

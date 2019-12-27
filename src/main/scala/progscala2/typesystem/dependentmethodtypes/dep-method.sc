@@ -22,12 +22,18 @@ case class RemoteComputation(
 
 object Service {
   def handle(computation: Computation): computation.Response = {
-    val duration = Duration(2, SECONDS)
-    Await.result(computation.work, duration)
+    Await.result(computation.work, 5.seconds)
   }
 }
 
-Service.handle(LocalComputation(Future(LocalResponse(0))))
+
+println("LocalComputation:")
+val lc = LocalComputation(Future(LocalResponse(0)))
+Service.handle(lc)
 // Result: LocalResponse = LocalResponse(0)
-Service.handle(RemoteComputation(Future(RemoteResponse("remote call"))))
+
+println("RemoteComputation:")
+val rc = RemoteComputation(Future(RemoteResponse("remote call")))
+println(rc)
+Service.handle(rc)
 // Result: RemoteResponse = RemoteResponse(remote call)

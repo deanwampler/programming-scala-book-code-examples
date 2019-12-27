@@ -1,8 +1,8 @@
-// src/main/scala/progscala2/metaprogramming/mkArray.sc
+// src/main/scala/progscala2/metaprogramming/mkSeq.sc
 import scala.reflect.ClassTag
 
-def mkArray[T : ClassTag](elems: T*) = Array[T](elems: _*)
+def mkSeq[T : ClassTag](elems: T*) = Seq[T](elems: _*)
 
-mkArray(1, 2, 3)
-mkArray("one", "two", "three")
-mkArray(1, "two", 3.14)
+assert(mkSeq(1, 2, 3) == List[Int](1, 2, 3))
+assert(mkSeq("one", "two", "three") == List[String]("one", "two", "three"))
+assert(mkSeq(1, "two", 3.14) == List[Any](1, "two", 3.14))

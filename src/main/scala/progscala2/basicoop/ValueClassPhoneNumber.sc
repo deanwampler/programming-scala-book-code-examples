@@ -13,5 +13,5 @@ class USPhoneNumber(val s: String) extends AnyVal {
   private def digits(str: String): String = str.replaceAll("""\D""", "") 
 }
 
-val number = new USPhoneNumber("987-654-3210")
+println(new USPhoneNumber("987-654-3210"))
 // Result: number: USPhoneNumber = (987) 654-3210

@@ -6,6 +6,7 @@ case class Complex(real: Double, imag: Double) {
 }
 
 val c1 = Complex(1.1, 2.2)
-val c2 = -c1                           // Complex(-1.1, 2.2)
-val c3 = c1.unary_-                    // Complex(-1.1, 2.2)
-val c4 = c1 - Complex(0.5, 1.0)        // Complex(0.6, 1.2)
+println(c1)
+println(-c1)                           // Complex(-1.1, 2.2)
+println(c1.unary_-)                    // Complex(-1.1, 2.2)
+println(c1 - Complex(0.5, 1.0))        // Complex(0.6, 1.2)

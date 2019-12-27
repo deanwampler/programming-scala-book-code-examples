@@ -7,12 +7,15 @@ import tools.reflect.ToolBox
 val toolbox = currentMirror.mkToolBox()
 
 val C = q"case class C(s: String)"
+println(C)
 showCode(C)
 showRaw(C)
 
 // q != tq
 val  q =  q"List[String]"
 val tq = tq"List[String]"
+println(q)
+println(tq)
 showRaw(q)
 showRaw(tq)
 q equalsStructure tq
@@ -28,6 +31,9 @@ Seq(tq"Int", tq"String") map { param =>
 val list = Seq(1,2,3,4)
 val fmt = "%d, %d, %d, %d"
 val printq = q"println($fmt, ..$list)"
+println(printq)
 
 // Unlifting (pattern matching, too)
 val q"${i: Int} + ${d: Double}" = q"1 + 3.14"
+println(s"i = $i, d = $d")
+

@@ -2,7 +2,7 @@
 package progscala2.basicoop
 
 case class ZipCode(zip: String, extension: Option[String] = None) {
-  require(validUSPS(zip, extension),                                     // <1>
+  require(validUSPS(zip, extension),                                 // <1>
     s"Invalid Zip+4 specified: $toString")
 
   protected val zipRE = """(\d){5}""".r

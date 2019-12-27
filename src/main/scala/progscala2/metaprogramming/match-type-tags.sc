@@ -1,4 +1,5 @@
 // src/main/scala/progscala2/metaprogramming/match-type-tags.sc
+
 import scala.reflect.runtime.universe._                              // <1>
 
 def toType2[T](t: T)(implicit tag: TypeTag[T]): Type = tag.tpe       // <2>
@@ -13,60 +14,51 @@ def toTypeRefInfo[T : TypeTag](x: T): (Type, Symbol, Seq[Type]) = {  // <4>
   (pre, typName, parems)
 }
 
-toType(1)
-toType(true)
-toType(Seq(1, true, 3.14))
-toType((i: Int) => i.toString)
+println(toType(1))
+println(toType(true))
+println(toType(Seq(1, true, 3.14)))
+println(toType((i: Int) => i.toString))
 
-toType(1) <:< typeOf[AnyVal]           // => true
-toType(1) <:< toType(1)                // => true
-toType(1) <:< toType(true)             // => false
+println(toType2(1))
+println(toType2(true))
+println(toType2(Seq(1, true, 3.14)))
+println(toType2((i: Int) => i.toString))
 
-toType(1) =:= typeOf[AnyVal]           // => false
-toType(1) =:= toType(1)                // => true
-toType(1) =:= toType(true)             // => false
+assert(toType(1) <:< typeOf[AnyVal] == true)
+assert(toType(1) <:< toType(1)      == true)
+assert(toType(1) <:< toType(true)   == false)
 
-toTypeRefInfo(1)                       // (scala.type, class Int, List())
-toTypeRefInfo(true)                    // (scala.type, class Boolean, List())
-toTypeRefInfo(Seq(1, true, 3.14))      // (scala.collection.type, trait Seq,
-                                       //    List(AnyVal))
-toTypeRefInfo((i: Int) => i.toString)  // (scala.type, trait Function1,
-                                       //    List(Int, java.lang.String))
+assert(toType(1) =:= typeOf[AnyVal] == false)
+assert(toType(1) =:= toType(1)      == true)
+assert(toType(1) =:= toType(true)   == false)
+
+// (scala.type, class Int, List()):
+println(toTypeRefInfo(1))                     
+// (scala.type, class Boolean, List()):
+println(toTypeRefInfo(true))
+// (scala.collection.type, trait Seq, List(AnyVal)):
+println(toTypeRefInfo(Seq(1, true, 3.14)))
+// (scala.type, trait Function1, List(Int, java.lang.String)):
+println(toTypeRefInfo((i: Int) => i.toString))  
 
 val t1 = toType(1)
 val ts = toType(Seq(1, true, 3.14))
 val tf = toType((i: Int) => i.toString)
 
-// Use the reflect.api.types$TypeApi:
-t1.typeSymbol
-ts.typeSymbol
-tf.typeSymbol
+// Use the reflect.api.types$TypeApi. (The output is long!)
+def p(msg: String, t: Type): Unit = {
+  println(s"""
+    |For input $msg:
+    |  t.typeSymbol:  ${t.typeSymbol}
+    |  t.erasure:     ${t.erasure}
+    |  t.typeArgs:    ${t.typeArgs}
+    |  t.typeParams:  ${t.typeParams}
+    |  t.companion:   ${t.companion}
+    |  t.decls:       ${t.decls}
+    |  t.members:     ${t.members}
+    |""".stripMargin)
+}
 
-t1.erasure
-ts.erasure
-tf.erasure
-
-t1.typeArgs
-ts.typeArgs
-tf.typeArgs
-
-t1.typeParams
-ts.typeParams
-tf.typeParams
-
-t1.baseClasses
-ts.baseClasses
-tf.baseClasses
-
-t1.companion
-ts.companion
-tf.companion
-
-t1.decls
-ts.decls
-tf.decls
-
-t1.members
-ts.members
-tf.members
-
+p("1:Int", t1)
+p("Seq(1, true, 3.14)", ts)
+p("i:Int => String", tf)

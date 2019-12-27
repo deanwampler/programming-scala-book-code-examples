@@ -1,17 +1,12 @@
 // src/main/scala/progscala2/rounding/while.sc
-// WARNING: This script runs for a LOOOONG time!
-import java.util.Calendar
 
-def isFridayThirteen(cal: Calendar): Boolean = {
-  val dayOfWeek = cal.get(Calendar.DAY_OF_WEEK)
-  val dayOfMonth = cal.get(Calendar.DAY_OF_MONTH)
-
+def isThirteen(i: Int): Boolean = {
   // Scala returns the result of the last expression in a method
-  (dayOfWeek == Calendar.FRIDAY) && (dayOfMonth == 13)
+  i == 13
 }
 
-while (!isFridayThirteen(Calendar.getInstance())) {
-  println("Today isn't Friday the 13th. Lame.")
-  // sleep for a day
-  Thread.sleep(86400000)
+var i = 0   // Normally you should avoid mutable variables!
+while (!isThirteen(i)) {
+  println(s"$i isn't 13.")
+  i += 1
 }
