@@ -10,3 +10,4 @@ target
 .bloop/
 .idea/
 *.imlscala.txt
+misc/classpath.txt

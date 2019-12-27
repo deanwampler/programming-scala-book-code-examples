@@ -9,6 +9,7 @@
 # Notes:
 # 1. Memory addresses are "relationalize", e.g., FooBar@1a2b3c4f becomes FooBar@XXXXXXXX,
 #    so that diffs work between different runs.
+# 2. Runs SBT to dump the full CLASSPATH.
 
 script_output_dir := output
 script_files := $(shell find src/main/scala -name '*.sc')
@@ -59,6 +60,8 @@ scala_options_unused = \
   -Ywarn-unused:params \
   -Ywarn-value-discard
 
+classpath := $(shell misc/determine_classpath.sh)
+
 all: verify_scripts
 
 verify_scripts: clean_output $(output_diffs)
@@ -91,7 +94,7 @@ $(script_output_dir)/%.txt src/test/%.golden.txt: src/main/%.sc
 	@mkdir -p $$(dirname $@)
 	@{ echo ':paste'; \
 		cat $<; \
-	} | scala $(scala_options) | sed \
+	} | scala $(scala_options) -classpath $(classpath) | sed \
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' > $@
 
@@ -101,7 +104,7 @@ $(script_output_dir)/%.notxt: src/main/%.sc
 	@mkdir -p $$(dirname $@)
 	@{ echo ':paste'; \
 		cat $<; \
-	} | scala $(scala_options_base) | sed \
+	} | scala $(scala_options_base) -classpath $(classpath) | sed \
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' 
 
@@ -110,7 +113,9 @@ scala_options_base:
 	@echo $(scala_options_base)
 scala_options:
 	@echo $(scala_options)
-
+classpath:
+  @echo $(classpath)
+  
 console:
 	@scala $(scala_options_base)
 
