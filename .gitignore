@@ -9,4 +9,4 @@ target
 .vscode
 .bloop/
 .idea/
-*.iml
+*.imlscala.txt
