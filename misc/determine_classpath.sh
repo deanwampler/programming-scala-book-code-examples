@@ -12,7 +12,7 @@ get_paths() {
 	sed -e 's/^[^(]*(\([^)]*\)).*$/\1/'
 }
 make_classpath() {
-	echo "$@" | sed -e 's/ /:/g'
+	echo "${@} ." | sed -e 's/ /:/g'
 }
 
 if [[ -f misc/classpath.txt ]]
