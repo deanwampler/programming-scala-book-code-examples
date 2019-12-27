@@ -28,23 +28,23 @@ def validateForm(firstName: String, lastName: String, age: String):
     positive("age", age)
 }
 
-validateForm("Dean", "Wampler", "29")
-// Returns: Success(List((first-name,Dean), (last-name,Wampler), (age,29)))
-validateForm("", "Wampler", "29")
-// Returns: Failure(List(Invalid first-name <>))
-validateForm("D e a n", "Wampler", "29")
-// Returns: Failure(List(Invalid first-name <D e a n>))
-validateForm("D1e2a3n_", "Wampler", "29")
-// Returns: Failure(List(Invalid first-name <D1e2a3n_>))
-validateForm("Dean", "", "29")
-// Returns: Failure(List(Invalid last-name <>))
-validateForm("Dean", "Wampler", "0")
-// Returns: Failure(List(Invalid age 0))
-validateForm("Dean", "Wampler", "xx")
-// Returns: Failure(List(xx is not an integer))
-validateForm("", "Wampler", "0")
-// Returns: Failure(List(Invalid first-name <>, Invalid age 0))
-validateForm("Dean", "", "0")
-// Returns: Failure(List(Invalid last-name <>, Invalid age 0))
-validateForm("D e a n", "", "29")
-// Returns: Failure(List(Invalid first-name <D e a n>, Invalid last-name <>))
+assert(validateForm("Dean", "Wampler", "29") ==
+  Success(List(("first-name", "Dean"), ("last-name", "Wampler"), ("age", 29))))
+assert(validateForm("", "Wampler", "29") ==
+  Failure(List("Invalid first-name <>")))
+assert(validateForm("D e a n", "Wampler", "29") ==
+  Failure(List("Invalid first-name <D e a n>")))
+assert(validateForm("D1e2a3n_", "Wampler", "29") ==
+  Failure(List("Invalid first-name <D1e2a3n_>")))
+assert(validateForm("Dean", "", "29") ==
+  Failure(List("Invalid last-name <>")))
+assert(validateForm("Dean", "Wampler", "0") ==
+  Failure(List("Invalid age 0")))
+assert(validateForm("Dean", "Wampler", "xx") ==
+  Failure(List("xx is not an integer")))
+assert(validateForm("", "Wampler", "0") ==
+  Failure(List("Invalid first-name <>", "Invalid age 0")))
+assert(validateForm("Dean", "", "0") ==
+  Failure(List("Invalid last-name <>", "Invalid age 0")))
+assert(validateForm("D e a n", "", "29") ==
+  Failure(List("Invalid first-name <D e a n>", "Invalid last-name <>")))

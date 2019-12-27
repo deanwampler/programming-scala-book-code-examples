@@ -18,7 +18,7 @@ object Interpolators {
 import Interpolators._
 
 val name = "Dean Wampler"
-val book = "Programming Scala, Second Edition"
+val book = "Programming Scala, Third Edition"
 
 val jsonobj = json"{name: $name, book: $book}"                       // <7>
 println(jsonobj)

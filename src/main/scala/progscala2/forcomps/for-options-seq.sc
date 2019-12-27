@@ -5,7 +5,7 @@ val results: Seq[Option[Int]] = Vector(Some(10), None, Some(20))
 val results2a = for {
   Some(i) <- results
 } yield (2 * i)
-// Returns: results2a: Seq[Int] = Vector(20, 40)
+assert(results2a == Vector(20, 40))
 
 // Translation step #1
 val results2b = for {
@@ -14,7 +14,7 @@ val results2b = for {
     case None => false 
   }
 } yield (2 * i)
-// Returns: results2b: Seq[Int] = Vector(20, 40)
+assert(results2b == Vector(20, 40))
 
 // Translation step #2
 val results2c = results withFilter { 
@@ -22,5 +22,6 @@ val results2c = results withFilter {
   case None => false 
 } map {
   case Some(i) => (2 * i)
+  case None => -1             // <1>
 }
-// Returns: results2c: Seq[Int] = Vector(20, 40)
+assert(results2c == Vector(20, 40))

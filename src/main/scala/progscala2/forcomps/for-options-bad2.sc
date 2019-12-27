@@ -10,5 +10,5 @@ def sumCountsBad(counts: Seq[Option[Int]]): Option[Int] =
       else Some(countOption.get + count.get)
   }
 
-sumCountsBad(successfulCounts)
-sumCountsBad(partiallySuccessfulCounts)
+assert(sumCountsBad(successfulCounts) == Some(34))
+assert(sumCountsBad(partiallySuccessfulCounts) == None)

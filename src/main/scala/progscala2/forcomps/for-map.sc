@@ -2,10 +2,12 @@
 
 val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
-for {
+val results1 = for {
   s <- states
 } yield s.toUpperCase
-// Results: List(ALABAMA, ALASKA, VIRGINIA, WYOMING)
+println(results1)
+assert(results1 == List("ALABAMA", "ALASKA", "VIRGINIA", "WYOMING"))
 
-states map (_.toUpperCase)
-// Results: List(ALABAMA, ALASKA, VIRGINIA, WYOMING)
+val results2 = states map (_.toUpperCase)
+println(results2)
+assert(results1 == results2)
