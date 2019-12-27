@@ -1,15 +1,19 @@
-# This GNU Makefile is used for tasks that are tedious with SBT itself:
+# This GNU Makefile is used for tasks that are tedious with SBT itself.
+# Currently, it is just used to automate testing of the "script" files:
 # 1. Run all the '*.sc' scripts and capture their outputs as "golden" text files.
 #    See warning note below.
 # 2. Run all the '*.sc' scripts and capture their outputs and compare to the golden files.
 #    Run this periodically to verify that the scripts still work as expected.
 # 3. ...
 #
-# Run `make all` before building with SBT.
 # Notes:
-# 1. Memory addresses are "relationalize", e.g., FooBar@1a2b3c4f becomes FooBar@XXXXXXXX,
-#    so that diffs work between different runs.
-# 2. Runs SBT to dump the full CLASSPATH.
+# 1. Memory addresses are "rationalized", e.g., FooBar@1a2b3c4f becomes FooBar@XXXXXXXX,
+#    so that these trivial differences are ignored between different runs.
+# 2. Uses a script 'misc/determine_classpath.sh' to run SBT to extract the full CLASSPATH,
+#    which it caches in 'misc/classpath.txt'. If you change the CLASSPATH in SBT, e.g.,
+#    change a library version, then delete this text file and rebuild the golden files.
+# 3. While the CLASSPATH is determined from SBT, the other 'scala' options are hard-coded
+#    below. If you change these options in SBT, manually change them here, too!
 
 .ONESHELL:
 SHELL = /bin/bash
@@ -62,17 +66,19 @@ scala_options := \
   -Xfatal-warnings \
   $(scala_options_base)
 
-# Options used in the SBT build, but not for the scripts:
+# Options used in the SBT build, but not used here for the scripts:
 scala_options_unused = \
   -Xlint:infer-any \
   -Ywarn-unused:params \
   -Ywarn-value-discard
 
+# Does NOT build the golden output files. If they don't exist or need updating,
+# run 'make new_golden_files' first (but read the WARNING for that target...).
 all: verify_scripts
 
-verify_scripts: clean_output $(output_diffs)
+verify_scripts: clean $(output_diffs)
 
-clean_output:
+clean:
 	@rm -rf $(script_output_dir)
 
 %.diff: %.txt
@@ -82,9 +88,9 @@ clean_output:
 
 # WARNING: If you build the following target, you will have to
 # manually verify that ALL the outputs are still correct!
-new_golden_files: clean run-scripts
+new_golden_files: clean_golden_files run-scripts
 
-clean:
+clean_golden_files:
 	@rm -f $(golden_output_files)
 
 run-scripts: $(golden_output_files)
@@ -95,6 +101,7 @@ run-scripts: $(golden_output_files)
 # lines, then let it compile at one (effectively).
 # Also, we have to fix strings that vary from run to run, mostly memory
 # addresses.
+# WARNING: Does NOT error out if the script fails to parse!
 $(script_output_dir)/%.txt src/test/%.golden.txt: src/main/%.sc
 	@echo "Making $@ ..."
 	@mkdir -p $$(dirname $@)
@@ -102,7 +109,9 @@ $(script_output_dir)/%.txt src/test/%.golden.txt: src/main/%.sc
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' > $@
 
-# Doesn't write the text to a file, just stdout.
+# Convenience target that doesn't write the text to a file, just stdout,
+# so the "*.notext" target is effectively phony.
+# WARNING: Does NOT error out if the script fails to parse!
 $(script_output_dir)/%.notxt: src/main/%.sc
 	@echo "Making $@ ..."
 	@mkdir -p $$(dirname $@)
@@ -110,16 +119,18 @@ $(script_output_dir)/%.notxt: src/main/%.sc
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' 
 
-# Targets to echo information:
+# Run the Scala interpeter with the "base" settings.
+console:
+	@scala $(scala_options_base)
+
+# Targets to echo information.
+
 scala_options_base:
 	@echo $(scala_options_base)
 scala_options:
 	@echo $(scala_options)
 classpath:
 	@echo $(classpath)
-
-console:
-	@scala $(scala_options_base)
 
 scripts:
 	@for f in $(script_files); do echo $$f; done
