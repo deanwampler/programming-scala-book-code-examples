@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/toolslibs/toolslibs/ComplexProperties.scala
+// src/main/scala/progscala2/toolslibs/ComplexProperties.scala
 package progscala2.toolslibs
 import org.scalatest.FunSuite
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
