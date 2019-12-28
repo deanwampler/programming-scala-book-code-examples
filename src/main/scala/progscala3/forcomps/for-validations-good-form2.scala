@@ -24,44 +24,37 @@ object LoginValidatorNec {                                   // <1>
     else BadCharacters(name).invalidNec
   }
 
-  protected case class Tri(s1: String, s2: String, s3: String)
-
-  protected def validateField(
-      field: String, name: String): V[String] = {              // <2>
-    val vtri = 
-      (nonEmpty(field, name),
-      notTooShort(field, name, 5),
-      goodCharacters(field, name)).mapN(Tri)
-    
-    vtri.map(tri => tri.s1)
-  }
-
   def apply(
-      userName: String, password: String): V[ValidLoginForm] = // <3>
-    (validateField(userName, "user name"),
-    validateField(password, "password")).mapN(ValidLoginForm)
+      userName: String, password: String): V[ValidLoginForm] = // <2>
+    (nonEmpty(userName, "user name"),
+    notTooShort(userName, "user name", 5),
+    goodCharacters(userName, "user name"),
+    nonEmpty(password, "password"),
+    notTooShort(password, "password", 5),
+    goodCharacters(password, "password")).mapN { 
+      case (s1, _, _, s2, _, _) => ValidLoginForm(s1, s2) 
+    }
 
   def main(args: Array[String]): Unit = {
-    assert(LoginValidatorSingle("", "") == 
+    assert(LoginValidatorNec("", "") == 
       Invalid(Chain(
-        Empty("user name"),Empty("password"))), s"actual: ${LoginValidatorSingle("", "")}")    
-        // Empty("user name"), TooShort("user name", 5),
-        // Empty("password"), TooShort("password", 5))))    
+        Empty("user name"), TooShort("user name", 5),
+        Empty("password"), TooShort("password", 5))))    
     
-    assert(LoginValidatorSingle("1234", "6789") == 
+    assert(LoginValidatorNec("1234", "6789") == 
       Invalid(Chain(
         TooShort("user name", 5),
         TooShort("password", 5))))      
 
-    assert(LoginValidatorSingle("12345", "") == 
+    assert(LoginValidatorNec("12345", "") == 
       Invalid(Chain(
         Empty("password"), TooShort("password", 5)))) 
     
-    assert(LoginValidatorSingle("123 45", "678 90") == 
+    assert(LoginValidatorNec("123 45", "678 90") == 
       Invalid(Chain(
         BadCharacters("user name"), BadCharacters("password"))))
     
-    assert(LoginValidatorSingle("12345", "67890") == 
-      Valid(ValidLoginForm("me", "67890")))
+    assert(LoginValidatorNec("12345", "67890") == 
+      Valid(ValidLoginForm("12345", "67890")))
   }
 }
