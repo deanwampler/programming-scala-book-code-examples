@@ -33,8 +33,6 @@ And similarly for Java files (yes, there are Java files!). Following the usual c
 
 Use these comments to find the corresponding source file. This archive also contains *ScalaTest* and *ScalaCheck* unit tests to validate some of the code. Most of these tests are not reproduced in the text of the book, except when discussing testing itself.
 
-> **NOTE:** When I upgraded support for 2.12 and 2.13, a few of the `*.scala` files were converted to `*.sc` script files (see below), because they are no long compilable as is with the new, stricter compile flags I'm using.
-
 ## Naming Conventions
 
 The examples include "scripts" that are run with the `scala` command (or within SBT using the `console`), source files that are compiled with `scalac`, and source files that deliberately fail to compile to demonstrate common errors. To keep them straight and to support building with SBT, the following naming conventions are used for the files:
@@ -44,6 +42,8 @@ The examples include "scripts" that are run with the `scala` command (or within 
 - `*.sc` - Script files that are executed directly, e.g., `scala foo-script.sc`. This file extension is not a standard, but it is used by the newer IDE *worksheet* feature I discuss in the book. So, I stole the convention; SBT will ignore these scripts when compiling. These script don't have tests to verify them (TODO).
 - `*.javaX`, `*.scalaX` and `*.scX` - Java and Scala source files and scripts with deliberate errors, so they don't compile and run, or building them would require significant changes to the build that were deemed unnecessary. Most contain comments explaining what's wrong with them or in some cases, the corresponding section of the book provides the details.
 - `Makefile`, `misc/determine_classpath.sh`, and `src/test/.../*.golden.txt` - Used to test the `*.sc` script files on MacOS or Linux, but not discussed further in the book or this README. See the comments in `Makefile`.
+
+> **NOTE:** If you're reading an older edition of the book, when I upgraded support for 2.12 and 2.13, a few of the `*.scala` files were converted to `*.sc` script files, because they were no long compilable, as is, with the new, stricter compiler flags I'm using. However, when I later added tests for the scripts, I converted some of the `*.sc` script files to `*.scala` files.
 
 ## Required and Optional Tools
 
