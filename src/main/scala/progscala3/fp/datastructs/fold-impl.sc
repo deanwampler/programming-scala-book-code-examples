@@ -18,8 +18,6 @@ def reduceRight[A,B](s: Seq[A])(f: A => B): Seq[B] = s match {
 
 val list = List(1,2,3,4,5,6)
 
-reduceLeft(list)(i => 2*i)
-// => List(12, 10, 8, 6, 4, 2)
+assert(reduceLeft(list)(i => 2*i)  == List(12, 10, 8, 6, 4, 2))
 
-reduceRight(list)(i => 2*i)
-// => List(2, 4, 6, 8, 10, 12)
+assert(reduceRight(list)(i => 2*i) == List(2, 4, 6, 8, 10, 12))

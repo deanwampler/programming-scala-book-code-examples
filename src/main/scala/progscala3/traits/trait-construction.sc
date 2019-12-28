@@ -13,12 +13,14 @@ trait T2 {
 }
 
 class Base12 {
-  println(s"  in Base12: b = $b")
+  // Expect this: "warning: Reference to uninitialized value b"
+  println(s"  in Base12: b = $b") 
   val b="Base12"
   println(s"  in Base12: b = $b")
 }
 
 class C12 extends Base12 with T1 with T2 {
+  // Expect this: "warning: Reference to uninitialized value c"
   println(s"  in C12: c = $c")
   val c="C12"
   println(s"  in C12: c = $c")

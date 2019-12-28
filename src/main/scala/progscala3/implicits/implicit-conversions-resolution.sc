@@ -1,5 +1,6 @@
 // src/main/scala/progscala3/implicits/implicit-conversions-resolution.sc
-import scala.language.implicitConversions
+// Add the following if you don't use the flag -language:implicitConversions
+// import scala.language.implicitConversions
 
 // WARNING: You must :paste mode in the REPL for the following.
 // Using :load won't compile the two definitions together!

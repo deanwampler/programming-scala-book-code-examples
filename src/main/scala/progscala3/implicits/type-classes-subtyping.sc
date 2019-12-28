@@ -14,7 +14,7 @@ implicit class AnyStringizer(a: Any) extends Stringizer[Any] {
   }
 }
 
-val list: List[Any] = List(1, 2.2F, "three", 'symbol)
+val list: List[Any] = List(1, 2.2F, "three", Symbol("sym"))
 
 list foreach { (x:Any) => 
   try {

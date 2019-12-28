@@ -18,8 +18,6 @@ def reduceRightV[A,B](s: Vector[A])(f: A => B): Vector[B] = s match {
 
 val vect = Vector(1,2,3,4,5,6)
 
-reduceLeftV(vect)(i => 2*i)
-// => Vector(2, 4, 6, 8, 10, 12)
+assert(reduceLeftV(vect)(i => 2*i)  == Vector(2, 4, 6, 8, 10, 12))
 
-reduceRightV(vect)(i => 2*i)
-// => Vector(12, 10, 8, 6, 4, 2)
+assert(reduceRightV(vect)(i => 2*i) == Vector(12, 10, 8, 6, 4, 2))

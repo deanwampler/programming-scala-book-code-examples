@@ -2,8 +2,14 @@
 
 val list = List("now", "is", "", "the", "time")
 
-list flatMap (s => s.toList)
+val l1 = list flatMap (s => s.toList)
+assert(l1 == 
+  List[Char]('n', 'o', 'w', 'i', 's', 't', 'h', 'e', 't', 'i', 'm', 'e'))
 
-// Like flatMap, but flatMap eliminates the intermediate step!
-val list2 = List("now", "is", "", "the", "time") map (s => s.toList)
-list2.flatten
+// Like flatMap, but flatMap eliminates the need for two steps!
+val l2 = list map (s => s.toList)
+assert(l2 == 
+  List[List[Char]](List('n', 'o', 'w'), List('i', 's'), List(), 
+    List('t', 'h', 'e'), List('t', 'i', 'm', 'e')))
+assert(l2.flatten == 
+  List[Char]('n', 'o', 'w', 'i', 's', 't', 'h', 'e', 't', 'i', 'm', 'e'))

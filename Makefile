@@ -63,17 +63,17 @@ scala_options := \
   -Ywarn-unused:imports \
   -Ywarn-unused:locals \
   -Ywarn-unused:privates \
-  -Xfatal-warnings \
   $(scala_options_base)
 
 # Options used in the SBT build, but not used here for the scripts:
 scala_options_unused = \
+  -Xfatal-warnings \
   -Xlint:infer-any \
   -Ywarn-unused:params \
   -Ywarn-value-discard
 
 # Does NOT build the golden output files. If they don't exist or need updating,
-# run 'make new_golden_files' first (but read the WARNING for that target...).
+# run 'make all_golden_files' first (but read the WARNING for that target...).
 all: verify_scripts
 
 verify_scripts: clean $(output_diffs)
@@ -87,8 +87,12 @@ clean:
 	@diff $< ${<:src/main/%.sc=src/test/%.golden.txt} > $@ || { echo "$@ isn't empty!"; exit 1; }
 
 # WARNING: If you build the following target, you will have to
-# manually verify that ALL the outputs are still correct!
-new_golden_files: clean_golden_files make_golden_files
+# manually verify that ALL the outputs are still correct! See 
+# the show_golden_warnings_errors target for help.
+# There should be no actual errors, but you will see compiler 
+# warnings about deprecated constructs, etc. All those occurrences
+# should have code comments telling you to expect them.
+all_golden_files: clean_golden_files make_golden_files
 
 clean_golden_files:
 	@rm -f $(golden_output_files)
@@ -119,27 +123,35 @@ $(script_output_dir)/%.notxt: src/main/%.sc
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' 
 
+# This target shows all occurrences of the word "error" (ignoring case)
+# in the golden files. Some are expected...
+show_golden_warnings_errors:
+	@for f in $(golden_output_files); \
+	do echo "====== $$f"; \
+	grep -i 'error\|warning' $$f; \
+	done
+
 # Run the Scala interpeter with the "base" settings.
 console:
 	@scala $(scala_options_base)
 
-# Targets to echo information.
+# Targets to show information.
 
-scala_options_base:
+show_scala_options_base:
 	@echo $(scala_options_base)
-scala_options:
+show_scala_options:
 	@echo $(scala_options)
-classpath:
+show_classpath:
 	@echo $(classpath)
 
-scripts:
+show_scripts:
 	@for f in $(script_files); do echo $$f; done
 		
-golden_output_files golden_files:
+show_golden_output_files show_golden_files:
 	@for f in $(golden_output_files); do echo $$f; done
 
-output_files:
+show_output_files:
 	@for f in $(output_files); do echo $$f; done
 
-output_diffs:
+show_output_diffs:
 	@for f in $(output_diffs); do echo $$f; done

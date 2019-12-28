@@ -1,16 +1,15 @@
 // src/main/scala/progscala3/implicits/custom-string-interpolator.sc
-import scala.util.parsing.json._
 
 object Interpolators {
-  implicit class jsonForStringContext(val sc: StringContext) {       // <1>
-    def json(values: Any*): JSONObject = {                           // <2>
-      val keyRE = """^[\s{,]*(\S+):\s*""".r                          // <3>
-      val keys = sc.parts map {                                      // <4>
+  implicit class mapForStringContext(val sc: StringContext) {  // <1>
+    def map(values: String*): Map[String, String] = {          // <2>
+      val keyRE = """^[\s{,]*(\S+):\s*""".r                    // <3>
+      val keys = sc.parts map {                                // <4>
         case keyRE(key) => key
         case str => str
       }
-      val kvs = keys zip values                                      // <5>
-      JSONObject(kvs.toMap)                                          // <6>
+      val kvs = keys zip values                                // <5>
+      kvs.toMap                                                // <6>
     }
   }
 }
@@ -20,5 +19,14 @@ import Interpolators._
 val name = "Dean Wampler"
 val book = "Programming Scala, Third Edition"
 
-val jsonobj = json"{name: $name, book: $book}"                       // <7>
-println(jsonobj)
+val map1 = map"{name: $name, book: $book}"                     // <7>
+assert(map1 == Map(
+  "name" -> "Dean Wampler", 
+  "book" -> "Programming Scala, Third Edition"))
+
+val publisher = "O'Reilly"
+val map2 = map"{name: $name, book: $book, publisher: $publisher}"
+assert(map2 == Map(
+  "name" -> "Dean Wampler", 
+  "book" -> "Programming Scala, Third Edition",
+  "publisher" -> "O'Reilly"))

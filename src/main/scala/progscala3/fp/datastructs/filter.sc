@@ -5,6 +5,8 @@ val stateCapitals = Map(
   "Alaska"  -> "Juneau",
   "Wyoming" -> "Cheyenne")
   
-val map2 = stateCapitals filter { kv => kv._1 startsWith "A" }
+val mapA = stateCapitals filter { kv => kv._1 startsWith "A" }
 
-println( map2 )
+assert(mapA == Map(
+  "Alabama" -> "Montgomery",
+  "Alaska"  -> "Juneau"))

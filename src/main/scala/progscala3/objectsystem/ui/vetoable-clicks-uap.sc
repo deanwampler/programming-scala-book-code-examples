@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/objectsystem/ui/vetoable-clicks-uap.sc
 import progscala3.objectsystem.ui.Button
-import progscala3.traits.ui2.{Clickable, ObservableClicks, VetoableClicks}
+import progscala3.traits.ui2.{Clickable, ObservableClicks}
 import progscala3.traits.observer._
 
 trait VetoableClicksUAP extends Clickable {

@@ -7,6 +7,7 @@ trait AbstractT2 {
   println("AbstractT2: value = "+value+", inverse = "+inverse)
 }
 
+// Deprecated in 2.13. No longer allowed in subsequent versions:
 val obj = new {
   // println("In obj:")      // <1>
   val value = 10
