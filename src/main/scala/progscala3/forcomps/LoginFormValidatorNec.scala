@@ -1,11 +1,11 @@
-// src/main/scala/progscala3/forcomps/for-validations-good-form2.scala
+// src/main/scala/progscala3/forcomps/LoginFormValidatorNec.scala
 package progscala3.forcomps
 
 import cats.implicits._
 import cats.data._
 import cats.data.Validated._
 
-object LoginValidatorNec {                                   // <1>
+object LoginFormValidatorNec {                                 // <1>
 
   type V[T] = ValidatedNec[LoginValidation, T]  // shorter
 
@@ -36,25 +36,25 @@ object LoginValidatorNec {                                   // <1>
     }
 
   def main(args: Array[String]): Unit = {
-    assert(LoginValidatorNec("", "") == 
+    assert(LoginFormValidatorNec("", "") == 
       Invalid(Chain(
         Empty("user name"), TooShort("user name", 5),
         Empty("password"), TooShort("password", 5))))    
     
-    assert(LoginValidatorNec("1234", "6789") == 
+    assert(LoginFormValidatorNec("1234", "6789") == 
       Invalid(Chain(
         TooShort("user name", 5),
         TooShort("password", 5))))      
 
-    assert(LoginValidatorNec("12345", "") == 
+    assert(LoginFormValidatorNec("12345", "") == 
       Invalid(Chain(
         Empty("password"), TooShort("password", 5)))) 
     
-    assert(LoginValidatorNec("123 45", "678 90") == 
+    assert(LoginFormValidatorNec("123 45", "678 90") == 
       Invalid(Chain(
         BadCharacters("user name"), BadCharacters("password"))))
     
-    assert(LoginValidatorNec("12345", "67890") == 
+    assert(LoginFormValidatorNec("12345", "67890") == 
       Valid(ValidLoginForm("12345", "67890")))
   }
 }

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/forcomps/for-validations-good-base.scala
+// src/main/scala/progscala3/forcomps/LoginFormValidation.scala
 
 package progscala3.forcomps
 
