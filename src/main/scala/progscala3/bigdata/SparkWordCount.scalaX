@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/bigdata/SparkWordCount.scalaX
+// src/main/scala/progscala3/bigdata/SparkWordCount.scalaX
 package bigdata
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._

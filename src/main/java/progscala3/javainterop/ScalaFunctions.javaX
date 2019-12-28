@@ -1,5 +1,5 @@
-// src/test/java/progscala2/javainterop/ScalaFunctions.javaX
-package progscala2.javainterop;
+// src/test/java/progscala3/javainterop/ScalaFunctions.javaX
+package progscala3.javainterop;
 import scala.Function1;
 
 public class ScalaFunctions {

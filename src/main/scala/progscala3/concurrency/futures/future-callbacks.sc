@@ -1,6 +1,5 @@
 // src/main/scala/progscala3/concurrency/futures/future-callbacks.sc
 import scala.concurrent.Future
-import scala.concurrent.duration.Duration
 import scala.concurrent.ExecutionContext.Implicits.global
 
 case class ThatsOdd(i: Int) extends RuntimeException(                // <1>

@@ -88,12 +88,12 @@ clean:
 
 # WARNING: If you build the following target, you will have to
 # manually verify that ALL the outputs are still correct!
-new_golden_files: clean_golden_files run-scripts
+new_golden_files: clean_golden_files make_golden_files
 
 clean_golden_files:
 	@rm -f $(golden_output_files)
 
-run-scripts: $(golden_output_files)
+make_golden_files: $(golden_output_files)
 
 # Create the output and the "golden" output files. 
 # To get the full output and to have it parsed correctly, we use a hack

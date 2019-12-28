@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/visibility/protected.scalaX
+// src/main/scala/progscala3/visibility/protected.scalaX
 // WON'T COMPILE
 
 package scopeA {

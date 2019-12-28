@@ -15,7 +15,7 @@
         </encoder>
     </appender>
 
-    <logger name="progscala2.concurrency.akka" level="debug" additivity="false">
+    <logger name="progscala3.concurrency.akka" level="debug" additivity="false">
         <appender-ref ref="console"/>
         <!-- <appender-ref ref="file"/> -->
     </logger>

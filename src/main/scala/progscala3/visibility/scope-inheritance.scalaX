@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/visibility/scope-inheritance.scalaX
+// src/main/scala/progscala3/visibility/scope-inheritance.scalaX
 // WON'T COMPILE
 
 package scopeA {

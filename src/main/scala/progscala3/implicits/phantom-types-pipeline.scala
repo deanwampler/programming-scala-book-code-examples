@@ -2,7 +2,7 @@
 // A nicer way of driving the payroll workflow. Adapted from
 // http://james-iry.blogspot.ch/2010/10/phantom-types-in-haskell-and-scala.html
 // which was inspired by F# and Haskell.
-package progscala.implicits.payroll
+package progscala3.implicits.payroll
 
 object Pipeline {
   implicit class toPiped[V](value:V) {

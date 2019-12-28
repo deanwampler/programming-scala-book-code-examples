@@ -2,7 +2,7 @@
 
 // A workflow for payroll calculations.
 
-package progscala.implicits.payroll
+package progscala3.implicits.payroll
 
 sealed trait PreTaxDeductions
 sealed trait PostTaxDeductions

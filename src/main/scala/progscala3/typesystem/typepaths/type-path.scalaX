@@ -1,5 +1,5 @@
-// src/main/scala/progscala2/typesystem/typepaths/type-path.scalaX
-package progscala2.typesystem.typepaths
+// src/main/scala/progscala3/typesystem/typepaths/type-path.scalaX
+package progscala3.typesystem.typepaths
 
 class Service {                                                      // <1>
   class Logger {

@@ -1,39 +1,33 @@
 // src/main/scala/progscala3/typesystem/dependentmethodtypes/dep-method.sc
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
-import scala.concurrent.ExecutionContext.Implicits.global
-
-case class LocalResponse(statusCode: Int)
-case class RemoteResponse(message: String)
-
-sealed trait Computation {
-  type Response
-  val work: Future[Response]
+sealed trait Sumable {
+  type Element
+  def sum: Element
 }
 
-case class LocalComputation(
-    work: Future[LocalResponse]) extends Computation {
-  type Response = LocalResponse
+case class IntSumable(values: Seq[Int]) extends Sumable {
+  type Element = Int
+  val sum: Int = values.foldLeft(0)(_+_)
 }
-case class RemoteComputation(
-    work: Future[RemoteResponse]) extends Computation {
-  type Response = RemoteResponse
+case class StringSumable(values: Seq[String]) extends Sumable {
+  type Element = String
+  val sum: String = {
+    values.foldLeft(new StringBuilder()) {
+      (sb, s) => sb.append(s)
+    }.toString
+  }
 }
 
-object Service {
-  def handle(computation: Computation): computation.Response = {
-    Await.result(computation.work, 5.seconds)
+object SummingService {
+  def sum(sumable: Sumable): sumable.Element = {
+    sumable.sum
   }
 }
 
 
-println("LocalComputation:")
-val lc = LocalComputation(Future(LocalResponse(0)))
-Service.handle(lc)
-// Result: LocalResponse = LocalResponse(0)
+println("IntSumable:")
+val is = IntSumable(0 until 10)
+assert(SummingService.sum(is) == 45)
 
-println("RemoteComputation:")
-val rc = RemoteComputation(Future(RemoteResponse("remote call")))
-println(rc)
-Service.handle(rc)
-// Result: RemoteResponse = RemoteResponse(remote call)
+println("StringSumable:")
+val ss = StringSumable((0 until 10).map(_.toString))
+assert(SummingService.sum(ss) == "0123456789")

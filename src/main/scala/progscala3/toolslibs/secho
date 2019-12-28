@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/toolslibs/secho
+// src/main/scala/progscala3/toolslibs/secho
 #!/bin/sh
 exec scala "$0" "$@"
 !#

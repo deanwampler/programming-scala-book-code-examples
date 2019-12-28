@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/visibility/private-this-pkg.scalaX
+// src/main/scala/progscala3/visibility/private-this-pkg.scalaX
 // WON'T COMPILE
 
 package scopeA {

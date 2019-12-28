@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/bigdata/ScaldingWordCount.scalaX
+// src/main/scala/progscala3/bigdata/ScaldingWordCount.scalaX
 // Adapted from: https://github.com/deanwampler/scalding-workshop
 import com.twitter.scalding._                                        // <1>
 
