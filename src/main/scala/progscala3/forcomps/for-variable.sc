@@ -2,16 +2,18 @@
 
 val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
-for {
+val result1 = for {
   s <- states
   c <- s
   if c.isLower
-  c2 = s"$c-${c.toUpper} "
+  c2 = s"$c-${c.toUpper}"
 } yield c2
-// Results: List("l-L", "a-A", "b-B", ...)
+// Check the first five values:
+assert(result1.take(5) == List("l-L", "a-A", "b-B", "a-A", "m-M"))
 
-states flatMap (_.toSeq withFilter (_.isLower) map { c => 
-  val c2 = s"$c-${c.toUpper} "
+val result2 = states flatMap (_.toSeq withFilter (_.isLower) map { c => 
+  val c2 = s"$c-${c.toUpper}"
   c2
 })
-// Results: List("l-L", "a-A", "b-B", ...)
+// Check the first five values:
+assert(result2.take(5) == List("l-L", "a-A", "b-B", "a-A", "m-M"))
