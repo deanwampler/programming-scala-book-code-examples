@@ -1,11 +1,10 @@
 // src/main/scala/progscala3/fp/implicits/implicit-parameter.sc
-import scala.runtime.RichString
 
-def multiplier(i: Int)(implicit factor: Int) {
-  println(i * factor)
+def multiplier(i: Int)(implicit factor: Int): Int = {
+  i * factor
 }
 
 implicit val factor = 2
 
-multiplier(2)
-multiplier(2)(3)
+assert(multiplier(2) == 4)
+assert(multiplier(2)(3) == 6)

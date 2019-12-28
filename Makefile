@@ -123,6 +123,12 @@ $(script_output_dir)/%.notxt: src/main/%.sc
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' 
 
+# Run the Scala interpeter with the "base" settings.
+console:
+	@scala $(scala_options_base)
+
+# Targets to show information.
+
 # This target shows all occurrences of the word "error" (ignoring case)
 # in the golden files. Some are expected...
 show_golden_warnings_errors:
@@ -130,12 +136,6 @@ show_golden_warnings_errors:
 	do echo "====== $$f"; \
 	grep -i 'error\|warning' $$f; \
 	done
-
-# Run the Scala interpeter with the "base" settings.
-console:
-	@scala $(scala_options_base)
-
-# Targets to show information.
 
 show_scala_options_base:
 	@echo $(scala_options_base)
@@ -155,3 +155,12 @@ show_output_files:
 
 show_output_diffs:
 	@for f in $(output_diffs); do echo $$f; done
+
+# Are there golden files or scripts for which the companion doesn't exist??
+show_golden_script_mismatch:
+	@for f in $(golden_output_files); \
+	do f2=$${f/src\/test/src\/main}; \
+	f3=$${f2/golden.txt/sc}; \
+	[[ -f $$f  ]] || echo $$f3; \
+	[[ -f $$f3 ]] || echo $$f; \
+	done
