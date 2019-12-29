@@ -19,11 +19,12 @@
 SHELL = /bin/bash
 .SHELLFLAGS = -o pipefail
 
-script_output_dir := output
-script_files := $(shell find src/main/scala -name '*.sc')
+script_output_dir   := output
+script_files        := $(shell find src/main/scala -name '*.sc')
 golden_output_files := $(script_files:src/main/%.sc=src/test/%.golden.txt)
-output_files := $(script_files:src/main/%.sc=$(script_output_dir)/%.txt)
-output_diffs := $(output_files:%.txt=%.diff)
+output_files        := $(script_files:src/main/%.sc=$(script_output_dir)/%.txt)
+output_diffs        := $(output_files:%.txt=%.diff)
+test_targets        := $(script_files:src/main/%.sc=$(script_output_dir)/%.test)
 
 classpath := $(shell misc/determine_classpath.sh)
 
@@ -99,6 +100,8 @@ clean_golden_files:
 
 make_golden_files: $(golden_output_files)
 
+do_test_runs: $(test_log_files)
+
 # Create the output and the "golden" output files. 
 # To get the full output and to have it parsed correctly, we use a hack
 # where we first feed a `:paste` to the interpreter, then all the script
@@ -112,6 +115,17 @@ $(script_output_dir)/%.txt src/test/%.golden.txt: src/main/%.sc
 	@{ echo ':paste'; cat $<; } | scala $(scala_options) | sed \
 		-e 's/@[0-9a-fA-F]\{1,\}/@XXXXXXXX/g' \
 		-e 's/..Lambda.[0-9]\{1,\}\/0x[0-9a-fA-F]\{1,\}/Lambda@XXXXXXXX/g' > $@
+
+test: $(test_targets)
+
+# Test all the scripts by running them. The commands here don't pipe the
+# script into stdin, so they also don't echo much to stdout. But this target
+# works more reliable for failing when a compilation fails or an assertion 
+# is thrown.
+$(script_output_dir)/%.test: src/main/%.sc
+	@echo "Testing: $@ ..."
+	@mkdir -p $$(dirname $@)
+	scala $(scala_options) $< 
 
 # Convenience target that doesn't write the text to a file, just stdout,
 # so the "*.notext" target is effectively phony.
@@ -155,6 +169,9 @@ show_output_files:
 
 show_output_diffs:
 	@for f in $(output_diffs); do echo $$f; done
+
+show_test_targets:
+	@for f in $(test_targets); do echo $$f; done
 
 # Are there golden files or scripts for which the companion doesn't exist??
 show_golden_script_mismatch:
