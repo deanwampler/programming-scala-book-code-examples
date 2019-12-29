@@ -11,5 +11,5 @@ class ClassWithC1 extends C1 {
 }
 
 val c = new ClassWithC1()
-println(c.name)
-println(c.count)
+assert(c.name == "ClassWithC1")
+assert(c.count == 1)

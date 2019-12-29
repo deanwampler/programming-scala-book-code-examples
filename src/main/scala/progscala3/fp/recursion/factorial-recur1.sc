@@ -9,5 +9,5 @@ def factorial(i: BigInt): BigInt = {
   else i * factorial(i - 1)
 }
 
-for (i <- 1 to 10)
-  println(s"$i:\t${factorial(i)}")
+val facts5 = (1 to 5).map(i => (i, factorial(i)))
+assert(facts5 == Seq(1 -> 1, 2 -> 2, 3 -> 6, 4 -> 24, 5 -> 120))

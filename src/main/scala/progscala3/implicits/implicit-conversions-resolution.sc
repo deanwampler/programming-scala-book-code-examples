@@ -6,10 +6,14 @@
 // Using :load won't compile the two definitions together!
 case class Foo(s: String)
 object Foo {
-  implicit def fromString(s: String): Foo = Foo(s)
+  implicit def fromString(s: String): Foo = Foo(s"implicit conversion: $s")
 }
 
-class O {
-  def m1(foo: Foo) = println(foo)
-  def m(s: String) = m1(s)
+object O {
+  import Foo._
+  def mf(foo: Foo): String  = foo.s
+  def ms(s: String): String = mf(s)
 }
+
+assert(O.mf(Foo("mf")) == "mf")
+assert(O.ms("ms") == "implicit conversion: ms")

@@ -8,7 +8,7 @@ trait ToJSON {
 
   val INDENTATION = "  "
   def indentation(level: Int = 0): (String,String) = 
-    (INDENTATION * level, INDENTATION * (level+1))
+  | (INDENTATION * level, INDENTATION * (level+1))
 }
 
 implicit class AddressToJSON(address: Address) extends ToJSON {
@@ -34,6 +34,15 @@ implicit class PersonToJSON(person: Person) extends ToJSON {
 val a = Address("1 Scala Lane", "Anytown")
 val p = Person("Buck Trends", a)
 
-println(a.toJSON())
-println()
-println(p.toJSON())
+def ns(s: String) = s.replaceAll("\\s+", "")  // remove white space
+assert(ns(a.toJSON()) == ns("""{
+  |  "street": "1 Scala Lane",
+  |  "city":   "Anytown"
+  |}""".stripMargin))
+assert(ns(p.toJSON()) == ns("""{
+  |  "name":    "Buck Trends",
+  |  "address": {
+  |    "street": "1 Scala Lane",
+  |    "city":   "Anytown"
+  |  }
+  |}""".stripMargin))

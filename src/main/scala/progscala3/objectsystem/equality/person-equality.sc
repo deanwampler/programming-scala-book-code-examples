@@ -6,52 +6,51 @@ val p1a = Person("Dean", "Wampler", 29)
 val p1b = Person("Dean", "Wampler", 29)
 val p2  = Person("Buck", "Trends",  30)
 
-p1a equals p1a     // = true
-p1a equals p1b     // = true
-p1a equals p2      // = false
-p1a equals null    // = false
-try {
-  null equals p1a  // throws java.lang.NullPointerException
-} catch {
-  case e: java.lang.NullPointerException => e
+assert((p1a equals p1a)  == true)
+assert((p1a equals p1b)  == true)
+assert((p1a equals p2)   == false)
+assert((p1a equals null) == false)
+
+Seq(null, p1a) foreach { x =>
+  try {
+    null equals x  // throws java.lang.NullPointerException
+    assert(false, s"Shouldn't be here! x = $x")
+  } catch {
+    case e: java.lang.NullPointerException => // expected
+  }
 }
-try {
-  null equals null // throws java.lang.NullPointerException
-} catch {
-  case e: java.lang.NullPointerException => e
-}
 
-p1a == p1a         // = true
-p1a == p1b         // = true
-p1a == p2          // = false
-p1a == null        // = false
-null == p1a        // = false
-null == null       // = true  (compiler warns that it's always true.)
+assert((p1a == p1a)    == true)
+assert((p1a == p1b)    == true)
+assert((p1a == p2)     == false)
+assert((p1a == null)   == false)
+assert((null == p1a)   == false)
+assert((null == null)  == true)  // Compiler warns that it's always true.
 
-p1a != p1a         // = false
-p1a != p1b         // = false
-p1a != p2          // = true
-p1a != null        // = true
-null != p1a        // = true
-null != null       // = false (compiler warns that it's always false.)
+assert((p1a != p1a)    == false)
+assert((p1a != p1b)    == false)
+assert((p1a != p2)     == true)
+assert((p1a != null)   == true)
+assert((null != p1a)   == true)
+assert((null != null)  == false) // Compiler warns that it's always false.
 
-p1a eq p1a         // = true
-p1a eq p1b         // = false
-p1a eq p2          // = false
-p1a eq null        // = false
-null eq p1a        // = false
-null eq null       // = true  (compiler warns that it's always true.)
+assert((p1a eq p1a)    == true)
+assert((p1a eq p1b)    == false)
+assert((p1a eq p2)     == false)
+assert((p1a eq null)   == false)
+assert((null eq p1a)   == false)
+assert((null eq null)  == true)  // Compiler warns that it's always true.
 
-p1a ne p1a         // = false
-p1a ne p1b         // = true
-p1a ne p2          // = true
-p1a ne null        // = true
-null ne p1a        // = true
-null ne null       // = false (compiler warns that it's always false.)
+assert((p1a ne p1a)    == false)
+assert((p1a ne p1b)    == true)
+assert((p1a ne p2)     == true)
+assert((p1a ne null)   == true)
+assert((null ne p1a)   == true)
+assert((null ne null)  == false) // Compiler warns that it's always false.
 
 Array(1, 2) == Array(1, 2)              // = false
 Array(1, 2) sameElements Array(1, 2)    // = true
 
-List(1, 2) == List(1, 2)                // = true
-List(1, 2) sameElements List(1, 2)      // = true
+Seq(1, 2) == Seq(1, 2)                  // = true
+Seq(1, 2) sameElements Seq(1, 2)        // = true
 

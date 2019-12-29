@@ -29,11 +29,8 @@ def sumCounts1(countSteps: Seq[Step]): Option[Int] =
     (sumOpt, step) => sumOpt flatMap (i => step(i))
   }
 
-sumCounts1(successfulSteps)
-// Returns: Option[Int] = Some(40)
-
-sumCounts1(partiallySuccessfulSteps)
-// Returns: Option[Int] = None
+assert(sumCounts1(successfulSteps) == Some(40))
+assert(sumCounts1(partiallySuccessfulSteps) == None)
 
 // More verbose, but it stops the "counts" iteration at the first None
 // and it doesn't create intermediate Options:
@@ -60,8 +57,5 @@ def sumCounts2(countSteps: Seq[Step]): Option[Int] = {
   sum(0, countSteps)
 }
 
-sumCounts2(successfulSteps)
-// Returns: Option[Int] = Some(40)
-
-sumCounts2(partiallySuccessfulSteps)
-// Returns: Option[Int] = None
+assert(sumCounts2(successfulSteps) == Some(40))
+assert(sumCounts2(partiallySuccessfulSteps) == None)

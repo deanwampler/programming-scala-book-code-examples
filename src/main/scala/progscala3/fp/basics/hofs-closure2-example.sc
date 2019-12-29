@@ -10,4 +10,4 @@ def m2: Int => Int = {
   multiplier
 }
 
-m1(m2)
+assert(m1(m2) == 122880)

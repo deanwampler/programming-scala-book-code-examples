@@ -33,11 +33,14 @@ assert(toType(1) =:= toType(1)      == true)
 assert(toType(1) =:= toType(true)   == false)
 
 // (scala.type, class Int, List()):
-println(toTypeRefInfo(1))                     
+println(toTypeRefInfo(1))
+
 // (scala.type, class Boolean, List()):
 println(toTypeRefInfo(true))
+
 // (scala.collection.type, trait Seq, List(AnyVal)):
 println(toTypeRefInfo(Seq(1, true, 3.14)))
+
 // (scala.type, trait Function1, List(Int, java.lang.String)):
 println(toTypeRefInfo((i: Int) => i.toString))  
 

@@ -11,5 +11,5 @@ class ClassWithAbstractC1 extends AbstractC1 {
 }
 
 val c = new ClassWithAbstractC1()
-println(c.name)
-println(c.count)
+assert(c.name == "ClassWithAbstractC1")
+assert(c.count == 1)

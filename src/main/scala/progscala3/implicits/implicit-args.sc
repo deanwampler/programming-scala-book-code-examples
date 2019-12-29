@@ -27,7 +27,9 @@ object ComplicatedSalesTax {
   import SimpleStateSalesTax.rate
 
   val amount = 100F
-  println(s"Tax on $amount = ${calcTax(amount)}")
+  val tax = calcTax(amount)
+  println(s"Tax on $amount = ${tax}")
+  assert(tax == 5.0)
 }
 
 {
@@ -35,6 +37,8 @@ object ComplicatedSalesTax {
   implicit val myStore = ComplicatedSalesTaxData(0.06F, false, 1010)
 
   val amount = 100F
-  println(s"Tax on $amount = ${calcTax(amount)}")
+  val tax = calcTax(amount)
+  println(s"Tax on $amount = ${tax}")
+  assert(tax == 6.0)
 }
 

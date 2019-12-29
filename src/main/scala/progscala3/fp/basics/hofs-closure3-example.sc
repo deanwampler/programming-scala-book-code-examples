@@ -6,8 +6,12 @@ object Multiplier {
   def multiplier(i: Int) = i * factor
 }
 
-(1 to 10) filter (_ % 2 == 0) map Multiplier.multiplier reduce (_ * _)
+val result1 = 
+  (1 to 10) filter (_ % 2 == 0) map Multiplier.multiplier reduce (_ * _)
+assert(result1 == 122880)
 
 Multiplier.factor = 3
-(1 to 10) filter (_ % 2 == 0) map Multiplier.multiplier reduce (_ * _)
+val result2 = 
+  (1 to 10) filter (_ % 2 == 0) map Multiplier.multiplier reduce (_ * _)
+assert(result2 == 933120)
 

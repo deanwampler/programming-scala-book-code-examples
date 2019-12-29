@@ -20,15 +20,16 @@ val partiallySuccessfulSteps: Seq[Step] = List(
 def sumCounts1(countSteps: Seq[Step]): Either[RuntimeException,Int] = {
   val zero: Either[RuntimeException,Int] = Right(0)
   (countSteps foldLeft zero) {
-    (sumEither, step) => sumEither.right flatMap (i => step(i))
+    (sumEither, step) => sumEither flatMap (i => step(i))
   }
 }
 
-sumCounts1(successfulSteps)
-// Returns: .Either[RuntimeException,Int] = Right(40)
+assert(sumCounts1(successfulSteps) == Right(40))
 
-sumCounts1(partiallySuccessfulSteps)
-// Returns: Either[RuntimeException,Int] = Left(RuntimeException: FAIL!)
+sumCounts1(partiallySuccessfulSteps) match {
+  case Left(re) => assert(re.getMessage == "FAIL!")
+  case Right(i) => assert(false, s"Should have failed, but returned $i")
+}
 
 // More verbose, but it stops the "counts" iteration at the first Left.
 // and it doesn't create intermediate Rights:
@@ -45,8 +46,9 @@ def sumCounts2(countSteps: Seq[Step]): Either[RuntimeException,Int] = {
   sum(0, countSteps)
 }
 
-sumCounts2(successfulSteps)
-// Returns: .Either[RuntimeException,Int] = Right(40)
+assert(sumCounts2(successfulSteps) == Right(40))
 
-sumCounts2(partiallySuccessfulSteps)
-// Returns: Either[RuntimeException,Int] = Left(RuntimeException: FAIL!)
+sumCounts2(partiallySuccessfulSteps) match {
+  case Left(re) => assert(re.getMessage == "FAIL!")
+  case Right(i) => assert(false, s"Should have failed, but returned $i")
+}

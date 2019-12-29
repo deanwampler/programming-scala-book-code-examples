@@ -6,21 +6,25 @@ val finicky: PartialFunction[String,String] = {
 
 val finickyOption = finicky.lift
 
-finicky("finicky")
+assert(finicky("finicky") == "FINICKY")
+
 try {
   finicky("other")
+  assert(false, "Should not be here!")
 } catch {
-  case e: scala.MatchError => e
+  case e: scala.MatchError => assert(e.getMessage.contains("other"))
 }
 
-finickyOption("finicky")
-finickyOption("other")
+assert(finickyOption("finicky") == Some("FINICKY"))
+assert(finickyOption("other")   == None)
 
 val finicky2 = Function.unlift(finickyOption)
 
-finicky2("finicky")
+assert(finicky2("finicky") == "FINICKY")
+
 try {
   finicky2("other")
+  assert(false, "Should not be here!")
 } catch {
-  case e: scala.MatchError => e
+  case e: scala.MatchError => assert(e.getMessage.contains("other"))
 }

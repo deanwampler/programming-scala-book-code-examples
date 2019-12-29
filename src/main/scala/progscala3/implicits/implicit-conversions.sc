@@ -9,3 +9,4 @@ object Implicits {
 import Implicits._
 
 val m = Map("one" <-*-> 1, "two" <-*-> 2)
+assert(m == Map("one" -> 1, "two" -> 2))

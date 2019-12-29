@@ -24,11 +24,12 @@ def sumCounts1(countSteps: Seq[Step]): Try[Int] = {
   }
 }
 
-sumCounts1(successfulSteps)
-// Returns: scala.util.Try[Int] = Success(40)
+assert(sumCounts1(successfulSteps) == Success(40))
 
-sumCounts1(partiallySuccessfulSteps)
-// Returns: scala.util.Try[Int] = Failure(java.lang.RuntimeException: FAIL!)
+sumCounts1(partiallySuccessfulSteps) match {
+  case Failure(re) => assert(re.getMessage == "FAIL!")
+  case Success(i) => assert(false, s"Should have failed, but returned $i")
+}
 
 // More verbose, but it stops the "counts" iteration at the first Failure.
 // and it doesn't create intermediate Successes:
@@ -45,8 +46,9 @@ def sumCounts2(countSteps: Seq[Step]): Try[Int] = {
   sum(0, countSteps)
 }
 
-sumCounts2(successfulSteps)
-// Returns: scala.util.Try[Int] = Success(40)
+assert(sumCounts2(successfulSteps) == Success(40))
 
-sumCounts2(partiallySuccessfulSteps)
-// Returns: scala.util.Try[Int] = Failure(java.lang.RuntimeException: FAIL!)
+sumCounts2(partiallySuccessfulSteps) match {
+  case Failure(re) => assert(re.getMessage == "FAIL!")
+  case Success(i) => assert(false, s"Should have failed, but returned $i")
+}

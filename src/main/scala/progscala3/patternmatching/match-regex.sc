@@ -5,7 +5,7 @@ val MagazineExtractorRE = """Magazine: title=([^,]+),\s+issue=(.+)""".r
 
 val catalog = Seq(
   "Book: title=Programming Scala Third Edition, author=Dean Wampler",
-  "Magazine: title=The New Yorker, issue=January 2014",
+  "Magazine: title=The New Yorker, issue=January 2020",
   "Unknown: text=Who put this here??"
 )
 

@@ -6,19 +6,20 @@
 // Using :load won't compile the two definitions together!
 case class Foo(s: String)
 object Foo {
-  implicit def fromString(s: String): Foo = new Foo(s)
+  implicit def fromString(s: String): Foo = 
+  	new Foo(s"object Foo implicit conversion: $s")
 }
 import Foo._
 
 object scope {
-  implicit def overridingConversion(s: String): Foo = Foo("Boo: "+s)
+  implicit def overridingConversion(s: String): Foo = 
+  	new Foo(s"object scope implicit conversion: $s")
 
-  def m(foo: Foo) = println(foo) // assert(foo == Foo(expected), "1: "+foo.toString)
-
-  def m2(string: String) = m(string)
+  def mf(foo: Foo): String  = foo.s 
+  def ms(s: String): String = mf(s)
 }
 
-def m(foo: Foo) = println(foo) // assert(foo == Foo("string"), "2: "+foo.toString)
+def m(foo: Foo): String = foo.s
 
 m("string1")
 scope.m("string2")

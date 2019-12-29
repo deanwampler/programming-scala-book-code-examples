@@ -9,8 +9,10 @@ mult(d3._1, d3._2, d3._3)
 val multTupled = Function.tupled(mult _)
 // multTupled: ((Double, Double, Double)) => Double = <function1>
 
-multTupled(d3)
+val result1 = multTupled(d3)
+assert(result1 > 31.94 && result1 < 31.95)
 
 val multUntupled = Function.untupled(multTupled)
 
-multUntupled(d3._1, d3._2, d3._3)
+val result2 = multUntupled(d3._1, d3._2, d3._3)
+assert(result2 > 31.94 && result2 < 31.95)

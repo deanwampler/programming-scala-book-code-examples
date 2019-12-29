@@ -7,4 +7,4 @@ class Upper {
 }
 
 val up = new Upper
-println(up.upper("Hello", "World!"))
+assert(up.upper("Hello", "World!") == Seq("HELLO", "WORLD!"))
