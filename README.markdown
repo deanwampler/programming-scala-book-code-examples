@@ -94,7 +94,7 @@ Outside of SBT, you could, in principle, run the script files manually at the co
 
 However, many of the scripts require other project code that has been compiled (which is in `target/scala-X.Y/classes`) and occasionally third-party libraries that are part of the project dependencies. Note that the `Makefile` used for script testing has a `console` target that runs with a close approximation of the same compiler flags and classpath as the `sbt console` command. Also, the Makefile target `scala_options_base` echoes the same set of options that the `console` target uses. So, on MacOS or Linux, you could do this:
 
-	scala $(make scala_options_base) src/main/scala/.../foo.sc
+	scala $(make show_scala_options) src/main/scala/.../foo.sc
 
 However, it's simplest to run the scripts by first starting `sbt`, running `console` to start the Scala REPL with the correct flags and classpath, then use the REPL `:load src/main/scala/.../foo.sc` to load and run the script.
 
