@@ -9,12 +9,14 @@ val catalog = Seq(
   "Unknown: text=Who put this here??"
 )
 
-for (item <- catalog) {
-  item match {
-    case BookExtractorRE(title, author) =>                           // <2>
-      println(s"""Book "$title", written by $author""")
-    case MagazineExtractorRE(title, issue) =>
-      println(s"""Magazine "$title", issue $issue""")
-    case entry => println(s"Unrecognized entry: $entry")
-  }
+val results = catalog map {
+  case BookExtractorRE(title, author) =>                           // <2>
+    s"""Book "$title", written by $author"""
+  case MagazineExtractorRE(title, issue) =>
+    s"""Magazine "$title", issue $issue"""
+  case entry => s"Unrecognized entry: $entry"
 }
+assert(results == Seq(
+  """Book "Programming Scala Third Edition", written by Dean Wampler""", 
+  """Magazine "The New Yorker", issue January 2020""", 
+  "Unrecognized entry: Unknown: text=Who put this here??"))

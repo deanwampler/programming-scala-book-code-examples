@@ -10,6 +10,10 @@ def reverseSeqToString[T](l: Seq[T]): String = l match {
   case Nil => "Nil"
 }
 
-for (seq <- Seq(nonEmptyList, nonEmptyVector, nonEmptyMap.toSeq)) {
-  println(reverseSeqToString(seq))
+val results = Seq(nonEmptyList, nonEmptyVector, nonEmptyMap.toSeq) map {
+  seq => reverseSeqToString(seq)
 }
+assert(results == Seq(
+  "Nil :+ 1 :+ 2 :+ 3 :+ 4 :+ 5", 
+  "Nil :+ 1 :+ 2 :+ 3 :+ 4 :+ 5", 
+  "Nil :+ (one,1) :+ (two,2) :+ (three,3)"))

@@ -13,6 +13,10 @@ def windows[T](seq: Seq[T]): String = seq match {
   case Nil => "Nil"
 }
 
-for (seq <- Seq(nonEmptyList, emptyList, nonEmptyMap.toSeq)) {
-  println(windows(seq))
+val results = Seq(nonEmptyList, emptyList, nonEmptyMap.toSeq) map {
+  seq => windows(seq)
 }
+assert(results == Seq(
+  "(1, 2), (2, 3), (3, 4), (4, 5), (5, _), Nil", 
+  "Nil", 
+  "((one,1), (two,2)), ((two,2), (three,3)), ((three,3), _), Nil"))

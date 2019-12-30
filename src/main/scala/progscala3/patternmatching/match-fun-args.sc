@@ -20,7 +20,10 @@ pas map { tup =>
 }
 
 // Nicer way:
-pas map {
+val results = pas map {
   case (Person(name, age), Address(street, city, country)) =>
     s"$name (age: $age) lives at $street, $city, in $country"
 }
+assert(results == Seq(
+  "Buck Trends (age: 29) lives at 1 Scala Lane, Anytown, in USA", 
+  "Clo Jure (age: 28) lives at 2 Clojure Lane, Othertown, in USA"))

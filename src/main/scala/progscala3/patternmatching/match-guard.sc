@@ -1,8 +1,7 @@
 // src/main/scala/progscala3/patternmatching/match-guard.sc
 
-for (i <- Seq(1,2,3,4)) {
-  i match {
-    case _ if i%2 == 0 => println(s"even: $i")                       // <1>
-    case _             => println(s"odd:  $i")                       // <2>
-  }
+val results = Seq(1,2,3,4) map {
+  case e if e%2 == 0 => s"even: $e"                          // <1>
+  case o             => s"odd:  $o"                          // <2>
 }
+assert(results == Seq("odd:  1", "even: 2", "odd:  3", "even: 4"))

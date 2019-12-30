@@ -14,8 +14,18 @@ def seqToString[T](seq: Seq[T]): String = seq match {                // <5>
   case Nil => "Nil"                                                  // <7>
 }
 
-for (seq <- Seq(                                                     // <8>
+val results = Seq(                                                   // <8>
     nonEmptySeq, emptySeq, nonEmptyList, emptyList, 
-    nonEmptyVector, emptyVector, nonEmptyMap.toSeq, emptyMap.toSeq)) {
-  println(seqToString(seq))
+    nonEmptyVector, emptyVector, nonEmptyMap.toSeq, emptyMap.toSeq) map {
+  seq => seqToString(seq)
 }
+
+assert(results == Seq(
+  "1 +: 2 +: 3 +: 4 +: 5 +: Nil",
+  "Nil",
+  "1 +: 2 +: 3 +: 4 +: 5 +: Nil",
+  "Nil",
+  "1 +: 2 +: 3 +: 4 +: 5 +: Nil",
+  "Nil",
+  "(one,1) +: (two,2) +: (three,3) +: Nil",
+  "Nil"))

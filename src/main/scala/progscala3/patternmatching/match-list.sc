@@ -8,4 +8,7 @@ def listToString[T](list: List[T]): String = list match {
   case Nil => "(Nil)"
 }
 
-for (l <- List(nonEmptyList, emptyList)) { println(listToString(l)) }
+val results = List(nonEmptyList, emptyList) map (l => listToString(l))
+assert(results == Seq(
+  "(1 :: (2 :: (3 :: (4 :: (5 :: (Nil))))))", 
+  "(Nil)"))

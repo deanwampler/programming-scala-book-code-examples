@@ -27,12 +27,15 @@ val wheres = Seq(                                                    // <4>
   WhereOp("name", EQ, "Buck Trends"),
   WhereOp("age", GT, 29))
 
-for (where <- wheres) {
-  where match {
-    case WhereIn(col, val1, vals @ _*) =>                            // <5>
-      val valStr = (val1 +: vals).mkString(", ")
-      println (s"WHERE $col IN ($valStr)")
-    case WhereOp(col, op, value) => println (s"WHERE $col $op $value")
-    case _ => println (s"ERROR: Unknown expression: $where")
-  }
+val results = wheres map {
+  case WhereIn(col, val1, vals @ _*) =>                            // <5>
+    val valStr = (val1 +: vals).mkString(", ")
+    s"WHERE $col IN ($valStr)"
+  case WhereOp(col, op, value) => s"WHERE $col $op $value"
+  case x => s"ERROR: Unknown expression: $x"
 }
+assert(results == Seq(
+  "WHERE state IN (IL, CA, VA)",
+  "WHERE state = IL",
+  "WHERE name = Buck Trends",
+  "WHERE age > 29"))

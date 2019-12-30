@@ -5,10 +5,12 @@ val langs = Seq(
   ("Clojure", "Rich",   "Hickey"),
   ("Lisp",    "John",   "McCarthy"))
 
-for (tuple <- langs) {
-  tuple match {
-    case ("Scala", _, _) => println("Found Scala")                   // <1>
-    case (lang, first, last) =>                                      // <2>
-      println(s"Found other language: $lang ($first, $last)")
-  }
+val results = langs map {
+  case ("Scala", _, _) => "Found Scala"                      // <1>
+  case (lang, first, last) =>                                // <2>
+    s"Found other language: $lang ($first $last)"
 }
+assert(results == Seq(
+  "Found Scala", 
+  "Found other language: Clojure (Rich Hickey)",
+  "Found other language: Lisp (John McCarthy)"))

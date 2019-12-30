@@ -9,10 +9,12 @@ trait VetoableClicksUAP extends Clickable {
 
   private var count = 0
 
-  abstract override def click() = {
+  abstract override def click(): String = {
     if (count < maxAllowed) {
       count += 1
       super.click()
+    } else {
+      s"exceeded maximum allowed clicks $maxAllowed"
     }
   }
 }

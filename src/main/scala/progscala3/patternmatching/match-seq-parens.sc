@@ -9,6 +9,10 @@ def seqToString2[T](seq: Seq[T]): String = seq match {
   case Nil => "(Nil)"
 }
 
-for (seq <- Seq(nonEmptySeq, emptySeq, nonEmptyMap.toSeq)) {
-  println(seqToString2(seq))
+val results = Seq(nonEmptySeq, emptySeq, nonEmptyMap.toSeq) map {
+  seq => seqToString2(seq)
 }
+assert(results == Seq(
+  "(1 +: (2 +: (3 +: (4 +: (5 +: (Nil))))))",
+  "(Nil)",
+  "((one,1) +: ((two,2) +: ((three,3) +: (Nil))))"))

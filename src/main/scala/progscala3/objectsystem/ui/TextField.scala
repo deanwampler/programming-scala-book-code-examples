@@ -4,13 +4,12 @@ import progscala3.traits.ui2.Clickable
 
 class TextField(var text: String) extends Widget with Clickable {
 
-    def updateUI() = { /* Logic to update appearance of the text field. */ }
+    def updateUI(): String = s"""TextField UI with text "$text" updated."""
 
-    def draw() = {
-        // ... logic to draw the text field on the display, web page, etc.
-    }
+    def draw(): String = s"""Drawing text "$text""""
 
-    override def toString() = "(textfield: text="+text+", "+super.toString()+")"
+    override def toString(): String = 
+    	"(textfield: text="+text+", "+super.toString()+")"
 }
 
 object TextField {

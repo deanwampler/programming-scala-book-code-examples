@@ -2,6 +2,6 @@
 package progscala3.objectsystem.ui
 
 abstract class Widget {
-  def draw(): Unit
-  override def toString() = "(widget)"
+  def draw(): String
+  override def toString(): String = "(widget)"
 }
