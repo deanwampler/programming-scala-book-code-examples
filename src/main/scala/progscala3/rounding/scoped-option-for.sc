@@ -1,17 +1,21 @@
 // src/main/scala/progscala3/patternmatching/scoped-option-for.sc
 
-val dogBreeds = List(Some("Doberman"), None, Some("Yorkshire Terrier"), 
-                     Some("Dachshund"), None, Some("Scottish Terrier"),
-                     None, Some("Great Dane"), Some("Portuguese Water Dog"))
+import progscala3.rounding.WeekDay
+import progscala3.rounding.WeekDay._
+
+val days = Seq(
+  Some(Mon), None, Some(Tue), Some(Wed), None, 
+  Some(Thu), Some(Fri), Some(Sat), Some(Sun), None)
+
 println("first pass:")
 for {
-  breedOption <- dogBreeds
-  breed <- breedOption
-  upcasedBreed = breed.toUpperCase()
-} println(upcasedBreed)
+  dayOpt <- days
+  day <- dayOpt
+  up   = WeekDay.upper(day)
+} println(up)
 
-println("second pass:")
+println("second, more concise pass:")
 for {
-  Some(breed) <- dogBreeds
-  upcasedBreed = breed.toUpperCase()
-} println(upcasedBreed)
+  Some(day) <- days
+  up   = WeekDay.upper(day)
+} println(up)

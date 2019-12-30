@@ -10,3 +10,4 @@ while (!isThirteen(i)) {
   println(s"$i isn't 13.")
   i += 1
 }
+assert(i == 13)

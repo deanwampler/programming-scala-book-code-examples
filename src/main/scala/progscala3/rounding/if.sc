@@ -1,9 +1,13 @@
 // src/main/scala/progscala3/rounding/if.sc
 
-if (2 + 2 == 5) {
-  println("Hello from 1984.")
-} else if (2 + 2 == 3) {
-    println("Hello from Remedial Math class?")
-} else {
-  println("Hello from a non-Orwellian future.")
+import progscala3.rounding.WeekDay
+
+WeekDay.values foreach { day =>
+  if (WeekDay.isWorkingDay(day)) {
+    println(s"$day is a working day")
+  } else if (day == WeekDay.Sat) {
+    println("It's Saturday")
+  } else {
+    println("It's Sunday")
+  }
 }

@@ -1,7 +1,6 @@
 // src/main/scala/progscala3/rounding/basic-for.sc
 
-val dogBreeds = List("Doberman", "Yorkshire Terrier", "Dachshund",
-                     "Scottish Terrier", "Great Dane", "Portuguese Water Dog")
+import progscala3.rounding.WeekDay
 
-for (breed <- dogBreeds)
-  println(breed)
+for (day <- WeekDay.values)
+  println(day)

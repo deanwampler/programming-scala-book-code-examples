@@ -1,8 +1,8 @@
 // src/main/scala/progscala3/rounding/scoped-for.sc
 
-val dogBreeds = List("Doberman", "Yorkshire Terrier", "Dachshund",
-                     "Scottish Terrier", "Great Dane", "Portuguese Water Dog")
+import progscala3.rounding.WeekDay
+
 for {
-  breed <- dogBreeds
-  upcasedBreed = breed.toUpperCase()
-} println(upcasedBreed)
+	day <- WeekDay.values
+  up   = WeekDay.upper(day)
+} println(up)

@@ -2,7 +2,7 @@
 package progscala3.traits.ui2                                        // <1>
 
 trait Clickable {
-  def click(): Unit = updateUI()                                     // <2>
+  def click(): String = updateUI()                                   // <2>
 
-  protected def updateUI(): Unit                                     // <3>
+  protected def updateUI(): String                                   // <3>
 }

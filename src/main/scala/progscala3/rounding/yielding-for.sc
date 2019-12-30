@@ -1,8 +1,10 @@
 // src/main/scala/progscala3/rounding/yielding-for.sc
 
-val dogBreeds = List("Doberman", "Yorkshire Terrier", "Dachshund",
-                     "Scottish Terrier", "Great Dane", "Portuguese Water Dog")
-val filteredBreeds = for {
-  breed <- dogBreeds
-  if breed.contains("Terrier") && !breed.startsWith("Yorkshire")
-} yield breed
+import progscala3.rounding.WeekDay
+import progscala3.rounding.WeekDay._
+
+val days = for {
+  day <- WeekDay.values
+  up   = WeekDay.upper(day)
+} yield up
+assert(days == Set("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"))

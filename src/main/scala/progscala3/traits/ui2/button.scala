@@ -4,5 +4,5 @@ import progscala3.traits.ui.Widget
 
 class Button(val label: String) extends Widget with Clickable {
 
-  protected def updateUI(): Unit = { /* logic to change GUI appearance */ }
+  protected def updateUI(): String = s"Button ($label) updating UI"
 }

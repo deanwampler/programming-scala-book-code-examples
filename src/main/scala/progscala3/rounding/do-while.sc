@@ -6,3 +6,4 @@ do {
   count += 1
   println(count)
 } while (count < 10)
+assert(count == 10)

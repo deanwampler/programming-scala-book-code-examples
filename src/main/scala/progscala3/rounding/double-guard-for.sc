@@ -1,13 +1,14 @@
 // src/main/scala/progscala3/rounding/double-guard-for.sc
 
-val dogBreeds = List("Doberman", "Yorkshire Terrier", "Dachshund",
-                     "Scottish Terrier", "Great Dane", "Portuguese Water Dog")
+import progscala3.rounding.WeekDay
 
-for (breed <- dogBreeds
-  if breed.contains("Terrier")
-  if !breed.startsWith("Yorkshire")
-) println(breed)
+for {
+	day <- WeekDay.values
+  if WeekDay.isWorkingDay(day)
+} println(day)
 
-for (breed <- dogBreeds
-  if breed.contains("Terrier") && !breed.startsWith("Yorkshire")
-) println(breed)
+for { 
+	day <- WeekDay.values
+	str  = day.toString                           // <1>
+  if str.startsWith("T") || str.endsWith("t")
+} println(day)
