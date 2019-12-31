@@ -14,11 +14,12 @@ object Serialization {
 import Serialization._
 
 object RemoteConnection {
-  def write[T : Writable](t: T): Unit =                              // <2>
-    println(t.serialized)  // Use stdout as the "remote connection"
+  def write[T : Writable](t: T): String =                            // <2>
+    t.serialized  // Return a string "as the remote connection"
 }
 
-RemoteConnection.write(100)       // Prints -- 100 --                   <3>
-RemoteConnection.write(3.14f)     // Prints -- 3.14 --
-RemoteConnection.write("hello!")  // Prints -- hello! --
+assert(RemoteConnection.write(100)      == "-- 100 --")              // <3>
+assert(RemoteConnection.write(3.14f)    == "-- 3.14 --")
+assert(RemoteConnection.write("hello!") == "-- hello! --")
+// The following fails: "no implicit view from (Int, Int) => ...
 // RemoteConnection.write((1, 2))

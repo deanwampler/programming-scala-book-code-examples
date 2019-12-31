@@ -2,12 +2,16 @@
 // Version 3 of "StringUtil" (New variable argument list methods).
 
 object StringUtilV3 {
-  def joiner(strings: List[String], separator: String): String = 
+  def joiner(string: String, strings: String*): String = 
+    joiner(string +: strings)
+
+  def joiner(strings: Seq[String], separator: String = "-"): String = 
     strings.mkString(separator)
-
-  def joiner(strings: List[String]): String = joiner(strings, " ") 
-  def joiner(strings: String*): String      = joiner(strings.toList)
-
 }
 
-println( StringUtilV3.joiner(List("Programming", "Scala")) )
+assert(StringUtilV3.joiner("Programming", "Scala") ==
+  "Programming-Scala")
+assert(StringUtilV3.joiner(Seq("Programming", "Scala")) ==
+  "Programming-Scala")
+assert(StringUtilV3.joiner(Seq("Programming", "Scala"), separator="|") ==
+  "Programming|Scala")

@@ -15,6 +15,7 @@ class Parent(val value: Int) {                             // <1>
 }
 class Child(value: Int) extends Parent(value)
 
-val p4: Parent = Opt(new Child(1)).getOrElse(new Parent(10))
 val p5: Parent = Opt[Parent](null).getOrElse(new Parent(10))
+// Neither of the following two expressions will compile:
+val p4: Parent = Opt(new Child(1)).getOrElse(new Parent(10))
 val p6: Parent = Opt[Child](null).getOrElse(new Parent(10))

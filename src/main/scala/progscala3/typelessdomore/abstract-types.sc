@@ -24,6 +24,6 @@ class FileBulkReader(val source: File) extends BulkReader {
 }
 
 println(new StringBulkReader("Hello Scala!").read)
-// Assumes the current directory is src/main/scala:
+// Assumes the current directory is the project root:
 println(new FileBulkReader(
-  new File("TypeLessDoMore/abstract-types.sc")).read)
+  new File("src/main/scala/progscala3/typelessdomore/abstract-types.sc")).read)

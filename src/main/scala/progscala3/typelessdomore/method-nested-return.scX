@@ -7,6 +7,3 @@ def upCase(s: String) = {
   else
     s.toUpperCase()
 }
-
-println( upCase("") )
-println( upCase("Hello") )

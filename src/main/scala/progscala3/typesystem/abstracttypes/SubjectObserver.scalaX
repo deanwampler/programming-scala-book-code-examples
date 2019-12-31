@@ -8,12 +8,13 @@ abstract class SubjectObserver {                                     // <1>
   trait Subject {                                                    // <3>
     private var observers = List[O]()
 
-    def addObserver(observer: O) = observers ::= observer
+    def addObserver(observer: O): Unit = observers ::= observer
 
-    def notifyObservers() = observers.foreach(_.receiveUpdate(this)) // <4>
+    def notifyObservers(): Unit =                                    // <4>
+      observers.foreach(_.receiveUpdate(this)) 
   }
 
   trait Observer {                                                   // <5>
-    def receiveUpdate(subject: S)
+    def receiveUpdate(subject: S): Unit
   }
 }

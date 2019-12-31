@@ -8,12 +8,6 @@
 
 1L to 10L by 3            // Long
 
-1.1f to 10.3f by 3.1f     // Float with an interval != 1
-
-1.1f to 10.3f by 0.5f     // Float with an interval < 1
-
-1.1 to 10.3 by 3.1        // Double
-
 'a' to 'g' by 3            // Char
 
 BigInt(1) to BigInt(10) by 3

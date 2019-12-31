@@ -2,9 +2,13 @@
 // Version 2 of "StringUtil" (with a fixed compilation error).
 
 object StringUtilV2 {
-  def joiner(strings: String*): String = strings.mkString("-")
+  def joiner(string: String, strings: String*): String = 
+    joiner(string +: strings)
 
-  def joiner(strings: List[String]): String = joiner(strings :_*)
+  def joiner(strings: Seq[String]): String = strings.mkString("-")
 }
 
-println( StringUtilV2.joiner(List("Programming", "Scala")) )
+assert(StringUtilV2.joiner("Programming", "Scala") ==
+  "Programming-Scala")
+assert(StringUtilV2.joiner(Seq("Programming", "Scala")) ==
+  "Programming-Scala")

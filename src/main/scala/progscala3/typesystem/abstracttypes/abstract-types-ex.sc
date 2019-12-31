@@ -27,4 +27,14 @@ object example extends exampleTrait {
   val v2 = new T2 { val name1 = "T1"; val name2 = "T2" }
   val v3 = C("1", "2")
   val v4 = Vector(C("3", "4"))
+
+  override def toString(): String = {
+    val v1str = s"v1: name1 = ${v1.name1}"
+    val v2str = s"v2: name1 = ${v2.name1}, name2 = ${v2.name2}"
+    s"example: v1 = $v1str, v2 = $v2str, v3 = $v3, v4 = $v4"
+  }
 }
+
+assert(example.toString == 
+  "example: v1 = v1: name1 = T1, v2 = v2: name1 = T1, " +
+  "name2 = T2, v3 = C(1,2), v4 = Vector(C(3,4))")

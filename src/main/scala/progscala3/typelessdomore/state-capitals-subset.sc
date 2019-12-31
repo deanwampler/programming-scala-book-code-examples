@@ -6,12 +6,10 @@ val stateCapitals = Map(
   // ...
   "Wyoming" -> "Cheyenne")
     
-println( "Get the capitals wrapped in Options:" )
-println( "Alabama: " + stateCapitals.get("Alabama") )
-println( "Wyoming: " + stateCapitals.get("Wyoming") )
-println( "Unknown: " + stateCapitals.get("Unknown") )
+assert(stateCapitals.get("Alabama") == Some("Montgomery"))
+assert(stateCapitals.get("Wyoming") == Some("Cheyenne"))
+assert(stateCapitals.get("Unknown") == None)
 
-println( "Get the capitals themselves out of the Options:" )
-println( "Alabama: " + stateCapitals.get("Alabama").get )
-println( "Wyoming: " + stateCapitals.get("Wyoming").getOrElse("Oops!") )
-println( "Unknown: " + stateCapitals.get("Unknown").getOrElse("Oops2!") )
+assert(stateCapitals.getOrElse("Alabama", "Oops1") == "Montgomery")
+assert(stateCapitals.getOrElse("Wyoming", "Oops2") == "Cheyenne")
+assert(stateCapitals.getOrElse("Unknown", "Oops3") == "Oops3")

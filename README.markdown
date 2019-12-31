@@ -11,7 +11,7 @@
 | June 18, 2019     | New support for Maven builds, courtesy of [oldbig](https://github.com/oldbig) |
 | October 12, 2019  | Updated for Scala 2.13.1, sbt 1.3.2, and other dependencies. Also now compiles with JDK 11 |
 | October 13, 2019  | Renamed the repo from `prog-scala-2nd-ed-code-examples` to `programming-scala-book-code-examples` |
-| December 27, 2019 | Renamed the `progscala2` package to `progscala3` and worked on better testability for the example scripts (and numerous other improvements...) |
+| December 31, 2019 | Renamed the `progscala2` package to `progscala3` and reworked most of the `*.sc` scripts for better testability and other improvements |
 
 [![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
