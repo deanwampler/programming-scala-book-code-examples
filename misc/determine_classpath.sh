@@ -15,12 +15,16 @@ make_classpath() {
 	echo "${@} ." | sed -e 's/ /:/g'
 }
 
-if [[ -f misc/classpath.txt ]]
+cache=misc/classpath.txt
+if [[ -f $cache ]]
 then
-	cat misc/classpath.txt
+	echo 1>&2
+	echo "NOTE: Using $cache ($(ls -l $cache)). If it's old, delete and run again!!" 1>&2
+	echo 1>&2
+	cat $cache
 else
 	paths=( $(get_paths) )
 	cp=$(make_classpath "${paths[@]}")
-	echo $cp > misc/classpath.txt
+	echo $cp > $cache
 	echo $cp
 fi
