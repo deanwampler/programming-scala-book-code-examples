@@ -7,13 +7,13 @@
 case class Foo(s: String)
 object Foo {
   implicit def fromString(s: String): Foo = 
-  	new Foo(s"object Foo implicit conversion: $s")
+    new Foo(s"object Foo implicit conversion: $s")
 }
 import Foo._
 
 object scope {
   implicit def overridingConversion(s: String): Foo = 
-  	new Foo(s"object scope implicit conversion: $s")
+    new Foo(s"object scope implicit conversion: $s")
 
   def mf(foo: Foo): String  = foo.s 
   def ms(s: String): String = mf(s)

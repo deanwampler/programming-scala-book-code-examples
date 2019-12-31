@@ -1,28 +1,29 @@
 // src/main/scala/progscala3/typesystem/selftype/selftype-cake-pattern.sc
 
-trait Persistence { def startPersistence(): Unit }                   // <1>
-trait Midtier { def startMidtier(): Unit }
-trait UI { def startUI(): Unit }
+trait Persistence { def startPersistence(): String }                 // <1>
+trait Midtier { def startMidtier(): String }
+trait UI { def startUI(): String }
 
 trait Database extends Persistence {                                 // <2>
-  def startPersistence(): Unit = println("Starting Database")  
+  def startPersistence(): String = "Starting Database"  
 }
 trait BizLogic extends Midtier {
-  def startMidtier(): Unit = println("Starting BizLogic")  
+  def startMidtier(): String = "Starting BizLogic"  
 }
 trait WebUI extends UI {
-  def startUI(): Unit = println("Starting WebUI")  
+  def startUI(): String = "Starting WebUI"  
 }
 
 trait App { self: Persistence with Midtier with UI =>                // <3>
   
-  def run() = {
-    startPersistence()
-    startMidtier()
-    startUI()
+  def run(): Seq[String] = {
+    Seq(startPersistence(),                                          // <4>
+      startMidtier(),
+      startUI())
   }
 }
 
-object MyApp extends App with Database with BizLogic with WebUI      // <4>
+object MyApp extends App with Database with BizLogic with WebUI      // <5>
                                                                      
-MyApp.run                                                            // <5>
+assert(MyApp.run() ==                                                // <6>
+  Seq("Starting Database", "Starting BizLogic", "Starting WebUI"))

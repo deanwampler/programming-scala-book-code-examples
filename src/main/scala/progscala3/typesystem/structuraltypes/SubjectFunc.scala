@@ -5,13 +5,13 @@ trait SubjectFunc {                                                  // <1>
 
   type State
 
-  type Observer = State => Unit                                      // <2>
+  type Observer = State => String                                    // <2>
 
-  private var observers: List[Observer] = Nil
+  private var observers: Vector[Observer] = Vector.empty
 
   def addObserver(observer:Observer): Unit =
-    observers ::= observer
+    observers :+= observer
 
-  def notifyObservers(state: State): Unit =                          // <3>
-    observers foreach (o => o(state))
+  def notifyObservers(state: State): Seq[String] =                   // <3>
+    observers map (o => o(state))
 }

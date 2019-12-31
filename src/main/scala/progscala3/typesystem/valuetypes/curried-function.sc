@@ -1,13 +1,12 @@
 // src/main/scala/progscala3/typesystem/valuetypes/curried-function.sc
 
 val f  = (x: Double, y: Double, z: Double) => x * y / z
-val fc = f.curry
+val fc = f.curried
 
-val answer1 = f(2., 5., 4.)
-val answer2 = fc(2.)(5.)(4.)
-println( answer1 + " == " + answer2 + "? " + (answer1 == answer2))
+assert(f(2.0, 5.0, 4.0) == fc(2.0)(5.0)(4.0))
 
-val fc1 = fc(2.)
-val fc2 = fc1(5.)
-val answer3 = fc2(4.)
-println( answer3 + " == " + answer2 + "? " + (answer3 == answer2))
+val fc1 = fc(2.0)                                          // <1>
+val fc2 = fc1(5.0)                                         // <2>
+val answer = fc2(4.0)                                      // <3>
+assert(answer == f(2.0, 5.0, 4.0))
+assert(answer == fc(2.0)(5.0)(4.0))

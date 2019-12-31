@@ -11,7 +11,7 @@ trait VetoableClicks extends Clickable {                             // <1>
       count += 1
       super.click()
     } else {
-    	s"Max allowed clicks exceeded: $maxAllowed"
+      s"Max allowed clicks exceeded: $maxAllowed"
     }
   }
 }

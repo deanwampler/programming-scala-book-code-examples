@@ -11,6 +11,6 @@ class Button(val label: String) extends Widget with Clickable {
   protected def updateUI(): String = s"$this clicked; updating UI"
 
   override def toString(): String = 
-  	s"(button: label=$label, ${super.toString()})"
+    s"(button: label=$label, ${super.toString()})"
 }
 

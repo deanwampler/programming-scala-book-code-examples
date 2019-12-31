@@ -9,7 +9,7 @@ class TextField(var text: String) extends Widget with Clickable {
     def draw(): String = s"""Drawing text "$text""""
 
     override def toString(): String = 
-    	"(textfield: text="+text+", "+super.toString()+")"
+      "(textfield: text="+text+", "+super.toString()+")"
 }
 
 object TextField {

@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/typesystem/lazy/lazy-fibonacci.sc
 
-lazy val fib: Stream[Int] = 
-  Stream.cons(0, Stream.cons(1, fib.zip(fib.tail).map(p => p._1 + p._2)))
+lazy val fib: LazyList[Int] = 
+  LazyList.cons(0, LazyList.cons(1, fib.zip(fib.tail).map(p => p._1 + p._2)))
   
-fib.take(10).print
+assert(fib.take(10).force == LazyList(0, 1, 1, 2, 3, 5, 8, 13, 21, 34))

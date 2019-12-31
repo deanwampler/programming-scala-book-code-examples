@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/valuetypes/type-projection.sc
+// src/main/scala/progscala3/typesystem/valuetypes/type-projection.scX
 import progscala3.typesystem.valuetypes._
 
 val l1: Service.Log   = new ConsoleLogger    // ERROR: No Service "value"
