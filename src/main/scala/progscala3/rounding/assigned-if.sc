@@ -8,3 +8,4 @@ val configFilePath = if (configFile.exists()) {
   configFile.createNewFile()
   configFile.getAbsolutePath()
 }
+println(configFilePath)

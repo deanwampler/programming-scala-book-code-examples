@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/implicits/implicit-conversions-resolution2.sc
+// src/main/scala/progscala3/implicits/implicit-conversions-resolution2.scX
 // Add the following if you don't use the flag -language:implicitConversions
 // import scala.language.implicitConversions
 

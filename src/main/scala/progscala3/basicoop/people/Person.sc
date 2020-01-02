@@ -1,33 +1,25 @@
-// src/main/scala/progscala3/basicoop/PersonAuxConstructors3.sc
-import progscala3.basicoop.Address
-import progscala3.basicoop3.Person3
+// src/main/scala/progscala3/basicoop/people/Person.sc
+import progscala3.basicoop.people._
 
-val a1 = new Address("1 Scala Lane", "Anytown", "CA", "98765")
-println(a1)
-val a2 = new Address("98765")
-println(a2)
+val addr = Address("1 Scala Lane", "Bay Area", "CA", ZipCode(98765))
+println(addr)  // Result: Address(1 Scala Lane,Bay Area,CA,98765)
 
-println(Person3("Buck Trends1")))                        // Primary
-// Result: Person3(Buck Trends1,None,None)
+val p1 = Person("Buck Trends2", Some(20), Some(addr)) // Primary constructor
+assert(p1.name    == "Buck Trends2")
+assert(p1.age     == Some(20))
+assert(p1.address == Some(addr))
 
-println(Person3("Buck Trends2", Some(20), Some(a1)))     // Primary
-// Result: Person3(Buck Trends2,Some(20),
-//           Some(Address(1 Scala Lane,Anytown,CA,98765)))
+val p2 = Person("Buck Trends2", 20, addr)
+assert(p2.name    == "Buck Trends2")
+assert(p2.age     == Some(20))
+assert(p2.address == Some(addr))
 
-println(Person3("Buck Trends3", 20, a1))
-// Result: Person3(Buck Trends3,Some(20),
-//           Some(Address(1 Scala Lane,Anytown,CA,98765)))
+val p3 = Person("Buck Trends4", 20)
+assert(p3.name    == "Buck Trends4")
+assert(p3.age     == Some(20))
+assert(p3.address == None)
 
-println(Person3("Buck Trends4", Some(20)))               // Primary
-// Result: Person3(Buck Trends4,Some(20),None)
-
-println(Person3("Buck Trends5", 20)
-// Result: Person3(Buck Trends5,Some(20),None)
-
-println(Person3("Buck Trends6", address = Some(a2)))     // Primary
-// Result: Person3(Buck Trends6,None,
-//           Some(Address([unknown],Anytown,CA,98765)))
-
-println(Person3("Buck Trends7", address = a2))
-// Result: Person3(Buck Trends7,None,
-//           Some(Address([unknown],Anytown,CA,98765)))
+val p4 = Person("Buck Trends1")
+assert(p4.name    == "Buck Trends1")
+assert(p4.age     == None)
+assert(p4.address == None)

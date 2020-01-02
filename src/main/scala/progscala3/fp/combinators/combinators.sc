@@ -16,3 +16,6 @@ val flist = Combinators.map(intToString) _
 
 val list = flist(List(1, 2, 3, 4))
 assert(list == List[String]("N=1", "N=2", "N=3", "N=4"))
+
+val list1 = Combinators1.map(List(1, 2, 3, 4))(intToString)
+assert(list1 == List[String]("N=1", "N=2", "N=3", "N=4"))

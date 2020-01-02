@@ -1,27 +1,29 @@
 // src/main/scala/progscala3/traits/trait-construction.sc
 
 trait T1 {
-  println(s"  in T1: x = $x")
+  // The following would cause: "uninitialized value"
+  // println(s"  in T1: x = $x")
   val x=1
   println(s"  in T1: x = $x")
 }
 
 trait T2 {
-  println(s"  in T2: y = $y")
+  // The following would cause: "uninitialized value"
+  // println(s"  in T2: y = $y")
   val y="T2"
   println(s"  in T2: y = $y")
 }
 
 class Base12 {
-  // Expect this: "warning: Reference to uninitialized value b"
-  println(s"  in Base12: b = $b") 
+  // The following would cause: "warning: Reference to uninitialized value b"
+  // println(s"  in Base12: b = $b") 
   val b="Base12"
   println(s"  in Base12: b = $b")
 }
 
 class C12 extends Base12 with T1 with T2 {
-  // Expect this: "warning: Reference to uninitialized value c"
-  println(s"  in C12: c = $c")
+  // The following would cause: "warning: Reference to uninitialized value c"
+  // println(s"  in C12: c = $c")
   val c="C12"
   println(s"  in C12: c = $c")
 }

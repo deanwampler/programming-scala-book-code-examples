@@ -20,4 +20,4 @@ class C2 extends T1 with T2 with T3 {
   println("C2 ")
 }
 
-val c2 = new C2
+println(new C2)

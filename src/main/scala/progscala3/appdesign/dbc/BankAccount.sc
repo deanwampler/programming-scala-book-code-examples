@@ -25,7 +25,7 @@ case class BankAccount(balance: Money) {
 
 import scala.util.Try
 
-Seq(-10, 0, 10) foreach (i => println(f"$i%3d: ${Try(Money(i))}"))
+Seq(-10, 0, 10) foreach (i => println(f"$i%3d: ${Try(Money(i.toDouble))}"))
 
 val ba1 = BankAccount(Money(10.0))
 val ba2 = ba1.credit(Money(5.0))

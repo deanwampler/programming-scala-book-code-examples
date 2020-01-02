@@ -1,4 +1,5 @@
-// src/main/scala/progscala3/basicoop/ValueClassUniversalTraits.sc
+// src/main/scala/progscala3/basicoop/ValueClassUniversalTraits.scala
+package progscala3.basicoop
 
 trait Digitizer extends Any {
   def digits(s: String): String = s.replaceAll("""\D""", "")         // <1>
@@ -9,7 +10,12 @@ trait Formatter extends Any {                                        // <2>
     s"($areaCode) $exchange-$subnumber"
 }
 
-class USPhoneNumber(val s: String) extends AnyVal 
+/**
+ * Simple constructor that does not validation of the input string,
+ * for simplicity. See `ZipCode` for an example of how this might
+ * be done.
+ */
+case class USPhoneNumberUT(s: String) extends AnyVal
     with Digitizer with Formatter {
 
   override def toString = {
@@ -20,6 +26,3 @@ class USPhoneNumber(val s: String) extends AnyVal
     format(areaCode, exchange, subnumber)                            // <3>
   }
 }
-
-println(new USPhoneNumber("987-654-3210"))
-// Result: number: USPhoneNumber = (987) 654-3210

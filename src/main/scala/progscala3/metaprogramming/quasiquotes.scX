@@ -1,10 +1,10 @@
-// src/main/scala/progscala3/metaprogramming/quasiquotes.sc
+// src/main/scala/progscala3/metaprogramming/quasiquotes.scX
 import reflect.runtime.universe._
 
 // Bring in the "toolbox":
 import reflect.runtime.currentMirror
 import tools.reflect.ToolBox
-val toolbox = currentMirror.mkToolBox()
+//val toolbox = currentMirror.mkToolBox()
 
 val C = q"case class C(s: String)"
 println(C)

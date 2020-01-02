@@ -9,11 +9,11 @@ type Step = Int => Option[Int]
 
 // A sequence of functions for the process steps. Each takes the result of
 // the previous step (or a seed value to start) and returns a new option.
-val successfulSteps = List(
+val successfulSteps = Seq(
   (i:Int) => Some(i + 5), 
   (i:Int) => Some(i + 10), 
   (i:Int) => Some(i + 25))
-val partiallySuccessfulSteps = List(
+val partiallySuccessfulSteps = Seq(
   (i:Int) => Some(i + 5), 
   // A step that fails and indicates the failure by returning +None+.
   (i:Int) => None,   // FAIL!

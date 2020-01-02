@@ -3,7 +3,7 @@ import scala.annotation.tailrec
 
 def factorial(i: Int): Long = {
   @tailrec
-  def fact(i: Int, accumulator: Int): Long = {
+  def fact(i: Int, accumulator: Long): Long = {
     if (i <= 1) accumulator
     else fact(i - 1, i * accumulator)
   }

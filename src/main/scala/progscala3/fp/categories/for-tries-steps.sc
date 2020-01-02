@@ -8,11 +8,11 @@ import scala.util.{ Try, Success, Failure }
 // Alias the function signature:
 type Step = Int => Try[Int]
 
-val successfulSteps: Seq[Step] = List(
+val successfulSteps: Seq[Step] = Seq(
   (i:Int) => Success(i + 5),
   (i:Int) => Success(i + 10),
   (i:Int) => Success(i + 25))
-val partiallySuccessfulSteps: Seq[Step] = List(
+val partiallySuccessfulSteps: Seq[Step] = Seq(
   (i:Int) => Success(i + 5),
   (i:Int) => Failure(new RuntimeException("FAIL!")),
   (i:Int) => Success(i + 25))

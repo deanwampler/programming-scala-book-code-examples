@@ -1,20 +1,12 @@
-// src/main/scala/progscala3/basicoop/PersonAuxConstructors.scala
-package progscala3.basicoop
+// src/main/scala/progscala3/basicoop/people/PersonAuxConstructors.scala
+package progscala3.basicoop.people
 
-case class Address(street: String, city: String, state: String, zip: String) {
-
-  def this(zip: String) =                                            // <1>
-    this("[unknown]", Address.zipToCity(zip), Address.zipToState(zip), zip)
-}
-
-object Address {
-
-  // Fake implementation
-  def zipToCity(zip: String)  = s"Anytown-$zip"                      // <2>
-  def zipToState(zip: String) = s"CA-$zip"
-}
-
-case class Person(
+/** 
+ * Define auxiliary constructors. While this is common in other
+ * OO languages, like Java, it is not common in Scala code, where
+ * default arguments and case object `apply` methods are used instead.
+ */
+case class PersonAuxConstructors(
   name: String, age: Option[Int], address: Option[Address]) {        // <3>
 
   def this(name: String) = this(name, None, None)                    // <4>

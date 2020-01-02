@@ -1,36 +1,34 @@
-// src/main/scala/progscala3/basicoop/PersonEmployeeTraits.sc
-import progscala3.basicoop.{ Address, Person, Employee }
+// src/main/scala/progscala3/basicoop/people/PersonEmployeeTraits.sc
+import progscala3.basicoop.people.{
+  Address, EmployeeWithTraits, PersonWithTraits, ZipCode }
 
-val ceoAddress  = Address("1 Scala Lane", "Anytown", "CA", "98765")
+val ceoAddress  = Address("1 Scala Lane", "Bay Area", "CA", ZipCode(98765))
 println(ceoAddress)
-// Result: ceoAddress: oop2.Address = Address(1 Scala Lane,Anytown,CA,98765)
 
-val buckAddress = Address("98765")
+val buckAddress = Address("19 Java Lane", "Bay Area", "CA", ZipCode(98765))
 println(buckAddress)
-// Result: buckAddress: oop2.Address = Address([unknown],Anytown,CA,98765)
 
-val ceo = Employee(
-  name = "Joe CEO", title = "CEO", age = Some(50),
+val ceo = EmployeeWithTraits(
+  name = "Thaddeus Biggles III", title = "CEO", age = Some(50),
   address = Some(ceoAddress), manager = None)
-println(ceo)
-// Result: ceo: oop2.Employee = Employee(Joe CEO,Some(50),
-//            Some(Address(1 Scala Lane,Anytown,CA,98765)),CEO,None)
+assert(ceo.name    == "Thaddeus Biggles III")
+assert(ceo.title   == "CEO")
+assert(ceo.age     == Some(50))
+assert(ceo.address == Some(ceoAddress))
+assert(ceo.manager == None)
 
-val ceoSpouse = Person("Jane Smith", address = Some(ceoAddress))
-println(ceoSpouse)
-// Result: ceoSpouse: oop2.Person = Person(Jane Smith,None,
-//            Some(Address(1 Scala Lane,Anytown,CA,98765)))
+val ceoSpouse = PersonWithTraits(
+  name = "Octavia Biggles", 
+  address = Some(ceoAddress))
+assert(ceoSpouse.name    == "Octavia Biggles")
+assert(ceoSpouse.age     == None)
+assert(ceoSpouse.address == Some(ceoAddress))
 
-val buck = Employee(
+val buck = EmployeeWithTraits(
   name = "Buck Trends", title = "Zombie Dev", age = Some(20),
   address = Some(buckAddress), manager = Some(ceo))
-println(buck)
-// Result: buck: oop2.Employee = Employee(Buck Trends,Some(20),
-//             Some(Address([unknown],Anytown,CA,98765)),Zombie Dev,
-//             Some(Employee(Joe CEO,Some(50),
-//               Some(Address(1 Scala Lane,Anytown,CA,98765)),CEO,None)))
-
-val buckSpouse = Person("Ann Collins", address = Some(buckAddress))
-println(buckSpouse)
-// Result: buckSpouse: oop2.Person = Person(Ann Collins,None,
-//             Some(Address([unknown],Anytown,CA,98765)))
+assert(buck.name    == "Buck Trends")
+assert(buck.title   == "Zombie Dev")
+assert(buck.age     == Some(20))
+assert(buck.address == Some(buckAddress))
+assert(buck.manager == Some(ceo))

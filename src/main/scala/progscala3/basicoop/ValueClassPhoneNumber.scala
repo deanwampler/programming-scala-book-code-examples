@@ -1,5 +1,10 @@
-// src/main/scala/progscala3/basicoop/ValueClassPhoneNumber.sc
-
+// src/main/scala/progscala3/basicoop/ValueClassPhoneNumber.scala
+package progscala3.basicoop
+/**
+ * Simple constructor that does not validation of the input string,
+ * for simplicity. See `ZipCode` for an example of how this might
+ * be done.
+ */
 class USPhoneNumber(val s: String) extends AnyVal {
 
   override def toString = {
@@ -12,6 +17,3 @@ class USPhoneNumber(val s: String) extends AnyVal {
 
   private def digits(str: String): String = str.replaceAll("""\D""", "") 
 }
-
-println(new USPhoneNumber("987-654-3210"))
-// Result: number: USPhoneNumber = (987) 654-3210

@@ -18,7 +18,7 @@ def isDef(x: Any, f: PartialFunction[Any,String]) =                  // <5>
 def line[T](t: T): String = 
   "| %-4s | %-5s  | %-6s | %-5s  | %-6s | %-5s  | %-6s |".format(
     t.toString, isDef(t,pfs), tryPF(t,pfs), isDef(t,pfd), tryPF(t,pfd), 
-    isDef(t,pf), tryPF(t,pf))
+    isDef(t,pfsd), tryPF(t,pfsd))
 
 println(                                                             // <6>
   s"""

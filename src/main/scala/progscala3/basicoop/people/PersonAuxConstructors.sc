@@ -1,25 +1,26 @@
-// src/main/scala/progscala3/basicoop/PersonAuxConstructors.sc
-import progscala3.basicoop.{Address, Person}
+// src/main/scala/progscala3/basicoop/people/PersonAuxConstructors.sc
+import progscala3.basicoop.people.{Address, PersonAuxConstructors, ZipCode}
 
-val a1 = new Address("1 Scala Lane", "Anytown", "CA", "98765")
-println(a1)
-// Result: Address(1 Scala Lane,Anytown,CA,98765)
+val addr = Address("1 Scala Lane", "Bay Area", "CA", ZipCode(98765))
+println(addr)  // Result: Address(1 Scala Lane,Bay Area,CA,98765)
 
-val a2 = new Address("98765")
-println(a2)
-// Result: Address([unknown],Anytown,CA,98765)
+// primary constructor
+val p1 = new PersonAuxConstructors("Buck Trends2", Some(20), Some(addr))
+assert(p1.name    == "Buck Trends2")
+assert(p1.age     == Some(20))
+assert(p1.address == Some(addr))
 
-println(new Person("Buck Trends1"))
-// Result: Person(Buck Trends1,None,None)
+val p2 = new PersonAuxConstructors("Buck Trends3", 20, addr)
+assert(p2.name    == "Buck Trends3")
+assert(p2.age     == Some(20))
+assert(p2.address == Some(addr))
 
-println(new Person("Buck Trends2", Some(20), Some(a1)))
-// Result: Person(Buck Trends2,Some(20),
-//           Some(Address(1 Scala Lane,Anytown,CA,98765)))
+val p3 = new PersonAuxConstructors("Buck Trends4", 20)
+assert(p3.name    == "Buck Trends4")
+assert(p3.age     == Some(20))
+assert(p3.address == None)
 
-
-println(new Person("Buck Trends3", 20, a2))
-// Result: Person(Buck Trends3,Some(20),
-//           Some(Address([unknown],Anytown,CA,98765)))
-
-println(new Person("Buck Trends4", 20))
-// Result: Person(Buck Trends4,Some(20),None)
+val p4 = new PersonAuxConstructors("Buck Trends1")
+assert(p4.name    == "Buck Trends1")
+assert(p4.age     == None)
+assert(p4.address == None)

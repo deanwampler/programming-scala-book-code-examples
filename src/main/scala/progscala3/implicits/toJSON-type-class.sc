@@ -8,7 +8,7 @@ trait ToJSON {
 
   val INDENTATION = "  "
   def indentation(level: Int = 0): (String,String) = 
-  | (INDENTATION * level, INDENTATION * (level+1))
+    (INDENTATION * level, INDENTATION * (level+1))
 }
 
 implicit class AddressToJSON(address: Address) extends ToJSON {

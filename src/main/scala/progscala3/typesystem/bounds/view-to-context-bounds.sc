@@ -1,5 +1,6 @@
 // src/main/scala/progscala3/typesystem/bounds/view-to-context-bounds.sc
-import scala.language.implicitConversions
+// Need the following unless -language.implicitConversions option is used.
+// import scala.language.implicitConversions
 
 object Serialization {
   case class Rem[A](value: A) {

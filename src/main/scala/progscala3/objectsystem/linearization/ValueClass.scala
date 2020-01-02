@@ -1,4 +1,5 @@
-// src/main/scala/progscala3/objectsystem/linearization/value-class-universal-traits.sc
+// src/main/scala/progscala3/objectsystem/linearization/ValueClass.scala
+package progscala3.objectsystem.linearization
 
 trait M extends Any {
   def m(): String = "M "
@@ -17,11 +18,18 @@ trait Formatter extends Any with M {
     s"($areaCode) $exchange-$subnumber"
 }
 
-// Split "exetnds AnyVal" to tell the REPL the expression crosses 2 lines:
-class USPhoneNumber(val s: String) extends 
-    AnyVal with Digitizer with Formatter{
+case class USPhoneNumber(s: String) 
+    extends AnyVal with Digitizer with Formatter{
+
+  /**
+   * Returns "USPhoneNumber Formatter Digitizer M "
+   */
   override def m(): String = { "USPhoneNumber " + super.m }
   
+  /** 
+   * Return the string representation. 
+   * For a USPhoneNumber("987-654-3210"), returns "(987) 654-3210"
+   */
   override def toString = {
     val digs = digits(s)
     val areaCode = digs.substring(0,3)
@@ -31,6 +39,3 @@ class USPhoneNumber(val s: String) extends
   }
 }
 
-val number = new USPhoneNumber("987-654-3210")
-assert(number.toString == "(987) 654-3210")
-assert(number.m() == "USPhoneNumber Formatter Digitizer M ")

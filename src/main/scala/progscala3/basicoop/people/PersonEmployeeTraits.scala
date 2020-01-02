@@ -1,16 +1,5 @@
-// src/main/scala/progscala3/basicoop/PersonEmployeeTraits.scala
-package progscala3.basicoop2                                         // <1>
-
-case class Address(street: String, city: String, state: String, zip: String)
-
-object Address {
-  def apply(zip: String) =                                           // <2>
-    new Address(
-      "[unknown]", Address.zipToCity(zip), Address.zipToState(zip), zip)
-
-  def zipToCity(zip: String)  = s"Anytown-$zip"
-  def zipToState(zip: String) = s"CA-$zip"
-}
+// src/main/scala/progscala3/basicoop/people/PersonEmployeeTraits.scala
+package progscala3.basicoop.people                                   // <1>
 
 trait PersonState {                                                  // <3>
   val name: String
@@ -20,20 +9,20 @@ trait PersonState {                                                  // <3>
   // Some common methods declared/defined here?
 }
 
-case class Person(                                                   // <4>
+case class PersonWithTraits(                                         // <4>
   name: String,
   age: Option[Int] = None,
   address: Option[Address] = None) extends PersonState
 
 trait EmployeeState {                                                // <5>
   val title: String
-  val manager: Option[Employee]
+  val manager: Option[EmployeeWithTraits]
 }
 
-case class Employee(                                                 // <6>
+case class EmployeeWithTraits(                                       // <6>
   name: String,
   age: Option[Int] = None,                                           // <7>
   address: Option[Address] = None,
   title: String = "[unknown]",
-  manager: Option[Employee] = None)
+  manager: Option[EmployeeWithTraits] = None)
 extends PersonState with EmployeeState

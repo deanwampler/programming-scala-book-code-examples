@@ -1,5 +1,7 @@
 // src/main/scala/progscala3/typesystem/higherkinded/Reduce.scala
 package progscala3.typesystem.higherkinded
+
+// Use the following if you don't use -language:higherKinds
 // import scala.language.higherKinds                                 // <1>
 
 trait Reduce[T, -M[T]] {                                             // <2>

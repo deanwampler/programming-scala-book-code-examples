@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/valuetypes/infix-types.sc
+// src/main/scala/progscala3/typesystem/valuetypes/infix-types.scX
 
 val xll1:  Int Either Double  Either String  = Left(Left(1))
 val xll2: (Int Either Double) Either String  = Left(Left(1))
