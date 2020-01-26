@@ -71,8 +71,8 @@ clean:
 
 tests: $(test_logs)
 
-# Test all the scripts by running them. The logs will be mostly of output,
-# often just containing the command that was run.
+# Test each script by running it. The log will be mostly empty
+# of output, often just containing the command that was run.
 $(output_dir)/%.log: src/main/%.sc
 	@echo "Testing: $@ ..." 1>&2
 	@mkdir -p $$(dirname $@)
