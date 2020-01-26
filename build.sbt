@@ -4,16 +4,20 @@ version := "3.0.0-001"
 
 organization := "org.programming-scala"
 
-scalaVersion := "2.13.1"
-crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1")
+val scala212Version = "2.12.10"
+val scala213Version = "2.13.1"
+val scala300Version = "0.21.0-RC1"
+scalaVersion := scala300Version
+
+crossScalaVersions := Seq(scala212Version, scala213Version, scala300Version)
 maxErrors := 10
 
 libraryDependencies ++= {
   lazy val versions =
     CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, 11)) => Map("async" -> "0.9.7",  "akka" -> "2.5.25")
       case Some((2, 12)) => Map("async" -> "0.10.0", "akka" -> "2.5.25")
       case Some((2, 13)) => Map("async" -> "0.10.0", "akka" -> "2.6.1")
+      case Some((0, 21)) => Map("async" -> "0.10.0", "akka" -> "2.6.1")
       case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
       case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
     }

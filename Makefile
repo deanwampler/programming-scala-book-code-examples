@@ -19,7 +19,7 @@ test_logs     := $(script_files:src/main/%.sc=$(output_dir)/%.log)
 classpath := $(shell misc/determine_classpath.sh)
 
 # Most of the same options used in the SBT build.
-scala_options_base = \
+scala2_options_base = \
   -Xfatal-warnings \
   -Xlint:constant \
   -deprecation \
@@ -49,7 +49,7 @@ scala_options_base = \
   -Xlint:type-parameter-shadow \
   -classpath $(classpath)
 
-scala_options := \
+scala2_options := \
   -Ywarn-extra-implicit \
   -Ywarn-unused:implicits \
   -Ywarn-unused:imports \
@@ -59,10 +59,15 @@ scala_options := \
   $(scala_options_base)
 
 # Options used in the SBT build, but not used here for the scripts:
-scala_options_unused = \
+scala2_options_unused = \
   -Xlint:infer-any \
   -Ywarn-unused:params \
   -Ywarn-value-discard
+
+SCALA := dotr
+scala_options :=
+#SCALA := scala
+#scala_options := $(scala2_options)
 
 all: clean tests
 
@@ -76,8 +81,8 @@ tests: $(test_logs)
 $(output_dir)/%.log: src/main/%.sc
 	@echo "Testing: $< (output: $@) ..." 1>&2
 	@mkdir -p $$(dirname $@)
-	@echo scala $(scala_options) $< > $@
-	@scala $(scala_options) $< >> $@
+	@echo $(SCALA) $(scala_options) $< > $@
+	@$(SCALA) $(scala_options) $< >> $@
 
 # Run the Scala interpeter with the "base" settings.
 console:
