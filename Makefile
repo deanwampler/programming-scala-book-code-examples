@@ -74,7 +74,7 @@ tests: $(test_logs)
 # Test each script by running it. The log will be mostly empty
 # of output, often just containing the command that was run.
 $(output_dir)/%.log: src/main/%.sc
-	@echo "Testing: $@ ..." 1>&2
+	@echo "Testing: $< (output: $@) ..." 1>&2
 	@mkdir -p $$(dirname $@)
 	@echo scala $(scala_options) $< > $@
 	@scala $(scala_options) $< >> $@
