@@ -6,7 +6,7 @@ organization := "org.programming-scala"
 
 val scala212Version = "2.12.10"
 val scala213Version = "2.13.1"
-val scala300Version = "0.21.0-RC1"
+val scala300Version = "0.22.0-RC1"
 scalaVersion := scala300Version
 
 crossScalaVersions := Seq(scala212Version, scala213Version, scala300Version)
@@ -17,7 +17,7 @@ libraryDependencies ++= {
     CrossVersion.partialVersion(scalaVersion.value) match {
       case Some((2, 12)) => Map("async" -> "0.10.0", "akka" -> "2.5.25")
       case Some((2, 13)) => Map("async" -> "0.10.0", "akka" -> "2.6.1")
-      case Some((0, 21)) => Map("async" -> "0.10.0", "akka" -> "2.6.1")
+      case Some((0, n))  => Map("async" -> "0.10.0", "akka" -> "2.6.1")
       case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
       case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
     }
@@ -25,7 +25,7 @@ libraryDependencies ++= {
     "org.scala-lang.modules" %% "scala-async"     % versions("async"),
     "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
     "org.scala-lang.modules" %% "scala-xml"       % "1.2.0",
-    "org.scala-lang"          % "scala-reflect"   % scalaVersion.value,
+    // "org.scala-lang"          % "scala-reflect"   % scalaVersion.value,
     "com.typesafe.akka"      %% "akka-actor"      % versions("akka"),
     "com.typesafe.akka"      %% "akka-slf4j"      % versions("akka"),
     "ch.qos.logback"          % "logback-classic" % "1.2.3",
@@ -35,7 +35,7 @@ libraryDependencies ++= {
     // JUnit is used for some Java interop. examples. A driver for JUnit:
     "junit"                   % "junit-dep"       % "4.11"   % "test",
     "com.novocode"            % "junit-interface" % "0.11"   % "test"
-  )
+  ).map(dep => dep.withDottyCompat(scalaVersion.value))
 }
 
 // The compiler flags adapted from @tpolecat's Doobie project. https://github.com/tpolecat/doobie
@@ -116,7 +116,7 @@ lazy val scalacOptions1213Compile = Seq(
   "-Ywarn-unused:locals",              // Warn if a local definition is unused.
   "-Ywarn-unused:params",              // Warn if a value parameter is unused.
   // Recommended, but turned off because it causes problems with the macro example, metaprogramming.invariant
-  //"-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
+  // "-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
   "-Ywarn-unused:privates"             // Warn if a private member is unused.
 ) ++ scalacOptionsAllCompile
 
@@ -140,11 +140,30 @@ lazy val scalacOptions12Compile = Seq(
   "-Ypartial-unification"              // Enable partial unification in type constructor inference
 ) ++ scalacOptions1213Compile
 
+// For Scala 3 (Dotty)
+lazy val scalacOptions3Console = Seq(
+  "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
+  "-encoding", "utf-8",                // Specify character encoding used by source files.
+  "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
+  "-feature",                          // Emit warning and location for usages of features that should be imported explicitly.
+  "-explain",                          // Explain errors in more detail.
+  "-explain-types",                    // Explain type errors in more detail.
+  "-noindent",                         // Require classical {...} syntax, indentation is not significant.
+  "-old-syntax",                       // Require `(...)` around conditions.
+  "-strict",                           // Use strict type rules, which means some formerly legal code does not typecheck anymore.
+  "-migration",                        // Emit warning and location for migration issues from Scala 2.
+  "-language:Scala2"                   // Compile Scala 2 code, highlight what needs updating
+//  "-rewrite"                            // Attempt to fix code automatically
+)
+
+lazy val scalacOptions3Compile = scalacOptions3Console
+
 scalacOptions in Compile := (
   CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, 11)) => scalacOptions11Compile
     case Some((2, 12)) => scalacOptions12Compile
     case Some((2, 13)) => scalacOptions1213Compile
+    case Some((0, n))  => scalacOptions3Compile
     case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
     case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
   }
@@ -155,6 +174,7 @@ scalacOptions in (Compile, console) := (
     case Some((2, 11)) => scalacOptions11Console
     case Some((2, 12)) => scalacOptions12Console
     case Some((2, 13)) => scalacOptions1213Console
+    case Some((0, n))  => scalacOptions3Console
     case Some((m, n))  => println(s"Unrecognized compiler version $m.$n"); sys.exit(1)
     case None          => println("CrossVersion.partialVersion(scalaVersion.value) returned None!!"); sys.exit(1)
   }
