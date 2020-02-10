@@ -1,6 +1,7 @@
 // src/main/scala/progscala3/basicoop/ValueClassUniversalTraitsSpec.scala
 package progscala3.basicoop
 import org.scalatest.FunSpec
+import org.scalactic.source.Position.here
 
 class ValueClassUniversalTraitsSpec extends FunSpec {
 

@@ -1,6 +1,7 @@
 // src/test/scala/progscala3/toolslibs/ComplexSuite.scala
 package progscala3.toolslibs
 import org.scalatest.FunSuite
+import scala.language.implicitConversions
 
 class ComplexSuite extends FunSuite {
 

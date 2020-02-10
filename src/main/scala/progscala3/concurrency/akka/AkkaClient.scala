@@ -4,8 +4,9 @@
 // but they weren't actually used to check the validity of passed-in numbers.
 // This code has now been modified to do this.
 package progscala3.concurrency.akka
-import akka.actor.{ActorRef, ActorSystem}
+import akka.actor.{ActorRef, actorRef2Scala, ActorSystem}
 import java.lang.{NumberFormatException => NFE}
+import scala.language.implicitConversions
 
 object AkkaClient {                                                  // <1>
   import Messages._
@@ -86,8 +87,8 @@ object AkkaClient {                                                  // <1>
       case charNumberRE(c, n) => c match {                           // <15>
         case "r" | "R" => server ! handleLong(n)(Read.apply)
         case "d" | "D" => server ! handleLong(n)(Delete.apply)
-        case "c" | "C" => expectedString
-        case "u" | "U" => expectedString
+        case "c" | "C" => expectedString()
+        case "u" | "U" => expectedString()
         case _ => invalidCommand(c)
       }
       case "q" | "quit" | "exit" => finished()                       // <16>

@@ -1,6 +1,7 @@
 // src/main/scala/progscala3/rounding/TryCatchArm.scala
 package progscala3.rounding
 import scala.language.reflectiveCalls
+import reflect.Selectable.reflectiveSelectable
 import scala.util.control.NonFatal
 
 // DeanW (Dec. 21, 2015): Refined the implementation and the usage
@@ -19,7 +20,7 @@ object manage {
     } finally {
       if (res != None) {
         println(s"Closing resource...")
-        res.get.close
+        res.get.close()
       }
     }
   }

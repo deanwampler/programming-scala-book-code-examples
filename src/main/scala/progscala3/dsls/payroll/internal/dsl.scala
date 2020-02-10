@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/dsls/payroll/internal/dsl.scala
 package progscala3.dsls.payroll.internal
-import scala.language.postfixOps                                     // <1>
+import scala.language.{implicitConversions, postfixOps}              // <1>
 import progscala3.dsls.payroll.common._
 
 object Payroll {                                                     // <2>
@@ -9,10 +9,10 @@ object Payroll {                                                     // <2>
 
   def main(args: Array[String]): Unit = {
     val biweeklyDeductions = biweekly { deduct =>                    // <4>
-      deduct federal_tax          (25.0  percent)
-      deduct state_tax            (5.0   percent)
-      deduct insurance_premiums   (500.0 dollars)
-      deduct retirement_savings   (10.0  percent)
+      deduct.federal_tax       (25.0  percent)
+      deduct.state_tax         (5.0   percent)
+      deduct.insurance_premiums(500.0 dollars)
+      deduct.retirement_savings(10.0  percent)
     }
 
     println(biweeklyDeductions)                                      // <5>
@@ -26,32 +26,34 @@ object Payroll {                                                     // <2>
 
 object dsl {                                                         // <1>
 
-  def biweekly(f: DeductionsBuilder => Deductions) =                 // <2>
-    f(new DeductionsBuilder("Biweekly", 26.0))
+  def biweekly(db: DeductionsBuilder => DeductionsBuilder): Deductions = // <2>
+    db(new DeductionsBuilder("Biweekly", 26.0)).deductions
 
-  class DeductionsBuilder(                                           // <3>
+  case class DeductionsBuilder(                                      // <3>
     name: String,
-    divisor: Double = 1.0,
-    deducts: Vector[Deduction] = Vector.empty) extends Deductions(
-      name, divisor, deducts) {
+    divisor: Double = 1.0) {
+
+    private var all: Vector[Deduction] = Vector.empty
+
+    def deductions: Deductions = Deductions(name, divisor, all)
 
     def federal_tax(amount: Amount): DeductionsBuilder = {           // <4>
-      deductions = deductions :+ Deduction("federal taxes", amount)
+      all = all :+ Deduction("federal taxes", amount)
       this
     }
 
     def state_tax(amount: Amount): DeductionsBuilder = {
-      deductions = deductions :+ Deduction("state taxes", amount)
+      all = all :+ Deduction("state taxes", amount)
       this
     }
 
     def insurance_premiums(amount: Amount): DeductionsBuilder = {
-      deductions = deductions :+ Deduction("insurance premiums", amount)
+      all = all :+ Deduction("insurance premiums", amount)
       this
     }
 
     def retirement_savings(amount: Amount): DeductionsBuilder = {
-      deductions = deductions :+ Deduction("retirement savings", amount)
+      all = all :+ Deduction("retirement savings", amount)
       this
     }
   }

@@ -5,8 +5,8 @@
 package progscala3.implicits
 
 object TypeClassesSubtyping2 {
-  
-  sealed trait DomainConcept 
+
+  sealed trait DomainConcept
   case class Address(street: String, city: String, state: String, zip: String)
     extends DomainConcept
   case class Person(name: String, age: Int, address: Address)
@@ -61,19 +61,19 @@ object TypeClassesSubtyping2 {
     // But this attempt to convert to JSON, and other variations, don't work.
     // Here, we get "error: value toJSON is not a member of Product with
     // java.io.Serializable"
-    // println(list1.map(_.toJSON())) 
+    // println(list1.map(_.toJSON()))
 
     // This works, but it's ugly and the list has the *ToJSON objects, not
     // the original Address and Person:
-    val list2: List[ToJSON[_]] = List(a, Person("Buck Trends", 29, a))
-    println(list2.map((x: ToJSON[_]) => x.toJSON()))
+    val list2: List[ToJSON[Any]] = List(a, Person("Buck Trends", 29, a))
+    println(list2.map((x: ToJSON[Any]) => x.toJSON()))
 
     // So, does this work?
     // implicit class ToJSONs[+T : ToJSON](seq: Seq[T]) {
     //   def apply(): Seq[String] =
     //     seq map (t => implicitly[ToJSON[T]].toJSON())
     // }
-    // NO: It complains: "error: value toJSON is not a member of 
+    // NO: It complains: "error: value toJSON is not a member of
     // List[Product with java.io.Serializable]"
     // println(list1.toJSONs())
 
@@ -119,7 +119,7 @@ object TypeClassesSubtyping2 {
     // That list could be rewritten with an HList, so the type of each list element is
     // correctly handled.
     assert( // ignore whitespace
-      success.map(_.replaceAll("\\s+", "")) == 
+      success.map(_.replaceAll("\\s+", "")) ==
       expected.map(_.replaceAll("\\s+", "")))
   }
 }

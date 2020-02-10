@@ -18,16 +18,16 @@ package progscala3.implicits {
     import database_api._
 
     case class JRow(representation: Map[String,Any]) extends Row {
-      private def get(colName: String): Any = 
+      private def col(colName: String): Any =
         representation.getOrElse(colName, throw InvalidColumnName(colName))
 
-      def getInt   (colName: String): Int    = get(colName).asInstanceOf[Int]
-      def getDouble(colName: String): Double = get(colName).asInstanceOf[Double]
-      def getText  (colName: String): String = get(colName).asInstanceOf[String]
+      def getInt   (colName: String): Int    = col(colName).asInstanceOf[Int]
+      def getDouble(colName: String): Double = col(colName).asInstanceOf[Double]
+      def getText  (colName: String): String = col(colName).asInstanceOf[String]
     }
 
     object JRow {
       def apply(pairs: (String,Any)*) = new JRow(Map(pairs :_*))
     }
-  } 
+  }
 }

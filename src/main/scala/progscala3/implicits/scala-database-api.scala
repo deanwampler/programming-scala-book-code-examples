@@ -25,9 +25,9 @@ package progscala3.implicits {
       def main(args: Array[String]): Unit = {
         val row = javadb.JRow("one" -> 1, "two" -> 2.2, "three" -> "THREE!")
 
-        val oneValue1: Int      = row.get("one")
-        val twoValue1: Double   = row.get("two")
-        val threeValue1: String = row.get("three")
+        val oneValue1: Int      = row.getInt("one")
+        val twoValue1: Double   = row.getDouble("two")
+        val threeValue1: String = row.getText("three")
         // val fourValue1: Byte    = row.get("four")  // won't compile
 
         println(s"one1   -> $oneValue1")

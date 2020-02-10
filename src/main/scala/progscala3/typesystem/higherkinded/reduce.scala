@@ -9,11 +9,11 @@ trait Reduce[T, -M[T]] {                                             // <2>
 }
 
 object Reduce {                                                      // <3>
-  implicit def seqReduce[T] = new Reduce[T, Seq] {
+  implicit def seqReduce[T]: Reduce[T, Seq] = new Reduce[T, Seq] {
     def reduce(seq: Seq[T])(f: (T, T) => T): T = seq reduce f
   }
 
-  implicit def optionReduce[T] = new Reduce[T, Option] {
+  implicit def optionReduce[T]: Reduce[T, Option] = new Reduce[T, Option] {
     def reduce(opt: Option[T])(f: (T, T) => T): T = opt.iterator reduce f
   }
 }

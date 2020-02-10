@@ -2,6 +2,7 @@
 package progscala3.toolslibs
 import org.scalatest.FunSuite
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
+import scala.language.implicitConversions
 
 class ComplexProperties extends FunSuite with ScalaCheckDrivenPropertyChecks {
 

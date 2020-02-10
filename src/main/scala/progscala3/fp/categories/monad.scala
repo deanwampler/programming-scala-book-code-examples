@@ -1,5 +1,6 @@
 // src/main/scala/progscala3/fp/categories/Monad.scala
 package progscala3.fp.categories
+import scala.annotation.alpha
 
 trait Monad[M[_]] {                                                // <1>
   def flatMap[A, B](fa: M[A])(f: A => M[B]): M[B]                  // <2>
@@ -7,6 +8,7 @@ trait Monad[M[_]] {                                                // <1>
 
   // Some common aliases:                                             <4>
   def bind[A,B](fa: M[A])(f: A => M[B]): M[B] = flatMap(fa)(f)
+  @alpha("rocket")
   def >>=[A,B](fa: M[A])(f: A => M[B]): M[B] = flatMap(fa)(f)
   def pure[A](a: => A): M[A] = unit(a)
   def `return`[A](a: => A): M[A] = unit(a)    // backticks to avoid keyword

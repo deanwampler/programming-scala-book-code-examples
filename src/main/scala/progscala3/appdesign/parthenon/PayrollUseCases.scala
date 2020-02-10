@@ -18,13 +18,19 @@ object PayrollParthenon {                                            // <1>
     } yield toRule(line)
 
   private def toRule(line: String): (String, Money, String) = {      // <3>
-    val Array(name, salary, fedTax, stateTax, insurance, retirement) =
-      line.split("""\s*,\s*""")
+    val Array(name, salary, fedTax, stateTax, insurance, retirement): @unchecked =
+      line.split("""\s*,\s*""") match {
+        case array if array.length == 6 => array
+        case _ => throw BadInput("expected six fields", line)
+      }
     val ruleString = dsl.format(
       fedTax.toDouble, stateTax.toDouble,
       insurance.toDouble, retirement.toDouble)
     (name, Money(salary.toDouble), ruleString)
   }
+
+  case class BadInput(message: String, input: String)
+    extends RuntimeException(s"Bad input data, $message: $input")
 
   private val parser = new PayrollParser                             // <4>
 

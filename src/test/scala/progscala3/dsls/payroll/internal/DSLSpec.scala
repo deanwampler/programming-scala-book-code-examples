@@ -13,10 +13,10 @@ class DSLSpec extends FunSpec with Matchers with Checkers {
   import dsl._
 
   val biweeklyDeductions = biweekly { deduct =>
-    deduct federal_tax          (25.0  percent)
-    deduct state_tax            (5.0   percent)
-    deduct insurance_premiums   (500.0 dollars)
-    deduct retirement_savings   (10.0  percent)
+    deduct.federal_tax       (25.0  percent)
+    deduct.state_tax         (5.0   percent)
+    deduct.insurance_premiums(500.0 dollars)
+    deduct.retirement_savings(10.0  percent)
   }
 
   def within(d1: Double, d2: Double): Boolean = math.abs(d1 - d2) < 0.0001

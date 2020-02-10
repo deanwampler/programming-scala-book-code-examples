@@ -5,16 +5,16 @@ import scala.util.control.NonFatal
 import scala.concurrent.duration._
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
-import akka.actor.{Actor, ActorLogging, ActorRef,
+import scala.language.implicitConversions
+import akka.actor.{actorRef2Scala, Actor, ActorLogging, ActorRef,
   ActorSystem, Props, OneForOneStrategy, SupervisorStrategy}
 import akka.pattern.ask
 import akka.util.Timeout
 
-
 class ServerActor extends Actor with ActorLogging {                  // <1>
   import Messages._
 
-  implicit val timeout = Timeout(1.seconds)
+  implicit val timeout: Timeout = Timeout(1.seconds)
 
   override val supervisorStrategy: SupervisorStrategy = {            // <2>
     val decider: SupervisorStrategy.Decider = {
@@ -57,7 +57,7 @@ class ServerActor extends Actor with ActorLogging {                  // <1>
 
   def askHandler(prefix: String): PartialFunction[Try[Any],Unit] = {
     case Success(suc) => suc match {
-      case vect: Vector[_] =>
+      case vect: Vector[Any] =>
         printResult(s"$prefix:\n")
         vect foreach {
           case Response(Success(message)) =>

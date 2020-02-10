@@ -24,7 +24,7 @@ object common {
   case class Deductions(                                             // <4>
     name: String,
     divisorFromAnnualPay: Double = 1.0,
-    var deductions: Vector[Deduction] = Vector.empty) {
+    deductions: Vector[Deduction] = Vector.empty) {
 
     def gross(annualSalary: Double): Double =                        // <5>
       annualSalary / divisorFromAnnualPay

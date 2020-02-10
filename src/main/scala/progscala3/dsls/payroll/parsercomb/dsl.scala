@@ -2,6 +2,7 @@
 package progscala3.dsls.payroll.parsercomb
 import scala.util.parsing.combinator._
 import progscala3.dsls.payroll.common._                              // <1>
+import scala.language.implicitConversions
 
 object Payroll {
 

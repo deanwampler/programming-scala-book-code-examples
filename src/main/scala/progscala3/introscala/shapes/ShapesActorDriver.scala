@@ -1,7 +1,9 @@
 // src/main/scala/progscala3/introscala/shapes/ShapesActorDriver.scala
 package progscala3.introscala.shapes
-import akka.actor.{Props, Actor, ActorRef, ActorSystem}
+import akka.actor.{actorRef2Scala, Props, Actor, ActorRef, ActorSystem}
 import com.typesafe.config.ConfigFactory
+import scala.concurrent.ExecutionContext
+import scala.language.implicitConversions
 
 // Message used only in this file:
 private object Start                                                 // <1>
@@ -19,7 +21,7 @@ object ShapesDrawingDriver {                                         // <2>
 
 class ShapesDrawingDriver(drawerActor: ActorRef) extends Actor {     // <5>
   import Messages._
-  implicit val ec = scala.concurrent.ExecutionContext.global
+  implicit val ec: ExecutionContext = ExecutionContext.global
 
   def receive = {
     case Start =>                                                    // <6>

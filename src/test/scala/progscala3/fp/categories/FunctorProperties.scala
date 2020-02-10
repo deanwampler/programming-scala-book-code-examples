@@ -2,6 +2,7 @@
 package progscala3.fp.categories
 import org.scalatest.FunSpec
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
+import scala.language.implicitConversions
 
 class FunctorProperties extends FunSpec with ScalaCheckDrivenPropertyChecks {
 

@@ -1,6 +1,8 @@
 // src/main/scala/progscala3/basicoop/ValueClassPhoneNumberSpec.scala
 package progscala3.basicoop
 import org.scalatest.FunSpec
+import scala.language.implicitConversions
+import org.scalactic.source.Position.here
 
 class USPhoneNumberSpec extends FunSpec {
 

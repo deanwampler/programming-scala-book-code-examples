@@ -6,11 +6,11 @@ trait Reduce1[-M[_]] {                                               // <1>
 }
 
 object Reduce1 {                                                     // <2>
-  implicit val seqReduce = new Reduce1[Seq] {
+  implicit val seqReduce: Reduce1[Seq] = new Reduce1[Seq] {
     def reduce[T](seq: Seq[T])(f: (T, T) => T): T = seq reduce f
   }
 
-  implicit val optionReduce = new Reduce1[Option] {
+  implicit val optionReduce: Reduce1[Option] = new Reduce1[Option] {
     def reduce[T](opt: Option[T])(f: (T, T) => T): T = opt.iterator reduce f
   }
 }

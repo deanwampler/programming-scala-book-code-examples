@@ -3,10 +3,11 @@
 // http://james-iry.blogspot.ch/2010/10/phantom-types-in-haskell-and-scala.html
 // which was inspired by F# and Haskell.
 package progscala3.implicits.payroll
+import scala.annotation.alpha
 
 object Pipeline {
   implicit class toPiped[V](value:V) {
-    def |>[R] (f : V => R) = f(value)
+    @alpha("pipe") def |>[R] (f : V => R) = f(value)
   }
 }
 

@@ -10,7 +10,7 @@ object RemoveBlanks {
     for {
       line <- scala.io.Source.fromFile(path).getLines.toSeq          // <1>
       if line.matches("""^\s*$""") == false                          // <2>
-      line2 = if (compressWhiteSpace) line replaceAll ("\\s+", " ")  // <3>
+      line2 = if (compressWhiteSpace) line.replaceAll("\\s+", " ")   // <3>
               else line
     } yield line2                                                    // <4>
 
@@ -22,7 +22,7 @@ object RemoveBlanks {
    */
   def main(args: Array[String]): Unit = for {
     path2 <- args                                                    // <5>
-    (compress, path) = if (path2 startsWith "-") (true, path2.substring(1))
+    (compress, path) = if (path2.startsWith("-")) (true, path2.substring(1))
                        else (false, path2)                           // <6>
     line <- apply(path, compress)
   } println(line)                                                    // <7>
