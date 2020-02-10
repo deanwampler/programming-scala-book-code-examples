@@ -31,10 +31,7 @@ libraryDependencies ++= {
     "ch.qos.logback"          % "logback-classic" % "1.2.3",
     "org.typelevel"          %% "cats-core"       % "2.0.0",
     "org.scalacheck"         %% "scalacheck"      % "1.14.1" % "test",
-    "org.scalatest"          %% "scalatest"       % "3.0.8"  % "test", // threading the needle on versions...
-    // JUnit is used for some Java interop. examples. A driver for JUnit:
-    "junit"                   % "junit-dep"       % "4.11"   % "test",
-    "com.novocode"            % "junit-interface" % "0.11"   % "test"
+    "org.scalatest"          %% "scalatest"       % "3.1.0"  % "test",
   ).map(dep => dep.withDottyCompat(scalaVersion.value))
 }
 
@@ -150,6 +147,7 @@ lazy val scalacOptions3Console = Seq(
   "-explain-types",                    // Explain type errors in more detail.
   "-noindent",                         // Require classical {...} syntax, indentation is not significant.
   "-old-syntax",                       // Require `(...)` around conditions.
+  // "-new-syntax",                       // Require `then` and `do` in control expressions.
   "-strict",                           // Use strict type rules, which means some formerly legal code does not typecheck anymore.
   "-migration",                        // Emit warning and location for migration issues from Scala 2.
   "-language:Scala2"                   // Compile Scala 2 code, highlight what needs updating
