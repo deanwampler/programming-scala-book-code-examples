@@ -32,6 +32,7 @@ libraryDependencies ++= {
     "org.typelevel"          %% "cats-core"       % "2.0.0",
     "org.scalacheck"         %% "scalacheck"      % "1.14.1" % "test",
     "org.scalatest"          %% "scalatest"       % "3.1.0"  % "test",
+    "org.scalactic"           % "scalactic_0.17"  % "3.1.0"  % "test"
   ).map(dep => dep.withDottyCompat(scalaVersion.value))
 }
 

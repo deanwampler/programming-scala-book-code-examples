@@ -1,16 +1,14 @@
 // src/main/scala/progscala3/dsls/payroll/internal/DSLSpec.scala
 package progscala3.dsls.payroll.internal
+import scala.language.implicitConversions
+import org.scalacheck._
 import progscala3.dsls.payroll.common._
 import scala.language.postfixOps
-import org.scalatest.FunSpec
-import org.scalatest.Matchers
-import org.scalatest.prop._
-import org.scalatestplus.scalacheck.Checkers
-import org.scalacheck.{Gen, Prop}
 
-// TODO: Really this should be a ScalaCheck properties test.
-class DSLSpec extends FunSpec with Matchers with Checkers {
+// TODO: Really this should be a "full" ScalaCheck properties test.
+class DSLSpec extends Properties("Payroll DSL2") {
   import dsl._
+  import Prop.forAll
 
   val biweeklyDeductions = biweekly { deduct =>
     deduct.federal_tax       (25.0  percent)
@@ -21,16 +19,11 @@ class DSLSpec extends FunSpec with Matchers with Checkers {
 
   def within(d1: Double, d2: Double): Boolean = math.abs(d1 - d2) < 0.0001
 
-  describe ("Payroll calculation") {
-    it ("calculate the gross, net, and deductions for the pay period") {
-      val annualGross = Gen.choose(30000.0, 200000.0)
-
-      check(Prop.forAll(annualGross){ g =>
-        val gross = biweeklyDeductions.gross(g)
-        val net   = biweeklyDeductions.net(g)
-        within(gross, g/26.0) &&
-          within(net, (gross * (1.0 - 0.25 - 0.05 - 0.1) - 500))
-      })
-    }
-  }
+  property("Payroll calculator computes the pay check data") =
+    forAll(annualGross) { g =>
+      val gross = biweeklyDeductions.gross(g)
+      val net   = biweeklyDeductions.net(g)
+      within(gross, g/26.0) &&
+        within(net, (gross * (1.0 - 0.25 - 0.05 - 0.1) - 500))
+      }
 }

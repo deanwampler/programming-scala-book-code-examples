@@ -2,6 +2,8 @@
 package progscala3.dynamic
 
 import org.scalatest.FunSpec
+import org.scalactic.source.Position.here
+import metaprogramming.Requirement.require
 
 class CLINQSuite extends FunSpec {
 
@@ -19,19 +21,19 @@ class CLINQSuite extends FunSpec {
 
   describe ("""Field projections ("SELECT ...")""") {
     it ("projects a single field") {
-      assert(states.name == CLINQ(Seq(
+      require(states.name == CLINQ(Seq(
         Map("name" -> "Alaska"),
         Map("name" -> "California"),
         Map("name" -> "Illinois"),
         Map("name" -> "Virginia"),
         Map("name" -> "Washington"))))
-      assert(states.capital == CLINQ(Seq(
+      require(states.capital == CLINQ(Seq(
         Map("capital" -> "Juneau"),
         Map("capital" -> "Sacramento"),
         Map("capital" -> "Springfield"),
         Map("capital" -> "Richmond"),
         Map("capital" -> "Olympia"))))
-      assert(states.statehood == CLINQ(Seq(
+      require(states.statehood == CLINQ(Seq(
         Map("statehood" -> 1959),
         Map("statehood" -> 1850),
         Map("statehood" -> 1818),
@@ -39,19 +41,19 @@ class CLINQSuite extends FunSpec {
         Map("statehood" -> 1889))))
     }
     it ("projects two fields") {
-      assert(states.name_and_capital == CLINQ(Seq(
+      require(states.name_and_capital == CLINQ(Seq(
         Map("name" -> "Alaska", "capital" -> "Juneau"),
         Map("name" -> "California", "capital" -> "Sacramento"),
         Map("name" -> "Illinois", "capital" -> "Springfield"),
         Map("name" -> "Virginia", "capital" -> "Richmond"),
         Map("name" -> "Washington", "capital" -> "Olympia"))))
-      assert(states.name_and_statehood == CLINQ(Seq(
+      require(states.name_and_statehood == CLINQ(Seq(
         Map("name" -> "Alaska", "statehood" -> 1959),
         Map("name" -> "California", "statehood" -> 1850),
         Map("name" -> "Illinois", "statehood" -> 1818),
         Map("name" -> "Virginia", "statehood" -> 1788),
         Map("name" -> "Washington", "statehood" -> 1889))))
-      assert(states.capital_and_statehood == CLINQ(Seq(
+      require(states.capital_and_statehood == CLINQ(Seq(
         Map("capital" -> "Juneau", "statehood" -> 1959),
         Map("capital" -> "Sacramento", "statehood" -> 1850),
         Map("capital" -> "Springfield", "statehood" -> 1818),
@@ -59,7 +61,7 @@ class CLINQSuite extends FunSpec {
         Map("capital" -> "Olympia", "statehood" -> 1889))))
     }
     it ("projects three fields") {
-      assert(states.name_and_capital_and_statehood == CLINQ(Seq(
+      require(states.name_and_capital_and_statehood == CLINQ(Seq(
         Map("name" -> "Alaska", "capital" -> "Juneau", "statehood" -> 1959),
         Map("name" -> "California", "capital" -> "Sacramento", "statehood" -> 1850),
         Map("name" -> "Illinois", "capital" -> "Springfield", "statehood" -> 1818),
@@ -67,7 +69,7 @@ class CLINQSuite extends FunSpec {
         Map("name" -> "Washington", "capital" -> "Olympia", "statehood" -> 1889))))
     }
     it ("projects all fields") {
-      assert(states.all == CLINQ(Seq(
+      require(states.all == CLINQ(Seq(
         Map("name" -> "Alaska", "capital" -> "Juneau", "statehood" -> 1959),
         Map("name" -> "California", "capital" -> "Sacramento", "statehood" -> 1850),
         Map("name" -> "Illinois", "capital" -> "Springfield", "statehood" -> 1818),
@@ -78,27 +80,27 @@ class CLINQSuite extends FunSpec {
 
   describe ("Simple WHERE clauses") {
     it ("selects individual records") {
-      assert(states.all.where("statehood").EQ(1889) == CLINQ(Seq(
+      require(states.all.where("statehood").EQ(1889) == CLINQ(Seq(
         Map("name" -> "Washington", "capital" -> "Olympia", "statehood" -> 1889))))
     }
     it ("rejects individual records") {
-      assert(states.all.where("name").NE("Alaska") == CLINQ(Seq(
+      require(states.all.where("name").NE("Alaska") == CLINQ(Seq(
         Map("name" -> "California", "capital" -> "Sacramento", "statehood" -> 1850),
         Map("name" -> "Illinois", "capital" -> "Springfield", "statehood" -> 1818),
         Map("name" -> "Virginia", "capital" -> "Richmond", "statehood" -> 1788),
         Map("name" -> "Washington", "capital" -> "Olympia", "statehood" -> 1889))))
     }
     it ("combines with projections") {
-      assert(states.name_and_capital.where("capital").EQ("Olympia") == CLINQ(Seq(
+      require(states.name_and_capital.where("capital").EQ("Olympia") == CLINQ(Seq(
         Map("name" -> "Washington", "capital" -> "Olympia"))))
-      assert(states.name_and_capital.where("name").NE("Alaska") == CLINQ(Seq(
+      require(states.name_and_capital.where("name").NE("Alaska") == CLINQ(Seq(
         Map("name" -> "California", "capital" -> "Sacramento"),
         Map("name" -> "Illinois", "capital" -> "Springfield"),
         Map("name" -> "Virginia", "capital" -> "Richmond"),
         Map("name" -> "Washington", "capital" -> "Olympia"))))
     }
     it ("[BUG] ... but where clauses only work with projected fields!") {
-      assert(states.name_and_statehood.where("capital").EQ("Olympia") == CLINQ(Nil))
+      require(states.name_and_statehood.where("capital").EQ("Olympia") == CLINQ(Nil))
     }
   }
 }
