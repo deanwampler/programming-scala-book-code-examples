@@ -18,7 +18,9 @@ class RequireSuite extends progscala3.FunSuite2 {
   test("A false predicate fails and prints a provided additional message") {
     try { require(list.size != 3, "Wrong size!") }
     catch {
-      case RequirementFailure(_, note) => require(note == "Wrong size!")
+      case RequirementFailure(_, note) =>
+        println(s"note: $note")
+        require(note == "\"Wrong size!\"")
     }
   }
 }
