@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/dsls/payroll/internal/DSLSpec.scala
+// src/main/scala/progscala3/dsls/payroll/internal/DSLProperties.scala
 package progscala3.dsls.payroll.internal
 import scala.language.implicitConversions
 import org.scalacheck._
@@ -6,7 +6,7 @@ import progscala3.dsls.payroll.common._
 import scala.language.postfixOps
 
 // TODO: Really this should be a "full" ScalaCheck properties test.
-class DSLSpec extends Properties("Payroll DSL2") {
+class DSLProperties extends Properties("Payroll DSL2") {
   import dsl._
   import Prop.forAll
 
@@ -18,6 +18,8 @@ class DSLSpec extends Properties("Payroll DSL2") {
   }
 
   def within(d1: Double, d2: Double): Boolean = math.abs(d1 - d2) < 0.0001
+
+  val annualGross = Gen.choose(30000.0, 200000.0)
 
   property("Payroll calculator computes the pay check data") =
     forAll(annualGross) { g =>

@@ -1,6 +1,6 @@
 name := "Programming Scala, Third Edition - Code examples"
 
-version := "3.0.0-001"
+version := "3.0.0-002"
 
 organization := "org.programming-scala"
 
@@ -31,10 +31,13 @@ libraryDependencies ++= {
     "ch.qos.logback"          % "logback-classic" % "1.2.3",
     "org.typelevel"          %% "cats-core"       % "2.0.0",
     "org.scalacheck"         %% "scalacheck"      % "1.14.1" % "test",
-    "org.scalatest"          %% "scalatest"       % "3.1.0"  % "test",
-    "org.scalactic"           % "scalactic_0.17"  % "3.1.0"  % "test"
+    "org.scalameta"          %% "munit"           % "0.5.0"
+    // "org.scalatest"          %% "scalatest"       % "3.1.0"  % "test"
+    // "org.scalactic"           % "scalactic_0.17"  % "3.1.0"  % "test"
   ).map(dep => dep.withDottyCompat(scalaVersion.value))
 }
+
+testFrameworks += new TestFramework("munit.Framework")
 
 // The compiler flags adapted from @tpolecat's Doobie project. https://github.com/tpolecat/doobie
 

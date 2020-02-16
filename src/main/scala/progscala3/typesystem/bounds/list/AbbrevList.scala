@@ -1,6 +1,7 @@
 // src/main/scala/progscala3/typesystem/bounds/list/AbbrevList.scala
 // Loosely adapted from scala/List.scala in the Scala library.
 package progscala3.typesystem.bounds.list
+import scala.annotation.alpha
 
 sealed abstract class AbbrevList[+A] {
 
@@ -8,6 +9,7 @@ sealed abstract class AbbrevList[+A] {
   def head: A
   def tail: AbbrevList[A]
 
+  @alpha("cons")
   def ::[B >: A] (x: B): AbbrevList[B] =
     new progscala3.typesystem.bounds.list.::(x, this)
 
@@ -34,6 +36,7 @@ case object AbbrevNil extends AbbrevList[Nothing] {
 
 // A non-empty AbbrevList characterized by a head and a tail.
 
+@alpha("cons")
 final case class ::[B](private var hd: B,
     private[list] var tl: AbbrevList[B]) extends AbbrevList[B] {
 
