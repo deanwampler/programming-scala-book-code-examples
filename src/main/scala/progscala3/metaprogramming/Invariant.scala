@@ -1,5 +1,5 @@
 // src/main/scala/progscala3/metaprogramming/invariant.scala
-package metaprogramming
+package progscala3.metaprogramming
 import scala.quoted._
 
 /**
