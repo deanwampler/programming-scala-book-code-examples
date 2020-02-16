@@ -64,8 +64,22 @@ scala2_options_unused = \
   -Ywarn-unused:params \
   -Ywarn-value-discard
 
+scala3_options := \
+  -deprecation \
+  -encoding utf-8 \
+  -unchecked \
+  -feature \
+  -explain \
+  -explain-types \
+  -noindent \
+  -old-syntax \
+  -strict \
+  -migration \
+  -language:Scala2
+
+
 SCALA := dotr
-scala_options :=
+scala_options := $(scala3_options)
 #SCALA := scala
 #scala_options := $(scala2_options)
 
@@ -97,6 +111,6 @@ show_scala_options:
 show_classpath:
 	@echo $(classpath)
 show_scripts:
-	@for f in $(script_files); do echo $$f; done		
+	@for f in $(script_files); do echo $$f; done
 show_test_logs:
 	@for f in $(test_logs); do echo $$f; done
