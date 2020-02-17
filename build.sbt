@@ -31,10 +31,12 @@ libraryDependencies ++= {
     "ch.qos.logback"          % "logback-classic" % "1.2.3",
     "org.typelevel"          %% "cats-core"       % "2.0.0",
     "org.scalacheck"         %% "scalacheck"      % "1.14.1" % "test",
-    "org.scalameta"          %% "munit"           % "0.5.0"
     // "org.scalatest"          %% "scalatest"       % "3.1.0"  % "test"
     // "org.scalactic"           % "scalactic_0.17"  % "3.1.0"  % "test"
-  ).map(dep => dep.withDottyCompat(scalaVersion.value))
+  ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
+    // Libraries that already fully support Dotty
+    "org.scalameta"          %% "munit"           % "0.5.2"
+  )
 }
 
 testFrameworks += new TestFramework("munit.Framework")
