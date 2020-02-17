@@ -1,7 +1,10 @@
 // src/test/scala/progscala3/metaprogramming/RequireSuite.scala
 package progscala3.metaprogramming
 
-class RequireSuite extends progscala3.FunSuite2 {
+import scala.language.implicitConversions
+import munit._
+
+class RequireSuite extends FunSuite {
 
   val list = List(1,2,3)
 
@@ -10,7 +13,7 @@ class RequireSuite extends progscala3.FunSuite2 {
   }
 
   test("A false predicate fails") {
-    intercept2[RequirementFailure] {
+    intercept[RequirementFailure] {
       require(list.size != 3)
     }
   }

@@ -1,10 +1,15 @@
 // src/test/scala/progscala3/typesystem/bounds/list/AbbrevListSuite.scala
 package progscala3.typesystem.bounds.list
 
+import scala.language.implicitConversions
+import munit._
 import progscala3.metaprogramming.require
 
-/** Test the example "AbbrevList". Not very comprehensive... */
-class AbbrevListSuite extends progscala3.FunSuite2 {
+/**
+ * Test the example "AbbrevList".
+ * Not very comprehensive... Should be converted to a ScalaCheck suite.
+ */
+class AbbrevListSuite extends FunSuite {
 
   test("item :: AbbrevNil == AbbrevList(item)") {
     val list = (1 :: AbbrevNil)

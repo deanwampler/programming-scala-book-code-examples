@@ -1,9 +1,11 @@
 // src/test/scala/progscala3/toolslibs/ComplexSuite.scala
 package progscala3.toolslibs
 
+import scala.language.implicitConversions
+import munit._
 import progscala3.metaprogramming.require
 
-class ComplexSuite extends progscala3.FunSuite2 {
+class ComplexSuite extends FunSuite {
 
   val c1 = Complex(1.2, 3.4)
   val c2 = Complex(5.6, 7.8)

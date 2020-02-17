@@ -3,9 +3,11 @@ package progscala3.forcomps
 
 import cats.data._
 import cats.data.Validated._
+import scala.language.implicitConversions
+import munit._
 import progscala3.metaprogramming.require
 
-class LoginFormValidatorNecSuite extends progscala3.FunSuite2 {
+class LoginFormValidatorNecSuite extends FunSuite {
 
   test("empty and too short user and password reported") {
     require(LoginFormValidatorNec("", "") ==

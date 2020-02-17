@@ -1,7 +1,10 @@
 // src/test/scala/progscala3/metaprogramming/InvariantSuite.scala
 package progscala3.metaprogramming
 
-class InvariantSuite extends progscala3.FunSuite2 {
+import scala.language.implicitConversions
+import munit._
+
+class InvariantSuite extends FunSuite {
   case class Variable(var i: Int, var s: String)
 
   def succeed() = {                                                // <1>
@@ -19,7 +22,7 @@ class InvariantSuite extends progscala3.FunSuite2 {
   test("invariant.apply should return the value returned by the expressions") { succeed() }
 
   test("invariant.apply should fail if the invariant is broken") {
-    intercept2[invariant.InvariantFailure] {                        // <3>
+    intercept[invariant.InvariantFailure] {                        // <3>
       val v = Variable(0, "Hello!")
       invariant(v.s == "Hello!") {
         v.i += 1

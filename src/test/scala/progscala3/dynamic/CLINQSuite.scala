@@ -1,9 +1,11 @@
 // src/test/scala/progscala3/dynamic/CLINQSuite.scala
 package progscala3.dynamic
 
+import scala.language.implicitConversions
+import munit._
 import progscala3.metaprogramming.require
 
-class CLINQSuite extends progscala3.FunSuite2 {
+class CLINQSuite extends FunSuite {
 
   def makeMap(name: String, capital: String, statehood: Int): Map[String,Any] =
     Map("name" -> name, "capital" -> capital, "statehood" -> statehood)

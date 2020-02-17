@@ -1,9 +1,11 @@
 // src/test/scala/progscala3/objectsystem/linearization/ValueClassSuite.scala
 package progscala3.objectsystem.linearization
 
+import scala.language.implicitConversions
+import munit._
 import progscala3.metaprogramming.require
 
-class ValueClassSuite extends progscala3.FunSuite2 {
+class ValueClassSuite extends FunSuite {
 
   val pn = USPhoneNumber("987-654-3210")
 

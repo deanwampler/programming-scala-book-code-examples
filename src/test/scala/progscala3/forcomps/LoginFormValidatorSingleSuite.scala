@@ -1,9 +1,11 @@
 // src/test/scala/progscala3/forcomps/LoginFormValidatorSingleSuite.scala
 package progscala3.forcomps
 
+import scala.language.implicitConversions
+import munit._
 import progscala3.metaprogramming.require
 
-class LoginFormValidatorSingleSuite extends progscala3.FunSuite2 {
+class LoginFormValidatorSingleSuite extends FunSuite {
 
   test("empty user") {
     require(LoginFormValidatorSingle("", "pwd") ==
