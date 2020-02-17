@@ -156,8 +156,8 @@ lazy val scalacOptions3Console = Seq(
   // "-new-syntax",                       // Require `then` and `do` in control expressions.
   "-strict",                           // Use strict type rules, which means some formerly legal code does not typecheck anymore.
   "-migration",                        // Emit warning and location for migration issues from Scala 2.
-  "-language:Scala2"                   // Compile Scala 2 code, highlight what needs updating
-//  "-rewrite"                            // Attempt to fix code automatically
+  // "-language:Scala2"                   // Compile Scala 2 code, highlight what needs updating
+  // "-rewrite"                           // Attempt to fix code automatically
 )
 
 lazy val scalacOptions3Compile = scalacOptions3Console

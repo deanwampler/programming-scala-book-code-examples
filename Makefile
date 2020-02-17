@@ -74,8 +74,8 @@ scala3_options := \
   -noindent \
   -old-syntax \
   -strict \
-  -migration \
-  -language:Scala2
+  -migration
+#  -language:Scala2
 
 
 SCALA := dotr
