@@ -1,7 +1,6 @@
 // src/test/scala/progscala3/basicoop/people/ZipCodeProperties.scala
 package progscala3.basicoop.people
 
-import scala.language.implicitConversions
 import org.scalacheck._
 
 object ZipCodeProperties extends Properties("ZipCode") {

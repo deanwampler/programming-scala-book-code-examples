@@ -4,6 +4,7 @@
 // but they weren't actually used to check the validity of passed-in numbers.
 // This code has now been modified to do this.
 package progscala3.concurrency.akka
+
 import akka.actor.{ActorRef, actorRef2Scala, ActorSystem}
 import java.lang.{NumberFormatException => NFE}
 import scala.language.implicitConversions
@@ -41,7 +42,7 @@ object AkkaClient {                                                  // <1>
 
     def prompt() = print(">> ")                                      // <10>
     def missingActorNumber() =
-      println("Crash command requires an actor number.")
+      println("Crash command requirements an actor number.")
     def invalidInput(s: String) =
       println(s"Unrecognized command: $s")
     def invalidCommand(c: String): Unit =

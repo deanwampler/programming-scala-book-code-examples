@@ -1,7 +1,6 @@
 // src/test/scala/progscala3/metaprogramming/InvariantSuite.scala
 package progscala3.metaprogramming
 
-import scala.language.implicitConversions
 import munit._
 
 class InvariantSuite extends FunSuite {
@@ -14,7 +13,7 @@ class InvariantSuite extends FunSuite {
       v.i += 1
       v.i
     }
-    require(i1 == 2)
+    requirement(i1 == 2)
   }
 
   test("invariant.apply should not fail if the invariant holds") { succeed() }

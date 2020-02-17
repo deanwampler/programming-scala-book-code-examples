@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/metaprogramming/invariant.scala
+// src/main/scala/progscala3/metaprogramming/Requirement.scala
 package progscala3.metaprogramming
 import scala.quoted._
 
@@ -12,13 +12,13 @@ case class RequirementFailure(
 
 
 /**
- * Implement a custom assertion checker. See usage in the test scripts.
- * Unfortunately, this simple implementation only returns "false" for
- * the expression, not the original source code. See this ScalaTest code
- * https://github.com/scalatest/scalatest/tree/3.1.x/scalactic.dotty/src/main/scala/org/scalactic
- * for a more complete (and complex) implementation.
+ * Implement a custom "requirement" checker. It works like Scala's built in
+ * `assert` and `requirement` methods, but it will show the expression that failed
+ * but not necessarily as written. For example, constant folding means that
+ * expressions like `1+1==3` will just be `false`, while `i+j==3` will be
+ * shown as something like `i.+(j) == 3`. Still useful, however.
  */
-object require {                                                   // <3>
+object requirement {                                                   // <3>
 
   /**
    * "Require" that a predicate is true. If not, throw an exception.

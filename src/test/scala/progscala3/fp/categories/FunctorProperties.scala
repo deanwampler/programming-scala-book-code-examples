@@ -2,7 +2,7 @@
 package progscala3.fp.categories
 
 import org.scalacheck._
-import progscala3.metaprogramming.require
+import progscala3.metaprogramming.requirement
 
 class FunctorProperties extends Properties("Functors") {
   import Prop.forAll

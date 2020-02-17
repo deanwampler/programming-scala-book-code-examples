@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/dsls/payroll/parsercomb/DSLProperties.scala
 package progscala3.dsls.payroll.parsercomb
-import scala.language.implicitConversions
+
 import org.scalacheck._
 
 // TODO: Really this should be a "full" ScalaCheck properties test.

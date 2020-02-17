@@ -1,9 +1,8 @@
 // src/test/scala/progscala3/toolslibs/ComplexSuite.scala
 package progscala3.toolslibs
 
-import scala.language.implicitConversions
 import munit._
-import progscala3.metaprogramming.require
+import progscala3.metaprogramming.requirement
 
 class ComplexSuite extends FunSuite {
 
@@ -11,20 +10,20 @@ class ComplexSuite extends FunSuite {
   val c2 = Complex(5.6, 7.8)
 
   test("addition with (0, 0)") {
-    require(c1 + Complex(0.0, 0.0) == c1)
+    requirement(c1 + Complex(0.0, 0.0) == c1)
   }
 
   test("subtraction with (0, 0)") {
-    require(c1 - Complex(0.0, 0.0) == c1)
+    requirement(c1 - Complex(0.0, 0.0) == c1)
   }
 
   test("addition") {
-    require((c1 + c2).real == (c1.real + c2.real))
-    require((c1 + c2).imaginary == (c1.imaginary + c2.imaginary))
+    requirement((c1 + c2).real == (c1.real + c2.real))
+    requirement((c1 + c2).imaginary == (c1.imaginary + c2.imaginary))
   }
 
   test("subtraction") {
-    require((c1 - c2).real == (c1.real - c2.real))
-    require((c1 - c2).imaginary ==  (c1.imaginary - c2.imaginary))
+    requirement((c1 - c2).real == (c1.real - c2.real))
+    requirement((c1 - c2).imaginary ==  (c1.imaginary - c2.imaginary))
   }
 }

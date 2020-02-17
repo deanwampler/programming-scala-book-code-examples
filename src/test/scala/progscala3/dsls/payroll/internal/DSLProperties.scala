@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/dsls/payroll/internal/DSLProperties.scala
 package progscala3.dsls.payroll.internal
-import scala.language.implicitConversions
+
 import org.scalacheck._
 import progscala3.dsls.payroll.common._
 import scala.language.postfixOps
