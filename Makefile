@@ -79,7 +79,8 @@ scala3_options := \
 
 
 SCALA := dotr
-scala_options := $(scala3_options)
+# dotr is poorly documented and doesn't appear to suport options:
+scala_options :=
 #SCALA := scala
 #scala_options := $(scala2_options)
 
@@ -95,8 +96,8 @@ tests: $(test_logs)
 $(output_dir)/%.log: src/main/%.sc
 	@echo "Testing: $< (output: $@) ..." 1>&2
 	@mkdir -p $$(dirname $@)
-	@echo $(SCALA) $(scala_options) $< > $@
-	@$(SCALA) $(scala_options) $< >> $@
+	@echo running $(SCALA) $(scala_options) for $< > $@
+	@echo ":load $<" | $(SCALA) $(scala_options) >> $@
 
 # Run the Scala interpeter with the "base" settings.
 console:
