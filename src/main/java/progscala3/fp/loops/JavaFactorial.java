@@ -1,7 +1,7 @@
-// src/main/java/progscala3/fp/loops/Factorial.java
+// src/main/java/progscala3/fp/loops/JavaFactorial.java
 package progscala3.fp.loops;
 
-public class Factorial {
+public class JavaFactorial {
   public static long factorial(long l) {
     long result = 1L;
     for (long j = 2L; j <= l; j++) {

@@ -1,11 +1,11 @@
-// src/main/java/progscala3/basicoop/JPerson.java
+// src/main/java/progscala3/basicoop/JavaPerson.java
 package progscala3.basicoop;
 
-public class JPerson {
+public class JavaPerson {
   private String name;
   private int    age;
 
-  public JPerson(String name, int age) {
+  public JavaPerson(String name, int age) {
     this.name = name;
     this.age  = age;
   }
