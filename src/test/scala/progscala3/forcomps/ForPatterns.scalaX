@@ -19,7 +19,7 @@ object ForPatterns {
     val kvPairs = for {
       prop <- properties.split("\n")                                     // <4>
       if ignoreRegex.findFirstIn(prop) == None                           // <5>
-      case kvRegex(key, value) <- prop                                          // <6>
+      kvRegex(key, value) = prop                                          // <6>
     } yield (key.trim, value.trim)                                       // <7>
 
     assert(kvPairs.toSeq == Seq(

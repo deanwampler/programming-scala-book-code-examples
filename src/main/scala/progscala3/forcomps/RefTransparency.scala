@@ -10,15 +10,5 @@ object RefTransparency {
     } catch {
       case nfe: NumberFormatException => Left("NFE: "+nfe.getMessage)
     }
-
-  def main(args: Array[String]): Unit = {
-  	for {
-  	  i <- 1 to 3
-  	  j <- 1 to i
-  	} assert(addInts(i.toString, j.toString) == i+j)
-
-  	assert(addInts2("1", "2") == Right(3))
-  	assert(addInts2("1", "x") == Left("NFE: For input string: \"x\""))
-  	assert(addInts2("x", "2") == Left("NFE: For input string: \"x\""))
   }
 }
