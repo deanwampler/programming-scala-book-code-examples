@@ -1,19 +1,22 @@
-// src/main/scala/progscala3/forcomps/ForVariableTranslated.scala
+// src/test/scala/progscala3/forcomps/ForVariableTranslatedSuite.scala
 package progscala3.forcomps
 
-object ForVariableTranslated {
-  def main(args: Array[String]): Unit = {
+import munit._
 
-		val map = Map("one" -> 1, "two" -> 2)
+class ForVariableTranslatedSuite extends FunSuite {
 
-		val list1 = for {
+	val map = Map("one" -> 1, "two" -> 2)
+
+	test("Variables can be assigned translated values in for comprehensions") {
+		val list = for {
 		  (key, value) <- map   // How are this line and the next one translated?
 		  i10 = value + 10
 		} yield (i10)
-		assert(list1 == List(11, 12))
+		assert(list == List(11, 12))
+	}
 
-		// Translation:
-		val list2 = for {
+	test("Variables translations are map steps") {
+		val list = for {
 		  (i, i10) <- for {
 		    x1 @ (key, value) <- map
 		  } yield {
@@ -21,6 +24,6 @@ object ForVariableTranslated {
 		    (x1, x2)
 		  }
 		} yield (i10)
-		assert(list2 == List(11, 12))
+		assert(list == List(11, 12))
 	}
 }

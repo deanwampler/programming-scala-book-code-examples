@@ -2,10 +2,8 @@
 package progscala3.forcomps
 
 import munit._
-import progscala3.metaprogramming.requirement
 
-object ForFlatmapSuite extends FunSuite {
-
+class ForFlatmapSuite extends FunSuite {
   test("Flatmap returns collections and flattens them") {
 		val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
@@ -13,9 +11,9 @@ object ForFlatmapSuite extends FunSuite {
 		  s <- states
 		  c <- s
 		} yield s"$c-${c.toUpper}"
-		requirement(results1.take(4) == List("A-A", "l-L", "a-A", "b-B"))
+		assert(results1.take(4) == List("A-A", "l-L", "a-A", "b-B"))
 
 		val results2 = states flatMap (_.toSeq map (c => s"$c-${c.toUpper}"))
-		requirement(results2 == results1)
+		assert(results2 == results1)
 	}
 }

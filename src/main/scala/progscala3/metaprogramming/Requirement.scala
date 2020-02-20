@@ -5,11 +5,19 @@ import scala.quoted._
 /**
  * Requirement thrown if a requirement fails
  */
-case class RequirementFailure(
-  predicateString: String,
-  note: String) extends RuntimeException(
-    s"Requirement failure! predicate is false: $predicateString. $note")
+case class RequirementFailure protected (message: String)
+  extends RuntimeException(message)
 
+object RequirementFailure {
+  /** Create an exception from a predicate string and message. */
+  def apply(predicateString: String, message: String): RequirementFailure =
+    new RequirementFailure(
+      s"Requirement failure! predicate is false: $predicateString. $message")
+
+  /** Create an exception from a message. */
+  def apply(message: String): RequirementFailure =
+    new RequirementFailure(s"Requirement failure! $message")
+}
 
 /**
  * Implement a custom "requirement" checker. It works like Scala's built in
@@ -29,20 +37,23 @@ object requirement {                                                   // <3>
 
   /**
    * "Require" that a predicate is true. If not, throw an exception
-   * with the specified `note` for context.
+   * with the specified `message` for context.
    */
   inline def apply(
       inline predicate: => Boolean,
-      inline note: String): Unit = ${ checkReq('predicate, 'note) }
+      inline message: String): Unit = ${ checkReq('predicate, 'message) }
 
-  def checkReq(predicate: Expr[Boolean], note: Expr[String])(
+  def checkReq(predicate: Expr[Boolean], message: Expr[String])(
       using QuoteContext) = '{
     if (!($predicate)) {
-      throw new RequirementFailure(${showExpr(predicate)}, ${showExpr(note)})
+      throw RequirementFailure(${showExpr(predicate)}, ${showExpr(message)})
     }
   }
 
-  def showExpr[T](expr: Expr[T])(using QuoteContext): Expr[String] = {
+  /** You already know a requirement has failed, so just throw the exception. */
+  def fail(message: String): Nothing = throw RequirementFailure(message)
+
+  private def showExpr[T](expr: Expr[T])(using QuoteContext): Expr[String] = {
     val code: String = expr.show
     Expr(code)
   }

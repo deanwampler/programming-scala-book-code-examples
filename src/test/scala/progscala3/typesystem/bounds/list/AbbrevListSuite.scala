@@ -2,7 +2,6 @@
 package progscala3.typesystem.bounds.list
 
 import munit._
-import progscala3.metaprogramming.requirement
 
 /**
  * Test the example "AbbrevList".
@@ -12,8 +11,8 @@ class AbbrevListSuite extends FunSuite {
 
   test("item :: AbbrevNil == AbbrevList(item)") {
     val list = (1 :: AbbrevNil)
-    requirement(list.head == 1)
-    requirement(list.tail == AbbrevNil)
+    assert(list.head == 1)
+    assert(list.tail == AbbrevNil)
   }
   test("AbbrevNil.foreach(...) does nothing") {
     // If you call foreach directly on AbbrevNil, the compiler warns about dead code,
@@ -25,14 +24,14 @@ class AbbrevListSuite extends FunSuite {
   test("item :: nonEmptyAbbrevList == AbbrevList(item, ...)") {
     val list  = 1 :: 2 :: AbbrevNil
     val list2 = 3 :: list
-    requirement(list2.head == 3)
-    requirement(list2.tail.head == 1)
-    requirement(list2.tail.tail.head == 2)
-    requirement(list2.tail.tail.tail == AbbrevNil)
+    assert(list2.head == 3)
+    assert(list2.tail.head == 1)
+    assert(list2.tail.tail.head == 2)
+    assert(list2.tail.tail.tail == AbbrevNil)
   }
   test("nonEmptyAbbrevList.foreach(...) processes each element") {
     var count = 0
     (1 :: 2 :: AbbrevNil).foreach(i => count += i)
-    requirement(count == 3)
+    assert(count == 3)
   }
 }

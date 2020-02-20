@@ -2,7 +2,6 @@
 package progscala3.basicoop.people
 
 import munit._
-import progscala3.metaprogramming.requirement
 
 class PersonEmployeeTraitsSuite extends FunSuite {
 

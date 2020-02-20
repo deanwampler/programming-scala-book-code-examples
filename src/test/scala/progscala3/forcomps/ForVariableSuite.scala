@@ -1,27 +1,28 @@
-// src/main/scala/progscala3/forcomps/ForVariable.scala
+// src/test/scala/progscala3/forcomps/ForVariableSuite.scala
 package progscala3.forcomps
 
-object ForVariable {
-  def main(args: Array[String]): Unit = {
+import munit._
 
-		val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
+class ForVariableSuite extends FunSuite {
+	val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
-		val result1 = for {
+	test("Variables can be assigned in for comprehensions") {
+		val result = for {
 		  s <- states
 		  c <- s
 		  if c.isLower
 		  c2 = s"$c-${c.toUpper}"
 		} yield c2
-		println(result1)
 		// Check the first five values:
-		assert(result1.take(5) == List("l-L", "a-A", "b-B", "a-A", "m-M"))
+		assert(result.take(5) == List("l-L", "a-A", "b-B", "a-A", "m-M"))
+	}
 
-		val result2 = states flatMap (_.toSeq withFilter (_.isLower) map { c =>
+	test("Variable assignmen is like a map step") {
+		val result = states flatMap (_.toSeq withFilter (_.isLower) map { c =>
 		  val c2 = s"$c-${c.toUpper}"
 		  c2
 		})
-		println(result2)
 		// Check the first five values:
-		assert(result2.take(5) == List("l-L", "a-A", "b-B", "a-A", "m-M"))
+		assert(result.take(5) == List("l-L", "a-A", "b-B", "a-A", "m-M"))
 	}
 }

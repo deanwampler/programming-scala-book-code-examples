@@ -10,5 +10,4 @@ object RefTransparency {
     } catch {
       case nfe: NumberFormatException => Left("NFE: "+nfe.getMessage)
     }
-  }
 }

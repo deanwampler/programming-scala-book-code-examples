@@ -13,7 +13,7 @@ class InvariantSuite extends FunSuite {
       v.i += 1
       v.i
     }
-    requirement(i1 == 2)
+    assert(i1 == 2)
   }
 
   test("invariant.apply should not fail if the invariant holds") { succeed() }

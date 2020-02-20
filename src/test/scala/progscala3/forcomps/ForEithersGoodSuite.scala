@@ -2,10 +2,8 @@
 package progscala3.forcomps
 
 import munit._
-import progscala3.metaprogramming.requirement
 
-object ForEithersGoodSuite extends FunSuite {
-
+class ForEithersGoodSuite extends FunSuite {
   def positive(i: Int): Either[String,Int] =
     if (i > 0) Right(i) else Left(s"nonpositive number $i")
 
@@ -16,7 +14,7 @@ object ForEithersGoodSuite extends FunSuite {
   	  i3 <- positive(25 * i2)
   	  i4 <- positive(2  * i3)
   	} yield (i1 + i2 + i3 + i4)
-  	requirement(result1 == Right(3805))
+  	assert(result1 == Right(3805))
   }
 
   test("If any step returns Left, the result is a Left") {
@@ -26,6 +24,6 @@ object ForEithersGoodSuite extends FunSuite {
   	  i3 <- positive(25 * i2)
   	  i4 <- positive(-2 * i3)   // EPIC FAIL!
   	} yield (i1 + i2 + i3 + i4)
-  	requirement(result2 == Left("nonpositive number -5"))
+  	assert(result2 == Left("nonpositive number -5"))
   }
 }

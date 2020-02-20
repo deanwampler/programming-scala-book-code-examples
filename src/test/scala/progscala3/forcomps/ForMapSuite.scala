@@ -1,21 +1,18 @@
-// src/main/scala/progscala3/forcomps/ForMapSuite.scala
+// src/test/scala/progscala3/forcomps/ForMapSuite.scala
 package progscala3.forcomps
 
 import munit._
-import progscala3.metaprogramming.requirement
 
-object ForMapSuite extends FunSuite {
-
+class ForMapSuite extends FunSuite {
 	val states   = Vector("Alabama", "Alaska", "Virginia", "Wyoming")
 	val expected = Vector("ALABAMA", "ALASKA", "VIRGINIA", "WYOMING")
-
-	def doFor(): Vector[String] =
 
 	test("A 'for' that maps is a one-to-one transformation") {
 		val results = for {
 	  	s <- states
 		} yield s.toUpperCase
 		assert(results == expected)
+	}
 
 	test("A map is a one-to-one transformation") {
 		val results = states map (_.toUpperCase)

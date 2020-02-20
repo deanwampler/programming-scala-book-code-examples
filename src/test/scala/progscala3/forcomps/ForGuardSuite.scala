@@ -1,10 +1,9 @@
-// src/main/scala/progscala3/forcomps/ForGuardSuite.scala
+// src/test/scala/progscala3/forcomps/ForGuardSuite.scala
 package progscala3.forcomps
 
 import munit._
-import progscala3.metaprogramming.requirement
 
-object ForGuardSuite extends FunSuite {
+class ForGuardSuite extends FunSuite {
 	val states = Vector("Alabama", "Alaska", "Virginia", "Wyoming")
 
  	def doFor(): Vector[String] = for {

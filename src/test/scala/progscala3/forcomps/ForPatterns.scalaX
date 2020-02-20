@@ -1,9 +1,10 @@
-// src/main/scala/progscala3/forcomps/ForPatterns.scala
+// src/test/scala/progscala3/forcomps/ForPatternsSuite.scala
 package progscala3.forcomps
 
-object ForPatterns {
-  def main(args: Array[String]): Unit = {
+import munit._
 
+class ForPatternsSuite extends FunSuite {
+  test("Regex pattern matching can be used in for comprehensions") {
     val ignoreRegex = """^\s*(#.*|\s*)$""".r                             // <1>
     val kvRegex = """^\s*([^=]+)\s*=\s*([^#]+)\s*.*$""".r                // <2>
 
