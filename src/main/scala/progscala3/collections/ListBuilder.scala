@@ -1,4 +1,6 @@
-// src/main/scala/progscala3/collections/ListBuilder.sc
+// src/main/scala/progscala3/collections/ListBuilder.scala
+package progscala3.collections
+
 import collection.mutable.Builder
 
 class ListBuilder[T] extends Builder[T, List[T]] {
@@ -17,7 +19,10 @@ class ListBuilder[T] extends Builder[T, List[T]] {
   def result(): List[T] = storage.toList
 }
 
-val lb = new ListBuilder[Int]
-(1 to 3) foreach (i => lb += i)
-println(lb.result)
-// Result: List(1, 2, 3)
+object ListBuilder {
+  def main(args: Array[String]): Unit = {
+		val lb = new ListBuilder[Int]
+		(1 to 3) foreach (i => lb += i)
+		assert(lb.result == List(1, 2, 3))
+	}
+}
