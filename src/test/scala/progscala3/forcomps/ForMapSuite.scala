@@ -16,7 +16,6 @@ class ForMapSuite extends FunSuite {
 
 	test("A map is a one-to-one transformation") {
 		val results = states map (_.toUpperCase)
-		println(results)
 		assert(results == expected)
 	}
 }
