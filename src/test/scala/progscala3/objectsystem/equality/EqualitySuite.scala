@@ -1,7 +1,9 @@
-// src/test/scala/progscala3/implicits/EqualitySuite.scala
-package progscala3.implicits
+// src/test/scala/progscala3/objectsystem/equality/EqualitySuite.scala
+package progscala3.objectsystem.equality
 
 import munit._
+
+import scala.language.implicitConversions
 
 class EqualitySuite extends FunSuite {
 
@@ -98,9 +100,9 @@ class EqualitySuite extends FunSuite {
 	}
 
 	test("sameElements compare all collections, including Arrays") {
-		assert((Seq(1, 2).sameElements(Seq(1, 2))) == true)
-		assert((Array(1, 2).sameElements(Array(1, 2))) == true)
-		assert((Map("one" -> 1, "two" -> 2).sameElements(
+		assert((Seq(1, 2).iterator.sameElements(Seq(1, 2))) == true)
+		assert((Array(1, 2).iterator.sameElements(Array(1, 2))) == true)
+		assert((Map("one" -> 1, "two" -> 2).iterator.sameElements(
 			Map("one" -> 1, "two" -> 2))) == true)
 	}
 }
