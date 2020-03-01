@@ -6,5 +6,6 @@ class NotFixed {
 }
 
 class Changeable2 extends NotFixed {
-  override def fixedMethod = "not fixed"   // COMPILATION ERROR
+  // Compilation error:
+  // override def fixedMethod = "not fixed"
 }
