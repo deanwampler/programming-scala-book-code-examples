@@ -33,7 +33,6 @@ class FoldRegexPatternsSuite extends FunSuite {
           case _ => vect :+ Left(n+1, line.trim)
         }
       }
-      println(kvPairs)
     assert(kvPairs == Vector(
       Right("book.name" -> "Programming Scala, Third Edition"),
       Right("book.authors" -> "Dean Wampler"),
