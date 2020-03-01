@@ -8,6 +8,8 @@ import scala.concurrent.ExecutionContext.Implicits.global
 /**
  * This example only works with Scala 2.13, as it uses the async and await
  * macros that don't exist in Scala 3.
+ * To build it you'll need the `scala-async` module:
+ *   "org.scala-lang.modules" %% "scala-async" % "0.10.0"
  */
 object AsyncExample {
   def recordExists(id: Long): Boolean = {                            // <1>
