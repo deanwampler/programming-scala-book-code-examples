@@ -1,7 +1,8 @@
 // src/main/scala/progscala3/concurrency/akka/WorkerActor.scala
 package progscala3.concurrency.akka
 import scala.util.{Try, Success}
-import akka.actor.{Actor, ActorLogging}
+import akka.actor.{Actor, ActorLogging, actorRef2Scala}
+import scala.language.implicitConversions
 
 class WorkerActor extends Actor with ActorLogging {
   import Messages._

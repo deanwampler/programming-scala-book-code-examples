@@ -24,9 +24,9 @@ object CommandArgs {
       case Nil => result                                             // <4>
       case ("-h" | "--help") :: Nil => quit("", 0)                   // <5>
       case ("-i" | "--in" | "--input") :: path :: tail =>            // <6>
-        pa(tail, result copy (inputPath = path))                     // <7>
+        pa(tail, result.copy(inputPath = path))                     // <7>
       case ("-o" | "--out" | "--output") :: path :: tail =>          // <8>
-        pa(tail, result copy (outputPath = path))
+        pa(tail, result.copy(outputPath = path))
       case _ => quit(s"Unrecognized argument ${args2.head}", 1)      // <9>
     }
     val argz = pa(args.toList, Args("", ""))                         // <10>

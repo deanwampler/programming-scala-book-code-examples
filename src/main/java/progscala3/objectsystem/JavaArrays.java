@@ -4,8 +4,8 @@ package progscala3.objectsystem;
 public class JavaArrays {
   public static void main(String[] args) {
     Integer[] array1 = new Integer[] {
-      new Integer(1), new Integer(2), new Integer(3) };
+      Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3) };
     Number[] array2 = array1;      // Compiles fine
-    array2[2] = new Double(3.14);  // Compiles, but throws a runtime error!
+    array2[2] = Double.valueOf(3.14);  // Compiles, but throws a runtime error!
   }
 }

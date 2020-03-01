@@ -1,5 +1,6 @@
 // src/main/scala/progscala3/appdesign/parthenon/Money.scala
 package progscala3.appdesign.parthenon
+import scala.annotation.alpha
 
 /**
  * The same class from the Design by Contract section, with a new apply method
@@ -8,8 +9,11 @@ package progscala3.appdesign.parthenon
 case class Money(amount: Double) {
   require(amount >= 0.0, s"Negative amount $amount not allowed")
 
+  @alpha("add")
   def +  (m: Money): Money = Money(amount + m.amount)
+  @alpha("subtract")
   def -  (m: Money): Money = Money(amount - m.amount)
+  @alpha("ge")
   def >= (m: Money): Boolean = amount >= m.amount
 
   override def toString = "$"+amount

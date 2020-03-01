@@ -1,13 +1,14 @@
 // src/main/scala/progscala3/introscala/shapes/ShapesDrawingActor.scala
 package progscala3.introscala.shapes
 
-object Messages {                                                    // <1>
-  object Exit                                                        // <2>
-  object Finished
-  case class Response(message: String)                               // <3>
-}
+import akka.actor.{Actor, actorRef2Scala}                            // <1>
+import scala.language.implicitConversions
 
-import akka.actor.Actor                                              // <4>
+object Messages {                                                    // <2>
+  object Exit                                                        // <3>
+  object Finished
+  case class Response(message: String)                               // <4>
+}
 
 class ShapesDrawingActor extends Actor {                             // <5>
   import Messages._                                                  // <6>

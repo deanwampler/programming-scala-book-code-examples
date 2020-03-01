@@ -6,28 +6,28 @@ trait M extends Any {
 }
 
 trait Digitizer extends Any with M {
-  override def m(): String = { "Digitizer " + super.m }
+  override def m(): String = { "Digitizer " + super.m() }
 
   def digits(s: String): String = s.replaceAll("""\D""", "")
 }
 
-trait Formatter extends Any with M {   
-  override def m(): String = { "Formatter " + super.m }
+trait Formatter extends Any with M {
+  override def m(): String = { "Formatter " + super.m() }
 
   def format(areaCode: String, exchange: String, subnumber: String): String =
     s"($areaCode) $exchange-$subnumber"
 }
 
-case class USPhoneNumber(s: String) 
+case class USPhoneNumber(s: String)
     extends AnyVal with Digitizer with Formatter{
 
   /**
    * Returns "USPhoneNumber Formatter Digitizer M "
    */
-  override def m(): String = { "USPhoneNumber " + super.m }
-  
-  /** 
-   * Return the string representation. 
+  override def m(): String = { "USPhoneNumber " + super.m() }
+
+  /**
+   * Return the string representation.
    * For a USPhoneNumber("987-654-3210"), returns "(987) 654-3210"
    */
   override def toString = {
