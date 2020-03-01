@@ -3,7 +3,7 @@ package progscala3.introscala
 
 object Upper1 {
   def main(args: Array[String]): Unit = {
-    args.map(_.toUpperCase()).foreach(printf("%s ",_))
+    args.map(_.toUpperCase()).foreach(printf("%s ",_)) // <1>
     println("")
   }
 }
