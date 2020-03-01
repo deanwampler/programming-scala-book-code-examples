@@ -1,11 +1,11 @@
-// src/main/scala/progscala3/typelessdomore/loop.sc
+// src/main/scala/progscala3/typelessdomore/Loop.sc
 
 /** Do "pure side effect" work */
 def loop(n: Int)(f: Int => Unit): Unit = {
   def lp(i: Int): Unit = {
-    if (i <= n) { 
+    if (i <= n) {
       f(i)
-      lp(i + 1) 
+      lp(i + 1)
     }
   }
   lp(1)

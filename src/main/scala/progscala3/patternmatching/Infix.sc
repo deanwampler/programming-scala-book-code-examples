@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/infix.sc
+// src/main/scala/progscala3/patternmatching/Infix.sc
 
 case class With[A,B](a: A, b: B)
 

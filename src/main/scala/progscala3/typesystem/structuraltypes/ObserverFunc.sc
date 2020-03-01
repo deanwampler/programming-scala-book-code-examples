@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/structuraltypes/observer-func.sc
+// src/main/scala/progscala3/typesystem/structuraltypes/ObserverFunc.sc
 import progscala3.typesystem.structuraltypes.SubjectFunc
 
 def makeObserverFunc(id: Int): Int => String = 

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/valuetypes/object-types.sc
+// src/main/scala/progscala3/typesystem/valuetypes/ObjectTypes.sc
 
 case object Foo { override def toString = "Foo says Hello!" }
 

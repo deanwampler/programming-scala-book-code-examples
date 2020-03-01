@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/futures.sc
+// src/main/scala/progscala3/typelessdomore/Futures.sc
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}

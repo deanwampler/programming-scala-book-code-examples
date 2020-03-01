@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/valuetypes/type-types.scX
+// src/main/scala/progscala3/typesystem/valuetypes/TypeTypes.sc
 import progscala3.typesystem.valuetypes._
 
 val s11 = new Service1

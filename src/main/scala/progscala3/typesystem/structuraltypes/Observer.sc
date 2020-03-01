@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/structuraltypes/observer.sc
+// src/main/scala/progscala3/typesystem/structuraltypes/Observer.sc
 import progscala3.typesystem.structuraltypes.Subject
 import scala.language.reflectiveCalls
 

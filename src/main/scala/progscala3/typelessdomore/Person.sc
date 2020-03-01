@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/person.scX
+// src/main/scala/progscala3/typelessdomore/Person.sc
 
 class Person(val name: String, var age: Int)
 

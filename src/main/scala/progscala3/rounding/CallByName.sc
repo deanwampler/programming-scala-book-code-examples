@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/call-by-name.sc
+// src/main/scala/progscala3/rounding/CallByName.sc
 
 @annotation.tailrec                                                  // <1>
 def continue(conditional: => Boolean)(body: => Unit): Unit = {       // <2>

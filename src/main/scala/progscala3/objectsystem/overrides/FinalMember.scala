@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/overrides/final-member.scalaX
+// src/main/scala/progscala3/objectsystem/overrides/FinalMember.scala
 package progscala3.objectsystem.overrides
 
 class NotFixed {

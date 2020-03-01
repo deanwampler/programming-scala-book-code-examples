@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/implicits/phantom-types-pipeline.scala
+// src/main/scala/progscala3/implicits/PhantomTypesPipeline.scala
 // A nicer way of driving the payroll workflow. Adapted from
 // http://james-iry.blogspot.ch/2010/10/phantom-types-in-haskell-and-scala.html
 // which was inspired by F# and Haskell.

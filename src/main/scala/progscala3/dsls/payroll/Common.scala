@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/dsls/payroll/common.scala
+// src/main/scala/progscala3/dsls/payroll/Common.scala
 package progscala3.dsls.payroll
 
 object common {

@@ -1,15 +1,19 @@
-// src/main/scala/progscala3/metaprogramming/match-type-tags.sc
+// src/main/scala-2/progscala3/metaprogramming/MatchTypeTags.sc
 
-import scala.reflect.runtime.universe._                              // <1>
+import scala.reflect.runtime.universe._
 
-def toType2[T](t: T)(implicit tag: TypeTag[T]): Type = tag.tpe       // <2>
-def toType[T : TypeTag](t: T): Type = typeOf[T]                      // <3>
+def toType2[T](t: T)(implicit tag: TypeTag[T]): Type = tag.tpe
+def toType[T : TypeTag](t: T): Type = typeOf[T]
+
+/**
+ * This example uses TypeTags, which don't exist in Scala 3.
+ */
 
 /**
  * Return a tuple of the type "prefix", the type's symbol and its
  * possibly empty list of type parameters.
  */
-def toTypeRefInfo[T : TypeTag](x: T): (Type, Symbol, Seq[Type]) = {  // <4>
+def toTypeRefInfo[T : TypeTag](x: T): (Type, Symbol, Seq[Type]) = {
   val TypeRef(pre, typName, parems) = toType(x)
   (pre, typName, parems)
 }
@@ -42,7 +46,7 @@ println(toTypeRefInfo(true))
 println(toTypeRefInfo(Seq(1, true, 3.14)))
 
 // (scala.type, trait Function1, List(Int, java.lang.String)):
-println(toTypeRefInfo((i: Int) => i.toString))  
+println(toTypeRefInfo((i: Int) => i.toString))
 
 val t1 = toType(1)
 val ts = toType(Seq(1, true, 3.14))

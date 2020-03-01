@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/higherkinded/add.sc
+// src/main/scala/progscala3/typesystem/higherkinded/Add.sc
 // Add the following line if you don't use the compiler option
 // "-language:higherKinds"
 // import scala.language.higherKinds

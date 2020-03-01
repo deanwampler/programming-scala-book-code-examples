@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-types.scX
+// src/main/scala/progscala3/patternmatching/MatchTypes.sc
 // Does not compile with strict warnings, because of type erasure,
 // the compiler can't distinguish between Seq[X] and Seq[Y], as
 // written.

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/parameterized-types.sc
+// src/main/scala/progscala3/typelessdomore/ParameterizedTypes.sc
 import java.io._
 
 abstract class BulkReader[In] {
@@ -24,6 +24,6 @@ val sbb = new StringBulkReader("Hello Scala!")
 println(sbb.read)
 
 // Assumes the current directory is the project root:
-val path = "src/main/scala/progscala3/typelessdomore/parameterized-types.sc"
+val path = "src/main/scala/progscala3/typelessdomore/ParameterizedTypes.sc"
 val fbb = new FileBulkReader(new File(path))
 println(fbb.read)

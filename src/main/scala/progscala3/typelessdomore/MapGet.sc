@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/map-get.sc
+// src/main/scala/progscala3/typelessdomore/MapGet.sc
 // Very limited version of a map; it can hold only one key-value
 // pair! The "get" method is used in the text, by itself...
 

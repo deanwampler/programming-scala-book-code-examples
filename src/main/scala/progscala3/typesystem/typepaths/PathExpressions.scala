@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/typepaths/path-expressions.scala
+// src/main/scala/progscala3/typesystem/typepaths/PathExpressions.scala
 package progscala3.typesystem.typepaths
 
 class C1 {

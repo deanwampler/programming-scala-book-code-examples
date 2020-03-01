@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/linearization/linearization2.sc
+// src/main/scala/progscala3/objectsystem/linearization/Linearization2.sc
 
 class C1 {
   print("C1 ")

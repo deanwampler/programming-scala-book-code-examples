@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/valuetypes/curried-function.sc
+// src/main/scala/progscala3/typesystem/valuetypes/CurriedFunction.sc
 
 val f  = (x: Double, y: Double, z: Double) => x * y / z
 val fc = f.curried

@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/typelessdomore/fibonacci-tailrec.scX
+// src/main/scala/progscala3/typelessdomore/FibonacciTailrec.sc
 import scala.annotation.tailrec
 
 @tailrec

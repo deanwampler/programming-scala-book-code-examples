@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/overrides/payroll-template-method.sc
+// src/main/scala/progscala3/objectsystem/overrides/PayrollTemplateMethod.sc
 
 case class Address(city: String, state: String, zip: String)
 case class Employee(name: String, salary: Double, address: Address)

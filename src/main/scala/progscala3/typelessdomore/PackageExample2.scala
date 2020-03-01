@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/package-example2.scala
+// src/main/scala/progscala3/typelessdomore/PackageExample2.scala
 package com {
   package example {
     package pkg1 {

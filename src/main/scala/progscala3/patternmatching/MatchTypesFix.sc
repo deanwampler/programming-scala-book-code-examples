@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-types-fix.sc
+// src/main/scala/progscala3/patternmatching/MatchTypesFix.sc
 
 def doSeqMatch[T](seq: Seq[T]): String = seq match {
   case Nil => "Nothing"

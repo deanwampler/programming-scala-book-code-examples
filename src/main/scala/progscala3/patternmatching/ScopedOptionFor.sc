@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/scoped-option-for.sc
+// src/main/scala/progscala3/patternmatching/ScopedOptionFor.sc
 
 val dogBreeds = Seq(Some("Doberman"), None, Some("Yorkshire Terrier"), 
                     Some("Dachshund"), None, Some("Scottish Terrier"),

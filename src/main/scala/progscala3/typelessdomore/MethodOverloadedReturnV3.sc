@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/method-overloaded-return-v3.sc
+// src/main/scala/progscala3/typelessdomore/MethodOverloadedReturnV3.sc
 // Version 3 of "StringUtil" (New variable argument list methods).
 
 object StringUtilV3 {

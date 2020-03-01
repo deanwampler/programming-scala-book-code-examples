@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-variable.sc
+// src/main/scala/progscala3/patternmatching/MatchVariable.sc
 
 val result = Seq(1, "one", 2, 3.14, "four", Symbol("five")) map {  // <1>
   case 1          => "int 1"                                       // <3>

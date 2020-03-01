@@ -1,8 +1,9 @@
-// src/main/scala/progscala3/objectsystem/overrides/final-class.scalaX
+// src/main/scala/progscala3/objectsystem/overrides/FinalClass.scala
 package progscala3.objectsystem.overrides
 
 final class Fixed {
   def doSomething = "Fixed did something!"
 }
 
-class Changeable1 extends Fixed     // COMPILATION ERROR
+// Would cause a compilation error:
+// class Changeable1 extends Fixed

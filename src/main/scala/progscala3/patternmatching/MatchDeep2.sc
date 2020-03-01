@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-deep2.sc
+// src/main/scala/progscala3/patternmatching/MatchDeep2.sc
 
 case class Address(street: String, city: String, country: String)
 case class Person(name: String, age: Int, address: Address)

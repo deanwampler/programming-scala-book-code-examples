@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-tuple.sc
+// src/main/scala/progscala3/patternmatching/MatchTuple.sc
 
 val langs = Seq(
   ("Scala",   "Martin", "Odersky"),

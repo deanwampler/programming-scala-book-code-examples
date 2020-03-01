@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/recursivetypes/f-bound.sc
+// src/main/scala/progscala3/typesystem/recursivetypes/FBound.sc
 
 trait Parent[T <: Parent[T]] {                                       // <1>
   def make: T 

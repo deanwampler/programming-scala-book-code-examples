@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/linearization/linearization1.sc
+// src/main/scala/progscala3/objectsystem/linearization/Linearization1.sc
 
 class C1 {
   def m(): String = "C1 "

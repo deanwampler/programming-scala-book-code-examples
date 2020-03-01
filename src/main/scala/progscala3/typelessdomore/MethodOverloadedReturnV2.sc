@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/method-overloaded-return-v2.sc
+// src/main/scala/progscala3/typelessdomore/MethodOverloadedReturnV2.sc
 // Version 2 of "StringUtil" (with a fixed compilation error).
 
 object StringUtilV2 {

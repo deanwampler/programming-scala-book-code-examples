@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/typepaths/type-path.scalaX
+// src/main/scala/progscala3/typesystem/typepaths/TypePath.scala
 package progscala3.typesystem.typepaths
 
 class Service {                                                      // <1>
@@ -9,4 +9,7 @@ class Service {                                                      // <1>
 }
 
 val s1 = new Service
-val s2 = new Service { override val logger = s1.logger }     // ERROR!  <3>
+val s2 = new Service {
+	// The s1.logger type path is not compatible here:
+	// override val logger = s1.logger
+}

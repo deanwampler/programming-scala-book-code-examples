@@ -1,5 +1,11 @@
-// src/error/scala/progscala3/metaprogramming/Func.scala
+// src/main/scala-2/progscala3/metaprogramming/Func.scala
+
 import scala.reflect.runtime.universe.typeOf
+
+/*
+ * This example uses the typeOf[...] feature that doesn't exist
+ * in Scala 3.
+ */
 
 class CSuper                { def msuper() = println("CSuper") }
 class C      extends CSuper { def m()      = println("C") }

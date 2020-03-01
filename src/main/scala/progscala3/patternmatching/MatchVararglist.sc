@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-vararglist.sc
+// src/main/scala/progscala3/patternmatching/MatchVararglist.sc
 
 // Operators for WHERE clauses
 object Op extends Enumeration {                                      // <1>

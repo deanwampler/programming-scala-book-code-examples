@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-surprise.scX
+// src/main/scala/progscala3/patternmatching/MatchSurprise.sc
 // Does not compile with strict warnings, because of <2>.
 
 def checkY(y: Int): Seq[String] = {

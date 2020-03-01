@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/ui/vetoable-clicks.sc
+// src/main/scala/progscala3/objectsystem/ui/VetoableClicks.sc
 import progscala3.objectsystem.ui.Button
 import progscala3.traits.ui2.{Clickable, ObservableClicks, VetoableClicks}
 import progscala3.traits.observer._

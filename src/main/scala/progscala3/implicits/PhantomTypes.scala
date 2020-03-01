@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/implicits/phantom-types.scala
+// src/main/scala/progscala3/implicits/PhantomTypes.scala
 
 // A workflow for payroll calculations.
 

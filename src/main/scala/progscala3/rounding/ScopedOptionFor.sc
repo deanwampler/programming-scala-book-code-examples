@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/scoped-option-for.sc
+// src/main/scala/progscala3/patternmatching/ScopedOptionFor.sc
 
 import progscala3.rounding.WeekDay
 import progscala3.rounding.WeekDay._

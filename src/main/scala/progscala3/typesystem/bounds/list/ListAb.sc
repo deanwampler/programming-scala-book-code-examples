@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/bounds/list/list-ab.sc
+// src/main/scala/progscala3/typesystem/bounds/list/ListAb.sc
 import progscala3.typesystem.bounds.list._
 
 //val languages = AbbrevList("Scala", "Java", "Ruby", "C#", "C++", "Python")

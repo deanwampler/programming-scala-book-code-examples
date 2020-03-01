@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-guard.sc
+// src/main/scala/progscala3/patternmatching/MatchGuard.sc
 
 val results = Seq(1,2,3,4) map {
   case e if e%2 == 0 => s"even: $e"                          // <1>

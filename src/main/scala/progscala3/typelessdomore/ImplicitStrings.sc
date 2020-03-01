@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/implicit-strings.sc
+// src/main/scala/progscala3/typelessdomore/ImplicitStrings.sc
 
 val s = "Programming Scala"
 s.reverse

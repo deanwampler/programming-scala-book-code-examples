@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/lazy-init-val.sc
+// src/main/scala/progscala3/rounding/LazyInitVal.sc
 
 object ExpensiveResource {
   lazy val resource: Int = init()  

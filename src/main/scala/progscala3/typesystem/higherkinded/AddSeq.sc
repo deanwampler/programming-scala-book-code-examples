@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/higherkinded/add-seq.sc
+// src/main/scala/progscala3/typesystem/higherkinded/AddSeq.sc
 import progscala3.typesystem.higherkinded.Add              // <1>
 import progscala3.typesystem.higherkinded.Add._
 

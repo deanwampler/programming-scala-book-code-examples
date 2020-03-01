@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-surprise-fix.sc
+// src/main/scala/progscala3/patternmatching/MatchSurpriseFix.sc
 
 def checkY(y: Int): Seq[String] = {
   for {

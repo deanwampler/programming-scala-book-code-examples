@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/method-recursive-return.scX
+// src/main/scala/progscala3/typelessdomore/MethodRecursiveReturn.sc
 // ERROR: Won't compile until you put an Int return type on "fact".
 import scala.annotation.tailrec
 

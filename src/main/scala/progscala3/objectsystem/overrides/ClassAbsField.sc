@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/overrides/class-abs-field.sc
+// src/main/scala/progscala3/objectsystem/overrides/ClassAbsField.sc
 
 abstract class AbstractC1 {
   val name: String

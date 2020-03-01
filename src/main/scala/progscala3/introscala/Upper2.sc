@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/introscala/upper2.sc
+// src/main/scala/progscala3/introscala/Upper2.sc
 
 object Upper {
   def upper(strings: String*) = strings.map(_.toUpperCase())

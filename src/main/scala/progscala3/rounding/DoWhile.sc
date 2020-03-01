@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/do-while.sc
+// src/main/scala/progscala3/rounding/DoWhile.sc
 
 var count = 0
 

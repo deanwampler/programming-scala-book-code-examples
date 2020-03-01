@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/overrides/trait-def-init-val.sc
+// src/main/scala/progscala3/objectsystem/overrides/TraitDefInitVal.sc
 
 trait AbstractT3 {
   println("In AbstractT3:")

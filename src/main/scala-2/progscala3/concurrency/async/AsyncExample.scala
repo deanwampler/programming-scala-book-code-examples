@@ -1,10 +1,14 @@
-// src/main/scala/progscala3/concurrency/async/AsyncExample.scala
+// src/main/scala-2/progscala3/concurrency/async/AsyncExample.scala
 package progscala3.concurrency.async
 import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.Duration
 import scala.async.Async.{async, await}
 import scala.concurrent.ExecutionContext.Implicits.global
 
+/**
+ * This example only works with Scala 2.13, as it uses the async and await
+ * macros that don't exist in Scala 3.
+ */
 object AsyncExample {
   def recordExists(id: Long): Boolean = {                            // <1>
     println(s"recordExists($id)...")

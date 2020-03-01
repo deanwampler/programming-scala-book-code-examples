@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/implicits/type-classes-subtyping2.scala
+// src/main/scala/progscala3/implicits/TypeClassesSubtyping2.scala
 // Adapted from: src/main/scala/progscala3/implicits/toJSON-type-class.sc
 // This program does not appear in the book.
 

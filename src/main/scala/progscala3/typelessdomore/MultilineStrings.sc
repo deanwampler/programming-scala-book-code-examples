@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/multiline-strings.sc
+// src/main/scala/progscala3/typelessdomore/MultilineStrings.sc
 
 def hello(name: String) = s"""Welcome!
   Hello, $name!

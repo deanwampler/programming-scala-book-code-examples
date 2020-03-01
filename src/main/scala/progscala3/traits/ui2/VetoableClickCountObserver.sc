@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/traits/ui2/vetoable-click-count-observer.sc
+// src/main/scala/progscala3/traits/ui2/VetoableClickCountObserver.sc
 import progscala3.traits.ui2._
 import progscala3.traits.observer._
 

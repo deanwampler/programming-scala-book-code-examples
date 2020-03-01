@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/toolslibs/example.sc
+// src/main/scala/progscala3/toolslibs/Example.sc
 
 case class Message(name: String)
 

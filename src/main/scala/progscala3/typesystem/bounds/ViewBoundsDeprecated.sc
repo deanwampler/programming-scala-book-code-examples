@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/bounds/view-bounds-deprecated.scX
+// src/main/scala/progscala3/typesystem/bounds/ViewBoundsDeprecated.sc
 import scala.language.implicitConversions
 
 object Serialization {

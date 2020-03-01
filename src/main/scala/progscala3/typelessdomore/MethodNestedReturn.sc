@@ -1,4 +1,4 @@
-// src/main/scala/progscala2/typelessdomore/method-nested-return.scX
+// src/main/scala/progscala3/typelessdomore/MethodNestedReturn.sc
 // ERROR: Won't compile until you put a String return type on upCase.
 
 def upCase(s: String) = {

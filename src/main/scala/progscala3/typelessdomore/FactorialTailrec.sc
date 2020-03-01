@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/factorial-tailrec.sc
+// src/main/scala/progscala3/typelessdomore/FactorialTailrec.sc
 import scala.annotation.tailrec
 
 def factorial(i: Int): Long = {

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/dsls/payroll/parsercomb/dsl.scala
+// src/main/scala/progscala3/dsls/payroll/parsercomb/DSL.scala
 package progscala3.dsls.payroll.parsercomb
 import scala.util.parsing.combinator._
 import progscala3.dsls.payroll.common._                              // <1>

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/dsls/payroll/internal/dsl.scala
+// src/main/scala/progscala3/dsls/payroll/internal/DSL.scala
 package progscala3.dsls.payroll.internal
 import scala.language.{implicitConversions, postfixOps}              // <1>
 import progscala3.dsls.payroll.common._

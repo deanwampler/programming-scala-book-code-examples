@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/bounds/lower-bounds.sc
+// src/main/scala/progscala3/typesystem/bounds/LowerBounds.sc
 
 class Parent(val value: Int) {                   // <1>
   override def toString = s"${this.getClass.getName}($value)" 

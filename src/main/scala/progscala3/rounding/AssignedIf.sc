@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/assigned-if.sc
+// src/main/scala/progscala3/rounding/AssignedIf.sc
 
 val configFile = new java.io.File("somefile.txt")
 

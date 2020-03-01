@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/lazy/lazy-ints.sc
+// src/main/scala/progscala3/typesystem/lazy/LazyInts.sc
 
 def from(n: Int): LazyList[Int] = LazyList.cons(n, from(n+1))
 

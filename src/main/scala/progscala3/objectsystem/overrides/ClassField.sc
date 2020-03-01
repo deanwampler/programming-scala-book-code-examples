@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/overrides/class-field.sc
+// src/main/scala/progscala3/objectsystem/overrides/ClassField.sc
 
 class C1 {
   val name = "C1"

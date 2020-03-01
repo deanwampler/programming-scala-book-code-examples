@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/yielding-for.sc
+// src/main/scala/progscala3/rounding/YieldingFor.sc
 
 import progscala3.rounding.WeekDay
 import progscala3.rounding.WeekDay._

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/overrides/trait-lazy-init-val.sc
+// src/main/scala/progscala3/objectsystem/overrides/TraitLazyInitVal.sc
 
 trait AbstractT2 {
   println("In AbstractT2:")

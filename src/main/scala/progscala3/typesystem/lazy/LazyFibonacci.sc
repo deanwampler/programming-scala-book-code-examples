@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/lazy/lazy-fibonacci.sc
+// src/main/scala/progscala3/typesystem/lazy/LazyFibonacci.sc
 
 lazy val fib: LazyList[Int] = 
   LazyList.cons(0, LazyList.cons(1, fib.zip(fib.tail).map(p => p._1 + p._2)))

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/implicits/scala-database-api.scala
+// src/main/scala/progscala3/implicits/ScalaDatabaseApi.scala
 
 // A Scala wrapper for the Java-like Database API.
 package progscala3.implicits {

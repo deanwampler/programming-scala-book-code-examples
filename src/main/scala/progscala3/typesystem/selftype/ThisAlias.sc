@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/selftype/this-alias.sc
+// src/main/scala/progscala3/typesystem/selftype/ThisAlias.sc
 
 class C1 { self =>                                                   // <1>
   def talk(message: String): String = "C1.talk: " + message

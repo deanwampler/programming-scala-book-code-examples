@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-seq-parens.sc
+// src/main/scala/progscala3/patternmatching/MatchSeqParens.sc
 
 val nonEmptySeq    = Seq(1, 2, 3, 4, 5)
 val emptySeq       = Seq.empty[Int]

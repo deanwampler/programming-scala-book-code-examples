@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-deep-tuple.sc
+// src/main/scala/progscala3/patternmatching/MatchDeepTuple.sc
 
 val itemsCosts = Seq(("Pencil", 0.52), ("Paper", 1.35), ("Notebook", 2.43))
 val itemsCostsIndices = itemsCosts.zipWithIndex

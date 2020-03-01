@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/scoped-for.sc
+// src/main/scala/progscala3/rounding/ScopedFor.sc
 
 import progscala3.rounding.WeekDay
 

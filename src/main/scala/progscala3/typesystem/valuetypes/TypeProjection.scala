@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/valuetypes/type-projection.scala
+// src/main/scala/progscala3/typesystem/valuetypes/TypeProjection.scala
 package progscala3.typesystem.valuetypes
 
 trait Logger {                                                       // <1>

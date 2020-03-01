@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/no-dot-better.sc
+// src/main/scala/progscala3/rounding/NoDotBetter.sc
 
 def isEven(n: Int) = (n % 2) == 0
 

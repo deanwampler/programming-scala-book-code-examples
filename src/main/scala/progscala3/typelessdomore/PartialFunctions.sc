@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/partial-functions.sc
+// src/main/scala/progscala3/typelessdomore/PartialFunctions.sc
 
 val pfs: PartialFunction[Any,String] = { case s:String => "YES" }    // <1>
 val pfd: PartialFunction[Any,String] = { case d:Double => "YES" }    // <2>

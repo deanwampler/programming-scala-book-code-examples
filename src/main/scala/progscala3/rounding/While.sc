@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/while.sc
+// src/main/scala/progscala3/rounding/While.sc
 
 def isThirteen(i: Int): Boolean = {
   // Scala returns the result of the last expression in a method

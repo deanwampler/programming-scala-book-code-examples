@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-regex.sc
+// src/main/scala/progscala3/patternmatching/MatchRegex.sc
 
 val BookExtractorRE = """Book: title=([^,]+),\s+author=(.+)""".r     // <1>
 val MagazineExtractorRE = """Magazine: title=([^,]+),\s+issue=(.+)""".r

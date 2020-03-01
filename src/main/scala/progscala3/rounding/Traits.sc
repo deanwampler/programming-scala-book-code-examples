@@ -1,5 +1,5 @@
 // BEGIN SERVICE
-// src/main/scala/progscala3/rounding/traits.sc
+// src/main/scala/progscala3/rounding/Traits.sc
 
 class ServiceImportante(name: String) {
   def work(i: Int): Int = {

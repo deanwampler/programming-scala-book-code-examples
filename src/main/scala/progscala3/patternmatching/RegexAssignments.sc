@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/regex-assignments.sc
+// src/main/scala/progscala3/patternmatching/RegexAssignments.sc
 
 val cols = """\*|[\w, ]+"""
 val table = """\w+"""

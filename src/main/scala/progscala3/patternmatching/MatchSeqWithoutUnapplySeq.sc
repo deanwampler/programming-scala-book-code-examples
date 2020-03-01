@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-seq-without-unapplySeq.sc
+// src/main/scala/progscala3/patternmatching/MatchSeqWithoutUnapplySeq.sc
 
 val nonEmptyList   = List(1, 2, 3, 4, 5)
 val emptyList      = Nil

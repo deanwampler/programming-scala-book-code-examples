@@ -1,5 +1,5 @@
-// src/main/scala/progscala2/typelessdomore/method-broad-inference-return.scX
-// ERROR: Won't compile. Method actually returns List[Any], which is too "broad".
+// src/main/scala/progscala3/typelessdomore/MethodBroadInferenceReturn.sc
+// ERROR: Won't compile. Method actually returns List[Any]; too "broad".
 
 def makeList(strings: String*) = {
   if (strings.length == 0)

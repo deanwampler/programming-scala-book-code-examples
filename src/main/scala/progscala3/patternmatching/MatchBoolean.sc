@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-boolean.sc
+// src/main/scala/progscala3/patternmatching/MatchBoolean.sc
 
 val bools = Seq(true, false)
 

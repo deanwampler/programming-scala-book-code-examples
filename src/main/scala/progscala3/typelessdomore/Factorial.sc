@@ -1,11 +1,11 @@
-// src/main/scala/progscala3/typelessdomore/factorial.sc
+// src/main/scala/progscala3/typelessdomore/Factorial.sc
 
 def factorial(i: Int): Long = {
   def fact(i: Int, accumulator: Long): Long = {
     if (i <= 1) accumulator
     else fact(i - 1, i * accumulator)
   }
-    
+
   fact(i, 1L)
 }
 

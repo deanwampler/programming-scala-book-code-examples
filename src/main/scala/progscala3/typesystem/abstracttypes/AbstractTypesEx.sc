@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/abstracttypes/abstract-types-ex.sc
+// src/main/scala/progscala3/typesystem/abstracttypes/AbstractTypesEx.sc
 
 trait exampleTrait {
   type t1               // t1 is unconstrained

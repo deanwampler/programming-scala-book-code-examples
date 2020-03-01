@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/dependentmethodtypes/dep-method.sc
+// src/main/scala/progscala3/typesystem/dependentmethodtypes/DepMethod.sc
 sealed trait Sumable {
   type Element
   def sum: Element

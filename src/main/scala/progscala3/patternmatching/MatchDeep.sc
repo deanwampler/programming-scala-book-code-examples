@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-deep.sc
+// src/main/scala/progscala3/patternmatching/MatchDeep.sc
 
 // Simplistic address type. Using all strings is questionable, too.
 case class Address(street: String, city: String, country: String)

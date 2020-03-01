@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/patternmatching/match-fun-args.sc
+// src/main/scala/progscala3/patternmatching/MatchFunArgs.sc
 
 case class Address(street: String, city: String, country: String)
 case class Person(name: String, age: Int)

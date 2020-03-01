@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/abstract-types.sc
+// src/main/scala/progscala3/typelessdomore/AbstractTypes.sc
 import java.io._
 
 abstract class BulkReader {
@@ -26,4 +26,4 @@ class FileBulkReader(val source: File) extends BulkReader {
 println(new StringBulkReader("Hello Scala!").read)
 // Assumes the current directory is the project root:
 println(new FileBulkReader(
-  new File("src/main/scala/progscala3/typelessdomore/abstract-types.sc")).read)
+  new File("src/main/scala/progscala3/typelessdomore/AbstractTypes.sc")).read)

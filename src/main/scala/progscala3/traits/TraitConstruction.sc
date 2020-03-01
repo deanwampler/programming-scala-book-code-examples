@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/traits/trait-construction.sc
+// src/main/scala/progscala3/traits/TraitConstruction.sc
 
 trait T1 {
   // The following would cause: "uninitialized value"

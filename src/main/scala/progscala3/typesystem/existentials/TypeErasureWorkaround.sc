@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/existentials/type-erasure-workaround.sc
+// src/main/scala/progscala3/typesystem/existentials/TypeErasureWorkaround.sc
 
 object Doubler {
   def double(seq: Seq[_]): Seq[Int] = seq match {

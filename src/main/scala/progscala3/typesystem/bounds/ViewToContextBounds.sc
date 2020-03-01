@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/bounds/view-to-context-bounds.sc
+// src/main/scala/progscala3/typesystem/bounds/ViewToContextBounds.sc
 // Need the following unless -language.implicitConversions option is used.
 // import scala.language.implicitConversions
 

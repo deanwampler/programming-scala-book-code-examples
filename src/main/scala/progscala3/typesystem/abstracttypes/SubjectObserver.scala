@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/abstracttypes/SubjectObserver.scalaX
+// src/main/scala/progscala3/typesystem/abstracttypes/SubjectObserver.scala
 package progscala3.typesystem.abstracttypes
 
 abstract class SubjectObserver {                                     // <1>
@@ -11,7 +11,7 @@ abstract class SubjectObserver {                                     // <1>
     def addObserver(observer: O): Unit = observers ::= observer
 
     def notifyObservers(): Unit =                                    // <4>
-      observers.foreach(_.receiveUpdate(this)) 
+      observers.foreach(_.receiveUpdate(this))
   }
 
   trait Observer {                                                   // <5>

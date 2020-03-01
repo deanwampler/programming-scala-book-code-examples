@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/state-capitals-subset.sc
+// src/main/scala/progscala3/typelessdomore/StateCapitalsSubset.sc
 
 val stateCapitals = Map(
   "Alabama" -> "Montgomery",

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/days-enumeration.scala
+// src/main/scala/progscala3/rounding/DaysEnumeration.scala
 
 package progscala3.rounding
 
