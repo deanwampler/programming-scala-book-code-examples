@@ -4,7 +4,7 @@ version := "3.0.0-100"
 
 organization := "org.programming-scala"
 
-scalaVersion := "0.22.0-RC1"
+scalaVersion := "0.23.0-RC1"
 
 maxErrors := 10
 
@@ -17,15 +17,16 @@ libraryDependencies ++= {
     }
   Seq(
     "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
-    "org.scala-lang.modules" %% "scala-xml"       % "1.2.0",
-    "com.typesafe.akka"      %% "akka-actor"      % "2.6.1",
-    "com.typesafe.akka"      %% "akka-slf4j"      % "2.6.1",
-    "ch.qos.logback"          % "logback-classic" % "1.2.3",
-    "org.typelevel"          %% "cats-core"       % "2.0.0",
-    "org.scalacheck"         %% "scalacheck"      % "1.14.1" % "test",
+    "org.scala-lang.modules" %% "scala-xml"        % "1.2.0",
+    "com.typesafe.akka"      %% "akka-actor"       % "2.6.1",
+    "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.1",
+    "ch.qos.logback"          % "logback-classic"  % "1.2.3",
+    "org.typelevel"          %% "cats-core"        % "2.0.0",
+    "org.scalacheck"         %% "scalacheck"       % "1.14.1" % Test,
   ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
     // Libraries that already fully support Dotty
-    "org.scalameta"          %% "munit"           % "0.5.2"
+    "org.scalameta"          %% "munit"            % "0.7.1" % Test,
+    "org.scalameta"          %% "munit-scalacheck" % "0.7.1" % Test
   )
 }
 
