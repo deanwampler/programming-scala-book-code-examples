@@ -1,10 +1,14 @@
-// src/main/scala/progscala3/dsls/payroll/parsercomb/DSLProperties.scala
+// src/main/scala/progscala3/dsls/payroll/parsercomb/DSLPropertiesSuite.scala
 package progscala3.dsls.payroll.parsercomb
 
+import munit.ScalaCheckSuite
 import org.scalacheck._
 
-// TODO: Really this should be a "full" ScalaCheck properties test.
-class DSLProperties extends Properties("Payroll DSL") {
+/**
+ * ScalaCheck example driven by MUnit
+ * TODO: Really this should be a "full" ScalaCheck properties test.
+ */
+class DSLPropertiesSuite extends ScalaCheckSuite {
   import dsl.PayrollParser
   import Prop.forAll
 
@@ -21,11 +25,12 @@ class DSLProperties extends Properties("Payroll DSL") {
 
   val annualGross = Gen.choose(30000.0, 200000.0)
 
-  property("Payroll calculator computes the pay check data") =
+  property("Payroll calculator computes the pay check data") {
     forAll(annualGross) { g =>
       val gross = biweeklyDeductions.gross(g)
       val net   = biweeklyDeductions.net(g)
       within(gross, g/26.0) &&
         within(net, (gross * (1.0 - 0.20 - 0.03 - 0.15) - 250))
     }
+  }
 }

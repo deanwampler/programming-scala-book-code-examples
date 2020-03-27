@@ -1,9 +1,10 @@
-// src/test/scala/progscala3/fp/categories/FunctorProperties.scala
+// src/test/scala/progscala3/fp/categories/FunctorPropertiesSuite.scala
 package progscala3.fp.categories
 
+import munit.ScalaCheckSuite
 import org.scalacheck._
 
-class FunctorProperties extends Properties("Functors") {
+class FunctorPropertiesSuite extends ScalaCheckSuite {
   import Prop.forAll
 
   def id[A] = identity[A]    // Lift identity method to a function
@@ -24,25 +25,29 @@ class FunctorProperties extends Properties("Functors") {
     }
   }
 
-  property("Functor morphism composition works for Sequence Functors") =
+  property("Functor morphism composition works for Sequence Functors") {
     testSeqMorphism(_ + 3)
+  }
 
-  property("Functor morphism composition works for Function Functors") =
+  property("Functor morphism composition works for Function Functors") {
     testFunctionMorphism(_ + 3)
+  }
 
-  property("Functor identity composed with a another function commutes for Sequence Functors") =
+  property("Functor identity composed with a another function commutes for Sequence Functors") {
     testSeqMorphism(id[Int])
+  }
 
-  property("Functor identity composed with a another function commutes for Sequence Functors") =
+  property("Functor identity composed with a another function commutes for Sequence Functors") {
     testFunctionMorphism(id)
+  }
 
-  property("Functor identity maps between the identities of the categories for Sequence Functors") = {
+  property("Functor identity maps between the identities of the categories for Sequence Functors") {
     val f1: Int => String = _.toString
     import SeqF._
     map(List.empty[Int])(f1) == List.empty[String]
   }
 
-  property("Functor identity maps between the identities of the categories for Sequence Functors") = {
+  property("Functor identity maps between the identities of the categories for Sequence Functors") {
     val f1: Int => Int = _ * 2
     def id[A] = identity[A]     // Lift method to a function
     import FunctionF._
@@ -51,7 +56,7 @@ class FunctorProperties extends Properties("Functors") {
     }
   }
 
-  property("Functor morphism composition is associative for Sequence Functors") = {
+  property("Functor morphism composition is associative for Sequence Functors") {
     val f1: Int => Int = _ * 2
     val f2: Int => Int = _ + 3
     val f3: Int => Int = _ * 5
@@ -63,7 +68,7 @@ class FunctorProperties extends Properties("Functors") {
     }
   }
 
-  property("Functor morphism composition is associative for Sequence Functors") = {
+  property("Functor morphism composition is associative for Sequence Functors") {
     val f1: Int => Int = _ * 2
     val f2: Int => Int = _ + 3
     val f3: Int => Int = _ * 5
