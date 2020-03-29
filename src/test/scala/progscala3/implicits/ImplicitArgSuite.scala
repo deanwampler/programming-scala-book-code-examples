@@ -25,7 +25,7 @@ class ImplicitArgSuite extends FunSuite {
     }
 
     implicit def rate(implicit cstd: ComplicatedSalesTaxData): Float =
-      if (cstd.isTaxHoliday) 0.0F
+      if cstd.isTaxHoliday then 0.0F
       else cstd.baseRate + extraTaxRateForStore(cstd.storeId)
   }
 

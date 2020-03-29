@@ -8,10 +8,10 @@ import org.scalacheck._
 class ZipCodePropertiesSuite extends ScalaCheckSuite {
   import Prop.forAll
 
-  def validInts = for {
+  def validInts = for
     z <- Gen.choose(10000, 99999)
     e <- Gen.choose(1000,  9999)
-  } yield (z, e)
+  yield (z, e)
 
   property("succeeds with zip integers between 1-99999 and extensions between 0-9999") {
     forAll(validInts) { case (zipInt: Int, extInt: Int) =>

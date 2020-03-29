@@ -8,7 +8,7 @@ class ForOptionsBad2Suite extends FunSuite {
 	def sumCountsBad(counts: Seq[Option[Int]]): Option[Int] =
 	  (counts foldLeft Option(0)) {
 	    (countOption, count) =>
-	      if (countOption == None || count == None) None
+	      if countOption == None || count == None then None
 	      else Some(countOption.get + count.get)
 	  }
 

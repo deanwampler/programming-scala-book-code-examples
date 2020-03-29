@@ -9,9 +9,9 @@ class ForEithersSeqSuite extends FunSuite {
 		val seq: Seq[Either[RuntimeException,Int]] =
 		  Vector(Right(10), Left(new RuntimeException("boo!")), Right(20))
 
-		val results2 = for {
+		val results2 = for
 		  case Right(i) <- seq
-		} yield (2 * i)
+		yield (2 * i)
 		assert(results2 == Vector(20, 40))
 	}
 }

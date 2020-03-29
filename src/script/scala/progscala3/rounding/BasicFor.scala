@@ -2,5 +2,9 @@
 
 import progscala3.rounding.WeekDay
 
-for (day <- WeekDay.values)
-  println(day)
+for
+  day <- WeekDay.values
+do println(day)
+
+for day <- WeekDay.values
+do println(day)

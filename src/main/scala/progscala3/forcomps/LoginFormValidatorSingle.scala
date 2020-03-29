@@ -28,14 +28,14 @@ object LoginFormValidatorSingle {                                    // <1>
   }
 
   def apply(userName: String, password: String): E[ValidLoginForm] = // <2>
-    for {
+    for
       _ <- nonEmpty(userName, "user name")
       _ <- notTooShort(userName, "user name", 5)
       _ <- goodCharacters(userName, "user name")
       _ <- nonEmpty(password, "password")
       _ <- notTooShort(password, "password", 5)
       _ <- goodCharacters(password, "password")
-    } yield ValidLoginForm(userName, password)
+    yield ValidLoginForm(userName, password)
 
   def main(args: Array[String]): Unit = {
     assert(LoginFormValidatorSingle("", "pwd") == 

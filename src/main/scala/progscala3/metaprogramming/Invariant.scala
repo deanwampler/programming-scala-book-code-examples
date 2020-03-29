@@ -22,9 +22,9 @@ object invariant {
   inline def apply[T](
       inline predicate: => Boolean)(
       inline block: => T): T = {
-    if (!skip && !predicate) fail(predicate, block, true)
+    if !skip && !predicate then fail(predicate, block, true)
     val result = block
-    if (!skip && !predicate) fail(predicate, block, false)
+    if !skip && !predicate then fail(predicate, block, false)
     result
   }
 
@@ -39,7 +39,7 @@ object invariant {
     def apply(predicate: String, block: String, before: Boolean) =
       new InvariantFailure(
         s"FAILURE! $predicate failed for block: $block (${beforeAfter(before)} evaluation)")
-    private def beforeAfter(before: Boolean) = if (before) "before" else "after"
+    private def beforeAfter(before: Boolean) = if before then "before" else "after"
   }
 
   def failImpl[T](

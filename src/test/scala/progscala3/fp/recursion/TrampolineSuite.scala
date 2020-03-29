@@ -9,10 +9,10 @@ import scala.util.control.TailCalls._
 class TrampolineSuite extends FunSuite {
 
 	def isEven(xs: Seq[Int]): TailRec[Boolean] =
-	  if (xs.isEmpty) done(true) else tailcall(isOdd(xs.tail))
+	  if xs.isEmpty then done(true) else tailcall(isOdd(xs.tail))
 
 	def isOdd(xs: Seq[Int]): TailRec[Boolean] =
-	 if (xs.isEmpty) done(false) else tailcall(isEven(xs.tail))
+	 if xs.isEmpty then done(false) else tailcall(isEven(xs.tail))
 
 	test("Trampolines can be used to reduce stack frame usage") {
 		val eo = (1 to 5).map(i => (i, isEven(1 to i).result))

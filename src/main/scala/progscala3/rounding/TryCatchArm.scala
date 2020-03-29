@@ -4,9 +4,6 @@ import scala.language.reflectiveCalls
 import reflect.Selectable.reflectiveSelectable
 import scala.util.control.NonFatal
 
-// DeanW (Dec. 21, 2015): Refined the implementation and the usage
-// example below to more clearly indicate the handling of the returned
-// object of type T.
 object manage {
   def apply[R <: { def close():Unit }, T](resource: => R)(f: R => T): T = {
     var res: Option[R] = None
@@ -18,7 +15,7 @@ object manage {
         println(s"manage.apply(): Non fatal exception! $ex")
         throw ex
     } finally {
-      if (res != None) {
+      if res != None then {
         println(s"Closing resource...")
         res.get.close()
       }
@@ -29,7 +26,16 @@ object manage {
 object TryCatchARM {
   /** Usage: scala rounding.TryCatch filename1 filename2 ... */
   def main(args: Array[String]): Unit = {
-    val sizes = args map (arg => returnFileLength(arg))
+    val sizes = args map { arg =>
+      try
+        val size = returnFileLength(arg)
+        println(s"file $arg has $size lines")
+        size
+      catch
+        case NonFatal(ex) =>
+          println(s"caught $ex")
+          -1
+    }
     println("Returned sizes: " + (sizes.mkString(", ")))
   }
 
@@ -38,10 +44,7 @@ object TryCatchARM {
   def returnFileLength(fileName: String): Int = {
     println()  // Add a blank line for legibility
     manage(Source.fromFile(fileName)) { source =>
-      val size = source.getLines.size
-      println(s"file $fileName has $size lines")
-      if (size > 200) throw new RuntimeException(s"Big file: $fileName!")
-      size
+      source.getLines.size
     }
   }
 }

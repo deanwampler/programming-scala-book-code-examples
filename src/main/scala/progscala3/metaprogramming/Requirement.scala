@@ -45,7 +45,7 @@ object requirement {                                                   // <3>
 
   def checkReq(predicate: Expr[Boolean], message: Expr[String])(
       using QuoteContext) = '{
-    if (!($predicate)) {
+    if !($predicate) then {
       throw RequirementFailure(${showExpr(predicate)}, ${showExpr(message)})
     }
   }

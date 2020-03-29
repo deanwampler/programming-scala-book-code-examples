@@ -5,7 +5,7 @@ import scala.language.dynamics                                       // <1>
 case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic {
 
   def selectDynamic(name: String): CLINQ[T] =                        // <2>
-    if (name == "all" || records.length == 0) this                   // <3>
+    if name == "all" || records.length == 0 then this                   // <3>
     else {
       val fields = name.split("_and_")                               // <4>
       val seed = Seq.empty[Map[String,T]]
@@ -15,7 +15,7 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic {
             case (key, _) => fields contains key
           }
           // Drop records with no projection.
-          if (projection.size > 0) results :+ projection
+          if projection.size > 0 then results :+ projection
           else results
       }
       CLINQ(newRecords)                                              // <6>

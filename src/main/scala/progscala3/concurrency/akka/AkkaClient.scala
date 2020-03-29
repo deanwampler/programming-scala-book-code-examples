@@ -63,7 +63,7 @@ object AkkaClient {                                                  // <1>
         f(n)
       } catch {
         case _: NFE =>
-          val s = if (context.size > 0) {
+          val s = if context.size > 0 then {
             s"""With context "$context", expected a number, but got $ns"""
           } else {
             s"""Expected a number, but got $ns"""
@@ -75,7 +75,7 @@ object AkkaClient {                                                  // <1>
       case blankRE() =>   /* do nothing */
       case "h" | "help" => println(help)
       case dumpRE(n) =>                                              // <12>
-        server ! (if (n == null) DumpAll else handleInt(n.trim)(Dump.apply))
+        server ! (if n == null then DumpAll else handleInt(n.trim)(Dump.apply))
       case badCrashRE() => missingActorNumber()                      // <13>
       case crashRE(n) => server ! handleInt(n)(Crash.apply)
       case charNumberStringRE(c, n, s) => c match {                  // <14>
@@ -96,7 +96,7 @@ object AkkaClient {                                                  // <1>
       case string => invalidInput(string)                            // <17>
     }
 
-    while (true) {
+    while true do {
       prompt()                                                       // <18>
       Console.in.readLine() match {
         case null => finished()
@@ -119,7 +119,7 @@ object AkkaClient {                                                  // <1>
     |""".stripMargin
 
   private def exit(message: String, status: Int): Nothing = {        // <20>
-    for (sys <- system) sys.terminate()
+    for sys <- system do sys.terminate()
     println(message)
     sys.exit(status)
   }

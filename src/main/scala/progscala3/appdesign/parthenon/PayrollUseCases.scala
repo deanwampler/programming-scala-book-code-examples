@@ -12,10 +12,10 @@ object PayrollParthenon {                                            // <1>
     }"""
                                                                      // <2>
   private def readData(inputFileName: String): Seq[(String, Money, String)] =
-    for {
+    for
       line <- scala.io.Source.fromFile(inputFileName).getLines.toVector
       if line.matches("\\s*#.*") == false  // skip comments
-    } yield toRule(line)
+    yield toRule(line)
 
   private def toRule(line: String): (String, Money, String) = {      // <3>
     val Array(name, salary, fedTax, stateTax, insurance, retirement): @unchecked =
@@ -41,9 +41,9 @@ object PayrollParthenon {                                            // <1>
                                                                      // <6>
   private def processRules(inputFileName: String): Seq[EmployeeData] = {
     val data = readData(inputFileName)
-    for {
+    for
       (name, salary, rule) <- data
-    } yield (name, salary, toDeduction(rule))
+    yield (name, salary, toDeduction(rule))
   }
                                                                      // <7>
   def biweeklyPayrollPerEmployeeReportUseCase(data: Seq[EmployeeData]): Unit ={
@@ -52,11 +52,11 @@ object PayrollParthenon {                                            // <1>
     println("\nBiweekly Payroll:")
     printf(head, "Name", "Gross", "Net", "Deductions")
     printf(head, "----", "-----", "---", "----------")
-    for {
+    for
       (name, salary, deductions) <- data
       gross = deductions.gross(salary.amount)
       net   = deductions.net(salary.amount)
-    } printf(fmt, name, gross, net, gross - net)
+    do printf(fmt, name, gross, net, gross - net)
   }
                                                                      // <8>
   def biweeklyPayrollTotalsReportUseCase(data: Seq[EmployeeData]): Unit = {
@@ -72,7 +72,7 @@ object PayrollParthenon {                                            // <1>
 
   def main(args: Array[String]): Unit = {
     val inputFileName =
-      if (args.length > 0) args(0) else "misc/parthenon-payroll.txt"
+      if args.length > 0 then args(0) else "misc/parthenon-payroll.txt"
     val data = processRules(inputFileName)
 
     biweeklyPayrollTotalsReportUseCase(data)

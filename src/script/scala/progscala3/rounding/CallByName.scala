@@ -2,10 +2,9 @@
 
 @annotation.tailrec                                                  // <1>
 def continue(conditional: => Boolean)(body: => Unit): Unit = {       // <2>
-  if (conditional) {                                                 // <3>
+  if conditional then                                                // <3>
     body                                                             // <4>
     continue(conditional)(body)
-  }
 }
 
 var count = 0                                                        // <5>

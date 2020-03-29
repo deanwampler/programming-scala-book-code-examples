@@ -11,17 +11,17 @@ object LoginFormValidatorNec {                                 // <1>
   type V[T] = ValidatedNec[LoginValidation, T]  // shorter
 
   def nonEmpty(field: String, name: String): V[String] =
-    if (field.length > 0) field.validNec
+    if field.length > 0 then field.validNec
     else Empty(name).invalidNec
 
   def notTooShort(field: String, name: String, n: Int): V[String] =
-    if (field.length >= n) field.validNec
+    if field.length >= n then field.validNec
     else TooShort(name, n).invalidNec
 
   /** For simplicity, just disallow whitespace. */
   def goodCharacters(field: String, name: String): V[String] = {
     val re = raw".*\s.*".r
-    if (re.matches(field) == false) field.validNec
+    if re.matches(field) == false then field.validNec
     else BadCharacters(name).invalidNec
   }
 

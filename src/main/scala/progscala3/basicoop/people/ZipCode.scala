@@ -8,7 +8,7 @@ package progscala3.basicoop.people
 case class ZipCode private (zip: Int, extension: Int) {              // <1>
   
   override def toString =                                            // <2>
-    if (extension != 0) s"$zip-$extension" else zip.toString
+    if extension != 0 then s"$zip-$extension" else zip.toString
 }
 
 object ZipCode {

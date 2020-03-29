@@ -12,7 +12,7 @@ object CommandArgs {
   |""".stripMargin
 
   def quit(message: String, status: Int): Nothing = {                // <1>
-    if (message.length > 0) println(message)
+    if message.length > 0 then println(message)
     println(help)
     sys.exit(status)
   }
@@ -30,7 +30,7 @@ object CommandArgs {
       case _ => quit(s"Unrecognized argument ${args2.head}", 1)      // <9>
     }
     val argz = pa(args.toList, Args("", ""))                         // <10>
-    if (argz.inputPath == "" || argz.outputPath == "")               // <11>
+    if argz.inputPath == "" || argz.outputPath == "" then               // <11>
       quit("Must specify input and output paths.", 1)
     argz
   }

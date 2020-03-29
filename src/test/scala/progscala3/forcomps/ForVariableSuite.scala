@@ -7,12 +7,12 @@ class ForVariableSuite extends FunSuite {
 	val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
 	test("Variables can be assigned in for comprehensions") {
-		val result = for {
+		val result = for
 		  s <- states
 		  c <- s
 		  if c.isLower
 		  c2 = s"$c-${c.toUpper}"
-		} yield c2
+		yield c2
 		// Check the first five values:
 		assert(result.take(5) == List("l-L", "a-A", "b-B", "a-A", "m-M"))
 	}

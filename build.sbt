@@ -33,6 +33,8 @@ libraryDependencies ++= {
 testFrameworks += new TestFramework("munit.Framework")
 
 // For Scala 3 (Dotty)
+// The -rewrite and -migration options are best used while migrating
+// from Scala 2 to Scala 3, then removed.
 lazy val scalacOptions3 = Seq(
   "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
   "-encoding", "utf-8",                // Specify character encoding used by source files.
@@ -40,13 +42,13 @@ lazy val scalacOptions3 = Seq(
   "-feature",                          // Emit warning and location for usages of features that should be imported explicitly.
   "-explain",                          // Explain errors in more detail.
   "-explain-types",                    // Explain type errors in more detail.
-  "-noindent",                         // Require classical {...} syntax, indentation is not significant.
-  "-old-syntax",                       // Require `(...)` around conditions.
-  // "-new-syntax",                       // Require `then` and `do` in control expressions.
+  // "-noindent",                         // Require classical {...} syntax, indentation is not significant.
+  // "-old-syntax",                       // Require `(...)` around conditions.
+  "-new-syntax",                       // Require `then` and `do` in control expressions.
   "-strict",                           // Use strict type rules, which means some formerly legal code does not typecheck anymore.
+  // "-language:Scala2",                  // Compile Scala 2 code, highlight what needs updating
   // "-migration",                        // Emit warning and location for migration issues from Scala 2.
-  // "-language:Scala2"                   // Compile Scala 2 code, highlight what needs updating
-  // "-rewrite"                           // Attempt to fix code automatically
+  // "-rewrite",                          // Attempt to fix code automatically
 )
 
 scalacOptions in Compile := scalacOptions3

@@ -15,7 +15,7 @@ sealed abstract class AbbrevList[+A] {
 
   final def foreach(f: A => Unit) = {
     var these = this
-    while (!these.isEmpty) {
+    while !these.isEmpty do {
       f(these.head)
       these = these.tail
     }

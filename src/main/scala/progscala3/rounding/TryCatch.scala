@@ -13,14 +13,29 @@ object TryCatch {
   def countLines(fileName: String) = {                               // <3>
     println()  // Add a blank line for legibility
     var source: Option[Source] = None                                // <4>
-    try {                                                            // <5>
+    try                                                              // <5>
       source = Some(Source.fromFile(fileName))                       // <6>
       val size = source.get.getLines.size
       println(s"file $fileName has $size lines")
-    } catch {
+    catch
       case NonFatal(ex) => println(s"Non fatal exception! $ex")      // <7>
+    finally
+      for s <- source do                                             // <8>
+        println(s"Closing $fileName...")
+        s.close
+  }
+
+  def countLines2(fileName: String) = {                              // <9>
+    println()  // Add a blank line for legibility
+    var source: Option[Source] = None
+    try {
+      source = Some(Source.fromFile(fileName))
+      val size = source.get.getLines.size
+      println(s"file $fileName has $size lines")
+    } catch {
+      case NonFatal(ex) => println(s"Non fatal exception! $ex")
     } finally {
-      for (s <- source) {                                            // <8>
+      for s <- source do {
         println(s"Closing $fileName...")
         s.close
       }
