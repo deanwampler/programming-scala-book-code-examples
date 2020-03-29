@@ -13,6 +13,7 @@
 | October 13, 2019  | Renamed the repo from `prog-scala-2nd-ed-code-examples` to `programming-scala-book-code-examples` |
 | December 31, 2019 | Renamed the `progscala2` package to `progscala3` and reworked most of the `*.sc` scripts for better testability and other improvements |
 | March 1, 2020     | Completed conversion to Scala 3 |
+| March 20, 2020    | Started incorporating new Scala 3 syntax, idioms |
 
 [![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -41,9 +42,9 @@ The examples include "scripts" that are run with the `scala` command (or within 
 To keep these different kinds of files straight and to support building with SBT, the following conventions are used for the files:
 
 - `src/main/scala/.../*.scala` - All Scala 3 source files built with SBT.
-- `src/main/scala-2/.../*.scala` - All Scala 2 source files that won't compile with Scala 3. They are not built with SBT.
 - `src/test/.../*.scala` - All Scala 3 test source files built and executed with SBT.
 - `src/script/.../*.scala` - "Script" files that won't compile with `scalac`, but can be interpreted with the `scala` interpreter.
+- `src/*/scala-2/.../*.scala` - All Scala 2 source files that won't compile with Scala 3. They are not built with SBT.
 - `src/extra/.../*.scala` - Extra examples that aren't part of the SBT build, for example, an Apache Spark example that is not built so that the Spark dependencies aren't added to the build.
 
 ## Required and Optional Tools
