@@ -1,6 +1,6 @@
 name := "Programming Scala, Third Edition - Code examples"
 
-version := "3.0.0-100"
+version := "3.0.0-110"
 
 organization := "org.programming-scala"
 
@@ -44,7 +44,7 @@ lazy val scalacOptions3 = Seq(
   "-old-syntax",                       // Require `(...)` around conditions.
   // "-new-syntax",                       // Require `then` and `do` in control expressions.
   "-strict",                           // Use strict type rules, which means some formerly legal code does not typecheck anymore.
-  "-migration",                        // Emit warning and location for migration issues from Scala 2.
+  // "-migration",                        // Emit warning and location for migration issues from Scala 2.
   // "-language:Scala2"                   // Compile Scala 2 code, highlight what needs updating
   // "-rewrite"                           // Attempt to fix code automatically
 )
