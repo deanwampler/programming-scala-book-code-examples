@@ -18,8 +18,8 @@ class ButtonCountObserver extends Observer[Button] {
 val bco1   = new ButtonCountObserver
 val bco2   = new ButtonCountObserver
 
-button addObserver bco1
-button addObserver bco2
+button.addObserver(bco1)
+button.addObserver(bco2)
 
 (1 to 5) foreach (_ => button.click())
 
