@@ -4,4 +4,4 @@ object Upper2 {
   def convert(strings: String*) = strings.map(_.toUpperCase())
 }
 
-assert(Upper2.convert("Hello", "World!") == Seq("HELLO", "WORLD!"))
+println(Upper2.convert(List("Hello", "World!")))
