@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/traits/ui/ButtonCountObserver2.scala
+// src/script/scala/progscala3/traits/ui/ButtonCountObserver3.scala
 import progscala3.traits.ui._
 import progscala3.traits.observer._
 

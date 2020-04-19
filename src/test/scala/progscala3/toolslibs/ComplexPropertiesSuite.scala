@@ -1,10 +1,10 @@
-// src/main/scala/progscala3/toolslibs/ComplexProperties.scala
+// src/test/scala/progscala3/toolslibs/ComplexPropertiesSuite.scala
 package progscala3.toolslibs
 
 import munit.ScalaCheckSuite
 import org.scalacheck._
 
-class ComplexProperties extends ScalaCheckSuite {
+class ComplexPropertiesSuite extends ScalaCheckSuite {
   import Prop.forAll
 
   def additionTest(a: Complex, b: Complex) = {

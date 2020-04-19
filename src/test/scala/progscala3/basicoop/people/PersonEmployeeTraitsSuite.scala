@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/basicoop/people/PersonEmployeeTraitsSuite.scala
+// src/test/scala/progscala3/basicoop/people/PersonEmployeeTraitsSuite.scala
 package progscala3.basicoop.people
 
 import munit._

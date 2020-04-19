@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/typelessdomore/semicolon-example.sc
+// src/script/scala/progscala3/typelessdomore/SemicolonExample.scala
 
 // Trailing equals sign indicates more code on the next line.
 def equalsign(s: String) =
@@ -12,5 +12,5 @@ def equalsign2(s: String) = {
 // Trailing commas, periods, and operators indicate more code on the next line.
 def commas(s1: String,
            s2: String) = Console.
-  println("comma: " + s1 + 
+  println("comma: " + s1 +
           ", " + s2)

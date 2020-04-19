@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/basicoop/ValueClassPhoneNumberSuite.scala
+// src/test/scala/progscala3/basicoop/ValueClassPhoneNumberSuite.scala
 package progscala3.basicoop
 
 import munit._

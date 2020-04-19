@@ -1,4 +1,4 @@
-// src/script/scala-2/progscala3/rounding/DoWhileDoWhileAlternative.scala
+// src/script/scala-2/progscala3/rounding/DoWhileAlternative.scala
 
 var count = 0
 

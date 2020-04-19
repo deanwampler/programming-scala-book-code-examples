@@ -1,4 +1,4 @@
-// src/test/scala/progscala3/implicits/LinearizationSuite.scala
+// src/test/scala/progscala3/objectsystem/linearization/LinearizationSuite.scala
 package progscala3.implicits
 
 import munit._

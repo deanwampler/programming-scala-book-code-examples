@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/dsls/payroll/parsercomb/DSLPropertiesSuite.scala
+// src/test/scala/progscala3/dsls/payroll/parsercomb/DSLPropertiesSuite.scala
 package progscala3.dsls.payroll.parsercomb
 
 import munit.ScalaCheckSuite

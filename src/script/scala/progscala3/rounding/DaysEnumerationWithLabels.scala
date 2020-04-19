@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/rounding/DaysEnumerationWithLabel.scala
+// src/script/scala/progscala3/rounding/DaysEnumerationWithLabels.scala
 
 import progscala3.rounding.WeekDayWithLabel
 

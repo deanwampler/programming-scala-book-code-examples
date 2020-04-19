@@ -1,4 +1,4 @@
-// src/test/scala/progscala3/fp/basics/HOFs2ExampleSuite.scala
+// src/test/scala/progscala3/fp/basics/HOFsExampleSuite.scala
 package progscala3.fp.basics
 
 import munit._

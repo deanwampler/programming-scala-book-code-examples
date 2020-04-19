@@ -1,4 +1,4 @@
-// src/test/scala/progscala3/forcomps/RefTransparency.scala
+// src/test/scala/progscala3/forcomps/RefTransparencySuite.scala
 package progscala3.forcomps
 
 import munit._

@@ -1,4 +1,4 @@
-// src/script/scala-2/progscala3/rounding/DoubleGuardFor.scala
+// src/script/scala-2/progscala3/rounding/GuardFor.scala
 
 import progscala3.rounding.WeekDay
 

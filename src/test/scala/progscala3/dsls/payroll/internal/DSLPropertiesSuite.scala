@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/dsls/payroll/internal/DSLPropertiesSuite.scala
+// src/test/scala/progscala3/dsls/payroll/internal/DSLPropertiesSuite.scala
 package progscala3.dsls.payroll.internal
 
 import munit.ScalaCheckSuite

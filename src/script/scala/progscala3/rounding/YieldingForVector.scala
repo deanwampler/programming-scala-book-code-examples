@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/rounding/YieldingFor.scala
+// src/script/scala/progscala3/rounding/YieldingForVector.scala
 
 val odds = for
   number <- Vector(1,2,3,4,5)

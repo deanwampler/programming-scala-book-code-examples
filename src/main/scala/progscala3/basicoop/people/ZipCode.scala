@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/basicoop/people/Zipcode.scala
+// src/main/scala/progscala3/basicoop/people/ZipCode.scala
 package progscala3.basicoop.people
 
 /**
@@ -6,20 +6,20 @@ package progscala3.basicoop.people
  * one of the companion object apply methods, all of which do validation.
  */
 case class ZipCode private (zip: Int, extension: Int) {              // <1>
-  
+
   override def toString =                                            // <2>
     if extension != 0 then s"$zip-$extension" else zip.toString
 }
 
 object ZipCode {
 
-  def apply(zip: Int): ZipCode = 
+  def apply(zip: Int): ZipCode =
     doApply(validUSPSInts(zip, 0))
   def apply(zip: Int, extension: Int): ZipCode =                    // <3>
     doApply(validUSPSInts(zip, extension))
-  def apply(zip: String): ZipCode = 
+  def apply(zip: String): ZipCode =
     doApply(validUSPSStrs(zip, ""))
-  def apply(zip: String, extension: String): ZipCode = 
+  def apply(zip: String, extension: String): ZipCode =
     doApply(validUSPSStrs(zip, extension))
 
   protected def doApply(
@@ -29,8 +29,8 @@ object ZipCode {
     }
 
   /**
-   * Note: Real US Post Service zip codes aren't defined for all 
-   * integers from 10000 to 99999, exactly 5 digits. Same for 
+   * Note: Real US Post Service zip codes aren't defined for all
+   * integers from 10000 to 99999, exactly 5 digits. Same for
    * the extensions: empty, 0, OR exactly 4 digits (1000-9999).
    */
   protected def validUSPSInts(z: Int, e: Int): Either[String, (Int, Int)] = {
@@ -45,7 +45,7 @@ object ZipCode {
   }
 
   // arbitrary outside white space is fine.
-  protected val zipRE = """^\s*\d{5}\s*$""".r  
+  protected val zipRE = """^\s*\d{5}\s*$""".r
   protected val extRE = """^\s*\d{4}\s*$""".r
 
   protected def validUSPSStrs(

@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/patternmatching/match-variable3.sc
+// src/script/scala/progscala3/patternmatching/MatchVariable2.scala
 
 val result = Seq(1, "one", 2, 3.14, "four", Symbol("five")) map {
   str => str match {                                      // <1>
@@ -9,5 +9,5 @@ val result = Seq(1, "one", 2, 3.14, "four", Symbol("five")) map {
   }
 }
 assert(result == Seq(
-  "a number: 1", "string one", "a number: 2", 
+  "a number: 1", "string one", "a number: 2",
   "a number: 3.14", "other string: four", "unexpected value: 'five"))

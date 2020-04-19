@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/concurrency/process/ProcessExample.sc
+// src/main/scala/progscala3/concurrency/process/ProcessExample.scala
 package progscala3.concurrency.process
 
 import scala.sys.process._
