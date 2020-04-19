@@ -6,4 +6,4 @@ def hello(name: String) = s"""Welcome!
   |We're glad you're here.
   |  Have some extra whitespace.""".stripMargin
 
-hello("Programming Scala")
+val hi = hello("Programming Scala")

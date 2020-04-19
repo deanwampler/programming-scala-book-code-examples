@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/typelessdomore/SemicolonExample.scala
+// src/script/scala/progscala3/typelessdomore/NoSemicolons.scala
 
 // Trailing equals sign indicates more code on the next line.
 def equalsign(s: String) =

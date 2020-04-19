@@ -1,11 +1,11 @@
 // src/script/scala/progscala3/typelessdomore/MethodBroadInferenceReturn.scala
-// ERROR: Won't compile. Method actually returns List[Any]; too "broad".
+// ERROR: function compiles, but the last line doesn't.
 
-def makeList(strings: String*) = {
-  if (strings.length == 0)
-    List(0)  // #1
+def upperCase(strings: Seq[String]) = {
+  if (strings.length == 0) then
+    Seq(0)  // #1
   else
-    strings.toList
+    strings.map(_.toUpperCase)
 }
 
-val list: List[String] = makeList()  // COMPILATION ERROR
+val seq: Seq[String] = upperCase(Nil)  // COMPILATION ERROR
