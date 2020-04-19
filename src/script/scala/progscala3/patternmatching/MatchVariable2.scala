@@ -1,13 +1,18 @@
 // src/script/scala/progscala3/patternmatching/MatchVariable2.scala
 
-val result = Seq(1, "one", 2, 3.14, "four", Symbol("five")) map {
-  str => str match {                                      // <1>
-    case _: Int | _: Double => "a number: " + str
-    case "one"              => "string one"
-    case _: String          => "other string: " + str
-    case _                  => "unexpected value: " + str
-  }
+val seq = Seq(1, "one", 2, 3.14, "four", 5.5F, (6, 7))
+val result = seq map {
+  item => item match {
+	  case 1                   => "int 1"
+	  case i: Int              => "other int: "+i
+	  case d: (Double | Float) => "a double or float: "+d
+	  case "one"               => "string one"
+	  case s: String           => "other string: "+s
+	  case unexpected          => "unexpected value: " + unexpected
+	}
 }
+
 assert(result == Seq(
-  "a number: 1", "string one", "a number: 2",
-  "a number: 3.14", "other string: four", "unexpected value: 'five"))
+  "int 1", "string one", "other int: 2",
+  "a double or float: 3.14", "other string: four",
+  "a double or float: 5.5", "unexpected value: (6,7)"))

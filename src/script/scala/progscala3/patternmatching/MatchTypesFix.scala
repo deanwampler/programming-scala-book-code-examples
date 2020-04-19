@@ -9,11 +9,11 @@ def doSeqMatch[T](seq: Seq[T]): String = seq match {
   }
 }
 
-val results = Seq(List(5.5,5.6,5.7), List("a", "b"), Nil) map {
+val results = Seq(Seq(5.5,5.6,5.7), Seq("a", "b"), Nil) map {
   case seq: Seq[_] => (s"seq ${doSeqMatch(seq)}", seq)
-  case x           => ("unknown!", x)
 }
+
 assert(results == Seq(
-  ("seq Double",  List(5.5, 5.6, 5.7)), 
-  ("seq String",  List("a", "b")), 
-  ("seq Nothing", List())))
+  ("seq Double",  Seq(5.5, 5.6, 5.7)),
+  ("seq String",  Seq("a", "b")),
+  ("seq Nothing", Seq())))
