@@ -1,9 +1,8 @@
-// src/script/scala/progscala3/rounding/DoWhileAlternative.scala
+// src/script/scala/progscala3/rounding/DoWhile.scala
 
 var count = 0
-while {
+do
   count += 1
   println(count)
-  count < 10
-} do ()
+while (count < 10)
 assert(count == 10)
