@@ -1,4 +1,4 @@
-// src/test/scala/progscala3/fp/datastructs/FoldImplFuncsSuite.scala
+// src/test/scala/progscala3/fp/datastructs/FoldRightLeftSuite.scala
 package progscala3.fp.datastructs
 
 import munit._
@@ -6,7 +6,7 @@ import munit._
 /**
  * Simplified implementations of foldLeft and foldRight.
  */
-class FoldImplFuncsSuite extends FunSuite {
+class FoldRightLeftSuite extends FunSuite {
 
 	def foldLeft[A,B](seed: B)(s: Seq[A])(f: (B, A) => B): B = {
 	  @annotation.tailrec
