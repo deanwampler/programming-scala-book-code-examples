@@ -24,6 +24,4 @@ Licenses for dependent projects:
 * JUnit-interface: https://github.com/sbt/junit-interface/blob/master/LICENSE.txt
 * Scala: http://www.scala-lang.org/license.html
 * ScalaCheck: https://github.com/rickynils/scalacheck/blob/master/LICENSE
-* ScalaTest: https://github.com/scalatest/scalatest/blob/master/LICENSE
-* Specs2: https://github.com/etorreborre/specs2/blob/master/LICENSE.txt
 

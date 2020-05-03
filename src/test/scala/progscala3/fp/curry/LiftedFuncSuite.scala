@@ -1,5 +1,5 @@
 // src/test/scala/progscala3/fp/curry/LiftedFuncSuite.scala
-package progscala3.fp.combinators
+package progscala3.fp.curry
 
 import munit._
 
