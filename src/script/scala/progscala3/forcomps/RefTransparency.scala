@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/forcomps/RefTransparency.scala
 
-import RefTransparency._
+import progscala3.forcomps.RefTransparency._
 
 for
   i <- 1 to 3

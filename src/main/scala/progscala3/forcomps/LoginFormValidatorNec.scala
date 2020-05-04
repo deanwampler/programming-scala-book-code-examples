@@ -6,11 +6,15 @@ import cats.data._
 import cats.data.Validated._
 import scala.language.implicitConversions
 
-object LoginFormValidatorNec {                                 // <1>
+/**
+ * Nec variant, where NEC stands for "non empty chain".
+ * @see https://typelevel.org/cats/datatypes/validated.html
+ */
+object LoginFormValidatorNec {
 
-  type V[T] = ValidatedNec[LoginValidation, T]  // shorter
+  type V[T] = ValidatedNec[LoginValidation, T]                       // <1>
 
-  def nonEmpty(field: String, name: String): V[String] =
+  def nonEmpty(field: String, name: String): V[String] =             // <2>
     if field.length > 0 then field.validNec
     else Empty(name).invalidNec
 
@@ -25,8 +29,8 @@ object LoginFormValidatorNec {                                 // <1>
     else BadCharacters(name).invalidNec
   }
 
-  def apply(
-      userName: String, password: String): V[ValidLoginForm] = // <2>
+  def apply(                                                         // <3>
+      userName: String, password: String): V[ValidLoginForm] =
     (nonEmpty(userName, "user name"),
     notTooShort(userName, "user name", 5),
     goodCharacters(userName, "user name"),
