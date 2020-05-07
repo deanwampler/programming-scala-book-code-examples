@@ -35,7 +35,7 @@ testFrameworks += new TestFramework("munit.Framework")
 // For Scala 3 (Dotty)
 // The -rewrite and -migration options are best used while migrating
 // from Scala 2 to Scala 3, then removed.
-lazy val scalacOptions3 = Seq(
+scalacOptions in Compile := Seq(
   "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
   "-encoding", "utf-8",                // Specify character encoding used by source files.
   "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
@@ -50,9 +50,7 @@ lazy val scalacOptions3 = Seq(
   // "-migration",                        // Emit warning and location for migration issues from Scala 2.
   // "-rewrite",                          // Attempt to fix code automatically
 )
-
-scalacOptions in Compile := scalacOptions3
-scalacOptions in (Compile, console) := scalacOptions3
+scalacOptions in (Compile, console) := scalacOptions.value
 
 javacOptions  ++= Seq(
   "-Xlint:unchecked", "-Xlint:deprecation") // Java 8: "-Xdiags:verbose")
