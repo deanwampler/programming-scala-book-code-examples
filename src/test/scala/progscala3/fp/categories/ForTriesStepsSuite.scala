@@ -23,7 +23,7 @@ class ForTriesStepsSuite extends FunSuite {
   (i:Int) => Success(i + 25))
 
   def sumCounts1(countSteps: Seq[Step]): Try[Int] = {
-  val zero: Try[Int] = Success(0)
+    val zero: Try[Int] = Success(0)
     (countSteps foldLeft zero) {
       (sumTry, step) => sumTry flatMap (i => step(i))
     }

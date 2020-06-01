@@ -4,7 +4,7 @@ version := "3.0.0-110"
 
 organization := "org.programming-scala"
 
-scalaVersion := "0.23.0-RC1"
+scalaVersion := "0.24.0-RC1"
 
 maxErrors := 10
 
@@ -25,8 +25,8 @@ libraryDependencies ++= {
     "org.scalacheck"         %% "scalacheck"       % "1.14.1" % Test,
   ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
     // Libraries that already fully support Dotty
-    "org.scalameta"          %% "munit"            % "0.7.1" % Test,
-    "org.scalameta"          %% "munit-scalacheck" % "0.7.1" % Test
+    "org.scalameta"          %% "munit"            % "0.7.7" % Test,
+    "org.scalameta"          %% "munit-scalacheck" % "0.7.7" % Test
   )
 }
 
@@ -45,10 +45,10 @@ scalacOptions in Compile := Seq(
   // "-noindent",                         // Require classical {...} syntax, indentation is not significant.
   // "-old-syntax",                       // Require `(...)` around conditions.
   "-new-syntax",                       // Require `then` and `do` in control expressions.
-  "-strict",                           // Use strict type rules, which means some formerly legal code does not typecheck anymore.
   // "-language:Scala2",                  // Compile Scala 2 code, highlight what needs updating
   // "-migration",                        // Emit warning and location for migration issues from Scala 2.
   // "-rewrite",                          // Attempt to fix code automatically
+  "-Xfatal-warnings",
 )
 scalacOptions in (Compile, console) := scalacOptions.value
 
