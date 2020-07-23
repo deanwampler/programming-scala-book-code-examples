@@ -9,7 +9,7 @@ sealed abstract class AbbrevList[+A] {
   def head: A
   def tail: AbbrevList[A]
 
-  @alpha("cons")
+  @alpha("acons")
   def ::[B >: A] (x: B): AbbrevList[B] =
     new progscala3.typesystem.bounds.list.::(x, this)
 
@@ -36,7 +36,7 @@ case object AbbrevNil extends AbbrevList[Nothing] {
 
 // A non-empty AbbrevList characterized by a head and a tail.
 
-@alpha("cons")
+@alpha("acons")
 final case class ::[B](private var hd: B,
     private[list] var tl: AbbrevList[B]) extends AbbrevList[B] {
 

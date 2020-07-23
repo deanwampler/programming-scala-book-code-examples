@@ -22,11 +22,11 @@ class AbbrevListSuite extends FunSuite {
   }
 
   test("item :: nonEmptyAbbrevList == AbbrevList(item, ...)") {
-    val list  = 1 :: 2 :: AbbrevNil
-    val list2 = 3 :: list
-    assert(list2.head == 3)
-    assert(list2.tail.head == 1)
-    assert(list2.tail.tail.head == 2)
+    val list  = 2 :: 3 :: AbbrevNil
+    val list2 = 1 :: list
+    assert(list2.head == 1)
+    assert(list2.tail.head == 2)
+    assert(list2.tail.tail.head == 3)
     assert(list2.tail.tail.tail == AbbrevNil)
   }
   test("nonEmptyAbbrevList.foreach(...) processes each element") {
