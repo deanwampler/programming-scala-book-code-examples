@@ -1,5 +1,4 @@
 // src/main/scala/progscala3/implicits/TypeClassesSubtyping2.scala
-// Adapted from: src/main/scala/progscala3/implicits/toJSON-type-class.sc
 // This program does not appear in the book.
 
 package progscala3.implicits
@@ -61,7 +60,7 @@ object TypeClassesSubtyping2 {
     // But this attempt to convert to JSON, and other variations, don't work.
     // Here, we get "error: value toJSON is not a member of Product with
     // java.io.Serializable"
-    // println(list1.map(_.toJSON()))
+    println(list1.map(_.toJSON()))
 
     // This works, but it's ugly and the list has the *ToJSON objects, not
     // the original Address and Person:

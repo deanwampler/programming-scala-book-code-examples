@@ -1,7 +1,7 @@
 // src/main/scala/progscala3/traits/ui2/VetoableClicks.scala
 package progscala3.traits.ui2
 
-trait VetoableClicks(val maxAllowed = 1) extends Clickable {         // <1>
+trait VetoableClicks(val maxAllowed: Int = 1) extends Clickable {    // <1>
   private var count = 0
 
   abstract override def click(): String = {
