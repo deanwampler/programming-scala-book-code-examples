@@ -3,7 +3,7 @@
 trait AbstractT3 {
   println("In AbstractT3:")
   val value: Int
-  def inverse = 1.0/value      // <1>
+  def inverse = 1.0/value
 }
 
 val obj3 = new AbstractT3 {

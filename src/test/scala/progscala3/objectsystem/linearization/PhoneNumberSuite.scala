@@ -1,9 +1,9 @@
-// src/test/scala/progscala3/objectsystem/linearization/ValueClassSuite.scala
+// src/test/scala/progscala3/objectsystem/linearization/PHoneNumberSuite.scala
 package progscala3.objectsystem.linearization
 
 import munit._
 
-class ValueClassSuite extends FunSuite {
+class PHoneNumberSuite extends FunSuite {
 
   val pn = USPhoneNumber("987-654-3210")
 

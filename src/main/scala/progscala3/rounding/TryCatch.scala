@@ -11,7 +11,6 @@ object TryCatch {
   import scala.util.control.NonFatal
 
   def countLines(fileName: String) = {                               // <3>
-    println()  // Add a blank line for legibility
     var source: Option[Source] = None                                // <4>
     try                                                              // <5>
       source = Some(Source.fromFile(fileName))                       // <6>

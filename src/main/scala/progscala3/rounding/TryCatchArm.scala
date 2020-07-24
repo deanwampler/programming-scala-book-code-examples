@@ -3,6 +3,7 @@ package progscala3.rounding
 import scala.language.reflectiveCalls
 import reflect.Selectable.reflectiveSelectable
 import scala.util.control.NonFatal
+import scala.io.Source
 
 object manage {
   def apply[R <: { def close():Unit }, T](resource: => R)(f: R => T): T = {
@@ -28,7 +29,10 @@ object TryCatchARM {
   def main(args: Array[String]): Unit = {
     val sizes = args map { arg =>
       try
-        val size = returnFileLength(arg)
+        val size = manage(Source.fromFile(arg)) { source =>
+          source.getLines.size
+        }
+
         println(s"file $arg has $size lines")
         size
       catch
@@ -39,10 +43,8 @@ object TryCatchARM {
     println("Returned sizes: " + (sizes.mkString(", ")))
   }
 
-  import scala.io.Source
 
   def returnFileLength(fileName: String): Int = {
-    println()  // Add a blank line for legibility
     manage(Source.fromFile(fileName)) { source =>
       source.getLines.size
     }

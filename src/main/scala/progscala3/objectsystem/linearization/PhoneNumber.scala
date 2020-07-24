@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/objectsystem/linearization/ValueClass.scala
+// src/main/scala/progscala3/objectsystem/linearization/PhoneNumber.scala
 package progscala3.objectsystem.linearization
 
 trait M extends Any {

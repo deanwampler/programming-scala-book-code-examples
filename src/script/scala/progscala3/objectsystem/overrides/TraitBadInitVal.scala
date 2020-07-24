@@ -1,5 +1,4 @@
 // src/script/scala/progscala3/objectsystem/overrides/TraitBadInitVal.scala
-// ERROR: "value" read before initialized.
 
 trait AbstractT1 {
   println("In AbstractT1:")

@@ -1,15 +1,24 @@
 // src/script/scala/progscala3/rounding/DaysEnumeration.scala
 
-import progscala3.rounding.WeekDay
-import progscala3.rounding.WeekDay._                           // <1>
+enum WeekDay(val name: String) {
+  case Mon extends WeekDay("Monday")
+  case Tue extends WeekDay("Tuesday")
+  case Wed extends WeekDay("Wednesday")
+  case Thu extends WeekDay("Thursday")
+  case Fri extends WeekDay("Friday")
+  case Sat extends WeekDay("Saturday")
+  case Sun extends WeekDay("Sunday")
 
-assert(WeekDay.values.toSeq.map(_.toString) == Seq(
-  "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))
+  def isWorkingDay: Boolean = ! (this == Sat || this == Sun)
+}
 
-val result = WeekDay.values filter isWorkingDay map upper
-assert(result == Set("MON", "TUE", "WED", "THU", "FRI"))
-
-val seq = WeekDay.values.toSeq
-val ids = seq.map(day => (day.id, day))
-assert(ids ==
-  Seq((0, Mon), (1, Tue), (2, Wed), (3, Thu), (4, Fri), (5, Sat), (6, Sun)))
+val tue = WeekDay.Tue
+assert(tue.ordinal == 1)
+assert(WeekDay.valueOf("Tue") == WeekDay.Tue)
+// Values order is not as declared or alphabetical:
+val sorted = WeekDay.values.sortBy(_.name).toSeq
+assert(sorted == List(
+  WeekDay.Fri, WeekDay.Mon, WeekDay.Sat, WeekDay.Sun,
+  WeekDay.Thu, WeekDay.Tue, WeekDay.Wed))
+assert(sorted.map(_.isWorkingDay) == List(
+  true, true, false, false, true, true, true))
