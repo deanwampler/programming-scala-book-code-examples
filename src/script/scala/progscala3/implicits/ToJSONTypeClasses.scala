@@ -29,5 +29,8 @@ implicit final class PersonToJSON(person: Person) extends ToJSON {    // <3>
   }
 }
 
+val address = Address("1 Scala Lane", "Anytown")
+val person = Person("Buck Trends", address)
+
 address.toJSON()
 person.toJSON()

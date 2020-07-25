@@ -11,19 +11,19 @@ case class SortableSeq[A](seq: Seq[A]) {
 val seq = SortableSeq(Seq(1,3,5,2,4))
 
 def defaultOrdering() = {                                          // <1>
-	assert(seq.sortBy1(i => -i) == SortableSeq(Seq(5, 4, 3, 2, 1)))  // <2>
-	assert(seq.sortBy2(i => -i) == SortableSeq(Seq(5, 4, 3, 2, 1)))
+  assert(seq.sortBy1(i => -i) == SortableSeq(Seq(5, 4, 3, 2, 1)))  // <2>
+  assert(seq.sortBy2(i => -i) == SortableSeq(Seq(5, 4, 3, 2, 1)))
 }
 defaultOrdering()
 
 def oddEvenOrdering() = {
-	implicit val oddEven: Ordering[Int] = new Ordering[Int] {        // <3>
-		def compare(i: Int, j: Int): Int = i%2 compare j%2 match {
-			case 0 => i compare j
-			case c => c
-		}
-	}
-	assert(seq.sortBy1(i => -i) == SortableSeq(Seq(5, 3, 1, 4, 2)))  // <4>
-	assert(seq.sortBy2(i => -i) == SortableSeq(Seq(5, 3, 1, 4, 2)))
+  implicit val oddEven: Ordering[Int] = new Ordering[Int] {        // <3>
+    def compare(i: Int, j: Int): Int = i%2 compare j%2 match {
+      case 0 => i compare j
+      case c => c
+    }
+  }
+  assert(seq.sortBy1(i => -i) == SortableSeq(Seq(5, 3, 1, 4, 2)))  // <4>
+  assert(seq.sortBy2(i => -i) == SortableSeq(Seq(5, 3, 1, 4, 2)))
 }
 oddEvenOrdering()

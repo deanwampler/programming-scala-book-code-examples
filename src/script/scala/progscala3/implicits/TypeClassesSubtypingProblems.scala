@@ -1,18 +1,14 @@
 // src/script/scala/progscala3/implicits/TypeClassesSubtypingProblems.scala
 // This program does not appear in the book.
 
-// NOTE: This file is designed to be copy and pasted into the REPL pieces
-// at a time, not run all at once.
-
+// NOTE: This file is designed to be copied and pasted into the REPL several
+// pieces at a time, not run all at once. All at once causes the behavior to
+// change because of the order in which implicits are defined.
 // Copy and paste each block between // START N ... // END N, one at a time.
+// The DomainConcept, Address, and Person types are defined in
+// src/main/scala/progscala3/implicits/
 
 // START 1
-sealed trait DomainConcept
-case class Address(street: String, city: String, state: String, zip: String)
-  extends DomainConcept
-case class Person(name: String, age: Int, address: Address)
-  extends DomainConcept
-
 trait ToJSON[+T] {
   def toJSON(level: Int = 0): String
 
@@ -27,8 +23,6 @@ implicit class AddressToJSON(address: Address) extends ToJSON[Address] {
     s"""{
       |${indent}"street": "${address.street}",
       |${indent}"city":   "${address.city}",
-      |${indent}"state":  "${address.state}",
-      |${indent}"zip":    "${address.zip}"
       |$outdent}""".stripMargin
   }
 }
@@ -38,16 +32,16 @@ implicit class PersonToJSON(person: Person) extends ToJSON[Person] {
     val (outdent, indent) = indentation(level)
     s"""{
       |${indent}"name":    "${person.name}",
-      |${indent}"age":     "${person.age}",
       |${indent}"address": ${new AddressToJSON(person.address).toJSON(level+1)}
       |$outdent}""".stripMargin
   }
 }
 
-val a = Address("1 Scala Lane", "Anytown", "CA", "98765")
+val address = Address("1 Scala Lane", "Anytown")
+val person = Person("Buck Trends", address)
 
 // We want to use this list:
-val list1 = List(a, Person("Buck Trends", 29, a))
+val list1 = List(address, person)
 // END 1
 
 // START 2
@@ -96,5 +90,5 @@ implicit class DomainConceptToJSON(dc: DomainConcept) extends ToJSON[DomainConce
 list1.map(_.toJSON())
 
 // END 4
-// An infinite recursion occurs.
+// An infinite recursion occurs!!
 

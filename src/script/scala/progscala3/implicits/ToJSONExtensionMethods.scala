@@ -21,5 +21,8 @@ def (person: Person) toJSON2(level: Int): String = {
     |$outdent}""".stripMargin
 }
 
+val address = Address("1 Scala Lane", "Anytown")
+val person = Person("Buck Trends", address)
+
 address.toJSON2(0)
 person.toJSON2(0)

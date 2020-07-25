@@ -45,7 +45,6 @@ To keep these different kinds of files straight and to support building with SBT
 - `src/test/.../*.scala` - All Scala 3 test source files built and executed with SBT.
 - `src/script/.../*.scala` - "Script" files that won't compile with `scalac`, but can be interpreted with the `scala` interpreter.
 - `src/*/scala-2/.../*.scala` - All Scala 2 source files that won't compile with Scala 3. They are not built with SBT.
-- `src/extra/.../*.scala` - Extra examples that aren't part of the SBT build, for example, an Apache Spark example that is not built so that the Spark dependencies aren't added to the build.
 
 ## Required and Optional Tools
 
@@ -54,6 +53,16 @@ To build and run the examples, all you need Java 8 or newer and [SBT](http://www
 Follow these [installation instructions](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html).
 
 If you want to install Scala separately and Scala's *Scaladocs*, go to [scala-lang.org](http://scala-lang.org), but this isn't required.
+
+If you want to play with the Spark example, `src/script/scala-2/progscala3/bigdata/SparkWordCount.scala`, you'll need to download a Spark distribution from https://spark.apache.org and use a compatible version of Scala, 2.12 at the time of this writing. With that version of scala on your path and assuming that `$SPARK_HOME` refers to the root directory of your Spark installations, run the following command in the root directory of this project:
+
+```
+$ $SPARK_HOME/bin/spark-shell
+...
+scala>
+```
+
+Then paste the content of `SparkWordCount.scala` at the prompt. After it runs, there will be a new directory, `README.md.wordcount` with the _partition_ files of the output.
 
 ### Editors, IntelliJ, Visual Studio Code, and Other IDEs
 
