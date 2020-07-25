@@ -64,6 +64,8 @@ scala>
 
 Then paste the content of `SparkWordCount.scala` at the prompt. After it runs, there will be a new directory, `README.md.wordcount` with the _partition_ files of the output.
 
+> **Tip:** For more on Spark, see my free tutorial on GitHub, [spark-scala-tutorial](https://github.com/deanwampler/spark-scala-tutorial).
+
 ### Editors, IntelliJ, Visual Studio Code, and Other IDEs
 
 Most editors and IDEs now have some sort of Scala support:
