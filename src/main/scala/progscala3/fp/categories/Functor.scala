@@ -18,7 +18,8 @@ object FunctionF {                                                   // <4>
     //Type Lambda can be replaced with alias of function
     // type C[T] = A => T
     val functor = new Functor[({type L[T] = A => T})#L] {            // <6>
-      def map[A3,B2](func: A=>A3)(f: A3 => B2): A => B2 = (a: A) => f(func(a))
+      def map[A3,B2](func: A=>A3)(f: A3 => B2): A => B2 =
+        (a: A) => f(func(a))
     }
     functor.map(func)(f)                                             // <7>
   }

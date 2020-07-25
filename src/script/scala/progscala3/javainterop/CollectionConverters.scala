@@ -9,3 +9,5 @@ val js = s.asJava     // js: java.util.Set[String] = [one]
 js.add("two")
 
 assert(s == Set("two", "one"))
+
+assert(js.asScala == Set("two", "one"))
