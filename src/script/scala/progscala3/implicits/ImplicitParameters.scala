@@ -10,6 +10,9 @@ case class SortableSeq[A](seq: Seq[A]) {
 
   def sortBy3[B](transform: A => B)(using o: Ordering[B]): Seq[A] =
     seq.sortBy(transform)(o)
+
+  def sortBy4[B](transform: A => B)(using Ordering[B]): Seq[A] =
+    seq.sortBy(transform)(implicitly[Ordering[B]])
 }
 
 val seq = SortableSeq(Seq(1,3,5,2,4))
@@ -17,6 +20,7 @@ val seq = SortableSeq(Seq(1,3,5,2,4))
 assert(seq.sortBy1(i => -i) == Seq(5, 4, 3, 2, 1))
 assert(seq.sortBy2(i => -i) == Seq(5, 4, 3, 2, 1))
 assert(seq.sortBy3(i => -i) == Seq(5, 4, 3, 2, 1))
+assert(seq.sortBy4(i => -i) == Seq(5, 4, 3, 2, 1))
 // END FIRST
 // BEGIN CUSTOM
 implicit val EvenOdd: Ordering[Int] = new Ordering[Int] {
@@ -26,4 +30,5 @@ implicit val EvenOdd: Ordering[Int] = new Ordering[Int] {
 assert(seq.sortBy1(i => -i) == Seq(5, 3, 1, 2, 4))
 assert(seq.sortBy2(i => -i) == Seq(5, 3, 1, 2, 4))
 assert(seq.sortBy3(i => -i) == Seq(5, 4, 3, 2, 1))
+assert(seq.sortBy4(i => -i) == Seq(5, 4, 3, 2, 1))
 // END CUSTOM
