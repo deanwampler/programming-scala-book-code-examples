@@ -2,21 +2,22 @@
 package progscala3.concurrency.akka
 import scala.util.Try
 
-object Messages {                                                    // <1>
-  sealed trait KeyedRequest {                                        // <2>
+object Messages {                                // <1>
+  enum KeyedRequest {                            // <2>
     val key: Long
+
+    case Create(key: Long, value: String)        // <3>
+    case Read(key: Long)                         // <4>
+    case Update(key: Long, value: String)        // <5>
+    case Delete(key: Long)                       // <6>
   }
-  sealed trait Request
 
-  case class  Create(key: Long, value: String) extends KeyedRequest  // <3>
-  case class  Read(key: Long) extends KeyedRequest                   // <4>
-  case class  Update(key: Long, value: String) extends KeyedRequest  // <5>
-  case class  Delete(key: Long) extends KeyedRequest                 // <6>
+  case class Response(result: Try[String])       // <7>
 
-  case class  Response(result: Try[String])                          // <7>
-
-  case class  Start(numberOfWorkers: Int = 1) extends Request        // <8>
-  case class  Crash(whichOne: Int) extends Request                   // <9>
-  case class  Dump(whichOne: Int) extends Request                    // <10>
-  case object DumpAll extends Request
+  enum Request {
+    case Start(numberOfWorkers: Int = 1)         // <8>
+    case Crash(whichOne: Int)                    // <9>
+    case Dump(whichOne: Int)                     // <10>
+    case DumpAll
+  }
 }

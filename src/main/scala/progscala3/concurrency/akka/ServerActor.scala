@@ -29,23 +29,18 @@ class ServerActor extends Actor with ActorLogging {                  // <1>
   def receive = initial                                              // <4>
 
   val initial: Receive = {                                           // <5>
-    case Start(numberOfWorkers) =>
+    case Request.Start(numberOfWorkers) =>
       workers = ((1 to numberOfWorkers) map makeWorker).toVector
       context become processRequests                                 // <6>
   }
 
   val processRequests: Receive = {                                   // <7>
-    case c @ Crash(n) => workers(n % workers.size) ! c
-    case DumpAll =>                                                  // <8>
-      // The original book implementation used the next line:
-      // Future.foldLeft(workers map (_ ? DumpAll))(Vector.empty[Any])(_ :+ _)
-      // I replaced it with the following, because the 2.11 Future.fold was
-      // deprecated and replaced with Future.foldLeft in 2.12. So, to eliminate
-      // warnings...
-      Future.traverse(workers)(_ ? DumpAll)
+    case c @ Request.Crash(n) => workers(n % workers.size) ! c
+    case Request.DumpAll =>                                          // <8>
+      Future.traverse(workers)(_ ? Request.DumpAll)
         .onComplete(askHandler("State of the workers"))
-    case Dump(n) =>
-      (workers(n % workers.size) ? DumpAll).map(Vector(_))
+    case Request.Dump(n) =>
+      (workers(n % workers.size) ? Request.DumpAll).map(Vector(_))
         .onComplete(askHandler(s"State of worker $n"))
     case request: KeyedRequest =>
       val key = request.key.toInt

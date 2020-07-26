@@ -7,26 +7,26 @@ import scala.language.implicitConversions
 class WorkerActor extends Actor with ActorLogging {
   import Messages._
 
-  private val datastore = collection.mutable.Map.empty[Long,String]  // <1>
+  private val datastore = collection.mutable.Map.empty[Long,String]       // <1>
 
   def receive = {
-    case Create(key, value) =>                                       // <2>
+    case KeyedRequest.Create(key, value) =>                               // <2>
       datastore += key -> value
       sender ! Response(Success(s"$key -> $value added"))
-    case Read(key) =>                                                // <3>
+    case KeyedRequest.Read(key) =>                                        // <3>
       sender ! Response(Try(s"${datastore(key)} found for key = $key"))
-    case Update(key, value) =>                                       // <4>
+    case KeyedRequest.Update(key, value) =>                               // <4>
       datastore += key -> value
       sender ! Response(Success(s"$key -> $value updated"))
-    case Delete(key) =>                                              // <5>
+    case KeyedRequest.Delete(key) =>                                      // <5>
       datastore -= key
       sender ! Response(Success(s"$key deleted"))
-    case Crash(_) => throw WorkerActor.CrashException                // <6>
-    case DumpAll =>                                                  // <7>
+    case Request.Crash(_) => throw WorkerActor.CrashException             // <6>
+    case Request.DumpAll =>                                               // <7>
       sender ! Response(Success(s"${self.path}: datastore = $datastore"))
   }
 }
 
 object WorkerActor {
-  case object CrashException extends RuntimeException("Crash!")      // <8>
+  case object CrashException extends RuntimeException("Crash!")
 }
