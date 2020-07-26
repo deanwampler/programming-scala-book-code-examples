@@ -11,7 +11,7 @@ sealed abstract class AbbrevList[+A] {
 
   @alpha("acons")
   def ::[B >: A] (x: B): AbbrevList[B] =
-    new progscala3.typesystem.bounds.list.::(x, this)
+    new ::(x, this)
 
   final def foreach(f: A => Unit) = {
     var these = this
