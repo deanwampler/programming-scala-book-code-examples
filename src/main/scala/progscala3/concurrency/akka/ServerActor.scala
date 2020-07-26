@@ -73,7 +73,7 @@ class ServerActor extends Actor with ActorLogging {                  // <1>
     context.actorOf(Props[WorkerActor], s"worker-$i")
 }
 
-object ServerActor {                                                 // <9>
+object ServerActor {
   def make(system: ActorSystem): ActorRef =
     system.actorOf(Props[ServerActor], "server")
 }

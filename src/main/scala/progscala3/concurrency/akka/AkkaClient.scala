@@ -108,7 +108,7 @@ object AkkaClient {                                             // <1>
     }
   }
 
-  private val help =                                            // <10>
+  private val help =
   """Usage: AkkaClient [-h | --help]
     |Then, enter one of the following commands, one per line:
     |  h | help      Print this help message.
@@ -121,7 +121,7 @@ object AkkaClient {                                             // <1>
     |  ^d | q | quit Quit.
     |""".stripMargin
 
-  private def exit(message: String, status: Int): Nothing = {   // <11>
+  private def exit(message: String, status: Int): Nothing = {
     for sys <- system do sys.terminate()
     println(message)
     sys.exit(status)
