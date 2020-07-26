@@ -1,24 +1,24 @@
 // src/main/scala/progscala3/dsls/payroll/parsercomb/DSL.scala
 package progscala3.dsls.payroll.parsercomb
 import scala.util.parsing.combinator._
-import progscala3.dsls.payroll.common._                              // <1>
+import progscala3.dsls.payroll.common._
 import scala.language.implicitConversions
 
 object Payroll {
 
-  import dsl.PayrollParser                                           // <2>
+  import dsl.PayrollParser
 
-  def main(args: Array[String]): Unit = {                            // <3>
+  def main(args: Array[String]): Unit = {                            // <1>
     val input = """biweekly {
       federal tax          20.0  percent,
       state tax            3.0   percent,
       insurance premiums   250.0 dollars,
       retirement savings   15.0  percent
     }"""
-    val parser = new PayrollParser                                   // <4>
+    val parser = new PayrollParser
     val biweeklyDeductions = parser.parseAll(parser.biweekly, input).get
 
-    println(biweeklyDeductions)                                      // <5>
+    println(biweeklyDeductions)
     val annualGross = 100000.0
     val gross = biweeklyDeductions.gross(annualGross)
     val net   = biweeklyDeductions.net(annualGross)
@@ -29,28 +29,28 @@ object Payroll {
 
 object dsl {
 
-  class PayrollParser extends JavaTokenParsers {                     // <1>
+  class PayrollParser extends JavaTokenParsers {                     // <2>
 
     /** @return Parser[(Deductions)] */
-    def biweekly = "biweekly" ~> "{" ~> deductions <~ "}" ^^ { ds => // <2>
+    def biweekly = "biweekly" ~> "{" ~> deductions <~ "}" ^^ { ds => // <3>
       Deductions("Biweekly", 26.0, ds)
     }
 
     /** @return Parser[Vector[Deduction]] */
-    def deductions = repsep(deduction, ",") ^^ { ds =>               // <3>
+    def deductions = repsep(deduction, ",") ^^ { ds =>               // <4>
       ds.toVector
     }
 
     /** @return Parser[Deduction] */
-    def deduction = federal_tax | state_tax | insurance | retirement // <4>
+    def deduction = federal_tax | state_tax | insurance | retirement // <5>
 
     /** @return Parser[Deduction] */
-    def federal_tax = parseDeduction("federal", "tax")               // <5>
+    def federal_tax = parseDeduction("federal", "tax")               // <6>
     def state_tax   = parseDeduction("state", "tax")
     def insurance   = parseDeduction("insurance", "premiums")
     def retirement  = parseDeduction("retirement", "savings")
 
-    private def parseDeduction(word1: String, word2: String) =       // <6>
+    private def parseDeduction(word1: String, word2: String) =
       word1 ~> word2 ~> amount ^^ {
         amount => Deduction(s"${word1} ${word2}", amount)
       }

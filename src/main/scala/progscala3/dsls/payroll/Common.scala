@@ -2,7 +2,9 @@
 package progscala3.dsls.payroll
 
 object common {
-  sealed trait Amount { def amount: Double }                         // <1>
+  sealed trait Amount {                                         // <1>
+    def amount: Double
+  }
 
   case class Percentage(amount: Double) extends Amount {
     override def toString = s"$amount%"
@@ -12,24 +14,22 @@ object common {
     override def toString = s"$$$amount"
   }
 
-  implicit class Units(amount: Double) {                             // <2>
-    def percent = Percentage(amount)
-    def dollars = Dollars(amount)
-  }
+  def (amount: Double) percent: Percentage = Percentage(amount) // <2>
+  def (amount: Double) dollars: Dollars = Dollars(amount)
 
-  case class Deduction(name: String, amount: Amount) {               // <3>
+  case class Deduction(name: String, amount: Amount) {          // <3>
     override def toString = s"$name: $amount"
   }
 
-  case class Deductions(                                             // <4>
+  case class Deductions(                                        // <4>
     name: String,
     divisorFromAnnualPay: Double = 1.0,
     deductions: Vector[Deduction] = Vector.empty) {
 
-    def gross(annualSalary: Double): Double =                        // <5>
+    def gross(annualSalary: Double): Double =                   // <5>
       annualSalary / divisorFromAnnualPay
 
-    def net(annualSalary: Double): Double = {
+    def net(annualSalary: Double): Double = {                   // <6>
       val g = gross(annualSalary)
       (deductions foldLeft g) {
         case (total, Deduction(deduction@_, amount)) => amount match {
@@ -39,7 +39,7 @@ object common {
       }
     }
 
-    override def toString =                                          // <6>
+    override def toString =
       s"$name Deductions:" + deductions.mkString("\n  ", "\n  ", "")
   }
 }

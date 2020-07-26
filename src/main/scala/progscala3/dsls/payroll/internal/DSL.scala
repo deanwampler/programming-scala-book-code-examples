@@ -9,10 +9,10 @@ object Payroll {                                                     // <2>
 
   def main(args: Array[String]): Unit = {
     val biweeklyDeductions = biweekly { deduct =>                    // <4>
-      deduct.federal_tax       (25.0  percent)
-      deduct.state_tax         (5.0   percent)
-      deduct.insurance_premiums(500.0 dollars)
-      deduct.retirement_savings(10.0  percent)
+      deduct federal_tax        (25.0  percent)
+      deduct state_tax          (5.0   percent)
+      deduct insurance_premiums (500.0 dollars)
+      deduct retirement_savings (10.0  percent)
     }
 
     println(biweeklyDeductions)                                      // <5>
@@ -24,12 +24,13 @@ object Payroll {                                                     // <2>
   }
 }
 
-object dsl {                                                         // <1>
+object dsl {                                                         // <6>
 
-  def biweekly(db: DeductionsBuilder => DeductionsBuilder): Deductions = // <2>
+  def biweekly(                                                      // <7>
+      db: DeductionsBuilder => DeductionsBuilder): Deductions =
     db(new DeductionsBuilder("Biweekly", 26.0)).deductions
 
-  case class DeductionsBuilder(                                      // <3>
+  case class DeductionsBuilder(                                      // <8>
     name: String,
     divisor: Double = 1.0) {
 
@@ -37,7 +38,7 @@ object dsl {                                                         // <1>
 
     def deductions: Deductions = Deductions(name, divisor, all)
 
-    def federal_tax(amount: Amount): DeductionsBuilder = {           // <4>
+    def federal_tax(amount: Amount): DeductionsBuilder = {           // <9>
       all = all :+ Deduction("federal taxes", amount)
       this
     }
