@@ -1,67 +1,26 @@
 // src/main/scala/progscala3/appdesign/parthenon/PayrollUseCases.scala
 package progscala3.appdesign.parthenon
 import progscala3.dsls.payroll.parsercomb.dsl.PayrollParser
-import progscala3.dsls.payroll.common._
 
-object PayrollParthenon {                                            // <1>
-  val dsl = """biweekly {
-      federal tax          %f  percent,
-      state tax            %f  percent,
-      insurance premiums   %f  dollars,
-      retirement savings   %f  percent
-    }"""
-                                                                     // <2>
-  private def readData(inputFileName: String): Seq[(String, Money, String)] =
-    for
-      line <- scala.io.Source.fromFile(inputFileName).getLines.toVector
-      if line.matches("\\s*#.*") == false  // skip comments
-    yield toRule(line)
+object PayrollUseCases {
+  import PayrollCalculator.{fromFile, Pay}
 
-  private def toRule(line: String): (String, Money, String) = {      // <3>
-    val Array(name, salary, fedTax, stateTax, insurance, retirement): @unchecked =
-      line.split("""\s*,\s*""") match {
-        case array if array.length == 6 => array
-        case _ => throw BadInput("expected six fields", line)
-      }
-    val ruleString = dsl.format(
-      fedTax.toDouble, stateTax.toDouble,
-      insurance.toDouble, retirement.toDouble)
-    (name, Money(salary.toDouble), ruleString)
-  }
-
-  case class BadInput(message: String, input: String)
-    extends RuntimeException(s"Bad input data, $message: $input")
-
-  private val parser = new PayrollParser                             // <4>
-
-  private def toDeduction(rule: String) =
-    parser.parseAll(parser.biweekly, rule).get
-
-  private type EmployeeData = (String, Money, Deductions)            // <5>
-                                                                     // <6>
-  private def processRules(inputFileName: String): Seq[EmployeeData] = {
-    val data = readData(inputFileName)
-    for
-      (name, salary, rule) <- data
-    yield (name, salary, toDeduction(rule))
-  }
-                                                                     // <7>
-  def biweeklyPayrollPerEmployeeReportUseCase(data: Seq[EmployeeData]): Unit ={
+  def biweeklyPayrollPerEmployee(data: Seq[Pay]): Unit = {
     val fmt  = "%-10s %6.2f  %5.2f  %5.2f\n"
     val head = "%-10s %-7s  %-5s    %s\n"
     println("\nBiweekly Payroll:")
     printf(head, "Name", "Gross", "Net", "Deductions")
     printf(head, "----", "-----", "---", "----------")
     for
-      (name, salary, deductions) <- data
+      Pay(name, salary, deductions) <- data
       gross = deductions.gross(salary.amount)
       net   = deductions.net(salary.amount)
     do printf(fmt, name, gross, net, gross - net)
   }
-                                                                     // <8>
-  def biweeklyPayrollTotalsReportUseCase(data: Seq[EmployeeData]): Unit = {
+
+  def biweeklyPayrollTotalsReport(data: Seq[Pay]): Unit = {
     val (gross, net) = data.foldLeft(0.0 -> 0.0) {
-      case ((gross, net), (name@_, salary, deductions)) =>
+      case ((gross, net), Pay(_, salary, deductions)) =>
       val g = deductions.gross(salary.amount)
       val n = deductions.net(salary.amount)
       (gross + g, net + n)
@@ -73,9 +32,9 @@ object PayrollParthenon {                                            // <1>
   def main(args: Array[String]): Unit = {
     val inputFileName =
       if args.length > 0 then args(0) else "misc/parthenon-payroll.txt"
-    val data = processRules(inputFileName)
+    val data = fromFile(inputFileName)
 
-    biweeklyPayrollTotalsReportUseCase(data)
-    biweeklyPayrollPerEmployeeReportUseCase(data)
+    biweeklyPayrollPerEmployee(data)
+    biweeklyPayrollTotalsReport(data)
   }
 }
