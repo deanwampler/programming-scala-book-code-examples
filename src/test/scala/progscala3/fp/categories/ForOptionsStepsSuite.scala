@@ -3,6 +3,7 @@ package progscala3.fp.categories
 
 import munit._
 import scala.util.{ Either, Left, Right }
+import scala.annotation.tailrec
 
 class ForOptionsStepsSuite extends FunSuite {
 
@@ -52,7 +53,7 @@ class ForOptionsStepsSuite extends FunSuite {
   // We sequence through the steps and sum the values returned.
   // A nested, tail-recursive function +sum+ is used.
   def sumCounts2(countSteps: Seq[Step]): Option[Int] = {
-    @annotation.tailrec
+    @tailrec
     def sum(accum: Int, countSteps2: Seq[Step]): Option[Int] =
       countSteps2 match {
         // Terminate the recursion when we hit the end of the steps +Seq+.

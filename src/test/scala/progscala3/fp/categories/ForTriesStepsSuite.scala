@@ -3,6 +3,7 @@ package progscala3.fp.categories
 
 import munit._
 import scala.util.{ Try, Success, Failure }
+import scala.annotation.tailrec
 
 class ForTriesStepsSuite extends FunSuite {
 
@@ -45,7 +46,7 @@ class ForTriesStepsSuite extends FunSuite {
   // More verbose, but it stops the "counts" iteration at the first Failure.
   // and it doesn't create intermediate Successes:
   def sumCounts2(countSteps: Seq[Step]): Try[Int] = {
-    @annotation.tailrec
+    @tailrec
     def sum(accum: Int, countSteps2: Seq[Step]): Try[Int] =
       countSteps2 match {
         case Nil          => Success(accum)

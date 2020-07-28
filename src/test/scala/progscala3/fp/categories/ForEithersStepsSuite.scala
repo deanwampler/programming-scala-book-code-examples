@@ -3,6 +3,7 @@ package progscala3.fp.categories
 
 import munit._
 import scala.util.{ Either, Left, Right }
+import scala.annotation.tailrec
 
 class ForEithersStepsSuite extends FunSuite {
 
@@ -45,7 +46,7 @@ class ForEithersStepsSuite extends FunSuite {
   // More verbose, but it stops the "counts" iteration at the first Left.
   // and it doesn't create intermediate Rights:
   def sumCounts2(countSteps: Seq[Step]): Either[RuntimeException,Int] = {
-    @annotation.tailrec
+    @tailrec
     def sum(accum: Int, countSteps2: Seq[Step]): Either[RuntimeException,Int] =
       countSteps2 match {
         case Nil          => Right(accum)

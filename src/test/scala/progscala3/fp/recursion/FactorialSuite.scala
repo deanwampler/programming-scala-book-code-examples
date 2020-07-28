@@ -7,7 +7,7 @@ import scala.annotation.tailrec
 class FactorialSuite extends FunSuite {
 
   /*
-   * If you use the annotation `@scala.annotation.tailrec` you get:
+   * If you use the annotation `@tailrec` you get:
    * "error: could not optimize @tailrec annotated method factorial".
    * This is because it contains a recursive call not in tail position.
    */

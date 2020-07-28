@@ -2,6 +2,7 @@
 package progscala3.fp.datastructs
 
 import munit._
+import scala.annotation.tailrec
 
 /**
  * Simplified implementations of foldLeft and foldRight.
@@ -9,7 +10,7 @@ import munit._
 class FoldRightLeftSuite extends FunSuite {
 
 	def foldLeft[A,B](seed: B)(s: Seq[A])(f: (B, A) => B): B = {
-	  @annotation.tailrec
+	  @tailrec
 	  def fl(accum: B, s2: Seq[A]): B = s2 match {
 	    case head +: tail => fl(f(accum, head), tail)
 	    case _ => accum

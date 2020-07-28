@@ -2,6 +2,7 @@
 package progscala3.fp.datastructs
 
 import munit._
+import scala.annotation.tailrec
 
 class FoldVectorImplSuite extends FunSuite {
 
@@ -10,7 +11,7 @@ class FoldVectorImplSuite extends FunSuite {
 	 * to vectors.
 	 */
 	def reduceLeftV[A,B](s: Vector[A])(f: A => B): Vector[B] = {
-	  @annotation.tailrec
+	  @tailrec
 	  def rl(accum: Vector[B], s2: Vector[A]): Vector[B] = s2 match {
 	    case head +: tail => rl(accum :+ f(head), tail)
 	    case _ => accum
