@@ -15,7 +15,7 @@ object CollectiveExtensionMethods {
     def sorted(using Ordering[K]): Seq[(K,V)] =                      // <4>
       map.keySet.toSeq.sortedUnique.map(key => (key, map(key)))
 
-    def merge(other: Map[K,V])(using mon:Monoid[V]): Map[K,V] = {    // <5>
+    def merge(other: Map[K,V])(using mon: Monoid[V]): Map[K,V] = {   // <5>
       (map.keySet union other.keySet).map { k =>
         val v1 = map.getOrElse(k, mon.zero)
         val v2 = other.getOrElse(k, mon.zero)
