@@ -4,7 +4,7 @@ version := "3.0.0-120"
 
 organization := "org.programming-scala"
 
-scalaVersion := "0.25.0"
+scalaVersion := "0.26.0-RC1"
 
 maxErrors := 10
 
@@ -24,8 +24,8 @@ libraryDependencies ++= {
     "org.scalacheck"         %% "scalacheck"       % "1.14.1" % Test,
   ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
     // Libraries that already fully support Dotty
-    "org.scalameta"          %% "munit"            % "0.7.9" % Test,
-    "org.scalameta"          %% "munit-scalacheck" % "0.7.9" % Test
+    "org.scalameta"          %% "munit"            % "0.7.10" % Test,
+    "org.scalameta"          %% "munit-scalacheck" % "0.7.10" % Test
   )
 }
 

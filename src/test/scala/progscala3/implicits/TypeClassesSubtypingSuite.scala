@@ -20,7 +20,9 @@ class TypeClassesSubtypingSuite extends FunSuite {
     }
   }
 
-  val seq: Seq[Any] = Seq(1, 2.2F, "three", Symbol("sym"))
+  case class Person(name: String, age: Int)
+
+  val seq: Seq[Any] = Seq(1, 2.2F, "three", Person("me", 20))
 
   val strings = seq map { (x:Any) =>
     try {
@@ -32,6 +34,6 @@ class TypeClassesSubtypingSuite extends FunSuite {
 
   test("Another way to do type classing") {
     assert(strings ==
-      Seq("1: 10", "2.2: 22.0", "three: three", "Can't stringize 'sym"))
+      Seq("1: 10", "2.2: 22.0", "three: three", "Can't stringize Person(me,20)"))
   }
 }
