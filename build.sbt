@@ -1,6 +1,6 @@
 name := "Programming Scala, Third Edition - Code examples"
 
-version := "3.0.0-120"
+version := "3.0.0-130"
 
 organization := "org.programming-scala"
 
