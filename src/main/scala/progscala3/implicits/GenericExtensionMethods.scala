@@ -2,7 +2,7 @@
 
 package progscala3.implicits
 
-object GenericExtensionMethods {
+object GenericExtensionMethods:
   def [A](seq: Seq[A]) sortedUnique(using Ordering[A]): Seq[A] = // <1>
     if seq.size == 0
       seq
@@ -17,4 +17,3 @@ object GenericExtensionMethods {
 
   def [A : Ordering](seq: Seq[A]) sortedUnique2: Seq[A] =        // <3>
     seq.sortedUnique
-}

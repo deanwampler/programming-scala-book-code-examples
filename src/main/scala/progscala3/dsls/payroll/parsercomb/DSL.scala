@@ -4,11 +4,11 @@ import scala.util.parsing.combinator._
 import progscala3.dsls.payroll.common._
 import scala.language.implicitConversions
 
-object Payroll {
+object Payroll:
 
   import dsl.PayrollParser
 
-  def main(args: Array[String]): Unit = {                            // <1>
+  def main(args: Array[String]): Unit =                              // <1>
     val input = """biweekly {
       federal tax          20.0  percent,
       state tax            3.0   percent,
@@ -24,12 +24,10 @@ object Payroll {
     val net   = biweeklyDeductions.net(annualGross)
     print(f"Biweekly pay (annual: $$${annualGross}%.2f): ")
     println(f"Gross: $$${gross}%.2f, Net: $$${net}%.2f")
-  }
-}
 
-object dsl {
+object dsl:
 
-  class PayrollParser extends JavaTokenParsers {                     // <2>
+  class PayrollParser extends JavaTokenParsers:                      // <2>
 
     /** @return Parser[(Deductions)] */
     def biweekly = "biweekly" ~> "{" ~> deductions <~ "}" ^^ { ds => // <3>
@@ -65,5 +63,3 @@ object dsl {
     def percentage = doubleNumber <~ "percent" ^^ { d => Percentage(d) }
 
     def doubleNumber = floatingPointNumber ^^ (_.toDouble)
-  }
-}

@@ -4,7 +4,7 @@ package progscala3.fp.datastructs
 import munit._
 import java.lang.UnsupportedOperationException
 
-class FoldReduceSuite extends FunSuite {
+class FoldReduceSuite extends FunSuite:
 
 	test("Reduce converts a collection of A to an A") {
 		val result = List(1,2,3,4,5,6).reduce (_ + _)
@@ -31,4 +31,3 @@ class FoldReduceSuite extends FunSuite {
 		val r4 = List(1,2,3,4,5,6).reduceOption(_ * _)
 		assert(r4 == Some(720))
 	}
-}

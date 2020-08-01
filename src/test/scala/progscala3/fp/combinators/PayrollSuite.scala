@@ -3,7 +3,7 @@ package progscala3.fp.combinators
 
 import munit._
 
-class PayrollSuite extends FunSuite {
+class PayrollSuite extends FunSuite:
 
   case class Employee (
     name: String,
@@ -47,4 +47,3 @@ class PayrollSuite extends FunSuite {
     assert(f"${report._2}%.2f" == "7094.62", "total net")
     assert(f"${report._3}%.2f" == "340.00",  "total insurance")
   }
-}

@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class LoginFormValidatorSingleSuite extends FunSuite {
+class LoginFormValidatorSingleSuite extends FunSuite:
   test("empty user") {
     assert(LoginFormValidatorSingle("", "pwd") ==
       Left(Empty("user name")))
@@ -43,4 +43,3 @@ class LoginFormValidatorSingleSuite extends FunSuite {
     assert(LoginFormValidatorSingle("12345", "67890") ==
       Right(ValidLoginForm("12345", "67890")))
   }
-}

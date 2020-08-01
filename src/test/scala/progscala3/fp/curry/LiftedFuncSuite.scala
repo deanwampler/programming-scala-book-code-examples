@@ -3,23 +3,21 @@ package progscala3.fp.curry
 
 import munit._
 
-class LiftedFuncSuite extends FunSuite {
+class LiftedFuncSuite extends FunSuite:
 
-	val finicky: PartialFunction[String,String] = {
+	val finicky: PartialFunction[String,String] =
 	  case "finicky" => "FINICKY"
-	}
 
 	val finickyOption = finicky.lift
 
 	test("Partial functions throw MatchErrors for non matches") {
 		assert(finicky("finicky") == "FINICKY")
 
-		try {
+		try
 		  finicky("other")
 		  assert(false, "Should not be here!")
-		} catch {
+		catch
 		  case e: scala.MatchError => assert(e.getMessage.contains("other"))
-		}
 	}
 
 	test("A partial function can be lifted into a function return Option") {
@@ -32,11 +30,9 @@ class LiftedFuncSuite extends FunSuite {
 
 		assert(finicky2("finicky") == "FINICKY")
 
-		try {
+		try
 		  finicky2("other")
 		  assert(false, "Should not be here!")
-		} catch {
+		catch
 		  case e: scala.MatchError => assert(e.getMessage.contains("other"))
-		}
 	}
-}

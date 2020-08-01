@@ -3,7 +3,7 @@
 
 package progscala3.implicits
 
-object TypeClassesSubtyping2 {
+object TypeClassesSubtyping2:
 
   sealed trait DomainConcept
   case class Address(street: String, city: String, state: String, zip: String)
@@ -11,16 +11,15 @@ object TypeClassesSubtyping2 {
   case class Person(name: String, age: Int, address: Address)
     extends DomainConcept
 
-  trait ToJSON[+T] {
+  trait ToJSON[+T]:
     def toJSON(level: Int = 0): String
 
     val INDENTATION = "  "
     def indentation(level: Int = 0): (String,String) =
       (INDENTATION * level, INDENTATION * (level+1))
-  }
 
-  implicit class AddressToJSON(address: Address) extends ToJSON[Address] {
-    def toJSON(level: Int = 0): String = {
+  implicit class AddressToJSON(address: Address) extends ToJSON[Address]:
+    def toJSON(level: Int = 0): String =
       val (outdent, indent) = indentation(level)
       s"""{
         |${indent}"street": "${address.street}",
@@ -28,30 +27,28 @@ object TypeClassesSubtyping2 {
         |${indent}"state":  "${address.state}",
         |${indent}"zip":    "${address.zip}"
         |$outdent}""".stripMargin
-    }
-  }
 
-  implicit class PersonToJSON(person: Person) extends ToJSON[Person] {
-    def toJSON(level: Int = 0): String = {
+  implicit class PersonToJSON(person: Person) extends ToJSON[Person]:
+    def toJSON(level: Int = 0): String =
       val (outdent, indent) = indentation(level)
+      val addr = new AddressToJSON(person.address).toJSON(level+1)
       s"""{
         |${indent}"name":    "${person.name}",
         |${indent}"age":     "${person.age}",
-        |${indent}"address": ${new AddressToJSON(person.address).toJSON(level+1)}
+        |${indent}"address": ${addr}
         |$outdent}""".stripMargin
-    }
-  }
 
-  implicit class DomainConceptToJSON(dc: DomainConcept) extends ToJSON[DomainConcept] {
-    def toJSON(level: Int = 0): String = {
+  implicit class DomainConceptToJSON(dc: DomainConcept)
+      extends ToJSON[DomainConcept]:
+    def toJSON(level: Int = 0): String =
+      val errStr =
+        "DomainConceptToJSON was used instead of more specific conversion!"
       val (outdent, indent) = indentation(level)
       s"""{
-        |${indent}"error":    "DomainConceptToJSON was used instead of more specific conversion!"
+        |${indent}"error":    $errStr
         |$outdent}""".stripMargin
-    }
-  }
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     val a = Address("1 Scala Lane", "Anytown", "CA", "98765")
 
     // We want to use this list:
@@ -120,6 +117,3 @@ object TypeClassesSubtyping2 {
     assert( // ignore whitespace
       success.map(_.replaceAll("\\s+", "")) ==
       expected.map(_.replaceAll("\\s+", "")))
-  }
-}
-

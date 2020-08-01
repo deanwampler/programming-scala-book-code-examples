@@ -4,7 +4,7 @@ package progscala3.fp.categories
 import munit._
 import scala.language.higherKinds                         // <1>
 
-class MonadExampleSuite extends FunSuite {
+class MonadExampleSuite extends FunSuite:
 
 	val seqf: Int => Seq[Int] = i => 1 to i
 	val optf: Int => Option[Int] = i => Option(i + 1)
@@ -18,4 +18,3 @@ class MonadExampleSuite extends FunSuite {
 		assert(OptionM.flatMap(Some(2))(optf) == Some(3))
 		assert(OptionM.flatMap(Option.empty[Int])(optf) == None)
 	}
-}

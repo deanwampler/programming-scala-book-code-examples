@@ -5,7 +5,7 @@ package progscala3.basicoop
  * for simplicity. See `ZipCode` for an example of how this might
  * be done.
  */
-class USPhoneNumber(val s: String) extends AnyVal {
+class USPhoneNumber(val s: String) extends AnyVal:
 
   override def toString = {
     val digs = digits(s)
@@ -15,5 +15,4 @@ class USPhoneNumber(val s: String) extends AnyVal {
     s"($areaCode) $exchange-$subnumber"
   }
 
-  private def digits(str: String): String = str.replaceAll("""\D""", "") 
-}
+  private def digits(str: String): String = str.replaceAll("""\D""", "")

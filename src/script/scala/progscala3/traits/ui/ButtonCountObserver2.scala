@@ -2,18 +2,15 @@
 import progscala3.traits.ui._
 import progscala3.traits.observer._
 
-val button = new Button("Click Me!") with Subject[Button] {
+val button = new Button("Click Me!") with Subject[Button]:
 
-  override def click(): Unit = {
+  override def click(): Unit =
     super.click()
     notifyObservers(this)
-  }
-}
 
-class ButtonCountObserver extends Observer[Button] {
+class ButtonCountObserver extends Observer[Button]:
   var count = 0
   def receiveUpdate(state: Button): Unit = count += 1
-}
 
 val bco1   = new ButtonCountObserver
 val bco2   = new ButtonCountObserver

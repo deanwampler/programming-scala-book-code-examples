@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForOptionsGoodSuite extends FunSuite {
+class ForOptionsGoodSuite extends FunSuite:
   def positive(i: Int): Option[Int] =
     if i > 0 then Some(i) else None
 
@@ -26,4 +26,3 @@ class ForOptionsGoodSuite extends FunSuite {
   	yield (i1 + i2 + i3 + i4)
   	assert(result == None)
   }
-}

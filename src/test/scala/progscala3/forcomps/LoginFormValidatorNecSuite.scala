@@ -5,7 +5,7 @@ import cats.data._
 import cats.data.Validated._
 import munit._
 
-class LoginFormValidatorNecSuite extends FunSuite {
+class LoginFormValidatorNecSuite extends FunSuite:
   test("empty and too short user and password reported") {
     assert(LoginFormValidatorNec("", "") ==
       Invalid(Chain(
@@ -41,4 +41,3 @@ class LoginFormValidatorNecSuite extends FunSuite {
     assert(LoginFormValidatorNec("12345", "67890") ==
       Valid(ValidLoginForm("12345", "67890")))
   }
-}

@@ -10,7 +10,7 @@ import scala.language.postfixOps
  * ScalaCheck example driven by MUnit
  * TODO: Really this should be a "full" ScalaCheck properties test.
  */
-class DSLPropertiesSuite extends ScalaCheckSuite {
+class DSLPropertiesSuite extends ScalaCheckSuite:
   import dsl._
   import Prop.forAll
 
@@ -33,4 +33,3 @@ class DSLPropertiesSuite extends ScalaCheckSuite {
         within(net, (gross * (1.0 - 0.25 - 0.05 - 0.1) - 500))
       }
   }
-}

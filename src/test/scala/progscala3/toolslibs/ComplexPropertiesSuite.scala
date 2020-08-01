@@ -4,18 +4,16 @@ package progscala3.toolslibs
 import munit.ScalaCheckSuite
 import org.scalacheck._
 
-class ComplexPropertiesSuite extends ScalaCheckSuite {
+class ComplexPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
 
-  def additionTest(a: Complex, b: Complex) = {
+  def additionTest(a: Complex, b: Complex) =
     (a + b).real == (a.real + b.real) &&
     (a + b).imaginary == (a.imaginary + b.imaginary)
-  }
 
-  def subtractionTest(a: Complex, b: Complex) = {
+  def subtractionTest(a: Complex, b: Complex) =
     (a - b).real == (a.real - b.real) &&
     (a - b).imaginary == (a.imaginary - b.imaginary)
-  }
 
   val zero = Complex(0.0, 0.0)
 
@@ -50,4 +48,3 @@ class ComplexPropertiesSuite extends ScalaCheckSuite {
       subtractionTest(c1, c2)
     }
   }
-}

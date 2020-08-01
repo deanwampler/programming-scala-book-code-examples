@@ -3,7 +3,7 @@ package progscala3.forcomps
 import scala.util.{ Try, Success, Failure }
 import munit._
 
-class ForTriesGoodSuite extends FunSuite {
+class ForTriesGoodSuite extends FunSuite:
   def positive(i: Int): Try[Int] = Try {
     assert (i > 0, s"nonpositive number $i")
     i
@@ -34,4 +34,3 @@ class ForTriesGoodSuite extends FunSuite {
         assert(false, "succeeded when it should have failed!")
     }
   }
-}

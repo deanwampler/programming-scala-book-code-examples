@@ -10,7 +10,7 @@ import scala.language.implicitConversions
  * Nec variant, where NEC stands for "non empty chain".
  * @see https://typelevel.org/cats/datatypes/validated.html
  */
-object LoginFormValidatorNec {
+object LoginFormValidatorNec:
 
   type V[T] = ValidatedNec[LoginValidation, T]                       // <1>
 
@@ -23,11 +23,10 @@ object LoginFormValidatorNec {
     else TooShort(name, n).invalidNec
 
   /** For simplicity, just disallow whitespace. */
-  def goodCharacters(field: String, name: String): V[String] = {
+  def goodCharacters(field: String, name: String): V[String] =
     val re = raw".*\s.*".r
     if re.matches(field) == false then field.validNec
     else BadCharacters(name).invalidNec
-  }
 
   def apply(                                                         // <3>
       userName: String, password: String): V[ValidLoginForm] =
@@ -40,7 +39,7 @@ object LoginFormValidatorNec {
       case (s1, _, _, s2, _, _) => ValidLoginForm(s1, s2)
     }
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     assert(LoginFormValidatorNec("", "") ==
       Invalid(Chain(
         Empty("user name"), TooShort("user name", 5),
@@ -61,5 +60,3 @@ object LoginFormValidatorNec {
 
     assert(LoginFormValidatorNec("12345", "67890") ==
       Valid(ValidLoginForm("12345", "67890")))
-  }
-}

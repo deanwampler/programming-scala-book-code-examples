@@ -3,7 +3,7 @@ package progscala3.fp.basics
 
 import munit._
 
-class HOFsCompositionSuite extends FunSuite {
+class HOFsCompositionSuite extends FunSuite:
 
   test("Collections methods and their functions compose - operator syntax") {
     val result1 = (1 to 10) filter (_ % 2 == 0) map (_ * 2) reduce (_ * _)
@@ -14,4 +14,3 @@ class HOFsCompositionSuite extends FunSuite {
     val result2 = (1 to 10).filter(_ % 2 == 0).map(_ * 2).reduce(_ * _)
     assert(result2 == 122880)
   }
-}

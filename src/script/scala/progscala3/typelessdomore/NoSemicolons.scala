@@ -1,16 +1,13 @@
 // src/script/scala/progscala3/typelessdomore/NoSemicolons.scala
 
-// Trailing equals sign indicates more code on the next line.
-def equalsign(s: String) =
+def equalsign(s: String) =                       // <1>
   println("equalsign: " + s)
 
-// Trailing opening curly brace indicates more code on the next line.
-def equalsign2(s: String) = {
+def equalsign2(s: String) = {                    // <2>
   println("equalsign2: " + s)
 }
 
-// Trailing commas, periods, and operators indicate more code on the next line.
-def commas(s1: String,
+def commas(s1: String,                           // <3>
            s2: String) = Console.
   println("comma: " + s1 +
           ", " + s2)

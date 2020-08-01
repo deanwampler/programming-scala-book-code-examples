@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForMapSuite extends FunSuite {
+class ForMapSuite extends FunSuite:
   val states   = Vector("Alabama", "Alaska", "Virginia", "Wyoming")
   val expected = Vector("ALABAMA", "ALASKA", "VIRGINIA", "WYOMING")
 
@@ -18,4 +18,3 @@ class ForMapSuite extends FunSuite {
     val results = states map (_.toUpperCase)
     assert(results == expected)
   }
-}

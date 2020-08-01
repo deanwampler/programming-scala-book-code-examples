@@ -3,7 +3,7 @@ package progscala3.fp.datastructs
 
 import munit._
 
-class FlatmapSuite extends FunSuite {
+class FlatmapSuite extends FunSuite:
 
 	val list = List("now", "is", "", "the", "time")
 
@@ -21,4 +21,3 @@ class FlatmapSuite extends FunSuite {
 		assert(l2.flatten ==
 		  List[Char]('n', 'o', 'w', 'i', 's', 't', 'h', 'e', 't', 'i', 'm', 'e'))
 	}
-}

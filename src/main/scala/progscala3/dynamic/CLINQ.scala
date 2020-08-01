@@ -2,11 +2,11 @@
 package progscala3.dynamic
 import scala.language.dynamics                                       // <1>
 
-case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic {
+case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic:
 
   def selectDynamic(name: String): CLINQ[T] =                        // <2>
     if name == "all" || records.length == 0 then this                // <3>
-    else {
+    else
       val fields = name.split("_and_")
       val seed = Seq.empty[Map[String,T]]
       val newRecords = (records foldLeft seed) {
@@ -19,34 +19,27 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic {
           else results
       }
       CLINQ(newRecords)
-    }
 
-  def applyDynamic(name: String)(field: String): Where = name match {
+  def applyDynamic(name: String)(field: String): Where = name match
     case "where" => new Where(field)                                 // <5>
     case _ => throw CLINQ.BadOperation(field, """Expected "where".""")
-  }
 
-  protected class Where(field: String) extends Dynamic {             // <6>
-    def filter(op: T => Boolean): CLINQ[T] = {
+  protected class Where(field: String) extends Dynamic:              // <6>
+    def filter(op: T => Boolean): CLINQ[T] =
       val newRecords = records filter {
         _ exists {
           case (k, v) => field == k && op(v)
         }
       }
       CLINQ(newRecords)
-    }
 
-    def applyDynamic(op: String)(value: T): CLINQ[T] = op match {
+    def applyDynamic(op: String)(value: T): CLINQ[T] = op match
       case "EQ" => filter(value == _)                                // <7>
       case "NE" => filter(value != _)
       case _ => throw CLINQ.BadOperation(field, """Expected "EQ" or "NE".""")
-    }
-  }
 
   override def toString: String = records mkString "\n"
-}
 
-object CLINQ {
+object CLINQ:
   case class BadOperation(name: String, msg: String) extends RuntimeException(
     s"Unrecognized operation $name. $msg")
-}

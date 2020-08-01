@@ -7,7 +7,6 @@ package progscala3.objectsystem.ui
  */
 class RadioButton(val on: Boolean, label: String) extends Button(label)
 
-object RadioButton {
+object RadioButton:
   def unapply(button: RadioButton) = Some((button.on, button.label))
                  // equivalent to: = Some(Tuple2(button.on, button.label))
-}

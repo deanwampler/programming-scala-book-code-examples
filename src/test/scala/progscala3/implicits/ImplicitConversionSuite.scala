@@ -3,16 +3,13 @@ package progscala3.implicits
 
 import munit._
 import scala.annotation.alpha
-import scala.language.implicitConversions
 
-class ImplicitConversionSuite extends FunSuite {
+class ImplicitConversionSuite extends FunSuite:
 
-	object implicits {
-	  implicit final class DarthVadarShip[A](val self: A) {
+	object implicits:
+	  implicit final class TIEFighter[A](val self: A):
 	    @alpha("tie_fighter") def <-*-> [B](y: B): Tuple2[A, B] =
 	    	Tuple2(self, y)
-	  }
-	}
 
 	import implicits._
 
@@ -20,4 +17,3 @@ class ImplicitConversionSuite extends FunSuite {
 		val m = Map("one" <-*-> 1, "two" <-*-> 2)
 		assert(m == Map("one" -> 1, "two" -> 2))
 	}
-}

@@ -4,7 +4,7 @@ package progscala3.basicoop.people
 import org.scalacheck._
 
 /** ScalaCheck example using ScalaCheck classes, not MUnit */
-object ZipCodeProperties extends Properties("ZipCode") {
+object ZipCodeProperties extends Properties("ZipCode"):
   import Prop.forAll
 
   def validInts = for
@@ -53,4 +53,3 @@ object ZipCodeProperties extends Properties("ZipCode") {
       val c = ZipCode(zipInt.toString)
       c.zip == zipInt && c.extension == 0
     }
-}

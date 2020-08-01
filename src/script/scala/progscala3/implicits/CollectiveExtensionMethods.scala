@@ -8,7 +8,7 @@ val map2 = Map("two" -> 2, "three" -> 3)
 assert(map1.sorted == Vector("one" -> 1, "two" -> 2))
 assert(map2.sorted == Vector("three" -> 3, "two" -> 2))
 
-given Monoid[Int]:
+given intMonoid as Monoid[Int]:
   def add(i1: Int, i2: Int): Int = i1+i2
   def zero: Int = 0
 

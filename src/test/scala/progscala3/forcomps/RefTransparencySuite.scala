@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class RefTransparencySuite extends FunSuite {
+class RefTransparencySuite extends FunSuite:
   import RefTransparency._
 
   test("RefTransparency.addInts implicitly converts strings to integers") {
@@ -22,4 +22,3 @@ class RefTransparencySuite extends FunSuite {
     assert(addInts2("x", "2") == Left("NFE: For input string: \"x\""))
     assert(addInts2("x", "y") == Left("NFE: For input string: \"x\""))
   }
-}

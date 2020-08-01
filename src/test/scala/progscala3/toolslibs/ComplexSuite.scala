@@ -3,7 +3,7 @@ package progscala3.toolslibs
 
 import munit._
 
-class ComplexSuite extends FunSuite {
+class ComplexSuite extends FunSuite:
 
   val c1 = Complex(1.2, 3.4)
   val c2 = Complex(5.6, 7.8)
@@ -25,4 +25,3 @@ class ComplexSuite extends FunSuite {
     assert((c1 - c2).real == (c1.real - c2.real))
     assert((c1 - c2).imaginary ==  (c1.imaginary - c2.imaginary))
   }
-}

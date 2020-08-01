@@ -3,7 +3,7 @@ package progscala3.fp.datastructs
 
 import munit._
 
-class FilterSuite extends FunSuite {
+class FilterSuite extends FunSuite:
 
 	val stateCapitals = Map(
 	  "Alabama" -> "Montgomery",
@@ -17,4 +17,3 @@ class FilterSuite extends FunSuite {
 		  "Alabama" -> "Montgomery",
 		  "Alaska"  -> "Juneau"))
 	}
-}

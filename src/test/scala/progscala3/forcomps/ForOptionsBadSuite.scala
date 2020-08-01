@@ -11,21 +11,18 @@ import munit._
  * refactoring. Often, it can be eliminated by decomposing a function into
  * smaller functions.
  */
-class ForOptionsBadSuite extends FunSuite {
+class ForOptionsBadSuite extends FunSuite:
   def doThreeSteps(
       step1: Int => Option[Int],
       step2: Int => Option[Int],
-      step3: Int => Option[Int]): Option[Int] = {
-    val result1 = step1(0) match {
+      step3: Int => Option[Int]): Option[Int] =
+    val result1 = step1(0) match
       case None => return None
       case Some(result) => result
-    }
-    val result2 = step2(result1) match {
+    val result2 = step2(result1) match
       case None => return None
       case Some(result) => result
-    }
     step3(result2)
-  }
 
   test("Working code with Options that is unnecessarily verbose") {
     val result1 = doThreeSteps(
@@ -40,4 +37,3 @@ class ForOptionsBadSuite extends FunSuite {
       i3 => Some(i3 + 25))
     assert(result2 == None)
   }
-}

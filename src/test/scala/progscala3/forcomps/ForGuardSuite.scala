@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForGuardSuite extends FunSuite {
+class ForGuardSuite extends FunSuite:
   val states = Vector("Alabama", "Alaska", "Virginia", "Wyoming")
 
   def doFor(): Vector[String] = for
@@ -22,4 +22,3 @@ class ForGuardSuite extends FunSuite {
       _.toSeq.withFilter(_.isLower).map(c => s"$c-${c.toUpper}"))
     assert(results == doFor())
   }
-}

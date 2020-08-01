@@ -1,15 +1,14 @@
 // src/main/scala/progscala3/implicits/ScalaDatabaseApi.scala
 
 // A Scala wrapper for the Java-like Database API.
-package progscala3.implicits {
-    package scaladb {
-    object implicits {
+package progscala3.implicits:
+  package scaladb:
+    object implicits:
       import javadb.JRow
 
-      implicit class SRow(jrow: JRow) {
+      implicit class SRow(jrow: JRow):
         def get[T](colName: String)(implicit toT: (JRow,String) => T): T =
           toT(jrow, colName)
-      }
 
       implicit val jrowToInt: (JRow,String) => Int =
         (jrow: JRow, colName: String) => jrow.getInt(colName)
@@ -17,12 +16,11 @@ package progscala3.implicits {
         (jrow: JRow, colName: String) => jrow.getDouble(colName)
       implicit val jrowToString: (JRow,String) => String =
         (jrow: JRow, colName: String) => jrow.getText(colName)
-    }
 
-    object DB {
+    object DB:
       import implicits._
 
-      def main(args: Array[String]): Unit = {
+      def main(args: Array[String]): Unit =
         val row = javadb.JRow("one" -> 1, "two" -> 2.2, "three" -> "THREE!")
 
         val oneValue1: Int      = row.getInt("one")
@@ -42,7 +40,3 @@ package progscala3.implicits {
         println(s"one2   -> $oneValue2")
         println(s"two2   -> $twoValue2")
         println(s"three2 -> $threeValue2")
-      }
-    }
-  }
-}

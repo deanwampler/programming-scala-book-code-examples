@@ -8,7 +8,7 @@ import org.scalacheck._
  * ScalaCheck example driven by MUnit
  * TODO: Really this should be a "full" ScalaCheck properties test.
  */
-class DSLPropertiesSuite extends ScalaCheckSuite {
+class DSLPropertiesSuite extends ScalaCheckSuite:
   import dsl.PayrollParser
   import Prop.forAll
 
@@ -33,4 +33,3 @@ class DSLPropertiesSuite extends ScalaCheckSuite {
         within(net, (gross * (1.0 - 0.20 - 0.03 - 0.15) - 250))
     }
   }
-}

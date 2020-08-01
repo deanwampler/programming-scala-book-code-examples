@@ -4,7 +4,7 @@ package progscala3.fp.categories
 import munit._
 import scala.language.higherKinds                         // <1>
 
-class FunctorExampleSuite extends FunSuite {
+class FunctorExampleSuite extends FunSuite:
 
 	val fii: Int => Int       = i => i * 2
 	val fid: Int => Double    = i => 2.1 * i
@@ -35,4 +35,3 @@ class FunctorExampleSuite extends FunSuite {
 		val fc = fds compose fid                                     // <4>
 		assert(fc(2) == "4.2")
 	}
-}

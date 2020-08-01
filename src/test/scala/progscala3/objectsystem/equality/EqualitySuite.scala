@@ -3,9 +3,7 @@ package progscala3.objectsystem.equality
 
 import munit._
 
-import scala.language.implicitConversions
-
-class EqualitySuite extends FunSuite {
+class EqualitySuite extends FunSuite:
 
   case class Person(firstName: String, lastName: String, age: Int)
 
@@ -13,12 +11,11 @@ class EqualitySuite extends FunSuite {
   val p1b = Person("Dean", "Wampler", 29)
   val p2  = Person("Buck", "Trends",  30)
 
-  def testEquals() = {
+  def testEquals() =
     assert((p1a.equals(p1a))  == true)
     assert((p1a.equals(p1b))  == true)
     assert((p1a.equals(p2))   == false)
     assert((p1a.equals(null)) == false)
-  }
 
   test("The == operator is implemented with the equals method") {
     testEquals()
@@ -105,4 +102,3 @@ class EqualitySuite extends FunSuite {
     assert((Map("one" -> 1, "two" -> 2).iterator.sameElements(
       Map("one" -> 1, "two" -> 2))) == true)
   }
-}

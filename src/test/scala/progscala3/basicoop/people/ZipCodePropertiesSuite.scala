@@ -5,7 +5,7 @@ import munit.ScalaCheckSuite
 import org.scalacheck._
 
 /** ScalaCheck example driven by MUnit */
-class ZipCodePropertiesSuite extends ScalaCheckSuite {
+class ZipCodePropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
 
   def validInts = for
@@ -61,4 +61,3 @@ class ZipCodePropertiesSuite extends ScalaCheckSuite {
       c.zip == zipInt && c.extension == 0
     }
   }
-}

@@ -3,7 +3,7 @@ package progscala3.fp.datastructs
 
 import munit._
 
-class VectorSuite extends FunSuite {
+class VectorSuite extends FunSuite:
 
 	val vect = Vector("Programming", "Scala")
 
@@ -34,4 +34,3 @@ class VectorSuite extends FunSuite {
 		assert(vect2 ==
 		  Vector("People", "should", "read", "Programming", "Scala"))
 	}
-}

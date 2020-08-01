@@ -5,10 +5,9 @@ import progscala3.traits.observer._
 // No override of "click" in Button required.
 val button = new Button("Click Me!") with ObservableClicks
 
-class ClickCountObserver extends Observer[Clickable] {
+class ClickCountObserver extends Observer[Clickable]:
   var count = 0
   def receiveUpdate(state: Clickable): Unit = count += 1
-}
 
 val bco1 = new ClickCountObserver
 val bco2 = new ClickCountObserver

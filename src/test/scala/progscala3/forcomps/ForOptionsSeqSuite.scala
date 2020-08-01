@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForOptionsSeqSuite extends FunSuite {
+class ForOptionsSeqSuite extends FunSuite:
   val options: Seq[Option[Int]] = Vector(Some(10), None, Some(20))
 
   test("for comprehension over a sequence of options removes Nones") {
@@ -33,4 +33,3 @@ class ForOptionsSeqSuite extends FunSuite {
     }
     assert(results == Vector(20, 40))
   }
-}

@@ -3,7 +3,7 @@ package progscala3.fp.datastructs
 
 import munit._
 
-class SetSuite extends FunSuite {
+class SetSuite extends FunSuite:
 
 	val states = Set("Alabama", "Alaska", "Wyoming")
 
@@ -27,4 +27,3 @@ class SetSuite extends FunSuite {
 		assert(states2 ==
 		  Set("Alabama", "Alaska", "Wyoming", "New York", "Illinois"))
 	}
-}

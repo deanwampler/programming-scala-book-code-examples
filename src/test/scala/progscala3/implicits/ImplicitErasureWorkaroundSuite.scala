@@ -3,8 +3,8 @@ package progscala3.implicits
 
 import munit._
 
-class ImplicitErasureWorkaroundSuite extends FunSuite {
-  object M {
+class ImplicitErasureWorkaroundSuite extends FunSuite:
+  object M:
     implicit object IntMarker                                    // <1>
     implicit object StringMarker
 
@@ -18,7 +18,6 @@ class ImplicitErasureWorkaroundSuite extends FunSuite {
     def m(seq: Seq[String])(
         implicit s: StringMarker.type): (Seq[String], String) =  // <4>
       (seq, s"Seq[String]: $seq (implicit: ${p(s)})")
-  }
 
   import M._                                                     // <5>
 
@@ -28,4 +27,3 @@ class ImplicitErasureWorkaroundSuite extends FunSuite {
     assert(m(List("one", "two", "three"))._2 ==
       "Seq[String]: List(one, two, three) (implicit: StringMarker)")
   }
-}

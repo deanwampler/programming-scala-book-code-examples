@@ -6,7 +6,7 @@ import scala.language.implicitConversions
 import java.net.URL
 import java.io.File
 
-object ProcessExample {
+object ProcessExample:
 
   // Build a process to open a URL, redirect the output to
   // "grep $filter", and append the output to file (not overwrite it).
@@ -17,7 +17,7 @@ object ProcessExample {
   def countLines(fileName: String) =
     s"ls -1 $fileName" #&& s"wc -l $fileName"
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     val resultCode = "ls src".!
     assert(resultCode == 0)
 
@@ -33,7 +33,3 @@ object ProcessExample {
     // where "nstr" is the number of lines in "scala.txt":
     val strings = output.split("\\W+")
     assert(strings(2).toInt > 0)
-  }
-}
-
-

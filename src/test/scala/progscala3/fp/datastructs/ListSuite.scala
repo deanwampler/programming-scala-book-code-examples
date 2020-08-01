@@ -3,7 +3,7 @@ package progscala3.fp.datastructs
 
 import munit._
 
-class ListSuite extends FunSuite {
+class ListSuite extends FunSuite:
 
 	val list = List("Programming", "Scala")
 
@@ -27,4 +27,3 @@ class ListSuite extends FunSuite {
 		assert(list2 ==
 		  List("People", "should", "read", "Programming", "Scala"))
 	}
-}

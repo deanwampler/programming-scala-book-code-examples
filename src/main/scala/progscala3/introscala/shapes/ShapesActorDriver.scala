@@ -8,22 +8,20 @@ import scala.language.implicitConversions
 // Message used only in this file:
 private object Start                                                 // <1>
 
-object ShapesDrawingDriver {                                         // <2>
-  def main(args: Array[String]): Unit = {                            // <3>
+object ShapesDrawingDriver:                                          // <2>
+  def main(args: Array[String]): Unit =                              // <3>
     val system = ActorSystem("DrawingActorSystem", ConfigFactory.load())
     val drawer = system.actorOf(
       Props(new ShapesDrawingActor), "drawingActor")
     val driver = system.actorOf(
        Props(new ShapesDrawingDriver(drawer)), "drawingService")
     driver ! Start                                                   // <4>
-  }
-}
 
-class ShapesDrawingDriver(drawerActor: ActorRef) extends Actor {     // <5>
+class ShapesDrawingDriver(drawerActor: ActorRef) extends Actor:      // <5>
   import Messages._
   implicit val ec: ExecutionContext = ExecutionContext.global
 
-  def receive = {
+  def receive =
     case Start =>                                                    // <6>
       drawerActor ! Circle(Point(0.0,0.0), 1.0)
       drawerActor ! Rectangle(Point(0.0,0.0), 2, 5)
@@ -38,5 +36,3 @@ class ShapesDrawingDriver(drawerActor: ActorRef) extends Actor {     // <5>
     case unexpected =>                                               // <9>
       println("ShapesDrawingDriver: ERROR: Received an unexpected message = "
         + unexpected)
-  }
-}

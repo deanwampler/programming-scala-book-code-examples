@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/basicoop/NestedTypes.scala
 
-object Database {                                                    // <1>
+object Database:                                                     // <1>
   case class ResultSet(/*...*/)                                      // <2>
   case class Connection(/*...*/)                                     // <3>
 
@@ -12,13 +12,11 @@ object Database {                                                    // <1>
   case class  Connected(connection: Connection)  extends Status
   case class  QuerySucceeded(results: ResultSet) extends Status
   case class  QueryFailed(e: DatabaseException)  extends Status
-}
 
-class Database {
+class Database:
   import Database._
-  
+
   def connect(server: String): Status = ???                          // <5>
   def disconnect(): Status = ???
 
   def query(/*...*/): Status = ???
-}

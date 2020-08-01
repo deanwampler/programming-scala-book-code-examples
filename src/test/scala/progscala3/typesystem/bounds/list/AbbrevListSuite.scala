@@ -7,7 +7,7 @@ import munit._
  * Test the example "AbbrevList".
  * Not very comprehensive... Should be converted to a ScalaCheck suite.
  */
-class AbbrevListSuite extends FunSuite {
+class AbbrevListSuite extends FunSuite:
 
   test("item :: AbbrevNil == AbbrevList(item)") {
     val list = (1 :: AbbrevNil)
@@ -34,4 +34,3 @@ class AbbrevListSuite extends FunSuite {
     (1 :: 2 :: AbbrevNil).foreach(i => count += i)
     assert(count == 3)
   }
-}

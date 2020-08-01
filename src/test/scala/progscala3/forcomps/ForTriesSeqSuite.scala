@@ -4,7 +4,7 @@ package progscala3.forcomps
 import scala.util.{ Try, Success, Failure }
 import munit._
 
-class ForTriesSeqSuite extends FunSuite {
+class ForTriesSeqSuite extends FunSuite:
   val tries: Seq[Try[Int]] =
     Vector(Success(10), Failure(new RuntimeException("boo!")), Success(20))
 
@@ -14,4 +14,3 @@ class ForTriesSeqSuite extends FunSuite {
   	yield (2 * i)
   	assert(ints == Vector(20, 40))
   }
-}

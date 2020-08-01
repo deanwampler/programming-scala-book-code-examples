@@ -2,7 +2,7 @@
 
 package progscala3.forcomps
 
-object LoginFormValidatorSingle {
+object LoginFormValidatorSingle:
 
   type E[T] = Either[LoginValidation, T]                             // <1>
 
@@ -19,13 +19,12 @@ object LoginFormValidatorSingle {
       TooShort(name, n))
 
   /** For simplicity, just disallow whitespace. */
-  def goodCharacters(field: String, name: String): E[String] = {
+  def goodCharacters(field: String, name: String): E[String] =
     val re = raw".*\s.*".r
     Either.cond(
       re.matches(field) == false,
       field,
       BadCharacters(name))
-  }
 
   def apply(userName: String, password: String): E[ValidLoginForm] = // <3>
     for
@@ -37,7 +36,7 @@ object LoginFormValidatorSingle {
       _ <- goodCharacters(password, "password")
     yield ValidLoginForm(userName, password)
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     assert(LoginFormValidatorSingle("", "pwd") ==
       Left(Empty("user name")))
     assert(LoginFormValidatorSingle("", "") ==
@@ -56,5 +55,3 @@ object LoginFormValidatorSingle {
 
     assert(LoginFormValidatorSingle("12345", "67890") ==
       Right(ValidLoginForm("12345", "67890")))
-  }
-}

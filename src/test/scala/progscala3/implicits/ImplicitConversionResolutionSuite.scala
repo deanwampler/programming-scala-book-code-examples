@@ -4,27 +4,23 @@ package progscala3.implicits
 import munit._
 import scala.language.implicitConversions
 
-class ImplicitConversionResolutionSuite extends FunSuite {
+class ImplicitConversionResolutionSuite extends FunSuite:
 
   case class Foo(s: String)
-  object Foo {
+  object Foo:
     implicit def fromString(s: String): Foo =
       new Foo(s"Foo's implicit conversion: $s")
-  }
 
-  object scope1 {
+  object scope1:
     import Foo._
     def apply(foo: Foo): String  = foo.s
-  }
 
-  object scope2 {
-    object implicits {
+  object scope2:
+    object implicits:
       implicit def overridingConversion(s: String): Foo =
         new Foo(s"scope2's implicit conversion: $s")
-    }
 
     def apply(foo: Foo): String  = foo.s
-  }
 
   test("Implicit conversion method in scope is invoked to convert a type"){
     assert(scope1(Foo("no use of conversion")) == "no use of conversion")
@@ -36,4 +32,3 @@ class ImplicitConversionResolutionSuite extends FunSuite {
     assert(scope2(Foo("no use of conversion")) == "no use of conversion")
     assert(scope2("foo") == "scope2's implicit conversion: foo")
   }
-}

@@ -4,7 +4,7 @@ package progscala3.fp.datastructs
 import munit._
 
 /** To fit the text, "A" == associative, "C" == commutative. */
-class FoldAssocFuncsSuite extends FunSuite {
+class FoldAssocFuncsSuite extends FunSuite:
 
 	// fac: a func. that is associative AND commutative.
 	// Define left and right versions, because reduceLeft takes the
@@ -55,4 +55,3 @@ class FoldAssocFuncsSuite extends FunSuite {
 		assert(listStrings.reduceRight(fnacRight) == "((((5)-(4))-(3))-(2))-(1)")
 		assert(listStrings.reduceRight(fnacLeft)  == "(1)-((2)-((3)-((4)-(5))))")
 	}
-}

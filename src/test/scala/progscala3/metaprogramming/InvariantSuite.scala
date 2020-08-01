@@ -3,10 +3,10 @@ package progscala3.metaprogramming
 
 import munit._
 
-class InvariantSuite extends FunSuite {
+class InvariantSuite extends FunSuite:
   case class Variable(var i: Int, var s: String)
 
-  def succeed() = {                                                // <1>
+  def succeed() =                                                  // <1>
     val v = Variable(0, "Hello!")
     val i1 = invariant(v.s == "Hello!") {                          // <2>
       v.i += 1
@@ -14,7 +14,6 @@ class InvariantSuite extends FunSuite {
       v.i
     }
     assert(i1 == 2)
-  }
 
   test("invariant.apply should not fail if the invariant holds") { succeed() }
 
@@ -30,4 +29,3 @@ class InvariantSuite extends FunSuite {
       }
     }
   }
-}

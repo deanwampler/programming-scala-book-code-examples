@@ -5,12 +5,12 @@ import akka.actor.{ActorRef, actorRef2Scala, ActorSystem}
 import java.lang.{NumberFormatException => NFE}
 import scala.language.implicitConversions
 
-object AkkaClient {                                             // <1>
+object AkkaClient:                                              // <1>
   import Messages._
 
   private var system: Option[ActorSystem] = None                // <2>
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     processArgs(args.toIndexedSeq)
     val sys = ActorSystem("AkkaClient")                         // <3>
     system = Some(sys)
@@ -19,16 +19,13 @@ object AkkaClient {                                             // <1>
       sys.settings.config.getInt("server.number-workers")
     server ! Request.Start(numberOfWorkers)                     // <6>
     processInput(server)                                        // <7>
-  }
 
-  private def processArgs(args: Seq[String]): Unit = args match {
+  private def processArgs(args: Seq[String]): Unit = args match
     case Nil =>
     case ("-h" | "--help") +: _ => exit(help, 0)
     case head +: _ => exit(s"Unknown input $head!\n"+help, 1)
-  }
 
-
-  private def processInput(server: ActorRef): Unit = {          // <8>
+  private def processInput(server: ActorRef): Unit =            // <8>
     val blankRE = """^\s*#?\s*$""".r
     val badCrashRE = """^\s*[Cc][Rr][Aa][Ss][Hh]\s*$""".r
     val crashRE = """^\s*[Cc][Rr][Aa][Ss][Hh]\s+(\d+)\s*$""".r
@@ -67,7 +64,7 @@ object AkkaClient {                                             // <1>
           println(s)
       }
 
-    val handleLine: String => Unit = {                          // <9>
+    val handleLine: String => Unit =                            // <9>
       case blankRE() =>   /* do nothing */
       case "h" | "help" => println(help)
       case dumpRE(n) =>
@@ -77,7 +74,7 @@ object AkkaClient {                                             // <1>
         server ! msg
       case badCrashRE() => missingActorNumber()
       case crashRE(n) => server ! handleInt(n)(Request.Crash.apply)
-      case charNumberStringRE(c, n, s) => c match {
+      case charNumberStringRE(c, n, s) => c match
         case "c" | "C" =>
           server ! handleLong(n)(i => KeyedRequest.Create(i, s))
         case "u" | "U" =>
@@ -85,8 +82,8 @@ object AkkaClient {                                             // <1>
         case "r" | "R" => unexpectedString(c, n)
         case "d" | "D" => unexpectedString(c, n)
         case _ => invalidCommand(c)
-      }
-      case charNumberRE(c, n) => c match {
+
+      case charNumberRE(c, n) => c match
         case "r" | "R" =>
           server ! handleLong(n)(KeyedRequest.Read.apply)
         case "d" | "D" =>
@@ -94,19 +91,15 @@ object AkkaClient {                                             // <1>
         case "c" | "C" => expectedString()
         case "u" | "U" => expectedString()
         case _ => invalidCommand(c)
-      }
+
       case "q" | "quit" | "exit" => finished()
       case string => invalidInput(string)
-    }
 
-    while true do {
+    while true do
       prompt()
-      Console.in.readLine() match {
+      Console.in.readLine() match
         case null => finished()
         case line => handleLine(line)
-      }
-    }
-  }
 
   private val help =
   """Usage: AkkaClient [-h | --help]
@@ -121,9 +114,7 @@ object AkkaClient {                                             // <1>
     |  ^d | q | quit Quit.
     |""".stripMargin
 
-  private def exit(message: String, status: Int): Nothing = {
+  private def exit(message: String, status: Int): Nothing =
     for sys <- system do sys.terminate()
     println(message)
     sys.exit(status)
-  }
-}

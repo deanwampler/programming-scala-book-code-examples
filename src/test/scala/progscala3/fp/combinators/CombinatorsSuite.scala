@@ -4,7 +4,7 @@ package progscala3.fp.combinators
 import munit._
 import scala.language.higherKinds                         // <1>
 
-class CombinatorsSuite extends FunSuite {
+class CombinatorsSuite extends FunSuite:
 
 	/** A map definition that takes the collection first, then the function. */
 	object CombinatorsLF {
@@ -31,5 +31,3 @@ class CombinatorsSuite extends FunSuite {
 		val list = CombinatorsLF.map(input)(intToString)
 		assert(list == expected)
 	}
-}
-

@@ -7,7 +7,7 @@ import scala.quoted._
  * that must be true both before and after the block is evaluated.
  * The result of the block is returned.
  */
-object invariant {
+object invariant:
   /**
    * When not testing and you want to eliminate the overhead of the
    * two predicate checks, set this global flag to true.
@@ -21,12 +21,11 @@ object invariant {
    */
   inline def apply[T](
       inline predicate: => Boolean)(
-      inline block: => T): T = {
+      inline block: => T): T =
     if !skip && !predicate then fail(predicate, block, true)
     val result = block
     if !skip && !predicate then fail(predicate, block, false)
     result
-  }
 
   inline private def fail[T](
       inline predicate: => Boolean,
@@ -35,25 +34,23 @@ object invariant {
     ${ failImpl('predicate, 'block, 'before) }
 
   case class InvariantFailure(msg: String) extends RuntimeException(msg)
-  object InvariantFailure {
+
+  object InvariantFailure:
     def apply(predicate: String, block: String, before: Boolean) =
       new InvariantFailure(
         s"FAILURE! $predicate failed for block: $block (${beforeAfter(before)} evaluation)")
     private def beforeAfter(before: Boolean) = if before then "before" else "after"
-  }
 
   def failImpl[T](
       predicate: Expr[Boolean], block: Expr[T], before: Expr[Boolean])(
       using QuoteContext) = '{
-    throw InvariantFailure(
-      ${showExpr(predicate)},
-      ${showExpr(block)},
-      $before)
-  }
+        throw InvariantFailure(
+          ${showExpr(predicate)},
+          ${showExpr(block)},
+          $before)
+      }
 
   /* Return a string for the expression */
-  private def showExpr[T](expr: Expr[T])(using QuoteContext): Expr[String] = {
+  private def showExpr[T](expr: Expr[T])(using QuoteContext): Expr[String] =
     val code: String = expr.show
     Expr(code)
-  }
-}

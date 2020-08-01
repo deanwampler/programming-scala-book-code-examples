@@ -3,7 +3,7 @@ package progscala3.basicoop.people
 
 import munit._
 
-class PersonAuxConstructorsSuite extends FunSuite {
+class PersonAuxConstructorsSuite extends FunSuite:
 
   val addr = Address("1 Scala Lane", "Bay Area", "CA", ZipCode(98765))
 
@@ -37,4 +37,3 @@ class PersonAuxConstructorsSuite extends FunSuite {
     assert(p.age     == Some(20))
     assert(p.address == Some(addr))
   }
-}

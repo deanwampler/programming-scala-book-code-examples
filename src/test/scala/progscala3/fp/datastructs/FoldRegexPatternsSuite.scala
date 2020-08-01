@@ -3,7 +3,7 @@ package progscala3.fp.datastructs
 
 import munit._
 
-class FoldRegexPatternsSuite extends FunSuite {
+class FoldRegexPatternsSuite extends FunSuite:
   test("Regex pattern matching used in a foldLeft") {
     val ignoreRegex = """^\s*(#.*|\s*)$""".r                             // <1>
     val kvRegex = """^\s*([^=]+)\s*=\s*([^#]+)\s*.*$""".r                // <2>
@@ -28,10 +28,9 @@ class FoldRegexPatternsSuite extends FunSuite {
       zipWithIndex.
       foldLeft(Vector.empty[Either[Error,KV]]) { case (vect, (line, n)) =>
         if ignoreRegex.matches(line) then vect
-        else line match {
+        else line match
           case kvRegex(key, value) => vect :+ Right(key.trim -> value.trim)
           case _ => vect :+ Left(n+1, line.trim)
-        }
       }
     assert(kvPairs == Vector(
       Right("book.name" -> "Programming Scala, Third Edition"),
@@ -40,4 +39,3 @@ class FoldRegexPatternsSuite extends FunSuite {
       Right("book.publisher" -> "O'Reilly"),
       Right("book.publication-year" -> "2020")))
   }
-}

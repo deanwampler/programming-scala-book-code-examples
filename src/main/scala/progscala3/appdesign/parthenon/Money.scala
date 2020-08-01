@@ -6,7 +6,7 @@ import scala.annotation.alpha
  * The same class from the Design by Contract section, with a new apply method
  * in the companion object below.
  */
-case class Money(amount: Double) {
+case class Money(amount: Double):
   require(amount >= 0.0, s"Negative amount $amount not allowed")
 
   @alpha("add")
@@ -17,12 +17,10 @@ case class Money(amount: Double) {
   def >= (m: Money): Boolean = amount >= m.amount
 
   override def toString = "$"+amount
-}
 
-case object Money {
+case object Money:
   /**
    * Convenience method to convert a string to Money. Doesn't handle an invalid
    * string!
    */
   def apply(amount: String): Money = Money(amount.toDouble)
-}

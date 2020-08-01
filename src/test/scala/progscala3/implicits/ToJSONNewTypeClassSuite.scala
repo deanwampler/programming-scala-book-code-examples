@@ -2,39 +2,35 @@
 package progscala3.implicits
 
 import munit._
-import scala.language.implicitConversions
 
-class ToJSONNewTypeClassSuite extends FunSuite {
+class ToJSONNewTypeClassSuite extends FunSuite:
 
-  sealed trait DomainConcept                                            // <1>
+  sealed trait DomainConcept                                         // <1>
   case class Address(street: String, city: String)  extends DomainConcept
   case class Person(name: String, address: Address) extends DomainConcept
 
-  trait ToJSON[T] {                                                        // <2>
+  trait ToJSON[T]:                                                   // <2>
     def toJSON(level: Int): String = "{}"
 
     val INDENTATION = "  "
     def indentation(level: Int = 0): (String,String) =
       (INDENTATION * level, INDENTATION * (level+1))
-  }
 
   given ToJSON[Address]:
-    def (address: Address) toJSON(level: Int): String = {              // <2>
+    def (address: Address) toJSON(level: Int): String =              // <3>
       val (outdent, indent) = indentation(level)
       s"""{
         |${indent}"street": "${address.street}",
         |${indent}"city":   "${address.city}"
         |$outdent}""".stripMargin
-    }
 
   given ToJSON[Person]:
-    def (person: Person) toJSON(level: Int): String = {
+    def (person: Person) toJSON(level: Int): String =
       val (outdent, indent) = indentation(level)
       s"""{
         |${indent}"name":    "${person.name}",
         |${indent}"address": ${person.address.toJSON(level + 1)}
         |$outdent}""".stripMargin
-    }
 
   val address = Address("1 Scala Lane", "Anytown")
   val person = Person("Buck Trends", address)
@@ -54,4 +50,3 @@ class ToJSONNewTypeClassSuite extends FunSuite {
       |  }
       |}""".stripMargin))
   }
-}

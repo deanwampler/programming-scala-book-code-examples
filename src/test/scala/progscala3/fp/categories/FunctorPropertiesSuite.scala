@@ -4,26 +4,24 @@ package progscala3.fp.categories
 import munit.ScalaCheckSuite
 import org.scalacheck._
 
-class FunctorPropertiesSuite extends ScalaCheckSuite {
+class FunctorPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
 
   def id[A] = identity[A]    // Lift identity method to a function
 
-  def testSeqMorphism(f2: Int => Int) = {                            // <1>
+  def testSeqMorphism(f2: Int => Int) =                              // <1>
     val f1: Int => Int = _ * 2
     import SeqF._
     forAll { (l: List[Int]) =>
       map(map(l)(f1))(f2) == map(l)(f2 compose f1)
     }
-  }
 
-  def testFunctionMorphism(f2: Int => Int) = {                       // <2>
+  def testFunctionMorphism(f2: Int => Int) =                         // <2>
     val f1: Int => Int = _ * 2
     import FunctionF._
     forAll { (i: Int) =>
       map(f1)(f2)(i) == (f2 compose f1)(i)                           // <3>
     }
-  }
 
   property("Functor morphism composition") {
     testSeqMorphism(_ + 3)
@@ -76,4 +74,3 @@ class FunctorPropertiesSuite extends ScalaCheckSuite {
       }
     }
   }
-}

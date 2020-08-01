@@ -1,12 +1,10 @@
 // src/script/scala/progscala3/rounding/If.scala
 
-import progscala3.rounding.WeekDay
-
-WeekDay.values foreach { day =>
-  if WeekDay.isWorkingDay(day) then
-    println(s"$day is a working day")
-  else if day == WeekDay.Sat then
-    println("It's Saturday")
+(0 until 6) foreach { n =>
+  if n%2 == 0 then
+    println(s"$n is even")
+  else if n%3 == 0 then
+    println(s"$n is divisible by 3")
   else
-    println("It's Sunday")
+    println(n)
 }

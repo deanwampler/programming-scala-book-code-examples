@@ -5,14 +5,12 @@
 package progscala3.implicits.payroll
 import scala.annotation.alpha
 
-object Pipeline {
-  implicit class toPiped[V](value:V) {
+object Pipeline:
+  implicit class toPiped[V](value:V):
     @alpha("pipe") def |>[R] (f : V => R) = f(value)
-  }
-}
 
-object CalculatePayroll2 {
-  def main(args: Array[String]): Unit = {
+object CalculatePayroll2:
+  def main(args: Array[String]): Unit =
     import Pipeline._
     import Payroll._
 
@@ -28,5 +26,3 @@ object CalculatePayroll2 {
     println(s"For ${e.name}, the gross vs. net pay every 2 weeks is:")
     println(
       f"  $$${twoWeekGross}%.2f vs. $$${twoWeekNet}%.2f or ${percent}%.1f%%")
-  }
-}

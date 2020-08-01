@@ -12,4 +12,4 @@ def sum[T : Add, M[_] : Reduce1](container: M[T]): T =
 assert(sum(Vector(1 -> 10, 2 -> 20, 3 -> 30)) == (6 -> 60))
 assert(sum(1 to 10)                           == 55)
 assert(sum(Option(2))                         == 2)
-// sum[Int,Option](None)                                   // <4> ERROR!
+sum[Int,Option](None)

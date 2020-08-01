@@ -4,7 +4,7 @@ package progscala3.forcomps
 import munit._
 
 /** Another "bad" example, when easier idioms exist. */
-class ForOptionsBad2Suite extends FunSuite {
+class ForOptionsBad2Suite extends FunSuite:
 	def sumCountsBad(counts: Seq[Option[Int]]): Option[Int] =
 	  (counts foldLeft Option(0)) {
 	    (countOption, count) =>
@@ -19,4 +19,3 @@ class ForOptionsBad2Suite extends FunSuite {
 		assert(sumCountsBad(successfulCounts) == Some(34))
 		assert(sumCountsBad(partiallySuccessfulCounts) == None)
 	}
-}

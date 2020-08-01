@@ -4,7 +4,7 @@ package progscala3.fp.categories
 import munit.ScalaCheckSuite
 import org.scalacheck._
 
-class MonadPropertiesSuite extends ScalaCheckSuite {
+class MonadPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
 
   // Arbitrary function:
@@ -29,4 +29,3 @@ class MonadPropertiesSuite extends ScalaCheckSuite {
               flatMap(seq)(x => flatMap(f1(x))(f2))
     }
   }
-}

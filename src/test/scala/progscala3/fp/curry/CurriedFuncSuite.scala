@@ -3,7 +3,7 @@ package progscala3.fp.curry
 
 import munit._
 
-class CurriedFuncSuite extends FunSuite {
+class CurriedFuncSuite extends FunSuite:
 
 	def cat1(s1: String)(s2: String) = s1 + s2
 	def cat2(s1: String) = (s2: String) => s1 + s2
@@ -44,4 +44,3 @@ class CurriedFuncSuite extends FunSuite {
 		assert(ff1("hello", "world") == "helloworld")
 		assert(ff2("hello", "world") == "helloworld")
 	}
-}

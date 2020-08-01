@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForFlatmapSuite extends FunSuite {
+class ForFlatmapSuite extends FunSuite:
   test("Flatmap returns collections and flattens them") {
 		val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
@@ -16,4 +16,3 @@ class ForFlatmapSuite extends FunSuite {
 		val results2 = states flatMap (_.toSeq map (c => s"$c-${c.toUpper}"))
 		assert(results2 == results1)
 	}
-}

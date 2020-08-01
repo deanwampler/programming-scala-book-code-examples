@@ -2,7 +2,7 @@
 package progscala3.javainterop
 import scala.annotation.alpha
 
-trait AllOpChars {
+trait AllOpChars:
   @alpha("eqeq")       def == : Int   // $eq$eq  - arbitrary return type
   @alpha("greater")    def >  : Int   // $greater
   @alpha("less")       def <  : Int   // $less
@@ -21,4 +21,3 @@ trait AllOpChars {
   @alpha("atat")       def @@ : Int   // $at$at
   // @alpha("hashhash")   def ## : Int // $hash$hash (already in AnyRef)
   @alpha("tilde")      def ~  : Int   // $tilde
-}

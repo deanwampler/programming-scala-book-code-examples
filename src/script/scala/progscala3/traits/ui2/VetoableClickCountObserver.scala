@@ -3,15 +3,12 @@ import progscala3.traits.ui2._
 import progscala3.traits.observer._
 
 // No override of "click" in Button required.
-val button =
-    new Button("Click Me!") with ObservableClicks with VetoableClicks {
-  override val maxAllowed = 2                                   // <1>
-}
+val button = new Button("Click Me!")
+	with ObservableClicks with VetoableClicks(maxAllowed = 2)     // <1>
 
-class ClickCountObserver extends Observer[Clickable] {          // <2>
+class ClickCountObserver extends Observer[Clickable]:           // <2>
   var count = 0
   def receiveUpdate(state: Clickable): Unit = count += 1
-}
 
 val bco1 = new ClickCountObserver
 val bco2 = new ClickCountObserver

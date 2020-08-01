@@ -4,7 +4,7 @@ package progscala3.fp.categories
 import munit.ScalaCheckSuite
 import org.scalacheck._
 
-class MonadPropertiesSuite extends ScalaCheckSuite {
+class MonadPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
 
   // Arbitrary function:

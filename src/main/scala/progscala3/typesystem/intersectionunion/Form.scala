@@ -2,18 +2,12 @@
 package progscala3.typesystem.intersectionunion
 import scala.util.Try
 
-trait JSONConvertable {
+trait JSONConvertable:
 	def json(): String  // Just return JSON string for simplicity
-}
 
-trait Persistable {
+trait Persistable:
 	def persist(): Try[Boolean]
-}
 
-class Form(fields: Map[String,Any]) extends Persistable with JSONConvertable {
+class Form(fields: Map[String,Any]) extends Persistable with JSONConvertable:
 	def json(): String = ???
 	def persist(): Try[Boolean] = ???
-}
-
-
-// Do a workflow builder library instead??

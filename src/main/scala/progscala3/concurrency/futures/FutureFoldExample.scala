@@ -5,8 +5,8 @@ import scala.concurrent.{Await, Future}
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 
-object FutureFoldExample {
-  def main(args: Array[String]): Unit = {
+object FutureFoldExample:
+  def main(args: Array[String]): Unit =
     var accumulator = ""                                                 // <1>
     def update(s:String) = accumulator.synchronized { accumulator += s}
 
@@ -25,5 +25,3 @@ object FutureFoldExample {
     assert(n == "0123456789")
 
     println(s"accumulator: $accumulator")
-  }
-}

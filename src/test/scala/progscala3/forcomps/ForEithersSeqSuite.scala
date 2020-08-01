@@ -4,7 +4,7 @@ package progscala3.forcomps
 import munit._
 import scala.util.{ Either, Left, Right }
 
-class ForEithersSeqSuite extends FunSuite {
+class ForEithersSeqSuite extends FunSuite:
   test("For loops skip Lefts") {
 		val seq: Seq[Either[RuntimeException,Int]] =
 		  Vector(Right(10), Left(new RuntimeException("boo!")), Right(20))
@@ -14,4 +14,3 @@ class ForEithersSeqSuite extends FunSuite {
 		yield (2 * i)
 		assert(results2 == Vector(20, 40))
 	}
-}

@@ -8,16 +8,15 @@ import scala.quoted._
 case class RequirementFailure protected (message: String)
   extends RuntimeException(message)
 
-object RequirementFailure {
+object RequirementFailure:
   /** Create an exception from a predicate string and message. */
   def apply(predicateString: String, message: String): RequirementFailure =
     new RequirementFailure(
-      s"Requirement failure! predicate is false: $predicateString. $message")
+      s"Requirement failure! predicate false: $predicateString. $message")
 
   /** Create an exception from a message. */
   def apply(message: String): RequirementFailure =
     new RequirementFailure(s"Requirement failure! $message")
-}
 
 /**
  * Implement a custom "requirement" checker. It works like Scala's built in
@@ -26,7 +25,7 @@ object RequirementFailure {
  * expressions like `1+1==3` will just be `false`, while `i+j==3` will be
  * shown as something like `i.+(j) == 3`. Still useful, however.
  */
-object requirement {                                                   // <3>
+object requirement:
 
   /**
    * "Require" that a predicate is true. If not, throw an exception.
@@ -44,17 +43,14 @@ object requirement {                                                   // <3>
       inline message: String): Unit = ${ checkReq('predicate, 'message) }
 
   def checkReq(predicate: Expr[Boolean], message: Expr[String])(
-      using QuoteContext) = '{
-    if !($predicate) then {
-      throw RequirementFailure(${showExpr(predicate)}, ${showExpr(message)})
+    using QuoteContext) = '{
+      if !($predicate) then
+        throw RequirementFailure(${showExpr(predicate)}, ${showExpr(message)})
     }
-  }
 
   /** You already know a requirement has failed, so just throw the exception. */
   def fail(message: String): Nothing = throw RequirementFailure(message)
 
-  private def showExpr[T](expr: Expr[T])(using QuoteContext): Expr[String] = {
+  private def showExpr[T](expr: Expr[T])(using QuoteContext): Expr[String] =
     val code: String = expr.show
     Expr(code)
-  }
-}

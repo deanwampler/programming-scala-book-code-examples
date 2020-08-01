@@ -3,7 +3,7 @@ package progscala3.appdesign.parthenon
 import progscala3.dsls.payroll.parsercomb.dsl.PayrollParser
 import progscala3.dsls.payroll.common._
 
-object PayrollCalculator {                                             // <1>
+object PayrollCalculator:                                              // <1>
   val dsl = """biweekly {
       federal tax          %f  percent,
       state tax            %f  percent,
@@ -13,12 +13,11 @@ object PayrollCalculator {                                             // <1>
 
   case class Pay(name: String, salary: Money, deductions: Deductions)  // <2>
 
-  def fromFile(inputFileName: String): Seq[Pay] = {                    // <3>
+  def fromFile(inputFileName: String): Seq[Pay] =                      // <3>
     val data = readData(inputFileName)
     for
       (name, salary, ruleString) <- data
     yield Pay(name, salary, toDeductions(ruleString))
-  }
 
   case class BadInput(message: String, input: String)
     extends RuntimeException(s"Bad input data, $message: $input")
@@ -31,7 +30,7 @@ object PayrollCalculator {                                             // <1>
       if line.matches("\\s*#.*") == false    // skip comments
     yield toRule(line)
 
-  private def toRule(line: String): Record = {                         // <5>
+  private def toRule(line: String): Record =                           // <5>
     val Array(name, salary,
         fedTax, stateTax, insurance, retirement): @unchecked =
       line.split("""\s*,\s*""") match {
@@ -42,9 +41,7 @@ object PayrollCalculator {                                             // <1>
       fedTax.toDouble, stateTax.toDouble,
       insurance.toDouble, retirement.toDouble)
     (name, Money(salary.toDouble), ruleString)
-  }
 
   private val parser = new PayrollParser                               // <6>
   private def toDeductions(rule: String): Deductions =
     parser.parseAll(parser.biweekly, rule).get
-}

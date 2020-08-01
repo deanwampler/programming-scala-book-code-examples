@@ -2,10 +2,9 @@
 import progscala3.traits.ui._
 import progscala3.traits.observer._
 
-class ButtonCountObserver extends Observer[Button] {
+class ButtonCountObserver extends Observer[Button]:
   var count = 0
   def receiveUpdate(state: Button): Unit = count += 1
-}
 
 val button = new ObservableButton("Click Me!")
 val bco1   = new ButtonCountObserver

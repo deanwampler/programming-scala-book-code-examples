@@ -7,7 +7,7 @@ import munit._
  * Test the example "AbbrevList".
  * Not very comprehensive... Should be converted to a ScalaCheck suite.
  */
-class LinearizationSuite extends FunSuite {
+class LinearizationSuite extends FunSuite:
 
 	test("Declaration order of traits specifies precedence") {
 		val c12 = new C with T1 with T2
@@ -16,4 +16,3 @@ class LinearizationSuite extends FunSuite {
 		assert(c12.m("hello") == "( [ { hello } ] )")
 		assert(c21.m("hello") == "[ ( { hello } ) ]")
 	}
-}

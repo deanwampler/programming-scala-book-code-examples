@@ -3,4 +3,4 @@ import scala.collection.mutable._
 import collection.immutable._                // Since "scala" is already imported
 import _root_.scala.collection.concurrent._  // full path from real "root"
 
-object RelativeImports {}                    // <1>
+object RelativeImports                       // <1>

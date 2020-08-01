@@ -3,7 +3,7 @@ package progscala3.fp.datastructs
 
 import munit._
 
-class SeqSuite extends FunSuite {
+class SeqSuite extends FunSuite:
 
 	val seq = Seq("Programming", "Scala")
 
@@ -32,4 +32,3 @@ class SeqSuite extends FunSuite {
 		assert(seq2 ==
 		  Seq("People", "should", "read", "Programming", "Scala"))
 	}
-}

@@ -3,7 +3,7 @@ package progscala3.dynamic
 
 import munit._
 
-class CLINQSuite extends FunSuite {
+class CLINQSuite extends FunSuite:
 
   def makeMap(name: String, capital: String, statehood: Int): Map[String,Any] =
     Map("name" -> name, "capital" -> capital, "statehood" -> statehood)
@@ -102,4 +102,3 @@ class CLINQSuite extends FunSuite {
   test("Simple WHERE clauses only work with projected fields! [KNOWN LIMITATION]") {
     assert(states.name_and_statehood.where("capital").EQ("Olympia") == CLINQ(Nil))
   }
-}

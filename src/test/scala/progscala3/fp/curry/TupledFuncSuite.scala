@@ -3,7 +3,7 @@ package progscala3.fp.curry
 
 import munit._
 
-class TupledFuncSuite extends FunSuite {
+class TupledFuncSuite extends FunSuite:
 
 	def mult(d1: Double, d2: Double, d3: Double) = d1 * d2 * d3
 	val multTupled = Function.tupled(mult)
@@ -29,4 +29,3 @@ class TupledFuncSuite extends FunSuite {
 	}
 
 	def toStr(d: Double): String = "%7.4f".format(d) // helper
-}

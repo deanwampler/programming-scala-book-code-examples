@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForVariableSuite extends FunSuite {
+class ForVariableSuite extends FunSuite:
 	val states = List("Alabama", "Alaska", "Virginia", "Wyoming")
 
 	test("Variables can be assigned in for comprehensions") {
@@ -25,4 +25,3 @@ class ForVariableSuite extends FunSuite {
 		// Check the first five values:
 		assert(result.take(5) == List("l-L", "a-A", "b-B", "a-A", "m-M"))
 	}
-}

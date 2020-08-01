@@ -3,7 +3,7 @@ package progscala3.fp.datastructs
 
 import munit._
 
-class FoldMapSuite extends FunSuite {
+class FoldMapSuite extends FunSuite:
 
 	val vector = Vector(1, 2, 3, 4, 5, 6)
 
@@ -28,4 +28,3 @@ class FoldMapSuite extends FunSuite {
 		assert(vector2 ==
 			Vector(1, 1, 2, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6))
 	}
-}

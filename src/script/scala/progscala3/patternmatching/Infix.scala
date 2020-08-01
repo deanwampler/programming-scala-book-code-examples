@@ -10,8 +10,7 @@ val with1: With[String,Int] = With("Foo", 1)
 val with2: String With Int  = With("Bar", 2)
 
 List(with1, with2) foreach { w =>
-  w match {
+  w match
     case s With i => println(s"$s with $i")
     case _ => assert(false, s"Unknown: $w")
-  }
 }

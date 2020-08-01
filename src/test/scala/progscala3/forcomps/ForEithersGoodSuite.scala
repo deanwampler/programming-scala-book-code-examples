@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForEithersGoodSuite extends FunSuite {
+class ForEithersGoodSuite extends FunSuite:
   def positive(i: Int): Either[String,Int] =
     if i > 0 then Right(i) else Left(s"nonpositive number $i")
 
@@ -26,4 +26,3 @@ class ForEithersGoodSuite extends FunSuite {
   	yield (i1 + i2 + i3 + i4)
   	assert(result2 == Left("nonpositive number -5"))
   }
-}

@@ -1,7 +1,7 @@
 // src/main/scala/progscala3/typesystem/structuraltypes/SubjectFunc.scala
 package progscala3.typesystem.structuraltypes
 
-trait SubjectFunc {                                                  // <1>
+trait SubjectFunc:                                                   // <1>
 
   type State
 
@@ -14,4 +14,3 @@ trait SubjectFunc {                                                  // <1>
 
   def notifyObservers(state: State): Seq[String] =                   // <3>
     observers map (o => o(state))
-}

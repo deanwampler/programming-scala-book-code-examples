@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForVariableTranslatedSuite extends FunSuite {
+class ForVariableTranslatedSuite extends FunSuite:
 
 	val map = Map("one" -> 1, "two" -> 2)
 
@@ -26,4 +26,3 @@ class ForVariableTranslatedSuite extends FunSuite {
 		yield (i10)
 		assert(list == List(11, 12))
 	}
-}

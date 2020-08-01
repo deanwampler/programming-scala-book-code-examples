@@ -3,11 +3,11 @@ package progscala3.implicits
 
 import munit._
 
-class CustomStringInterpolatorSuite extends FunSuite {
+class CustomStringInterpolatorSuite extends FunSuite:
 
-  object JSONToMapInterpolator {
-    implicit class mapForStringContext(val sc: StringContext) {  // <1>
-      def map(values: String*): Map[String, String] = {          // <2>
+  object JSONToMapInterpolator:
+    implicit class mapForStringContext(val sc: StringContext):   // <1>
+      def map(values: String*): Map[String, String] =            // <2>
         val keyRE = """^[\s{,]*(\S+):\s*""".r                    // <3>
         val keys = sc.parts map {                                // <4>
           case keyRE(key) => key
@@ -15,9 +15,6 @@ class CustomStringInterpolatorSuite extends FunSuite {
         }
         val kvs = keys zip values                                // <5>
         kvs.toMap                                                // <6>
-      }
-    }
-  }
 
   import JSONToMapInterpolator._
 
@@ -39,4 +36,3 @@ class CustomStringInterpolatorSuite extends FunSuite {
       "book" -> "Programming Scala, Third Edition",
       "publisher" -> "O'Reilly"))
   }
-}

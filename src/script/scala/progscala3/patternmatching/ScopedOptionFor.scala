@@ -1,13 +1,14 @@
 // src/script/scala/progscala3/patternmatching/ScopedOptionFor.scala
 
-val dogBreeds = Seq(Some("Doberman"), None, Some("Yorkshire Terrier"), 
+val dogBreeds = Seq(Some("Doberman"), None, Some("Yorkshire Terrier"),
                     Some("Dachshund"), None, Some("Scottish Terrier"),
                     None, Some("Great Dane"), Some("Portuguese Water Dog"))
 
-val db = for {
+val db = for
   Some(breed) <- dogBreeds
   upcasedBreed = breed.toUpperCase()
-} yield upcasedBreed
+yield upcasedBreed
+
 assert(db == Seq(
   "DOBERMAN",
   "YORKSHIRE TERRIER",

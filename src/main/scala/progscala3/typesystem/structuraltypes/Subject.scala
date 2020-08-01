@@ -1,7 +1,7 @@
 // src/main/scala/progscala3/typesystem/structuraltypes/Subject.scala
 package progscala3.typesystem.structuraltypes
 
-trait Subject {                                                      // <1>
+trait Subject:                                                       // <1>
 
   import scala.language.reflectiveCalls                              // <2>
   import reflect.Selectable.reflectiveSelectable
@@ -19,4 +19,3 @@ trait Subject {                                                      // <1>
 
   def notifyObservers(state: State): Seq[String] =
     observers map (_.receiveUpdate(state))
-}

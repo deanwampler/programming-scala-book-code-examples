@@ -3,7 +3,7 @@ package progscala3.forcomps
 
 import munit._
 
-class ForForeachSuite extends FunSuite {
+class ForForeachSuite extends FunSuite:
   val states   = Vector("Alabama", "Alaska", "Virginia", "Wyoming")
   val expected = Vector("alabama", "alaska", "virginia", "wyoming")
 
@@ -21,4 +21,3 @@ class ForForeachSuite extends FunSuite {
     states.foreach(s => lower = lower :+ s.toLowerCase)
     assert(lower == expected)
   }
-}

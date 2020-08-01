@@ -3,7 +3,7 @@ package progscala3.appdesign.dbc
 
 import scala.annotation.alpha
 
-case class Money(val amount: Double) {                               // <1>
+case class Money(val amount: Double):                                // <1>
   require(amount >= 0.0, s"Negative amount $amount not allowed")
 
   @alpha("plus")  def +  (m: Money): Money = Money(amount + m.amount)
@@ -11,25 +11,21 @@ case class Money(val amount: Double) {                               // <1>
   @alpha("ge")    def >= (m: Money): Boolean = amount >= m.amount
 
   override def toString = "$"+amount
-}
 
-case class BankAccount(balance: Money) {
+case class BankAccount(balance: Money):
 
-  def debit(amount: Money) = {                                       // <2>
+  def debit(amount: Money) =                                         // <2>
     assert(balance >= amount,
       s"Overdrafts are not permitted, balance = $balance, debit = $amount")
     new BankAccount(balance - amount)
-  }
 
-  def credit(amount: Money) = {                                      // <3>
+  def credit(amount: Money) =                                        // <3>
     new BankAccount(balance + amount)
-  }
-}
 
 import scala.util.Try
 
-object BankAccount {
-  def main(args: Array[String]): Unit = {
+object BankAccount:
+  def main(args: Array[String]): Unit =
     Seq(-10, 0, 10) foreach (i => println(f"$i%3d: ${Try(Money(i.toDouble))}"))
 
     val ba1 = BankAccount(Money(10.0))
@@ -42,5 +38,3 @@ object BankAccount {
       |After credit of $$5.0: $ba2
       |After debit of $$8.5: $ba3
       |After debit of $$10.0: $ba4""".stripMargin)
-  }
-}

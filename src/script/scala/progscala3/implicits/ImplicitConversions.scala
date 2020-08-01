@@ -1,7 +1,6 @@
 // src/script/scala/progscala3/implicits/ImplicitConversions.scala
-import scala.language.implicitConversions
 
-case class IntegralString(val str: String) {
+case class IntegralString(val str: String):
   private val intRE = """^[0-9]+$""".r
   /**
    * Does the string consist only of one or more, base 10 digits 0-9?
@@ -9,7 +8,6 @@ case class IntegralString(val str: String) {
    * are too many digits.
    */
   def isIntegral: Boolean = intRE.matches(str)
-}
 
 implicit def toIntegralString(s: String): IntegralString = IntegralString(s)
 

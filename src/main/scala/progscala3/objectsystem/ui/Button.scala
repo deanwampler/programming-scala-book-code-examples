@@ -2,7 +2,7 @@
 package progscala3.objectsystem.ui
 import progscala3.traits.ui2.Clickable
 
-open class Button(val label: String) extends Widget with Clickable {
+open class Button(val label: String) extends Widget with Clickable:
 
   // Simple hack for demonstration purposes:
   def draw(): String = s"Drawing: $this"
@@ -12,5 +12,4 @@ open class Button(val label: String) extends Widget with Clickable {
 
   override def toString(): String =
     s"(button: label=$label, ${super.toString()})"
-}
 
