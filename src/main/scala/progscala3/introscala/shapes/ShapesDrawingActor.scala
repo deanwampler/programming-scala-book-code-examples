@@ -23,3 +23,5 @@ class ShapesDrawingActor extends Actor:                              // <5>
       val response = Response(s"ERROR: Unknown message: $unexpected")
       println(s"ShapesDrawingActor: $response")
       sender ! response
+  end receive                // optional
+end ShapesDrawingActor       // optional

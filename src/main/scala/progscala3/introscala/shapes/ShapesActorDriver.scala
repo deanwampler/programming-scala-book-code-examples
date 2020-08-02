@@ -5,7 +5,6 @@ import com.typesafe.config.ConfigFactory
 import scala.concurrent.ExecutionContext
 import scala.language.implicitConversions
 
-// Message used only in this file:
 private object Start                                                 // <1>
 
 object ShapesDrawingDriver:                                          // <2>
