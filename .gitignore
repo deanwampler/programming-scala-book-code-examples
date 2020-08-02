@@ -21,3 +21,4 @@ tmp/
 .dotty-ide-artifact
 .dotty-ide.json
 akka.log
+_site
