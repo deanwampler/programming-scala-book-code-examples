@@ -40,18 +40,18 @@ object Payroll:
     val newNet = pay.netPay - pay.employee.postTaxDeductions
     pay.copy(netPay = newNet)
 
-object CalculatePayroll:
-  def main(args: Array[String]): Unit =
-    val e = Employee("Buck Trends", 100000.0F, 0.25F, 200F, 0.10F, 0.05F)
-    val pay1 = Payroll.start(e)
-    // 401K and insurance can be calculated in either order.
-    val pay2 = Payroll.minus401k(pay1)
-    val pay3 = Payroll.minusInsurance(pay2)
-    val pay4 = Payroll.minusTax(pay3)
-    val pay  = Payroll.minusFinalDeductions(pay4)
-    val twoWeekGross = e.annualSalary / 26.0F
-    val twoWeekNet   = pay.netPay
-    val percent      = (twoWeekNet / twoWeekGross) * 100
-    println(s"For ${e.name}, the gross vs. net pay every 2 weeks is:")
-    println(
-      f"  $$${twoWeekGross}%.2f vs. $$${twoWeekNet}%.2f or ${percent}%.1f%%")
+@main def TryPhantomTypes  =
+  import Payroll._
+  val e = Employee("Buck Trends", 100000.0F, 0.25F, 200F, 0.10F, 0.05F)
+  val pay1 = Payroll.start(e)
+  // 401K and insurance can be calculated in either order.
+  val pay2 = Payroll.minus401k(pay1)
+  val pay3 = Payroll.minusInsurance(pay2)
+  val pay4 = Payroll.minusTax(pay3)
+  val pay  = Payroll.minusFinalDeductions(pay4)
+  val twoWeekGross = e.annualSalary / 26.0F
+  val twoWeekNet   = pay.netPay
+  val percent      = (twoWeekNet / twoWeekGross) * 100
+  println(s"For ${e.name}, the gross vs. net pay every 2 weeks is:")
+  println(
+    f"  $$${twoWeekGross}%.2f vs. $$${twoWeekNet}%.2f or ${percent}%.1f%%")

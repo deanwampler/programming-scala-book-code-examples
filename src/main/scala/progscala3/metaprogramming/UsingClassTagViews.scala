@@ -12,8 +12,9 @@ object UsingClassTagViews:
 	 */
 	def mkSeq[T : ClassTag](elems: T*) = Seq[T](elems: _*)
 
-	def main(args: Array[String]): Unit =
-		assert(mkSeq(1, 2, 3) == List[Int](1, 2, 3))
-		assert(mkSeq("one", "two", "three") == List[String]("one", "two", "three"))
-		assert(mkSeq(1, "two", 3.14) == List[Any](1, "two", 3.14))
-		println("success!")
+@main def TryUsingClassTagViews =
+	import UsingClassTagViews._
+	assert(mkSeq(1, 2, 3) == List[Int](1, 2, 3))
+	assert(mkSeq("one", "two", "three") == List[String]("one", "two", "three"))
+	assert(mkSeq(1, "two", 3.14) == List[Any](1, "two", 3.14))
+	println("success!")

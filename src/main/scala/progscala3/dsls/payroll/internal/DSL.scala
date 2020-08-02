@@ -3,32 +3,29 @@ package progscala3.dsls.payroll.internal
 import scala.language.postfixOps                                     // <1>
 import progscala3.dsls.payroll.common._
 
-object Payroll:                                                      // <2>
+@main def TryPayroll =
+  import dsl._                                                       // <2>
+  val biweeklyDeductions = biweekly { deduct =>                      // <3>
+    deduct federal_tax        (25.0  percent)
+    deduct state_tax          (5.0   percent)
+    deduct insurance_premiums (500.0 dollars)
+    deduct retirement_savings (10.0  percent)
+  }
 
-  import dsl._                                                       // <3>
+  println(biweeklyDeductions)                                        // <4>
+  val annualGross = 100000.0
+  val gross = biweeklyDeductions.gross(annualGross)
+  val net   = biweeklyDeductions.net(annualGross)
+  print(f"Biweekly pay (annual: $$${annualGross}%.2f): ")
+  println(f"Gross: $$${gross}%.2f, Net: $$${net}%.2f")
 
-  def main(args: Array[String]): Unit =
-    val biweeklyDeductions = biweekly { deduct =>                    // <4>
-      deduct federal_tax        (25.0  percent)
-      deduct state_tax          (5.0   percent)
-      deduct insurance_premiums (500.0 dollars)
-      deduct retirement_savings (10.0  percent)
-    }
+object dsl:                                                          // <5>
 
-    println(biweeklyDeductions)                                      // <5>
-    val annualGross = 100000.0
-    val gross = biweeklyDeductions.gross(annualGross)
-    val net   = biweeklyDeductions.net(annualGross)
-    print(f"Biweekly pay (annual: $$${annualGross}%.2f): ")
-    println(f"Gross: $$${gross}%.2f, Net: $$${net}%.2f")
-
-object dsl:                                                          // <6>
-
-  def biweekly(                                                      // <7>
+  def biweekly(                                                      // <6>
       db: DeductionsBuilder => DeductionsBuilder): Deductions =
     db(new DeductionsBuilder("Biweekly", 26.0)).deductions
 
-  case class DeductionsBuilder(                                      // <8>
+  case class DeductionsBuilder(                                      // <7>
     name: String,
     divisor: Double = 1.0):
 
@@ -36,7 +33,7 @@ object dsl:                                                          // <6>
 
     def deductions: Deductions = Deductions(name, divisor, all)
 
-    def federal_tax(amount: Amount): DeductionsBuilder =             // <9>
+    def federal_tax(amount: Amount): DeductionsBuilder =             // <8>
       all = all :+ Deduction("federal taxes", amount)
       this
 

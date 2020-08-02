@@ -17,19 +17,20 @@ object ProcessExample:
   def countLines(fileName: String) =
     s"ls -1 $fileName" #&& s"wc -l $fileName"
 
-  def main(args: Array[String]): Unit =
-    val resultCode = "ls src".!
-    assert(resultCode == 0)
+@main def TryProcessExample =
+  import ProcessExample._
+  val resultCode = "ls src".!
+  assert(resultCode == 0)
 
-    assert(Seq("ls", "src").!! == "main\ntest\n")
+  assert(Seq("ls", "src").!! == "main\nscript\ntest\n")
 
-    assert(findURL("https://www.scala-lang.org", "scala").! == 0)
-    assert(countLines("scala.txt").! == 0)
+  assert(findURL("https://www.scala-lang.org", "scala").! == 0)
+  assert(countLines("scala.txt").! == 0)
 
-    val output = countLines("scala.txt").!!
-    // Split the output on all non-characters and this is the
-    // array you get:
-    //   Array("scala", "txt", nstr, "scala", "txt")
-    // where "nstr" is the number of lines in "scala.txt":
-    val strings = output.split("\\W+")
-    assert(strings(2).toInt > 0)
+  val output = countLines("scala.txt").!!
+  // Split the output on all non-characters and this is the
+  // array you get:
+  //   Array("scala", "txt", nstr, "scala", "txt")
+  // where "nstr" is the number of lines in "scala.txt":
+  val strings = output.split("\\W+")
+  assert(strings(2).toInt > 0)

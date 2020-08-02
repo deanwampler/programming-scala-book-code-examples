@@ -20,15 +20,16 @@ object Reflection:
   // Helper method to convert an array to a useful string.
   def as(array: Array[?]): String = array.mkString("[", ", ", "]")
 
-  def main(args: Array[String]): Unit =
-    println(s"clazz:                   ${clazz}")
-    println(s"clazz.getSuperclass:     ${clazz.getSuperclass}")
-    println(s"clazz.getTypeParameters: ${as(clazz.getTypeParameters)}")
-    println(s"clazz.getClasses:        ${as(clazz.getClasses)}")
-    println(s"clazz.getInterfaces:     ${as(clazz.getInterfaces)}")
-    println(s"clazz.getName:           ${clazz.getName}")
-    println(s"clazz.getModifiers:      ${clazz.getModifiers}")
-    println(s"clazz.getConstructors:   ${as(clazz.getConstructors)}")
-    println(s"clazz.getMethods:        ${as(clazz.getMethods)}")
-    println(s"clazz.getFields:         ${as(clazz.getFields)}")
-    println(s"clazz.getAnnotations:    ${as(clazz.getAnnotations)}")
+@main def TryReflection =
+  import Reflection._
+  println(s"clazz:                   ${clazz}")
+  println(s"clazz.getSuperclass:     ${clazz.getSuperclass}")
+  println(s"clazz.getTypeParameters: ${as(clazz.getTypeParameters)}")
+  println(s"clazz.getClasses:        ${as(clazz.getClasses)}")
+  println(s"clazz.getInterfaces:     ${as(clazz.getInterfaces)}")
+  println(s"clazz.getName:           ${clazz.getName}")
+  println(s"clazz.getModifiers:      ${clazz.getModifiers}")
+  println(s"clazz.getConstructors:   ${as(clazz.getConstructors)}")
+  println(s"clazz.getMethods:        ${as(clazz.getMethods)}")
+  println(s"clazz.getFields:         ${as(clazz.getFields)}")
+  println(s"clazz.getAnnotations:    ${as(clazz.getAnnotations)}")

@@ -8,11 +8,9 @@ object Person:
   def apply(name: String, age: Int) = new Person(name, age)
   def unapply(person: Person) = Some((person.name, person.age))
 
-  def main(args: Array[String]): Unit =
-    // Test the constructor...
-    val person = new Person("Buck Trends", 21)
-    assert(person.name == "Buck Trends")
-    assert(person.age  == 21)
+@main def TryPerson =
+  // Test the constructor...
+  val person = new Person("Buck Trends", 21)
+  assert(person.name == "Buck Trends")
+  assert(person.age  == 21)
 
-object PersonTest:
-  def main(args: Array[String]): Unit = Person.main(args)

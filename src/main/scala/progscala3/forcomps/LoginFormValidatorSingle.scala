@@ -36,22 +36,22 @@ object LoginFormValidatorSingle:
       _ <- goodCharacters(password, "password")
     yield ValidLoginForm(userName, password)
 
-  def main(args: Array[String]): Unit =
-    assert(LoginFormValidatorSingle("", "pwd") ==
-      Left(Empty("user name")))
-    assert(LoginFormValidatorSingle("", "") ==
-      Left(Empty("user name")))
-    assert(LoginFormValidatorSingle("12", "") ==
-      Left(TooShort("user name", 5)))
-    assert(LoginFormValidatorSingle("12", "67") ==
-      Left(TooShort("user name", 5)))
+@main def TryLoginFormValidatorSingle =
+  assert(LoginFormValidatorSingle("", "pwd") ==
+    Left(Empty("user name")))
+  assert(LoginFormValidatorSingle("", "") ==
+    Left(Empty("user name")))
+  assert(LoginFormValidatorSingle("12", "") ==
+    Left(TooShort("user name", 5)))
+  assert(LoginFormValidatorSingle("12", "67") ==
+    Left(TooShort("user name", 5)))
 
-    assert(LoginFormValidatorSingle("12345", "67") ==
-      Left(TooShort("password", 5)))
-    assert(LoginFormValidatorSingle("123 45", "67") ==
-      Left(BadCharacters("user name")))
-    assert(LoginFormValidatorSingle("12345", "678 90") ==
-      Left(BadCharacters("password")))
+  assert(LoginFormValidatorSingle("12345", "67") ==
+    Left(TooShort("password", 5)))
+  assert(LoginFormValidatorSingle("123 45", "67") ==
+    Left(BadCharacters("user name")))
+  assert(LoginFormValidatorSingle("12345", "678 90") ==
+    Left(BadCharacters("password")))
 
-    assert(LoginFormValidatorSingle("12345", "67890") ==
-      Right(ValidLoginForm("12345", "67890")))
+  assert(LoginFormValidatorSingle("12345", "67890") ==
+    Right(ValidLoginForm("12345", "67890")))

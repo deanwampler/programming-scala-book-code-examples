@@ -39,24 +39,25 @@ object LoginFormValidatorNec:
       case (s1, _, _, s2, _, _) => ValidLoginForm(s1, s2)
     }
 
-  def main(args: Array[String]): Unit =
-    assert(LoginFormValidatorNec("", "") ==
-      Invalid(Chain(
-        Empty("user name"), TooShort("user name", 5),
-        Empty("password"), TooShort("password", 5))))
+@main def TryLoginFormValidatorNec =
+  import LoginFormValidatorNec._
+  assert(LoginFormValidatorNec("", "") ==
+    Invalid(Chain(
+      Empty("user name"), TooShort("user name", 5),
+      Empty("password"), TooShort("password", 5))))
 
-    assert(LoginFormValidatorNec("1234", "6789") ==
-      Invalid(Chain(
-        TooShort("user name", 5),
-        TooShort("password", 5))))
+  assert(LoginFormValidatorNec("1234", "6789") ==
+    Invalid(Chain(
+      TooShort("user name", 5),
+      TooShort("password", 5))))
 
-    assert(LoginFormValidatorNec("12345", "") ==
-      Invalid(Chain(
-        Empty("password"), TooShort("password", 5))))
+  assert(LoginFormValidatorNec("12345", "") ==
+    Invalid(Chain(
+      Empty("password"), TooShort("password", 5))))
 
-    assert(LoginFormValidatorNec("123 45", "678 90") ==
-      Invalid(Chain(
-        BadCharacters("user name"), BadCharacters("password"))))
+  assert(LoginFormValidatorNec("123 45", "678 90") ==
+    Invalid(Chain(
+      BadCharacters("user name"), BadCharacters("password"))))
 
-    assert(LoginFormValidatorNec("12345", "67890") ==
-      Valid(ValidLoginForm("12345", "67890")))
+  assert(LoginFormValidatorNec("12345", "67890") ==
+    Valid(ValidLoginForm("12345", "67890")))

@@ -17,8 +17,7 @@ class ListBuilder[T] extends Builder[T, List[T]]:
 
   def result(): List[T] = storage.toList
 
-object ListBuilder:
-  def main(args: Array[String]): Unit =
-    val lb = new ListBuilder[Int]
-    (1 to 3) foreach (i => lb += i)
-    assert(lb.result == List(1, 2, 3))
+@main def TryListBuilder =
+  val lb = new ListBuilder[Int]
+  (1 to 3) foreach (i => lb += i)
+  assert(lb.result == List(1, 2, 3))
