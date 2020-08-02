@@ -5,8 +5,9 @@ case class Point(x: Double = 0.0, y: Double = 0.0)                    // <1>
 
 abstract class Shape():                                               // <2>
   /**
-   * Draw takes a function argument. Each shape will pass a stringized
-   * version of itself to this function, which does the "drawing".
+   * Draw the shape.
+   * @param f is a function argument to which the shape will pass a
+   * string version of itself to be rendered.
    */
   def draw(f: String => Unit): Unit = f(s"draw: $this")               // <3>
 

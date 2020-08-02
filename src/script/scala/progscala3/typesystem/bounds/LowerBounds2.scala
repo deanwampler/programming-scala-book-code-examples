@@ -6,13 +6,13 @@
 //   def getOrElse(default: A): A = if (value != null) value else default
 // }
 
-case class Opt[A](value: A = null) {
+case class Opt[A](value: A = null):
   def getOrElse(default: A): A = if (value != null) value else default
-}
 
-class Parent(val value: Int) {                             // <1>
+
+class Parent(val value: Int):                              // <1>
   override def toString = s"${this.getClass.getName}($value)"
-}
+
 class Child(value: Int) extends Parent(value)
 
 val p5: Parent = Opt[Parent](null).getOrElse(new Parent(10))

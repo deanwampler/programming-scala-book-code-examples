@@ -2,20 +2,16 @@
 import progscala3.typesystem.structuraltypes.Subject
 import scala.language.reflectiveCalls
 
-case class Observer(id: Int) {                                       // <1>
+case class Observer(id: Int):                                        // <1>
   def receiveUpdate(state: Any): String = s"$id: got one! $state"
-}
 
 val subject = new Subject {                                          // <2>
   type State = Int
   protected var count = 0
-
-  def increment(): Seq[String] = {
+  def increment(): Seq[String] =
     count += 1
     notifyObservers(count)
-  }
 }
-
 assert(subject.increment() == Nil)
 assert(subject.increment() == Nil)
 subject.addObserver(new Observer(1))

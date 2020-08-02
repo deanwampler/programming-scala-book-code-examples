@@ -1,18 +1,16 @@
 // src/script/scala/progscala3/typesystem/structuraltypes/ObserverFunc.scala
 import progscala3.typesystem.structuraltypes.SubjectFunc
 
-def makeObserverFunc(id: Int): Int => String = 
+def makeObserverFunc(id: Int): Int => String =
   (state: Int) => s"$id: got one! $state"
 
-case object MySubject extends SubjectFunc {
+case object MySubject extends SubjectFunc:
   type State = Int
   protected var count = 0
 
-  def increment(): Seq[String] = {
+  def increment(): Seq[String] =
     count += 1
     notifyObservers(count)
-  }
-}
 
 assert(MySubject.increment() == Nil)
 assert(MySubject.increment() == Nil)

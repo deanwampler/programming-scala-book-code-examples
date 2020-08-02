@@ -1,8 +1,8 @@
 // src/script/scala/progscala3/typesystem/bounds/LowerBounds.scala
 
-class Parent(val value: Int) {                   // <1>
-  override def toString = s"${this.getClass.getName}($value)" 
-}
+class Parent(val value: Int):                    // <1>
+  override def toString = s"${this.getClass.getName}($value)"
+
 class Child(value: Int) extends Parent(value)
 
 val op1: Option[Parent] = Option(new Child(1))   // <2>
