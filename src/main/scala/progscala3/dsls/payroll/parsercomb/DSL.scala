@@ -1,10 +1,10 @@
 // src/main/scala/progscala3/dsls/payroll/parsercomb/DSL.scala
 package progscala3.dsls.payroll.parsercomb
 import scala.util.parsing.combinator._
-import progscala3.dsls.payroll.common._
+import progscala3.dsls.payroll._
 import scala.language.implicitConversions
 
-@main def TryPayroll =                                               // <1>
+@main def TryPayroll =                                          // <1>
   import dsl.PayrollParser
   val input = """biweekly {
     federal tax          20.0  percent,
@@ -24,23 +24,25 @@ import scala.language.implicitConversions
 
 object dsl:
 
-  class PayrollParser extends JavaTokenParsers:                      // <2>
+  class PayrollParser extends JavaTokenParsers:                 // <2>
 
     /** @return Parser[(Deductions)] */
-    def biweekly = "biweekly" ~> "{" ~> deductions <~ "}" ^^ { ds => // <3>
-      Deductions("Biweekly", 26.0, ds)
+    def biweekly = "biweekly" ~> "{" ~> deductions <~ "}" ^^ { ds =>
+      Deductions("Biweekly", 26.0, ds)                          // <3>
     }
 
     /** @return Parser[Vector[Deduction]] */
-    def deductions = repsep(deduction, ",") ^^ { ds =>               // <4>
+    def deductions = repsep(deduction, ",") ^^ { ds =>          // <4>
       ds.toVector
     }
 
     /** @return Parser[Deduction] */
-    def deduction = federal_tax | state_tax | insurance | retirement // <5>
+    def deduction =                                             // <5>
+      federal_tax | state_tax | insurance | retirement
+
 
     /** @return Parser[Deduction] */
-    def federal_tax = parseDeduction("federal", "tax")               // <6>
+    def federal_tax = parseDeduction("federal", "tax")          // <6>
     def state_tax   = parseDeduction("state", "tax")
     def insurance   = parseDeduction("insurance", "premiums")
     def retirement  = parseDeduction("retirement", "savings")
@@ -51,7 +53,7 @@ object dsl:
       }
 
     /** @return Parser[Amount] */
-    def amount = dollars | percentage                                // <7>
+    def amount = dollars | percentage                           // <7>
 
     /** @return Parser[Dollars] */
     def dollars = doubleNumber <~ "dollars" ^^ { d => Dollars(d) }

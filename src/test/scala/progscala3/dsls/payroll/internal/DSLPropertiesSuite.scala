@@ -3,7 +3,7 @@ package progscala3.dsls.payroll.internal
 
 import munit.ScalaCheckSuite
 import org.scalacheck._
-import progscala3.dsls.payroll.common._
+import progscala3.dsls.payroll._
 import scala.language.postfixOps
 
 /**

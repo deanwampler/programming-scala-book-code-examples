@@ -1,7 +1,7 @@
 // src/main/scala/progscala3/appdesign/parthenon/PayrollCalculator.scala
 package progscala3.appdesign.parthenon
 import progscala3.dsls.payroll.parsercomb.dsl.PayrollParser
-import progscala3.dsls.payroll.common._
+import progscala3.dsls.payroll._
 
 object PayrollCalculator:                                              // <1>
   val dsl = """biweekly {
