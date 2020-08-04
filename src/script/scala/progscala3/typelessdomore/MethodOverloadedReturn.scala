@@ -2,6 +2,6 @@
 
 case class Money(value: Double)
 case object Money {
-	def apply(s: String): Money     = apply(s.toDouble)
-	def apply(d: BigDecimal): Money = apply(d.toDouble)
+  def apply(s: String): Money     = apply(s.toDouble)
+  def apply(d: BigDecimal): Money = apply(d.toDouble)
 }

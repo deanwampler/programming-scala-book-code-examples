@@ -8,7 +8,7 @@ case class Point(x: Double = 0.0, y: Double = 0.0):
 
 abstract class Shape():
   def draw(offset: Point = Point(0.0, 0.0))(f: String => Unit): Unit =
-    f(s"draw($offset, ${this})")
+    f(s"draw: offset = $offset, shape = ${this}")
 
 case class Circle(center: Point, radius: Double) extends Shape
 

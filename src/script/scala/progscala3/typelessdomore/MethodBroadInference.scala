@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/typelessdomore/MethodBroadInferenceReturn.scala
+// src/script/scala/progscala3/typelessdomore/MethodBroadInference.scala
 // ERROR: function compiles, but the last line doesn't.
 
 def upperCase(strings: Seq[String]) =
