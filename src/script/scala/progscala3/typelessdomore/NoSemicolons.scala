@@ -1,13 +1,20 @@
 // src/script/scala/progscala3/typelessdomore/NoSemicolons.scala
 
-def equalsign(s: String) =                       // <1>
+val s = "hello"
+	+ "world"
+	+ "!"
+
+class Foo(name String):
+	def yell: String = name.toUpperCase + "!"
+
+def equalsign(s: String) =
   println("equalsign: " + s)
 
-def equalsign2(s: String) = {                    // <2>
+def equalsign2(s: String) = {
   println("equalsign2: " + s)
 }
 
-def commas(s1: String,                           // <3>
+def commas(s1: String,
            s2: String) = Console.
   println("comma: " + s1 +
           ", " + s2)

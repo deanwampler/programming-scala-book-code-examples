@@ -1,31 +1,42 @@
 // src/script/scala/progscala3/typelessdomore/PartialFunctions.scala
 
-val pfs: PartialFunction[Any,String] = { case s:String => "YES" }    // <1>
-val pfd: PartialFunction[Any,String] = { case d:Double => "YES" }    // <2>
+val pfs: PartialFunction[Any,String] =                               // <1>
+  case s:String => "YES"
+val pfd: PartialFunction[Any,String] = {                             // <2>
+  case d:Double => "YES"
+}
 
 val pfsd = pfs orElse pfd                                            // <3>
 
 def tryPF(x: Any, f: PartialFunction[Any,String]): String =          // <4>
-  try
-    f(x).toString
-  catch
-    case _: MatchError => "ERROR!"
+  try f(x)
+  catch case _: MatchError => "ERROR!"
 
-def isDef(x: Any, f: PartialFunction[Any,String]) =                  // <5>
-  f.isDefinedAt(x).toString
+assert(tryPF("str", pfs)  == "YES")
+assert(tryPF("str", pfd)  == "ERROR!")
+assert(tryPF("str", pfsd) == "YES")
+assert(tryPF(3.142, pfs)  == "ERROR!")
+assert(tryPF(3.142, pfd)  == "YES")
+assert(tryPF(3.142, pfsd) == "YES")
+assert(tryPF(2, pfs)      == "ERROR!")
+assert(tryPF(2, pfd)      == "ERROR!")
+assert(tryPF(2, pfsd)     == "ERROR!")
 
-def line[T](t: T): String =
-  "| %-4s | %-5s  | %-6s | %-5s  | %-6s | %-5s  | %-6s |".format(
-    t.toString, isDef(t,pfs), tryPF(t,pfs), isDef(t,pfd), tryPF(t,pfd),
-    isDef(t,pfsd), tryPF(t,pfsd))
+assert(pfs.isDefinedAt("str")  == true)
+assert(pfd.isDefinedAt("str")  == false)
+assert(pfsd.isDefinedAt("str") == true)
+assert(pfs.isDefinedAt(3.142)  == false)
+assert(pfd.isDefinedAt(3.142)  == true)
+assert(pfsd.isDefinedAt(3.142) == true)
+assert(pfs.isDefinedAt(2)      == false)
+assert(pfd.isDefinedAt(2)      == false)
+assert(pfsd.isDefinedAt(2)     == false)
 
-println(                                                             // <6>
-  s"""
-  ?|      |  pfs - String   |  pfd - Double   |   pfsd - All    |
-  ?| x    | isDef? | pfs(x) | isDef? | pfd(x) | isDef? | pf(x)  |
-  ?++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  ?${line("str")}
-  ?${line(3.14)}
-  ?${line(10)}
-  ?++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  ?""".stripMargin('?'))
+val fs = pfs.lift
+assert(fs("str") == Some("YES"))
+assert(fs(3.142) == None)
+
+val pfs2 = fs.unlift
+assert(pfs2("str") == "YES")
+val trypfs2 = try pfs2(3.142) catch case e:MatchError => "ERROR!"
+assert(trypfs2 == "ERROR!")
