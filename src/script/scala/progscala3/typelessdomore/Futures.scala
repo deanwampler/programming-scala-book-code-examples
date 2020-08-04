@@ -1,26 +1,24 @@
 // src/script/scala/progscala3/typelessdomore/Futures.scala
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext.Implicits.global            // <1>
 import scala.util.{Failure, Success}
 
-def sleep(millis: Long) =
-  Thread.sleep(millis)
+def sleep(millis: Long) = Thread.sleep(millis)                       // <2>
 
-// Busy work ;)
-def doWork(index: Int) =
-  sleep((math.random * 1000).toLong)
-  index
+def doWork(i: Int) =                                                 // <3>
+  val duration = (math.random * 1000).toLong
+  sleep(duration)
+  if i == 3 then throw new RuntimeException(s"$i -> $duration")
+  duration
 
-(1 to 5) foreach { index =>
-  val future = Future { doWork(index) }
-  // Before Scala 2.13, you could use separate future.onSuccess
-  // and future.onFailure callbacks. Those were deprecated in 2.12
-  // and removed in 2.13, with future.onComplete replacing them.
-  future onComplete {
-    case Success(answer) => println(s"Success! returned: $answer")
-    case Failure(th) => println(s"FAILURE! returned: $th")
+(1 to 5) foreach { i =>
+  val future = Future {
+    doWork(i)
+  }
+  future onComplete {                                                // <4>
+    case Success(result)    => println(s"Success! #$i -> $result")
+    case Failure(throwable) => println(s"FAILURE! #$i -> $throwable")
   }
 }
-
 sleep(1000)  // Wait long enough for the "work" to finish.
-println("Finito!")
+println("Finished!")
