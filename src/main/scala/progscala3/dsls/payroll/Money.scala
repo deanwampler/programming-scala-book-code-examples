@@ -15,13 +15,13 @@ case class Percentage(amount: Double) extends Amount:           // <2>
 case class Dollars(amount: Double) extends Amount:              // <3>
   override def toString = s"$$${format(amount)}"
 
-import scala.util.FromDigits                                    // <4>
+import scala.util.FromDigits.Floating                           // <4>
 
-given as FromDigits[Percentage] =                               // <5>
-  (digits: String) => Percentage(digits.toDouble)
+given as Floating[Percentage]:                                  // <5>
+  def fromDigits(digits: String): Percentage = Percentage(digits.toDouble)
 
-given as FromDigits[Dollars] =                                  // <6>
-  (digits: String) => Dollars(digits.toDouble)
+given as Floating[Dollars]:                                     // <6>
+  def fromDigits(digits: String): Dollars = Dollars(digits.toDouble)
 
 implicit class dsc(sc: StringContext):                          // <7>
   @alpha("dollars") def $(tokens: Any*) =
