@@ -31,16 +31,15 @@ object PayrollCalculator:                                              // <1>
     yield toRule(line)
 
   private def toRule(line: String): Record =                           // <5>
-    val Array(name, salary,
-        fedTax, stateTax, insurance, retirement): @unchecked =
-      line.split("""\s*,\s*""") match {
-        case array if array.length == 6 => array
-        case _ => throw BadInput("expected six fields", line)
-      }
-    val ruleString = dsl.format(
-      fedTax.toDouble, stateTax.toDouble,
-      insurance.toDouble, retirement.toDouble)
-    (name, Money(salary.toDouble), ruleString)
+    val array = line.split("""\s*,\s*""")
+    if array.length != 6 then throw BadInput("expected six fields", line)
+    else
+      val Array(name, salary,
+        fedTax, stateTax, insurance, retirement): @unchecked = array
+      val ruleString = dsl.format(
+        fedTax.toDouble, stateTax.toDouble,
+        insurance.toDouble, retirement.toDouble)
+      (name, Money(salary.toDouble), ruleString)
 
   private val parser = new PayrollParser                               // <6>
   private def toDeductions(rule: String): Deductions =

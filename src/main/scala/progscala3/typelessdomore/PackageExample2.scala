@@ -11,11 +11,9 @@ package com:
     package pkg2:
       class Class21:
         def m = "m21"
-        def makeClass11 =
-          new pkg1.Class11
+        def makeClass11 = new pkg1.Class11
 
-        def makeClass12 =
-          new pkg1.Class12
+        def makeClass12 = new pkg1.Class12
 
     package pkg3.pkg31.pkg311:
       class Class311:
