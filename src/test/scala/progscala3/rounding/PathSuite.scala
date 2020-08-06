@@ -11,6 +11,7 @@ class PathSuite extends FunSuite:
     val three = one / "two" / "three"
     val expected = s"one${separator}two${separator}three"
     assert(expected == three.value)
+    assert(expected == three.toString)
     assert(new File(expected) == three.file)
 
   test("concatenation with the default separator") {
