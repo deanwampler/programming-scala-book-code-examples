@@ -7,5 +7,5 @@ object UpperMain1:
     println("")
   end main                                                      // <3>
 
-  @main def hello = main(Array("Hello", "World!"))              // <4>
+  @main def hello(args: String*) = main(args.toArray)           // <4>
 end UpperMain1                                                  // <5>
