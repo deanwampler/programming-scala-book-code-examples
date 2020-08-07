@@ -20,24 +20,18 @@ object manage:
         println(s"Closing resource...")
         res.get.close()
 
-object TryCatchARM:
-  /** Usage: scala rounding.TryCatch filename1 filename2 ... */
-  def main(args: Array[String]): Unit =
-    val sizes = args map { arg =>
-      try
-        val size = manage(Source.fromFile(arg)) { source =>
-          source.getLines.size
-        }
-        println(s"file $arg has $size lines")
-        size
-      catch
-        case NonFatal(ex) =>
-          println(s"caught $ex")
-          -1
-    }
-    println("Returned sizes: " + (sizes.mkString(", ")))
-
-  def returnFileLength(fileName: String): Int =
-    manage(Source.fromFile(fileName)) { source =>
-      source.getLines.size
-    }
+/** Usage: scala rounding.TryCatchARM filename1 filename2 ... */
+@main def TryCatchARM(fileNames: String*) =
+  val sizes = fileNames map { fileName =>
+    try
+      val size = manage(Source.fromFile(fileName)) { source =>
+        source.getLines.size
+      }
+      println(s"file $fileName has $size lines")
+      size
+    catch
+      case NonFatal(ex) =>
+        println(s"caught $ex")
+        0
+  }
+  println("Returned sizes: " + (sizes.mkString(", ")))
