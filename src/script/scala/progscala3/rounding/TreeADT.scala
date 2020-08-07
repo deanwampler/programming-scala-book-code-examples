@@ -29,3 +29,4 @@ object Scala3ADT:
 
 Scala2ADT.tree                                                        // <6>
 Scala3ADT.tree
+
