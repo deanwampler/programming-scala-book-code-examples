@@ -1,6 +1,7 @@
 // src/script/scala/progscala3/rounding/LazyInitVal.scala
 
-object ExpensiveResource:
-  lazy val resource: Int =
-    // do something expensive
-    0
+case class DBConnection(connection: String):   // Simplified example
+	type MySQLConnection = String
+  lazy val connection: MySQLConnection =
+    // Connect to the database
+    "Connected!"

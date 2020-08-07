@@ -1,9 +1,9 @@
 // src/script/scala/progscala3/rounding/Traits.scala
+import util.Random
 
 class Service(name: String):
-  def work(i: Int): Int =
-    println(s"Service $name: Doing important work! $i")
-    i + 1
+  def work(i: Int): (Int, Int) =
+    (i, Random.between(0, 1000))
 
 val service1 = new Service("one")
 (1 to 3) foreach (i => println(s"Result: ${service1.work(i)}"))
@@ -19,10 +19,10 @@ trait StdoutLogging extends Logging:
   def error  (message: String) = println(s"ERROR:   $message")
 
 val service2 = new Service("two") with StdoutLogging:
-  override def work(i: Int): Int =
+  override def work(i: Int): (Int, Int) =
     info(s"Starting work: i = $i")
     val result = super.work(i)
-    info(s"Ending work: i = $i, result = $result")
+    info(s"Ending work: result = $result")
     result
 
-(1 to 3) foreach (i => println(s"Result: ${service2.work(i)}"))
+(1 to 3) foreach (i => println(s"Result:  ${service2.work(i)}"))
