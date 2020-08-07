@@ -4,8 +4,9 @@ import progscala3.rounding.WeekDay
 
 val days = for
   day <- WeekDay.values
-  if WeekDay.isWorkingDay(day)
-  up = WeekDay.upper(day)
-yield up
+  if day.isWorkingDay
+  fn = day.fullName
+yield fn
 
-assert(days == Set("MON", "TUE", "WED", "THU", "FRI"))
+assert(days.toSeq ==
+	Seq("Friday", "Monday", "Tuesday", "Wednesday", "Thursday"))

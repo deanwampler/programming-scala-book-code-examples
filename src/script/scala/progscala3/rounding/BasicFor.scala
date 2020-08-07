@@ -1,7 +1,10 @@
 // src/script/scala/progscala3/rounding/BasicFor.scala
 
-import progscala3.rounding.WeekDay
-
 for
-  day <- WeekDay.values
-do println(day)
+  i <- 0 until 10
+do println(i)
+
+for i <- 0 until 10
+do println(i)
+
+for i <- 0 until 10 do println(i)

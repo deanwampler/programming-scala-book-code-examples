@@ -5,7 +5,7 @@ import scala.annotation.alpha
 import java.io.File
 
 case class Path(
-		value: String, separator: String = Path.defaultSeparator):  // <1>
+    value: String, separator: String = Path.defaultSeparator):  // <1>
   val file = new File(value)
   override def toString: String = file.getPath                  // <2>
 

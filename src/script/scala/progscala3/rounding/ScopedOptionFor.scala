@@ -7,17 +7,19 @@ val dayOptions = Seq(
   Some(Mon), None, Some(Tue), Some(Wed), None,
   Some(Thu), Some(Fri), Some(Sat), Some(Sun), None)
 
-println("first pass:")
-val goodDays1 = for
+val goodDays1 = for          // First pass
   dayOpt <- dayOptions
   day <- dayOpt
-  up   = WeekDay.upper(day)
-yield up
-assert(goodDays1 == Seq("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"))
+  fn   = day.fullName
+yield fn
+assert(goodDays1 ==
+	Seq("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+		  "Saturday", "Sunday"))
 
-println("second, more concise pass:")
-val goodDays2 = for
+val goodDays2 = for          // second, more concise pass
   case Some(day) <- dayOptions
-  up   = WeekDay.upper(day)
-yield up
-assert(goodDays2 == Seq("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"))
+  fn = day.fullName
+yield fn
+assert(goodDays2 ==
+	Seq("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+		  "Saturday", "Sunday"))
