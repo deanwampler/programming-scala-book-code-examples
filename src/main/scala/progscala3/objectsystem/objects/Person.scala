@@ -8,9 +8,9 @@ object Person:
   def apply(name: String, age: Int) = new Person(name, age)
   def unapply(person: Person) = Some((person.name, person.age))
 
-@main def TryPerson =
+@main def TryPerson(name: String, age: Int) =
   // Test the constructor...
-  val person = new Person("Buck Trends", 21)
-  assert(person.name == "Buck Trends")
-  assert(person.age  == 21)
+  val person = new Person(name, age)
+  assert(person.name == name)
+  assert(person.age  == age)
 
