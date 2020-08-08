@@ -8,6 +8,6 @@ case class DBConnection():
     println("Connected!")
     "DB"
 
-val dbc = DBConnection("some_database")
+val dbc = DBConnection()
 dbc.connection
 dbc.connection
