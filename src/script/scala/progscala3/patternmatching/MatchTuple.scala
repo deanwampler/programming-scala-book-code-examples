@@ -6,11 +6,10 @@ val langs = Seq(
   ("Lisp",    "John",   "McCarthy"))
 
 val results = langs map {
-  case ("Scala", _, _) => "Found Scala"                      // <1>
-  case (lang, first, last) =>                                // <2>
-    s"Found other language: $lang ($first $last)"
+  case ("Scala", _, _) => "Scala"                               // <1>
+  case (lang, first, last) => s"$lang, creator $first $last"    // <2>
 }
 assert(results == Seq(
-  "Found Scala", 
-  "Found other language: Clojure (Rich Hickey)",
-  "Found other language: Lisp (John McCarthy)"))
+  "Scala",
+  "Clojure, creator Rich Hickey",
+  "Lisp, creator John McCarthy"))

@@ -52,17 +52,15 @@ object AkkaClient:                                              // <1>
       handleN(ns.toLong, ns, context)(f)
 
     def handleN[N:Numeric,R](n: =>N, ns:String, context:String)(f: N=>R) =
-      try {
+      try
         f(n)
-      } catch {
+      catch
         case _: NFE =>
-          val s = if context.size > 0 then {
+          val s = if context.size > 0 then
             s"""With context "$context", expected a number, but got $ns"""
-          } else {
+          else
             s"""Expected a number, but got $ns"""
-          }
           println(s)
-      }
 
     val handleLine: String => Unit =                            // <9>
       case blankRE() =>   /* do nothing */
@@ -94,12 +92,14 @@ object AkkaClient:                                              // <1>
 
       case "q" | "quit" | "exit" => finished()
       case string => invalidInput(string)
+    end handleLine
 
     while true do
       prompt()
       Console.in.readLine() match
         case null => finished()
         case line => handleLine(line)
+  end processInput
 
   private val help =
   """Usage: AkkaClient [-h | --help]
@@ -118,3 +118,4 @@ object AkkaClient:                                              // <1>
     for sys <- system do sys.terminate()
     println(message)
     sys.exit(status)
+end AkkaClient

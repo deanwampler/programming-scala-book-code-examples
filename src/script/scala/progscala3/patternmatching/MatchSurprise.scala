@@ -1,5 +1,4 @@
 // src/script/scala/progscala3/patternmatching/MatchSurprise.scala
-// Does not compile with strict warnings, because of <2>.
 
 def checkY(y: Int): Seq[String] =
   for
@@ -9,4 +8,4 @@ def checkY(y: Int): Seq[String] =
       case y => "found y!"      // <1>
       case i: Int => "int: "+i  // <2> ERROR: Unreachable code
 
-println(checkY(100))
+checkY(100)

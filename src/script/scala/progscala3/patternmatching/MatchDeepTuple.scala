@@ -1,9 +1,8 @@
 // src/script/scala/progscala3/patternmatching/MatchDeepTuple.scala
 
 val itemsCosts = Seq(("Pencil", 0.52), ("Paper", 1.35), ("Notebook", 2.43))
-val itemsCostsIndices = itemsCosts.zipWithIndex
 
-val results = itemsCostsIndices map { 
+val results = itemsCosts.zipWithIndex map {
   case ((item, cost), index) => s"$index: $item costs $cost each"
 }
 assert(results == Seq(
