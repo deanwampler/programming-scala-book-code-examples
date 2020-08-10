@@ -14,28 +14,20 @@ enum HttpMethod:                                                // <1>
 
 import HttpMethod._
 def handle (method: HttpMethod) = method match                  // <4>
-  case Connect (body) => s"connect: (length: ${method.body.length}) $body"
-  case Delete  (body) => s"delete:  (length: ${method.body.length}) $body"
-  case Get     (body) => s"get:     (length: ${method.body.length}) $body"
-  case Head    (body) => s"head:    (length: ${method.body.length}) $body"
-  case Options (body) => s"options: (length: ${method.body.length}) $body"
-  case Post    (body) => s"post:    (length: ${method.body.length}) $body"
-  case Put     (body) => s"put:     (length: ${method.body.length}) $body"
-  case Trace   (body) => s"trace:   (length: ${method.body.length}) $body"
+  case Connect (body) => s"Connect: length = ${body.length}, body = $body"
+  case Delete  (body) => s"Delete:  length = ${body.length}, body = $body"
+  case Get     (body) => s"Get:     length = ${body.length}, body = $body"
+  case Head    (body) => s"Head:    length = ${body.length}, body = $body"
+  case Options (body) => s"Options: length = ${body.length}, body = $body"
+  case Post    (body) => s"Post:    length = ${body.length}, body = $body"
+  case Put     (body) => s"Put:     length = ${body.length}, body = $body"
+  case Trace   (body) => s"Trace:   length = ${body.length}, body = $body"
 
-assert(handle(Connect("connect body...")) ==
-  "connect: (length: 15) connect body...")
-assert(handle(Delete ("delete body..."))  ==
-  "delete:  (length: 14) delete body...")
-assert(handle(Get    ("get body..."))     ==
-  "get:     (length: 11) get body...")
-assert(handle(Head   ("head body..."))    ==
-  "head:    (length: 12) head body...")
-assert(handle(Options("options body...")) ==
-  "options: (length: 15) options body...")
-assert(handle(Post   ("post body..."))    ==
-  "post:    (length: 12) post body...")
-assert(handle(Put    ("put body..."))     ==
-  "put:     (length: 11) put body...")
-assert(handle(Trace  ("trace body..."))   ==
-  "trace:   (length: 13) trace body...")
+assert(handle(Connect("CONNECT")) == "Connect: length = 7, body = CONNECT")
+assert(handle(Delete ("DELETE"))  == "Delete:  length = 6, body = DELETE")
+assert(handle(Get    ("GET"))     == "Get:     length = 3, body = GET")
+assert(handle(Head   ("HEAD"))    == "Head:    length = 4, body = HEAD")
+assert(handle(Options("OPTIONS")) == "Options: length = 7, body = OPTIONS")
+assert(handle(Post   ("POST"))    == "Post:    length = 4, body = POST")
+assert(handle(Put    ("PUT"))     == "Put:     length = 3, body = PUT")
+assert(handle(Trace  ("TRACE"))   == "Trace:   length = 5, body = TRACE")
