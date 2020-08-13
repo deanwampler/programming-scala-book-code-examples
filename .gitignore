@@ -22,3 +22,4 @@ tmp/
 .dotty-ide.json
 akka.log
 _site
+project/metals.sbt
