@@ -1,4 +1,5 @@
 // src/script/scala/progscala3/forcomps/ForEithersSeq.scala
+
 import scala.util.{ Either, Left, Right }
 
 val seq: Seq[Either[RuntimeException,Int]] =

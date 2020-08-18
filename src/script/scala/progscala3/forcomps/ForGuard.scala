@@ -1,4 +1,5 @@
 // src/script/scala/progscala3/forcomps/ForGuard.scala
+
 val states = Vector("Alabama", "Alaska", "Virginia", "Wyoming")
 
 val results1 = for
@@ -7,5 +8,7 @@ val results1 = for
   if c.isLower
 yield s"$c-${c.toUpper}"
 
-val results2 = states.flatMap(
-    _.toSeq.withFilter(_.isLower).map(c => s"$c-${c.toUpper}"))
+val results2 = states.
+  flatMap(s => s.toSeq).
+  withFilter(c => c.isLower).
+  map(c => s"$c-${c.toUpper}")

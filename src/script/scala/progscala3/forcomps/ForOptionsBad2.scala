@@ -3,7 +3,7 @@
 /** Another "bad" example, when easier idioms exist. */
 
 def sumCountsBad(counts: Seq[Option[Int]]): Option[Int] =
-  (counts foldLeft Option(0)) {
+  counts.foldLeft(Option(0)) {
     (countOption, count) =>
       if countOption == None || count == None then None
       else Some(countOption.get + count.get)
