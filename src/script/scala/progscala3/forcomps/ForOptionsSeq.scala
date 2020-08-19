@@ -1,22 +1,18 @@
 // src/script/scala/progscala3/forcomps/ForOptionsSeq.scala
 
-val options: Seq[Option[Int]] = Vector(Some(10), None, Some(20))
+def positive(i: Int): Option[Int] =
+  if i > 0 then Some(i) else None
 
-val results1 = for
-  case Some(i) <- options
-yield (2 * i)
+val resultSuccess = for
+  i1 <- positive(5)
+  i2 <- positive(10 * i1)
+  i3 <- positive(25 * i2)
+  i4 <- positive(2  * i3)
+yield (i1 + i2 + i3 + i4)
 
-val results2 = for
-  case Some(i) <- options withFilter {
-    case Some(i) => true
-    case None => false
-  }
-yield (2 * i)
-
-val results3 = options withFilter {
-  case Some(i) => true
-  case None => false
-} map {
-  case Some(i) => (2 * i)
-  case None => -1             // <1>
-}
+val resultFail = for
+  i1 <- positive(5)
+  i2 <- positive(-1 * i1)    // <1>
+  i3 <- positive(25 * i2)
+  i4 <- positive(-2 * i3)
+yield (i1 + i2 + i3 + i4)
