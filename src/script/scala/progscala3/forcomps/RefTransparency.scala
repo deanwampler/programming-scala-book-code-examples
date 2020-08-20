@@ -1,14 +1,16 @@
 // src/script/scala/progscala3/forcomps/RefTransparency.scala
 
-import progscala3.forcomps.RefTransparency._
+def addInts(s1: String, s2: String): Int = s1.toInt + s2.toInt
 
-for
-  i <- 1 to 3
-  j <- 1 to i
-do println(s"$i, $j: ${addInts(i.toString, j.toString)}")
+def addInts2(s1: String, s2: String): Either[String,Int] =
+  try
+    Right(s1.toInt + s2.toInt)
+  catch
+    case nfe: NumberFormatException => Left("NFE: "+nfe.getMessage)
 
-val add12 = addInts2("1", "2") == Right(3)
+val add12a = addInts("1", "2")
+val add12b = addInts2("1", "2")
 
-val add1x = addInts2("1", "x")
-val addx2 = addInts2("x", "2")
-val addxy = addInts2("x", "y")
+val add1x  = addInts2("1", "x")
+val addx2  = addInts2("x", "2")
+val addxy  = addInts2("x", "y")

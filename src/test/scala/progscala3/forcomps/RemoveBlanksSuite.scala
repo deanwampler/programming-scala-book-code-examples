@@ -7,15 +7,22 @@ class RemoveBlanksSuite extends FunSuite:
   var path = "src/test/scala/progscala3/forcomps/small-test-file.txt"
 
   test("RemoveBlanks removes blank lines in text") {
-    val lines = RemoveBlanks(path, compressSpace = false)
+    val lines = RemoveBlanks(path, compress = false, numbers = false)
     assert(lines.mkString("\n") ==
       """  This is a       small
         |test   file""".stripMargin)
   }
 
   test("RemoveBlanks optionally compresses whitespace in text") {
-    val lines = RemoveBlanks(path, compressSpace = true)
+    val lines = RemoveBlanks(path, compress = true, numbers = false)
     assert(lines.mkString("\n") ==
       """This is a small
         |test file""".stripMargin)
+  }
+
+  test("RemoveBlanks optionally prints line numbers from the original text") {
+    val lines = RemoveBlanks(path, compress = true, numbers = true)
+    assert(lines.mkString("\n") ==
+      """   0: This is a small
+        |   2: test file""".stripMargin, lines.mkString("\n"))
   }
