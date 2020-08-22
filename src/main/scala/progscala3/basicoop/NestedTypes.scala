@@ -1,4 +1,5 @@
 // src/main/scala/progscala3/basicoop/NestedTypes.scala
+package progscala3.basicoop
 
 object Database:                                                     // <1>
   case class ResultSet(/*...*/)                                      // <2>

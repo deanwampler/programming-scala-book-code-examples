@@ -9,11 +9,6 @@ trait Formatter extends Any:                                         // <2>
     areaCode: String, exchange: String, subnumber: String): String =
     s"($areaCode) $exchange-$subnumber"
 
-/**
- * Simple constructor that does not validation of the input string,
- * for simplicity. See `ZipCode` for an example of how this might
- * be done.
- */
 case class USPhoneNumberUT(s: String)
   extends AnyVal with Digitizer with Formatter:
 

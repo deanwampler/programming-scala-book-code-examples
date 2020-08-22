@@ -1,7 +1,5 @@
 // src/main/scala/progscala3/basicoop/ValueClassDollar.scala
+package progscala3.basicoop
 
-/**
- * Real money classes shouldn't use Floats!
- */
-class Dollar(val value: Float) extends AnyVal:
+class Dollar(val value: Float) extends AnyVal:        // <1>
   override def toString = "$%.2f".format(value)
