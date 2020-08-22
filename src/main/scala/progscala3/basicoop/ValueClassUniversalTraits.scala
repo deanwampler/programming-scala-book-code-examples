@@ -10,8 +10,7 @@ trait Formatter extends Any:                                         // <2>
     s"($areaCode) $exchange-$subnumber"
 
 case class USPhoneNumberUT(s: String)
-  extends AnyVal with Digitizer with Formatter:
-
+    extends AnyVal with Digitizer with Formatter:
   override def toString =
     val digs = digits(s)
     val areaCode = digs.substring(0,3)

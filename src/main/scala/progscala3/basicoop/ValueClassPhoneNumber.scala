@@ -2,7 +2,6 @@
 package progscala3.basicoop
 
 class USPhoneNumber(val s: String) extends AnyVal:    // <1>
-
   override def toString = {
     val digs = digits(s)
     val areaCode  = digs.substring(0,3)

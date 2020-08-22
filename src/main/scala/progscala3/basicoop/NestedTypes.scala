@@ -3,21 +3,22 @@ package progscala3.basicoop
 
 object Database:                                                     // <1>
   case class ResultSet(/*...*/)                                      // <2>
-  case class Connection(/*...*/)                                     // <3>
+  case class Connection(/*...*/)
 
   case class DatabaseException(message: String, cause: Throwable) extends
     RuntimeException(message, cause)
 
-  sealed trait Status                                                // <4>
-  case object Disconnected extends Status
-  case class  Connected(connection: Connection)  extends Status
-  case class  QuerySucceeded(results: ResultSet) extends Status
-  case class  QueryFailed(e: DatabaseException)  extends Status
+  sealed trait ConnectionState                                       // <3>
+  case object Disconnected extends ConnectionState
+  case class  Connected(connection: Connection)  extends ConnectionState
+  sealed trait QueryStatus
+  case class  QuerySucceeded(results: ResultSet) extends QueryStatus
+  case class  QueryFailed(e: DatabaseException)  extends QueryStatus
 
 class Database:
   import Database._
 
-  def connect(server: String): Status = ???                          // <5>
-  def disconnect(): Status = ???
+  def connect(server: String): ConnectionState = ???                 // <5>
+  def disconnect(): ConnectionState = ???
 
-  def query(/*...*/): Status = ???
+  def query(queryStr: String): QueryStatus = ???

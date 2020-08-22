@@ -6,7 +6,7 @@ package progscala3.implicits.payroll
 import scala.annotation.alpha
 
 object Pipeline:
-  implicit class toPiped[V](value:V):
+  implicit class toPiped[V](value: V):
     @alpha("pipe") def |>[R] (f : V => R) = f(value)
 
 @main def TryPhantomTypesPipeline =
