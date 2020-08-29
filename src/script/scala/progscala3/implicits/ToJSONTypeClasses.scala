@@ -1,5 +1,7 @@
 // src/script/scala/progscala3/implicits/ToJSONTypeClasses.scala
 
+import progscala3.implicits.{Address, Person}
+
 trait ToJSON:                                                        // <1>
   def toJSON(level: Int = 0): String
 

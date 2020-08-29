@@ -1,5 +1,4 @@
 // src/main/scala/progscala3/implicits/DomainConcepts.scala
-// Used in scripts: src/script/scala/progscala3/implicits/
 
 package progscala3.implicits
 
