@@ -7,9 +7,9 @@ def makeMap(
 
 // Sample "records"
 val data = List(
-    makeMap("Alaska",     "Juneau",      1959),
-    makeMap("California", "Sacramento",  1850),
-    makeMap("Illinois",   "Springfield", 1818))
+  makeMap("Alaska",     "Juneau",      1959),
+  makeMap("California", "Sacramento",  1850),
+  makeMap("Illinois",   "Springfield", 1818))
 
 val states = CLINQ(data)
 

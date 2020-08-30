@@ -38,8 +38,8 @@ class FunctorPropertiesSuite extends ScalaCheckSuite:
     val f2: Int => Int = _ * 2
     def id[A] = identity[A]     // Lift method to a function
 
-    {  // scope the import:
-      import SeqF._
+    {
+      import SeqF._   // scope the import:
       map(List.empty[Int])(f1) == List.empty[String]
     }
 

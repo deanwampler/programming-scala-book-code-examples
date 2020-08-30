@@ -1,4 +1,4 @@
-// src/test/java/progscala3/javainterop/JavaWithScalaTuples.java
+// src/main/java/progscala3/javainterop/JavaWithScalaTuples.java
 package progscala3.javainterop;
 import scala.Tuple2;
 
