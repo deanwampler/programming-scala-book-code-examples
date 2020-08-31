@@ -3,15 +3,17 @@
 package progscala3.visibility.privatetype:
 
   package scopeA:
-    class PrivateClass1(private[PrivateClass1] val privateField1: Int):
+    class PrivateClass1(private[PrivateClass1] val privateField1: Int) derives Eql:
       private[PrivateClass1] val privateField2 = 1
 
       def equalFields(other: PrivateClass1) =
         (privateField1 == other.privateField1) &&
-        (privateField2 == other.privateField2) &&
-        (nested  == other.nested)
+        (privateField2 == other.privateField2)
+        // Would be valid with less restrictive equals, i.e., no
+        // --language:strictEquality. Even "derives Eql" doesn't help!
+        // && (nested == other.nested)
 
-      class Nested:
+      class Nested derives Eql:
         private[Nested] val nestedField = 1
 
       private[PrivateClass1] val nested = new Nested

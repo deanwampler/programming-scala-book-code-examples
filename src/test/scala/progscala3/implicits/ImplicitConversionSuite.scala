@@ -15,5 +15,5 @@ class ImplicitConversionSuite extends FunSuite:
 
 	test("An implicit conversion class in scope is invoked when needed") {
 		val m = Map("one" <-*-> 1, "two" <-*-> 2)
-		assert(m == Map("one" -> 1, "two" -> 2))
+		assert(m.equals(Map("one" -> 1, "two" -> 2)))
 	}

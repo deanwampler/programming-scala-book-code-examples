@@ -11,7 +11,6 @@ object CollectiveExtensionMethods:
     def zero: A
 
   extension [K,V](map: Map[K,V]):                                    // <3>
-
     def sorted(using Ordering[K]): Seq[(K,V)] =                      // <4>
       map.keySet.toSeq.sortedUnique.map(key => (key, map(key)))
 

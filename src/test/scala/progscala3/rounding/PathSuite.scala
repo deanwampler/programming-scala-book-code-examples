@@ -10,9 +10,9 @@ class PathSuite extends FunSuite:
     val one  = Path("one", separator = separator)
     val three = one / "two" / "three"
     val expected = s"one${separator}two${separator}three"
-    assert(expected == three.value)
-    assert(expected == three.toString)
-    assert(new File(expected) == three.file)
+    assert(expected.equals(three.value))
+    assert(expected.equals(three.toString))
+    assert(new File(expected).equals(three.file))
 
   test("concatenation with the default separator") {
     doTest(Path.defaultSeparator)

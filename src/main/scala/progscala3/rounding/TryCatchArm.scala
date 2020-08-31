@@ -16,9 +16,11 @@ object manage:
         println(s"manage.apply(): Non fatal exception! $ex")
         throw ex
     finally
-      if res != None then
-        println(s"Closing resource...")
-        res.get.close()
+      res match
+        case Some(resource) =>
+          println(s"Closing resource...")
+          res.get.close()
+        case None => // do nothing
 
 /** Usage: scala rounding.TryCatchARM filename1 filename2 ... */
 @main def TryCatchARM(fileNames: String*) =

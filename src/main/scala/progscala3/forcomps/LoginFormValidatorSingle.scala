@@ -36,22 +36,34 @@ object LoginFormValidatorSingle:
       _ <- goodCharacters(password, "password")
     yield ValidLoginForm(userName, password)
 
+/**
+ * This method uses the matching clauses shown rather something like this:
+ *   assert(LoginFormValidatoSingle(...) == Left(...))
+ * This is necessary because we use -language:strictEquality, which causes
+ * these == expressions to fail compilation!
+ */
 @main def TryLoginFormValidatorSingle =
-  assert(LoginFormValidatorSingle("", "pwd") ==
-    Left(Empty("user name")))
-  assert(LoginFormValidatorSingle("", "") ==
-    Left(Empty("user name")))
-  assert(LoginFormValidatorSingle("12", "") ==
-    Left(TooShort("user name", 5)))
-  assert(LoginFormValidatorSingle("12", "67") ==
-    Left(TooShort("user name", 5)))
+  assert(LoginFormValidatorSingle("", "pwd").equals(
+    Left(Empty("user name"))))
 
-  assert(LoginFormValidatorSingle("12345", "67") ==
-    Left(TooShort("password", 5)))
-  assert(LoginFormValidatorSingle("123 45", "67") ==
-    Left(BadCharacters("user name")))
-  assert(LoginFormValidatorSingle("12345", "678 90") ==
-    Left(BadCharacters("password")))
+  assert(LoginFormValidatorSingle("", "").equals(
+    Left(Empty("user name"))))
 
-  assert(LoginFormValidatorSingle("12345", "67890") ==
-    Right(ValidLoginForm("12345", "67890")))
+  assert(LoginFormValidatorSingle("12", "").equals(
+    Left(TooShort("user name", 5))))
+
+  assert(LoginFormValidatorSingle("12", "67").equals(
+    Left(TooShort("user name", 5))))
+
+  assert(LoginFormValidatorSingle("12345", "67").equals(
+    Left(TooShort("password", 5))))
+
+  assert(LoginFormValidatorSingle("123 45", "67").equals(
+    Left(BadCharacters("user name"))))
+
+  assert(LoginFormValidatorSingle("12345", "678 90").equals(
+    Left(BadCharacters("password"))))
+
+  assert(LoginFormValidatorSingle("12345", "67890").equals(
+    Right(ValidLoginForm("12345", "67890"))))
+

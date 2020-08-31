@@ -29,11 +29,11 @@ class ForOptionsBadSuite extends FunSuite:
       i1 => Some(i1 + 5),
       i2 => Some(i2 + 10),
       i3 => Some(i3 + 25))
-    assert(result1 == Some(40))
+    assert(result1.equals(Some(40)))
 
     val result2 = doThreeSteps(
       i1 => Some(i1 + 5),
       i2 => None,   // EPIC FAIL!
       i3 => Some(i3 + 25))
-    assert(result2 == None)
+    assert(result2.equals(None))
   }

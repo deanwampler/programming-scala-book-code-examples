@@ -1,23 +1,21 @@
-// src/main/scala/progscala3/implicits/PhantomTypes.scala
+// src/main/scala/progscala3/typesystem/PhantomTypes.scala
 
-// A workflow for payroll calculations.
+package progscala3.typesystem.payroll
 
-package progscala3.implicits.payroll
+sealed trait Step                                          // <1>
+trait PreTaxDeductions extends Step
+trait PostTaxDeductions extends Step
+trait Final extends Step
 
-sealed trait PreTaxDeductions
-sealed trait PostTaxDeductions
-sealed trait Final
-
-// For simplicity, use Float for money. Not recommended...
 case class Employee(
   name: String,
-  annualSalary: Float,
-  taxRate: Float,  // For simplicity, just 1 rate covering all taxes.
+  annualSalary: Float,        // For simplicity, use Float for money.
+  taxRate: Float,             // Also just assume one rate covers all taxes.
   insurancePremiumsPerPayPeriod: Float,
   _401kDeductionRate: Float,  // A pretax, retirement savings plan in the USA.
   postTaxDeductions: Float)
 
-case class Pay[Step](employee: Employee, netPay: Float)
+case class Pay[S <: Step](employee: Employee, netPay: Float)
 
 object Payroll:
   // Biweekly paychecks. Assume exactly 52 weeks/year for simplicity.

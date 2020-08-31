@@ -30,13 +30,13 @@ class ForEithersStepsSuite extends FunSuite:
     }
 
   test("Folding over a sequence of Rights processes all values") {
-    assert(sumCounts1(successfulSteps) == Right(40))
+    assert(sumCounts1(successfulSteps).equals(Right(40)))
   }
 
   test("Folding over a sequence of Lefts and Rights returns Left") {
     sumCounts1(partiallySuccessfulSteps) match
       case Left(re) =>
-        assert(re.getMessage == "FAIL!")
+        assert(re.getMessage.equals("FAIL!"))
       case Right(i) =>
         (false, s"Should have failed, but returned Right($i)")
   }
@@ -54,7 +54,7 @@ class ForEithersStepsSuite extends FunSuite:
     sum(0, countSteps)
 
   test("Folding using recursion should pattern match on Eithers") {
-    assert(sumCounts2(successfulSteps) == Right(40))
+    assert(sumCounts2(successfulSteps).equals(Right(40)))
 
     sumCounts2(partiallySuccessfulSteps) match
       case Left(re) =>

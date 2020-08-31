@@ -10,11 +10,11 @@ class MonadExampleSuite extends FunSuite:
 	val optf: Int => Option[Int] = i => Option(i + 1)
 
 	test("SeqM.flatMap behaves like the collection's flatMap") {
-		assert(SeqM.flatMap(Seq(1,2,3))(seqf)   == Seq(1, 1, 2, 1, 2, 3))
-		assert(SeqM.flatMap(Seq.empty[Int])(seqf) == Nil)
+		assert(SeqM.flatMap(Seq(1,2,3))(seqf).equals(Seq(1, 1, 2, 1, 2, 3)))
+		assert(SeqM.flatMap(Seq.empty[Int])(seqf).equals(Nil))
 	}
 
 	test("OptionM.flatMap behaves like the collection's flatMap") {
-		assert(OptionM.flatMap(Some(2))(optf) == Some(3))
-		assert(OptionM.flatMap(Option.empty[Int])(optf) == None)
+		assert(OptionM.flatMap(Some(2))(optf).equals(Some(3)))
+		assert(OptionM.flatMap(Option.empty[Int])(optf).equals(None))
 	}

@@ -3,17 +3,13 @@
 package progscala3.implicits
 
 object GenericExtensionMethods:
-  def [A](seq: Seq[A]) sortedUnique(using Ordering[A]): Seq[A] = // <1>
-    if seq.size == 0
-      seq
-    else
-      val sorted = seq.sorted                                    // <2>
-      sorted.foldLeft(Vector(sorted.head)) { (vect, a) =>
-        if vect.last != a
-          vect :+ a
-        else
-          vect
-      }
+  type Eq[T] = Eql[T, T]                                             // <1>
 
-  def [A : Ordering](seq: Seq[A]) sortedUnique2: Seq[A] =        // <3>
-    seq.sortedUnique
+  extension [A: Ordering](seq: Seq[A])                          // <2>
+    def sortedUnique: Seq[A] =
+      if seq.size == 0 then seq
+      else
+        val sorted = seq.sorted                                      // <3>
+        sorted.foldLeft(Vector(sorted.head)) { (vect, a) =>
+          if vect.last.equals(a) then vect else vect :+ a
+        }

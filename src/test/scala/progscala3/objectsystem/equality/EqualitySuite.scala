@@ -5,7 +5,7 @@ import munit._
 
 class EqualitySuite extends FunSuite:
 
-  case class Person(firstName: String, lastName: String, age: Int)
+  case class Person(firstName: String, lastName: String, age: Int) derives Eql
 
   val p1a = Person("Dean", "Wampler", 29)
   val p1b = Person("Dean", "Wampler", 29)
@@ -86,14 +86,17 @@ class EqualitySuite extends FunSuite:
     assert((null.ne(null))  == false) // Compiler warns that it's always false.
   }
 
-  test("Equals for most collections works for identical objects") {
+  test("Equals for sequences") {
     assert((Seq(1, 2) == Seq(1, 2)) == true)
-    assert((Map("one" -> 1, "two" -> 2) ==
-      Map("one" -> 1, "two" -> 2)) == true)
+  }
+
+  test("Equals doesn't work for Maps (because they don't derive Eql)") {
+    assert((Map("one" -> 1, "two" -> 2).equals(
+      Map("one" -> 1, "two" -> 2)) == true))
   }
 
   test("Equals doesn't work for Arrays (because they are defined by Java)") {
-    assert((Array(1, 2) == Array(1, 2)) == false)
+    assert((Array(1, 2).equals(Array(1, 2))) == false)
   }
 
   test("sameElements compare all collections, including Arrays") {

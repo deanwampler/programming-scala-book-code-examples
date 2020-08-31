@@ -14,7 +14,7 @@ object UsingClassTagViews:
 
 @main def TryUsingClassTagViews =
 	import UsingClassTagViews._
-	assert(mkSeq(1, 2, 3) == List[Int](1, 2, 3))
-	assert(mkSeq("one", "two", "three") == List[String]("one", "two", "three"))
-	assert(mkSeq(1, "two", 3.14) == List[Any](1, "two", 3.14))
+	assert(mkSeq(1, 2, 3) == Seq[Int](1, 2, 3))
+	assert(mkSeq("one", "two", "three") == Seq[String]("one", "two", "three"))
+	assert(mkSeq(1, "two", 3.14).equals(Seq[Any](1, "two", 3.14)))     // <1>
 	println("success!")

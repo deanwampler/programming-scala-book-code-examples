@@ -21,7 +21,7 @@ sealed abstract class AbbrevList[+A]:
 
 // The empty AbbrevList.
 
-case object AbbrevNil extends AbbrevList[Nothing]:
+case object AbbrevNil extends AbbrevList[Nothing] derives Eql:
   override def isEmpty = true
 
   def head: Nothing =
@@ -34,7 +34,8 @@ case object AbbrevNil extends AbbrevList[Nothing]:
 
 @alpha("acons")
 final case class ::[B](private var hd: B,
-    private[list] var tl: AbbrevList[B]) extends AbbrevList[B]:
+    private[list] var tl: AbbrevList[B])
+    extends AbbrevList[B] derives Eql:
 
   override def isEmpty: Boolean = false
   def head : B = hd

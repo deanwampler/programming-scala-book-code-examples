@@ -13,27 +13,27 @@ class PersonAuxConstructorsSuite extends FunSuite:
 
   test("Age is optional") {
     val withAge = new PersonAuxConstructors("Buck Trends", 20)
-    assert(withAge.name    == "Buck Trends")
-    assert(withAge.age     == Some(20))
+    assert(withAge.name.equals("Buck Trends"))
+    assert(withAge.age.equals(Some(20)))
 
     val withoutAge = new PersonAuxConstructors("Buck Trends")
-    assert(withoutAge.name    == "Buck Trends")
-    assert(withoutAge.age     == None)
+    assert(withoutAge.name.equals("Buck Trends"))
+    assert(withoutAge.age.equals(None))
   }
 
   test("Address is optional") {
     val withAge = new PersonAuxConstructors("Buck Trends", addr)
-    assert(withAge.name    == "Buck Trends")
-    assert(withAge.address == Some(addr))
+    assert(withAge.name.equals("Buck Trends"))
+    assert(withAge.address.equals(Some(addr)))
 
     val withoutAge = new PersonAuxConstructors("Buck Trends")
-    assert(withoutAge.name    == "Buck Trends")
-    assert(withoutAge.address == None)
+    assert(withoutAge.name.equals("Buck Trends"))
+    assert(withoutAge.address.equals(None))
   }
 
   test("Age and address can be specified") {
     val p = new PersonAuxConstructors("Buck Trends", 20, addr)
-    assert(p.name    == "Buck Trends")
-    assert(p.age     == Some(20))
-    assert(p.address == Some(addr))
+    assert(p.name.equals("Buck Trends"))
+    assert(p.age.equals(Some(20)))
+    assert(p.address.equals(Some(addr)))
   }

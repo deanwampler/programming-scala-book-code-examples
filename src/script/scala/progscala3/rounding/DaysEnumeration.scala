@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/rounding/DaysEnumeration.scala
 
-enum WeekDay(val fullName: String):                             // <1>
+enum WeekDay(val fullName: String) derives Eql:                 // <1>
   case Sun extends WeekDay("Sunday")                            // <2>
   case Mon extends WeekDay("Monday")
   case Tue extends WeekDay("Tuesday")

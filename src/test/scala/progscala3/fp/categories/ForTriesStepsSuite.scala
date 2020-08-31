@@ -30,13 +30,13 @@ class ForTriesStepsSuite extends FunSuite:
     }
 
   test("Folding over a sequence of Somes processes all values") {
-    assert(sumCounts1(successfulSteps) == Success(40))
+    assert(sumCounts1(successfulSteps).equals(Success(40)))
   }
 
   test("Folding over a sequence of Somes and Nones returns None") {
     sumCounts1(partiallySuccessfulSteps) match
       case Failure(re) =>
-        assert(re.getMessage == "FAIL!")
+        assert(re.getMessage.equals("FAIL!"))
       case Success(i) =>
         assert(false, s"Should have failed, but returned Success($i)")
   }
@@ -54,9 +54,9 @@ class ForTriesStepsSuite extends FunSuite:
     sum(0, countSteps)
 
   test("Folding using recursion should pattern match on Tries") {
-    assert(sumCounts2(successfulSteps) == Success(40))
+    assert(sumCounts2(successfulSteps).equals(Success(40)))
 
     sumCounts2(partiallySuccessfulSteps) match
-      case Failure(re) => assert(re.getMessage == "FAIL!")
+      case Failure(re) => assert(re.getMessage.equals("FAIL!"))
       case Success(i) => assert(false, s"Should have failed, but returned $i")
   }

@@ -14,7 +14,7 @@ class ForEithersGoodSuite extends FunSuite:
   	  i3 <- positive(25 * i2)
   	  i4 <- positive(2  * i3)
   	yield (i1 + i2 + i3 + i4)
-  	assert(result1 == Right(3805))
+  	assert(result1.equals(Right(3805)))
   }
 
   test("If any step returns Left, the result is a Left") {
@@ -24,5 +24,5 @@ class ForEithersGoodSuite extends FunSuite:
   	  i3 <- positive(25 * i2)
   	  i4 <- positive(-2 * i3)   // EPIC FAIL!
   	yield (i1 + i2 + i3 + i4)
-  	assert(result2 == Left("nonpositive number -5"))
+  	assert(result2.equals(Left("nonpositive number -5")))
   }

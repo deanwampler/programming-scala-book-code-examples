@@ -12,7 +12,7 @@ class AbbrevListSuite extends FunSuite:
   test("item :: AbbrevNil == AbbrevList(item)") {
     val list = (1 :: AbbrevNil)
     assert(list.head == 1)
-    assert(list.tail == AbbrevNil)
+    assert(list.tail.equals(AbbrevNil))
   }
   test("AbbrevNil.foreach(...) does nothing") {
     // If you call foreach directly on AbbrevNil, the compiler warns about dead code,
@@ -27,7 +27,7 @@ class AbbrevListSuite extends FunSuite:
     assert(list2.head == 1)
     assert(list2.tail.head == 2)
     assert(list2.tail.tail.head == 3)
-    assert(list2.tail.tail.tail == AbbrevNil)
+    assert(list2.tail.tail.tail.equals(AbbrevNil))
   }
   test("nonEmptyAbbrevList.foreach(...) processes each element") {
     var count = 0

@@ -3,15 +3,17 @@
 package progscala3.visibility.protectedscope:
 
   package scopeA:
-    class ProtectedClass1(protected val protectedField1: Int):
+    class ProtectedClass1(protected val protectedField1: Int) derives Eql:
       protected val protectedField2 = 1
 
       def equalFields(other: ProtectedClass1) =
         (protectedField1 == other.protectedField1) &&
-        (protectedField2 == other.protectedField2) &&
-        (nested == other.nested)
+        (protectedField2 == other.protectedField2)
+        // Would be valid with less restrictive equals, i.e., no
+        // --language:strictEquality. Even "derives Eql" doesn't help!
+        // && (nested == other.nested)
 
-      class Nested:
+      class Nested derives Eql:
         protected val nestedField = 1
 
       protected val nested = new Nested

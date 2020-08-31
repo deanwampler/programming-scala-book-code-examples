@@ -13,9 +13,10 @@ case class SortableSeq[A](seq: Seq[A]):                              // <1>
 val seq = SortableSeq(Seq(1,3,5,2,4))
 
 def defaultOrdering() =
-  assert(seq.sortBy1a(i => -i) == SortableSeq(Seq(5, 4, 3, 2, 1)))
-  assert(seq.sortBy1b(i => -i) == SortableSeq(Seq(5, 4, 3, 2, 1)))
-  assert(seq.sortBy2(i => -i)  == SortableSeq(Seq(5, 4, 3, 2, 1)))
+  val expected = SortableSeq(Seq(5, 4, 3, 2, 1))
+  assert(seq.sortBy1a(i => -i) == expected)
+  assert(seq.sortBy1b(i => -i) == expected)
+  assert(seq.sortBy2(i => -i)  == expected)
 
 defaultOrdering()
 
@@ -25,9 +26,14 @@ def oddEvenOrdering() =
       case 0 => i compare j
       case c => c
 
-  assert(seq.sortBy1a(i => -i) == SortableSeq(Seq(5, 3, 1, 4, 2)))
-  assert(seq.sortBy1b(i => -i) == SortableSeq(Seq(5, 3, 1, 4, 2)))
-  assert(seq.sortBy2(i => -i)  == SortableSeq(Seq(5, 3, 1, 4, 2)))
+  val expected = SortableSeq(Seq(5, 3, 1, 4, 2))
+  assert(seq.sortBy1a(i => -i) == expected)
+  assert(seq.sortBy1b(i => -i) == expected)
+  assert(seq.sortBy2(i => -i)  == expected)
+
+  assert(seq.sortBy1a(i => -i)(using oddEven) == expected)
+  assert(seq.sortBy1b(i => -i)(using oddEven) == expected)
+  assert(seq.sortBy2(i => -i)(using oddEven)  == expected)
 
 oddEvenOrdering()
 
@@ -37,9 +43,14 @@ def evenOddGivenOrdering() =
       case 0 => i compare j
       case c => -c
 
-  assert(seq.sortBy1a(i => -i) == SortableSeq(Seq(4, 2, 5, 3, 1)))
-  assert(seq.sortBy1b(i => -i) == SortableSeq(Seq(4, 2, 5, 3, 1)))
-  assert(seq.sortBy2(i => -i)  == SortableSeq(Seq(4, 2, 5, 3, 1)))
+  val expected = SortableSeq(Seq(4, 2, 5, 3, 1))
+  assert(seq.sortBy1a(i => -i) == expected)
+  assert(seq.sortBy1b(i => -i) == expected)
+  assert(seq.sortBy2(i => -i)  == expected)
+
+  assert(seq.sortBy1a(i => -i)(using evenOdd) == expected)
+  assert(seq.sortBy1b(i => -i)(using evenOdd) == expected)
+  assert(seq.sortBy2(i => -i)(using evenOdd)  == expected)
 
 evenOddGivenOrdering()
 

@@ -1,7 +1,8 @@
 // src/main/scala/progscala3/basicoop/people/Address.scala
 package progscala3.basicoop.people
 
-case class Address(street: String, city: String, state: String, zip: ZipCode)
+case class Address(
+	street: String, city: String, state: String, zip: ZipCode) derives Eql
 
 object Address:
   def apply(zip: ZipCode) = new Address(                      // <1>

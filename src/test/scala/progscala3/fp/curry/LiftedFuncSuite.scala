@@ -11,7 +11,7 @@ class LiftedFuncSuite extends FunSuite:
 	val finickyOption = finicky.lift
 
 	test("Partial functions throw MatchErrors for non matches") {
-		assert(finicky("finicky") == "FINICKY")
+		assert(finicky("finicky").equals("FINICKY"))
 
 		try
 		  finicky("other")
@@ -21,14 +21,14 @@ class LiftedFuncSuite extends FunSuite:
 	}
 
 	test("A partial function can be lifted into a function return Option") {
-		assert(finickyOption("finicky") == Some("FINICKY"))
-		assert(finickyOption("other")   == None)
+		assert(finickyOption("finicky").equals(Some("FINICKY")))
+		assert(finickyOption("other").equals(None))
 	}
 
 	test("A function return Option can be 'lowered' to a partial function") {
 		val finicky2 = Function.unlift(finickyOption)
 
-		assert(finicky2("finicky") == "FINICKY")
+		assert(finicky2("finicky").equals("FINICKY"))
 
 		try
 		  finicky2("other")

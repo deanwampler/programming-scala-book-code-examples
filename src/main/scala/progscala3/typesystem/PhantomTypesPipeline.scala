@@ -1,8 +1,8 @@
-// src/main/scala/progscala3/implicits/PhantomTypesPipeline.scala
+// src/main/scala/progscala3/typesystem/PhantomTypesPipeline.scala
 // A nicer way of driving the payroll workflow. Adapted from
 // http://james-iry.blogspot.ch/2010/10/phantom-types-in-haskell-and-scala.html
 // which was inspired by F# and Haskell.
-package progscala3.implicits.payroll
+package progscala3.typesystem.payroll
 import scala.annotation.alpha
 
 object Pipeline:

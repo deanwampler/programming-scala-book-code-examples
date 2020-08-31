@@ -37,7 +37,7 @@ class ForOptionsStepsSuite extends FunSuite:
     }
 
   test("Folding over a sequence of Somes processes all values") {
-    assert(sumCounts1(successfulSteps) == Some(40))
+    assert(sumCounts1(successfulSteps).equals(Some(40)))
   }
 
   test("Folding over a sequence of Somes and Nones returns None") {
@@ -70,6 +70,6 @@ class ForOptionsStepsSuite extends FunSuite:
     sum(0, countSteps)
 
   test("Folding using recursion should pattern match on Options") {
-    assert(sumCounts2(successfulSteps) == Some(40))
-    assert(sumCounts2(partiallySuccessfulSteps) == None)
+    assert(sumCounts2(successfulSteps).equals(Some(40)))
+    assert(sumCounts2(partiallySuccessfulSteps).equals(None))
   }

@@ -5,4 +5,4 @@ case class Employee(
   name:    String,
   age:     Int,
   title:   String,
-  manages: Set[Employee] = Set.empty)
+  manages: Set[Employee] = Set.empty) derives Eql
