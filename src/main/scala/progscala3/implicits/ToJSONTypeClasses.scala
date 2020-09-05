@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ToJSONTypeClasses.scala
+// src/main/scala/progscala3/implicits/ToJSONTypeClasses.scala
 
 import progscala3.implicits.{Address, Person}
 import scala.language.implicitConversions                            // <1>
@@ -26,8 +26,9 @@ implicit final class PersonToJSON(person: Person) extends ToJSON:    // <4>
       |${indent}"address": ${person.address.toJSON(level + 1)}
       |$outdent}""".stripMargin
 
-val address = Address("1 Scala Lane", "Anytown")
-val person = Person("Buck Trends", address)
-
-address.toJSON()
-person.toJSON()
+object TryJSON:
+  def testit() =
+    val address = Address("1 Scala Lane", "Anytown")
+    val person = Person("Buck Trends", address)
+    address.toJSON()
+    person.toJSON()
