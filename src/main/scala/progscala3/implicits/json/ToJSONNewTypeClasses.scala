@@ -1,4 +1,5 @@
-// src/script/scala/progscala3/implicits/json/ToJSONNewTypeClasses.scala
+// src/main/scala/progscala3/implicits/json/ToJSONNewTypeClasses.scala
+package progscala3.implicits.json
 
 import progscala3.implicits.{Address, Person}
 import scala.language.implicitConversions
@@ -28,8 +29,8 @@ given Conversion[Person, ToJSON2]:                              // <3>
         |${indent}"address": ${person.address.toJSON2(level + 1)}
         |$outdent}""".stripMargin
 
-val address = Address("1 Scala Lane", "Anytown")
-val person = Person("Buck Trends", address)
-
-address.toJSON2(0)
-person.toJSON2(0)
+@main def TryJSONNewTypeClasses() =
+  val address = Address("1 Scala Lane", "Anytown")
+  val person = Person("Buck Trends", address)
+  println(s"address: $address vs. ${address.toJSON2(0)}")
+  println(s"person: $person vs. ${person.toJSON2(0)}")

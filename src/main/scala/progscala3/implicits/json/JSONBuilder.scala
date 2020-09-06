@@ -1,7 +1,7 @@
 // src/main/scala/progscala3/implicits/json/JSONBuilder.scala
 package progscala3.implicits.json
 
-@main def JSONBuilderExample(): Unit =
+@main def TryJSONBuilder(): Unit =
   val js = map {
     "config" -> map {
       "master" -> map {

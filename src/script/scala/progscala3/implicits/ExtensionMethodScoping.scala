@@ -1,0 +1,21 @@
+// src/script/scala/progscala3/implicits/ExtensionMethodScoping.scala
+
+val s = "Hello World!"
+
+trait T:
+  extension (s: String) def LOUD: String = s.toUpperCase
+
+s.LOUD
+
+object S2 extends T:
+  def loud(s: String): String = s.LOUD
+
+S2.loud(s)
+
+object S2:
+  extension (s: String) def soft: String = s.toLowerCase
+
+s.soft
+
+import S2.soft
+s.soft

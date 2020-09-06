@@ -27,9 +27,8 @@ implicit final class PersonToJSON(person: Person) extends ToJSON:    // <4>
       |${indent}"address": ${person.address.toJSON(level + 1)}
       |$outdent}""".stripMargin
 
-object TryJSON:
-  def testit() =
-    val address = Address("1 Scala Lane", "Anytown")
-    val person = Person("Buck Trends", address)
-    address.toJSON()
-    person.toJSON()
+@main def TryJSONTypeClasses() =
+  val address = Address("1 Scala Lane", "Anytown")
+  val person = Person("Buck Trends", address)
+  println(s"address: $address vs. ${address.toJSON(0)}")
+  println(s"person: $person vs. ${person.toJSON(0)}")
