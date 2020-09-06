@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ToJSONExtensionMethods.scala
+// src/script/scala/progscala3/implicits/json/ToJSONExtensionMethods.scala
 
 import progscala3.implicits.{Address, Person}
 

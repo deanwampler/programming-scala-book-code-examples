@@ -1,4 +1,5 @@
-// src/main/scala/progscala3/implicits/ToJSONTypeClasses.scala
+// src/main/scala/progscala3/implicits/json/ToJSONTypeClasses.scala
+package progscala3.implicits.json
 
 import progscala3.implicits.{Address, Person}
 import scala.language.implicitConversions                            // <1>

@@ -1,5 +1,5 @@
-// src/test/scala/progscala3/implicits/ToJSONTypeClassSuite.scala
-package progscala3.implicits
+// src/test/scala/progscala3/implicits/json/ToJSONTypeClassSuite.scala
+package progscala3.implicits.json
 
 import munit._
 
