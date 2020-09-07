@@ -1,42 +1,45 @@
 // src/main/scala/progscala3/implicits/NoSQLRecords.scala
+package progscala3.implicits.scaladb
 
+import scala.language.implicitConversions
 import scala.util.Try
 
-package progscala3.implicits:
-  package scaladb:
-    case class InvalidFieldName(name: String)
-      extends RuntimeException(s"Invalid field name $name")
+case class InvalidFieldName(name: String)
+  extends RuntimeException(s"Invalid field name $name")
 
-    trait FromTo[T]:                                                 // <1>
-      def apply(any: Any): T
+object Record:                                                       // <1>
+  def make: Record = new Record(Map.empty)
+  type Conv[T] = Conversion[Any,T]
 
-    case class Record(contents: Map[String,Any] = Map.empty):        // <2>
-      def add[T](nameValue: (String, T))(using FromTo[T]): Record =  // <3>
-        Record(contents + nameValue)
-      def get[T](colName: String)(using toT: FromTo[T]): Try[T] =    // <4>
-        Try(toT(col(colName)))
-      private def col(colName: String): Any =
-        contents.getOrElse(colName, throw InvalidFieldName(colName))
+case class Record private (contents: Map[String,Any]):               // <2>
+  import Record.Conv
+  def add[T](nameValue: (String, T))(using Conv[T]): Record =        // <3>
+    Record(contents + nameValue)
+  def get[T](colName: String)(using toT: Conv[T]): Try[T] =          // <4>
+    Try(toT(col(colName)))
+  private def col(colName: String): Any =
+    contents.getOrElse(colName, throw InvalidFieldName(colName))
 
-    object Record:                                                   // <5>
-      def make: Record = new Record()
+@main def TryScalaDB =
+  import Record.Conv
+  given Conv[Int] = _.asInstanceOf[Int]                              // <6>
+  given Conv[Double] = _.asInstanceOf[Double]
+  given Conv[String] = _.asInstanceOf[String]
+  given ab[A : Conv, B : Conv] as Conv[(A, B)] = _.asInstanceOf[(A,B)]
 
-    given FromTo[Int]:                                               // <6>
-      def apply(any: Any): Int = any.asInstanceOf[Int]
-    given FromTo[Double]:
-      def apply(any: Any): Double = any.asInstanceOf[Double]
-    given FromTo[String]:
-      def apply(any: Any): String = any.asInstanceOf[String]
+  val rec = Record.make.add("one" -> 1).add("two" -> 2.2)
+    .add("three" -> "THREE!").add("four" -> (4.4, "four"))
+    .add("five" -> (5, ("five", 5.5)))
 
-    @main def TryScalaDB =
-      val rec = Record.make.add("one" -> 1)
-        .add("two" -> 2.2).add("three" -> "THREE!")
+  val one   = rec.get[Int]("one")
+  val two   = rec.get[Double]("two")
+  val three = rec.get[String]("three")
+  val four  = rec.get[(Double, String)]("four")
+  val five  = rec.get[(Int, (String, Double))]("five")
+  val bad1  = rec.get[String]("two")                                 // <7>
+  val bad2  = rec.get[String]("five")
+  val bad3  = rec.get[Double]("five")
+  // val error  = rec.get[Byte]("byte")
 
-      val one   = rec.get[Int]("one")
-      val two   = rec.get[Double]("two")
-      val three = rec.get[String]("three")
-      // val four  = rec.get[Byte]("four")                           // <7>
-      val bad = rec.get[String]("two")
-
-      println(s"one, two, three -> $one, $two, $three")
-      println(s"bad -> $bad")
+  println(s"one, two, three, four, five -> $one, $two, $three, $four, $five")
+  println(s"bad1, bad2, bad3 -> $bad1, $bad2, $bad3")

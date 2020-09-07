@@ -2,8 +2,7 @@
 package progscala3.dynamic
 import scala.language.dynamics                                       // <1>
 
-case class CLINQ[T](records: Seq[Map[String,T]])
-  extends Dynamic derives Eql:
+case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic:
 
   def selectDynamic(name: String): CLINQ[T] =                        // <2>
     if name == "all" || records.length == 0 then this                // <3>

@@ -1,5 +1,4 @@
 // src/main/scala/progscala3/rounding/DaysEnumeration.scala
-
 package progscala3.rounding
 
 enum WeekDay(val fullName: String) derives Eql:

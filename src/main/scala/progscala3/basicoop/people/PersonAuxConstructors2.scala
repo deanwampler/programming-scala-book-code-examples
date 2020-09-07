@@ -4,7 +4,7 @@ package progscala3.basicoop.people
 case class PersonWithApply(
   	name: String,
   	age: Option[Int] = None,
-  	address: Option[Address] = None) derives Eql
+  	address: Option[Address] = None)
 
 object PersonWithApply:
   def apply(name: String, age: Int): PersonWithApply =

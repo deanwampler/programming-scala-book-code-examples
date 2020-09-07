@@ -4,7 +4,7 @@ package progscala3.basicoop.people
 case class PersonAuxConstructors(
   	name: String,
   	age: Option[Int] = None,
-  	address: Option[Address] = None) derives Eql:
+  	address: Option[Address] = None):
 
   def this(name: String) = this(name, None, None)
 

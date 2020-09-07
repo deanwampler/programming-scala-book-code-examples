@@ -1,17 +1,14 @@
 // src/script/scala/progscala3/implicits/ImplicitErasureWorkaround.scala
 
 object M:
-  implicit object IntMarker                                    // <1>
+  implicit object IntMarker                                // <1>
   implicit object StringMarker
 
-  def p[T](t: T): String =                                     // <2>
-    t.toString.split("\\$").filter(_.contains("Marker")).head
+  def m(seq: Seq[Int])(using IntMarker.type): String =     // <2>
+    s"Seq[Int]: $seq"
 
-  def m(seq: Seq[Int])(implicit i: IntMarker.type): String =   // <3>
-    s"Seq[Int]: $seq (implicit: ${p(i)})"
-
-  def m(seq: Seq[String])(implicit s: StringMarker.type): String =
-    s"Seq[String]: $seq (implicit: ${p(s)})"
+  def m(seq: Seq[String])(using StringMarker.type): String =
+    s"Seq[String]: $seq"
 
 import M._
 

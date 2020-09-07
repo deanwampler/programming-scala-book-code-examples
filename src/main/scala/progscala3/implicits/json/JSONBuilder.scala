@@ -2,79 +2,74 @@
 package progscala3.implicits.json
 
 @main def TryJSONBuilder(): Unit =
-  val js = map {
-    "config" -> map {
-      "master" -> map {
+  val js = obj {
+    "config" -> obj {
+      "master" -> obj {
         "host" -> "192.168.1.1"
         "port" -> 8000
         "security" -> "null"
         // "foo" -> (1, 2.2, "three")  // doesn't compile!
       }
       "nodes" -> array {
-        elem {
+        aobj {
           "name" -> "node1"
           "host" -> "192.168.1.10"
         }
-        elem {
+        aobj {
           "name" -> "node2"
           "host" -> "192.168.1.20"
         }
+        "otherThing" -> 2
       }
     }
   }
   println(js)
 
-object JSONElement:                                                  // <1>
-  def valueString[T](t: T): String = t match
+object JSONElement:
+  def valueString[T](t: T): String = t match                           // <1>
     case "null" => "null"
     case s: String => "\""+s+"\""
     case _ => t.toString
 
-sealed trait JSONElement                                             // <2>
-case class JSONNamedElement[T](name: String, element: T) extends JSONElement:
-  override def toString = "\""+name+"\": "+JSONElement.valueString(element)
+sealed trait JSONElement                                               // <2>
+case class JSONKeyedElement[T](key: String, element: T) extends JSONElement:
+  override def toString = "\""+key+"\": "+JSONElement.valueString(element)
 case class JSONArrayElement[T](element: T) extends JSONElement:
   override def toString = JSONElement.valueString(element)
 
 import scala.collection.mutable.ArrayBuffer
 
-trait JSONContainer extends JSONElement:                             // <3>
+trait JSONContainer(open: String, close: String) extends JSONElement:  // <3>
   val elements = new ArrayBuffer[JSONElement]
   def add(e: JSONElement): Unit = elements += e
-  def open: String
-  def close: String
   override def toString = elements.mkString(open, ", ", close)
 
-class JSONObject extends JSONContainer:
-  val open: String  = "{"
-  val close: String = "}"
-class JSONArray extends JSONContainer:
-  val open: String  = "["
-  val close: String = "]"
+class JSONObject extends JSONContainer("{", "}")
+class JSONArray extends JSONContainer("[", "]")
 
-sealed trait ValidJSONValue[T]                                       // <4>
-implicit object VJSONInt     extends ValidJSONValue[Int]
-implicit object VJSONDouble  extends ValidJSONValue[Double]
-implicit object VJSONString  extends ValidJSONValue[String]
-implicit object VJSONBoolean extends ValidJSONValue[Boolean]
-implicit object VJSONObject  extends ValidJSONValue[JSONObject]
-implicit object VJSONArray   extends ValidJSONValue[JSONArray]
+sealed trait ValidJSONValue[T]                                         // <4>
+given ValidJSONValue[Int]
+given ValidJSONValue[Double]
+given ValidJSONValue[String]
+given ValidJSONValue[Boolean]
+given ValidJSONValue[JSONObject]
+given ValidJSONValue[JSONArray]
 
-extension [T : ValidJSONValue] (name: String)                        // <5>
+extension [T : ValidJSONValue] (key: String)                           // <5>
   def ->(element: T)(using jc: JSONContainer) =
-    jc.add(JSONNamedElement(name, element))
+    jc.add(JSONKeyedElement(key, element))
 
-def map(init: JSONObject ?=> Unit) =                                 // <6>
+def obj(init: JSONObject ?=> Unit) =                                   // <6>
   given jo as JSONObject
   init
   jo
 
-def elem(init: JSONObject ?=> Unit)(using jc: JSONContainer) =       // <7>
+def aobj(init: JSONObject ?=> Unit)(using jc: JSONContainer) =         // <7>
   given jo as JSONObject
   init
   jc.add(jo)
 
-def array(init: JSONArray ?=> Unit) =                                // <8>
+def array(init: JSONArray ?=> Unit) =                                  // <8>
   given ja as JSONArray
   init
   ja
