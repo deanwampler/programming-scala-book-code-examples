@@ -14,11 +14,6 @@ lazy val book = crossProject(JSPlatform, JVMPlatform).in(file(".")).
     maxErrors := 10,
     scalaJSUseMainModuleInitializer := true,
 
-    libraryDependencies ++= Seq(
-      "org.scala-lang.modules" %%% "scala-parser-combinators" % "1.1.2",
-      "org.typelevel"          %%% "cats-core"        % "2.2.0",
-    ),
-
     // For Scala 3 (Dotty)
     // The -rewrite and -migration options are best used while migrating
     // from Scala 2 to Scala 3, then removed.
@@ -44,11 +39,12 @@ lazy val book = crossProject(JSPlatform, JVMPlatform).in(file(".")).
   jvmSettings(
     libraryDependencies ++= Seq(
         "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
+        "org.typelevel"          %% "cats-core"        % "2.2.0",
         "com.typesafe.akka"      %% "akka-actor"       % "2.6.8",
         "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.8",
         "ch.qos.logback"          % "logback-classic"  % "1.2.3",
         "org.scala-js"           %% "scalajs-stubs"    % "1.0.0"  % "provided",
-        "org.scalacheck"        %%% "scalacheck"       % "1.14.1" % Test,
+        "org.scalacheck"         %% "scalacheck"       % "1.14.1" % Test,
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty
       "org.scalameta"          %%% "munit"            % "0.7.12" % Test,
