@@ -6,7 +6,7 @@ val pfd: PartialFunction[Any,String] = {                             // <2>
   case d:Double => "YES"
 }
 
-val pfsd = pfs orElse pfd                                            // <3>
+val pfsd = pfs.orElse(pfd)                                           // <3>
 
 def tryPF(x: Any, f: PartialFunction[Any,String]): String =          // <4>
   try f(x)
@@ -38,5 +38,5 @@ assert(fs(3.142) == None)
 
 val pfs2 = fs.unlift
 assert(pfs2("str") == "YES")
-val trypfs2 = try pfs2(3.142) catch case e:MatchError => "ERROR!"
-assert(trypfs2 == "ERROR!")
+val trypi = tryPF(3.142, pfs2)  // Use tryPF we defined above
+assert(trypi == "ERROR!")

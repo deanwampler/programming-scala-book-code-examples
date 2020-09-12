@@ -12,5 +12,4 @@ package progscala3.introscala.shapes
   messages.foreach { message =>                                      // <3>
     val response = ProcessMessages(message)
     println(response)
-    if response.equals(Exit) then println("ProcessShapesDriver: We're done!")
   }
