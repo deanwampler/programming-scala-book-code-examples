@@ -8,8 +8,8 @@ class FoldAssocFuncsSuite extends FunSuite:
 
 	// fac: a func. that is associative AND commutative.
 	// Define left and right versions, because reduceLeft takes the
-	// accumulator as the first argument, while reduceRight takes it
-	// as the second arg.
+	// accumulator as the first parameter, while reduceRight takes it
+	// as the second parameter.
 	val facLeft  = (accum: Int, x: Int) => accum + x
 	val facRight = (x: Int, accum: Int) => accum + x
 

@@ -27,9 +27,9 @@ object PayrollUseCases:
     printf("\nBiweekly Totals: Gross %7.2f, Net %6.2f, Deductions: %6.2f\n",
       gross, net, gross - net)
 
-  def main(args: Array[String]): Unit =
+  def main(params: Array[String]): Unit =
     val inputFileName =
-      if args.length > 0 then args(0) else "misc/parthenon-payroll.txt"
+      if params.length > 0 then params(0) else "misc/parthenon-payroll.txt"
     val data = fromFile(inputFileName)
 
     biweeklyPayrollPerEmployee(data)

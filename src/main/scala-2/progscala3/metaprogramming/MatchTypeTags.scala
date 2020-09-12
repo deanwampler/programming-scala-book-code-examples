@@ -21,7 +21,7 @@ object MatchTypeTags {
     (pre, typName, parems)
   }
 
-  def main(args: Array[String]): Unit = {
+  def main(params: Array[String]): Unit = {
     println(toType(1))
     println(toType(true))
     println(toType(Seq(1, true, 3.14)))

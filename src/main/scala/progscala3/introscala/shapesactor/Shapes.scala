@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/introscala/shapes/Shapes.scala
-package progscala3.introscala.shapes
+// src/main/scala/progscala3/introscala/shapesactor/Shapes.scala
+package progscala3.introscala.shapesactor
 
 case class Point(x: Double = 0.0, y: Double = 0.0)                    // <1>
 

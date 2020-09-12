@@ -15,5 +15,5 @@ assert(counts3 == List(6, 15, 24))
 
 val tuples2 = Seq((1,(2,3)), (4,(5,6)), (7,(8,9)))
 val counts2b = tuples2.map {
-  (x, (y, z)) => x + y + z
+  (x, (y, z)) => x + y + z      // Untupling doesn't work for nested tuples
 }

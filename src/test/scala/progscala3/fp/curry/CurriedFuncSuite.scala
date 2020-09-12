@@ -13,7 +13,7 @@ class CurriedFuncSuite extends FunSuite:
 		assert(cat1("hello")("world") == cat2("hello")("world"))
 	}
 
-	test("Two-arg methods can be curried into two arg-list methods") {
+	test("Two-parameter methods can be curried into two param-list methods") {
 		val catCurried = cat3.curried
 		// catCurried: String => (String => String) = <function1>
 

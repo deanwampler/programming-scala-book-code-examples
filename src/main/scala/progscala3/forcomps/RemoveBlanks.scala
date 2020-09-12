@@ -12,9 +12,9 @@ object RemoveBlanks:
               else line2
     yield numLine
 
-  def main(args: Array[String]): Unit =                              // <5>
+  def main(params: Array[String]): Unit =                            // <5>
 
-    val Params(compress, numbers, paths) = parseArgs(args.toSeq, Params())
+    val Args(compress, numbers, paths) = parseParams(params.toSeq, Args())
     for                                                              // <6>
       path <- paths
       seq = s"\n== File: $path\n" +: RemoveBlanks(path, compress, numbers)
@@ -30,7 +30,7 @@ object RemoveBlanks:
     | file ...        One or more files to print without blanks
     |""".stripMargin
 
-  protected case class Params(                                       // <7>
+  protected case class Args(                                         // <7>
     compress: Boolean = false,
     numbers: Boolean = false,
     paths: Vector[String] = Vector.empty)
@@ -40,20 +40,20 @@ object RemoveBlanks:
     println(helpMessage)
     sys.exit(exitCode)
 
-  protected def parseArgs(args2: Seq[String], params: Params): Params =
-    args2 match
+  protected def parseParams(params2: Seq[String], args: Args): Args =
+    params2 match
       case ("-h" | "--help") +: tail =>
         println(helpMessage)
         sys.exit(0)
       case ("-c" | "--compress") +: tail =>
-        parseArgs(tail, params.copy(compress = true))
+        parseParams(tail, args.copy(compress = true))
       case ("-n" | "--number") +: tail =>
-        parseArgs(tail, params.copy(numbers = true))
+        parseParams(tail, args.copy(numbers = true))
       case flag +: tail if flag.startsWith("-") =>
         println(s"ERROR: Unknown option $flag")
         println(helpMessage)
         sys.exit(1)
       case path +: tail =>
-        parseArgs(tail, params.copy(paths = params.paths :+ path))
-      case Nil => params
+        parseParams(tail, args.copy(paths = args.paths :+ path))
+      case Nil => args
 

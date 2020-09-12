@@ -10,8 +10,8 @@ object AkkaClient:                                              // <1>
 
   private var system: Option[ActorSystem] = None                // <2>
 
-  def main(args: Array[String]): Unit =
-    processArgs(args.toIndexedSeq)
+  def main(params: Array[String]): Unit =
+    processParams(params.toIndexedSeq)
     val sys = ActorSystem("AkkaClient")                         // <3>
     system = Some(sys)
     val server = ServerActor.make(sys)                          // <4>
@@ -20,7 +20,7 @@ object AkkaClient:                                              // <1>
     server ! Request.Start(numberOfWorkers)                     // <6>
     processInput(server)                                        // <7>
 
-  private def processArgs(args: Seq[String]): Unit = args match
+  private def processParams(params: Seq[String]): Unit = params match
     case Nil =>
     case ("-h" | "--help") +: _ => exit(help, 0)
     case head +: _ => exit(s"Unknown input $head!\n"+help, 1)

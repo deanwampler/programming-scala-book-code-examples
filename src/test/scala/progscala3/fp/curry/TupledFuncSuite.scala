@@ -16,12 +16,12 @@ class TupledFuncSuite extends FunSuite:
 		assert(expected == toStr(mult(d3._1, d3._2, d3._3)))
 	}
 
-	test("A func of N args is convertable to a funct of 1 N-valued tuple arg") {
+	test("A func of N params is convertable to a funct of 1 N-valued tuple param") {
 		val result = multTupled(d3)
 		assert(expected == toStr(result))
 	}
 
-	test("A func of 1 N-valued tuple arg is convertable to a funct of N args") {
+	test("A func of 1 N-valued tuple param is convertable to a funct of N params") {
 		val multUntupled = Function.untupled(multTupled)
 
 		val result = multUntupled(d3._1, d3._2, d3._3)

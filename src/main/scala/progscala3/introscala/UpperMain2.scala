@@ -2,6 +2,6 @@
 package progscala3.introscala
 
 object UpperMain2:
-  def main(args: Array[String]): Unit =
-    val output = args.map(_.toUpperCase()).mkString(" ")
+  def main(params: Array[String]): Unit =
+    val output = params.map(_.toUpperCase()).mkString(" ")
     println(output)

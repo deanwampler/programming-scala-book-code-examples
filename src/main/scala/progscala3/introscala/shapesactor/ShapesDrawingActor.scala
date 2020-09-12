@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/introscala/shapes/ShapesDrawingActor.scala
-package progscala3.introscala.shapes
+// src/main/scala/progscala3/introscala/shapesactor/ShapesDrawingActor.scala
+package progscala3.introscala.shapesactor
 
 import akka.actor.{Actor, actorRef2Scala}                            // <1>
 import scala.language.implicitConversions

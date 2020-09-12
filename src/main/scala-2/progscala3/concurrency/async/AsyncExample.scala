@@ -30,7 +30,7 @@ object AsyncExample {
     else (id, "Record not found!")
   }
 
-  def main(args: Array[String]): Unit = {
+  def main(params: Array[String]): Unit = {
     (-1 to 1) foreach { id =>                                        // <4>
       val fut = AsyncExample.asyncGetRecord(id.toLong)
       println(Await.result(fut, Duration.Inf))
