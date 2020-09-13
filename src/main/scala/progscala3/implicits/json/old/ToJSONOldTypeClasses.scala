@@ -1,17 +1,11 @@
-// src/main/scala/progscala3/implicits/json/ToJSONTypeClasses.scala
-package progscala3.implicits.json
+// src/main/scala/progscala3/implicits/json/old/ToJSONOldTypeClasses.scala
+package progscala3.implicits.json.old
 
 import progscala3.implicits.{Address, Person}
-import scala.language.implicitConversions                            // <1>
+import progscala3.implicits.json._
+import scala.language.implicitConversions
 
-trait ToJSON:                                                        // <2>
-  def toJSON(level: Int = 0): String
-
-  val INDENTATION = "  "
-  def indentation(level: Int): (String,String) =
-    (INDENTATION * level, INDENTATION * (level+1))
-
-implicit final class AddressToJSON(address: Address) extends ToJSON: // <3>
+implicit final class AddressToJSON(address:Address) extends ToJSON:  // <1>
   def toJSON(level: Int = 0): String =
     val (outdent, indent) = indentation(level)
     s"""{
@@ -19,7 +13,7 @@ implicit final class AddressToJSON(address: Address) extends ToJSON: // <3>
       |${indent}"city":   "${address.city}"
       |$outdent}""".stripMargin
 
-implicit final class PersonToJSON(person: Person) extends ToJSON:    // <4>
+implicit final class PersonToJSON(person: Person) extends ToJSON:    // <2>
   def toJSON(level: Int = 0): String =
     val (outdent, indent) = indentation(level)
     s"""{
@@ -27,7 +21,7 @@ implicit final class PersonToJSON(person: Person) extends ToJSON:    // <4>
       |${indent}"address": ${person.address.toJSON(level + 1)}
       |$outdent}""".stripMargin
 
-@main def TryJSONTypeClasses() =
+@main def TryJSONOldTypeClasses() =                                  // <3>
   val address = Address("1 Scala Lane", "Anytown")
   val person = Person("Buck Trends", address)
   println(s"address: $address vs. ${address.toJSON(0)}")

@@ -7,7 +7,7 @@ class Loud(s: String):
   def loud: String = s.toUpperCase
 
 object Loud:
-  given Conversion[String, Loud] = new Loud(_)
+  given Conversion[String, Loud] = s => new Loud(s)             // <1>
   // Equivalent to:
   // given Conversion[String, Loud]:
   //   def apply(s: String) = new Loud(s)
