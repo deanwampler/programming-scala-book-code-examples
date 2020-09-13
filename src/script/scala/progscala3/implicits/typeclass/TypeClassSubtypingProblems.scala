@@ -1,5 +1,7 @@
 // src/script/scala/progscala3/implicits/TypeClassesSubtypingProblems.scala
 // This program does not appear in the book.
+import progscala3.implicits.json.ToJSON
+import progscala3.implicits.{Address, Person}
 
 // NOTE: This file is designed to be copied and pasted into the REPL several
 // pieces at a time, not run all at once. All at once causes the behavior to
@@ -9,27 +11,22 @@
 // src/main/scala/progscala3/implicits/
 
 // START 1
-trait ToJSON[+T]:
-  def toJSON(level: Int = 0): String
 
-  val INDENTATION = "  "
-  def indentation(level: Int = 0): (String,String) =
-    (INDENTATION * level, INDENTATION * (level+1))
-
-implicit class AddressToJSON(address: Address) extends ToJSON[Address]:
-  def toJSON(level: Int = 0): String =
+given ToJSON[Address]:
+  extension (address: Address) def toJSON(level: Int): String =
     val (outdent, indent) = indentation(level)
     s"""{
       |${indent}"street": "${address.street}",
       |${indent}"city":   "${address.city}",
       |$outdent}""".stripMargin
 
-implicit class PersonToJSON(person: Person) extends ToJSON[Person]:
-  def toJSON(level: Int = 0): String =
+
+given ToJSON[Person]:
+  extension (person: Person) def toJSON(level: Int): String =
     val (outdent, indent) = indentation(level)
     s"""{
       |${indent}"name":    "${person.name}",
-      |${indent}"address": ${new AddressToJSON(person.address).toJSON(level+1)}
+      |${indent}"address": ${person.address.toJSON(level+1)}
       |$outdent}""".stripMargin
 
 val address = Address("1 Scala Lane", "Anytown")
@@ -58,10 +55,12 @@ list1.map(_.toJSON())
 // switches on the actual type. This is ugly and you'll have to remember to update
 // this method if you change the subtypes of DomainConcept. Note that I declared
 // it to be a sealed trait above, which lets the compiler catch some problems.
-implicit class DomainConceptToJSON(dc: DomainConcept) extends ToJSON[DomainConcept]:
-  def toJSON(level: Int = 0): String = dc match
-    case person: Person   => new PersonToJSON(person).toJSON(level)
-    case address: Address => new AddressToJSON(address).toJSON(level)
+given ToJSON[DomainConcept]:
+  extension (dc: DomainConcept) def toJSON(level: Int = 0): String = dc match
+    case person: Person   => person.toJSON(level)
+    case address: Address => address.toJSON(level)
+    // case person: Person   => new PersonToJSON(person).toJSON(level)
+    // case address: Address => new AddressToJSON(address).toJSON(level)
 
 list1.map(_.toJSON())
 // END 3
@@ -74,8 +73,8 @@ list1.map(_.toJSON())
 // Should the latter work, when we have a more specific type?
 // Well, try it...
 
-implicit class DomainConceptToJSON(dc: DomainConcept) extends ToJSON[DomainConcept]:
-  def toJSON(level: Int = 0): String = dc match
+given ToJSON[DomainConcept]:
+  extension (dc: DomainConcept) def toJSON(level: Int = 0): String = dc match
     case person: Person   => person.toJSON(level)
     case address: Address => address.toJSON(level)
 

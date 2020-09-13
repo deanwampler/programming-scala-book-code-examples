@@ -6,7 +6,6 @@ package progscala3.basicoop.people
  * one of the companion object apply methods, all of which do validation.
  */
 case class ZipCode private (zip: Int, extension: Int):               // <1>
-
   override def toString =                                            // <2>
     if extension != 0 then s"$zip-$extension" else zip.toString
 

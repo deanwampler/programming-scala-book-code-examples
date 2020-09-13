@@ -1,0 +1,15 @@
+// src/test/scala/progscala3/implicits/NewImplicitConversionsSuite.scala
+package progscala3.implicits
+import scala.language.implicitConversions
+import munit._
+
+class NewImplicitConversionsSuite extends FunSuite:
+  test("An implicit conversion will be invoked to convert between types") {
+    given Conversion[Double,Dollars] = d => Dollars(d)
+    given Conversion[Double,Percentage] = d => Percentage(d)
+
+    val salary = Salary(100_000.0, 0.20)
+    assert(salary.gross.equals(Dollars(100_000.0)))
+    assert(salary.taxes.equals(Percentage(0.2)))
+    assert(salary.net.equals(Dollars(80_000.0)))
+  }
