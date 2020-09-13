@@ -13,14 +13,14 @@ class ToJSONOldTypeClassesSuite extends FunSuite:
   def ns(s: String) = s.replaceAll("\\s+", "")  // remove white space
 
   test("An extension method is a good way to add a custom toJSON method") {
-    assert(ns(c.toJSON(0)) == ns(""""circle": {
+    assert(ns(c.toJSON("circle", 0)) == ns(""""circle": {
       "center": {
         "x": "1.0",
         "y": "2.0"
       },
       "radius": 1.0
     }"""))
-    assert(ns(r.toJSON(0)) == ns(""""rectangle": {
+    assert(ns(r.toJSON("rectangle", 0)) == ns(""""rectangle": {
       "lowerLeft": {
         "x": "2.0",
         "y": "3.0"
@@ -28,7 +28,7 @@ class ToJSONOldTypeClassesSuite extends FunSuite:
       "height":    2.0
       "width":     5.0
     }"""))
-    assert(ns(t.toJSON(0)) == ns(""""triangle": {
+    assert(ns(t.toJSON("triangle", 0)) == ns(""""triangle": {
       "point1": {
         "x": "0.0",
         "y": "0.0"
