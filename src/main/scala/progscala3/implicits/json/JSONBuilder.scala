@@ -11,7 +11,7 @@ package progscala3.implicits.json
         // "foo" -> (1, 2.2, "three")  // doesn't compile!
       }
       "nodes" -> array {
-        aobj {
+        aobj {                         // "array object"
           "name" -> "node1"
           "host" -> "192.168.1.10"
         }
