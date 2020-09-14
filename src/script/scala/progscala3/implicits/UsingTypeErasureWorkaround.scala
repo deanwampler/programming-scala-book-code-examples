@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ImplicitErasureWorkaround.scala
+// src/script/scala/progscala3/implicits/UsingTypeErasureWorkaround.scala
 
 object M:
   implicit object IntMarker                                // <1>

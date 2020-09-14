@@ -1,9 +1,9 @@
-// src/test/scala/progscala3/implicits/ImplicitlyArgSuite.scala
+// src/test/scala/progscala3/implicits/UsingParameterSuite.scala
 package progscala3.implicits
 
 import munit._
 
-class ImplicitlyArgSuite extends FunSuite:
+class UsingParameterSuite extends FunSuite:
 	import math.Ordering
 
 	case class MySeq[A](seq: Seq[A]):

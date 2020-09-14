@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ImplicitParameters3.scala
+// src/script/scala/progscala3/implicits/UsingClauses2.scala
 
 case class SortableSeq[A](seq: Seq[A]):                              // <1>
   def sortBy1a[B](transform: A => B)(using o: Ordering[B]): SortableSeq[A] =
