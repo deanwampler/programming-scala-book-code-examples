@@ -1,14 +1,14 @@
-// src/script/scala/progscala3/implicits/UsingClauses2.scala
+// src/script/scala/progscala3/implicits/UsingClauses.scala
 
 case class SortableSeq[A](seq: Seq[A]):                              // <1>
   def sortBy1a[B](transform: A => B)(using o: Ordering[B]): SortableSeq[A] =
     new SortableSeq(seq.sortBy(transform)(o))
 
   def sortBy1b[B](transform: A => B)(using Ordering[B]): SortableSeq[A] =
-    new SortableSeq(seq.sortBy(transform)(implicitly[Ordering[B]]))
+    new SortableSeq(seq.sortBy(transform)(summon[Ordering[B]]))
 
   def sortBy2[B : Ordering](transform: A => B): SortableSeq[A] =
-    new SortableSeq(seq.sortBy(transform)(implicitly[Ordering[B]]))
+    new SortableSeq(seq.sortBy(transform)(summon[Ordering[B]]))
 
 val seq = SortableSeq(Seq(1,3,5,2,4))
 
