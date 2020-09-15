@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ByNameContextParameters.scala
+// src/script/scala/progscala3/contexts/ByNameContextParameters.scala
 
 trait Codec[T]:
   def write(x: T): Unit

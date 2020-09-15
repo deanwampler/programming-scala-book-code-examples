@@ -1,5 +1,5 @@
-// src/test/scala/progscala3/implicits/typeclass/new3/ToJSONTypeClassesSuite.scala
-package progscala3.implicits.typeclass.new3
+// src/test/scala/progscala3/contexts/typeclass/new3/ToJSONTypeClassesSuite.scala
+package progscala3.contexts.typeclass.new3
 
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
 import munit._

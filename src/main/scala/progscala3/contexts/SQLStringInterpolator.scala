@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/implicits/SQLStringInterpolator.scala
-package progscala3.implicits
+// src/main/scala/progscala3/contexts/SQLStringInterpolator.scala
+package progscala3.contexts
 
 /**
  * Only handles this subset of SQL: sql"SELECT columns FROM table;".

@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/InfixType2.scala
+// src/script/scala/progscala3/contexts/InfixType2.scala
 import scala.annotation.infix
 
 @infix case class ++[A,B](a: A, b: B)

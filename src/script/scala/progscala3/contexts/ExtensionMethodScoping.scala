@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ExtensionMethodScoping.scala
+// src/script/scala/progscala3/contexts/ExtensionMethodScoping.scala
 
 val s = "Hello World!"
 

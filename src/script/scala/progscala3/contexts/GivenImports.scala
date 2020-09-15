@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/GivenImports.scala
+// src/script/scala/progscala3/contexts/GivenImports.scala
 
 object O1:
   val name = "O1"

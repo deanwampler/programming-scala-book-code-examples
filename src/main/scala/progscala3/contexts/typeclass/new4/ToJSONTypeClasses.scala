@@ -1,8 +1,8 @@
-// src/main/scala/progscala3/implicits/typeclass/new4/ToJSONTypeClasses.scala
-package progscala3.implicits.typeclass.new4
+// src/main/scala/progscala3/contexts/typeclass/new4/ToJSONTypeClasses.scala
+package progscala3.contexts.typeclass.new4
 
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
-import progscala3.implicits.json.ToJSON
+import progscala3.contexts.json.ToJSON
 
 // Refactoring to move most of the code into a helper object.
 

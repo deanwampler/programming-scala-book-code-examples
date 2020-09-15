@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/InfixTypeRevisited.scala
+// src/script/scala/progscala3/contexts/InfixTypeRevisited.scala
 import scala.annotation.{alpha, infix}
 
 @alpha("BangBang") case class !![A,B](a: A, b: B)          // <1>

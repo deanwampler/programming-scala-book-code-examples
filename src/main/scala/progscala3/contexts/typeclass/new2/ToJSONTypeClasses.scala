@@ -1,8 +1,8 @@
-// src/main/scala/progscala3/implicits/typeclass/new2/ToJSONTypeClasses.scala
-package progscala3.implicits.typeclass.new2
+// src/main/scala/progscala3/contexts/typeclass/new2/ToJSONTypeClasses.scala
+package progscala3.contexts.typeclass.new2
 
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
-import progscala3.implicits.json.ToJSON
+import progscala3.contexts.json.ToJSON
 
 given ToJSON[Point]:                                            // <1>
   extension (point: Point) def toJSON(name: String, level: Int): String =

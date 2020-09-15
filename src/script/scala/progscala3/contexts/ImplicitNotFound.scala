@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ImplicitNotFound.scala
+// src/script/scala/progscala3/contexts/ImplicitNotFound.scala
 // As of September 2020, this annotation appears to have no effect in Dotty
 // for method argument annotations, just for types.
 

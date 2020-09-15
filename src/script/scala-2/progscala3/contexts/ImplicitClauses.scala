@@ -1,4 +1,4 @@
-// src/script/scala-2/progscala3/implicits/ImplicitClauses.scala
+// src/script/scala-2/progscala3/contexts/ImplicitClauses.scala
 
 case class SortableSeq[A](seq: Seq[A]) {                             // <1>
   def sortBy1[B](transform: A => B)(implicit o: Ordering[B]): SortableSeq[A]=

@@ -1,5 +1,5 @@
-// src/test/scala/progscala3/implicits/SQLStringInterpolatorSuite.scala
-package progscala3.implicits
+// src/test/scala/progscala3/contexts/SQLStringInterpolatorSuite.scala
+package progscala3.contexts
 
 import munit._
 

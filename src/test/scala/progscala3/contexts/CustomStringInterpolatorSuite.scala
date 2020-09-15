@@ -1,5 +1,5 @@
-// src/test/scala/progscala3/implicits/CustomStringInterpolatorSuite.scala
-package progscala3.implicits
+// src/test/scala/progscala3/contexts/CustomStringInterpolatorSuite.scala
+package progscala3.contexts
 
 import munit._
 

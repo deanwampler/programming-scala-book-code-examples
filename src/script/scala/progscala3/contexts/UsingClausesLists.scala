@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/UsingClausesLists.scala
+// src/script/scala/progscala3/contexts/UsingClausesLists.scala
 
 case class U1[T](t: T)
 case class U2[T](t: T)

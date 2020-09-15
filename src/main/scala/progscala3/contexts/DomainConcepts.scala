@@ -1,6 +1,6 @@
-// src/main/scala/progscala3/implicits/DomainConcepts.scala
+// src/main/scala/progscala3/contexts/DomainConcepts.scala
 
-package progscala3.implicits
+package progscala3.contexts
 
 sealed trait DomainConcept
 case class Address(street: String, city: String) extends DomainConcept

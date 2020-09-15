@@ -1,6 +1,6 @@
 // src/test/scala/progscala3/objectsystem/linearization/LinearizationSuite.scala
 // Essentially the same as src/script/.../Linearization.scala
-package progscala3.implicits
+package progscala3.contexts
 
 import munit._
 

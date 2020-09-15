@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/implicits/json/JSONBuilder.scala
-package progscala3.implicits.json
+// src/main/scala/progscala3/contexts/json/JSONBuilder.scala
+package progscala3.contexts.json
 
 @main def TryJSONBuilder(): Unit =
   val js = obj {

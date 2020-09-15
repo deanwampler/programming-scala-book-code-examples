@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/implicits/NoSQLRecords.scala
-package progscala3.implicits.scaladb
+// src/main/scala/progscala3/contexts/NoSQLRecords.scala
+package progscala3.contexts.scaladb
 
 import scala.language.implicitConversions
 import scala.util.Try

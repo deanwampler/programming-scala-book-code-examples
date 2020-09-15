@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/SeqUnzip.scala
+// src/script/scala/progscala3/contexts/SeqUnzip.scala
 
 val seq = (0 to 10).toList
 

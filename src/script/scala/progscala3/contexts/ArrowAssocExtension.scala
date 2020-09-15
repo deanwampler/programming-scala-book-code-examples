@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ArrowAssocExtension.scala
+// src/script/scala/progscala3/contexts/ArrowAssocExtension.scala
 import scala.annotation.{alpha, infix}
 
 extension [A,B] (a: A):

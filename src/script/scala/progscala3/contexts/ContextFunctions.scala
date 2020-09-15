@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/implicits/ContextFunctions.scala
+// src/script/scala/progscala3/contexts/ContextFunctions.scala
 
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.concurrent.ExecutionContext.Implicits.global

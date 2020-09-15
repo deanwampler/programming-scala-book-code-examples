@@ -1,14 +1,14 @@
-// src/script/scala/progscala3/implicits/TypeClassesSubtypingProblems.scala
+// src/script/scala/progscala3/contexts/TypeClassesSubtypingProblems.scala
 // This program does not appear in the book.
-import progscala3.implicits.json.ToJSON
-import progscala3.implicits.{Address, Person}
+import progscala3.contexts.json.ToJSON
+import progscala3.contexts.{Address, Person}
 
 // NOTE: This file is designed to be copied and pasted into the REPL several
 // pieces at a time, not run all at once. All at once causes the behavior to
 // change because of the order in which implicits are defined.
 // Copy and paste each block between // START N ... // END N, one at a time.
 // The DomainConcept, Address, and Person types are defined in
-// src/main/scala/progscala3/implicits/
+// src/main/scala/progscala3/contexts/
 
 // START 1
 

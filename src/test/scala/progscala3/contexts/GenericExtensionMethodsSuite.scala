@@ -1,5 +1,5 @@
-// src/test/scala/progscala3/implicits/GenericExtensionMethodsSuite.scala
-package progscala3.implicits
+// src/test/scala/progscala3/contexts/GenericExtensionMethodsSuite.scala
+package progscala3.contexts
 
 import munit._
 import GenericExtensionMethods._

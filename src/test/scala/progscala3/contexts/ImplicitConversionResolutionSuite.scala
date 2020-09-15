@@ -1,5 +1,5 @@
-// src/test/scala/progscala3/implicits/ImplicitConversionResolutionSuite.scala
-package progscala3.implicits
+// src/test/scala/progscala3/contexts/ImplicitConversionResolutionSuite.scala
+package progscala3.contexts
 
 import munit._
 import scala.language.implicitConversions

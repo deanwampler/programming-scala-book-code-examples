@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/implicits/NewImplicitConversions.scala
-package progscala3.implicits
+// src/main/scala/progscala3/contexts/NewImplicitConversions.scala
+package progscala3.contexts
 import scala.language.implicitConversions                       // <1>
 
 case class Dollars(amount: Double):                             // <2>

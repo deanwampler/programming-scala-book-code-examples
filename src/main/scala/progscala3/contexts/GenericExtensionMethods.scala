@@ -1,6 +1,6 @@
-// src/main/scala/progscala3/implicits/GenericExtensionMethods.scala
+// src/main/scala/progscala3/contexts/GenericExtensionMethods.scala
 
-package progscala3.implicits
+package progscala3.contexts
 
 object GenericExtensionMethods:
   type Eq[T] = Eql[T, T]                                             // <1>

@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/implicits/typeclass/old/ToJSONOldTypeClasses.scala
-package progscala3.implicits.typeclass.old
+// src/main/scala/progscala3/contexts/typeclass/old/ToJSONOldTypeClasses.scala
+package progscala3.contexts.typeclass.old
 
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
 import scala.language.implicitConversions                       // <1>
