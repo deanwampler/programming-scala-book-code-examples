@@ -1,6 +1,10 @@
-// src/main/scala/progscala3/rounding/DaysEnumeration.scala
+// src/main/scala/progscala3/rounding/DaysEnum.scala
 package progscala3.rounding
 
+/**
+ * This file reproduces the WeekDay definition in DaysEnumeration. This file
+ * isn't included in the book, but subsequent examples import this definition.
+ */
 enum WeekDay(val fullName: String) derives Eql:
   case Sun extends WeekDay("Sunday")
   case Mon extends WeekDay("Monday")
