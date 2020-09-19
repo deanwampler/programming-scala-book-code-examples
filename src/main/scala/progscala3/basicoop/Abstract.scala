@@ -1,3 +1,4 @@
+// tag::logging[]
 // src/main/scala/progscala3/basicoop/Abstract.scala
 package progscala3.basicoop
 
@@ -16,8 +17,10 @@ trait Logging:
 
 trait ConsoleLogging extends Logging:
   protected val write = println                                      // <3>
+// end::logging[]
 
-open abstract class Service(val name: String) extends Logging:       // <4>
+// tag::service[]
+open abstract class Service(val name: String) extends Logging:       // <1>
   import Service._
   final def handle(request: Request): Response =
     info(s"($name) Starting handle for request: $request")
@@ -27,11 +30,11 @@ open abstract class Service(val name: String) extends Logging:       // <4>
 
   protected def process(request: Request): Response
 
-object Service:                                                      // <5>
+object Service:                                                      // <2>
   type Request = Map[String,Any]
   type Response = Either[String,Map[String,Any]]
 
-case class HelloService(override val name: String)                   // <6>
+case class HelloService(override val name: String)                   // <3>
     extends Service(name) with ConsoleLogging:
   import Service._
 
@@ -39,8 +42,10 @@ case class HelloService(override val name: String)                   // <6>
     request.get("user") match
       case Some(user) => Right(Map("message" -> s"Hello, $user"))
       case None => Left("No user field found!")
+// end::service[]
 
-@main def HelloServiceMain(name: String, users: String*): Unit =     // <8>
+// tag::main[]
+@main def HelloServiceMain(name: String, users: String*): Unit =
   val hs = HelloService("hello")
   for
     user <- users
@@ -51,3 +56,4 @@ case class HelloService(override val name: String)                   // <6>
 
   println("Try an empty map:")
   println(hs.handle(Map.empty))
+// end::main[]

@@ -3,5 +3,3 @@
 import java.io.File
 
 val file = File("README.md")    // No "new" required
-file.exists()
-file.path()

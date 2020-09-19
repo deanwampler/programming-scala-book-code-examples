@@ -11,6 +11,8 @@ trait Authenticate:
       username: UserName, password: Password): Boolean =
     authenticated = auth(username, password)
     authenticated
+  def isAuthenticated: Boolean = authenticated
+
   private var authenticated = false   //
   protected def auth(
       username: UserName, password: Password): Boolean
@@ -44,7 +46,7 @@ object ServiceWithoutExports:
 
   def authenticate(username: UserName, password: Password): Boolean =
     dirAuthenticate(username, password)
-  def isAuthenticated(): Boolean = dirAuthenticate.authenticated
+  def isAuthenticated: Boolean = dirAuthenticate.isAuthenticated
   def getResource(key: String): Option[Any] = manager.getResource(key)
   def tokenize(string: String): Future[Seq[String]] = tokenizer(string)
 // end::service1[]
@@ -55,14 +57,15 @@ object Service:
   private val manager = new ResourceManager(sys.env)
   private val tokenizer = new AsyncTokenizer
 
-  export dirAuthenticate.{apply => authenticate, authenticated}
+  export dirAuthenticate.{apply => authenticate, isAuthenticated}
   export manager.getResource
   export tokenizer.{apply => tokenize}
 // end::service2[]
 
 // tag::example[]
+Service.isAuthenticated
 Service.authenticate(UserName("Buck Trends"), Password("1234"))
-Service.authenticated
+Service.isAuthenticated
 Service.getResource("HOME")
 val tokensF = Service.tokenize("Hello from the World!")
 tokensF.value
