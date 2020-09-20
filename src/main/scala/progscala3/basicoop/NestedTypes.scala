@@ -8,12 +8,13 @@ object Database:                                                     // <1>
   case class DatabaseException(message: String, cause: Throwable) extends
     RuntimeException(message, cause)
 
-  sealed trait ConnectionState                                       // <3>
-  case object Disconnected extends ConnectionState
-  case class  Connected(connection: Connection)  extends ConnectionState
-  sealed trait QueryStatus
-  case class  QuerySucceeded(results: ResultSet) extends QueryStatus
-  case class  QueryFailed(e: DatabaseException)  extends QueryStatus
+  enum ConnectionState:                                              // <3>
+    case Disconnected
+    case Connected(connection: Connection)
+  enum QueryStatus:
+    case QuerySucceeded(results: ResultSet)
+    case QueryFailed(e: DatabaseException)
+
 
 class Database:
   import Database._

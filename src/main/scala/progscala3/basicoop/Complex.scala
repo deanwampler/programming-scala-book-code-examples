@@ -1,3 +1,4 @@
+// tag::definitions[]
 // src/main/scala/progscala3/basicoop/Complex.scala
 package progscala3.basicoop
 
@@ -8,7 +9,9 @@ case class Complex(real: Double, imag: Double) derives Eql:     // <1>
     Complex(-real, imag)
   @alpha("minus")  def -(other: Complex) =                      // <3>
     Complex(real - other.real, imag - other.imag)
+// end::definitions[]
 
+// tag::entrypoint[]
 @main def TryComplex: Unit =
   val c1 = Complex(1.1, 2.2)
   assert(c1.real == 1.1)
@@ -16,3 +19,4 @@ case class Complex(real: Double, imag: Double) derives Eql:     // <1>
   assert(-c1 == Complex(-1.1, 2.2))                             // <4>
   assert(c1.unary_-              == Complex(-1.1, 2.2))
   assert(c1 - Complex(0.1, 0.2)  == Complex(1.0, 2.0))
+// end::entrypoint[]
