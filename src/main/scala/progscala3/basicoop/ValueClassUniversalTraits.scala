@@ -6,7 +6,7 @@ trait Digitizer extends Any:
 
 trait Formatter extends Any:                                         // <2>
   def format(
-    areaCode: String, exchange: String, subnumber: String): String =
+      areaCode: String, exchange: String, subnumber: String): String =
     s"($areaCode) $exchange-$subnumber"
 
 case class USPhoneNumberUT(s: String)
