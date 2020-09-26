@@ -2,11 +2,14 @@
 package progscala3.traits.ui2
 
 trait VetoableClicks(val maxAllowed: Int = 1) extends Clickable:     // <1>
-  private var count = 0
+  private var count = 0                                              // <2>
 
   abstract override def click(): String =
-    if count < maxAllowed then                                       // <2>
-      count += 1
+    count += 1
+    if count <= maxAllowed then                                      // <3>
       super.click()
     else
-      s"Max allowed clicks exceeded: $maxAllowed"
+      s"Max allowed clicks $maxAllowed exceeded. Received $count clicks!"
+
+  def resetCount(): Unit = count = 0                                 // <4>
+

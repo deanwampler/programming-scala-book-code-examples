@@ -10,10 +10,6 @@ val button = new Button("Click Me!") with Subject[Button]:
   def updateUI(): Unit = println(s"$label clicked")
 // end::button
 
-class ButtonCountObserver extends Observer[Button]:
-  var count = 0
-  def receiveUpdate(state: Button): Unit = count += 1
-
 val bco1 = new ButtonCountObserver
 
 button.addObserver(bco1)

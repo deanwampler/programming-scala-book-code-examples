@@ -1,10 +1,6 @@
-// src/script/scala/progscala3/traits/ui/ButtonCountObserver.scala
+// src/script/scala/progscala3/traits/ui/ButtonCountObserver1.scala
 import progscala3.traits.ui._
 import progscala3.traits.observer._
-
-class ButtonCountObserver extends Observer[Button]:
-  var count = 0
-  def receiveUpdate(state: Button): Unit = count += 1
 
 val button = new ObservableButton("Click Me!"):
   def updateUI(): Unit = println(s"$label clicked")
