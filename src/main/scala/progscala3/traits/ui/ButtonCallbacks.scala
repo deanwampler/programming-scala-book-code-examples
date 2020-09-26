@@ -1,19 +1,11 @@
 // src/main/scala/progscala3/traits/ui/ButtonCallbacks.scala
 package progscala3.traits.ui
 
-class ButtonWithCallbacks(val label: String,
-    val callbacks: List[() => Unit] = Nil) extends Widget:
+abstract class ButtonWithCallbacks(val label: String,
+    val callbacks: Seq[() => Unit] = Nil) extends Widget:            // <1>
 
-  def click(): Unit =
+  def click(): Unit =                                                // <2>
     updateUI()
     callbacks.foreach(f => f())
 
-  protected def updateUI(): Unit = { /* logic to change GUI appearance */ }
-
-object ButtonWithCallbacks:
-
-  def apply(label: String, callback: () => Unit) =
-    new ButtonWithCallbacks(label, List(callback))
-
-  def apply(label: String) =
-    new ButtonWithCallbacks(label, Nil)
+  protected def updateUI(): Unit                                     // <3>

@@ -1,7 +1,7 @@
 // src/main/scala/progscala3/traits/observer/Observer.scala
 package progscala3.traits.observer
 
-trait Observer[-State]:                                              // <1>
+trait Observer[State]:                                               // <1>
   def receiveUpdate(state: State): Unit
 
 trait Subject[State]:                                                // <2>

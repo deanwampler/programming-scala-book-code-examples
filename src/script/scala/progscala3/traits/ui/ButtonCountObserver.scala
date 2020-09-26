@@ -6,7 +6,9 @@ class ButtonCountObserver extends Observer[Button]:
   var count = 0
   def receiveUpdate(state: Button): Unit = count += 1
 
-val button = new ObservableButton("Click Me!")
+val button = new ObservableButton("Click Me!"):
+  def updateUI(): Unit = println(s"$label clicked")
+
 val bco1   = new ButtonCountObserver
 val bco2   = new ButtonCountObserver
 

@@ -15,7 +15,6 @@ object Database:                                                     // <1>
     case QuerySucceeded(results: ResultSet)
     case QueryFailed(e: DatabaseException)
 
-
 class Database:
   import Database._
 
