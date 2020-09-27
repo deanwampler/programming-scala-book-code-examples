@@ -10,5 +10,5 @@ trait Logger(val level: LoggingLevel):                               // <2>
 trait ConsoleLogger extends Logger:                                  // <3>
   def log(message: String): Unit = println(s"$level: $message")
 
-class Service1(val name: String, level: LoggingLevel)                // <4>
+class Service(val name: String, level: LoggingLevel)                 // <4>
   extends ConsoleLogger with Logger(level)

@@ -8,5 +8,5 @@ trait LoggerNP:                                                      // <1>
 trait ConsoleLoggerNP extends LoggerNP:
   def log(message: String): Unit = println(s"$level: $message")
 
-class Service2(val name: String, val level: LoggingLevel)            // <2>
+class ServiceNP(val name: String, val level: LoggingLevel)           // <2>
   extends ConsoleLoggerNP
