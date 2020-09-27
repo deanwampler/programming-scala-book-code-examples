@@ -1,30 +1,30 @@
 // src/script/scala/progscala3/traits/TraitConstruction.scala
 
-trait T1:
-  // The following would cause: "uninitialized value"
-  // println(s"  in T1: x = $x")
-  val x=1
-  println(s"  in T1: x = $x")
+trait M:
+  print("M ")
+  def m(s:String): Unit = println(s"M.m: $s")
 
-trait T2:
-  // The following would cause: "uninitialized value"
-  // println(s"  in T2: y = $y")
-  val y="T2"
-  println(s"  in T2: y = $y")
+trait T1 extends M:
+  print(s"T1 (before: T1.t1 = $t1, ")
+  val t1 = "T1"
+  print(s"after: T1.t1 = $t1) ")
+  abstract override def m(s:String): Unit = super.m(s"$s T1")
 
-class Base12:
-  // The following would cause: "warning: Reference to uninitialized value b"
-  // println(s"  in Base12: b = $b")
-  val b="Base12"
-  println(s"  in Base12: b = $b")
+trait T2 extends M:
+  print("T2 ")
+  abstract override def m(s:String): Unit = super.m(s"$s T2")
 
-class C12 extends Base12 with T1 with T2:
-  // The following would cause: "warning: Reference to uninitialized value c"
-  // println(s"  in C12: c = $c")
-  val c="C12"
-  println(s"  in C12: c = $c")
+class B extends M:
+  print("B ")
+  override def m(s:String): Unit = super.m(s"$s B")
 
-println(s"Creating C12:")
-new C12
-println(s"After Creating C12")
+class C extends B with T1 with T2:
+  print(s"C (before: C.c = $c, ")
+  val c="C"
+  print(s"after:  C.c = $c) ")
+  override def m(s:String): Unit = super.m(s"$s C")
+
+val c = new C
+println()  // Add a linefeed for all the print() statements.
+c.m("Calling c.m:")
 

@@ -2,7 +2,6 @@
 import progscala3.traits.ui2._
 import progscala3.traits.observer._
 
-// No override of "click" in Button required.
 val button = new Button("Button!")
     with ObservableClicks with VetoableClicks(maxAllowed = 2):
   def updateUI(): String = s"$label clicked"

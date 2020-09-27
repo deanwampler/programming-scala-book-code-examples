@@ -48,6 +48,7 @@ scalacOptions in Compile := Seq(
   // "-language:Scala2",                  // Compile Scala 2 code, highlight what needs updating
   // "-migration",                        // Emit warning and location for migration issues from Scala 2.
   // "-rewrite",                          // Attempt to fix code automatically
+  // "-Ycheck-init",                      // Warn on field access before initialization
   "-Xfatal-warnings",                  // Fail on warnings, not just errors
   // "-Yexplicit-nulls"                   // For explicit nulls behavior.
 )
