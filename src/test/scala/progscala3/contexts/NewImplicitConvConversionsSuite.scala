@@ -9,7 +9,7 @@ class NewImplicitConversionsSuite extends FunSuite:
     given Conversion[Double,Percentage] = d => Percentage(d)
 
     val salary = Salary(100_000.0, 0.20)
-    assert(salary.gross.equals(Dollars(100_000.0)))
-    assert(salary.taxes.equals(Percentage(0.2)))
-    assert(salary.net.equals(Dollars(80_000.0)))
+    assert(salary.gross == Dollars(100_000.0))
+    assert(salary.taxes == Percentage(0.2))
+    assert(salary.net   == Dollars(80_000.0))
   }

@@ -14,38 +14,38 @@ class MapSuite extends FunSuite:
     val lengths = stateCapitals map {
       kv => (kv._1, kv._2.length)
     }
-    assert(lengths.equals(Map(
+    assert(lengths == Map(
       "Alabama" -> 10,
       "Alaska"  -> 6,
-      "Wyoming" -> 8)))
+      "Wyoming" -> 8))
   }
 
   test("Map can take a partial function") {
     val caps = stateCapitals map {
       case (k, v) => (k, v.toUpperCase)
     }
-    assert(caps.equals(Map(
+    assert(caps == Map(
       "Alabama" -> "MONTGOMERY",
       "Alaska"  -> "JUNEAU",
-      "Wyoming" -> "CHEYENNE")))
+      "Wyoming" -> "CHEYENNE"))
   }
 
   test("Add an element with +") {
     val stateCapitals2 = stateCapitals + ("Virginia" -> "Richmond")
-    assert(stateCapitals2.equals(Map(
+    assert(stateCapitals2 == Map(
       "Alabama" -> "Montgomery",
       "Alaska"  -> "Juneau",
       "Wyoming" -> "Cheyenne",
-      "Virginia" -> "Richmond")))
+      "Virginia" -> "Richmond"))
   }
 
   test("Join maps with ++") {
     val stateCapitals2 = stateCapitals ++ Seq(
       "Virginia" -> "Richmond", "Illinois" -> "Springfield")
-    assert(stateCapitals2.equals(Map(
+    assert(stateCapitals2 == Map(
       "Alabama" -> "Montgomery",
       "Alaska"  -> "Juneau",
       "Wyoming" -> "Cheyenne",
       "Virginia" -> "Richmond",
-      "Illinois" -> "Springfield")))
+      "Illinois" -> "Springfield"))
   }

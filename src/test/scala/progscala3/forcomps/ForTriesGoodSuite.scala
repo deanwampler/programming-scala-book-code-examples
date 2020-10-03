@@ -16,7 +16,7 @@ class ForTriesGoodSuite extends FunSuite:
       i3 <- positive(25 * i2)
       i4 <- positive(2  * i3)
     yield (i1 + i2 + i3 + i4)
-    assert(result.equals(Success(3805)))
+    assert(result == Success(3805))
   }
 
   test("for comprehension steps stop when Try/Failure is found") {

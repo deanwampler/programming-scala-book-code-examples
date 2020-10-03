@@ -5,7 +5,7 @@ package progscala3.rounding
  * This file reproduces the WeekDay definition in DaysEnumeration. This file
  * isn't included in the book, but subsequent examples import this definition.
  */
-enum WeekDay(val fullName: String) derives Eql:
+enum WeekDay(val fullName: String):
   case Sun extends WeekDay("Sunday")
   case Mon extends WeekDay("Monday")
   case Tue extends WeekDay("Tuesday")

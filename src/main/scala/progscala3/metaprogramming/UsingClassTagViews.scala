@@ -16,5 +16,5 @@ object UsingClassTagViews:
 	import UsingClassTagViews._
 	assert(mkSeq(1, 2, 3) == Seq[Int](1, 2, 3))
 	assert(mkSeq("one", "two", "three") == Seq[String]("one", "two", "three"))
-	assert(mkSeq(1, "two", 3.14).equals(Seq[Any](1, "two", 3.14)))     // <1>
+	assert(mkSeq(1, "two", 3.14) == Seq[Any](1, "two", 3.14))          // <1>
 	println("success!")

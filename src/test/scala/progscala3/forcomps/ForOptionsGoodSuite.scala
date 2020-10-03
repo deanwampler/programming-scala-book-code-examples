@@ -14,7 +14,7 @@ class ForOptionsGoodSuite extends FunSuite:
   	  i3 <- positive(25 * i2)
   	  i4 <- positive(2  * i3)
   	yield (i1 + i2 + i3 + i4)
-  	assert(result.equals(Some(3805)))
+  	assert(result == Some(3805))
   }
 
   test("for comprehension steps stop when None is found") {
@@ -24,5 +24,5 @@ class ForOptionsGoodSuite extends FunSuite:
   	  i3 <- positive(25 * i2)              // <2>
   	  i4 <- positive(-2 * i3)              // EPIC FAIL!
   	yield (i1 + i2 + i3 + i4)
-  	assert(result.equals(None))
+  	assert(result == None)
   }

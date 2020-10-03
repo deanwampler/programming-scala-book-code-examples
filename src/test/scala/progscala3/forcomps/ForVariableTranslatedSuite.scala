@@ -12,7 +12,7 @@ class ForVariableTranslatedSuite extends FunSuite:
 		  (key, value) <- map   // How are this line and the next one translated?
 		  i10 = value + 10
 		yield (i10)
-		assert(list.equals(List(11, 12)))
+		assert(list == List(11, 12))
 	}
 
 	test("Variables translations are map steps") {
@@ -24,5 +24,5 @@ class ForVariableTranslatedSuite extends FunSuite:
 		    (x1, x2)
 		  }
 		yield (i10)
-		assert(list.equals(List(11, 12)))
+		assert(list == List(11, 12))
 	}

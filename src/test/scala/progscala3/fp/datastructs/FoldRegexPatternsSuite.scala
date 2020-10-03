@@ -32,10 +32,10 @@ class FoldRegexPatternsSuite extends FunSuite:
           case kvRegex(key, value) => vect :+ Right(key.trim -> value.trim)
           case _ => vect :+ Left(n+1, line.trim)
       }
-    assert(kvPairs.equals(Vector(
+    assert(kvPairs == Vector(
       Right("book.name" -> "Programming Scala, Third Edition"),
       Right("book.authors" -> "Dean Wampler"),
       Left(6 -> "an unexpected line"),
       Right("book.publisher" -> "O'Reilly"),
-      Right("book.publication-year" -> "2020"))))
+      Right("book.publication-year" -> "2020")))
   }

@@ -34,8 +34,8 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic:
       CLINQ(newRecords)
 
     def applyDynamic(op: String)(value: T): CLINQ[T] = op match
-      case "EQ" => filter(x =>  value.equals(x))                     // <7>
-      case "NE" => filter(x => !value.equals(x))
+      case "EQ" => filter(x =>   value == x)                         // <7>
+      case "NE" => filter(x => !(value == x))
       case _ => throw CLINQ.BadOperation(field, """Expected "EQ" or "NE".""")
 
   override def toString: String = records mkString "\n"

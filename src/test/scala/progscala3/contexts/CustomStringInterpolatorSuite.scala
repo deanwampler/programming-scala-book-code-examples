@@ -23,16 +23,16 @@ class CustomStringInterpolatorSuite extends FunSuite:
 
   test("""A custom interpolator is invoked with name"" """) {
     val map1 = map"{name: $name, book: $book}"                  // <7>
-    assert(map1.equals(Map(                                     // <8>
+    assert(map1 == Map(                                         // <8>
       "name" -> "Dean Wampler",
-      "book" -> "Programming Scala, Third Edition")))
+      "book" -> "Programming Scala, Third Edition"))
   }
 
   test("A custom interpolator can use variable interpolation.") {
     val publisher = "O'Reilly"
     val map2 = map"{name: $name, book: $book, publisher: $publisher}"
-    assert(map2.equals(Map(
+    assert(map2 == Map(
       "name" -> "Dean Wampler",
       "book" -> "Programming Scala, Third Edition",
-      "publisher" -> "O'Reilly")))
+      "publisher" -> "O'Reilly"))
   }

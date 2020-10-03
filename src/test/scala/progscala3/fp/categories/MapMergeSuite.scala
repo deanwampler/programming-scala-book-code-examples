@@ -14,5 +14,5 @@ class MapMergeSuite extends FunSuite:
     def zero:Int = 0
 
   test("Extension method merge returns the map union with values 'added'") {
-    assert(map1.merge(map2).equals(Map("one" -> 1, "two" -> 4, "three" -> 3)))
+    assert(map1.merge(map2) == Map("one" -> 1, "two" -> 4, "three" -> 3))
   }

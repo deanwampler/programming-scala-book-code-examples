@@ -23,10 +23,10 @@ class PayrollSuite extends FunSuite:
     val results1 = weeklyPayroll map {
       case (e, net) => (e.name, f"${net}%.2f")
     }
-    assert(results1.equals(List(
+    assert(results1 == List(
       ("Buck Trends", "2784.62"),
       ("Cindy Banks", "2430.00"),
-      ("Joe Coder",   "1880.00"))))
+      ("Joe Coder",   "1880.00")))
   }
 
   test("from weeklyPayroll, the totals can be calculated") {
@@ -35,7 +35,7 @@ class PayrollSuite extends FunSuite:
         (totalSalary + e.annualSalary/52.0,
           totalNet + net, totalInsurance + e.insurancePremiumsPerWeek)
     }
-    assert(f"${report._1}%.2f".equals("9615.38"), "total salary")
-    assert(f"${report._2}%.2f".equals("7094.62"), "total net")
-    assert(f"${report._3}%.2f".equals("340.00" ), "total insurance")
+    assert(f"${report._1}%.2f" == "9615.38", "total salary")
+    assert(f"${report._2}%.2f" == "7094.62", "total net")
+    assert(f"${report._3}%.2f" == "340.00" , "total insurance")
   }

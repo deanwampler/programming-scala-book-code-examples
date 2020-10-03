@@ -43,7 +43,7 @@ object Tagging:
   val x: Double @@ Meter = (123.0).tag
   val y: Double @@ Foot = (123.0).tag
   // Danger!!
-  assert(x.equals(y))
+  assert(x == y)
   val xs: Array[Double @@ Meter] = Array(1.0, 2.0, 3.0).tags
   println(s"x, y, xs = $x, $y, ${xs.mkString(",")}")
   println(s"untagged: ${x.untag}, ${y.untag}, ${xs.untags.mkString(",")}")
@@ -55,7 +55,7 @@ object Tagging:
   // Compilation Errors!
   // om.compare(x, y)
   val expected: Double @@ Meter = 1.0.tag
-  assert(xs.min(om).equals(expected))
+  assert(xs.min(om) == expected)
   // Compilation Error!
   // xs.min(o)
 

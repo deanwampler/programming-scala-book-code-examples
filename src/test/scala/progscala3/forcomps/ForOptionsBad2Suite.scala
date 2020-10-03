@@ -16,6 +16,6 @@ class ForOptionsBad2Suite extends FunSuite:
 		val successfulCounts = Seq(Some(5), Some(21), Some(8))
 		val partiallySuccessfulCounts = Seq(Some(5), None, Some(8))
 
-		assert(sumCountsBad(successfulCounts).equals(Some(34)))
-		assert(sumCountsBad(partiallySuccessfulCounts).equals(None))
+		assert(sumCountsBad(successfulCounts) == Some(34))
+		assert(sumCountsBad(partiallySuccessfulCounts) == None)
 	}

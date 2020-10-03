@@ -11,7 +11,7 @@ class UsingParameterSuite extends FunSuite:
 	    seq.sortBy(f)(ord)
 
 	  def sortBy2[B : Ordering](f: A => B): Seq[A] =
-	    seq.sortBy(f)(implicitly[Ordering[B]])
+	    seq.sortBy(f)(summon[Ordering[B]])
 
 	test("A view type can be accessed by implicitly") {
 		val seq = MySeq(Seq(1,3,5,2,4))

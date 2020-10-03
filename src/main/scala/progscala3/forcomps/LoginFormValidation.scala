@@ -2,10 +2,9 @@
 
 package progscala3.forcomps
 
-case class ValidLoginForm(
-	userName: String, password: String)                         // <1>
+case class ValidLoginForm(userName: String, password: String)        // <1>
 
-sealed trait LoginValidation:                                 // <2>
+sealed trait LoginValidation:                                        // <2>
   def error: String
 
 case class Empty(name: String) extends LoginValidation:

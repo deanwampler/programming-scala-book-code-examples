@@ -16,5 +16,5 @@ class TrampolineSuite extends FunSuite:
 
 	test("Trampolines can be used to reduce stack frame usage") {
 		val eo = (1 to 5).map(i => (i, isEven(1 to i).result))
-		assert(eo.equals(Seq(1 -> false, 2 -> true, 3 -> false, 4 -> true, 5 -> false)))
+		assert(eo == Seq(1 -> false, 2 -> true, 3 -> false, 4 -> true, 5 -> false))
 	}

@@ -26,10 +26,10 @@ class FactorialSuite extends FunSuite:
 
   test("A non tail-recursive function can blow the stack") {
     val facts = (1 to 5).map(i => (i, factorial1(i)))
-    assert(facts.equals(Seq(1 -> 1, 2 -> 2, 3 -> 6, 4 -> 24, 5 -> 120)))
+    assert(facts == Seq(1 -> 1, 2 -> 2, 3 -> 6, 4 -> 24, 5 -> 120))
   }
 
   test("A tail-recursive function is optimized to reduce stack frames") {
     val facts = (1 to 5).map(i => (i, factorial(i)))
-    assert(facts.equals(Seq(1 -> 1, 2 -> 2, 3 -> 6, 4 -> 24, 5 -> 120)))
+    assert(facts == Seq(1 -> 1, 2 -> 2, 3 -> 6, 4 -> 24, 5 -> 120))
   }

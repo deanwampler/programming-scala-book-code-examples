@@ -9,8 +9,7 @@ package progscala3.visibility.protectedscope:
       def equalFields(other: ProtectedClass1) =
         (protectedField1 == other.protectedField1) &&
         (protectedField2 == other.protectedField2)
-        // Would be valid with less restrictive equals, i.e., no
-        // --language:strictEquality. Even "derives Eql" doesn't help!
+        // The following is a compilation error:
         // && (nested == other.nested)
 
       class Nested derives Eql:

@@ -13,7 +13,7 @@ class FilterSuite extends FunSuite:
 	test("Use filter to select collection elements to keep") {
 		val mapA = stateCapitals filter { kv => kv._1.startsWith("A") }
 
-		assert(mapA.equals(Map(
+		assert(mapA == Map(
 		  "Alabama" -> "Montgomery",
-		  "Alaska"  -> "Juneau")))
+		  "Alaska"  -> "Juneau"))
 	}

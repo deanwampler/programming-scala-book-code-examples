@@ -9,8 +9,7 @@ package progscala3.visibility.privatetype:
       def equalFields(other: PrivateClass1) =
         (privateField1 == other.privateField1) &&
         (privateField2 == other.privateField2)
-        // Would be valid with less restrictive equals, i.e., no
-        // --language:strictEquality. Even "derives Eql" doesn't help!
+        // The following is a compilation error:
         // && (nested == other.nested)
 
       class Nested derives Eql:
