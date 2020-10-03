@@ -39,7 +39,7 @@ scalacOptions in Compile := Seq(
   "-encoding", "utf-8",                // Specify character encoding used by source files.
   "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
   "-feature",                          // Emit warning and location for usages of features that should be imported explicitly.
-  "-language:strictEquality",
+  // "-language:strictEquality",          // Require +derives Eql+ for using == or != comparisons
   "-explain",                          // Explain errors in more detail.
   "-explain-types",                    // Explain type errors in more detail.
   // "-noindent",                         // Require classical {...} syntax, indentation is not significant.
