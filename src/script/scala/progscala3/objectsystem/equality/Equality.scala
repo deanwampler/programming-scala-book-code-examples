@@ -1,6 +1,6 @@
+// tag::definitions[]
 // src/script/scala/progscala3/objectsystem/equality/Equality.scala
 
-// tag::definitions[]
 case class Person(firstName: String, lastName: String, age: Int)
 
 val p1a = Person("Dean", "Wampler", 29)
