@@ -4,12 +4,10 @@ import progscala3.traits.ui2.Clickable
 
 open class Button(val label: String) extends Widget with Clickable:
 
-  // Simple hack for demonstration purposes:
-  def draw(): String = s"Drawing: $this"
+  def draw(): String = s"Drawing: $this"                             // <1>
 
-  // From Clickable:
-  protected def updateUI(): String = s"$this clicked; updating UI"
+  protected def updateUI(): String = s"$this clicked; updating UI"   // <2>
 
-  override def toString(): String =
+  override def toString(): String =                                  // <3>
     s"(button: label=$label, ${super.toString()})"
 

@@ -46,6 +46,19 @@ To keep these different kinds of files straight and to support building with SBT
 - `src/script/.../*.scala` - "Script" files that won't compile with `scalac`, but can be interpreted with the `scala` interpreter.
 - `src/*/scala-2/.../*.scala` - All Scala 2 source files that won't compile with Scala 3. They are not built with SBT.
 
+## Other Notes about the Code
+
+You won't find many comments in the code, except of the form `// <1>`, which get converted into markers corresponding to footnotes in the book. All the descriptions of the code are in the book, so they aren't repeated as code comments.
+
+Some files have sections marked like this:
+
+```
+// tag::section1[]
+// end::section1[]
+```
+
+These are used to include these section selectively in the book, rather than the whole file.
+
 ## Required and Optional Tools
 
 To build and run the examples, all you need Java 8 or newer and [SBT](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html). SBT is the de-facto standard build tool for Scala. When you run SBT, it will bootstrap itself with the correct version of its jar file, Scala, and project dependencies, which are specified in the `build.sbt` file in the root directory and other build files in the `project` directory.
