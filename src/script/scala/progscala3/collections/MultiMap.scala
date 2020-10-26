@@ -13,3 +13,4 @@ mm.entryExists(2, _ == "b") == true
 
 mm.removeBinding(1, "a")                                          // <6>
 mm.entryExists(1, _ == "a") == false
+mm.entryExists(1, _ == "c") == true

@@ -4,10 +4,10 @@ import progscala3.fp.categories.MapMerge._
 
 given Monoid[Int]:                                              // <1>
   def add(i1: Int, i2: Int): Int = i1+i2
-  def zero: Int = 0
+  def unit: Int = 0
 given Monoid[String]:
   def add(s1: String, s2: String): String = s1+s2
-  def zero: String = ""
+  def unit: String = ""
 
 val map1i = Map("one" -> 1, "two" -> 2)                         // <2>
 val map2i = Map("two" -> 2, "three" -> 3)

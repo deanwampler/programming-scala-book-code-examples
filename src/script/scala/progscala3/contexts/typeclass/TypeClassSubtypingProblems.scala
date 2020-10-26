@@ -1,5 +1,5 @@
 // src/script/scala/progscala3/contexts/TypeClassesSubtypingProblems.scala
-// This program does not appear in the book.
+// This file does not appear in the book.
 import progscala3.contexts.json.ToJSON
 import progscala3.contexts.{Address, Person}
 
