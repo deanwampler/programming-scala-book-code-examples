@@ -11,7 +11,7 @@ class MapMergeSuite extends FunSuite:
 
   given Monoid[Int]:
     def add(i1: Int, i2: Int): Int = i1+i2
-    def zero:Int = 0
+    def unit: Int = 0
 
   test("Extension method merge returns the map union with values 'added'") {
     assert(map1.merge(map2) == Map("one" -> 1, "two" -> 4, "three" -> 3))
