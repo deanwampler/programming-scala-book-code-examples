@@ -1,12 +1,12 @@
 //tag::definitions[]
 // src/script/scala/progscala3/contexts/MonoidTypeClass.scala
 
-trait SemiGroup[T]:
+trait Semigroup[T]:
   extension (t: T):
     def combine(other: T): T                                         // <1>
     def <+>(other: T): T = t.combine(other)
 
-trait Monoid[T] extends SemiGroup[T]:
+trait Monoid[T] extends Semigroup[T]:
   def unit: T                                                        // <2>
 
 given StringMonoid as Monoid[String]:                                // <3>
