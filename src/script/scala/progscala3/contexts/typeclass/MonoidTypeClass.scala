@@ -39,6 +39,6 @@ given NumericMonoid[T](using num: Numeric[T]) as Monoid[T]:
 (2.2 <+> 3.3) <+> 4.4             // 9.9
 
 BigDecimal(3.14) <+> NumericMonoid.unit
-NumericMonoid[BigDecimal].unit  <+> BigDecimal(3.14)
+NumericMonoid[BigDecimal].unit <+> BigDecimal(3.14)
 //tag::numericdefinition[]
 
