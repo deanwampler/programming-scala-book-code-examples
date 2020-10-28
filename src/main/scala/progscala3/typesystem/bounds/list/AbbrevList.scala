@@ -32,7 +32,7 @@ case object AbbrevNil extends AbbrevList[Nothing]:
 
 // A non-empty AbbrevList characterized by a head and a tail.
 
-@alpha("acons")
+@alpha("ACons")
 final case class ::[B](private var hd: B,
     private[list] var tl: AbbrevList[B]) extends AbbrevList[B]:
 
