@@ -1,3 +1,4 @@
+// tag::exampleTrait[]
 // src/script/scala/progscala3/typesystem/abstracttypes/AbstractTypesEx.scala
 
 trait exampleTrait:
@@ -11,11 +12,15 @@ trait exampleTrait:
   val v2: t2            // ditto...
   val v3: t3            // ...
   val v4: t4            // ...
+// end::exampleTrait[]
 
+// tag::exampleTraitUsage[]
 trait T1 { val name1: String }
 trait T2 extends T1 { val name2: String }
 case class C(name1: String, name2: String) extends T2
+// end::exampleTraitUsage[]
 
+// tag::example[]
 object example extends exampleTrait:
   type t1 = T1
   type t2 = T2
@@ -35,3 +40,4 @@ object example extends exampleTrait:
 assert(example.toString ==
   "example: v1 = v1: name1 = T1, v2 = v2: name1 = T1, " +
   "name2 = T2, v3 = C(1,2), v4 = Vector(C(3,4))")
+// end::example[]
