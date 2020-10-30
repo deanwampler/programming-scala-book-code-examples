@@ -1,7 +1,7 @@
 // src/main/scala/progscala3/rounding/Path.scala
 package progscala3.rounding
 
-import scala.annotation.alpha
+import scala.annotation.{alpha, infix}
 import java.io.File
 
 case class Path(
@@ -11,6 +11,8 @@ case class Path(
 
   @alpha("concat") def / (node: String): Path =                 // <3>
     copy(value + separator + node)                              // <4>
+
+  @infix def append(node: String): Path = /(node)               // <5>
 
 object Path:
   val defaultSeparator = sys.props("file.separator")

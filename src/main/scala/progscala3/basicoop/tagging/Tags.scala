@@ -1,5 +1,6 @@
 // src/main/scala/progscala3/basicoop/tagging/Tags.scala
 package progscala3.basicoop.tagging
+import scala.annotation.alpha
 
 /**
  * There are two variants of this example. This one uses extension methods, but
@@ -24,7 +25,7 @@ object Tagging:
     def untags[F[_], S, T](fst: F[Tagged[S, T]]): F[S] = fst
 
   /** A regular type alias for nice type syntax. Won't add runtime overhead. */
-  type @@[S, T] = Tagged[S, T]
+  @alpha("Tag") type @@[S, T] = Tagged[S, T]
 
   /** Now define extension methods for users to use. */
   extension [S, T](s: S) def tag: S @@ T = Tagged.tag(s)

@@ -1,5 +1,6 @@
 // src/main/scala/progscala3/basicoop/tagging/Tags.scala
 package progscala3.basicoop.tagging
+import scala.annotation.alpha
 
 object Tagging2:
   /** Tagged[S, T] means that S is tagged with T */
@@ -17,7 +18,7 @@ object Tagging2:
     def untags[F[_], S, T](fst: F[Tagged[S, T]]): F[S] = fst
 
   /** A regular type alias for nice type syntax. Won't add runtime overhead. */
-  type @@[S, T] = Tagged[S, T]
+  @alpha("Tag") type @@[S, T] = Tagged[S, T]
 
   /**
    * Instead of extension methods, use implicit conversions to value classes,

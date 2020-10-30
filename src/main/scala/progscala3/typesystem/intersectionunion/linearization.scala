@@ -10,5 +10,5 @@ trait T1 extends M:
 trait T2 extends M:
 	override def m(s: String): String = s"( ${super.m(s)} )"
 
-class C extends M:
+open class C extends M:                                         // <1>
 	override def m(s: String): String = s"{ ${super.m(s)} }"
