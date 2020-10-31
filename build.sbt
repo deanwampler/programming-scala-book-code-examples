@@ -30,21 +30,22 @@ lazy val root = project
     // The -rewrite and -migration options are best used while migrating
     // from Scala 2 to Scala 3, then removed.
     scalacOptions in Compile := Seq(
-      "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
       "-encoding", "utf-8",                // Specify character encoding used by source files.
+      "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
       "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
       "-feature",                          // Emit warning and location for usages of features that should be imported explicitly.
       // "-language:strictEquality",          // Require +derives Eql+ for using == or != comparisons
       "-explain",                          // Explain errors in more detail.
       "-explain-types",                    // Explain type errors in more detail.
+      "-indent",                           // Allow significant indentation.
       // "-noindent",                         // Require classical {...} syntax, indentation is not significant.
-      // "-old-syntax",                       // Require `(...)` around conditions.
       "-new-syntax",                       // Require `then` and `do` in control expressions.
+      // "-old-syntax",                       // Require `(...)` around conditions.
       // "-language:Scala2",                  // Compile Scala 2 code, highlight what needs updating
-      // "-migration",                        // Emit warning and location for migration issues from Scala 2.
+      "-migration",                        // Emit warning and location for migration issues from Scala 2.
       // "-rewrite",                          // Attempt to fix code automatically
-      // "-source", "3.0",                    // Choices: 3.0, 3.1, 3.0-migration, and 3.1-migration
       "-source", "3.1",                    // Choices: 3.0, 3.1, 3.0-migration, and 3.1-migration. I use 3.1 to force future deprecation warnings, etc.
+      // "-scalajs",                          // Compile in Scala.js mode (requires scalajs-library.jar on the classpath).
       // "-Ycheck-init",                      // Warn on field access before initialization
       "-Xfatal-warnings",                  // Fail on warnings, not just errors
       // "-Yexplicit-nulls"                   // For explicit nulls behavior.
