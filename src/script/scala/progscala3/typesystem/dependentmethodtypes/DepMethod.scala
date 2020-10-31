@@ -1,26 +1,18 @@
 // src/script/scala/progscala3/typesystem/dependentmethodtypes/DepMethod.scala
-sealed trait Sumable:
+trait Sum:
   type Element
-  def sum: Element
+  def sum(values: Seq[Element]): Element
 
-case class IntSumable(values: Seq[Int]) extends Sumable:
+object IntSum extends Sum:
   type Element = Int
-  val sum: Int = values.foldLeft(0)(_+_)
+  def sum(values: Seq[Int]): Int = values.foldLeft(0)(_+_)
 
-case class StringSumable(values: Seq[String]) extends Sumable:
+object StringSum extends Sum:
   type Element = String
-  val sum: String =
+  def sum(values: Seq[String]): String =
     values.foldLeft(new StringBuilder()) {
       (sb, s) => sb.append(s)
     }.toString
 
-object SummingService:
-  def sum(sumable: Sumable): sumable.Element = sumable.sum
-
-println("IntSumable:")
-val is = IntSumable(0 until 10)
-assert(SummingService.sum(is) == 45)
-
-println("StringSumable:")
-val ss = StringSumable((0 until 10).map(_.toString))
-assert(SummingService.sum(ss) == "0123456789")
+assert(IntSum.sum(0 until 10) == 45)
+assert(StringSum.sum((0 until 10).map(_.toString)) == "0123456789")

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typesystem/typepaths/TypePath.scala
+// src/script/scala/progscala3/typesystem/typepaths/TypePath.scala
 
 class Service:                                                       // <1>
   class Logger:
@@ -8,4 +8,4 @@ class Service:                                                       // <1>
 
 val s1 = new Service
 val s2 = new Service:
-	override val logger = s1.logger                                    // <3>
+	override val logger: Logger = s1.logger                            // <3>
