@@ -18,11 +18,11 @@ lazy val root = project
       "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.8",
       "ch.qos.logback"          % "logback-classic"  % "1.2.3",
       "org.typelevel"          %% "cats-core"        % "2.1.1",
-      "org.scalacheck"         %% "scalacheck"       % "1.14.1" % Test,
+      "org.scalacheck"         %% "scalacheck"       % "1.15.0" % Test,
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty
-      "org.scalameta"          %% "munit"            % "0.7.12" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.12" % Test
+      "org.scalameta"          %% "munit"            % "0.7.14" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.14" % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
 
