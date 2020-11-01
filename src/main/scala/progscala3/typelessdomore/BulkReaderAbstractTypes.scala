@@ -1,10 +1,11 @@
-// src/main/scala/progscala3/typelessdomore/AbstractTypes.scala
+// src/main/scala/progscala3/typelessdomore/BulkReaderAbstractTypes.scala
 package progscala3.typelessdomore
 import scala.io.Source
 
 abstract class BulkReader:
   type In                                                            // <1>
-  val source: In
+  /** The source of data to read. */
+  def source: In
   /** Read source and return a sequence of Strings */
   def read: Seq[String]
 

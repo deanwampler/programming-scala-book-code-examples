@@ -1,13 +1,15 @@
 // src/script/scala/progscala3/typesystem/bounds/ViewToContextBounds.scala
+// Not in the book; an example of using a context bound, given instances of
+// Writable, where a view bound could be used, but is not deprecated.
 
 object Serialization:
   case class Rem[A](value: A):
     def serialized: String = s"-- $value --"
 
   type Writable[A] = A => Rem[A]                                     // <1>
-  implicit val fromInt: Writable[Int]       = (i: Int)    => Rem(i)
-  implicit val fromFloat: Writable[Float]   = (f: Float)  => Rem(f)
-  implicit val fromString: Writable[String] = (s: String) => Rem(s)
+  given Writable[Int]    = (i: Int)    => Rem(i)
+  given Writable[Float]  = (f: Float)  => Rem(f)
+  given Writable[String] = (s: String) => Rem(s)
 
 import Serialization._
 
