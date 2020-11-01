@@ -2,16 +2,16 @@
 package progscala3.typesystem.selftype
 
 abstract class SubjectObserver:
-  type S <: Subject
+  type S <: Subject                                                  // <1>
   type O <: Observer
 
   trait Subject:
-    self: S =>                                                       // <1>
+    self: S =>                                                       // <2>
     private var observers = List[O]()
 
     def addObserver(observer: O) = observers ::= observer
 
-    def notifyObservers() = observers.foreach(_.receiveUpdate(self)) // <2>
+    def notifyObservers() = observers.foreach(_.receiveUpdate(self)) // <3>
 
   trait Observer:
     def receiveUpdate(subject: S): Unit

@@ -22,13 +22,11 @@ assert(c21.m("hello") == "[ ( { hello } ) ]")
 
 // tag::commutativity[]
 val c12a: C & T1 & T2 = c12
-val c12b: C & T1 & T2 = c21
-
-val c21a: C & T2 & T1 = c12
-val c21b: C & T2 & T1 = c21
-
-val _21ca: T2 & T1 & C = c12
-val _21cb: T2 & T1 & C = c21
+val c12b: C & T2 & T1 = c12
+val c12c: T1 & C & T2 = c12
+val c12d: T2 & C & T1 = c12
+val c12e: T1 & T2 & C = c12
+val c12f: T2 & T1 & C = c12
 // end::commutativity[]
 
 // tag::membership[]
@@ -36,14 +34,9 @@ val t1a: T1 = c12
 val t2a: T2 = c12
 val c2a: C  = c12
 
-val t1b: T1 = c21
-val t2b: T2 = c21
-val c2b: C  = c21
-
-val t12: T1 & T2 = c21
-val t21: T2 & T1 = c21
-val c1:  C  & T1 = c21
-val c2:  C  & T2 = c21
+val t12: T1 & T2 = c12
+val ct1: C  & T1 = c12
+val ct2: C  & T2 = c12
 // end::membership[]
 
 // tag::functions[]
@@ -53,9 +46,9 @@ assert(list12.map(f) == List("( [ { hello! } ] )", "[ ( { hello! } ) ]"))
 // end::functions[]
 
 // tag::covariance[]
-val list1: Seq[T1] = list12
-val list2: Seq[T2] = list12
-val list12b: Seq[T1] & Seq[T2] = list12
+val listt1t2: Seq[T1 & T2] = Seq(c12, c21)
+val list1: Seq[T1] = listt1t2
+val list2: Seq[T2] = listt1t2
+// end::covariance[]
 f(list1.head)   // Error: "Found T1, Required T1 & T2"
 f(list2.head)   // Error: "Found T2, Required T1 & T2"
-// tag::covariance[]

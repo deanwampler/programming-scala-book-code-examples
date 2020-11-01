@@ -9,7 +9,7 @@ trait Final extends Step
 
 case class Employee(
     name: String,
-    annualSalary: BigDecimal,     // Better than Doubles for money!
+    annualSalary: BigDecimal,    // Better than Doubles for money!
     taxRate: Double,             // Assume one rate covers all taxes.
     insurancePremiums: BigDecimal,
     _401kDeductionRate: Double,  // A US, pre-tax retirement savings plan.
@@ -24,7 +24,7 @@ case class Employee(
     |    post tax deductions: $$${postTaxDeductions.toDouble}%.2f
     |""".stripMargin
 
-case class Pay[S <: Step](
+case class Pay[S <: Step](                                 // <2>
     employee: Employee,
     grossPay: BigDecimal,           // This pay periods gross, before taxes...
     netPay:   BigDecimal,           // This pay periods net, after taxes...
@@ -42,8 +42,8 @@ case class Pay[S <: Step](
 
 object Payroll:
   def start(employee: Employee): Pay[PreTaxDeductions] =
-    val gross = employee.annualSalary / 12                 // <2>
-    Pay[PreTaxDeductions](employee, gross, gross)
+    val gross = employee.annualSalary / 12  // Compute monthly.
+    Pay[PreTaxDeductions](employee, gross, gross)  // net == gross to start.
 
   def minusInsurance(pay: Pay[PreTaxDeductions]): Pay[PreTaxDeductions] =
     val newNet = pay.netPay - pay.employee.insurancePremiums
@@ -70,7 +70,7 @@ object Payroll:
   import Payroll._
   val e = Employee("Buck Trends", 100000.0, 0.25, 200, 0.10, 100.0)
   val pay1 = start(e)
-  val pay2 = minus401k(pay1)                               // <3>
+  val pay2 = minus401k(pay1)                               // <4>
   val pay3 = minusInsurance(pay2)
   val pay4 = minusTax(pay3)
   val pay  = minusFinalDeductions(pay4)
