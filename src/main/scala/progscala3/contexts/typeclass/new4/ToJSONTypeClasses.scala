@@ -50,12 +50,6 @@ given pointToJSON as ToJSON[Point]:
   extension (point: Point) def toJSON(name: String, level: Int): String =
     ShapesToJSON(point, name, level)
 
-given shapeToJSON as ToJSON[Shape]:
-  extension (shape: Shape) def toJSON(name: String, level: Int): String = shape match
-    case c: Circle    => ShapesToJSON(c, name, level)
-    case r: Rectangle => ShapesToJSON(r, name, level)
-    case t: Triangle  => ShapesToJSON(t, name, level)
-
 given circleToJSON as ToJSON[Circle]:
   extension (circle: Circle) def toJSON(name: String, level: Int): String =
     ShapesToJSON(circle, name, level)
@@ -67,6 +61,12 @@ given rectangleToJSON as ToJSON[Rectangle]:
 given triangleToJSON as ToJSON[Triangle]:
   extension (tri: Triangle) def toJSON(name: String, level: Int): String =
     ShapesToJSON(tri, name, level)
+
+given shapeToJSON as ToJSON[Shape]:
+  extension (shape: Shape) def toJSON(name: String, level: Int): String = shape match
+    case c: Circle    => ShapesToJSON(c, name, level)
+    case r: Rectangle => ShapesToJSON(r, name, level)
+    case t: Triangle  => ShapesToJSON(t, name, level)
 
 @main def TryJSONTypeClasses() =
   val c = Circle(Point(1.0,2.0), 1.0)

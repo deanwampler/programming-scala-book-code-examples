@@ -12,16 +12,6 @@ given ToJSON[Point]:                                            // <1>
       |${indent}"y": "${point.y}"
       |$outdent}""".stripMargin
 
-given ToJSON[Shape]:
-  extension (shape: Shape) def toJSON(name: String, level: Int): String =
-    shape match
-      case c: Circle    =>
-        given_ToJSON_Circle.extension_toJSON(c)(name, level)
-      case r: Rectangle =>
-        given_ToJSON_Rectangle.extension_toJSON(r)(name, level)
-      case t: Triangle  =>
-        given_ToJSON_Triangle.extension_toJSON(t)(name, level)
-
 given ToJSON[Circle]:
   extension (circle: Circle) def toJSON(name: String, level: Int): String =
     val (outdent, indent) = indentation(level)
@@ -48,6 +38,17 @@ given ToJSON[Triangle]:
       |${indent}${tri.point3.toJSON("point3", level + 1)},
       |$outdent}""".stripMargin
 
+// tag::ToJSONShape[]
+given ToJSON[Shape]:
+  extension (shape: Shape) def toJSON(name: String, level: Int): String =
+    shape match
+      case c: Circle    =>
+        summon[ToJSON[Circle]].extension_toJSON(c)(name, level)
+      case r: Rectangle =>
+        summon[ToJSON[Rectangle]].extension_toJSON(r)(name, level)
+      case t: Triangle  =>
+        summon[ToJSON[Triangle]].extension_toJSON(t)(name, level)
+
 @main def TryJSONTypeClasses() =
   val c = Circle(Point(1.0,2.0), 1.0)
   val r = Rectangle(Point(2.0,3.0), 2, 5)
@@ -58,3 +59,4 @@ given ToJSON[Triangle]:
   println(c.toJSON("circle", 0))
   println(r.toJSON("rectangle", 0))
   println(t.toJSON("triangle", 0))
+// end::ToJSONShape[]
