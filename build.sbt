@@ -3,8 +3,9 @@ lazy val root = project
   .settings(
     name := "programming-scala-3rd-ed-code-examples",
     description := "Code examples for Programming Scala, Third Edition (O'Reilly).",
-    version := "3.0.0-170",
+    version := "3.0.0-180",
     scalaVersion := "0.27.0-RC1",
+    // scalaVersion := "3.0.0-M1",
     // baseVersion := "0.27.0-RC1" // "3.0",
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
@@ -29,7 +30,7 @@ lazy val root = project
     // For Scala 3 (Dotty)
     // The -rewrite and -migration options are best used while migrating
     // from Scala 2 to Scala 3, then removed.
-    scalacOptions in Compile := Seq(
+    scalacOptions := Seq(
       "-encoding", "utf-8",                // Specify character encoding used by source files.
       "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
       "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
