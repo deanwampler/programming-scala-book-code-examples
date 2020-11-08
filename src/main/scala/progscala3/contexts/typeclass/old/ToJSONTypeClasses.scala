@@ -1,5 +1,5 @@
 // tag::trait[]
-// src/main/scala/progscala3/contexts/typeclass/old/ToJSONOldTypeClasses.scala
+// src/main/scala/progscala3/contexts/typeclass/old/ToJSONTypeClasses.scala
 package progscala3.contexts.typeclass.old
 
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
@@ -54,7 +54,7 @@ implicit final class TriangleToJSON(
       |$outdent}""".stripMargin
 
 // tag::main[]
-@main def TryJSONOldTypeClasses() =
+@main def TryJSONTypeClasses() =
   val c = Circle(Point(1.0,2.0), 1.0)
   val r = Rectangle(Point(2.0,3.0), 2, 5)
   val t = Triangle(Point(0.0,0.0), Point(2.0,0.0), Point(1.0,2.0))
