@@ -45,7 +45,7 @@ given NumericMonoid[T](using num: Numeric[T]) as Monoid[T]:
 BigDecimal(3.14) <+> NumericMonoid.unit
 NumericMonoid[BigDecimal].unit <+> BigDecimal(3.14)
 NumericMonoid[BigDecimal].unit combine BigDecimal(3.14)
-// emd::numericdefinition[]
+// end::numericdefinition[]
 
 // tag::numericdefinition2[]
 given [T](using num: Numeric[T]) as Monoid[T]:
