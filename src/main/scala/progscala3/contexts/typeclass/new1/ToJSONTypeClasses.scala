@@ -1,3 +1,4 @@
+// tag::definitions1[]
 // src/main/scala/progscala3/contexts/typeclass/new1/ToJSONTypeClasses.scala
 package progscala3.contexts.typeclass.new1
 
@@ -19,7 +20,9 @@ given ToJSON[Circle]:                                           // <2>
       |${indent}${circle.center.toJSON("center", level + 1)},
       |${indent}"radius": ${circle.radius}
       |$outdent}""".stripMargin
+// end::definitions1[]
 
+// tag::definitions2[]
 given ToJSON[Rectangle]:
   extension (rect: Rectangle) def toJSON(name: String, level: Int): String =
     val (outdent, indent) = indentation(level)
@@ -37,9 +40,12 @@ given ToJSON[Triangle]:
       |${indent}${tri.point2.toJSON("point2", level + 1)},
       |${indent}${tri.point3.toJSON("point3", level + 1)},
       |$outdent}""".stripMargin
+// end::definitions2[]
 
+// tag::main[]
 @main def TryJSONTypeClasses() =
   println(Circle(Point(1.0,2.0), 1.0).toJSON("circle", 0))
   println(Rectangle(Point(2.0,3.0), 2, 5).toJSON("rectangle", 0))
   println(Triangle(
     Point(0.0,0.0), Point(2.0,0.0), Point(1.0,2.0)).toJSON("triangle", 0))
+// end::main[]
