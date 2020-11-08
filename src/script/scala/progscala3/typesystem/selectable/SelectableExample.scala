@@ -1,13 +1,43 @@
-// src/script/scala/progscala3/typesystem/selectable/SelectableExample.scala
+// tag::definitions[]
+// src/script/scala/progscala3/typesystem/selectable/SelectableSQL.scala
 
-trait Shape extends reflect.Selectable:
-	def area: Double
+import reflect.ClassTag
+import reflect.Selectable.reflectiveSelectable
+import collection.mutable.{HashMap => HMap}
 
-val square = new Shape:
-	def area: Double = side*side
-	def side = 10.0
-	val name = "Square!"
+object SQL:                                                          // <1>
+  open class Record(elems: (String, Any)*) extends reflect.Selectable:
+    private val fields = HMap.from(elems.toMap)                      // <2>
 
-assert(square.area == 100.0)
-assert(square.side == 10.0)
-assert(square.name == "Square!")
+    override def selectDynamic(name: String): Any = fields(name)     // <3>
+
+    override def applyDynamic(                                       // <4>
+        operation: String, paramTypes: ClassTag[?]*)(args: Any*): Any = {
+      val fieldName = operation.drop("update".length)  // remove prefix
+      val fname = fieldName.head.toLower +: fieldName.tail           // <5>
+      fields += fname -> args.head
+    }
+
+    override def toString: String = s"Record($fields)"
+
+type Person = SQL.Record {
+  val name: String                                                   // <6>
+  val age: Int
+  def updateName(newName: String): Unit                              // <7>
+  def updateAge(newAge: Int): Unit
+}
+// end::definitions[]
+
+// tag::person[]
+val person = new SQL.Record(                                  // <1>
+  "name" -> "Buck Trends", "age" -> 29).asInstanceOf[Person]
+person.name
+person.age
+person.selectDynamic("name")                                  // <2>
+// end::person[]
+
+// tag::updates[]
+person.updateName("Dean Wampler")
+person.updateAge(30)
+person
+// end::updates[]
