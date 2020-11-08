@@ -1,5 +1,5 @@
 // tag::definitions[]
-// src/script/scala/progscala3/typesystem/selectable/SelectableSQL.scala
+// src/script/scala/progscala3/dynamic/SelectableSQL.scala
 
 import reflect.ClassTag
 import reflect.Selectable.reflectiveSelectable
