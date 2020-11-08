@@ -4,7 +4,8 @@ package progscala3.contexts.typeclass.new4
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
 import progscala3.contexts.json.ToJSON
 
-// Refactoring to move most of the code into a helper object.
+// This example doesn't appear in the book. It shows yet another refactoring
+// to move most of the code into a helper object.
 
 // Protected implementation type, so it's hidden outside this package.
 protected object ShapesToJSON:
