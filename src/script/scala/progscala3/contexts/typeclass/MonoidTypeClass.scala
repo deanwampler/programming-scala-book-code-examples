@@ -34,30 +34,33 @@ IntMonoid.unit <+> 2              // 2
 // end::usage[]
 
 // tag::numericdefinition[]
-given NumericMonoid[T](using num: Numeric[T]) as Monoid[T]:
-  def unit: T = num.zero
-  extension (t: T) @infix def combine(other: T): T = num.plus(t, other)
+given NumericMonoid[T : Numeric] as Monoid[T]:
+  def unit: T = summon[Numeric[T]].zero
+  extension (t: T) @infix def combine(other: T): T =
+    summon[Numeric[T]].plus(t, other)
 
 2.2 <+> (3.3 <+> 4.4)             // 9.9
 (2.2 <+> 3.3) <+> 4.4             // 9.9
 (2.2 combine 3.3) combine 4.4     // 9.9
 
-BigDecimal(3.14) <+> NumericMonoid.unit
+BigDecimal(3.14) <+> NumericMonoid.unit               // <1>
 NumericMonoid[BigDecimal].unit <+> BigDecimal(3.14)
 NumericMonoid[BigDecimal].unit combine BigDecimal(3.14)
 // end::numericdefinition[]
 
 // tag::numericdefinition2[]
-given [T](using num: Numeric[T]) as Monoid[T]:
+given NumericMonoid[T](using num: Numeric[T]) as Monoid[T]:
   def unit: T = num.zero
   extension (t: T) @infix def combine(other: T): T = num.plus(t, other)
+// end::numericdefinition2[]
 
-2.2 <+> (3.3 <+> 4.4)             // 9.9
-(2.2 <+> 3.3) <+> 4.4             // 9.9
-(2.2 combine 3.3) combine 4.4     // 9.9
+// tag::numericdefinition3[]
+given [T : Numeric] as Monoid[T]:
+  def unit: T = summon[Numeric[T]].zero
+  extension (t: T) @infix def combine(other: T): T =
+    summon[Numeric[T]].plus(t, other)
 
 BigDecimal(3.14) <+> summon[Monoid[BigDecimal]].unit
 summon[Monoid[BigDecimal]].unit <+> BigDecimal(3.14)
 summon[Monoid[BigDecimal]].unit combine BigDecimal(3.14)
-// emd::numericdefinition2[]
-
+// end::numericdefinition3[]

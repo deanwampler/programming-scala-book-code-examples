@@ -1,3 +1,4 @@
+// tag::trait[]
 // src/main/scala/progscala3/contexts/typeclass/old/ToJSONOldTypeClasses.scala
 package progscala3.contexts.typeclass.old
 
@@ -5,12 +6,14 @@ import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
 import scala.language.implicitConversions                       // <1>
 
 trait ToJSONOld[T]:
-  def toJSON(name: String, level: Int): String                                // <2>
+  def toJSON(name: String, level: Int): String                  // <2>
 
   protected val INDENTATION = "  "
   protected def indentation(level: Int): (String,String) =
     (INDENTATION * level, INDENTATION * (level+1))
+// end::trait[]
 
+// tag::pointcircle[]
 implicit final class PointToJSON(
     point: Point) extends ToJSONOld[Point]:                     // <1>
   def toJSON(name: String, level: Int): String =
@@ -28,6 +31,7 @@ implicit final class CircleToJSON(
       |${indent}${circle.center.toJSON("center", level + 1)},
       |${indent}"radius": ${circle.radius}
       |$outdent}""".stripMargin
+// end::pointcircle[]
 
 implicit final class RectangleToJSON(
     rect: Rectangle) extends ToJSONOld[Rectangle]:
@@ -49,6 +53,7 @@ implicit final class TriangleToJSON(
       |${indent}${tri.point3.toJSON("point3", level + 1)},
       |$outdent}""".stripMargin
 
+// tag::main[]
 @main def TryJSONOldTypeClasses() =
   val c = Circle(Point(1.0,2.0), 1.0)
   val r = Rectangle(Point(2.0,3.0), 2, 5)
@@ -56,3 +61,4 @@ implicit final class TriangleToJSON(
   println(c.toJSON("circle", 0))
   println(r.toJSON("rectangle", 0))
   println(t.toJSON("triangle", 0))
+// end::main[]
