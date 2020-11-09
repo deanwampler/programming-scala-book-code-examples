@@ -3,14 +3,12 @@ package progscala3.typesystem.structuraltypes
 
 trait SubjectFunc:                                                   // <1>
 
-  type State
+  type State                                                         // <2>
 
-  type Observer = State => String                                    // <2>
+  private var observers: Vector[State => Unit] = Vector.empty        // <3>
 
-  private var observers: Vector[Observer] = Vector.empty
-
-  def addObserver(observer:Observer): Unit =
+  def addObserver(observer: State => Unit): Unit =
     observers :+= observer
 
-  def notifyObservers(state: State): Seq[String] =                   // <3>
+  def notifyObservers(state: State): Seq[Unit] =                     // <4>
     observers map (o => o(state))
