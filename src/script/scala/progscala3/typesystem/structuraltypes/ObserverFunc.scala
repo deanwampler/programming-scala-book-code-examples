@@ -8,10 +8,11 @@ case class Counter(start: Int = 0) extends SubjectFunc:              // <2>
     count += 1
     notifyObservers(count)
 
-var observerCount1 = 0                                               // <3>
-var observerCount2 = 0
-val observer1: Int => Unit = i => observerCount1 += 1
-val observer2: Int => Unit = i => observerCount2 += 1
+var observed1: Int = 0                                               // <3>
+var observed2: Int = 0
+
+val observer1: Int => Unit = i => observed1 += 1  // ignore i
+val observer2: Int => Unit = i => observed2 += 1  // ignore i
 
 val c = Counter()
 c.increment()
@@ -20,5 +21,5 @@ c.increment()
 c.addObserver(observer2)
 c.increment()
 assert(c.count == 3)
-assert(observerCount1 == 2)
-assert(observerCount2 == 1)
+assert(observed1 == 2)
+assert(observed2 == 1)
