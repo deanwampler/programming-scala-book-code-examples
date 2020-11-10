@@ -33,7 +33,7 @@ class ServerActor extends Actor with ActorLogging:                   // <1>
       context become processRequests                                 // <6>
 
   val processRequests: Receive =                                     // <7>
-    case c @ Request.Crash(n) => workers(n % workers.size) ! c
+    case c as Request.Crash(n) => workers(n % workers.size) ! c
     case Request.DumpAll =>                                          // <8>
       Future.traverse(workers)(_ ? Request.DumpAll)
         .onComplete(askHandler("State of the workers"))

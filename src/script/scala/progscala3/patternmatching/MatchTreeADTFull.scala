@@ -29,11 +29,11 @@ val result = for
   tree <- Seq(tree2, tree3)
 yield tree match
   case Branch2(
-    l @ Branch2(ll @ Leaf2(lli), lr @ Leaf2(lri)),              // <3>
-    r @ Branch2(_,_)) => s"1: l=$l, r=$r, ll=$ll, lli=$lli, lr=$lr, lri=$lri"
+    l as Branch2(ll as Leaf2(lli), lr as Leaf2(lri)),           // <3>
+    r as Branch2(_,_)) => s"1: l=$l, r=$r, ll=$ll, lli=$lli, lr=$lr, lri=$lri"
   case _: Branch2[?] => "2: Other Branch2"
   case Branch3(
-    l @ Branch3,
-    r @ Branch3(rl @ Leaf3(rli), rr @ Branch3(_,_))) =>
+    l as Branch3,
+    r as Branch3(rl as Leaf3(rli), rr as Branch3(_,_))) =>
       s"3: l=$l, r=$r, rl=$rl, rli=$rli, rr=$rr"
   case _:Branch3[?] => "4: Other Branch3"

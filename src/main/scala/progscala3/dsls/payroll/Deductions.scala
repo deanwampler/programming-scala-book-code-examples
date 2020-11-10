@@ -16,7 +16,7 @@ case class Deductions(                                          // <2>
   def net(annualSalary: Double): Double =                       // <4>
     val g = gross(annualSalary)
     (deductions foldLeft g) {
-      case (total, Deduction(deduction@_, amount)) => amount match
+      case (total, Deduction(_, amount)) => amount match
         case Percentage(value) => total - (g * value / 100.0)
         case Dollars(value) => total - value
     }

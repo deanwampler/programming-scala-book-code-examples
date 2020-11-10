@@ -2,6 +2,7 @@
 package progscala3.basicoop.people
 
 import org.scalacheck._
+import scala.language.adhocExtensions // Necessary to subclass Properties!!
 
 /** ScalaCheck example using ScalaCheck classes, not MUnit */
 object ZipCodeProperties extends Properties("ZipCode"):
