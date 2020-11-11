@@ -20,7 +20,7 @@ package progscala3.basicoop:
         rec.getOrElse(colName, throw InvalidFieldName(colName))
 
     object Record:                                                   // <6>
-      def make: Record = Map.empty
+      def empty: Record = Map.empty
 
     given FromTo[Int]:                                               // <7>
       def apply(any: Any): Int = any.asInstanceOf[Int]
@@ -30,7 +30,7 @@ package progscala3.basicoop:
       def apply(any: Any): String = any.asInstanceOf[String]
 
     @main def TryScalaDBRevisited =
-      val rec = Record.make.add("one" -> 1)
+      val rec = Record.empty.add("one" -> 1)
         .add("two" -> 2.2).add("three" -> "THREE!")
 
       val one   = rec.get[Int]("one")

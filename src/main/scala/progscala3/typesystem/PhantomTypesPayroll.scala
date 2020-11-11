@@ -9,11 +9,11 @@ trait Final extends Step
 
 case class Employee(
     name: String,
-    annualSalary: BigDecimal,    // Better than Doubles for money!
-    taxRate: Double,             // Assume one rate covers all taxes.
+    annualSalary: BigDecimal,
+    taxRate: Double,                   // Assume one rate covers all taxes
     insurancePremiums: BigDecimal,
-    _401kDeductionRate: Double,  // A US, pre-tax retirement savings plan.
-    postTaxDeductions: BigDecimal): // Other "after-tax" deductions
+    _401kDeductionRate: Double,        // Pre-tax retirement plans in the US
+    postTaxDeductions: BigDecimal):    // Other "after-tax" deductions
   override def toString: String = f"""
     |Employee: $name
     |  annual salary:         $$${annualSalary.toDouble}%.2f
@@ -26,8 +26,8 @@ case class Employee(
 
 case class Pay[S <: Step](                                 // <2>
     employee: Employee,
-    grossPay: BigDecimal,           // This pay periods gross, before taxes...
-    netPay:   BigDecimal,           // This pay periods net, after taxes...
+    grossPay: BigDecimal,         // This pay periods gross, before taxes
+    netPay:   BigDecimal,         // This pay periods net, after taxes
     taxes:    BigDecimal = 0,
     preTaxDeductions: BigDecimal = 0,
     postTaxDeductions: BigDecimal = 0):
@@ -41,7 +41,7 @@ case class Pay[S <: Step](                                 // <2>
     |""".stripMargin
 
 object Payroll:
-  def start(employee: Employee): Pay[PreTaxDeductions] =
+  def start(employee: Employee): Pay[PreTaxDeductions] =   // <3>
     val gross = employee.annualSalary / 12  // Compute monthly.
     Pay[PreTaxDeductions](employee, gross, gross)  // net == gross to start.
 

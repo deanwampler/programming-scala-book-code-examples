@@ -23,3 +23,4 @@ tmp/
 akka.log
 _site
 project/metals.sbt
+.bsp/
