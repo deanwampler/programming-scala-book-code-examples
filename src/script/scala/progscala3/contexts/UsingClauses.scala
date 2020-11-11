@@ -1,3 +1,4 @@
+// tag::definitions[]
 // src/script/scala/progscala3/contexts/UsingClauses.scala
 
 case class SortableSeq[A](seq: Seq[A]):                              // <1>
@@ -9,18 +10,21 @@ case class SortableSeq[A](seq: Seq[A]):                              // <1>
 
   def sortBy2[B : Ordering](transform: A => B): SortableSeq[A] =
     new SortableSeq(seq.sortBy(transform)(summon[Ordering[B]]))
+// end::definitions[]
 
-val seq = SortableSeq(Seq(1,3,5,2,4))
-
+// tag::defaultOrdering[]
 def defaultOrdering() =
+  val seq = SortableSeq(Seq(1,3,5,2,4))
   val expected = SortableSeq(Seq(5, 4, 3, 2, 1))
   assert(seq.sortBy1a(i => -i) == expected)
   assert(seq.sortBy1b(i => -i) == expected)
   assert(seq.sortBy2(i => -i)  == expected)
 
 defaultOrdering()
+// end::defaultOrdering[]
 
-def oddEvenOrdering() =
+// tag::oddEvenImplicitOrdering[]
+def oddEvenImplicitOrdering() =
   implicit val oddEven: Ordering[Int] = new Ordering[Int]:
     def compare(i: Int, j: Int): Int = i%2 compare j%2 match
       case 0 => i compare j
@@ -35,8 +39,10 @@ def oddEvenOrdering() =
   assert(seq.sortBy1b(i => -i)(using oddEven) == expected)
   assert(seq.sortBy2(i => -i)(using oddEven)  == expected)
 
-oddEvenOrdering()
+oddEvenImplicitOrdering()
+// end::oddEvenImplicitOrdering[]
 
+// tag::oddEvenGivenOrdering[]
 def evenOddGivenOrdering() =
   given evenOdd as Ordering[Int] = new Ordering[Int]:
     def compare(i: Int, j: Int): Int = i%2 compare j%2 match
@@ -44,13 +50,13 @@ def evenOddGivenOrdering() =
       case c => -c
 
   val expected = SortableSeq(Seq(4, 2, 5, 3, 1))
-  assert(seq.sortBy1a(i => -i) == expected)
+  assert(seq.sortBy1a(i => -i) == expected)                     // <1>
   assert(seq.sortBy1b(i => -i) == expected)
   assert(seq.sortBy2(i => -i)  == expected)
 
-  assert(seq.sortBy1a(i => -i)(using evenOdd) == expected)
+  assert(seq.sortBy1a(i => -i)(using evenOdd) == expected)      // <2>
   assert(seq.sortBy1b(i => -i)(using evenOdd) == expected)
   assert(seq.sortBy2(i => -i)(using evenOdd)  == expected)
 
 evenOddGivenOrdering()
-
+// end::oddEvenGivenOrdering[]

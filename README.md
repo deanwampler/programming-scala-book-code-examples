@@ -14,6 +14,7 @@
 | December 31, 2019 | Renamed the `progscala2` package to `progscala3` and reworked most of the `*.sc` scripts for better testability and other improvements |
 | March 1, 2020     | Completed conversion to Scala 3 |
 | March 20, 2020    | Started incorporating new Scala 3 syntax, idioms |
+| November 11, 2020 | First Scala `3.0.0-M1` milestone changes |
 
 [![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
