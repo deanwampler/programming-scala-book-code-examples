@@ -30,6 +30,7 @@ def oddEvenImplicitOrdering() =
       case 0 => i compare j
       case c => c
 
+  val seq = SortableSeq(Seq(1,3,5,2,4))
   val expected = SortableSeq(Seq(5, 3, 1, 4, 2))
   assert(seq.sortBy1a(i => -i) == expected)
   assert(seq.sortBy1b(i => -i) == expected)
@@ -49,6 +50,7 @@ def evenOddGivenOrdering() =
       case 0 => i compare j
       case c => -c
 
+  val seq = SortableSeq(Seq(1,3,5,2,4))
   val expected = SortableSeq(Seq(4, 2, 5, 3, 1))
   assert(seq.sortBy1a(i => -i) == expected)                     // <1>
   assert(seq.sortBy1b(i => -i) == expected)
