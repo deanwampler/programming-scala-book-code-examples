@@ -1,7 +1,7 @@
 // tag::definitions[]
 // src/script/scala/progscala3/contexts/UsingClauses.scala
 
-case class SortableSeq[A](seq: Seq[A]):                              // <1>
+case class SortableSeq[A](seq: Seq[A]):
   def sortBy1a[B](transform: A => B)(using o: Ordering[B]): SortableSeq[A] =
     new SortableSeq(seq.sortBy(transform)(o))
 
