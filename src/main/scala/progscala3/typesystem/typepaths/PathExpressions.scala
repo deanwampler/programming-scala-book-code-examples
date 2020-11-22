@@ -52,5 +52,5 @@ class C7:
   val  name1 = P1.O1.O2.name      // Okay  - a reference to a field
   type C1    = P1.O1.C1           // Okay  - a reference to a "leaf" class
   val  c1    = new P1.O1.C1       // Okay  - same reason
-  val name2 = P1.O1.C1.name    // ERROR - P1.O1.C1 isn't stable.
+  // val name2 = P1.O1.C1.name    // ERROR - P1.O1.C1 isn't stable.
 // end::stable[]
