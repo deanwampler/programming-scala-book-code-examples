@@ -27,6 +27,7 @@ summon[Elem[Some[String]] =:= String]
 summon[Elem[None.type] =:= Nothing]
 summon[Elem[Float] =:= Float]
 summon[Elem[Option[List[Long]]] =:= Long]                       // <2>
+summon[Elem[Option[List[Long]]] =:= List[Long]]                 // <3>
 // end::examples2[]
 
 // tag::matchdefrecur[]

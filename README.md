@@ -49,7 +49,7 @@ To keep these different kinds of files straight and to support building with SBT
 
 ## Other Notes about the Code
 
-You won't find many comments in the code, except of the form `// <1>`, which get converted into markers corresponding to footnotes in the book. All the descriptions of the code are in the book, so they aren't repeated as code comments.
+You won't find many comments in the code, except of the form `// <1>`, which get converted into markers corresponding to notes in the book. All the descriptions of the code are in the book, so they aren't repeated as code comments.
 
 Some files have sections marked like this:
 
@@ -58,7 +58,7 @@ Some files have sections marked like this:
 // end::section1[]
 ```
 
-These are used to include these section selectively in the book, rather than the whole file.
+These are used to mark sections that are selectively included in the book. Sometimes the whole file is included in sections, while other times the file has content that isn't included ("Bonus!!").
 
 ## Required and Optional Tools
 

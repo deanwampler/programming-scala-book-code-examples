@@ -1,5 +1,5 @@
 // tag::first[]
-// src/script/scala/progscala3/typesystem/matchtypes/DependentTypes.scala
+// src/script/scala/progscala3/typesystem/matchtypes/DepTypedMethods.scala
 
 type ElemR[X] = X match         // "R" for "recursive"
   case String => Char
@@ -8,8 +8,7 @@ type ElemR[X] = X match         // "R" for "recursive"
   case Option[t] => ElemR[t]
   case Any => X                                                 // <3>
 
-// ignore errors for empty strings and collections!
-def first[X](x: X): ElemR[X] = x match
+def first[X](x: X): ElemR[X] = x match                          // <4>
   case s: String      => s.charAt(0)
   case a: Array[t]    => first(a(0))
   case i: Iterable[t] => first(i.head)

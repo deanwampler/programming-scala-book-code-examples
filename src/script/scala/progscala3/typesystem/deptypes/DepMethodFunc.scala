@@ -1,5 +1,5 @@
-// end::ll[]
-// src/script/scala/progscala3/typesystem/dependenttypes/DepMethodFunc.scala
+// tag::ll[]
+// src/script/scala/progscala3/typesystem/deptypes/DepMethodFunc.scala
 trait LinkedList:
   type Item                                                          // <1>
   def head: Item                                                     // <2>
@@ -18,16 +18,28 @@ case class IntLinkedList(head: Int, tail: Option[IntLinkedList])     // <1>
 
 val ill = IntLinkedList(0,
   Some(IntLinkedList(1, Some(IntLinkedList(2, None)))))
+head(ill)
+tail(ill)
+head(tail(ill).get)                                                  // <2>
+head(tail(tail(ill).get).get)
+
+h(ill)
+t(ill)
+h(t(ill).get)
+h(t(t(ill).get).get)
+// end::intll[]
+
+// tag::intllasserts[]
 assert(head(ill) == 0)
 assert(tail(ill) == Some(IntLinkedList(1,Some(IntLinkedList(2,None)))))
-assert(head(tail(ill).get) == 1)                                     // <2>
+assert(head(tail(ill).get) == 1)
 assert(head(tail(tail(ill).get).get) == 2)
 
 assert(h(ill) == 0)
 assert(t(ill) == Some(IntLinkedList(1,Some(IntLinkedList(2,None)))))
 assert(h(t(ill).get) == 1)
 assert(h(t(t(ill).get).get) == 2)
-// end::intll[]
+// end::intllasserts[]
 
 // tag::stringll[]
 case class StringLinkedList(head: String, tail: Option[StringLinkedList])
@@ -36,6 +48,18 @@ case class StringLinkedList(head: String, tail: Option[StringLinkedList])
 
 val sll = StringLinkedList("zero", Some(StringLinkedList("one",
   Some(StringLinkedList("two", None)))))
+head(sll)
+tail(sll)
+head(tail(sll).get)
+head(tail(tail(sll).get).get)
+
+h(sll)
+t(sll)
+h(t(sll).get)
+h(t(t(sll).get).get)
+// end::stringll[]
+
+// tag::stringllasserts[]
 assert(head(sll) == "zero")
 assert(tail(sll) ==
   Some(StringLinkedList("one",Some(StringLinkedList("two",None)))))
@@ -47,8 +71,4 @@ assert(t(sll) ==
   Some(StringLinkedList("one",Some(StringLinkedList("two",None)))))
 assert(h(t(sll).get) == "one")
 assert(h(t(t(sll).get).get) == "two")
-// end::stringll[]
-
-
-val ill2 = IntLinkedList(0,
-  Some(StringLinkedList("one", Some(IntLinkedList(2, None)))))
+// end::stringllasserts[]
