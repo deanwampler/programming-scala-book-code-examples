@@ -54,8 +54,8 @@ val ff2: false || false = false
 // tag::opsany[]
 import scala.compiletime.ops.any._
 
-1+1 == 2
-1+1+1 == 2
+1+1 == 2                // All four return true
+1+1+1 != 2
 Int == Int
-Int == (Int, Double)
+Int != (Int, Double)
 // end::opsany[]

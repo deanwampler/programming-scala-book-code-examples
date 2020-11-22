@@ -1,11 +1,11 @@
 // src/script/scala/progscala3/typesystem/typepaths/TypePath.scala
 
-class Service:                                                       // <1>
+open class Service:                                                  // <1>
   class Logger:
-    def log(message: String): Unit = println(s"log: $message")       // <2>
+    def log(message: String): Unit = println(s"log: $message")
 
   val logger: Logger = new Logger
 
 val s1 = new Service
 val s2 = new Service:
-	override val logger: Logger = s1.logger                            // <3>
+  override val logger: Logger = s1.logger                            // <3>
