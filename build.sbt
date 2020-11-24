@@ -16,13 +16,13 @@ lazy val root = project
       "com.typesafe.akka"      %% "akka-actor"       % "2.6.10",
       "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.10",
       "ch.qos.logback"          % "logback-classic"  % "1.2.3",
-      "org.typelevel"          %% "cats-core"        % "2.3.0-M1",
+      "org.typelevel"          %% "cats-core"        % "2.3.0-M2",
       // Map over this sequence of Scala 2.X libraries & call withDottyCompat(...):
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty/Scala 3:
       "org.scalacheck"         %% "scalacheck"       % "1.15.1" % Test,
-      "org.scalameta"          %% "munit"            % "0.7.16" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.16" % Test
+      "org.scalameta"          %% "munit"            % "0.7.18" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.18" % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
 
@@ -53,7 +53,7 @@ lazy val root = project
       "-Xfatal-warnings",                  // Fail on warnings, not just errors
       // "-Yexplicit-nulls"                   // For explicit nulls behavior.
     ),
-    scalacOptions in (Compile, console) := scalacOptions.value,
-    javacOptions  ++= Seq(
+    Compile / console / scalacOptions := scalacOptions.value,
+    javacOptions ++= Seq(
       "-Xlint:unchecked", "-Xlint:deprecation") // Java 8: "-Xdiags:verbose"),
   )
