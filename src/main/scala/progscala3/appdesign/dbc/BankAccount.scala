@@ -1,14 +1,14 @@
 // src/main/scala/progscala3/appdesign/dbc/BankAccount.scala
 package progscala3.appdesign.dbc
 
-import scala.annotation.alpha
+import scala.annotation.targetName
 
 case class Money(val amount: Double):                                // <1>
   require(amount >= 0.0, s"Negative amount $amount not allowed")
 
-  @alpha("plus")  def +  (m: Money): Money = Money(amount + m.amount)
-  @alpha("minus") def -  (m: Money): Money = Money(amount - m.amount)
-  @alpha("ge")    def >= (m: Money): Boolean = amount >= m.amount
+  @targetName("plus")  def +  (m: Money): Money = Money(amount + m.amount)
+  @targetName("minus") def -  (m: Money): Money = Money(amount - m.amount)
+  @targetName("ge")    def >= (m: Money): Boolean = amount >= m.amount
 
   override def toString = "$"+amount
 

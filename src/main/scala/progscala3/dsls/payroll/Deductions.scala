@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/dsls/payroll/Deductions.scala
 package progscala3.dsls.payroll
-import scala.annotation.alpha
+import scala.annotation.targetName
 
 case class Deduction(name: String, amount: Amount):             // <1>
   override def toString = s"$name: $amount"

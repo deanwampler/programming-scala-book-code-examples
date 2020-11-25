@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/contexts/json/JSONBuilder.scala
 package progscala3.contexts.json
-import scala.annotation.alpha
+import scala.annotation.targetName
 
 @main def TryJSONBuilder(): Unit =
   val js = obj {
@@ -57,7 +57,7 @@ given ValidJSONValue[JSONObject]
 given ValidJSONValue[JSONArray]
 
 extension [T : ValidJSONValue] (key: String)                           // <5>
-  @alpha("arrow") def ->(element: T)(using jc: JSONContainer) =
+  @targetName("arrow") def ->(element: T)(using jc: JSONContainer) =
     jc.add(JSONKeyedElement(key, element))
 
 def obj(init: JSONObject ?=> Unit) =                                   // <6>

@@ -3,7 +3,7 @@
 package progscala3.contexts
 import scala.language.strictEquality
 
-enum Tree[T] derives Eql:
+enum Tree[T] derives CanEqual:
   case Branch(left: Tree[T], right: Tree[T])
   case Leaf(elem: T)
 
@@ -16,7 +16,7 @@ enum Tree[T] derives Eql:
   // assert(l1 != l2)   // Compilation error!
   assert(l1 != b)
   assert(b  == b)
-  println(s"For String, String: ${implicitly[Eql[Tree[String],Tree[String]]]}")
-  println(s"For Int, Int: ${implicitly[Eql[Tree[Int],Tree[Int]]]}")
+  println(s"For String, String: ${summon[CanEqual[Tree[String],Tree[String]]]}")
+  println(s"For Int, Int: ${summon[CanEqual[Tree[Int],Tree[Int]]]}")
   // Compilation error:
-  // println(s"For String, Int: ${implicitly[Eql[Tree[String],Tree[Int]]]}")
+  // println(s"For String, Int: ${summon[CanEqual[Tree[String],Tree[Int]]]}")

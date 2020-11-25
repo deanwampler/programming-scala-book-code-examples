@@ -3,7 +3,7 @@
 package progscala3.contexts
 
 object GenericExtensionMethods:
-  type Eq[T] = Eql[T, T]                                             // <1>
+  type Eq[T] = CanEqual[T, T]                                        // <1>
 
   extension [A: Ordering](seq: Seq[A])                               // <2>
     def sortedUnique: Seq[A] =

@@ -1,15 +1,10 @@
+// tag::revisited[]
 // src/script/scala/progscala3/contexts/InfixTypeRevisited.scala
-import scala.annotation.alpha
+import scala.annotation.targetName
 
-@alpha("BangBang") case class !![A,B](a: A, b: B)          // <1>
-extension [A,B] (a: A) def !!(b: B): A !! B = !!(a, b)     // <2>
+@targetName("TIEFighter") case class <+>[A,B](a: A, b: B)       // <1>
+extension [A,B] (a: A) def <+>(b: B): A <+> B = new <+>(a, b)   // <2>
 
-val ab1: Int !! String = 1 !! "one"                        // <3>
-val ab2: Int !! String = !!(1, "one")
-
-import scala.annotation.infix
-
-@infix case class bangbang[A,B](a: A, b: B)
-extension [A,B] (a: A) def bangbang(b: B): A bangbang B = bangbang(a, b)
-val ab3: Int bangbang String = 1 bangbang "one"
-val ab4: Int bangbang String = bangbang(1, "one")
+val ab1: Int <+> String = 1 <+> "one"                           // <3>
+val ab2: Int <+> String = new <+>(1, "one")                     // <4>
+// end::revisited[]

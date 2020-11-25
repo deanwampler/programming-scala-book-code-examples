@@ -1,10 +1,10 @@
 // src/main/scala/progscala3/typesystem/PhantomTypesPayrollPipeline.scala
 package progscala3.typesystem.payroll
-import scala.annotation.alpha
+import scala.annotation.targetName
 
 object Pipeline:
   implicit class toPiped[V](value: V):
-    @alpha("pipe") def |>[R] (f : V => R) = f(value)
+    @targetName("pipe") def |>[R] (f : V => R) = f(value)
 
 @main def TryPhantomTypesPipeline =
   import Pipeline._

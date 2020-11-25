@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/objectsystem/equality/EqlBug.scala
+// src/script/scala/progscala3/objectsystem/equality/CanEqualBug.scala
 
 case class X(name: String)                                           // <1>
 

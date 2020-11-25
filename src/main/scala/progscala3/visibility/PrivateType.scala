@@ -3,7 +3,7 @@
 package progscala3.visibility.privatetype:
 
   package scopeA:
-    class PrivateClass1(private[PrivateClass1] val privateField1: Int) derives Eql:
+    class PrivateClass1(private[PrivateClass1] val privateField1: Int) derives CanEqual:
       private[PrivateClass1] val privateField2 = 1
 
       def equalFields(other: PrivateClass1) =
@@ -12,7 +12,7 @@ package progscala3.visibility.privatetype:
         // The following is a compilation error:
         // && (nested == other.nested)
 
-      class Nested derives Eql:
+      class Nested derives CanEqual:
         private[Nested] val nestedField = 1
 
       private[PrivateClass1] val nested = new Nested

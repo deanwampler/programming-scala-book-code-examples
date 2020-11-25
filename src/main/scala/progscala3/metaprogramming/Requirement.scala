@@ -43,7 +43,7 @@ object requirement:
       inline message: String): Unit = ${ checkReq('predicate, 'message) }
 
   def checkReq(predicate: Expr[Boolean], message: Expr[String])(
-    using QuoteContext) = '{
+    using Quotes) = '{
       if !($predicate) then
         throw RequirementFailure(${showExpr(predicate)}, ${showExpr(message)})
     }
@@ -51,6 +51,6 @@ object requirement:
   /** You already know a requirement has failed, so just throw the exception. */
   def fail(message: String): Nothing = throw RequirementFailure(message)
 
-  private def showExpr[T](expr: Expr[T])(using QuoteContext): Expr[String] =
+  private def showExpr[T](expr: Expr[T])(using Quotes): Expr[String] =
     val code: String = expr.show
     Expr(code)

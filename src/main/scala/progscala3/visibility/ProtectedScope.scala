@@ -3,7 +3,7 @@
 package progscala3.visibility.protectedscope:
 
   package scopeA:
-    class ProtectedClass1(protected val protectedField1: Int) derives Eql:
+    class ProtectedClass1(protected val protectedField1: Int) derives CanEqual:
       protected val protectedField2 = 1
 
       def equalFields(other: ProtectedClass1) =
@@ -12,7 +12,7 @@ package progscala3.visibility.protectedscope:
         // The following is a compilation error:
         // && (nested == other.nested)
 
-      class Nested derives Eql:
+      class Nested derives CanEqual:
         protected val nestedField = 1
 
       protected val nested = new Nested

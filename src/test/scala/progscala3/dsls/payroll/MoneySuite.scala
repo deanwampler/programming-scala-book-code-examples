@@ -16,10 +16,9 @@ class MoneySuite extends FunSuite:
   val seq1 = Seq("00","10","25","50")
 
   test("Percentage can be constructed with a floating point literal") {
-    val p1: Percentage = 0.25
-    assert(p1 == Percentage(0.25))
-    val p2: Percentage = 1.123456e3
-    assert(p2 == Percentage(1.123456e3))
+    assert(0.25.percent == Percentage(0.25))
+    assert((0.25 percent) == Percentage(0.25))
+    assert(1.123456e3.percent == Percentage(1.123456e3))
   }
 
   test("Percentage.toString returns the value with % appended") {
@@ -47,10 +46,9 @@ class MoneySuite extends FunSuite:
   }
 
   test("Dollars can be constructed with a floating point literal") {
-    val d1: Dollars = 0.25
-    assert(d1 == Dollars(0.25))
-    val d2: Dollars = 1.123456e3
-    assert(d2 == Dollars(1.123456e3))
+    assert(0.25.dollars == Dollars(0.25))
+    assert((0.25 dollars) == Dollars(0.25))
+    assert(1.123456e3.dollars == Dollars(1.123456e3))
   }
 
   test("Dollars.toString returns the value with $ prepended") {

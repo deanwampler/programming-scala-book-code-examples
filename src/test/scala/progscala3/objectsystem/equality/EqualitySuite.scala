@@ -5,7 +5,7 @@ import munit._
 
 class EqualitySuite extends FunSuite:
 
-  case class Person(firstName: String, lastName: String, age: Int) derives Eql
+  case class Person(firstName: String, lastName: String, age: Int) derives CanEqual
 
   val p1a = Person("Dean", "Wampler", 29)
   val p1b = Person("Dean", "Wampler", 29)
@@ -90,7 +90,7 @@ class EqualitySuite extends FunSuite:
     assert((Seq(1, 2) == Seq(1, 2)) == true)
   }
 
-  test("Equals doesn't work for Maps (because they don't derive Eql)") {
+  test("Equals doesn't work for Maps (because they don't derive CanEqual)") {
     assert((Map("one" -> 1, "two" -> 2).equals(
       Map("one" -> 1, "two" -> 2)) == true))
   }

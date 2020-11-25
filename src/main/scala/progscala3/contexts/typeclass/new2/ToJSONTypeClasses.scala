@@ -43,11 +43,11 @@ given ToJSON[Shape]:
   extension (shape: Shape) def toJSON(name: String, level: Int): String =
     shape match
       case c: Circle    =>
-        summon[ToJSON[Circle]].extension_toJSON(c)(name, level)
+        summon[ToJSON[Circle]].toJSON(c)(name, level)
       case r: Rectangle =>
-        summon[ToJSON[Rectangle]].extension_toJSON(r)(name, level)
+        summon[ToJSON[Rectangle]].toJSON(r)(name, level)
       case t: Triangle  =>
-        summon[ToJSON[Triangle]].extension_toJSON(t)(name, level)
+        summon[ToJSON[Triangle]].toJSON(t)(name, level)
 
 @main def TryJSONTypeClasses() =
   val c = Circle(Point(1.0,2.0), 1.0)

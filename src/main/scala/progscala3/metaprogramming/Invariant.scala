@@ -43,7 +43,7 @@ object invariant:
 
   def failImpl[T](
       predicate: Expr[Boolean], block: Expr[T], before: Expr[Boolean])(
-      using QuoteContext) = '{
+      using Quotes) = '{
         throw InvariantFailure(
           ${showExpr(predicate)},
           ${showExpr(block)},
@@ -51,6 +51,6 @@ object invariant:
       }
 
   /* Return a string for the expression */
-  private def showExpr[T](expr: Expr[T])(using QuoteContext): Expr[String] =
+  private def showExpr[T](expr: Expr[T])(using Quotes): Expr[String] =
     val code: String = expr.show
     Expr(code)

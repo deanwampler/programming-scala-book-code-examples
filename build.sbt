@@ -3,8 +3,8 @@ lazy val root = project
   .settings(
     name := "programming-scala-3rd-ed-code-examples",
     description := "Code examples for Programming Scala, Third Edition (O'Reilly).",
-    version := "3.0.0-200",
-    scalaVersion := "3.0.0-M1",
+    version := "3.0.0-201",
+    scalaVersion := "3.0.0-M2",
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
     organizationHomepage := Some(url("http://programming-scala.org")),
@@ -21,8 +21,8 @@ lazy val root = project
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty/Scala 3:
       "org.scalacheck"         %% "scalacheck"       % "1.15.1" % Test,
-      "org.scalameta"          %% "munit"            % "0.7.18" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.18" % Test
+      "org.scalameta"          %% "munit"            % "0.7.19" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.19" % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
 
@@ -39,7 +39,7 @@ lazy val root = project
       "-feature",                          // Emit warning and location for usages of features that should be imported explicitly.
       // "-language:strictEquality",          // Require +derives Eql+ for using == or != comparisons
       "-explain",                          // Explain errors in more detail.
-      "-explain-types",                    // Explain type errors in more detail.
+      // "-explain-types",                    // Explain type errors in more detail.
       "-indent",                           // Allow significant indentation.
       // "-noindent",                         // Require classical {...} syntax, indentation is not significant.
       "-new-syntax",                       // Require `then` and `do` in control expressions.

@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/dsls/payroll/Money.scala
 package progscala3.dsls.payroll
-import scala.annotation.alpha
+import scala.annotation.targetName
 
 sealed trait Amount:                                            // <1>
   def amount: Double
@@ -24,7 +24,7 @@ given Floating[Dollars]:                                        // <6>
   def fromDigits(digits: String): Dollars = Dollars(digits.toDouble)
 
 implicit class dsc(sc: StringContext):                          // <7>
-  @alpha("dollars") def $(tokens: Any*) =
+  @targetName("dollars") def $(tokens: Any*) =
     val str = StringContextUtil.foldTokens(tokens.toSeq, sc.parts)
     new Dollars(str.toDouble)
 

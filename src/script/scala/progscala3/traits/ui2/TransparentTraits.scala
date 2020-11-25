@@ -1,11 +1,11 @@
-// src/script/scala/progscala3/traits/ui2/IntersectionTypesSuperTraits.scala
+// src/script/scala/progscala3/traits/ui2/TransparentTraits.scala
 
 trait Base1
 trait Base2
 class Class extends Base1 with Base2
 
-super trait SBase1
-super trait SBase2
+transparent trait SBase1
+transparent trait SBase2
 class SClass extends SBase1 with SBase2
 
 val c = new Class
@@ -23,7 +23,7 @@ val v2 = m(false)
 import progscala3.traits.ui2._
 import progscala3.traits.observer._
 
-super trait S
+transparent trait S
 val button1 = new Button("Button!")
     with ObservableClicks with VetoableClicks(maxAllowed = 2):
   def updateUI(): String = s"$label clicked"
@@ -40,5 +40,5 @@ class Text(val label: String, value: String) extends Widget
 trait Flag
 val t1 = new Text("foo", "bar") with Flag
 
-super trait SFlag
+transparent trait SFlag
 val t2 = new Text("foo", "bar") with SFlag
