@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/DaysEnum.scala
+// src/main/scala/progscala3/rounding/WeekDay.scala
 package progscala3.rounding
 
 /**

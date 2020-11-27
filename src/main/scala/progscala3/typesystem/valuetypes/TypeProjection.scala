@@ -11,6 +11,6 @@ trait Service:                                                       // <3>
   type Log <: Logger
   val logger: Log
 
-class Service1 extends Service:                                      // <4>
+class ConsoleService extends Service:                                // <4>
   type Log = ConsoleLogger
   val logger: ConsoleLogger = new ConsoleLogger

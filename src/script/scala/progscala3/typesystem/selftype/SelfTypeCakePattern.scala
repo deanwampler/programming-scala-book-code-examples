@@ -21,7 +21,7 @@ trait WebUI extends UI:
 trait App:
   // The self-type annotation specifies what traits that must be mixed into
   // App to create concrete instances:
-  self: Persistence with Midtier with UI =>
+  self: Persistence & Midtier & UI =>
 
   // Call methods that exist in the mixin traits. The self-type annotation
   // ensures they exist.

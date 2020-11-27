@@ -1,13 +1,15 @@
+// tag::definitions[]
 // src/script/scala/progscala3/typesystem/recursivetypes/FBound.scala
 
 trait Parent[T <: Parent[T]]:                                        // <1>
-  def make: T
+  def make: T                                                        // <2>
 
 case class Child1(s: String) extends Parent[Child1]:                 // <2>
   def make: Child1 = Child1(s"Child1: make: $s")
 
 case class Child2(s: String) extends Parent[Child2]:
   def make: Child2 = Child2(s"Child2: make: $s")
+// end::definitions[]
 
 val c1  = Child1("c1")            // c1: Child1 = Child1(c1)
 val c2  = Child2("c2")            // c2: Child2 = Child2(c2)

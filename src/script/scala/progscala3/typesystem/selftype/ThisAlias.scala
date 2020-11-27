@@ -1,11 +1,11 @@
 // src/script/scala/progscala3/typesystem/selftype/ThisAlias.scala
 
 class C1:
-  self =>                                                            // <1>
+  c1this =>                                                          // <1>
   def talk(message: String): String = "C1.talk: " + message
   class C2:
     class C3:
-      def talk(message: String) = self.talk("C3.talk: " + message)   // <2>
+      def talk(message: String) = c1this.talk("C3.talk: " + message) // <2>
     val c3 = new C3
   val c2 = new C2
 

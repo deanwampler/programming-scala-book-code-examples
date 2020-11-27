@@ -1,8 +1,15 @@
 // src/script/scala/progscala3/typesystem/valuetypes/TypeProjection.scala
 import progscala3.typesystem.valuetypes._
 
-val l1: Service.Log   = new ConsoleLogger    // ERROR: No Service "value"
-val l2: Service1.Log  = new ConsoleLogger    // ERROR: No Service1 "value"
-val l3: Service#Log   = new ConsoleLogger    // ERROR: Type mismatch
-val l4: Service1#Log  = new ConsoleLogger    // Works!
+// The first two attempts try to reference a member of a value, but these are
+// types, not values:
+val l1: Service.Log        = new ConsoleLogger  // ERROR: No Service
+val l2: ConsoleService.Log = new ConsoleLogger  // ERROR: No ConsoleService
+
+// This attempt doesn't type check:
+
+val l3: Service#Log        = new ConsoleLogger
+
+// Success!
+val l4: ConsoleService#Log = new ConsoleLogger
 

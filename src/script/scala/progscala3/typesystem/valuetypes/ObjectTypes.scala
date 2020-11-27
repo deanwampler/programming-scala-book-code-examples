@@ -10,4 +10,4 @@ val c1 = C("c1")
 println(c1)
 val c1b: c1.type = c1                                           // <2>
 println(c1b)
-val c1b: c1.type = C("c1b")                                     // <3>
+val c1c: c1.type = C("c1")                                      // <3>
