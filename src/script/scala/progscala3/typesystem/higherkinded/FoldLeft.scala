@@ -20,4 +20,5 @@ FoldLeft(Vector(1 -> "one", 2 -> "two", 3 -> "three"))(0 -> "(0)"){
   case ((xs, ys), (x,y)) => (xs+x, s"($ys $y)")
 }
 FoldLeft(Some(1.1))(0.0)(_+_)
-FoldLeft(None)(0.0)(_+_)
+val none: Option[Int] = None
+FoldLeft(none)(0.0)(_+_)                                   // <2>

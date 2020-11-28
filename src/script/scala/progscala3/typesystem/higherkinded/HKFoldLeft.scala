@@ -45,7 +45,8 @@ HKFoldLeft(none)(0.0)(_+_)
 
 // tag::usage2[]
 given Folder[[X] =>> Either[String, X]]:
-  def apply[IN, OUT](err: Either[String, IN], seed: OUT, f: (OUT, IN) => OUT): OUT = err match
+  def apply[IN, OUT](err: Either[String, IN],
+      seed: OUT, f: (OUT, IN) => OUT): OUT = err match
     case Right(t) => f(seed, t)
     case _ => seed
 
