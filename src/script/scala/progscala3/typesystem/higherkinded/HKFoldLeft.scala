@@ -2,21 +2,58 @@
 // src/script/scala/progscala3/typesystem/higherkinded/HKFoldLeft.scala
 
 object HKFoldLeft:       // "HK" for "higher-kinded"
-  def apply[T, M[T]](m: M[T])(seed: T)(f: (T, T) => T): T = m match  // <1>
-    case iter: Iterable[T] =>                                        // <2>
+
+  trait Folder[-M[_]]:                                          // <1>
+    def apply[IN, OUT](m: M[IN], seed: OUT, f: (OUT, IN) => OUT): OUT
+
+  given Folder[Iterable]:                                       // <2>
+    def apply[IN, OUT](iter: Iterable[IN],
+        seed: OUT, f: (OUT, IN) => OUT): OUT =
       var accumulator = seed
       iter.foreach(t => accumulator = f(accumulator, t))
       accumulator
-    case array: Array[T] @unchecked => apply(array.toSeq)(seed)(f)
-    case opt: Option[T] => opt match
+
+  given Folder[Option]:                                         // <3>
+    def apply[IN, OUT](opt: Option[IN],
+        seed: OUT, f: (OUT, IN) => OUT): OUT = opt match
       case Some(t) => f(seed, t)
       case None => seed
+
+  def apply[IN, OUT, M[IN]](m: M[IN])(                          // <4>
+      seed: OUT)(f: (OUT, IN) => OUT)(using Folder[M]): OUT =
+    summon[Folder[M]](m, seed, f)
 // end::definitions[]
 
+// tag::usage1[]
+import HKFoldLeft.{given, _}
+
+summon[Folder[Iterable]]
+summon[Folder[Option]]
+
 HKFoldLeft(List(1, 2, 3))(0)(_+_)
-HKFoldLeft(Array(1, 2, 3))(0)(_+_)      // toSeq not required
-HKFoldLeft(Vector(1 -> 10, 2 -> 20, 3 -> 30))(0 -> 0){
-  case ((xs, ys), (x,y)) => (xs+x, ys+y)
+HKFoldLeft(List(1, 2, 3))("(0)")((s, i) => s"($s $i)")
+HKFoldLeft(Array(1, 2, 3).toSeq)(0)(_+_)
+HKFoldLeft(Array(1, 2, 3).toSeq)("(0)")((s, i) => s"($s $i)")
+
+HKFoldLeft(Vector(1 -> "one", 2 -> "two", 3 -> "three"))(0 -> "(0)"){
+  case ((xs, ys), (x,y)) => (xs+x, s"($ys $y)")
 }
 HKFoldLeft(Some(1.1))(0.0)(_+_)
-HKFoldLeft(None)(0.0)(_+_)
+val none: Option[Int] = None
+HKFoldLeft(none)(0.0)(_+_)
+// end::usage1[]
+
+// tag::usage2[]
+given Folder[[X] =>> Either[String, X]]:
+  def apply[IN, OUT](err: Either[String, IN], seed: OUT, f: (OUT, IN) => OUT): OUT = err match
+    case Right(t) => f(seed, t)
+    case _ => seed
+
+summon[Folder[[X] =>> Either[String, X]]]
+
+val bad: Either[String,Int] = Left("error")
+val good: Either[String,Int] = Right(11)
+HKFoldLeft(bad)(0.0)(_+_)
+HKFoldLeft(good)(2.0)(_+_)
+// tag::usage2[]
+
