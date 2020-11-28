@@ -20,8 +20,8 @@ trait X:
   var xx = "xx"
   def setXX(x:String): Unit = xx = x
 
-class C2 extends C1
-class C3 extends C2 with X:
+open class C2 extends C1
+open class C3 extends C2 with X:
   def setX3(x:String): Unit = super.setX1(x)
   def setX4(x:String): Unit = C3.super.setX1(x)
   def setX5(x:String): Unit = C3.super[C2].setX1(x)
@@ -34,7 +34,7 @@ class C3 extends C2 with X:
 open class C4:
   class C5
 
-class C6 extends C4:
+open class C6 extends C4:
   val c5a: C5 = new C5
   val c5b: C5 = new super.C5
 // end::super2[]
@@ -48,7 +48,7 @@ package P1:
     class C1:
       val name = "name"
 
-class C7:
+open class C7:
   val  name1 = P1.O1.O2.name      // Okay  - a reference to a field
   type C1    = P1.O1.C1           // Okay  - a reference to a "leaf" class
   val  c1    = new P1.O1.C1       // Okay  - same reason

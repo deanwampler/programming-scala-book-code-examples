@@ -12,7 +12,7 @@ val t: (ll: LinkedList) => Option[LinkedList] = _.tail
 // end::ll[]
 
 // tag::intll[]
-case class IntLinkedList(head: Int, tail: Option[IntLinkedList])     // <1>
+case class IntLinkedList(head: Int, tail: Option[IntLinkedList])
     extends LinkedList:
   type Item = Int
 
@@ -20,7 +20,7 @@ val ill = IntLinkedList(0,
   Some(IntLinkedList(1, Some(IntLinkedList(2, None)))))
 head(ill)
 tail(ill)
-head(tail(ill).get)                                                  // <2>
+head(tail(ill).get)
 head(tail(tail(ill).get).get)
 
 h(ill)

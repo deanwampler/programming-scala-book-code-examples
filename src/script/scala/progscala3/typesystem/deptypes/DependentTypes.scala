@@ -38,7 +38,7 @@ list.tail.tail.tail
 // This example is mentioned in the book but not shown. It is implemented without
 // dependent typing, essentially like the library's `List` type. This is easier
 // to understand than DTList above, but as shown in the comments below (and
-// discussed in the book), you pay penalties!
+// discussed in the book), you pay penalties due to weaker typing!
 object SList:        // "S" for "simple list"
   sealed trait SList[+T]:
     def size: Int
@@ -58,10 +58,10 @@ object SList:        // "S" for "simple list"
 
 val slist = 1 +: 2.2 +: SList.SNil
 slist.size
-slist.head                // Returns AnyVale instead of Int
+slist.head                // Returns AnyVal instead of Int
 slist.tail
 slist.tail.size
-slist.tail.head           // Returns AnyVale instead of Double
+slist.tail.head           // Returns AnyVal instead of Double
 slist.tail.tail
 slist.tail.tail.size
 

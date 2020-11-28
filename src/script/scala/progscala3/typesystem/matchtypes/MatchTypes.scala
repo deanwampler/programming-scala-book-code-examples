@@ -3,8 +3,8 @@
 
 type Elem[X] = X match                                          // <1>
   case String => Char                                           // <2>
-  case Array[t] => t
   case IterableOnce[t] => t                                     // <3>
+  case Array[t] => t
   case ? => X                                                   // <4>
 // end::matchdef1[]
 
@@ -26,6 +26,7 @@ summon[Elem[Option[String]] =:= String]
 summon[Elem[Some[String]] =:= String]
 summon[Elem[None.type] =:= Nothing]
 summon[Elem[Float] =:= Float]
+
 summon[Elem[Option[List[Long]]] =:= Long]                       // <2>
 summon[Elem[Option[List[Long]]] =:= List[Long]]                 // <3>
 // end::examples2[]
@@ -35,8 +36,8 @@ summon[Elem[Option[List[Long]]] =:= List[Long]]                 // <3>
 // breaks or changes in the examples!
 type ElemR[X] = X match         // "R" for "recursive"
   case String => Char
-  case Array[t] => ElemR[t]
   case IterableOnce[t] => ElemR[t]
+  case Array[t] => ElemR[t]
   case ? => X
 // end::matchdefrecur[]
 
