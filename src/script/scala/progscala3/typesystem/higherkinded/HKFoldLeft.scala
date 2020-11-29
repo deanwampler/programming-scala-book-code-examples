@@ -39,8 +39,8 @@ HKFoldLeft(Vector(1 -> "one", 2 -> "two", 3 -> "three"))(0 -> "(0)"){
   case ((xs, ys), (x,y)) => (xs+x, s"($ys $y)")
 }
 HKFoldLeft(Some(1.1))(0.0)(_+_)
-val none: Option[Int] = None
-HKFoldLeft(none)(0.0)(_+_)
+HKFoldLeft(Option.empty[Int])(0.0)(_+_)
+
 // end::usage1[]
 
 // tag::usage2[]

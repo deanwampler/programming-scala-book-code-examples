@@ -87,12 +87,14 @@ class FunctionF2A[A2,B1]
 
 /**
  * Now let's move to something closer to how functors work in categories, the "B"
- * implementation.
+ * implementation. (I won't implement Functor2 from this point on, but follow
+ * "its example".)
  * If you think of the Ints as a category, and similarly for other types, then
  * an arrow in the Ints is f: Int => Int. One transformation we could write is
- * lift all such arrows to F[Int] => F[Int]. Let's explore that. For any F[A],
- * we'll find it useful to have flatMap, so we'll introduce a trait for it
- * use givens for specific collection types.
+ * lift all such arrows to F[Int] => F[Int]. Let's explore that. (The book
+ * discussion also shows a simpler way to do this.) For any F[A], we'll find it
+ * useful to have flatMap, so we'll introduce a trait for it use givens for
+ * specific collection types.
  */
 object FunctionF2B:
   trait FlatMap[A, F[A]]:
@@ -155,18 +157,21 @@ object FunctionF2C:
 
 /**
  * Finally, let's fully generalize the transformation of a function F[A] => F[A]
- * to G[B] => G[B].
+ * to G[B] => G[B]. Now we need a "bijection" between A <=> B, using a pair of
+ * functions for this purpose. We'll also use the simpler Functor and SeqF
+ * defined in Functor.scala:
  */
 
-// Use the simpler Functor defined previous for a given in map:
 import progscala3.fp.categories.{Functor, SeqF}
 
 object FunctionF2D:
   import FunctionF2B.FlatMap
   import FunctionF2C.Lift
 
-  def map[A, B, F[A], G[B]](f: F[A] => F[A])(tab: A => B)(tba: B => A)(tfg: F[B] => G[B])(
-      using flatMapG: FlatMap[B, G], functor: Functor[F], lift: Lift[A, F]): G[B] => G[B] =
+  def map[A, B, F[A], G[B]](f: F[A] => F[A])(
+      tab: A => B)(tba: B => A)(tfg: F[B] => G[B])(
+      using flatMapG: FlatMap[B, G], functor: Functor[F],
+      lift: Lift[A, F]): G[B] => G[B] =
     (gb: G[B]) => flatMapG(gb) { b =>
       val fa = lift(tba(b))
       val fa2 = f(fa)
@@ -184,11 +189,14 @@ object FunctionF2D:
   val td2bd: Double => BigDecimal = d => BigDecimal(d)
   val tbd2d: BigDecimal => Double = bd => bd.doubleValue
   val tsbd2sbd: Seq[BigDecimal] => Set[BigDecimal] = _.toSet
-  val t2d: Set[BigDecimal] => Set[BigDecimal] = FunctionF2D.map(fsd2sd)(td2bd)(tbd2d)(tsbd2sbd)
+  val t2d: Set[BigDecimal] => Set[BigDecimal] =
+    FunctionF2D.map(fsd2sd)(td2bd)(tbd2d)(tsbd2sbd)
 
-  val set2d: Set[BigDecimal] = Set(0.0, 1.1, 2.2, 3.3, 4.4, 5.5).map(d => BigDecimal(d))
+  val set2d: Set[BigDecimal] =
+    Set(0.0, 1.1, 2.2, 3.3, 4.4, 5.5).map(d => BigDecimal(d))
   val newSet2d = t2d(set2d)
   println(s"Input set: $set2d")
   println(s"Output set: $newSet2d")
   assert(newSet2d ==
-    Set(6.050000000000001, 2.4200000000000004, 1.2100000000000002, 3.63, 4.840000000000001, 0.0).map(d => BigDecimal(d)))
+    Set(6.050000000000001, 2.4200000000000004, 1.2100000000000002,
+      3.63, 4.840000000000001, 0.0).map(d => BigDecimal(d)))
