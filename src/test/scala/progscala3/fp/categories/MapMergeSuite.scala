@@ -2,17 +2,13 @@
 package progscala3.fp.categories
 
 import munit._
-import MapMerge._
+import progscala3.contexts.typeclass.given
 
 class MapMergeSuite extends FunSuite:
 
   val map1 = Map("one" -> 1, "two" -> 2)
   val map2 = Map("two" -> 2, "three" -> 3)
 
-  given Monoid[Int]:
-    def add(i1: Int, i2: Int): Int = i1+i2
-    def unit: Int = 0
-
-  test("Extension method merge returns the map union with values 'added'") {
-    assert(map1.merge(map2) == Map("one" -> 1, "two" -> 4, "three" -> 3))
+  test("Extension method combine returns the map union with values 'added'") {
+    assert(map1.combine(map2) == Map("one" -> 1, "two" -> 4, "three" -> 3))
   }
