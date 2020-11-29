@@ -1,7 +1,4 @@
 // src/script/scala/progscala3/typesystem/typelambdas/Functor.scala
-// Add the following line if you don't use the compiler option
-// "-language:higherKinds"
-// import scala.language.higherKinds
 import progscala3.typesystem.typelambdas.Functor._
 
 assert(List(1,2,3).map2(_ * 2) == List(2, 4, 6))

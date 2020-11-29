@@ -8,29 +8,23 @@ class FunctorPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
 
   def id[A] = identity[A]    // Lift identity method to a function
+  val f: Double => BigDecimal = d => BigDecimal(d)
+  val fa: Int => Double = i => 1.5 * i
+  val fb: BigDecimal => String = _.toString
 
-  def testSeqMorphism(f2: Int => Int) =                              // <1>
+  def testSeqMorphism(f2: Int => Int) =
     val f1: Int => Int = _ * 2
     import SeqF._
     forAll { (l: List[Int]) =>
       map(map(l)(f1))(f2) == map(l)(f2 compose f1)
     }
 
-  def testFunctionMorphism(f2: Int => Int) =                         // <2>
-    val f1: Int => Int = _ * 2
-    import FunctionF._
-    forAll { (i: Int) =>
-      map(f1)(f2)(i) == (f2 compose f1)(i)                           // <3>
-    }
-
   property("Functor morphism composition") {
     testSeqMorphism(_ + 3)
-    testFunctionMorphism(_ + 3)
   }
 
   property("Functor identity composition") {
     testSeqMorphism(id[Int])
-    testFunctionMorphism(id)
   }
 
   property("Functor identity maps between the category identities") {
@@ -41,13 +35,6 @@ class FunctorPropertiesSuite extends ScalaCheckSuite:
     {
       import SeqF._   // scope the import:
       map(List.empty[Int])(f1) == List.empty[String]
-    }
-
-    {
-      import FunctionF._
-      forAll { (i: Int) =>
-        map(id[Int])(f2)(i) == (f2 compose id[Int])(i)
-      }
     }
   }
 
@@ -63,14 +50,6 @@ class FunctorPropertiesSuite extends ScalaCheckSuite:
         val m12 = map(map(l)(f1))(f2)
         val m23 = (seq: Seq[Int]) => map(map(seq)(f2))(f3)
         map(m12)(f3) == m23(map(l)(f1))
-      }
-    }
-    {
-      import FunctionF._
-      val m12 = map(map(f)(f1))(f2)
-      val m23 = (g: Int => Int) => map(map(g)(f2))(f3)
-      forAll { (i: Int) =>
-        map(m12)(f3)(i) == m23(map(f)(f1))(i)
       }
     }
   }
