@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/metaprogramming/UsingClassTagViews.scala
-package progscala3.metaprogramming
+// src/main/scala/progscala3/meta/UsingClassTagViews.scala
+package progscala3.meta
 
 import scala.reflect.ClassTag
 

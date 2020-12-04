@@ -1,5 +1,5 @@
-// src/test/scala/progscala3/metaprogramming/InvariantSuite.scala
-package progscala3.metaprogramming
+0// src/test/scala/progscala3/meta/InvariantSuite.scala
+package progscala3.meta
 
 import munit._
 

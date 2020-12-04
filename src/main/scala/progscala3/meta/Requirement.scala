@@ -1,5 +1,5 @@
-// src/main/scala/progscala3/metaprogramming/Requirement.scala
-package progscala3.metaprogramming
+// src/main/scala/progscala3/meta/Requirement.scala
+package progscala3.meta
 import scala.quoted._
 
 /**
