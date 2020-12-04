@@ -5,11 +5,11 @@ import munit._
 
 class PHoneNumberSuite extends FunSuite:
 
-  val pn = USPhoneNumber("987-654-3210")
+  val pn = NAPhoneNumber("987-654-3210")
 
-  test("USPhoneNumber.toString returns the number in a canonical format") {
+  test("NAPhoneNumber.toString returns the number in a canonical format") {
     assert(pn.toString == "(987) 654-3210")
   }
-  test("USPhoneNumber.m() returns the linearization") {
-    assert(pn.m() == "USPhoneNumber Formatter Digitizer M ")
+  test("NAPhoneNumber.m() returns the linearization") {
+    assert(pn.m() == "NAPhoneNumber Formatter Digitizer M ")
   }

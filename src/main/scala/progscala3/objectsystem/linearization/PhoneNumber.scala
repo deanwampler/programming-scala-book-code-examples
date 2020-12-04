@@ -16,17 +16,17 @@ trait Formatter extends Any with M:
     areaCode: String, exchange: String, subnumber: String): String =
     s"($areaCode) $exchange-$subnumber"
 
-case class USPhoneNumber(s: String)
+case class NAPhoneNumber(s: String)
     extends AnyVal with Digitizer with Formatter:
 
   /**
-   * Returns "USPhoneNumber Formatter Digitizer M "
+   * Returns "NAPhoneNumber Formatter Digitizer M "
    */
-  override def m(): String = "USPhoneNumber " + super.m()
+  override def m(): String = "NAPhoneNumber " + super.m()
 
   /**
    * Return the string representation.
-   * For a USPhoneNumber("987-654-3210"), returns "(987) 654-3210"
+   * For a NAPhoneNumber("987-654-3210"), returns "(987) 654-3210"
    */
   override def toString =
     val digs = digits(s)

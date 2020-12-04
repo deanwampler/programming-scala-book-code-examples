@@ -9,7 +9,7 @@ trait Formatter extends Any:                                         // <2>
       areaCode: String, exchange: String, subnumber: String): String =
     s"($areaCode) $exchange-$subnumber"
 
-case class USPhoneNumberUT(s: String)
+case class NAPhoneNumberUT(s: String)
     extends AnyVal with Digitizer with Formatter:
   override def toString =
     val digs = digits(s)
@@ -17,3 +17,8 @@ case class USPhoneNumberUT(s: String)
     val exchange = digs.substring(3,6)
     val subnumber  = digs.substring(6,10)
     format(areaCode, exchange, subnumber)                            // <3>
+
+  override def equals(other: Any): Boolean = other match
+    case p: NAPhoneNumberUT => digits(s).equals(digits(p.s))
+    case s2: String => digits(s).equals(digits(s2))
+    case _ => false

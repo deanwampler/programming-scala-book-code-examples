@@ -13,9 +13,10 @@ object Accounting:
       def -(d2: Dollars): Dollars = d - d2
       def *(p: Percentage): Dollars = d*p
       def toDouble: Double = d
-      def toString = f"$$$d%.2f"
+      // def toString = f"$$$d%.2f"                        // <3>
+      // def equals(other: AnyRef): Boolean = ???
 
-  object Percentage:                                       // <3>
+  object Percentage:                                       // <4>
     def apply(amount: Double): Percentage = amount
 
     extension (p: Percentage)
@@ -23,10 +24,11 @@ object Accounting:
       def -(p2: Percentage): Percentage = p - p2
       def *(d: Dollars): Dollars = d*p
       def toDouble: Double = p
-      def toString = f"${(p*100.0)}%.2f%%"
+      // def toString = f"${(p*100.0)}%.2f%%"
+      // def equals(other: AnyRef): Boolean = ???
 
 import Accounting._
-case class Salary(gross: Dollars, taxes: Percentage):    // <4>
+case class Salary(gross: Dollars, taxes: Percentage):      // <5>
   def net: Dollars = gross - (gross * taxes)
 // end::definitions[]
 
