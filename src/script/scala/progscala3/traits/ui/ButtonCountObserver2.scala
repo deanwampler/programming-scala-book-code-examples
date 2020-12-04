@@ -2,13 +2,13 @@
 import progscala3.traits.ui._
 import progscala3.traits.observer._
 
-// tag::button
+// tag::button[]
 val button = new Button("Click Me!") with Subject[Button]:
   override def click(): Unit =
     super.click()
     notifyObservers(this)
   def updateUI(): Unit = println(s"$label clicked")
-// end::button
+// end::button[]
 
 val bco1 = new ButtonCountObserver
 
