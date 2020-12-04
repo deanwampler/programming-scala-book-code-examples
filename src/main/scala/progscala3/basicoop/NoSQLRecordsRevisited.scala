@@ -7,22 +7,22 @@ package progscala3.basicoop:
     case class InvalidFieldName(name: String)
       extends RuntimeException(s"Invalid field name $name")
 
-    trait FromTo[T]:                                                 // <1>
+    trait FromTo[T]:
       def apply(any: Any): T
 
-    opaque type Record = Map[String,Any]                             // <2>
-    extension [T] (rec: Record):                                     // <3>
-      def add(nameValue: (String, T))(using FromTo[T]): Record =     // <4>
+    opaque type Record = Map[String,Any]
+    extension [T : FromTo] (rec: Record):
+      def add(nameValue: (String, T)): Record =
         rec + nameValue
-      def get(colName: String)(using toT: FromTo[T]): Try[T] =       // <5>
-        Try(toT(col(colName)))
+      def get(colName: String): Try[T] =
+        Try(summon[FromTo[T]](col(colName)))
       private def col(colName: String): Any =
         rec.getOrElse(colName, throw InvalidFieldName(colName))
 
-    object Record:                                                   // <6>
+    object Record:
       def empty: Record = Map.empty
 
-    given FromTo[Int]:                                               // <7>
+    given FromTo[Int]:
       def apply(any: Any): Int = any.asInstanceOf[Int]
     given FromTo[Double]:
       def apply(any: Any): Double = any.asInstanceOf[Double]
@@ -36,7 +36,7 @@ package progscala3.basicoop:
       val one   = rec.get[Int]("one")
       val two   = rec.get[Double]("two")
       val three = rec.get[String]("three")
-      // val four  = rec.get[Byte]("four")                           // <7>
+      // val four  = rec.get[Byte]("four")
       val bad = rec.get[String]("two")
 
       println(s"one, two, three -> $one, $two, $three")

@@ -13,10 +13,13 @@ object Record:                                                       // <1>
 
 case class Record private (contents: Map[String,Any]):               // <2>
   import Record.Conv
-  def add[T](nameValue: (String, T))(using Conv[T]): Record =        // <3>
+  def add[T : Conv](nameValue: (String, T)): Record =                // <3>
     Record(contents + nameValue)
-  def get[T](colName: String)(using toT: Conv[T]): Try[T] =          // <4>
-    Try(toT(col(colName)))
+  def get[T : Conv](colName: String): Try[T] =                       // <4>
+    Try {
+      val conv = summon[Conv[T]]
+      conv(col(colName))
+    }
   private def col(colName: String): Any =
     contents.getOrElse(colName, throw InvalidFieldName(colName))
 
