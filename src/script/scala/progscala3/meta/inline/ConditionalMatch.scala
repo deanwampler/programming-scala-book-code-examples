@@ -1,9 +1,19 @@
-// src/script/scala/progscala3/meta/Transparent.scala
+// src/script/scala/progscala3/meta/ConditionalMatch.scala
 
-open class C1
-class C2 extends C1
+inline def repeat2(s: String, count: Int): String =
+  inline if count == 0 then ""
+  else s + repeat2(s, count-1)
 
-transparent inline def make(b: Boolean): C1 = if b then new C1 else new C2
+repeat2("hello", 3)    // Okay
+var n=3
+repeat2("hello", n)    // ERROR!
 
-val c1: C1 = make(true)                // <1>
-val c2: C2 = make(false)               // <2>
+
+inline def repeat3(s: String, count: Int): String =
+  inline count match
+    case 0 => ""
+    case _ => s + repeat3(s, count-1)
+
+repeat3("hello", 3)    // Okay
+var n=3
+repeat3("hello", n)    // ERROR!
