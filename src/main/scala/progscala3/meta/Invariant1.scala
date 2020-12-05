@@ -20,7 +20,12 @@ object invariant1:
     else
       block                                                     // <4>
 
-  case class InvariantFailure(msg: String) extends RuntimeException(msg)
-  object InvariantFailure:
-    def apply(beforeAfter: String) = new InvariantFailure(
-        s"FAILURE! predicate failed $beforeAfter evaluation!")
+  case class InvariantFailure(beforeAfter: String) extends RuntimeException(
+    s"FAILURE! predicate failed $beforeAfter evaluation!")
+
+@main def TryInvariant1 =
+  var i = 0
+  invariant1(i >= 0)(i += 1)
+  println(s"success: $i")
+  println(s"Will now fail:")
+  invariant1(i >= 0)(i -= 2)                                    // <5>
