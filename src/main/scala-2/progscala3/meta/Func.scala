@@ -1,4 +1,6 @@
-// src/main/scala-2/progscala3/metaprogramming/Func.scala
+// src/main/scala-2/progscala3/meta/Func.scala
+
+package progscala3.meta
 
 import scala.reflect.runtime.universe.typeOf
 

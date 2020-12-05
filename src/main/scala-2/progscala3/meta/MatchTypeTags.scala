@@ -1,6 +1,6 @@
-// src/main/scala-2/progscala3/metaprogramming/MatchTypeTags.scala
+// src/main/scala-2/progscala3/meta/MatchTypeTags.scala
 
-package progscala3.metaprogramming
+package progscala3.meta
 
 import scala.reflect.runtime.universe._
 
