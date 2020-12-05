@@ -12,7 +12,7 @@ object invariant:
    * When not testing and you want to eliminate the overhead of the
    * two predicate checks, set this global flag to true.
    */
-  var skip = false
+  inline val ignore = false
 
   /**
    * Throw an exception if the predicate is false before the block is
@@ -22,9 +22,9 @@ object invariant:
   inline def apply[T](
       inline predicate: => Boolean)(
       inline block: => T): T =
-    if !skip && !predicate then fail(predicate, block, true)
+    if !ignore && !predicate then fail(predicate, block, true)
     val result = block
-    if !skip && !predicate then fail(predicate, block, false)
+    if !ignore && !predicate then fail(predicate, block, false)
     result
 
   inline private def fail[T](
