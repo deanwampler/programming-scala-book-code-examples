@@ -1,10 +1,9 @@
 // src/script/scala/progscala3/meta/Transparent.scala
 
-trait T:
-  def m1: String
-  def m2: String = m1
+trait T
+class C extends T:
 
-object O extends T:
-  inline def m1 = "O.m1"
-  override inline def m2 = m1 + " called from O.m2"
+transparent inline def makeT(b: Boolean): T = if b then new T {} else new C
 
+val t: T = makeT(true)                 // <1>
+val c: C = makeT(false)                // <2>
