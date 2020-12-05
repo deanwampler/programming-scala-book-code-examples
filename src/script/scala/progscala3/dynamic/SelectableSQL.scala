@@ -2,7 +2,7 @@
 // src/script/scala/progscala3/dynamic/SelectableSQL.scala
 
 import reflect.ClassTag
-import reflect.Selectable.reflectiveSelectable
+import scala.reflect.Selectable.reflectiveSelectable
 import collection.mutable.{HashMap => HMap}
 
 object SQL:                                                          // <1>
