@@ -1,8 +1,8 @@
-// src/script/scala/progscala3/meta/compiletime/SummonFrom.scala
+// src/script/scala/progscala3/meta/compiletime/SummonFromAll.scala
 
 import scala.compiletime.summonFrom
 
-trait A; trait B
+trait A; trait B; trait C
 
 inline def trySummonFrom(): Int = summonFrom {                  // <1>
   case given A => 1
@@ -19,3 +19,11 @@ def tryB =                                                      // <3>
 
 tryNone
 tryB
+
+import scala.compiletime.summonAll
+
+def allAB =
+  given a as A
+  given b as B
+  summonAll[A *: B *: EmptyTuple]
+  summonAll[A *: B *: C *: EmptyTuple]                          // <1>
