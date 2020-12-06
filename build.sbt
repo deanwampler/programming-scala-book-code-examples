@@ -20,6 +20,7 @@ lazy val root = project
       // Map over this sequence of Scala 2.X libraries & call withDottyCompat(...):
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty/Scala 3:
+      "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
       "org.scalacheck"         %% "scalacheck"       % "1.15.1" % Test,
       "org.scalameta"          %% "munit"            % "0.7.19" % Test,
       "org.scalameta"          %% "munit-scalacheck" % "0.7.19" % Test
