@@ -1,38 +1,40 @@
 // src/main/scala/progscala3/meta/Invariant.scala
 package progscala3.meta
-import scala.quoted._                                           // <1>
+import scala.quoted._                                                // <1>
 
 object invariant:
   inline val ignore = false
 
   inline def apply[T](
-      inline predicate: => Boolean)(
+      inline predicate: => Boolean, message: => String = "")(        // <2>
       inline block: => T): T =
     if !ignore then
-      if !predicate then fail(predicate, block, "before")       // <2>
+      if !predicate then fail(predicate, message, block, "before")   // <3>
       val result = block
-      if !predicate then fail(predicate, block, "after")
+      if !predicate then fail(predicate, message, block, "after")
       result
     else
       block
 
   inline private def fail[T](
       inline predicate: => Boolean,
+      inline message: => String,
       inline block: => T,
       inline beforeAfter: String): Unit =
-    ${ failImpl('predicate, 'block, 'beforeAfter) }             // <3>
+    ${ failImpl('predicate, 'message, 'block, 'beforeAfter) }        // <4>
 
   case class InvariantFailure(msg: String) extends RuntimeException(msg)
 
-  def failImpl[T](
-      predicate: Expr[Boolean], block: Expr[T], beforeAfter: Expr[String])(
-      using Quotes): Expr[String] =                             // <4>
-    '{ throw InvariantFailure("FAILURE! predicate " + ${showExpr(predicate)}
-      + " failed " + $beforeAfter
-      + " evaluation of block: " + ${showExpr(block)})
+  private def failImpl[T](
+      predicate: Expr[Boolean], message: Expr[String],
+      block: Expr[T], beforeAfter: Expr[String])(
+      using Quotes): Expr[String] =                                  // <5>
+    '{ throw InvariantFailure(
+      s"""FAILURE! predicate "${${showExpr(predicate)}}" """
+      + s"""failed ${$beforeAfter} evaluation of block:"""
+      + s""" "${${showExpr(block)}}". Message = "${$message}". """)
     }
 
-  /* Return a string for the expression */
-  inline private def showExpr[T](expr: Expr[T])(using Quotes): Expr[String] =
-    val code: String = expr.show                                // <5>
+  private def showExpr[T](expr: Expr[T])(using Quotes): Expr[String] =
+    val code: String = expr.show                                     // <6>
     Expr(code)
