@@ -13,11 +13,11 @@ case class Money(val amount: Double):                                // <1>
   override def toString = "$"+amount
 
 case class BankAccount(balance: Money):
-
   def debit(amount: Money) =                                         // <2>
-    assert(balance >= amount,
+    require(balance >= amount,
       s"Overdrafts are not permitted, balance = $balance, debit = $amount")
-    new BankAccount(balance - amount)
+    (new BankAccount(balance - amount)).ensuring(
+      newAccount => newAccount.balance == this.balance - amount)
 
   def credit(amount: Money) =                                        // <3>
     new BankAccount(balance + amount)
