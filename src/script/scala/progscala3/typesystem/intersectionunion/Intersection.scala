@@ -4,11 +4,9 @@ trait M:
   def m(s: String): String = s
 trait T1 extends M:
   override def m(s: String): String = s"[ ${super.m(s)} ]"
-  val name1 = "T1"
 trait T2 extends M:
   override def m(s: String): String = s"( ${super.m(s)} )"
-  val name2 = "T2"
-class C extends M:
+open class C extends M:
   override def m(s: String): String = s"{ ${super.m(s)} }"
 // end::declarations[]
 
@@ -49,6 +47,8 @@ assert(list12.map(f) == List("( [ { hello! } ] )", "[ ( { hello! } ) ]"))
 val listt1t2: Seq[T1 & T2] = Seq(c12, c21)
 val list1: Seq[T1] = listt1t2
 val list2: Seq[T2] = listt1t2
+val list3: Seq[T1] & Seq[T2] = listt1t2
 // end::covariance[]
+
 f(list1.head)   // Error: "Found T1, Required T1 & T2"
 f(list2.head)   // Error: "Found T2, Required T1 & T2"

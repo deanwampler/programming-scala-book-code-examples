@@ -24,22 +24,20 @@ val strings = results.map(process)
 // end::usage[]
 
 // tag::distributive[]
-trait T1
-trait T2
-trait T3
+trait T1; trait T2; trait T3
 
 val x1:  T1 & (T2 | T3)        = new T1 with T2 {}
-val x2:  (T1 & T2) | (T1 & T3) = new T1 with T2 {}
-val x3:  T1 & (T2 | T3)        = new T1 with T3 {}
-val x4:  (T1 & T2) | (T1 & T3) = new T1 with T3 {}
-val x5:  T1 & (T2 | T3)        = new T1 with T2 with T3 {}
+val x2:  T1 & (T2 | T3)        = new T1 with T3 {}
+val x3:  T1 & (T2 | T3)        = new T1 with T2 with T3 {}
+val x4:  (T1 & T2) | (T1 & T3) = new T1 with T2 {}
+val x5:  (T1 & T2) | (T1 & T3) = new T1 with T3 {}
 val x6:  (T1 & T2) | (T1 & T3) = new T1 with T2 with T3 {}
 
 val x7:  T1 | (T2 & T3)        = new T1 {}
-val x8:  (T1 | T2) & (T1 | T3) = new T1 {}
-val x9:  T1 | (T2 & T3)        = new T2 with T3 {}
-val x10: (T1 | T2) & (T1 | T3) = new T2 with T3 {}
-val x11: T1 | (T2 & T3)        = new T1 with T2 with T3 {}
+val x8:  T1 | (T2 & T3)        = new T2 with T3 {}
+val x9:  T1 | (T2 & T3)        = new T1 with T2 with T3 {}
+val x10: (T1 | T2) & (T1 | T3) = new T1 {}
+val x11: (T1 | T2) & (T1 | T3) = new T2 with T3 {}
 val x12: (T1 | T2) & (T1 | T3) = new T1 with T2 with T3 {}
 // end::distributive[]
 
@@ -51,12 +49,12 @@ val t3s: Seq[T3] = t123s        // ERROR
 // end::covariance[]
 
 // tag::contravariance[]
-val t1s: Seq[T1] = Seq(new T1 {})
-val t2s: Seq[T2] = Seq(new T2 {})
-val t3s: Seq[T3] = Seq(new T3 {})
-val t123s1: Seq[T1 | T2 | T3] = t1s
-val t123s2: Seq[T1 | T2 | T3] = t2s
-val t123s3: Seq[T1 | T2 | T3] = t3s
+val seq1s: Seq[T1] = Seq(new T1 {})
+val seq2s: Seq[T2] = Seq(new T2 {})
+val seq3s: Seq[T3] = Seq(new T3 {})
+val seq123s1: Seq[T1 | T2 | T3] = seq1s
+val seq123s2: Seq[T1 | T2 | T3] = seq2s
+val seq123s3: Seq[T1 | T2 | T3] = seq3s
 // end::contravariance[]
 
 // tag::contravariantfunctions[]
@@ -65,7 +63,8 @@ val f123a: (T1 | T2 | T3) => String = _ match
   case t2: T2 => "T2"
   case t3: T3 => "T3"
 val f123b: (T1 => String) & (T2 => String) & (T3 => String) = f123a
-val t123s: Seq[T1 | T2 | T3] = Seq(new T1 {}, new T2 {}, new T3 {})
-t123s.map(f123a)
-t123s.map(f123b)
+
+val seqTs: Seq[T1 | T2 | T3] = Seq(new T1 {}, new T2 {}, new T3 {})
+seqTs.map(f123a)
+seqTs.map(f123b)
 // tag::contravariantfunctions[]
