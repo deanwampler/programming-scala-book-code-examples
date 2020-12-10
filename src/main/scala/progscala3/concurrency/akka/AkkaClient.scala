@@ -102,17 +102,17 @@ object AkkaClient:                                              // <1>
   end processInput
 
   private val help =
-  """Usage: AkkaClient [-h | --help]
-    |Then, enter one of the following commands, one per line:
-    |  h | help      Print this help message.
-    |  c n string    Create "record" for key n for value string.
-    |  r n           Read record for key n. It's an error if n isn't found.
-    |  u n string    Update (or create) record for key n for value string.
-    |  d n           Delete record for key n. It's an error if n isn't found.
-    |  crash n       "Crash" worker n (to test recovery).
-    |  dump [n]      Dump the state of all workers (default) or worker n.
-    |  ^d | q | quit Quit.
-    |""".stripMargin
+    """Usage: AkkaClient [-h | --help]
+      |Then, enter one of the following commands, one per line:
+      |  h | help      Print this help message.
+      |  c n string    Create "record" for key n for value string.
+      |  r n           Read record for key n. It's an error if n isn't found.
+      |  u n string    Update (or create) record for key n for value string.
+      |  d n           Delete record for key n. It's an error if n isn't found.
+      |  crash n       "Crash" worker n (to test recovery).
+      |  dump [n]      Dump the state of all workers (default) or worker n.
+      |  ^d | q | quit Quit.
+      |""".stripMargin
 
   private def exit(message: String, status: Int): Nothing =
     for sys <- system do sys.terminate()

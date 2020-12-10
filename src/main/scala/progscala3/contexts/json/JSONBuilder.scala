@@ -25,6 +25,7 @@ import scala.annotation.targetName
     }
   }
   println(js)
+end TryJSONBuilder
 
 object JSONElement:
   def valueString[T](t: T): String = t match                           // <1>

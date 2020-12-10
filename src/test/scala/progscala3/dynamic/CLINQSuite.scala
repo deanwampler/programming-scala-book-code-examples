@@ -102,3 +102,4 @@ class CLINQSuite extends FunSuite:
   test("Simple WHERE clauses only work with projected fields! [KNOWN LIMITATION]") {
     assert(states.name_and_statehood.where("capital").EQ("Olympia") == CLINQ(Nil))
   }
+end CLINQSuite

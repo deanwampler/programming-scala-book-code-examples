@@ -61,3 +61,4 @@ class ZipCodePropertiesSuite extends ScalaCheckSuite:
       c.zip == zipInt && c.extension == 0
     }
   }
+end ZipCodePropertiesSuite

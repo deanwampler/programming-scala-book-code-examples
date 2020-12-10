@@ -51,7 +51,9 @@ class ForTriesStepsSuite extends FunSuite:
         case step +: tail => step(accum) match
           case f as Failure(ex) => f
           case Success(i2)     => sum(i2, tail)
+    end sum
     sum(0, countSteps)
+  end sumCounts2
 
   test("Folding using recursion should pattern match on Tries") {
     assert(sumCounts2(successfulSteps) == Success(40))
@@ -60,3 +62,4 @@ class ForTriesStepsSuite extends FunSuite:
       case Failure(re) => assert(re.getMessage == "FAIL!")
       case Success(i) => assert(false, s"Should have failed, but returned $i")
   }
+end ForTriesStepsSuite

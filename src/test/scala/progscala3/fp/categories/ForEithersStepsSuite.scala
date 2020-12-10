@@ -62,3 +62,5 @@ class ForEithersStepsSuite extends FunSuite:
       case Right(i) =>
         assert(false, s"Should have failed, but returned $i")
   }
+end ForEithersStepsSuite
+

@@ -38,6 +38,7 @@ object LoginFormValidatorNec:
     goodCharacters(password, "password")).mapN {
       case (s1, _, _, s2, _, _) => ValidLoginForm(s1, s2)
     }
+end LoginFormValidatorNec
 
 /**
  * This method uses the matching clauses shown rather something like this:
@@ -68,3 +69,4 @@ object LoginFormValidatorNec:
 
   assert(LoginFormValidatorNec("12345", "67890") ==
     Valid(ValidLoginForm("12345", "67890")))
+end TryLoginFormValidatorNec

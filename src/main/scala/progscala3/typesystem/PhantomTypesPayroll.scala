@@ -65,6 +65,7 @@ object Payroll:
     val newNet = pay.netPay - pay.employee.postTaxDeductions
     val deductions = pay.employee.postTaxDeductions
     pay.copy(netPay = newNet, postTaxDeductions = deductions)
+end Payroll
 
 @main def TryPhantomTypes  =
   import Payroll._

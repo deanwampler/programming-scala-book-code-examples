@@ -55,3 +55,4 @@ class FoldAssocFuncsSuite extends FunSuite:
 		assert(listStrings.reduceRight(fnacRight) == "((((5)-(4))-(3))-(2))-(1)")
 		assert(listStrings.reduceRight(fnacLeft)  == "(1)-((2)-((3)-((4)-(5))))")
 	}
+end FoldAssocFuncsSuite

@@ -46,6 +46,7 @@ protected object ShapesToJSON:
       |${indent}${tri.point2.toJSON("point2", level + 1)},
       |${indent}${tri.point3.toJSON("point3", level + 1)},
       |$outdent}""".stripMargin
+end ShapesToJSON
 
 given pointToJSON as ToJSON[Point]:
   extension (point: Point) def toJSON(name: String, level: Int): String =

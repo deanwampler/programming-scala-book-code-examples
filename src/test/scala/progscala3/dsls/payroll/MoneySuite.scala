@@ -10,7 +10,6 @@ import scala.language.postfixOps
  * ScalaCheck example driven by MUnit
  * TODO: Really this should be a "full" ScalaCheck properties test.
  */
-
 class MoneySuite extends FunSuite:
 
   val seq1 = Seq("00","10","25","50")
@@ -66,3 +65,4 @@ class MoneySuite extends FunSuite:
       d = i.toDouble + (j.toDouble/100.0)
     do assert(d.dollars == Dollars(d))
   }
+end MoneySuite

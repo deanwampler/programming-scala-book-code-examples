@@ -21,9 +21,9 @@ import scala.language.implicitConversions
   val net   = biweeklyDeductions.net(annualGross)
   print(f"Biweekly pay (annual: $$${annualGross}%.2f): ")
   println(f"Gross: $$${gross}%.2f, Net: $$${net}%.2f")
+end TryPayroll
 
 object dsl:
-
   class PayrollParser extends JavaTokenParsers:                 // <2>
 
     /** @return Parser[(Deductions)] */
@@ -62,3 +62,5 @@ object dsl:
     def percentage = doubleNumber <~ "percent" ^^ { d => Percentage(d) }
 
     def doubleNumber = floatingPointNumber ^^ (_.toDouble)
+  end PayrollParser
+end dsl

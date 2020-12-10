@@ -47,3 +47,4 @@ object dsl:                                                          // <5>
     infix def retirement_savings(amount: Amount): DeductionsBuilder =
       all = all :+ Deduction("retirement savings", amount)
       this
+end dsl

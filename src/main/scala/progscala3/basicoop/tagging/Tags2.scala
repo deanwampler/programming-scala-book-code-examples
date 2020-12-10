@@ -34,8 +34,9 @@ object Tagging2:
     def tags[T]: F[S @@ T] = Tagged.tags(fs)
   implicit class untagsOps[F[_], S, T](fst: F[S @@ T]):
     def untags: F[S] = Tagged.untags(fst)
+end Tagging2
 
-@main def tryTagging2(): Unit =
+@main def TryTagging2(): Unit =
   import Tagging2._
   trait Meter
   trait Foot
@@ -62,4 +63,4 @@ object Tagging2:
   assert(xs.min(om) == 1.0.tag[Meter])
   // Compilation Error!
   // xs.min(o)
-
+end TryTagging2

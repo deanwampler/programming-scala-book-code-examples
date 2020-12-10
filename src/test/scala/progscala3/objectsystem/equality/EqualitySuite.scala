@@ -105,3 +105,4 @@ class EqualitySuite extends FunSuite:
     assert((Map("one" -> 1, "two" -> 2).iterator.sameElements(
       Map("one" -> 1, "two" -> 2))) == true)
   }
+end EqualitySuite

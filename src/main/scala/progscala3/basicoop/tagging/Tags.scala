@@ -32,8 +32,9 @@ object Tagging:
   extension [S, T](st: S @@ T) def untag: S = Tagged.untag(st)
   extension [F[_], S, T](fs: F[S]) def tags: F[S @@ T] = Tagged.tags(fs)
   extension [F[_], S, T](fst: F[S @@ T]) def untags: F[S] = Tagged.untags(fst)
+end Tagging
 
-@main def tryTagging(): Unit =
+@main def TryTagging(): Unit =
   import Tagging._
   trait Meter
   trait Foot
@@ -59,4 +60,4 @@ object Tagging:
   assert(xs.min(om) == expected)
   // Compilation Error!
   // xs.min(o)
-
+end TryTagging

@@ -35,6 +35,7 @@ object LoginFormValidatorSingle:
       _ <- notTooShort(password, "password", 5)
       _ <- goodCharacters(password, "password")
     yield ValidLoginForm(userName, password)
+end LoginFormValidatorSingle
 
 /**
  * This method uses the matching clauses shown rather something like this:
@@ -66,4 +67,4 @@ object LoginFormValidatorSingle:
 
   assert(LoginFormValidatorSingle("12345", "67890") ==
     Right(ValidLoginForm("12345", "67890")))
-
+end TryLoginFormValidatorSingle

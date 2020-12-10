@@ -39,7 +39,7 @@ object OptionF2 extends Functor2[Option,Option]:
   assert(SeqF2.map(Seq.empty[Int])(fii) == Nil)
   assert(OptionF2.map(Some(2))(fii) == Some(4))
   assert(OptionF2.map(Option.empty[Int])(fii) == None)
-
+end TryFunctor2
 
 /**
  * A first ("A") attempt at implementing a true categorical Functor, which can
@@ -70,6 +70,7 @@ class FunctionF2A[A2,B1]
   def map[A1, B2](func: A1 => B1)(fa: A2 => A1)(fb: B1 => B2): A2 => B2 =
     val transform = (a2: A2) => (f: A1 => B1) => fb(f(fa(a2)))
     map(func)(transform)
+end FunctionF2A
 
 @main def TryFunctionF2A() =
   val list = (0 to 100 by 10).toList
@@ -84,6 +85,7 @@ class FunctionF2A[A2,B1]
   assert(newList == // ouch:
     List("0.0", "11.0", "22.0", "33.0", "44.0", "55.00000000000001",
       "66.0", "77.0", "88.0", "99.00000000000001", "110.00000000000001"))
+end TryFunctionF2A
 
 /**
  * Now let's move to something closer to how functors work in categories, the "B"
@@ -121,6 +123,7 @@ object FunctionF2B:
   assert(fseq2b(List(1,2,3,4,5,6)) == List(2, 4, 6, 8, 10, 12))
   assert(fopt2b(Some(3)) == Some(6))
   assert(fopt2b(None) == None)
+end TryFunctionF2B
 
 /**
  * Next, let's generalize the transformation of a function F[A] => F[A]
@@ -200,3 +203,4 @@ object FunctionF2D:
   assert(newSet2d ==
     Set(6.050000000000001, 2.4200000000000004, 1.2100000000000002,
       3.63, 4.840000000000001, 0.0).map(d => BigDecimal(d)))
+end TryFunctionF2D

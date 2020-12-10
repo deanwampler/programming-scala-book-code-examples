@@ -66,10 +66,13 @@ class ForOptionsStepsSuite extends FunSuite:
           // Otherwise, call +sum+ again with the new accumulated value
           // and the steps tail.
           case Some(i2) => sum(i2, tail)
+    end sum
     // Call the nested function with the seed sum +0+ and the sequence of steps.
     sum(0, countSteps)
+  end sumCounts2
 
   test("Folding using recursion should pattern match on Options") {
     assert(sumCounts2(successfulSteps) == Some(40))
     assert(sumCounts2(partiallySuccessfulSteps) == None)
   }
+end ForOptionsStepsSuite

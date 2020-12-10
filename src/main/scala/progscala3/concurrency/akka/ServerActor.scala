@@ -20,7 +20,6 @@ class ServerActor extends Actor with ActorLogging:                   // <1>
     val decider: SupervisorStrategy.Decider =
       case WorkerActor.CrashException => SupervisorStrategy.Restart
       case NonFatal(_) => SupervisorStrategy.Resume
-
     OneForOneStrategy()(decider orElse super.supervisorStrategy.decider)
 
   var workers = Vector.empty[ActorRef]                               // <3>
@@ -59,12 +58,14 @@ class ServerActor extends Actor with ActorLogging:                   // <1>
         }
       case _ => printResult(s"BUG! Expected a vector, got $suc")
     case Failure(ex) => printResult(s"ERROR! $ex")
+  end askHandler
 
   protected def printResult(message: String) =
     println(s"<< $message")
 
   protected def makeWorker(i: Int) =
     context.actorOf(Props[WorkerActor], s"worker-$i")
+end ServerActor
 
 object ServerActor:
   def make(system: ActorSystem): ActorRef =

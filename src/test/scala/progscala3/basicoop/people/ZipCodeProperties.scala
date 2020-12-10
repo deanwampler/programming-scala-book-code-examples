@@ -54,3 +54,4 @@ object ZipCodeProperties extends Properties("ZipCode"):
       val c = ZipCode(zipInt.toString)
       c.zip == zipInt && c.extension == 0
     }
+end ZipCodeProperties
