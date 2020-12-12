@@ -15,6 +15,6 @@ def sleepN(dur: Duration): Duration =                                // <3>
   Duration(System.currentTimeMillis - start, MILLISECONDS)
 
 val future1 = FutureCF(sleepN(1.second))                             // <4>
-val future2 = FutureCF(sleepN(1.second))(using global)               // <5>
-val duration1 = Await.result(future1, 2.second)                      // <6>
+val future2 = FutureCF(sleepN(1.second))(using global)
+val duration1 = Await.result(future1, 2.second)                      // <5>
 val duration2 = Await.result(future2, 2.second)
