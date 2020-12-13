@@ -20,12 +20,13 @@ object AkkaClient:                                              // <1>
     server ! Request.Start(numberOfWorkers)                     // <6>
     processInput(server)                                        // <7>
 
-  private def processParams(params: Seq[String]): Unit = params match
-    case Nil =>
-    case ("-h" | "--help") +: _ => exit(help, 0)
-    case head +: _ => exit(s"Unknown input $head!\n"+help, 1)
+  private def processParams(params: Seq[String]): Unit =        // <8>
+    params match
+      case Nil =>
+      case ("-h" | "--help") +: _ => exit(help, 0)
+      case head +: _ => exit(s"Unknown input $head!\n"+help, 1)
 
-  private def processInput(server: ActorRef): Unit =            // <8>
+  private def processInput(server: ActorRef): Unit =            // <9>
     val blankRE = """^\s*#?\s*$""".r
     val badCrashRE = """^\s*[Cc][Rr][Aa][Ss][Hh]\s*$""".r
     val crashRE = """^\s*[Cc][Rr][Aa][Ss][Hh]\s+(\d+)\s*$""".r
@@ -62,7 +63,7 @@ object AkkaClient:                                              // <1>
             s"""Expected a number, but got $ns"""
           println(s)
 
-    val handleLine: String => Unit =                            // <9>
+    val handleLine: String => Unit =
       case blankRE() =>   /* do nothing */
       case "h" | "help" => println(help)
       case dumpRE(n) =>
@@ -114,7 +115,7 @@ object AkkaClient:                                              // <1>
       |  ^d | q | quit Quit.
       |""".stripMargin
 
-  private def exit(message: String, status: Int): Nothing =
+  private def exit(message: String, status: Int): Nothing =     // <10>
     for sys <- system do sys.terminate()
     println(message)
     sys.exit(status)

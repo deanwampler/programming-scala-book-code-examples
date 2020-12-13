@@ -67,4 +67,4 @@ val f123b: (T1 => String) & (T2 => String) & (T3 => String) = f123a
 val seqTs: Seq[T1 | T2 | T3] = Seq(new T1 {}, new T2 {}, new T3 {})
 seqTs.map(f123a)
 seqTs.map(f123b)
-// tag::contravariantfunctions[]
+// end::contravariantfunctions[]

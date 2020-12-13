@@ -3,7 +3,7 @@
 
 val seq = Seq(1,2,3,4,5)
 
-def m1[A <: AnyVal](seq: Seq[A]) = seq.map(e => (e,e))          // <2>
+def m1[A <: AnyVal](seq: Seq[A]) = seq.map(e => (e,e))          // <1>
 val pf1 = [A <: AnyVal] => (seq: Seq[A]) => seq.map(e => (e,e)) // <2>
 m1(seq), pf1(seq)   // both == List(1, 2, 3, 4, 5)
 // end::first[]
@@ -24,9 +24,9 @@ work(2.2)(fas)
 // end::third[]
 
 // tag::doesnotwork[]
-val pf2a = [T : Numeric] => (seq: Seq[T]) =>  // context bounds not allowed
+val pf2a = [T : Numeric] => (seq: Seq[T]) =>  // context bounds disallowed
   seq.reduce((a,b) => summon.times(a,b))
-val pf2b = [T] => (seq: Seq[T]) => (using Numeric[T]) => // anonymous not allowed
+val pf2b = [T] => (seq: Seq[T]) => (using Numeric[T]) => // anonymous disallowed
   seq.reduce((a,b) => summon.times(a,b))
 val pf2c = [T] => (seq: Seq[T])(using n: Numeric[T]) =>  // need the =>
   seq.reduce((a,b) => summon.times(a,b))

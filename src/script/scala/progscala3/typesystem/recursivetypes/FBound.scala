@@ -4,7 +4,7 @@
 trait Parent[T <: Parent[T]]:                                        // <1>
   def make: T                                                        // <2>
 
-case class Child1(s: String) extends Parent[Child1]:                 // <2>
+case class Child1(s: String) extends Parent[Child1]:                 // <3>
   def make: Child1 = Child1(s"Child1: make: $s")
 
 case class Child2(s: String) extends Parent[Child2]:

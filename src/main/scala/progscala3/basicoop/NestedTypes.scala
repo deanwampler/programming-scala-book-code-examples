@@ -18,7 +18,7 @@ object Database:                                                     // <1>
 class Database:
   import Database._
 
-  def connect(server: String): ConnectionState = ???                 // <5>
+  def connect(server: String): ConnectionState = ???                 // <4>
   def disconnect(): ConnectionState = ???
 
   def query(queryStr: String): QueryStatus = ???
