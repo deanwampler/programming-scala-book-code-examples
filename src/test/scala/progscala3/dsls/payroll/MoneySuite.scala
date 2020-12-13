@@ -1,4 +1,4 @@
-// src/test/scala/progscala3/dsls/payroll/internal/MoneySuite.scala
+// src/test/scala/progscala3/dsls/payroll/MoneySuite.scala
 package progscala3.dsls.payroll
 
 import progscala3.dsls.payroll.dsc

@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/meta/ConditionalMatch.scala
+// src/script/scala/progscala3/meta/inline/ConditionalMatch.scala
 
 inline def repeat2(s: String, count: Int): String =
   inline if count == 0 then ""

@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/rounding/DaysEnumeration.scala
+// src/script/scala/progscala3/rounding/WeekDay.scala
 
 // tag::weekday[]
 enum WeekDay(val fullName: String):                             // <1>

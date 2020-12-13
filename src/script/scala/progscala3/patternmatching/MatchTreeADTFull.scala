@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/patternmatching/MatchTreeADT.scala
+// src/script/scala/progscala3/patternmatching/MatchTreeADTFull.scala
 
 sealed trait Tree2[T]                                           // <1>
 case class Branch2[T](left: Tree2[T], right: Tree2[T]) extends Tree2[T]

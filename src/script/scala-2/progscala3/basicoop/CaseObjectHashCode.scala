@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/basicoop/CaseObjectHashCode.scala
+// src/script/scala-2/progscala3/basicoop/CaseObjectHashCode.scala
 
 case object O1          // case object with no members
 

@@ -1,4 +1,5 @@
-// src/main/scala/progscala3/collections/Tree.scala
+// src/main/scala/progscala3/collections/Tree2.scala
+// This example does not appear in the book. See also Tree.scala and Tree3.scala.
 package progscala3.collections
 
 trait Tree2[A,AL,AR]:

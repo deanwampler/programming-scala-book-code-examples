@@ -1,4 +1,4 @@
-// src/test/scala/progscala3/objectsystem/linearization/PHoneNumberSuite.scala
+// src/test/scala/progscala3/objectsystem/linearization/PhoneNumberSuite.scala
 package progscala3.objectsystem.linearization
 
 import munit._

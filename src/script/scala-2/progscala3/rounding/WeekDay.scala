@@ -1,4 +1,4 @@
-// src/script/scala-2/progscala3/rounding/DaysEnumeration.scala
+// src/script/scala-2/progscala3/rounding/WeekDay.scala
 
 /**
  * A Scala 2 enumeration definition. See the corresponding Scala 3 version

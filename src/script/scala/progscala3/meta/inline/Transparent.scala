@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/meta/Transparent.scala
+// src/script/scala/progscala3/meta/inline/Transparent.scala
 
 trait T
 class C extends T:

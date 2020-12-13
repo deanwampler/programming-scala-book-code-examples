@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/fp/datastructs/GroupByWC.scala
+// src/script/scala/progscala3/collections/GroupByWC.scala
 
 val whitespace = "\\W+"
 val lines = io.Source.fromFile("README.md").getLines

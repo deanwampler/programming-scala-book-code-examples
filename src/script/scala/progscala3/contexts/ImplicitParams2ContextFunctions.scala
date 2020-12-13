@@ -1,3 +1,4 @@
+// tag::scala2[]
 // src/script/scala/progscala3/contexts/ImplicitParams2ContextFunctions.scala
 
 import scala.concurrent.{Await, ExecutionContext, Future}
@@ -19,16 +20,17 @@ object AsyncRunner2:
 val result2 = AsyncRunner2 { implicit executionContext =>       // <3>
   Future(1).map(_ * 2).filter(_ > 0)
 }
+// end::scala2[]
 
-
+// tag::scala3[]
 object AsyncRunner3:
   type RunnerContext[T] = ExecutionContext ?=> Future[T]
 
-  def apply[T](body: => RunnerContext[T]): T =                  // <4>
+  def apply[T](body: => RunnerContext[T]): T =                  // <1>
     given ExecutionContext = sameThreadExecutionContext
     Await.result(body, 2.second)
 
-val result3 = AsyncRunner3 {                                    // <5>
+val result3 = AsyncRunner3 {                                    // <2>
   Future(1).map(_ * 2).filter(_ > 0)
 }
-
+// end::scala3[]

@@ -1,4 +1,6 @@
-// src/script/scala/progscala3/patternmatching/MatchVararglist.scala
+// src/script/scala/progscala3/patternmatching/MatchVarargList.scala
+// This example is not in the book, but it shows a more extensive example
+// of vararg matching.
 
 // Operators for WHERE clauses
 enum Op(val symbol: String) {                                        // <1>

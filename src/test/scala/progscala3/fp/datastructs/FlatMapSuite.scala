@@ -1,4 +1,4 @@
-// src/test/scala/progscala3/fp/datastructs/FlatmapSuite.scala
+// src/test/scala/progscala3/fp/datastructs/FlatMapSuite.scala
 package progscala3.fp.datastructs
 
 import munit._

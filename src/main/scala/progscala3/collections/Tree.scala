@@ -1,4 +1,5 @@
 // src/main/scala/progscala3/collections/Tree.scala
+// This example does not appear in the book. See also Tree2.scala and Tree3.scala.
 package progscala3.collections
 
 case class Tree[+A](val value: A, val left: Option[Tree[?]], val right: Option[Tree[?]]):

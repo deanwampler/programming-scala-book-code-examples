@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/basicoop/tagging/Tags.scala
+// src/main/scala/progscala3/basicoop/tagging/Tags2.scala
 package progscala3.basicoop.tagging
 import scala.annotation.targetName
 
