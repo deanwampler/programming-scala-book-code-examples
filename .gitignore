@@ -24,3 +24,4 @@ akka.log
 _site
 project/metals.sbt
 .bsp/
+src/worksheet/

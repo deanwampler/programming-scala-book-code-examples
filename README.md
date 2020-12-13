@@ -49,7 +49,7 @@ To keep these different kinds of files straight and to support building with SBT
 
 - `src/main/scala/.../*.scala` - All Scala 3 source files built with SBT.
 - `src/test/.../*.scala` - All Scala 3 test source files built and executed with SBT.
-- `src/script/.../*.scala` - "Script" files that won't compile with `scalac`, but can be interpreted with the `scala` REPL.
+- `src/script/.../*.scala` - "Script" files that won't compile with `scalac`, but can be interpreted with the `scala` REPL or used as a worksheet (see below).
 - `src/*/scala-2/.../*.scala` - Some Scala 2 source files that won't compile with Scala 3. They are not built with SBT.
 
 ## Other Notes about the Code
@@ -99,6 +99,10 @@ For other IDEs and text editors, try [Scala Metals](https://scalameta.org/metals
 
 After installing the required plugins, load this project in your IDE, which should detect and use the SBT project automatically. For eclipse, run the `sbt eclipse` task to generate project files, then import them.
 
+### Using Scala Worksheets
+
+If you like working with _Scala worksheets_ in your IDE or editor, you may be able to load any of the REPL "script" files under `src/script` as a worksheet. If your environment is more restrictive, for example about the extension used, then run the included `bash` script `./make-worksheets.sh` to copy all the REPL "script" examples to worksheet files. This command copies the tree `src/script` to `src/worksheet` and changes the `.scala` extension for all the files to `.worksheet.sc`, the VSCode convention. These behaviors are configurable. Use the `--help` option to see the details. If you are using Windows and you don't have `bash` available, e.g., through the Linux subsystem, then modify individual files as you see fit.
+
 ## Building the Code Examples
 
 After installing SBT, open a command/terminal window and run the `sbt test` command. 
@@ -109,22 +113,26 @@ SBT is discussed in more detail in the book and the [SBT website](https://www.sc
 
 If you start `sbt` without any arguments, it puts you into an interactive mode where you can type commands. Use control-D to exit this mode. Once at the SBT prompt (`sbt:programming-scala-3rd-ed-code-examples>`), try the following commands, where each `#` starts a comment; don't type those!
 
-	help       # help on tasks and settings
-	clean      # delete all build outputs
-	compile    # compile the source, but not test code
-	test       # compile source and test code, if necessary and run the tests.
-	~test      # continuously compile and test when source changes are saved.
-	console    # run the Scala REPL; dependencies and code are on the CLASSPATH
-	tasks      # show the most common tasks (commands).
-	tasks -V   # REALLY show ALL tasks
+```
+help       # help on tasks and settings
+clean      # delete all build outputs
+compile    # compile the source, but not test code
+test       # compile source and test code, if necessary and run the tests.
+~test      # continuously compile and test when source changes are saved.
+console    # run the Scala REPL; dependencies and code are on the CLASSPATH
+tasks      # show the most common tasks (commands).
+tasks -V   # REALLY show ALL tasks
+```
 
 The `~` prefix causes the task to be run continuously each time source code changes are saved. This promotes continuous TDD (test-driven development) and is one of my favorite features!
 
 Outside of SBT, you could, in principle, run the script files manually at the console/terminal prompt.
 
-    scala src/script/scala/.../Foo.scala
+```
+scala src/script/scala/.../Foo.scala
+```
 
-However, _at the time of this writing_, the preview verson of `scala` does not support loading script files like this. Hopefully the final version of Scala 3 will restore this ability. Actually, it's easier to run many of the scripts using the SBT `console` task, at least those that use libraries or other compiled code that SBT has on the `CLASSPATH` already. Use the REPL's `:load src/script/scala/.../Foo.scala` feature to load and run a script file.
+However, _at the time of this writing_, the `scala` REPL for the preview versions of Scala 3 do not support loading script files like this. Hopefully the final version of Scala 3 will restore this ability. Actually, it's easier to run many of the scripts using the SBT `console` task, at least those that use libraries or other compiled code that SBT has on the `CLASSPATH` already. Use the REPL's `:load src/script/scala/.../Foo.scala` feature to load and run a script file. You can also work with these files as Scala worksheets, as discussed above.
 
 ## Feedback
 
