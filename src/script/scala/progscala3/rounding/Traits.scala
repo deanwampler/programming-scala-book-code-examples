@@ -2,7 +2,7 @@
 // src/script/scala/progscala3/rounding/Traits.scala
 import util.Random
 
-class Service(name: String):
+open class Service(name: String):                               // <1>
   def work(i: Int): (Int, Int) =
     (i, Random.between(0, 1000))
 
@@ -11,24 +11,37 @@ val service1 = new Service("one")
 // end::service[]
 
 // tag::logging[]
-trait Logging:
-  def info   (message: String): Unit
-  def warning(message: String): Unit
-  def error  (message: String): Unit
+enum Level:                                                     // <1>
+  case INFO, WARNING, ERROR
+  def ==(other: Level): Boolean = this.ordinal == other.ordinal
+  def >=(other: Level): Boolean = this.ordinal >= other.ordinal
 
-trait StdoutLogging extends Logging:
-  def info   (message: String) = println(s"INFO:    $message")
-  def warning(message: String) = println(s"WARNING: $message")
-  def error  (message: String) = println(s"ERROR:   $message")
+trait Logging:
+  import Level._
+
+  def level: Level                                              // <2>
+  final def info(message: String): Unit =                       // <3>
+    if level >= INFO then log(INFO, message)
+  final def warning(message: String): Unit =
+    if level >= WARNING then log(WARNING, message)
+  final def error(message: String): Unit =
+    if level >= ERROR then log(ERROR, message)
+  def log(level: Level, message: String): Unit
+
+trait StdoutLogging extends Logging:                            // <4>
+  protected def log(level: Level, message: String) =
+    println(s"$level: $message")
 // end::logging[]
 
 // tag::example[]
-val service2 = new Service("two") with StdoutLogging:
+case class LoggedService(name: String, level: Level)
+    extends Service(name) with StdoutLogging:
   override def work(i: Int): (Int, Int) =
     info(s"Starting work: i = $i")
     val result = super.work(i)
     info(s"Ending work: result = $result")
     result
 
+val service2 = new LoggedService("two", Level.INFO)
 (1 to 3) foreach (i => println(s"Result:  ${service2.work(i)}"))
 // end::example[]

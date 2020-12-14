@@ -10,7 +10,7 @@ case class ThatsOdd(i: Int) extends RuntimeException(                // <2>
 
 object Callbacks:
   val doComplete: Try[String] => Unit =                              // <3>
-    case s as Success(_) => println(s)                                // <4>
+    case s as Success(_) => println(s)                               // <4>
     case f as Failure(_) => println(f)
 
 @main def TryFuturesCallbacks =

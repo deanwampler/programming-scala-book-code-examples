@@ -20,7 +20,7 @@ trait ConsoleLogging extends Logging:
 // end::logging[]
 
 // tag::service[]
-open abstract class Service(val name: String) extends Logging:       // <1>
+abstract class Service(val name: String) extends Logging:       // <1>
   import Service._
   final def handle(request: Request): Response =
     info(s"($name) Starting handle for request: $request")

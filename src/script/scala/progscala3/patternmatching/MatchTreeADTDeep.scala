@@ -1,10 +1,7 @@
-// src/script/scala/progscala3/patternmatching/MatchTreeADT.scala
+// src/script/scala/progscala3/patternmatching/MatchTreeADTDeep.scala
+import progscala3.patternmatching.Tree
+import Tree.{Branch, Leaf}
 
-enum Tree[T]:
-  case Branch(left: Tree[T], right: Tree[T])
-  case Leaf(elem: T)
-
-import Tree._
 val tree1 = Branch(
   Branch(Leaf(1), Leaf(2)),
   Branch(Leaf(3), Branch(Leaf(4), Leaf(5))))
