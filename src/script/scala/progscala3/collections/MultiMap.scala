@@ -1,5 +1,5 @@
 // src/script/scala/progscala3/collections/MultiMap.scala
-import collection.mutable.{ HashMap, MultiMap, Set }              // <1>
+import collection.mutable.{HashMap, MultiMap, Set}                // <1>
 
 val mm = new HashMap[Int, Set[String]] with MultiMap[Int, String] // <2>
 

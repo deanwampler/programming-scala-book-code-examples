@@ -7,7 +7,7 @@ val button = new Button("Button") with ObservableClicks:
   def updateUI(): String = s"$label clicked"
 
 val cco = new ClickCountObserver
-button addObserver cco
+button.addObserver(cco)
 
 (1 to 5) foreach (_ => assert("Button clicked" == button.click()))
 assert(cco.clickCount == 5)
