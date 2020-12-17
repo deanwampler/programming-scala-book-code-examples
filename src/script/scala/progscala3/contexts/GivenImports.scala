@@ -2,11 +2,17 @@
 
 object O1:
   val name = "O1"
-  val m(s: String) = s"$s, hello from $name"
+  def m(s: String) = s"$s, hello from $name"
   class C1
   given c1 as C1
   class C2
   given c2 as C2
+
+import O1._             // Import everything EXCEPT the givens, c1 and c2
+import O1.given         // Import ONLY the givens (of type C1 and C2)
+import O1.{given, _}    // Import everything, givens and non-givens in O1
+import O1.{given C1}    // Import just the given of type C1
+import O1.c1            // Import just the given c1 of type C1
 
 object O2:
   class C1

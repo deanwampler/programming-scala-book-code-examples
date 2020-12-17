@@ -39,6 +39,8 @@ given ToJSON[Triangle]:
       |$outdent}""".stripMargin
 
 // tag::ToJSONShape[]
+// src/main/scala/progscala3/contexts/typeclass/new2/ToJSONTypeClasses.scala
+
 given ToJSON[Shape]:
   extension (shape: Shape) def toJSON(name: String, level: Int): String =
     shape match

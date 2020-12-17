@@ -20,6 +20,7 @@ f2("f2b")(using u1i)(using u2s)
 val x3a = f3("f3a")
 val x3b = f3("f3b")(using u1i)
 f3("f3c")(using u1i)(u2s)
+f3("f3c")(u2s)
 
 val u2a = U2[Any](1.1)
 x3a(u2a)
