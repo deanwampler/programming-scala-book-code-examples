@@ -13,7 +13,7 @@ lazy val root = project
     maxErrors := 10,
     libraryDependencies ++= Seq(
       "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
-      "com.typesafe.akka"      %% "akka-actor"       % "2.6.10",
+      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.10",
       "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.10",
       "ch.qos.logback"          % "logback-classic"  % "1.2.3",
       "org.typelevel"          %% "cats-core"        % "2.3.0-M2",

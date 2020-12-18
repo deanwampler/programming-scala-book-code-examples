@@ -63,7 +63,7 @@ object JSONBuilder:
    * output of `toString` is used.
    */
   object JSONElement:
-    def valueString[T](t: T): String = t match
+    def valueString[T <: Matchable](t: T): String = t match
       case "null" => "null"
       case s: String => "\""+s+"\""
       case _ => t.toString
@@ -73,9 +73,11 @@ object JSONBuilder:
    * or just a value, but the latter cases only appear as elements in arrays!
    */
   sealed trait JSONElement
-  case class JSONKeyedElement[T](key: String, element: T) extends JSONElement:
+  case class JSONKeyedElement[T <: Matchable](
+      key: String, element: T) extends JSONElement:
     override def toString = "\""+key+"\": "+JSONElement.valueString(element)
-  case class JSONArrayElement[T](element: T) extends JSONElement:
+  case class JSONArrayElement[T <: Matchable](
+      element: T) extends JSONElement:
     override def toString = JSONElement.valueString(element)
 
   import scala.collection.mutable.ArrayBuffer
@@ -95,18 +97,20 @@ object JSONBuilder:
   class JSONObject extends JSONContainer("{", "}")
   class JSONArray extends JSONContainer("[", "]")
 
-
   /**
    * This sealed trait and the following given instances of `ValidJSONValue[T]`
-   * are _witnesses_, constraining the allowed types of JSON values.
+   * are _witnesses_, constraining the allowed types of JSON values. Note that
+   * there is nothing to implement in the trait, but we have to use the `with {}`
+   * clauses to make these definitions concrete.
    */
-  sealed class ValidJSONValue[T]
-  given ValidJSONValue[Int] = {}
-  given ValidJSONValue[Double] = {}
-  given ValidJSONValue[String] = {}
-  given ValidJSONValue[Boolean] = {}
-  given ValidJSONValue[JSONObject] = {}
-  given ValidJSONValue[JSONArray] = {}
+  sealed trait ValidJSONValue[T <: Matchable]
+  given ValidJSONValue[Int] with {}
+  given ValidJSONValue[Double] with {}
+  given ValidJSONValue[String] with {}
+  given ValidJSONValue[Boolean] with {}
+  given ValidJSONValue[JSONObject] with {}
+  given ValidJSONValue[JSONArray] with {}
+
 
   /**
    * This `String` extension method is constrained by `ValidJSONValue[T]` concrete
@@ -117,7 +121,7 @@ object JSONBuilder:
    * key-value pairs to the container `jc`. Note that this definition of `->` will
    * shadow the generic `ArrowAssoc` implementation for constructing tuples!
    */
-  extension [T : ValidJSONValue] (key: String)
+  extension [T <: Matchable : ValidJSONValue] (key: String)
     @targetName("arrow") def ->(element: T)(using jc: JSONContainer) =
       jc.add(JSONKeyedElement(key, element))
 
@@ -132,7 +136,7 @@ object JSONBuilder:
    * those nested expressions. Finally, we return `jo`.
    */
   def obj(init: JSONObject ?=> Unit) =
-    given jo: JSONObject
+    given jo: JSONObject = new JSONObject
     init
     jo
 
@@ -145,7 +149,7 @@ object JSONBuilder:
    * is inside the `String` extension method `->`.
    */
   def aobj(init: JSONObject ?=> Unit)(using jc: JSONContainer) =
-    given jo: JSONObject
+    given jo: JSONObject = new JSONObject
     init
     jc.add(jo)
 
@@ -153,7 +157,7 @@ object JSONBuilder:
    * Define an array. This body is very similar to `obj`.
    */
   def array(init: JSONArray ?=> Unit) =
-    given ja: JSONArray
+    given ja: JSONArray = new JSONArray
     init
     ja
 end JSONBuilder

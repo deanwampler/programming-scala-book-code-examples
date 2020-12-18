@@ -1,72 +1,82 @@
 // src/main/scala/progscala3/concurrency/akka/ServerActor.scala
 package progscala3.concurrency.akka
+import akka.actor.typed.scaladsl.Behaviors
+import akka.actor.typed.scaladsl.AskPattern.{Askable, schedulerFromActorSystem}
+import akka.actor.typed.{ActorRef, ActorSystem, Behavior, Scheduler, SupervisorStrategy}
+import akka.util.Timeout
 import scala.util.{Try, Success, Failure}
 import scala.util.control.NonFatal
 import scala.concurrent.duration._
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.language.implicitConversions
-import akka.actor.{actorRef2Scala, Actor, ActorLogging, ActorRef,
-  ActorSystem, Props, OneForOneStrategy, SupervisorStrategy}
-import akka.pattern.ask
-import akka.util.Timeout
 
-class ServerActor extends Actor with ActorLogging:                   // <1>
+object ServerActor:                   // <1>
   import Messages._
 
-  implicit val timeout: Timeout = Timeout(1.seconds)
+  given timeout: Timeout = Timeout(1.seconds)
 
-  override val supervisorStrategy: SupervisorStrategy =              // <2>
-    val decider: SupervisorStrategy.Decider =
-      case WorkerActor.CrashException => SupervisorStrategy.Restart
-      case NonFatal(_) => SupervisorStrategy.Resume
-    OneForOneStrategy()(decider orElse super.supervisorStrategy.decider)
+  var workers = Vector.empty[ActorRef[Request]]                               // <3>
 
-  var workers = Vector.empty[ActorRef]                               // <3>
+  def apply(): Behavior[Request | Response] =                                               // <4>
+    Behaviors.supervise(processRequests).onFailure[RuntimeException](SupervisorStrategy.restart)
 
-  def receive = initial                                              // <4>
+  protected def processRequests: Behavior[Request | Response] =
+    Behaviors.receive { (context, message) =>
+      given scheduler: Scheduler = context.system.scheduler
+      message match
+        case AdminRequest.Start(numberOfWorkers) =>
+          workers = (1 to numberOfWorkers).toVector.map { i =>
+            val name = s"worker-$i"
+            context.spawn(WorkerActor(context.self, name), name)
+          }
+          Behaviors.same
+        case c @ AdminRequest.Crash(n) =>
+          workers(n % workers.size) ! c
+          Behaviors.same
+        case AdminRequest.DumpAll =>                                          // <8>
+          (0 until workers.length).foreach { n =>
+            workers(n) ! AdminRequest.Dump(n)
+          }
+          // (0 until workers.length).foreach { n =>
+          //   workers(n).ask(replyTo => AdminRequest.Dump(n, Some(replyTo)))
+          //   .onComplete(responseHandler("State of worker $n"))
+          // }
+          Behaviors.same
+        case AdminRequest.Dump(n) =>
+          val n2 = n % workers.size
+          workers(n2) ! AdminRequest.Dump(n2)
+          // val future = workers(n2).ask(replyTo => AdminRequest.Dump(n2, Some(replyTo)))
+          // future.onComplete(responseHandler(s"State of worker $n2"))
+          Behaviors.same
 
-  val initial: Receive =                                             // <5>
-    case Request.Start(numberOfWorkers) =>
-      workers = ((1 to numberOfWorkers) map makeWorker).toVector
-      context become processRequests                                 // <6>
+        case request: CRUDRequest =>
+          val key = request.key.toInt
+          val index = key % workers.size
+          workers(index) ! request
+          Behaviors.same
+        case Response(Success(s)) =>
+          printResult(s"$s\n")
+          Behaviors.same
+        case Response(Failure(th)) =>
+          printResult(s"ERROR! $th")
+          Behaviors.same
+        // case res: Response =>
+          // responseHandler(res)
+          // Behaviors.same
+    }
+  end processRequests
 
-  val processRequests: Receive =                                     // <7>
-    case c as Request.Crash(n) => workers(n % workers.size) ! c
-    case Request.DumpAll =>                                          // <8>
-      Future.traverse(workers)(_ ? Request.DumpAll)
-        .onComplete(askHandler("State of the workers"))
-    case Request.Dump(n) =>
-      (workers(n % workers.size) ? Request.DumpAll).map(Vector(_))
-        .onComplete(askHandler(s"State of worker $n"))
-    case request: KeyedRequest =>
-      val key = request.key.toInt
-      val index = key % workers.size
-      workers(index) ! request
-    case Response(Success(message)) => printResult(message)
-    case Response(Failure(ex)) => printResult(s"ERROR! $ex")
+  // protected def responseHandler(prefix: String = "Response"): Try[Any] => Any =
+  //   case Success(Response(s @ Success)) =>
+  //     printResult(s"$prefix: $s\n")
+  //   case Failure(Response(f @ Failure)) =>
+  //     printResult(s"ERROR! $prefix: $f")
+  //   case x =>
+  //     printResult(s"ERROR! $prefix: Unexpected object passed to responseHandler: $x")
 
-  def askHandler(prefix: String): PartialFunction[Try[Any],Unit] =
-    case Success(suc) => suc match
-      case vect: Vector[Any] =>
-        printResult(s"$prefix:\n")
-        vect foreach {
-          case Response(Success(message)) =>
-            printResult(s"$message")
-          case Response(Failure(ex)) =>
-            printResult(s"ERROR! Success received wrapping $ex")
-        }
-      case _ => printResult(s"BUG! Expected a vector, got $suc")
-    case Failure(ex) => printResult(s"ERROR! $ex")
-  end askHandler
 
   protected def printResult(message: String) =
     println(s"<< $message")
 
-  protected def makeWorker(i: Int) =
-    context.actorOf(Props[WorkerActor], s"worker-$i")
 end ServerActor
-
-object ServerActor:
-  def make(system: ActorSystem): ActorRef =
-    system.actorOf(Props[ServerActor], "server")
