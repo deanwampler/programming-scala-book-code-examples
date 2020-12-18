@@ -6,36 +6,36 @@ import akka.actor.typed.{ActorRef, ActorSystem, Behavior, Terminated}
 import java.lang.{NumberFormatException => NFE}
 import scala.util.{Try, Success, Failure}
 
-object AkkaClient:                                              // <1>
+object AkkaClient:                                                   // <1>
   import Messages._
 
-  private var server: ActorRef[Request] = null
+  private var server: ActorRef[Request] = null                       // <2>
 
   def main(params: Array[String]): Unit =
     processParams(params.toSeq)
-    ActorSystem(AkkaClient(), "AkkaClient")                     // <3>
+    ActorSystem(AkkaClient(), "AkkaClient")                          // <3>
     processUserInput(server)
 
   def apply(): Behavior[Request] =
     Behaviors.setup { context =>
-      val server = context.spawn(ServerActor(), "ServerActor")                          // <4>
-      val numberOfWorkers =                                       // <5>
+      val server = context.spawn(ServerActor(), "ServerActor")       // <4>
+      val numberOfWorkers =                                          // <5>
         context.system.settings.config.getInt("server.number-workers")
-      server ! AdminRequest.Start(numberOfWorkers)                     // <6>
-      Behaviors.receiveSignal {
+      server ! AdminRequest.Start(numberOfWorkers)                   // <6>
+      Behaviors.receiveSignal {                                      // <7>
         case (_, Terminated(_)) =>
           println("Terminated!")
           Behaviors.stopped
       }
     }
 
-  private def processParams(params: Seq[String]): Unit =        // <8>
+  private def processParams(params: Seq[String]): Unit =             // <8>
     params match
       case Nil =>
       case ("-h" | "--help") +: _ => exit(help, 0)
       case head +: _ => exit(s"Unknown input $head!\n"+help, 1)
 
-  private def processUserInput(server: ActorRef[Request]): Unit =        // <9>
+  private def processUserInput(server: ActorRef[Request]): Unit =    // <9>
     val blankRE = """^\s*#?\s*$""".r
     val badCrashRE = """^\s*[Cc][Rr][Aa][Ss][Hh]\s*$""".r
     val crashRE = """^\s*[Cc][Rr][Aa][Ss][Hh]\s+(\d+)\s*$""".r
@@ -69,31 +69,42 @@ object AkkaClient:                                              // <1>
       case "h" | "help" => println(help)
       case dumpRE(null) => server ! AdminRequest.DumpAll
       case dumpRE(n) => Try(n.trim.toInt) match
-        case Failure(NFE) => println(s"""String "${n.trim}" is not a number.""")
-        case Success(int) => server ! AdminRequest.Dump(int)
+        case Failure(_) =>
+          println(s"""String "${n.trim}" is not a number.""")
+        case Success(int) =>
+          server ! AdminRequest.Dump(int)
       case badCrashRE() => missingActorNumber()
       case crashRE(n) => Try(n.trim.toInt) match
-        case Failure(NFE) => println(s"""String "${n.trim}" is not a number.""")
-        case Success(int) => server ! AdminRequest.Crash(int)
+        case Failure(_) =>
+          println(s"""String "${n.trim}" is not a number.""")
+        case Success(int) =>
+          server ! AdminRequest.Crash(int)
 
       case charNumberStringRE(c, n, s) => c match
         case "c" | "C" => Try(n.trim.toLong) match
-          case Failure(NFE) => println(s"""String "${n.trim}" is not a number.""")
-          case Success(long) => server ! CRUDRequest.Create(long, s)
+          case Failure(_) =>
+            println(s"""String "${n.trim}" is not a number.""")
+          case Success(long) =>
+            server ! CRUDRequest.Create(long, s)
         case "u" | "U" => Try(n.trim.toLong) match
-          case Failure(NFE) => println(s"""String "${n.trim}" is not a number.""")
-          case Success(long) => server ! CRUDRequest.Update(long, s)
+          case Failure(_) =>
+            println(s"""String "${n.trim}" is not a number.""")
+          case Success(long) =>
+            server ! CRUDRequest.Update(long, s)
         case "r" | "R" => unexpectedString(c, n)
         case "d" | "D" => unexpectedString(c, n)
         case _ => invalidCommand(c)
 
       case charNumberRE(c, n) => c match
         case "r" | "R" => Try(n.trim.toLong) match
-          case Failure(NFE) => println(s"""String "${n.trim}" is not a number.""")
+          case Failure(_) =>
+            println(s"""String "${n.trim}" is not a number.""")
           case Success(long) => server ! CRUDRequest.Read(long)
         case "d" | "D" => Try(n.trim.toLong) match
-          case Failure(NFE) => println(s"""String "${n.trim}" is not a number.""")
-          case Success(long) => server ! CRUDRequest.Delete(long)
+          case Failure(_) =>
+            println(s"""String "${n.trim}" is not a number.""")
+          case Success(long) =>
+            server ! CRUDRequest.Delete(long)
         case "c" | "C" => expectedString()
         case "u" | "U" => expectedString()
         case _ => invalidCommand(c)
@@ -122,7 +133,7 @@ object AkkaClient:                                              // <1>
       |  ^d | q | quit Quit.
       |""".stripMargin
 
-  private def exit(message: String, status: Int): Nothing =     // <10>
+  private def exit(message: String, status: Int): Nothing =          // <10>
     println(message)
     sys.exit(status)
 end AkkaClient

@@ -8,7 +8,7 @@ class TypeClassesSubtypingSuite extends FunSuite:
   trait Stringizer[+T]:
     def stringize: String
 
-  implicit class AnyStringizer(a: Any) extends Stringizer[Any]:
+  implicit class AnyStringizer(a: Matchable) extends Stringizer[Matchable]:
     def stringize: String = a match
       case s: String => s
       case i: Int => (i*10).toString
@@ -18,9 +18,9 @@ class TypeClassesSubtypingSuite extends FunSuite:
 
   case class Person(name: String, age: Int)
 
-  val seq: Seq[Any] = Seq(1, 2.2F, "three", Person("me", 20))
+  val seq: Seq[Matchable] = Seq(1, 2.2F, "three", Person("me", 20))
 
-  val strings = seq map { (x:Any) =>
+  val strings = seq map { (x: Matchable) =>
     try
       s"$x: ${x.stringize}"
     catch

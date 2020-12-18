@@ -49,7 +49,7 @@ class ForEithersStepsSuite extends FunSuite:
       countSteps2 match
         case Nil          => Right(accum)
         case step +: tail => step(accum) match
-          case l as Left(x) => l
+          case l @ Left(x) => l
           case Right(i2)   => sum(i2, tail)
     sum(0, countSteps)
 

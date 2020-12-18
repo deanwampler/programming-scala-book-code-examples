@@ -9,9 +9,4 @@ class NAPhoneNumber(val s: String) extends AnyVal:    // <1>
     val subnumber = digs.substring(6,10)  // "subscriber number"
     s"($areaCode) $exchange-$subnumber"
 
-  override def equals(other: Matchable): Boolean = other match
-    case p: NAPhoneNumber => digits(s).equals(digits(p.s))
-    case s2: String => digits(s).equals(digits(s2))
-    case _ => false
-
   private def digits(str: String): String = str.replaceAll("""\D""", "")

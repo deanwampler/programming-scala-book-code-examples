@@ -17,8 +17,3 @@ case class NAPhoneNumberUT(s: String)
     val exchange = digs.substring(3,6)
     val subnumber  = digs.substring(6,10)
     format(areaCode, exchange, subnumber)                            // <3>
-
-  override def equals(other: Matchable): Boolean = other match
-    case p: NAPhoneNumberUT => digits(s).equals(digits(p.s))
-    case s2: String => digits(s).equals(digits(s2))
-    case _ => false

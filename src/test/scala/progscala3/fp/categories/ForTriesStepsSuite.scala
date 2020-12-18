@@ -49,7 +49,7 @@ class ForTriesStepsSuite extends FunSuite:
       countSteps2 match
         case Nil          => Success(accum)
         case step +: tail => step(accum) match
-          case f as Failure(ex) => f
+          case f @ Failure(ex) => f
           case Success(i2)     => sum(i2, tail)
     end sum
     sum(0, countSteps)

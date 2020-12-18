@@ -18,9 +18,9 @@ class ForVariableTranslatedSuite extends FunSuite:
 	test("Variables translations are map steps") {
 		val list = for
 		  (i, i10) <- for
-		    x1 as (key, value) <- map
+		    x1 @ (key, value) <- map
 		  yield {
-		    val x2 as i10 = value + 10
+		    val x2 @ i10 = value + 10
 		    (x1, x2)
 		  }
 		yield (i10)
