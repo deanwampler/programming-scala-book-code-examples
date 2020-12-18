@@ -7,7 +7,7 @@ val button = new Button("Button!")
   def updateUI(): String = s"$label clicked"
 
 val cco = new ClickCountObserver
-button addObserver cco
+button.addObserver(cco)
 
 (1 to 5) map (_ => button.click())
 assert(cco.count == 2)
