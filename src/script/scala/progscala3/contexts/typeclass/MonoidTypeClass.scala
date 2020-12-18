@@ -16,7 +16,7 @@ IntMonoid.unit <+> 2              // 2
 // end::usage[]
 
 // tag::numericdefinition[]
-given NumericMonoid[T : Numeric] as Monoid[T]:
+given NumericMonoid[T : Numeric]: Monoid[T] with
   def unit: T = summon[Numeric[T]].zero
   extension (t: T) infix def combine(other: T): T =
     summon[Numeric[T]].plus(t, other)
@@ -31,7 +31,7 @@ NumericMonoid[BigDecimal].unit combine BigDecimal(3.14)
 // end::numericdefinition[]
 
 // tag::numericdefinition2[]
-given NumericMonoid[T](using num: Numeric[T]) as Monoid[T]:
+given NumericMonoid[T](using num: Numeric[T]): Monoid[T] with
   def unit: T = num.zero
   extension (t: T) infix def combine(other: T): T = num.plus(t, other)
 // end::numericdefinition2[]

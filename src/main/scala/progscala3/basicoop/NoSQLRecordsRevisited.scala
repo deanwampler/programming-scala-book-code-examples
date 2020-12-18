@@ -11,7 +11,7 @@ package progscala3.basicoop:
       def apply(any: Any): T
 
     opaque type Record = Map[String,Any]
-    extension [T : FromTo] (rec: Record):
+    extension [T : FromTo] (rec: Record)
       def add(nameValue: (String, T)): Record =
         rec + nameValue
       def get(colName: String): Try[T] =
@@ -22,11 +22,11 @@ package progscala3.basicoop:
     object Record:
       def empty: Record = Map.empty
 
-    given FromTo[Int]:
+    given FromTo[Int] with
       def apply(any: Any): Int = any.asInstanceOf[Int]
-    given FromTo[Double]:
+    given FromTo[Double] with
       def apply(any: Any): Double = any.asInstanceOf[Double]
-    given FromTo[String]:
+    given FromTo[String] with
       def apply(any: Any): String = any.asInstanceOf[String]
 
     @main def TryScalaDBRevisited =

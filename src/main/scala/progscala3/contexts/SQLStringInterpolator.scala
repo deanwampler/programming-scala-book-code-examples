@@ -15,7 +15,7 @@ object SimpleSQL:
   // To understand what the "hacky" implementation of "sql" is doing, try adding
   // print statements to see what's in "values" and "sc.parts", and what each
   // stage of the calculation computes.
-  extension (sc: StringContext):
+  extension (sc: StringContext)
     // The extension method defined is +sql+.
     def sql(values: String*): SQLQuery =
       // Two helper methods. One for converting a two-element tuples into

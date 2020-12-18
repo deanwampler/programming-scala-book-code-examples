@@ -17,10 +17,10 @@ case class Dollars(amount: Double) extends Amount:              // <3>
 
 import scala.util.FromDigits.Floating                           // <4>
 
-given Floating[Percentage]:                                     // <5>
+given Floating[Percentage] with                                 // <5>
   def fromDigits(digits: String): Percentage = Percentage(digits.toDouble)
 
-given Floating[Dollars]:                                        // <6>
+given Floating[Dollars] with                                    // <6>
   def fromDigits(digits: String): Dollars = Dollars(digits.toDouble)
 
 implicit class dsc(sc: StringContext):                          // <7>
@@ -28,7 +28,7 @@ implicit class dsc(sc: StringContext):                          // <7>
     val str = StringContextUtil.foldTokens(tokens.toSeq, sc.parts)
     new Dollars(str.toDouble)
 
-extension (amount: Double):                                     // <8>
+extension (amount: Double)                                      // <8>
   def percent: Percentage = Percentage(amount)
   def dollars: Dollars = Dollars(amount)
 

@@ -100,13 +100,13 @@ object JSONBuilder:
    * This sealed trait and the following given instances of `ValidJSONValue[T]`
    * are _witnesses_, constraining the allowed types of JSON values.
    */
-  sealed trait ValidJSONValue[T]
-  given ValidJSONValue[Int]
-  given ValidJSONValue[Double]
-  given ValidJSONValue[String]
-  given ValidJSONValue[Boolean]
-  given ValidJSONValue[JSONObject]
-  given ValidJSONValue[JSONArray]
+  sealed class ValidJSONValue[T]
+  given ValidJSONValue[Int] = {}
+  given ValidJSONValue[Double] = {}
+  given ValidJSONValue[String] = {}
+  given ValidJSONValue[Boolean] = {}
+  given ValidJSONValue[JSONObject] = {}
+  given ValidJSONValue[JSONArray] = {}
 
   /**
    * This `String` extension method is constrained by `ValidJSONValue[T]` concrete
@@ -132,7 +132,7 @@ object JSONBuilder:
    * those nested expressions. Finally, we return `jo`.
    */
   def obj(init: JSONObject ?=> Unit) =
-    given jo as JSONObject
+    given jo: JSONObject
     init
     jo
 
@@ -145,7 +145,7 @@ object JSONBuilder:
    * is inside the `String` extension method `->`.
    */
   def aobj(init: JSONObject ?=> Unit)(using jc: JSONContainer) =
-    given jo as JSONObject
+    given jo: JSONObject
     init
     jc.add(jo)
 
@@ -153,7 +153,7 @@ object JSONBuilder:
    * Define an array. This body is very similar to `obj`.
    */
   def array(init: JSONArray ?=> Unit) =
-    given ja as JSONArray
+    given ja: JSONArray
     init
     ja
 end JSONBuilder

@@ -3,8 +3,8 @@ lazy val root = project
   .settings(
     name := "programming-scala-3rd-ed-code-examples",
     description := "Code examples for Programming Scala, Third Edition (O'Reilly).",
-    version := "3.0.0-201",
-    scalaVersion := "3.0.0-M2",
+    version := "3.0.0-M300",
+    scalaVersion := "3.0.0-M3",
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
     organizationHomepage := Some(url("http://programming-scala.org")),
@@ -21,9 +21,9 @@ lazy val root = project
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty/Scala 3:
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
-      "org.scalacheck"         %% "scalacheck"       % "1.15.1" % Test,
-      "org.scalameta"          %% "munit"            % "0.7.19" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.19" % Test
+      "org.scalacheck"         %% "scalacheck"       % "1.15.2" % Test,
+      "org.scalameta"          %% "munit"            % "0.7.20" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.20" % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
 

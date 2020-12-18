@@ -48,23 +48,23 @@ protected object ShapesToJSON:
       |$outdent}""".stripMargin
 end ShapesToJSON
 
-given pointToJSON as ToJSON[Point]:
+given pointToJSON: ToJSON[Point] with
   extension (point: Point) def toJSON(name: String, level: Int): String =
     ShapesToJSON(point, name, level)
 
-given circleToJSON as ToJSON[Circle]:
+given circleToJSON: ToJSON[Circle] with
   extension (circle: Circle) def toJSON(name: String, level: Int): String =
     ShapesToJSON(circle, name, level)
 
-given rectangleToJSON as ToJSON[Rectangle]:
+given rectangleToJSON: ToJSON[Rectangle] with
   extension (rect: Rectangle) def toJSON(name: String, level: Int): String =
     ShapesToJSON(rect, name, level)
 
-given triangleToJSON as ToJSON[Triangle]:
+given triangleToJSON: ToJSON[Triangle] with
   extension (tri: Triangle) def toJSON(name: String, level: Int): String =
     ShapesToJSON(tri, name, level)
 
-given shapeToJSON as ToJSON[Shape]:
+given shapeToJSON: ToJSON[Shape] with
   extension (shape: Shape) def toJSON(name: String, level: Int): String = shape match
     case c: Circle    => ShapesToJSON(c, name, level)
     case r: Rectangle => ShapesToJSON(r, name, level)

@@ -2,7 +2,7 @@
 package progscala3.fp.categories
 import progscala3.contexts.typeclass.Monoid
 
-given MapMergeMonoid[K,V : Monoid] as Monoid[Map[K,V]]:    // <1>
+given MapMergeMonoid[K,V : Monoid]: Monoid[Map[K,V]] with       // <1>
   def unit: Map[K,V] = Map.empty
   extension (map1: Map[K,V]) def combine(map2: Map[K,V]): Map[K,V] =
     val kmon = summon[Monoid[V]]

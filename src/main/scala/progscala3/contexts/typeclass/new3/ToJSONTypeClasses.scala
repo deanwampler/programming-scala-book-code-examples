@@ -4,7 +4,7 @@ package progscala3.contexts.typeclass.new3
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
 import progscala3.contexts.json.ToJSON
 
-given pointToJSON as ToJSON[Point]:
+given pointToJSON: ToJSON[Point] with
   extension (point: Point) def toJSON(name: String, level: Int): String =
     val (outdent, indent) = indentation(level)
     s""""$name": {
@@ -12,7 +12,7 @@ given pointToJSON as ToJSON[Point]:
       |${indent}"y": "${point.y}"
       |$outdent}""".stripMargin
 
-given circleToJSON as ToJSON[Circle]:
+given circleToJSON: ToJSON[Circle] with
   def toJSON2(circle: Circle, name: String, level: Int): String =
     val (outdent, indent) = indentation(level)
     s""""$name": {
@@ -22,7 +22,7 @@ given circleToJSON as ToJSON[Circle]:
   extension (circle: Circle) def toJSON(name: String, level: Int): String =
     toJSON2(circle, name, level)
 
-given rectangleToJSON as ToJSON[Rectangle]:
+given rectangleToJSON: ToJSON[Rectangle] with
   def toJSON2(rect: Rectangle, name: String, level: Int): String =
     val (outdent, indent) = indentation(level)
     s""""$name": {
@@ -34,7 +34,7 @@ given rectangleToJSON as ToJSON[Rectangle]:
     toJSON2(rect, name, level)
 
 // tag::ToJSONShape[]
-given triangleToJSON as ToJSON[Triangle]:                             // <1>
+given triangleToJSON: ToJSON[Triangle] with                           // <1>
   def toJSON2(tri: Triangle, name: String, level: Int): String =      // <2>
     val (outdent, indent) = indentation(level)
     s""""$name": {
@@ -45,7 +45,7 @@ given triangleToJSON as ToJSON[Triangle]:                             // <1>
   extension (tri: Triangle) def toJSON(name: String, level: Int): String =
     toJSON2(tri, name, level)                                         // <3>
 
-given ToJSON[Shape]:
+given ToJSON[Shape] with
   extension (shape: Shape) def toJSON(name: String, level: Int): String =
     shape match
       case c: Circle    => circleToJSON.toJSON2(c, name, level)       // <4>
