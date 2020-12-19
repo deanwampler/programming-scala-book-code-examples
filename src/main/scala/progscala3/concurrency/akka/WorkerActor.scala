@@ -15,7 +15,7 @@ object WorkerActor:
         server: ActorRef[Request | Response],
         name: String): Behavior[Request] =
       Behaviors.receiveMessage {
-        case CRUDRequest.Create(key, value, replyTo) =>              // <2>
+        case CRUDRequest.Create(key, value, replyTo) =>              // <3>
           datastore += key -> value
           server ! Response(Success(s"$name: $key -> $value added"), replyTo)
           Behaviors.same
@@ -31,7 +31,7 @@ object WorkerActor:
           datastore -= key
           server ! Response(Success(s"$name: $key deleted"), replyTo)
           Behaviors.same
-        case AdminRequest.Crash(n, replyTo) =>                       // <3>
+        case AdminRequest.Crash(n, replyTo) =>                       // <4>
           val ex = CrashException(name)
           server ! Response(Failure(ex), replyTo)
           throw ex
@@ -44,12 +44,12 @@ object WorkerActor:
           server ! Response(
             Success(s"$name: DumpAll: datastore = $datastore"), replyTo)
           Behaviors.same
-        case req: Request =>                                         // <4>
+        case req: Request =>                                         // <5>
           server ! Response(
             Failure(UnexpectedRequestException(req)),req.replyTo)
           Behaviors.same
       }
-    Behaviors.supervise(processRequests(server, name))               // <5>
+    Behaviors.supervise(processRequests(server, name))               // <6>
       .onFailure[RuntimeException](SupervisorStrategy.restart)
   end apply
 
