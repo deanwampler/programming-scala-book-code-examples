@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/contexts/ImplicitGotcha.scala
+// src/script/scala-2/progscala3/contexts/ImplicitGotcha.scala
 
 trait Context                                              // <1>
 implicit object SomeContext extends Context
