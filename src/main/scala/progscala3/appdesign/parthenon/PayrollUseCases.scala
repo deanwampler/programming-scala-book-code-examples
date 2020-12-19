@@ -4,13 +4,13 @@ import progscala3.dsls.payroll.parsercomb.dsl.PayrollParser
 
 object PayrollUseCases:
   import PayrollCalculator.{fromFile, Pay}
+  val fmt  = "%-10s %8.2f  %8.2f     %5.2f\n"
+  val head = "%-10s %-8s  %-8s  %s\n"
 
   def biweeklyPayrollPerEmployee(data: Seq[Pay]): Unit =
-    val fmt  = "%-10s %6.2f  %5.2f  %5.2f\n"
-    val head = "%-10s %-7s  %-5s    %s\n"
     println("\nBiweekly Payroll:")
-    printf(head, "Name", "Gross", "Net", "Deductions")
-    printf(head, "----", "-----", "---", "----------")
+    printf(head, "Name", "   Gross", "     Net", "Deductions")
+    println("-----------------------------------------")
     for
       Pay(name, salary, deductions) <- data
       gross = deductions.gross(salary.amount)
@@ -24,8 +24,8 @@ object PayrollUseCases:
       val n = deductions.net(salary.amount)
       (gross + g, net + n)
     }
-    printf("\nBiweekly Totals: Gross %7.2f, Net %6.2f, Deductions: %6.2f\n",
-      gross, net, gross - net)
+    println("-----------------------------------------")
+    printf(fmt, "Totals", gross, net, gross - net)
 
   def main(params: Array[String]): Unit =
     val inputFileName =
