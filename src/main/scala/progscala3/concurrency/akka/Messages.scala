@@ -3,20 +3,22 @@ package progscala3.concurrency.akka
 import scala.util.Try
 import akka.actor.typed.ActorRef
 
-object Messages:                                                     // <1>
-  sealed trait Request                                               // <2>
-  enum CRUDRequest extends Request:                                  // <3>
+object Messages:                                                // <1>
+  sealed trait Request:                                         // <2>
+    val replyTo: ActorRef[Response]
+
+  enum AdminRequest extends Request:                            // <3>
+    case Start(numberOfWorkers: Int = 1, replyTo: ActorRef[Response])
+    case Crash(whichOne: Int, replyTo: ActorRef[Response])
+    case Dump(whichOne: Int, replyTo: ActorRef[Response])
+    case DumpAll(replyTo: ActorRef[Response])
+
+  enum CRUDRequest extends Request:                             // <4>
     val key: Long
+    case Create(key: Long, value: String, replyTo: ActorRef[Response])
+    case Read(key: Long, replyTo: ActorRef[Response])
+    case Update(key: Long, value: String, replyTo: ActorRef[Response])
+    case Delete(key: Long, replyTo: ActorRef[Response])
 
-    case Create(key: Long, value: String)
-    case Read(key: Long)
-    case Update(key: Long, value: String)
-    case Delete(key: Long)
-                                                                     // <3>
-  enum AdminRequest extends Request:                                 // <4>
-    case Start(numberOfWorkers: Int = 1)
-    case Crash(whichOne: Int)
-    case Dump(whichOne: Int)
-    case DumpAll
-
-  case class Response(result: Try[String])                           // <6>
+  case class Response(                                          // <5>
+    result: Try[String], replyTo: ActorRef[Response])

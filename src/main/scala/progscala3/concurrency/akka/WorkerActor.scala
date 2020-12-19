@@ -2,41 +2,58 @@
 package progscala3.concurrency.akka
 import scala.util.{Try, Success, Failure}
 import akka.actor.typed.scaladsl.Behaviors
-import akka.actor.typed.{ActorRef, Behavior}
+import akka.actor.typed.{ActorRef, Behavior, SupervisorStrategy}
 import Messages._
 
 object WorkerActor:
+
   def apply(
       server: ActorRef[Request | Response],
       name: String): Behavior[Request] =
-    val datastore = collection.mutable.Map.empty[Long,String]         // <1>
-    Behaviors.receiveMessage {
-      case CRUDRequest.Create(key, value) =>                          // <2>
-        datastore += key -> value
-        server ! Response(Success(s"$name: $key -> $value added"))
-        Behaviors.same
-      case CRUDRequest.Read(key) =>                                   // <3>
-        server ! Response(Try(s"$name: key = $key, ${datastore(key)} found"))
-        Behaviors.same
-      case CRUDRequest.Update(key, value) =>                          // <4>
-        datastore += key -> value
-        server ! Response(Success(s"$name: $key -> $value updated"))
-        Behaviors.same
-      case CRUDRequest.Delete(key) =>                                 // <5>
-        datastore -= key
-        server ! Response(Success(s"$name: $key deleted"))
-        Behaviors.same
-      case AdminRequest.Crash(n) =>
-        throw WorkerActor.CrashException                             // <6>
-        Behaviors.stopped
-      case AdminRequest.Dump(_) | AdminRequest.DumpAll =>
-        server ! Response(Success(s"$name: Dump: datastore = $datastore"))
-        Behaviors.same
-      case req: Request =>
-        server ! Response(Failure(UnexpectedRequestException(req)))
-        Behaviors.same
-    }
+    val datastore = collection.mutable.Map.empty[Long,String]        // <1>
+    def processRequests(                                             // <2>
+        server: ActorRef[Request | Response],
+        name: String): Behavior[Request] =
+      Behaviors.receiveMessage {
+        case CRUDRequest.Create(key, value, replyTo) =>              // <2>
+          datastore += key -> value
+          server ! Response(Success(s"$name: $key -> $value added"), replyTo)
+          Behaviors.same
+        case CRUDRequest.Read(key, replyTo) =>
+          server ! Response(
+            Try(s"$name: key = $key, ${datastore(key)} found"), replyTo)
+          Behaviors.same
+        case CRUDRequest.Update(key, value, replyTo) =>
+          datastore += key -> value
+          server ! Response(Success(s"$name: $key -> $value updated"), replyTo)
+          Behaviors.same
+        case CRUDRequest.Delete(key, replyTo) =>
+          datastore -= key
+          server ! Response(Success(s"$name: $key deleted"), replyTo)
+          Behaviors.same
+        case AdminRequest.Crash(n, replyTo) =>                       // <3>
+          val ex = CrashException(name)
+          server ! Response(Failure(ex), replyTo)
+          throw ex
+          Behaviors.stopped
+        case AdminRequest.Dump(n, replyTo) =>
+          server ! Response(
+            Success(s"$name: Dump($n): datastore = $datastore"), replyTo)
+          Behaviors.same
+        case AdminRequest.DumpAll(replyTo) =>
+          server ! Response(
+            Success(s"$name: DumpAll: datastore = $datastore"), replyTo)
+          Behaviors.same
+        case req: Request =>                                         // <4>
+          server ! Response(
+            Failure(UnexpectedRequestException(req)),req.replyTo)
+          Behaviors.same
+      }
+    Behaviors.supervise(processRequests(server, name))               // <5>
+      .onFailure[RuntimeException](SupervisorStrategy.restart)
+  end apply
 
-  case object CrashException extends RuntimeException("Crash!")
+  case class CrashException(name: String)
+    extends RuntimeException(s"$name: forced to crash!")
   case class UnexpectedRequestException(request: Request)
     extends RuntimeException(s"Did not expect to receive $request!")
