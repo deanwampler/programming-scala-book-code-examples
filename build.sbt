@@ -52,7 +52,8 @@ lazy val root = project
       // "-scalajs",                          // Compile in Scala.js mode (requires scalajs-library.jar on the classpath).
       // "-Ycheck-init",                      // Warn on field access before initialization
       "-Xfatal-warnings",                  // Fail on warnings, not just errors
-      // "-Yexplicit-nulls"                   // For explicit nulls behavior.
+      // "-Yexplicit-nulls",                  // For explicit nulls behavior.
+      // "-classpath", "foo:bar:...",         // Add to the classpath.
     ),
     Compile / console / scalacOptions := scalacOptions.value,
     javacOptions ++= Seq(
