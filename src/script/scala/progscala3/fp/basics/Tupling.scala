@@ -52,10 +52,10 @@ val tf23 = f23.tupled   // ERROR
   *  @tparam Args the tuple type with the same types as the function arguments of F
   *  @tparam R the return type of F
   */
-extension [F, Args <: Tuple, R](f: F):
+extension [F, Args <: Tuple, R](f: F)
   def tupled (using tf: TupledFunction[F, Args => R]): Args => R =
     tf.tupled(f)
-extension [F, Args <: Tuple, R](f: Args => R):
+extension [F, Args <: Tuple, R](f: Args => R)
   def untupled(using tf: TupledFunction[F, Args => R]): F = tf.untupled(f)
 
 val f22b = tf22.untupled     // Now works!

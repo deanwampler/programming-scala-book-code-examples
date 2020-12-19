@@ -17,14 +17,14 @@ do println(useWitness)
 useWitness                                                           // <3>
 
 Seq(IntWitness -> "Int", StringWitness -> "String") foreach {        // <4>
-  case (witness as given Witness, y) => println(s"witness: $useWitness -> $y")
+  case (witness @ given Witness, y) => println(s"witness: $useWitness -> $y")
 }
 
 useWitness                                                           // <5>
 // end::usage[]
 
 // tag::aliasgiven[]
-given aw as Witness = new Witness:
+given aw: Witness with
   println("hello!")
   override def toString = "ALL!!"
 // end::aliasgiven[]

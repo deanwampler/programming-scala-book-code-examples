@@ -76,7 +76,7 @@ val mon = new Monoid[Int] {
 }
 
 // New type class definition
-given intMonoid as Monoid[Int] {
+given intMonoid: Monoid[Int] with {
   def add(i1: Int, i2: Int): Int = i1+i2
   def zero: Int = 0
 }

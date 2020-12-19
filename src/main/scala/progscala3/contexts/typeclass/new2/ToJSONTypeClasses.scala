@@ -4,7 +4,7 @@ package progscala3.contexts.typeclass.new2
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
 import progscala3.contexts.json.ToJSON
 
-given ToJSON[Point] with                                        // <1>
+given ToJSON[Point] with
   extension (point: Point) def toJSON(name: String, level: Int): String =
     val (outdent, indent) = indentation(level)
     s""""$name": {

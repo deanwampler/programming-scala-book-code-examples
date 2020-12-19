@@ -14,7 +14,7 @@ def tryNone =                                                   // <2>
   println(s"trySummonFrom() == 0? ${trySummonFrom()}")
 
 def tryB =                                                      // <3>
-  given B
+  given B with {}
   println(s"trySummonFrom() == 2? ${trySummonFrom()}")
 
 tryNone
@@ -23,7 +23,7 @@ tryB
 import scala.compiletime.summonAll
 
 def allAB =
-  given a as A
-  given b as B
+  given a: A with {}
+  given b: B with {}
   summonAll[A *: B *: EmptyTuple]
   summonAll[A *: B *: C *: EmptyTuple]                          // <1>

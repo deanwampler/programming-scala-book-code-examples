@@ -9,7 +9,7 @@ val books = Seq(
   "Scala Cookbook").zipWithIndex   // add an "index"
 
 val result = for s <- books yield s match                            // <2>
-  case (_ as ScalaSearch(), index) => s"$index: found Scala"
+  case (_ @ ScalaSearch(), index) => s"$index: found Scala"
   case (_, index) => s"$index: no Scala"
 
 assert(result == Seq("0: found Scala", "1: no Scala", "2: found Scala"))

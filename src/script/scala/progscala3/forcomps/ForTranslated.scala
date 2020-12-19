@@ -50,8 +50,8 @@ yield i10
 
 for
   (i, i10) <- for
-    x1 as i <- seq
+    x1 @ i <- seq
   yield
-    val x2 as i10 = x1*10
+    val x2 @ i10 = x1*10
     (x1, x2)
 yield i10

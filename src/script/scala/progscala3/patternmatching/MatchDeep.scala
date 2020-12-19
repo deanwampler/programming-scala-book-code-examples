@@ -8,11 +8,11 @@ val bob     = Person("Bob",     29, Address("2 Java Ave.",  "Miami"))
 val charlie = Person("Charlie", 32, Address("3 Python Ct.", "Boston"))
 
 val results = Seq(alice, bob, charlie) map {
-  case p as Person("Alice", age, a as Address(_, "Chicago")) =>      // <1>
+  case p @ Person("Alice", age, a @ Address(_, "Chicago")) =>      // <1>
   	s"Hi Alice! $p"
-  case p as Person("Bob", 29, a as Address(street, city)) =>         // <2>
+  case p @ Person("Bob", 29, a @ Address(street, city)) =>         // <2>
     s"Hi ${p.name}! age ${p.age}, in ${a}"
-  case p as Person(name, age, Address(street, city)) =>              // <3>
+  case p @ Person(name, age, Address(street, city)) =>              // <3>
     s"Who are you, $name (age: $age, city = $city)?"
 }
 assert(results == Seq(

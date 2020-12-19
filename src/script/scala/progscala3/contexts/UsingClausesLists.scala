@@ -10,8 +10,8 @@ def f2[T1,T2](name: String)(using u1: U1[T1])(using u2: U2[T2]): String = // <2>
 def f3[T1,T2](name: String)(using u1: U1[T1])(u2: U2[T2]): String =       // <3>
   s"f3: $name: $u1, $u2"
 
-given u1i as U1[Int](0)
-given u2s as U2[String]("one")
+given u1i: U1[Int] = U1[Int](0)
+given u2s: U2[String] = U2[String]("one")
 
 f1("f1a")
 f1("f1b")(using u1i, u2s)

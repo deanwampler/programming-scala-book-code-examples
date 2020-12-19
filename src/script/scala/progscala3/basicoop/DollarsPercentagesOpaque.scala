@@ -8,7 +8,7 @@ object Accounting:
   object Dollars:                                          // <2>
     def apply(amount: Double): Dollars = amount
 
-    extension (d: Dollars):
+    extension (d: Dollars)
       def +(d2: Dollars): Dollars = d + d2
       def -(d2: Dollars): Dollars = d - d2
       def *(p: Percentage): Dollars = d*p
@@ -38,5 +38,4 @@ val taxes = Percentage(0.1)
 val salary1 = Salary(gross, taxes)
 val net1 = salary1.net
 val salary2 = Salary(taxes, gross)   // Won't compile!
-val net2 = salary2.net
 // end::usage[]

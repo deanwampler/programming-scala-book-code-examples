@@ -45,7 +45,7 @@ oddEvenImplicitOrdering()
 
 // tag::oddEvenGivenOrdering[]
 def evenOddGivenOrdering() =
-  given evenOdd as Ordering[Int] = new Ordering[Int]:
+  given evenOdd: Ordering[Int] with
     def compare(i: Int, j: Int): Int = i%2 compare j%2 match
       case 0 => i compare j
       case c => -c

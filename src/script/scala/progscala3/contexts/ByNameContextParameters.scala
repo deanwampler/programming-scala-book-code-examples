@@ -3,10 +3,10 @@
 trait Codec[T]:
   def write(x: T): Unit
 
-given intCodec as Codec[Int]:
+given intCodec: Codec[Int] with
   def write(i: Int): Unit = print(i)
 
-given optionCodec[T](using ev: => Codec[T]) as Codec[Option[T]]:
+given optionCodec[T](using ev: => Codec[T]): Codec[Option[T]] with
   def write(xo: Option[T]) = xo match
     case Some(x) => ev.write(x)
     case None =>

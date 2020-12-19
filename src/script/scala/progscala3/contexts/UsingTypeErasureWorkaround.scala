@@ -3,8 +3,8 @@
 
 object O2:
   trait Marker[T]                                               // <1>
-  given IntMarker as Marker[Int]
-  given StringMarker as Marker[String]
+  given IntMarker: Marker[Int] with {}
+  given StringMarker: Marker[String] with {}
 
   def m(is: Seq[Int])(using IntMarker.type): Int = is.sum       // <2>
   def m(ss: Seq[String])(using StringMarker.type): Int = ss.length
