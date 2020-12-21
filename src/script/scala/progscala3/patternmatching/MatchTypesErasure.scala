@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/patternmatching/MatchTypes.scala
+// src/script/scala/progscala3/patternmatching/MatchTypesErasure.scala
 
 val results = Seq(Seq(5.5,5.6,5.7), Seq("a", "b")) map {
   case seqd: Seq[Double] => ("seq double", seqd)   // Erasure warning

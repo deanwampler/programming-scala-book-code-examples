@@ -48,7 +48,7 @@ lazy val root = project
       // "-language:Scala2",                  // Compile Scala 2 code, highlight what needs updating
       // "-migration",                        // Emit warning and location for migration issues from Scala 2.
       // "-rewrite",                          // Attempt to fix code automatically
-      "-source", "3.1",                    // Choices: 3.0, 3.1, 3.0-migration, and 3.1-migration. I use 3.1 to force future deprecation warnings, etc.
+      "-source:3.1",                       // Choices: 3.0, 3.1, 3.0-migration, and 3.1-migration. I use 3.1 to force future deprecation warnings, etc.
       // "-scalajs",                          // Compile in Scala.js mode (requires scalajs-library.jar on the classpath).
       // "-Ycheck-init",                      // Warn on field access before initialization
       "-Xfatal-warnings",                  // Fail on warnings, not just errors
