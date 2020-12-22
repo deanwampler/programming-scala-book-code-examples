@@ -16,7 +16,20 @@ def tryInt =
 def tryBoolean =
   import compiletime.ops.boolean._
   assert(constValue[true] == true)
-  assert(constValueOpt[true && false] == Some(false))
+  assert(constValueOpt[true] == Some(true))
+  assert(constValueOpt[![true]] == Some(false))  // The [] required!
+  assert(constValue[true  && true]  == true)
+  assert(constValue[true  && false] == false)
+  assert(constValue[false && true]  == false)
+  assert(constValue[false && false] == false)
+  assert(constValue[true  || true]  == true)
+  assert(constValue[true  || false] == true)
+  assert(constValue[false || true]  == true)
+  assert(constValue[false || false] == false)
+  assert(constValue[true   ^ true]  == false)    // Exclusive Or
+  assert(constValue[true   ^ false] == true)
+  assert(constValue[false  ^ true]  == true)
+  assert(constValue[false  ^ false] == false)
 
 def tryString =
   import compiletime.ops.string._
