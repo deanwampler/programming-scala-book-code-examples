@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/patternmatching/MatchTreeADTExhuastive.scala
+// src/script/scala/progscala3/patternmatching/MatchTreeADTExhaustive.scala
 import progscala3.patternmatching.Tree
 import Tree.{Branch, Leaf}
 
