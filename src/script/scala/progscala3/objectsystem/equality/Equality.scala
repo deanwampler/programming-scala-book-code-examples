@@ -9,10 +9,10 @@ val p2  = Person("Buck", "Trends",  30)
 // end::definitions[]
 
 // tag::equals1[]
-assert((p1a equals p1a)  == true)
-assert((p1a equals p1b)  == true)
-assert((p1a equals p2)   == false)
-assert((p1a equals null) == false)
+assert((p1a.equals(p1a))  == true)
+assert((p1a.equals(p1b))  == true)
+assert((p1a.equals(p2))   == false)
+assert((p1a.equals(null)) == false)
 // end::equals1[]
 
 // tag::equals2[]
@@ -55,13 +55,13 @@ assert((null ne null)  == false) // Compiler warns that it's always false.
 // tag::equals6[]
 val a1 = Array(1, 2)
 val a2 = Array(1, 2)
-assert((a1 equals a1) == true)
-assert((a1 equals a2) == false)
+assert((a1.equals(a1)) == true)
+assert((a1.equals(a2)) == false)
 // end::equals6[]
 
 // tag::equals7[]
-assert((a1 sameElements a1) == true)
-assert((a1 sameElements a2) == true)
+assert((a1.sameElements(a1)) == true)
+assert((a1.sameElements(a2)) == true)
 // end::equals7[]
 
 // tag::equals8[]
@@ -69,11 +69,11 @@ val s1 = Seq(1, 2)
 val s2 = Seq(1, 2)
 assert((s1 == s1) == true)
 assert((s1 == s2) == true)
-assert((s1 sameElements s2) == true)
+assert((s1.sameElements(s2)) == true)
 
 val m1 = Map("one" -> 1, "two" -> 2)
 val m2 = Map("one" -> 1, "two" -> 2)
 assert((m1 == m1) == true)
 assert((m1 == m2) == true)
-assert((m1.toSeq sameElements m2.toSeq) == true)
+assert((m1.toSeq.sameElements(m2.toSeq)) == true)
 // end::equals8[]

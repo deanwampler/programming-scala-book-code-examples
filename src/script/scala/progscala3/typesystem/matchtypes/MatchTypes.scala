@@ -27,8 +27,8 @@ summon[Elem[Some[String]] =:= String]
 summon[Elem[None.type] =:= Nothing]
 summon[Elem[Float] =:= Float]
 
-summon[Elem[Option[List[Long]]] =:= Long]                       // <2>
 summon[Elem[Option[List[Long]]] =:= List[Long]]                 // <3>
+summon[Elem[Option[List[Long]]] =:= Long]                       // <2>
 // end::examples2[]
 
 // tag::matchdefrecur[]
@@ -66,29 +66,29 @@ summon[ElemR[Option[List[Long]]] =:= Long]   // Now works!
 
 // These uses of abstraction over the higher-kinded type work, but are too
 // unwieldy to be useful:
-type Elem[X,F[_]] = X match
+type ElemF[X,F[_]] = X match
   case String => Char
   case F[t] => t
 
-summon[Elem[String,Array] =:= Char]  // ...: Char =:= Char = generalized constraint
-summon[Elem[List[Int],List] =:= Int] // ...: Int =:= Int = generalized constraint
-summon[Elem[List[Int],?] =:= Int]    // Cannot prove that ...
+summon[ElemF[String,Array] =:= Char]  // ...: Char =:= Char = generalized constraint
+summon[ElemF[List[Int],List] =:= Int] // ...: Int =:= Int = generalized constraint
+summon[ElemF[List[Int],?] =:= Int]    // Cannot prove that ...
 
 // Using a "type lambda" also works, but no less awkwardly:
-type Elem[X] = [F[_]] =>> X match
+type ElemF[X] = [F[_]] =>> X match
   case String => Char
   case F[t] => t
 
-summon[Elem[String][Array] =:= Char]  // ...: Char =:= Char = generalized constraint
-summon[Elem[List[Int]][List] =:= Int] // ...: Int =:= Int = generalized constraint
-summon[Elem[List[Int]][?] =:= Int]    // Cannot prove that ...
+summon[ElemF[String][Array] =:= Char]  // ...: Char =:= Char = generalized constraint
+summon[ElemF[List[Int]][List] =:= Int] // ...: Int =:= Int = generalized constraint
+summon[ElemF[List[Int]][?] =:= Int]    // Cannot prove that ...
 
 // This attempt to use a type alias simply fails:
-type Higher[A,F[_]] = F[A]
-type Elem[X] = X match
+type HigherF[A,F[_]] = F[A]
+type ElemF2[X] = X match
   case String => Char
-  case Higher[t,?] => t
+  case HigherF[t,?] => t
 
-summon[Elem[String] =:= Char]     // Char =:= Char = generalized constraint
-summon[Elem[List[Int]] =:= Int]          // Cannot prove that ...
-summon[Elem[Higher[Int,List]] =:= Int]   // Cannot prove that ...
+summon[ElemF2[String] =:= Char]     // Char =:= Char = generalized constraint
+summon[ElemF2[List[Int]] =:= Int]          // Cannot prove that ...
+summon[ElemF2[HigherF[Int,List]] =:= Int]   // Cannot prove that ...

@@ -50,5 +50,5 @@ val list2: Seq[T2] = listt1t2
 val list3: Seq[T1] & Seq[T2] = listt1t2
 // end::covariance[]
 
-f(list1.head)   // Error: "Found T1, Required T1 & T2"
-f(list2.head)   // Error: "Found T2, Required T1 & T2"
+f(list1.head)   // ERROR: "Found T1, Required T1 & T2"
+f(list2.head)   // ERROR: "Found T2, Required T1 & T2"

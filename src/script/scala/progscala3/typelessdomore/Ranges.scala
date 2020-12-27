@@ -10,9 +10,12 @@
 
 'a' to 'g' by 3           // Char values
 
-BigInt(1) to BigInt(10) by 3
+// Not shown in the book, so I won't need to explain why back ticks are used
+// here. The methods "to" and "by" are not declared infix or otherwise allowed
+// to be infix, as of Scala 3.0.0-M3. This will probably be fixed by 3.0 final.
+BigInt(1) `to` BigInt(10) `by` 3
 
-BigDecimal(1.1) to BigDecimal(10.3) by 3.1
+BigDecimal(1.1) `to` BigDecimal(10.3) `by` 3.1
 
 
 

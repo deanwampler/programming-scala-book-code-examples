@@ -1,7 +1,7 @@
 // src/script/scala/progscala3/meta/inline/Transparent.scala
 
 trait T
-class C extends T:
+class C extends T
 
 transparent inline def makeT(b: Boolean): T = if b then new T {} else new C
 

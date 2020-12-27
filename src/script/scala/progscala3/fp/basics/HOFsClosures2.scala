@@ -19,7 +19,7 @@ object Multiplier2:
 
 val result3 =
 	(1 to 10).filter(_ % 2 == 0).map(Multiplier2.multiplier).reduce(_ * _)
-sert(result3 == 122880)
+assert(result3 == 122880)
 
 Multiplier2.factor = 3
 val result4 =

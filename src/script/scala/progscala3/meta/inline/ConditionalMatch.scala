@@ -8,7 +8,6 @@ repeat2("hello", 3)    // Okay
 var n=3
 repeat2("hello", n)    // ERROR!
 
-
 inline def repeat3(s: String, count: Int): String =
   inline count match
     case 0 => ""

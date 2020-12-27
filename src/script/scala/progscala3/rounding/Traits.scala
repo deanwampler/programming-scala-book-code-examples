@@ -29,7 +29,7 @@ trait Logging:
   def log(level: Level, message: String): Unit
 
 trait StdoutLogging extends Logging:                            // <4>
-  protected def log(level: Level, message: String) =
+  def log(level: Level, message: String) =
     println(s"$level: $message")
 // end::logging[]
 

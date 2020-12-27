@@ -5,7 +5,7 @@ val s = "Hello World!"
 trait T:
   extension (s: String) def LOUD: String = s.toUpperCase
 
-s.LOUD
+s.LOUD  // error; LOUD not in scope.
 
 object S2 extends T:
   def loud(s: String): String = s.LOUD

@@ -19,9 +19,9 @@ object O:
 // end::definitions[]
 
 // tag::usage[]
-given Tagify[Int]:
+given Tagify[Int] with
   def toTag(i: Int): String = s"<int>$i</int>"
-given Tagify[String]:
+given Tagify[String] with
   def toTag(s: String): String = s"<string>$s</string>"
 
 Stringer("Hello World!")

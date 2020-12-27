@@ -9,6 +9,3 @@ makeArray(1.1, 2.2, 3.3)
 makeArray("one", "two", "three")
 makeArray("one" -> 1, "two" -> 2, "three" -> 3)
 makeArray(1, 2.2, 3L)
-
-
-def makeArray2[T](elems: T*) = Array[T](elems: _*)

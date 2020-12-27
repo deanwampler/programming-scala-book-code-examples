@@ -9,4 +9,3 @@ def factorial(i: Int) =
     else fact(i - 1, i * accumulator)  // COMPILATION ERROR
 
   fact(i, 1)
-

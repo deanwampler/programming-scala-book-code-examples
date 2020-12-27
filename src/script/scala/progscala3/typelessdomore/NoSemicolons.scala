@@ -4,7 +4,7 @@ val s = "hello"
 	+ "world"
 	+ "!"
 
-class Foo(name String):
+class Foo(name: String):
 	def yell: String = name.toUpperCase + "!"
 
 def equalsign(s: String) =

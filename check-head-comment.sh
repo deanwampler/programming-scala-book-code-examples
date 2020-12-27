@@ -8,7 +8,7 @@ have the correct file paths.
 usage: $0 [-h|--help] [-v|--verbose] [dir ...]
 where:
 -h | --help     Print this message and exit
--v | --verbose  Print all files found, event those with no errors
+-v | --verbose  Print all files found, even those with no errors
 dir ...         Start in these directories. (default "src")
 EOF
 }

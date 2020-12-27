@@ -41,6 +41,11 @@ given [T : Numeric]: Monoid[T] with
   def unit: T = summon[Numeric[T]].zero
   extension (t: T) infix def combine(other: T): T =
     summon[Numeric[T]].plus(t, other)
+// or
+given [T](using num: Numeric[T]): Monoid[T] with
+  def unit: T = summon[Numeric[T]].zero
+  extension (t: T) infix def combine(other: T): T =
+    summon[Numeric[T]].plus(t, other)
 
 BigDecimal(3.14) <+> summon[Monoid[BigDecimal]].unit
 summon[Monoid[BigDecimal]].unit <+> BigDecimal(3.14)

@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/patternmatching/Infix.scala
 
-case class With[A,B](a: A, b: B)
+infix case class With[A,B](a: A, b: B)
 
 val with1: With[String,Int] = With("Foo", 1)
 val with2: String With Int  = With("Bar", 2)

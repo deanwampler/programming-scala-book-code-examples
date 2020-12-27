@@ -8,5 +8,5 @@ val days = for
   fn = day.fullName
 yield fn
 
-assert(days.toSeq ==
-	Seq("Friday", "Monday", "Tuesday", "Wednesday", "Thursday"))
+assert(days.toSeq.sorted ==
+  Seq("Friday", "Monday", "Thursday", "Tuesday", "Wednesday"))

@@ -2,16 +2,15 @@
 // src/script/scala/progscala3/dynamic/SelectableSQL.scala
 
 import reflect.ClassTag
-import scala.reflect.Selectable.reflectiveSelectable
 import collection.mutable.{HashMap => HMap}
 
 object SQL:                                                          // <1>
-  open class Record(elems: (String, Any)*) extends reflect.Selectable:
+  open class Record(elems: (String, Any)*) extends Selectable:
     private val fields = HMap.from(elems.toMap)                      // <2>
 
-    override def selectDynamic(name: String): Any = fields(name)     // <3>
+    def selectDynamic(name: String): Any = fields(name)              // <3>
 
-    override def applyDynamic(                                       // <4>
+    def applyDynamic(                                                // <4>
         operation: String, paramTypes: ClassTag[?]*)(args: Any*): Any = {
       val fieldName = operation.drop("update".length)  // remove prefix
       val fname = fieldName.head.toLower +: fieldName.tail           // <5>

@@ -1,14 +1,15 @@
 // src/script/scala/progscala3/typelessdomore/PartialFunctions.scala
 
-val pfs: PartialFunction[Any,String] =                               // <1>
+val pfs: PartialFunction[Matchable,String] =                         // <1>
   case s:String => "YES"
-val pfd: PartialFunction[Any,String] = {                             // <2>
+val pfd: PartialFunction[Matchable,String] = {                       // <2>
   case d:Double => "YES"
 }
 
 val pfsd = pfs.orElse(pfd)                                           // <3>
 
-def tryPF(x: Any, f: PartialFunction[Any,String]): String =          // <4>
+def tryPF(                                                           // <4>
+    x: Matchable, f: PartialFunction[Matchable,String]): String =
   try f(x)
   catch case _: MatchError => "ERROR!"
 

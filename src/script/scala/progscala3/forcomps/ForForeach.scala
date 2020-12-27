@@ -2,14 +2,14 @@
 
 val states   = Vector("Alabama", "Alaska", "Virginia", "Wyoming")
 
-var lower1a = Vector.empty[String]
-var lower1b = Vector.empty[String]
-var lower2  = Vector.empty[String]
 
+var lower1 = Vector.empty[String]
 for
   s <- states
-do lower1a = lower1 :+ s.toLowerCase
+do lower1 = lower1 :+ s.toLowerCase
 
-for s <- states do lower1b = lower1 :+ s.toLowerCase
+var lower2 = Vector.empty[String]
+for s <- states do lower2 = lower2 :+ s.toLowerCase
 
-states.foreach(s => lower2 = lower2 :+ s.toLowerCase)
+var lower3  = Vector.empty[String]
+states.foreach(s => lower3 = lower3 :+ s.toLowerCase)
