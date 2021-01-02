@@ -1,38 +1,26 @@
 // src/main/scala/progscala3/dsls/payroll/Money.scala
 package progscala3.dsls.payroll
+import progscala3.contexts.accounting._                         // <1>
 import scala.annotation.targetName
 
-sealed trait Amount:                                            // <1>
-  def amount: Double
-  protected def format(value: Double): String =
-    val left = math.floor(value).toInt
-    val right = math.round((value - left)*100).toInt
-    f"$left.$right%02d"
+import scala.util.FromDigits.Floating                           // <2>
 
-case class Percentage(amount: Double) extends Amount:           // <2>
-  override def toString = s"${format(amount)}%"
-
-case class Dollars(amount: Double) extends Amount:              // <3>
-  override def toString = s"$$${format(amount)}"
-
-import scala.util.FromDigits.Floating                           // <4>
-
-given Floating[Percentage] with                                 // <5>
-  def fromDigits(digits: String): Percentage = Percentage(digits.toDouble)
-
-given Floating[Dollars] with                                    // <6>
+given Floating[Dollars] with                                    // <3>
   def fromDigits(digits: String): Dollars = Dollars(digits.toDouble)
 
-implicit class dsc(sc: StringContext):                          // <7>
+given Floating[Percentage] with
+  def fromDigits(digits: String): Percentage = Percentage(digits.toDouble)
+
+implicit class dsc(sc: StringContext):                          // <4>
   @targetName("dollars") def $(tokens: Any*) =
     val str = StringContextUtil.foldTokens(tokens.toSeq, sc.parts)
     new Dollars(str.toDouble)
 
-extension (amount: Double)                                      // <8>
-  def percent: Percentage = Percentage(amount)
+extension (amount: Double)                                      // <5>
   def dollars: Dollars = Dollars(amount)
+  def percent: Percentage = Percentage(amount)
 
-object StringContextUtil:                                       // <9>
+object StringContextUtil:                                       // <6>
   def foldTokens(tokens: Seq[Any], parts: Seq[String]): String =
     val (str, toks) = parts.foldLeft("" -> tokens.toSeq){
       case ((s, toks), s2) =>

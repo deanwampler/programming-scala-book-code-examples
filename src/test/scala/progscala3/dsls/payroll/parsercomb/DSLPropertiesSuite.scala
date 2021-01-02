@@ -1,6 +1,7 @@
 // src/test/scala/progscala3/dsls/payroll/parsercomb/DSLPropertiesSuite.scala
 package progscala3.dsls.payroll.parsercomb
 
+import progscala3.contexts.accounting._
 import munit.ScalaCheckSuite
 import org.scalacheck._
 
@@ -21,15 +22,17 @@ class DSLPropertiesSuite extends ScalaCheckSuite:
   val parser = new PayrollParser
   val biweeklyDeductions = parser.parseAll(parser.biweekly, input).get
 
-  def within(d1: Double, d2: Double): Boolean = math.abs(d1 - d2) < 0.0001
+  def within(d1: Dollars, d2: Dollars): Boolean =
+    math.abs((d1 - d2).amount) < 0.0001
 
   val annualGross = Gen.choose(30000.0, 200000.0)
 
   property("Payroll calculator computes the pay check data") {
     forAll(annualGross) { g =>
-      val gross = biweeklyDeductions.gross(g)
-      val net   = biweeklyDeductions.net(g)
-      within(gross, g/26.0) &&
-        within(net, (gross * (1.0 - 0.20 - 0.03 - 0.15) - 250))
+      val dg = Dollars(g)
+      val gross = biweeklyDeductions.gross(dg)
+      val net   = biweeklyDeductions.net(dg)
+      within(gross, dg / 26.0) &&
+        within(net, (gross * Percentage(100.0 - 20.0 - 3.0 - 15.0) - Dollars(250)))
     }
   }

@@ -2,6 +2,7 @@
 package progscala3.dsls.payroll.internal
 import scala.language.postfixOps                                     // <1>
 import progscala3.dsls.payroll._
+import progscala3.contexts.accounting._
 
 @main def TryPayroll =
   import dsl._                                                       // <2>
@@ -13,38 +14,38 @@ import progscala3.dsls.payroll._
   }
 
   println(biweeklyDeductions)                                        // <4>
-  val annualGross = 100000.0
+  val annualGross = Dollars(100000.0)
   val gross = biweeklyDeductions.gross(annualGross)
   val net   = biweeklyDeductions.net(annualGross)
-  print(f"Biweekly pay (annual: $$${annualGross}%.2f): ")
-  println(f"Gross: $$${gross}%.2f, Net: $$${net}%.2f")
+  print(f"Biweekly pay (annual: $annualGross): ")
+  println(f"Gross: $gross, Net: $net")
 
-object dsl:                                                          // <5>
-  def biweekly(                                                      // <6>
+object dsl:
+  def biweekly(                                                      // <5>
       db: DeductionsBuilder => DeductionsBuilder): Deductions =
-    db(new DeductionsBuilder("Biweekly", 26.0)).deductions
+    db(new DeductionsBuilder("Biweekly", 26)).deductions
 
-  case class DeductionsBuilder(                                      // <7>
+  case class DeductionsBuilder(                                      // <6>
     name: String,
-    divisor: Double = 1.0):
+    annualPayPeriods: Int):
 
     private var all: Vector[Deduction] = Vector.empty
 
-    def deductions: Deductions = Deductions(name, divisor, all)
+    def deductions: Deductions = Deductions(name, annualPayPeriods, all)
 
-    infix def federal_tax(amount: Amount): DeductionsBuilder =      // <8>
-      all = all :+ Deduction("federal taxes", amount)
+    infix def federal_tax(amount: Percentage): DeductionsBuilder =   // <7>
+      all = all :+ PercentageDeduction("federal taxes", amount)
       this
 
-    infix def state_tax(amount: Amount): DeductionsBuilder =
-      all = all :+ Deduction("state taxes", amount)
+    infix def state_tax(amount: Percentage): DeductionsBuilder =
+      all = all :+ PercentageDeduction("state taxes", amount)
       this
 
-    infix def insurance_premiums(amount: Amount): DeductionsBuilder =
-      all = all :+ Deduction("insurance premiums", amount)
+    infix def insurance_premiums(amount: Dollars): DeductionsBuilder =
+      all = all :+ DollarsDeduction("insurance premiums", amount)
       this
 
-    infix def retirement_savings(amount: Amount): DeductionsBuilder =
-      all = all :+ Deduction("retirement savings", amount)
+    infix def retirement_savings(amount: Percentage): DeductionsBuilder =
+      all = all :+ PercentageDeduction("retirement savings", amount)
       this
 end dsl

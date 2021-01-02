@@ -1,7 +1,8 @@
-// src/test/scala/progscala3/dsls/payroll/MoneySuite.scala
+// src/test/scala/progscala3/dsls/payroll/PayrollSuite.scala
 package progscala3.dsls.payroll
 
 import progscala3.dsls.payroll.dsc
+import progscala3.contexts.accounting._
 import munit.FunSuite
 import org.scalacheck._
 import scala.language.postfixOps
@@ -10,7 +11,7 @@ import scala.language.postfixOps
  * ScalaCheck example driven by MUnit
  * TODO: Really this should be a "full" ScalaCheck properties test.
  */
-class MoneySuite extends FunSuite:
+class PayrollSuite extends FunSuite:
 
   val seq1 = Seq("00","10","25","50")
 
@@ -65,4 +66,4 @@ class MoneySuite extends FunSuite:
       d = i.toDouble + (j.toDouble/100.0)
     do assert(d.dollars == Dollars(d))
   }
-end MoneySuite
+end PayrollSuite

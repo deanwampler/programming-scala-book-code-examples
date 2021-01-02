@@ -2,6 +2,7 @@
 package progscala3.appdesign.parthenon
 import progscala3.dsls.payroll.parsercomb.dsl.PayrollParser
 import progscala3.dsls.payroll._
+import progscala3.contexts.accounting._
 
 object PayrollCalculator:                                       // <1>
   val dsl = """biweekly {
@@ -12,7 +13,7 @@ object PayrollCalculator:                                       // <1>
     }"""
 
   case class Pay(                                               // <2>
-    name: String, salary: Money, deductions: Deductions)
+    name: String, salary: Dollars, deductions: Deductions)
 
   def fromFile(inputFileName: String): Seq[Pay] =               // <3>
     val data = readData(inputFileName)
@@ -23,7 +24,7 @@ object PayrollCalculator:                                       // <1>
   case class BadInput(message: String, input: String)
     extends RuntimeException(s"Bad input data, $message: $input")
 
-  private type Record = (String, Money, String)                 // <4>
+  private type Record = (String, Dollars, String)               // <4>
 
   private def readData(inputFileName: String): Seq[Record] =
     for
@@ -37,7 +38,7 @@ object PayrollCalculator:                                       // <1>
         val ruleString = dsl.format(
           fedTax.toDouble, stateTax.toDouble,
           insurance.toDouble, retirement.toDouble)
-        (name, Money(salary.toDouble), ruleString)
+        (name, Dollars(salary.toDouble), ruleString)
       case array => throw BadInput("expected six fields", line)
 
   private val parser = new PayrollParser                        // <6>

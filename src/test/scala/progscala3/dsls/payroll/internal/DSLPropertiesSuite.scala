@@ -4,6 +4,7 @@ package progscala3.dsls.payroll.internal
 import munit.ScalaCheckSuite
 import org.scalacheck._
 import progscala3.dsls.payroll._
+import progscala3.contexts.accounting._
 import scala.language.postfixOps
 
 /**
@@ -21,15 +22,17 @@ class DSLPropertiesSuite extends ScalaCheckSuite:
     deduct.retirement_savings(10.0  percent)
   }
 
-  def within(d1: Double, d2: Double): Boolean = math.abs(d1 - d2) < 0.0001
+  def within(d1: Dollars, d2: Dollars): Boolean =
+    math.abs((d1 - d2).amount) < 0.0001
 
   val annualGross = Gen.choose(30000.0, 200000.0)
 
   property("Payroll calculator computes the pay check data") {
     forAll(annualGross) { g =>
-      val gross = biweeklyDeductions.gross(g)
-      val net   = biweeklyDeductions.net(g)
-      within(gross, g/26.0) &&
-        within(net, (gross * (1.0 - 0.25 - 0.05 - 0.1) - 500))
+      val dg = Dollars(g)
+      val gross = biweeklyDeductions.gross(dg)
+      val net   = biweeklyDeductions.net(dg)
+      within(gross, dg / 26.0) &&
+        within(net, (gross * Percentage(100.0 - 25.0 - 5.0 - 10.0) - Dollars(500)))
       }
   }
