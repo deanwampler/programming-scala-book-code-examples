@@ -1,88 +1,78 @@
-// src/script/scala/progscala3/OldSyntax.scala
-// Old syntax
+// src/script/scala/progscala3/IndentationSyntax.scala
+// Significant indentation syntax
 
 // For comprehension
-val evens = for {
+val evens = for
   i <- 0 until 10
   if i%2 == 0
-} yield i
+yield i
 
-// For loop
-for {
+// For loop using the new control syntax with "do"
+for
   i <- 0 until 10
   if i%2 == 0
-} println(i)
+do println(i)
 
-if (8 < 10) {
+// If expression using the new control syntax with "then"
+if 8 < 10 then
   println(true)
-} else {
+else
   println(false)
-}
 
-// While loop
+// While loop using the new control syntax with "do"
 var i = 0
-while (i < 10) { i+=1 }
+while i < 10 do { i+=1 }
 
 // Match expression
-0 match {
+0 match
   case 0 => println("zero")
   case _ => println("other value")
-}
 
 // Partially-defined function
-val o:Option[Int] => Int = {
+val o:Option[Int] => Int =
   case Some(i) => i
   case None => 0
-}
 
 // Try, catch, finally expression
 import scala.io.Source
 import scala.util.control.NonFatal
 var source: Option[Source] = None
-try {
+try
   source = Some(Source.fromFile("..."))
   // do something with it
-} catch {
+catch
   case NonFatal(ex) => println(ex)
-} finally {
-  if (source != None) {
+finally
+  if source != None then
     source.get.close
-  }
-}
 
 // Multiline method definition
-def multiline(s: String): String = {
+def multiline(s: String): String =
   println(s"input: $s")
   val result = s.toUpperCase
   println(s"output: $result")
   result
-}
 
 // Package definition
-package mypkg {
+package mypkg:
   // ...
-}
 
 // Trait, class, and object definition
-trait Monoid[A] {
+trait Monoid[A]:
   def add(a1: A, a2: A): A
   def zero: A
-}
 
 // Instantiate an anonymous instance
-val mon = new Monoid[Int] {
+val mon = new Monoid[Int]:
   def add(i1: Int, i2: Int): Int = i1+i2
   def zero: Int = 0
-}
 
 // New type class definition
-given intMonoid: Monoid[Int] with {
+given intMonoid: Monoid[Int] with
   def add(i1: Int, i2: Int): Int = i1+i2
   def zero: Int = 0
-}
 
 // Extension method definition
-extension (s: String) {
+extension (s: String)
   def bold: String = s.toUpperCase + "!"
   def meek: String = "(" + s.toLowerCase + ", maybe?)"
-}

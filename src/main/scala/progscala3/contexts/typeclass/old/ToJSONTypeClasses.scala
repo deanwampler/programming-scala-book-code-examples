@@ -3,14 +3,13 @@
 package progscala3.contexts.typeclass.old
 
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
-import scala.language.implicitConversions                       // <1>
 
 trait ToJSONOld[T]:
-  def toJSON(name: String = "", level: Int = 0): String         // <2>
+  def toJSON(name: String = "", level: Int = 0): String         // <1>
 
-  protected val INDENTATION = "  "
+  protected val Indentation = "  "
   protected def indentation(level: Int): (String,String) =
-    (INDENTATION * level, INDENTATION * (level+1))
+    (Indentation * level, Indentation * (level+1))
   protected def handleName(name: String): String =
     if name.length > 0 then s""""$name": """ else ""
 // end::trait[]

@@ -12,9 +12,9 @@ protected object ShapesToJSON:
 
   // Now the helper state and method from ToJSON is not accessible, so we redefine
   // them here. It would be a good idea to remove them from ToJSON.
-  protected val INDENTATION = "  "
+  protected val Indentation = "  "
   protected def indentation(level: Int): (String,String) =
-    (INDENTATION * level, INDENTATION * (level+1))
+    (Indentation * level, Indentation * (level+1))
   protected def handleName(name: String): String =
     if name.length > 0 then s""""$name": """ else ""
 

@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/typelessdomore/VariadicArgumentLists.scala
+// src/script/scala/progscala3/typelessdomore/RepeatedParameters.scala
 
 object Mean1 {
   def calc1(ds: Double*): Double = calc2(ds)

@@ -52,6 +52,7 @@ lazy val root = project
       // "-scalajs",                          // Compile in Scala.js mode (requires scalajs-library.jar on the classpath).
       // "-Ycheck-init",                      // Warn on field access before initialization
       "-Xfatal-warnings",                  // Fail on warnings, not just errors
+      // "-Xlint",                            // Enable Scala 2 "linter". Not yet available for Scala 3!
       // "-Yexplicit-nulls",                  // For explicit nulls behavior.
       // "-classpath", "foo:bar:...",         // Add to the classpath.
     ),
