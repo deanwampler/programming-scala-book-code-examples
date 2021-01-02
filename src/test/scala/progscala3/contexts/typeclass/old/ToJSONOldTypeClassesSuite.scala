@@ -1,7 +1,6 @@
 // src/test/scala/progscala3/contexts/typeclass/old/ToJSONOldTypeClassesSuite.scala
 package progscala3.contexts.typeclass.old
 
-import scala.language.implicitConversions
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
 import munit._
 

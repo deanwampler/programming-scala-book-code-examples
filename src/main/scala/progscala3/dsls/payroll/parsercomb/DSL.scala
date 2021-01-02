@@ -3,7 +3,6 @@ package progscala3.dsls.payroll.parsercomb
 import scala.util.parsing.combinator._
 import progscala3.dsls.payroll._
 import progscala3.contexts.accounting._
-import scala.language.implicitConversions
 
 @main def TryPayroll =                                               // <1>
   import dsl.PayrollParser

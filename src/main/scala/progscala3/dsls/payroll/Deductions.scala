@@ -15,15 +15,15 @@ case class DollarsDeduction(name: String, dollars: Dollars) extends Deduction:
   def amount(basis: Dollars): Dollars = dollars
   override def toString = s"$name: $dollars"
 
-case class Deductions(                                          // <3>
+case class Deductions(                                          // <2>
   name: String,
   annualPayPeriods: Int = 1,
   deductions: Vector[Deduction] = Vector.empty):
 
-  def gross(annualSalary: Dollars): Dollars =                   // <4>
+  def gross(annualSalary: Dollars): Dollars =                   // <3>
     annualSalary / annualPayPeriods
 
-  def net(annualSalary: Dollars): Dollars =                     // <5>
+  def net(annualSalary: Dollars): Dollars =                     // <4>
     val g = gross(annualSalary)
     deductions.foldLeft(g) {
       (total, deduction) => total - deduction.amount(g)

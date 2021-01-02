@@ -3,7 +3,6 @@ package progscala3.fp.datastructs
 
 import munit._
 import scala.math.BigInt
-import scala.language.implicitConversions
 
 class FibonacciSuite extends FunSuite:
 

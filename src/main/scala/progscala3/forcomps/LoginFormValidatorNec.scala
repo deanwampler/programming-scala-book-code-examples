@@ -4,7 +4,6 @@ package progscala3.forcomps
 import cats.implicits._
 import cats.data._
 import cats.data.Validated._
-import scala.language.implicitConversions
 
 /**
  * Nec variant, where NEC stands for "non empty chain".
