@@ -8,7 +8,7 @@ def doSeqMatch[T <: Matchable](seq: Seq[T]): String = seq match
     case _ => "Unmatched seq element"
 
 val results = Seq(Seq(5.5,5.6,5.7), Seq("a", "b"), Nil) map {
-  case seq: Seq[?] => (s"seq ${doSeqMatch(seq)}", seq)
+  case seq: Seq[?] => (s"seq ${doSeqMatch(seq)}", seq)          // <1>
 }
 
 assert(results == Seq(

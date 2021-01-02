@@ -30,7 +30,7 @@ object RemoveBlanks:
     | file ...        One or more files to print without blanks
     |""".stripMargin
 
-  protected case class Args(                                         // <7>
+  case class Args(                                                   // <7>
     compress: Boolean = false,
     numbers: Boolean = false,
     paths: Vector[String] = Vector.empty)
