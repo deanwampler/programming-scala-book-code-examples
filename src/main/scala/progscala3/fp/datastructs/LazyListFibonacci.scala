@@ -2,7 +2,6 @@
 package progscala3.fp.datastructs
 
 import scala.math.BigInt
-import scala.language.implicitConversions  // for Int to BigInt
 
 object Fibonacci:
   val fibs: LazyList[BigInt] =

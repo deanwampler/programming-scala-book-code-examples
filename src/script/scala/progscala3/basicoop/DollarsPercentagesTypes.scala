@@ -7,15 +7,15 @@ object Accounting:
 
 import Accounting._
 case class Salary(gross: Dollars, taxes: Percentage):
-  def net: Dollars = gross * (1.0 - taxes)
+  def net: Dollars = gross * (1.0 - (taxes/100.0))
   override def toString =
-    f"Salary(gross = $$$gross%.2f, taxes = ${(taxes*100.0)}%.2f%%)"
+    f"Salary(gross = $$$gross%.2f, taxes = $taxes%.2f%%)"
 // end::definitions[]
 
 // tag::oops[]
 import Accounting._
 val gross: Dollars = 10000.0
-val taxes: Percentage = 0.1
+val taxes: Percentage = 10.0
 val salary1 = Salary(gross, taxes)
 val net1 = salary1.net
 val salary2 = Salary(taxes, gross)   // Error!!

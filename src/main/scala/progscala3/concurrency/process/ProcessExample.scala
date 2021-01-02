@@ -2,7 +2,6 @@
 package progscala3.concurrency.process
 
 import scala.sys.process._
-import scala.language.implicitConversions
 import java.net.URL
 import java.io.File
 
