@@ -16,38 +16,46 @@ summon[2 <:< Double]    // "Cannot prove that (2 : Int) <:< Double"
 def opsAny =                                                    // <1>
   import scala.compiletime.ops.any._
 
-  val any1: 2 == 2  = true                                      // <2>
-  val any2: 1 == 2  = false
-  val any3: 1 != 2  = true
+  val any1: 2 == 2      = true                                  // <2>
+  val any2: 1 == 2      = false
+  val any3: 1 != 2      = true
+  val any4: "" == ""    = true
+  val any5: "" != ""    = false
+  val any6: "" != "boo" = true
 
-opsAny                                                          // <3>
+  valueOf[2 == 2]  == true                                      // <3>
+  valueOf[1 == 2]  == false
+  valueOf[1 != 2]  == true
+
+opsAny                                                          // <4>
 // end::opsany[]
 
 // tag::opsint[]
 def opsInt =
   import scala.compiletime.ops.int._                            // <1>
 
-  val i1: 0 + 1 = 0 + 1
-  val i2: 1 + 1 = 1 + 1
-  val i3: 1 + 2 = 1 + 2
+  val i1: 0 + 1     = 0 + 1
+  val i2: 1 + 1     = 1 + 1
+  val i3: 1 + 2     = 1 + 2
   val i4: 3 * 2 - 1 = 3 * 2 - 1
-  val i5: 12 / 3 = 4
-  val i6: 11 % 4 = 3
+  val i5: 12 / 3    = 4
+  val i6: 11 % 4    = 3
 
   val lshift:  1 <<  2 = 4                                      // <2>
   val rshift:  8 >>  2 = 2
   val rshift2: 8 >>> 2 = 2                                      // <3>
-  val bitwise: 14 ^  5 = 11                                     // <4>
 
-  val b2: 1 <  2 = true                                         // <5>
+  val b2: 1 <  2 = true                                         // <4>
   val b3: 1 <= 2 = true
   val b4: 2 <  1 = false
   val b5: 1 >  2 = false
   val b6: 1 >= 2 = false
   val b7: 2 >  1 = true
 
-  val ba:  BitwiseAnd[5, 4] = 4
-  val bo:  BitwiseOr[5, 3]  = 7
+  val xor: 14 ^ 5           = 11  // 14 xor 5 => 1110 ^ 0101 => 1011 => 11
+  val and: BitwiseAnd[5, 4] = 4   // 5 & 4 => 101 & 100 == 100 => 4
+  val or:  BitwiseOr[5, 3]  = 7   // 5 | 3 => 101 | 011 == 111 => 7
+
   val abs: Abs[-1] = 1
   val neg: Negate[2] = -2
   val min: Min[3, 5] = 3
