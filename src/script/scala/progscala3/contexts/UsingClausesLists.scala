@@ -1,3 +1,4 @@
+// tag::definitions[]
 // src/script/scala/progscala3/contexts/UsingClausesLists.scala
 
 case class U1[T](t: T)
@@ -9,7 +10,9 @@ def f2[T1,T2](name: String)(using u1: U1[T1])(using u2: U2[T2]): String = // <2>
   s"f2: $name: $u1, $u2"
 def f3[T1,T2](name: String)(using u1: U1[T1])(u2: U2[T2]): String =       // <3>
   s"f3: $name: $u1, $u2"
+// end::definitions[]
 
+// tag::usage[]
 given u1i: U1[Int] = U1[Int](0)
 given u2s: U2[String] = U2[String]("one")
 
@@ -25,4 +28,4 @@ f3("f3c")(u2s)
 val u2a = U2[Any](1.1)
 x3a(u2a)
 x3b(u2a)
-
+// end::usage[]
