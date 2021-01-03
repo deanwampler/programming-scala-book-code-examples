@@ -18,7 +18,7 @@ val a  = t1.toArray               // Convert to collections
 val ia = t1.toIArray
 val l  = t1.toList
 
-val ta  = Tuple.fromArray(a)      // Convert to collections
+val ta  = Tuple.fromArray(a)      // Convert from collections
 val tia = Tuple.fromIArray(ia)
 // val tl  = Tuple.fromList(l)    // Doesn't exist
 case class Person(name: String, age: Int)
