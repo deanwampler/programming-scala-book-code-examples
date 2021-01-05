@@ -20,6 +20,7 @@
 | March 20, 2020    | Started incorporating new Scala 3 syntax, idioms |
 | November 11, 2020 | First Scala `3.0.0-M1` milestone changes |
 | November 25, 2020 | First Scala `3.0.0-M2` milestone changes |
+| December 19, 2020 | First Scala `3.0.0-M3` milestone changes |
 
 [![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

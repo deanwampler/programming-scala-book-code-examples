@@ -3,7 +3,7 @@ lazy val root = project
   .settings(
     name := "programming-scala-3rd-ed-code-examples",
     description := "Code examples for Programming Scala, Third Edition (O'Reilly).",
-    version := "3.0.0-M300",
+    version := "3.0.0-M310",
     scalaVersion := "3.0.0-M3",
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
