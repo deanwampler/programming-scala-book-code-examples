@@ -5,4 +5,5 @@ class Upper1:
     strings.map((s: String) => s.toUpperCase())
 
 val up = new Upper1()
-println(up.convert(List("Hello", "World!")))
+val uppers = up.convert(List("Hello", "World!"))
+println(uppers)
