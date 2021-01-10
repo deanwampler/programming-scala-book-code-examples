@@ -1,14 +1,16 @@
+// tag::defs[]
 // src/script/scala/progscala3/typelessdomore/PartialFunctions.scala
 
 val pfs: PartialFunction[Matchable,String] =                         // <1>
   case s:String => "YES"
-val pfd: PartialFunction[Matchable,String] = {                       // <2>
+val pfd: PartialFunction[Matchable,String] =                         // <2>
   case d:Double => "YES"
-}
 
 val pfsd = pfs.orElse(pfd)                                           // <3>
+// end::defs[]
 
-def tryPF(                                                           // <4>
+// tag::examples[]
+def tryPF(
     x: Matchable, f: PartialFunction[Matchable,String]): String =
   try f(x)
   catch case _: MatchError => "ERROR!"
@@ -32,7 +34,9 @@ assert(pfsd.isDefinedAt(3.142) == true)
 assert(pfs.isDefinedAt(2)      == false)
 assert(pfd.isDefinedAt(2)      == false)
 assert(pfsd.isDefinedAt(2)     == false)
+// end::examples[]
 
+// tag::examples2[]
 val fs = pfs.lift
 assert(fs("str") == Some("YES"))
 assert(fs(3.142) == None)
@@ -41,3 +45,5 @@ val pfs2 = fs.unlift
 assert(pfs2("str") == "YES")
 val trypi = tryPF(3.142, pfs2)  // Use tryPF we defined above
 assert(trypi == "ERROR!")
+// end::examples2[]
+

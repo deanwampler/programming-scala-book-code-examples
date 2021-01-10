@@ -5,7 +5,7 @@ import scala.io.Source
 abstract class BulkReader:
   type In                                                            // <1>
   /** The source of data to read. */
-  def source: In
+  val source: In
   /** Read source and return a sequence of Strings */
   def read: Seq[String]
 

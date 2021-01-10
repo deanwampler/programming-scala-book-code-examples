@@ -26,6 +26,9 @@ val strings = results.map(process)
 // tag::distributive[]
 trait T1; trait T2; trait T3
 
+summon[(T1 & (T2 | T3)) =:= ((T1 & T2) | (T1 & T3))]
+summon[(T1 | (T2 & T3)) =:= ((T1 | T2) & (T1 | T3))]
+
 val x1:  T1 & (T2 | T3)        = new T1 with T2 {}
 val x2:  T1 & (T2 | T3)        = new T1 with T3 {}
 val x3:  T1 & (T2 | T3)        = new T1 with T2 with T3 {}
@@ -39,6 +42,7 @@ val x9:  T1 | (T2 & T3)        = new T1 with T2 with T3 {}
 val x10: (T1 | T2) & (T1 | T3) = new T1 {}
 val x11: (T1 | T2) & (T1 | T3) = new T2 with T3 {}
 val x12: (T1 | T2) & (T1 | T3) = new T1 with T2 with T3 {}
+
 // end::distributive[]
 
 // tag::covariance[]

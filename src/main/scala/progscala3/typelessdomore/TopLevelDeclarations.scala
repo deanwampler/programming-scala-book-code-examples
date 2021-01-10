@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/PackageObjects.scala
+// src/main/scala/progscala3/typelessdomore/TopLevelDeclarations.scala
 package progscala3.typelessdomore.api
 
 val DEFAULT_COUNT = 5

@@ -16,10 +16,10 @@ lazy val root = project
       "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.10",
       "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.10",
       "ch.qos.logback"          % "logback-classic"  % "1.2.3",
-      "org.typelevel"          %% "cats-core"        % "2.3.0-M2",
       // Map over this sequence of Scala 2.X libraries & call withDottyCompat(...):
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty/Scala 3:
+      "org.typelevel"          %% "cats-core"        % "2.3.1",
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
       "org.scalacheck"         %% "scalacheck"       % "1.15.2" % Test,
       "org.scalameta"          %% "munit"            % "0.7.20" % Test,

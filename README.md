@@ -1,11 +1,11 @@
-# Programming Scala, 3rd Edition (Forthcoming)
+# Programming Scala, 3rd Edition
 
 ## README for the Code Examples
 
 * [Dean Wampler](mailto:programming.scala@gmail.com)
 * [@deanwampler](https://twitter.com/deanwampler)
 * [LinkedIn](https://www.linkedin.com/in/deanwampler/)
-* [My Book Page](http://programming-scala.org)
+* [Book Page](http://programming-scala.org)
 * [Blog about Scala 3](https://medium.com/scala-3)
 
 | Key Dates         | Description |
