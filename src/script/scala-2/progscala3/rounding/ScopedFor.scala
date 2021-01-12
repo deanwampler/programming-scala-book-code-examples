@@ -9,4 +9,4 @@ val days = for {
 } yield fn
 
 assert(days.toSeq ==
-	Seq("Friday", "Monday", "Tuesday", "Wednesday", "Thursday"))
+  Seq("Friday", "Monday", "Tuesday", "Wednesday", "Thursday"))

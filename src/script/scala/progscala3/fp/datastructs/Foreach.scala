@@ -18,4 +18,4 @@ stateCapitals.zipWithIndex.foreach {
   case ((k, v), i) => str3 += s"($i) $k: $v, "
 }
 assert(str3 ==
-	"(0) Alabama: Montgomery, (1) Alaska: Juneau, (2) Wyoming: Cheyenne, ")
+  "(0) Alabama: Montgomery, (1) Alaska: Juneau, (2) Wyoming: Cheyenne, ")

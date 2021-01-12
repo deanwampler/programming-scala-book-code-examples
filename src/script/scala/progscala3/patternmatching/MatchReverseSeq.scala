@@ -8,4 +8,4 @@ def reverseSeqToString[T](l: Seq[T]): String = l match
   case Nil => "Nil"
 
 assert(reverseSeqToString(nonEmptySeq) ==
-	"(((((Nil :+ 1) :+ 2) :+ 3) :+ 4) :+ 5)")
+  "(((((Nil :+ 1) :+ 2) :+ 3) :+ 4) :+ 5)")

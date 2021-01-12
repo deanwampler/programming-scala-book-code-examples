@@ -4,7 +4,7 @@ import scala.compiletime.constValueTuple
 
 // Creates tuples with the singleton types and corresponding values:
 val goodTuple =
-	constValueTuple["foo" *: 10 *: 2.5 *: EmptyTuple]
+  constValueTuple["foo" *: 10 *: 2.5 *: EmptyTuple]
 
 import compiletime.ops.int._
 val goodTuple2 =

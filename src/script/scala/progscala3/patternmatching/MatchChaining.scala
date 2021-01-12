@@ -2,9 +2,9 @@
 
 for opt <- Seq(Some(1), None)
 yield opt match {
-	case None => ""
-	case Some(i) => i.toString
-} match {
-	case "" => false
-	case _ => true
+  case None => ""
+  case Some(i) => i.toString
+} match {        // will match on the String from the previous match
+  case "" => false
+  case _ => true
 }

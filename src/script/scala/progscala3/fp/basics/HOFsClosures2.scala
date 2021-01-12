@@ -18,10 +18,10 @@ object Multiplier2:
   def multiplier(i: Int) = i * factor
 
 val result3 =
-	(1 to 10).filter(_ % 2 == 0).map(Multiplier2.multiplier).reduce(_ * _)
+  (1 to 10).filter(_ % 2 == 0).map(Multiplier2.multiplier).reduce(_ * _)
 assert(result3 == 122880)
 
 Multiplier2.factor = 3
 val result4 =
-	(1 to 10).filter(_ % 2 == 0).map(Multiplier2.multiplier).reduce(_ * _)
+  (1 to 10).filter(_ % 2 == 0).map(Multiplier2.multiplier).reduce(_ * _)
 assert(result4 == 933120)

@@ -5,15 +5,15 @@ import munit._
 
 class FilterSuite extends FunSuite:
 
-	val stateCapitals = Map(
-	  "Alabama" -> "Montgomery",
-	  "Alaska"  -> "Juneau",
-	  "Wyoming" -> "Cheyenne")
+  val stateCapitals = Map(
+    "Alabama" -> "Montgomery",
+    "Alaska"  -> "Juneau",
+    "Wyoming" -> "Cheyenne")
 
-	test("Use filter to select collection elements to keep") {
-		val mapA = stateCapitals filter { kv => kv._1.startsWith("A") }
+  test("Use filter to select collection elements to keep") {
+    val mapA = stateCapitals filter { kv => kv._1.startsWith("A") }
 
-		assert(mapA == Map(
-		  "Alabama" -> "Montgomery",
-		  "Alaska"  -> "Juneau"))
-	}
+    assert(mapA == Map(
+      "Alabama" -> "Montgomery",
+      "Alaska"  -> "Juneau"))
+  }

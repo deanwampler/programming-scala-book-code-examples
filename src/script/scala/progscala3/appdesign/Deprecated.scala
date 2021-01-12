@@ -9,6 +9,6 @@ def warning(i: Int) = obsolete(i)                          // <3>
 @nowarn def nowarning(i: Int) = obsolete(i)
 
 def inc(i: Int,
-	@deprecatedName("y", "V1.2.3") n: Int): Int = i + n
+  @deprecatedName("y", "V1.2.3") n: Int): Int = i + n
 inc(1, y = 2)                                              // <4>
 inc(1, n = 2)

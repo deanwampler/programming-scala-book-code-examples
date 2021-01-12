@@ -1,7 +1,7 @@
 // src/script/scala/progscala3/typesystem/valuetypes/ObjectTypes.scala
 
 case object Foo:
-	override def toString = "Foo says Hello!"
+  override def toString = "Foo says Hello!"
 
 def fooString(foo: Foo.type) = s"Foo.type: $foo"                // <1>
 

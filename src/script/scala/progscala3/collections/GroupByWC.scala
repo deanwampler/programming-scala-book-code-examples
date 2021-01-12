@@ -2,8 +2,8 @@
 
 val whitespace = "\\W+"
 val lines = io.Source.fromFile("README.md").getLines
-val words = lines.flatMap(_.toLowerCase.replaceAll(whitespace, " "). //
-	split(whitespace)).filter(_.length > 0).toVector
+val words = lines.flatMap(_.toLowerCase.replaceAll(whitespace, " ").
+  split(whitespace)).filter(_.length > 0).toVector
 words.take(10)
 
 val grouped = words.groupBy(identity)

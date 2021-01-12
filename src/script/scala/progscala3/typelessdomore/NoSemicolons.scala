@@ -1,11 +1,11 @@
 // src/script/scala/progscala3/typelessdomore/NoSemicolons.scala
 
 val s = "hello"
-	+ "world"
-	+ "!"
+  + "world"
+  + "!"
 
 class Foo(name: String):
-	def yell: String = name.toUpperCase + "!"
+  def yell: String = name.toUpperCase + "!"
 
 def equalsign(s: String) =
   println("equalsign: " + s)

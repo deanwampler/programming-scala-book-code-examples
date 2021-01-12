@@ -104,6 +104,8 @@ After installing the required plugins, load this project in your IDE, which shou
 
 If you like working with _Scala worksheets_ in your IDE or editor, you may be able to load any of the REPL "script" files under `src/script` as a worksheet. If your environment is more restrictive, for example about the extension used, then run the included `bash` script `./make-worksheets.sh` to copy all the REPL "script" examples to worksheet files. This command copies the tree `src/script` to `src/worksheet` and changes the `.scala` extension for all the files to `.worksheet.sc`, the VSCode convention. These behaviors are configurable. Use the `--help` option to see the details. If you are using Windows and you don't have `bash` available, e.g., through the Linux subsystem, then modify individual files as you see fit.
 
+See this [Dotty documentation page](https://dotty.epfl.ch/docs/usage/worksheet-mode.html) for more information about worksheets.
+
 ## Building the Code Examples
 
 After installing SBT, open a command/terminal window and run the `sbt test` command. 

@@ -2,7 +2,7 @@
 package progscala3.basicoop.people
 
 case class Address(
-	street: String, city: String, state: String, zip: ZipCode)
+  street: String, city: String, state: String, zip: ZipCode)
 
 object Address:
   def apply(zip: ZipCode) = new Address(                      // <1>

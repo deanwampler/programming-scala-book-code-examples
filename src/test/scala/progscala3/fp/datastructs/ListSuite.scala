@@ -5,25 +5,25 @@ import munit._
 
 class ListSuite extends FunSuite:
 
-	val list = List("Programming", "Scala")
+  val list = List("Programming", "Scala")
 
-	test("Construct a list with the List() constructor") {
-		assert(list.size == 2)
-	}
+  test("Construct a list with the List() constructor") {
+    assert(list.size == 2)
+  }
 
-	test("Construct a list with the x :: y :: list concatenation") {
-		val list1 = "People" :: "should" :: "read" :: list
-		assert(list1 ==
-		  List("People", "should", "read", "Programming", "Scala"))
-	}
+  test("Construct a list with the x :: y :: list concatenation") {
+    val list1 = "People" :: "should" :: "read" :: list
+    assert(list1 ==
+      List("People", "should", "read", "Programming", "Scala"))
+  }
 
-	test("Construct a list with the x :: y :: Nil construction") {
-		val list1 = "Programming" :: "Scala" :: Nil
-		assert(list1.size == 2)
-	}
-	test("Join lists with ++") {
-		val list1 = "People" :: "should" :: "read" :: Nil
-		val list2 = list1 ++ list
-		assert(list2 ==
-		  List("People", "should", "read", "Programming", "Scala"))
-	}
+  test("Construct a list with the x :: y :: Nil construction") {
+    val list1 = "Programming" :: "Scala" :: Nil
+    assert(list1.size == 2)
+  }
+  test("Join lists with ++") {
+    val list1 = "People" :: "should" :: "read" :: Nil
+    val list2 = list1 ++ list
+    assert(list2 ==
+      List("People", "should", "read", "Programming", "Scala"))
+  }

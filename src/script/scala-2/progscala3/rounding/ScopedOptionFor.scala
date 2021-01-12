@@ -13,13 +13,13 @@ val goodDays1 = for {         // First pass
   fn   = day.fullName
 } yield fn
 assert(goodDays1 ==
-	Seq("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-		  "Saturday", "Sunday"))
+  Seq("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+      "Saturday", "Sunday"))
 
 val goodDays2 = for {         // second, more concise pass
   case Some(day) <- dayOptions
   fn = day.fullName
 } yield fn
 assert(goodDays2 ==
-	Seq("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-		  "Saturday", "Sunday"))
+  Seq("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+      "Saturday", "Sunday"))
