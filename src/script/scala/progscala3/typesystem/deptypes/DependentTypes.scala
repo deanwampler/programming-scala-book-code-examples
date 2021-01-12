@@ -6,16 +6,17 @@ import scala.compiletime.ops.int._
 
 type NSize[N] <: Int = N match                                  // <1>
   case 0 => 0
-  case ? => S[NSize[N-1]]
+  case S[m] => S[NSize[m]]                                      // <2>
+//  case ? => S[NSize[N-1]]
 
-sealed trait DTList[N <: Int]:                                  // <2>
-  inline def size: NSize[N] = valueOf[NSize[N]]                 // <3>
+sealed trait DTList[N <: Int]:                                  // <3>
+  inline def size: NSize[N] = valueOf[NSize[N]]                 // <4>
 
-  def +:[H](h: H): DTNonEmptyList[N, H, this.type] =            // <4>
+  def +:[H](h: H): DTNonEmptyList[N, H, this.type] =            // <5>
     DTNonEmptyList(h, this)
 
-case object DTNil extends DTList[0]                             // <5>
-case class DTNonEmptyList[N <: Int, H, T <: DTList[N]](         // <6>
+case object DTNil extends DTList[0]                             // <6>
+case class DTNonEmptyList[N <: Int, H, T <: DTList[N]](         // <7>
   head: H, tail: T) extends DTList[S[N]]
 // end::dtlist[]
 
@@ -32,9 +33,9 @@ list.tail.tail.size
 list.tail.tail.head      // ERROR
 list.tail.tail.tail      // ERROR
 
+DTNil.size
 DTNil.head               // ERROR - "head is not a member of ..."
 DTNil.tail               // ERROR - "tail is not a member of ..."
-DTNil.size
 // end::usage[]
 
 // tag::simplelist[]
