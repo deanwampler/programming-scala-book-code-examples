@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/rounding/TreeADT.scala
 
-object Scala2ADT:
+object SealedADT:
   sealed trait Tree[T]                                          // <1>
   final case class Branch[T](                                   // <2>
     left: Tree[T], right: Tree[T]) extends Tree[T]
@@ -14,7 +14,7 @@ object Scala2ADT:
       Leaf(3),
       Branch(Leaf(4),Leaf(5))))
 
-object Scala3ADT:
+object EnumADT:
   enum Tree[T]:                                                 // <4>
     case Branch(left: Tree[T], right: Tree[T])
     case Leaf(elem: T)
@@ -28,6 +28,6 @@ object Scala3ADT:
       Leaf(3),
       Branch(Leaf(4),Leaf(5))))
 
-Scala2ADT.tree                                                  // <6>
-Scala3ADT.tree
+SealedADT.tree                                                  // <6>
+EnumADT.tree
 

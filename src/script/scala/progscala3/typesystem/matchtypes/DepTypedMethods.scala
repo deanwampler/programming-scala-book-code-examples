@@ -8,21 +8,12 @@ type ElemR[X] = X match         // "R" for "recursive"
   case Option[t] => ElemR[t]
   case ? => X                                                   // <3>
 
-def first[X <: Matchable](x: X): ElemR[X] = x match
-// <4>
+def first[X](x: X): ElemR[X] = x match                          // <4>
   case s: String      => s.charAt(0)
   case a: Array[t]    => first(a(0))
   case i: Iterable[t] => first(i.head)
   case o: Option[t]   => first(o.get)
   case x              => x
-
-def first[X <: Matchable, X2 <: Matchable](x: X): ElemR[X] = x match
-// <4>
-  case s: String       => s.charAt(0)
-  case a: Array[X2]    => first(a(0))
-  case i: Iterable[X2] => first(i.head)
-  case o: Option[X2]   => first(o.get)
-  case m: Matchable    => m
 // end::first[]
 
 // tag::example[]
