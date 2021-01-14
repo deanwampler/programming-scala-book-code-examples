@@ -5,7 +5,7 @@ import scala.util.control.NonFatal
 
 /** Usage: scala rounding.TryCatch filename1 filename2 ... */
 @main def TryCatch(fileNames: String*) =                             // <2>
-  fileNames foreach { fileName =>
+  fileNames.foreach { fileName =>
     var source: Option[Source] = None                                // <3>
     try                                                              // <4>
       source = Some(Source.fromFile(fileName))                       // <5>

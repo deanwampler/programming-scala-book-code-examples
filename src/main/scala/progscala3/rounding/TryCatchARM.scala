@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/rounding/TryCatchArm.scala
+// src/main/scala/progscala3/rounding/TryCatchARM.scala
 package progscala3.rounding
 import scala.language.reflectiveCalls
 import reflect.Selectable.reflectiveSelectable
@@ -24,7 +24,7 @@ object manage:
 
 /** Usage: scala rounding.TryCatchARM filename1 filename2 ... */
 @main def TryCatchARM(fileNames: String*) =
-  val sizes = fileNames map { fileName =>
+  val sizes = fileNames.map { fileName =>
     try
       val size = manage(Source.fromFile(fileName)) { source =>
         source.getLines.size

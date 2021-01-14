@@ -1,3 +1,4 @@
+// tag::first[]
 // src/script/scala/progscala3/rounding/ScopedOptionFor.scala
 
 import progscala3.rounding.WeekDay
@@ -15,7 +16,9 @@ yield fn
 assert(goodDays1 ==
   Seq("Monday", "Tuesday", "Wednesday",
     "Thursday", "Friday", "Saturday", "Sunday"))
+// end::first[]
 
+// tag::second[]
 val goodDays2 = for          // second, more concise pass
   case Some(day) <- dayOptions
   fn = day.fullName
@@ -23,3 +26,4 @@ yield fn
 assert(goodDays2 ==
   Seq("Monday", "Tuesday", "Wednesday",
     "Thursday", "Friday", "Saturday", "Sunday"))
+// end::second[]

@@ -2,7 +2,7 @@
 // src/script/scala/progscala3/rounding/BasicFor.scala
 
 for
-  i <- 0 until 10
+  i <- 0 until 10            // Recall "until" means 10 is exclusive.
 do println(i)
 // end::first[]
 

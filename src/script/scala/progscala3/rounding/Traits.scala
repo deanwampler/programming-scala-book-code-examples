@@ -20,13 +20,14 @@ trait Logging:
   import Level._
 
   def level: Level                                              // <2>
+  def log(level: Level, message: String): Unit
+
   final def info(message: String): Unit =                       // <3>
     if level >= INFO then log(INFO, message)
   final def warning(message: String): Unit =
     if level >= WARNING then log(WARNING, message)
   final def error(message: String): Unit =
     if level >= ERROR then log(ERROR, message)
-  def log(level: Level, message: String): Unit
 
 trait StdoutLogging extends Logging:                            // <4>
   def log(level: Level, message: String) =

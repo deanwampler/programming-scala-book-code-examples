@@ -6,7 +6,7 @@ import scala.io.Source
 
 /** Usage: scala rounding.FileSizes filename1 filename2 ... */
 @main def FileSizes(fileNames: String*) =
-  val sizes = fileNames map { fileName =>
+  val sizes = fileNames.map { fileName =>
     Using.resource(Source.fromFile(fileName)) { source =>
       source.getLines.size
     }
