@@ -8,3 +8,5 @@ val nonEmptySeq = Vector(1, 2, 3, 4, 5)
 
 assert(reverseSeqToString(nonEmptySeq) ==
   "(((((Nil :+ 1) :+ 2) :+ 3) :+ 4) :+ 5)")
+
+Vector.empty[Int] :+ 1 :+ 2 :+ 3 :+ 4 :+ 5

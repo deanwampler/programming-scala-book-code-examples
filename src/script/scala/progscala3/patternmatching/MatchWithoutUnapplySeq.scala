@@ -10,7 +10,7 @@ def windows2[T](seq: Seq[T]): String = seq match
   case head +: tail => s"($head, _), " + windows2(tail)
   case Nil => "Nil"
 
-val results = Seq(nonEmptyList, emptyList, nonEmptyMap.toSeq) map {
+val results = Seq(nonEmptyList, emptyList, nonEmptyMap.toSeq).map {
   seq => windows2(seq)
 }
 assert(results == Seq(

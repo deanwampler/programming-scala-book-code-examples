@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/patternmatching/OtherUsesTuples.scala
+// src/script/scala/progscala3/patternmatching/AssignmentsTuples.scala
 
 /** Return the count, sum, average, minimum value, and maximum value. */
 def stats(seq: Seq[Double]): (Int, Double, Double, Double, Double) =

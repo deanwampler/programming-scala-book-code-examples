@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/patternmatching/OtherUses1.scala
+// src/script/scala/progscala3/patternmatching/Assignments.scala
 
 case class Address(street: String, city: String, country: String)
 case class Person(name: String, age: Int, address: Address)

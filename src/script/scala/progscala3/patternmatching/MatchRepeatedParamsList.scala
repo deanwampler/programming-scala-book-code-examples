@@ -27,7 +27,7 @@ val wheres = Seq(                                                    // <4>
   WhereOp("name", EQ, "Buck Trends"),
   WhereOp("age", GT, 29))
 
-val results = wheres map {
+val results = wheres.map {
   case WhereIn(col, val1, vals: _*) =>                               // <5>
     val valStr = (val1 +: vals).mkString(", ")
     s"WHERE $col IN ($valStr)"

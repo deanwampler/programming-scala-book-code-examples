@@ -8,14 +8,14 @@ println(iarray)
 // end::iarray[]
 
 // tag::unbounded[]
-def examine[T](seq: Seq[T]): Seq[String] = seq map {
+def examine[T](seq: Seq[T]): Seq[String] = seq.map {
   case i: Int => s"Int: $i"
   case other => s"Other: $other"
 }
 // end::unbounded[]
 
 // tag::bounded[]
-def examine[T <: Matchable](seq: Seq[T]): Seq[String] = seq map {
+def examine[T <: Matchable](seq: Seq[T]): Seq[String] = seq.map {
   case i: Int => s"Int: $i"
   case other => s"Other: $other"
 }

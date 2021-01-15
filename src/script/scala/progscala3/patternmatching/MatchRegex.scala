@@ -9,7 +9,7 @@ val catalog = Seq(
   "Unknown: text=Who put this here??"
 )
 
-val results = catalog map {
+val results = catalog.map {
   case BookExtractorRE(title, author) =>                             // <2>
     s"""Book "$title", written by $author"""
   case MagazineExtractorRE(title, issue) =>

@@ -1,9 +1,5 @@
 // src/script/scala/progscala3/patternmatching/MatchUnapplySeq.scala
 
-val nonEmptyList   = List(1, 2, 3, 4, 5)
-val emptyList      = Nil
-val nonEmptyMap    = Map("one" -> 1, "two" -> 2, "three" -> 3)
-
 // Process pairs
 def windows[T](seq: Seq[T]): String = seq match
   case Seq(head1, head2, tail: _*) =>                                // <1>
@@ -12,7 +8,11 @@ def windows[T](seq: Seq[T]): String = seq match
     s"($head, _), " + windows(tail)
   case Nil => "Nil"                                                  // <4>
 
-val results = Seq(nonEmptyList, emptyList, nonEmptyMap.toSeq) map {
+val nonEmptyList   = List(1, 2, 3, 4, 5)
+val emptyList      = Nil
+val nonEmptyMap    = Map("one" -> 1, "two" -> 2, "three" -> 3)
+
+val results = Seq(nonEmptyList, emptyList, nonEmptyMap.toSeq).map {
   seq => windows(seq)
 }
 assert(results == Seq(

@@ -21,9 +21,9 @@ import O1.c1            // Import just the given c1 of type C1
 // tag::O2[]
 object O2:
   class C1
-  class C2
   given C1 = new C1
-  given C2 = new C2
   given intOrd: Ordering[Int] = summon[Ordering[Int]]
   given listOrd[T: Ordering]: Ordering[List[T]] = summon[Ordering[List[T]]]
+
+import O2.{given Ordering[?]}
 // end::O2[]

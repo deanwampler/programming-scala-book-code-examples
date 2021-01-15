@@ -23,9 +23,10 @@ langs.map {
   case lang *: rest => s"$lang -> $rest"
 }
 
-val l2 = ("Indo-European" *: EmptyTuple) +: langs
+val l2 = EmptyTuple +: ("Indo-European" *: EmptyTuple) +: langs
 l2.map {
   case "Scala" *: first *: last *: EmptyTuple =>
     s"Scala -> $first -> $last"
   case lang *: rest => s"$lang -> $rest"
+  case EmptyTuple => EmptyTuple.toString
 }
