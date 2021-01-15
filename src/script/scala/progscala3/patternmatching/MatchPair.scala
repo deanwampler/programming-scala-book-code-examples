@@ -2,7 +2,7 @@
 
 val langs2 = Seq("Scala" -> "Odersky", "Clojure" -> "Hickey")
 
-val results = langs2 map {
+val results = langs2.map {
   case "Scala" -> _ => "Scala"                           // <1>
   case lang -> last => s"$lang: $last"                   // <2>
 }
