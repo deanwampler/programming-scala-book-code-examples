@@ -15,7 +15,7 @@ import O1._             // Import everything EXCEPT the givens, c1 and c2
 import O1.given         // Import ONLY the givens (of type C1 and C2)
 import O1.{given, _}    // Import everything, givens and non-givens in O1
 import O1.{given C1}    // Import just the given of type C1
-import O1.c1            // Import just the given c1 of type C1
+import O1.c2            // Import just the given c2 of type C2
 // end::imports[]
 
 // tag::O2[]
@@ -25,5 +25,6 @@ object O2:
   given intOrd: Ordering[Int] = summon[Ordering[Int]]
   given listOrd[T: Ordering]: Ordering[List[T]] = summon[Ordering[List[T]]]
 
-import O2.{given Ordering[?]}
+import O2.{given Ordering[?]}     // Import all given Orderings
+import O2.{given Ordering[Int]}   // Import just the Ordering[Int]
 // end::O2[]

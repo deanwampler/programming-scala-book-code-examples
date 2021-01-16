@@ -22,9 +22,3 @@ Seq(IntWitness -> "Int", StringWitness -> "String") foreach {        // <4>
 
 useWitness                                                           // <5>
 // end::usage[]
-
-// tag::aliasgiven[]
-given aw: Witness with
-  println("hello!")
-  override def toString = "ALL!!"
-// end::aliasgiven[]

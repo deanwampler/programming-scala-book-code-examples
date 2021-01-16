@@ -16,7 +16,7 @@ trait ToJSONOld[T]:
 
 // tag::pointcircle[]
 implicit final class PointToJSON(
-    point: Point) extends ToJSONOld[Point]:                     // <1>
+    point: Point) extends ToJSONOld[Point]:
   def toJSON(name: String = "", level: Int = 0): String =
     val (outdent, indent) = indentation(level)
     s"""${handleName(name)}{
@@ -25,7 +25,7 @@ implicit final class PointToJSON(
       |$outdent}""".stripMargin
 
 implicit final class CircleToJSON(
-    circle: Circle) extends ToJSONOld[Circle]:                  // <2>
+    circle: Circle) extends ToJSONOld[Circle]:
   def toJSON(name: String = "", level: Int = 0): String =
     val (outdent, indent) = indentation(level)
     s"""${handleName(name)}{

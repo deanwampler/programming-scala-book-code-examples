@@ -37,7 +37,7 @@ given NumericMonoid[T](using num: Numeric[T]): Monoid[T] with
 // end::numericdefinition2[]
 
 // tag::numericdefinition3[]
-given [T : Numeric]: Monoid[T] with
+given [T : Numeric] Monoid[T] with
   def unit: T = summon[Numeric[T]].zero
   extension (t: T) infix def combine(other: T): T =
     summon[Numeric[T]].plus(t, other)
