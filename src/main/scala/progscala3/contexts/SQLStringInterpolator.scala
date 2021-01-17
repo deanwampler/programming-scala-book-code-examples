@@ -2,9 +2,11 @@
 package progscala3.contexts
 
 /**
- * Only handles this subset of SQL: sql"SELECT columns FROM table;".
+ * An implementation of a string interpolator that handles this subset of SQL:
+ *   sql"SELECT columns FROM table;".
  * You can hard code comma-separated column values and the table or use variables
  * for them. See the corresponding test, SQLStringInterpolatorSuite.
+ * This example is mentioned in the book, but not included there.
  */
 object SimpleSQL:
   /**

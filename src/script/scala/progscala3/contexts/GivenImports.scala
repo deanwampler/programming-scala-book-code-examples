@@ -19,12 +19,13 @@ import O1.c2            // Import just the given c2 of type C2
 // end::imports[]
 
 // tag::O2[]
+trait Marker[T]
 object O2:
   class C1
   given C1 = new C1
-  given intOrd: Ordering[Int] = summon[Ordering[Int]]
-  given listOrd[T: Ordering]: Ordering[List[T]] = summon[Ordering[List[T]]]
+  given Marker[Int] with {}                 // <1>
+  given Marker[List[?]] with {}             // <2>
 
-import O2.{given Ordering[?]}     // Import all given Orderings
-import O2.{given Ordering[Int]}   // Import just the Ordering[Int]
+import O2.{given Marker[?]}     // Import all given Markers
+import O2.{given Marker[Int]}   // Import just the Marker[Int]
 // end::O2[]
