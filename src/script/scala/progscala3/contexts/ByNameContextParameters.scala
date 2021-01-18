@@ -1,17 +1,23 @@
 // src/script/scala/progscala3/contexts/ByNameContextParameters.scala
 
-trait Codec[T]:
-  def write(x: T): Unit
+type Status = String                                            // <1>
 
-given intCodec: Codec[Int] with
-  def write(i: Int): Unit = print(i)
+case class Transaction(database: String):                       // <2>
+  def begin(query: String): Status = s"$database: Starting transaction: $query"
+  def rollback(): Status = s"$database: Rolling back transaction"
+  def commit(): Status = s"$database: Committing transaction"
 
-given optionCodec[T](using ev: => Codec[T]): Codec[Option[T]] with
-  def write(xo: Option[T]) = xo match
-    case Some(x) => ev.write(x)
-    case None =>
+case class ConnectionManager(database: String):                 // <3>
+  println(s"... expensive initialization for database $database")
+  def createTransaction: Transaction = Transaction(database)
 
-val s = summon[Codec[Option[Int]]]
+def doTransaction(query: => String)(                            // <4>
+    using cm: => ConnectionManager): Seq[Status] =
+  val trans = cm.createTransaction
+  Seq(trans.begin(query), trans.commit())
 
-s.write(Some(33))
-s.write(None)
+def doPostgreSQL =                                              // <5>
+  println("Start of doPostgreSQL.")
+  given ConnectionManager = ConnectionManager("PostgreSQL")
+  println("Start of doTransaction.")
+  doTransaction("SELECT * FROM table")

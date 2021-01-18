@@ -15,10 +15,11 @@ val sameThreadExecutionContext = new ExecutionContext:          // <1>
 object AsyncRunner2:
   def apply[T](body: ExecutionContext => Future[T]): T =        // <2>
     val future = body(sameThreadExecutionContext)
-    Await.result(future, 2.second)
+    Await.result(future, 2.seconds)
 
-val result2 = AsyncRunner2 { implicit executionContext =>       // <3>
-  Future(1).map(_ * 2).filter(_ > 0)
+val result2 = AsyncRunner2 {                                    // <3>
+  implicit executionContext =>
+    Future(1).map(_ * 2).filter(_ > 0)
 }
 // end::scala2[]
 
@@ -28,7 +29,7 @@ object AsyncRunner3:
 
   def apply[T](body: => RunnerContext[T]): T =                  // <1>
     given ExecutionContext = sameThreadExecutionContext
-    Await.result(body, 2.second)
+    Await.result(body, 2.seconds)
 
 val result3 = AsyncRunner3 {                                    // <2>
   Future(1).map(_ * 2).filter(_ > 0)

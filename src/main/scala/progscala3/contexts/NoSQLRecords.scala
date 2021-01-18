@@ -44,5 +44,7 @@ case class Record private (contents: Map[String,Any]):               // <2>
   val bad3  = rec.get[Double]("five")
   // val error  = rec.get[Byte]("byte")
 
-  println(s"one, two, three, four, five -> $one, $two, $three, $four, $five")
-  println(s"bad1, bad2, bad3 -> $bad1, $bad2, $bad3")
+  println(
+    s"one, two, three, four, five ->\n  $one, $two, $three, $four,\n  $five")
+  println(
+    s"bad1, bad2, bad3 ->\n  $bad1\n  $bad2\n  $bad3")

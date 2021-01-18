@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/rounding/TypeErasure2.scala
+// src/script/scala/progscala3/rounding/TypeErasureTargetNameFix.scala
 
 import scala.annotation.targetName
 object O:

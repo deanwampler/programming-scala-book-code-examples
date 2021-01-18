@@ -4,20 +4,16 @@
 import scala.compiletime.S
 import scala.compiletime.ops.int._
 
-type NSize[N] <: Int = N match                                  // <1>
-  case 0 => 0
-  case S[m] => S[NSize[m]]                                      // <2>
-//  case ? => S[NSize[N-1]]
+sealed trait DTList[N <: Int]:                                       // <1>
+  inline def size: N = valueOf[N]                                    // <2>
 
-sealed trait DTList[N <: Int]:                                  // <3>
-  inline def size: NSize[N] = valueOf[NSize[N]]                 // <4>
-
-  def +:[H](h: H): DTNonEmptyList[N, H, this.type] =            // <5>
+  def +:[H <: Matchable](h: H): DTNonEmptyList[N, H, this.type] =    // <3>
     DTNonEmptyList(h, this)
 
-case object DTNil extends DTList[0]                             // <6>
-case class DTNonEmptyList[N <: Int, H, T <: DTList[N]](         // <7>
-  head: H, tail: T) extends DTList[S[N]]
+case object DTNil extends DTList[0]                                  // <4>
+
+case class DTNonEmptyList[N <: Int, H <: Matchable, T <: DTList[N]]( // <5>
+    head: H, tail: T) extends DTList[S[N]]
 // end::dtlist[]
 
 // tag::usage[]

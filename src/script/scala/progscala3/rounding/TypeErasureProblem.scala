@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/rounding/TypeErasure1.scala
+// src/script/scala/progscala3/rounding/TypeErasureProblem.scala
 
 object O:
   def m(is: Seq[Int]): Int = is.sum
