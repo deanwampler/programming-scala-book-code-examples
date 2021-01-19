@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/fp/datastructs/FoldReduce.scala
+// src/script/scala/progscala3/fp/datastructs/Reduce.scala
 
 val int1 = Seq(1,2,3,4,5,6).reduce (_ + _)            // <1>
 

@@ -2,7 +2,7 @@
 
 val states = Set("Alabama", "Alaska", "Wyoming")
 
-val lengths = states map (st => st.length)            // <1>
+val lengths = states.map (st => st.length)            // <1>
 assert(lengths == Set(6, 7))  // Two names are 7 characters long
 
 val states2 = states + "Virginia"

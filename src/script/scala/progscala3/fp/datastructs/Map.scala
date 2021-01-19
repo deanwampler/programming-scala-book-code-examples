@@ -5,13 +5,19 @@ val stateCapitals = Map(
   "Alaska"  -> "Juneau",
   "Wyoming" -> "Cheyenne")
 
-val lengths = stateCapitals map(kv => (kv._1, kv._2.length))
+val lengths = stateCapitals.map(kv => (kv._1, kv._2.length))
 assert(lengths == Map(
   "Alabama" -> 10,
   "Alaska"  -> 6,
   "Wyoming" -> 8))
 
-val caps = stateCapitals map { case (k, v) => (k, v.toUpperCase) }
+val caps = stateCapitals.map { case (k, v) => (k, v.toUpperCase) }
+assert(caps ==  Map(
+  "Alabama" -> "MONTGOMERY",
+  "Alaska"  -> "JUNEAU",
+  "Wyoming" -> "CHEYENNE"))
+
+val caps = stateCapitals.map((k, v) => (k, v.toUpperCase))
 assert(caps ==  Map(
   "Alabama" -> "MONTGOMERY",
   "Alaska"  -> "JUNEAU",
