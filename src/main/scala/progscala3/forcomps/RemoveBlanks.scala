@@ -8,14 +8,19 @@ object RemoveBlanks:
       if line.matches("""^\s*$""") == false                          // <2>
       line2 = if compress then line.trim.replaceAll("\\s+", " ")     // <3>
               else line
-      numLine = if numbers then "%4d: %s".format(i, line2)           // <4>
+      numLine = if numbers then "%4d: %s".format(i+1, line2)         // <4>
               else line2
     yield numLine
 
-  def main(params: Array[String]): Unit =                            // <5>
+  protected case class Args(                                         // <5>
+    compress: Boolean = false,
+    numbers: Boolean = false,
+    paths: Vector[String] = Vector.empty)
+
+  def main(params: Array[String]): Unit =                            // <6>
 
     val Args(compress, numbers, paths) = parseParams(params.toSeq, Args())
-    for                                                              // <6>
+    for                                                              // <7>
       path <- paths
       seq = s"\n== File: $path\n" +: RemoveBlanks(path, compress, numbers)
       line <- seq
@@ -24,16 +29,12 @@ object RemoveBlanks:
   protected val helpMessage = """
     |usage: RemoveBlanks [-h|--help] [-c|--compress] [-n|--numbers] file ...
     |where:
-    | -h | --help     Print this message and quit
-    | -c | --compress Compress whitespace
-    | -n | --numbers  Print line numbers
-    | file ...        One or more files to print without blanks
+    | -h | --help     Print this message and quit.
+    | -c | --compress Compress whitespace.
+    | -n | --numbers  Print original line numbers, meaning output numbers will
+    |                 skip the removed blank lines.
+    | file ...        One or more files to process.
     |""".stripMargin
-
-  case class Args(                                                   // <7>
-    compress: Boolean = false,
-    numbers: Boolean = false,
-    paths: Vector[String] = Vector.empty)
 
   protected def help(messages: Seq[String], exitCode: Int) =
     messages.foreach(println)

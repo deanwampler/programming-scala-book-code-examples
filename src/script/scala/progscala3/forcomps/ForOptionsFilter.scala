@@ -10,16 +10,16 @@ yield (2 * i)
 // for comprehension according to the rules we discussed.
 
 val results2 = for
-  case Some(i) <- options withFilter {
+  case Some(i) <- options.withFilter {
     case Some(i) => true
     case None => false
   }
 yield (2 * i)
 
-val results3 = options withFilter {
+val results3 = options.withFilter {
   case Some(i) => true
   case None => false
-} map {
+}.map {
   case Some(i) => (2 * i)
   case None => -1             // hack to avoid a compiler warning
 }
