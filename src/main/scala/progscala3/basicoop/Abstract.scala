@@ -20,7 +20,7 @@ trait ConsoleLogging extends Logging:
 // end::logging[]
 
 // tag::service[]
-abstract class Service(val name: String) extends Logging:       // <1>
+abstract class Service(val name: String) extends Logging:            // <1>
   import Service._
   final def handle(request: Request): Response =
     info(s"($name) Starting handle for request: $request")
@@ -34,7 +34,7 @@ object Service:                                                      // <2>
   type Request = Map[String,Any]
   type Response = Either[String,Map[String,Any]]
 
-case class HelloService(override val name: String)                   // <3>
+open class HelloService(override val name: String)                   // <3>
     extends Service(name) with ConsoleLogging:
   import Service._
 
@@ -46,7 +46,7 @@ case class HelloService(override val name: String)                   // <3>
 
 // tag::main[]
 @main def HelloServiceMain(name: String, users: String*): Unit =
-  val hs = HelloService("hello")
+  val hs = new HelloService("hello")
   for
     user <- users
     request = Map("user" -> user)
