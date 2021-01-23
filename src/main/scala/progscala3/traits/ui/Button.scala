@@ -2,7 +2,5 @@
 package progscala3.traits.ui
 
 abstract class Button(val label: String) extends Widget:
-
   def click(): Unit = updateUI()
-
-  def updateUI(): Unit
+  protected def updateUI(): Unit

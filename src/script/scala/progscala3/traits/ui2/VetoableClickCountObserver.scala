@@ -6,7 +6,7 @@ val button = new Button("Button!")
     with ObservableClicks with VetoableClicks(maxAllowed = 2):
   def updateUI(): String = s"$label clicked"
 
-val cco = new ClickCountObserver
+val cco = new CountObserver[Clickable] {}
 button.addObserver(cco)
 
 (1 to 5) map (_ => button.click())

@@ -4,4 +4,5 @@ import progscala3.traits.observer._
 
 class ButtonCountObserver extends Observer[Button]:
   var count = 0
-  def receiveUpdate(state: Button): Unit = count += 1
+  def receiveUpdate(state: Button): Unit =
+    count.synchronized { count += 1 }

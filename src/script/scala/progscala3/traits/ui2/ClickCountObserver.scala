@@ -6,7 +6,7 @@ import progscala3.traits.observer._
 val button = new Button("Button") with ObservableClicks:
   def updateUI(): String = s"$label clicked"
 
-val cco = new ClickCountObserver
+val cco = new CountObserver[Clickable] {}                            // <1>
 button.addObserver(cco)
 
 (1 to 5) foreach (_ => assert("Button clicked" == button.click()))

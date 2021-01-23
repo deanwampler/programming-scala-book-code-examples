@@ -7,8 +7,8 @@ enum LoggingLevel:
 trait Logger(val level: LoggingLevel):                               // <2>
   def log(message: String): Unit
 
-trait ConsoleLogger extends Logger:                                  // <3>
+trait ConsoleLogger extends Logger:
   def log(message: String): Unit = println(s"$level: $message")
 
-class Service(val name: String, level: LoggingLevel)                 // <4>
+class Service(val name: String, level: LoggingLevel)                 // <3>
   extends ConsoleLogger with Logger(level)

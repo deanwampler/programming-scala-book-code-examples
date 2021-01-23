@@ -3,6 +3,7 @@ import progscala3.traits.ui._
 import progscala3.traits.observer._
 
 // tag::button[]
+// src/script/scala/progscala3/traits/ui/ButtonCountObserver2.scala
 val button = new Button("Click Me!") with Subject[Button]:
   override def click(): Unit =
     super.click()

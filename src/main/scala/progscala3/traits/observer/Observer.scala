@@ -8,7 +8,7 @@ trait Subject[State]:                                                // <2>
   private var observers: Vector[Observer[State]] = Vector.empty      // <3>
 
   def addObserver(observer: Observer[State]): Unit =                 // <4>
-    observers :+= observer                                           // <5>
+    observers.synchronized { observers :+= observer }                // <5>
 
   def notifyObservers(state: State): Unit =                          // <6>
     observers foreach (_.receiveUpdate(state))
