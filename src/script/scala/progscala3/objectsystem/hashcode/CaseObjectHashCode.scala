@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/basicoop/CaseObjectHashCode.scala
+// src/script/scala/progscala3/objectsystem/hashcode/CaseObjectHashCode.scala
 
 case object O1
 

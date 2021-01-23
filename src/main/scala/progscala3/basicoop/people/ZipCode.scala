@@ -4,16 +4,17 @@ package progscala3.basicoop.people
 /**
  * US Zip Code. The constructor is private so that you have to use
  * one of the companion object apply methods, all of which do validation.
+ * This example is not included in the book.
  */
-case class ZipCode private (zip: Int, extension: Int):               // <1>
-  override def toString =                                            // <2>
+case class ZipCode private (zip: Int, extension: Int):
+  override def toString =
     if extension != 0 then s"$zip-$extension" else zip.toString
 
 object ZipCode:
 
   def apply(zip: Int): ZipCode =
     doApply(validUSPSInts(zip, 0))
-  def apply(zip: Int, extension: Int): ZipCode =                    // <3>
+  def apply(zip: Int, extension: Int): ZipCode =
     doApply(validUSPSInts(zip, extension))
   def apply(zip: String): ZipCode =
     doApply(validUSPSStrs(zip, ""))
