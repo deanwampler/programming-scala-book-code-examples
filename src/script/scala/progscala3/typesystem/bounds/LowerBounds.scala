@@ -1,11 +1,11 @@
 // src/script/scala/progscala3/typesystem/bounds/LowerBounds.scala
 
-class Parent(val value: Int):                              // <1>
+class Super(val value: Int):                               // <1>
   override def toString = s"${this.getClass.getSimpleName}($value)"
-class Child(value: Int) extends Parent(value)
+class Sub(value: Int) extends Super(value)
 
-val optChild: Option[Child] = Some(new Child(1))
-var optParent: Option[Parent] = optChild                   // <2>
-val parent1: Parent = optParent.getOrElse(new Child(0))    // <3>
-optParent = None                                           // <4>
-val parent2: Parent = optParent.getOrElse(new Parent(0))   // <5>
+val optSub: Option[Sub] = Some(new Sub(1))
+var optSuper: Option[Super] = optSub                       // <2>
+val super1: Super = optSuper.getOrElse(new Sub(0))         // <3>
+optSuper = None                                            // <4>
+val super2: Super = optSuper.getOrElse(new Super(0))       // <5>

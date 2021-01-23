@@ -1,26 +1,26 @@
 // tag::definitions[]
 // src/script/scala/progscala3/typesystem/recursivetypes/FBound.scala
 
-trait Parent[T <: Parent[T]]:                                        // <1>
+trait Super[T <: Super[T]]:                                        // <1>
   def make: T                                                        // <2>
 
-case class Child1(s: String) extends Parent[Child1]:                 // <3>
-  def make: Child1 = Child1(s"Child1: make: $s")
+case class Sub1(s: String) extends Super[Sub1]:                 // <3>
+  def make: Sub1 = Sub1(s"Sub1: make: $s")
 
-case class Child2(s: String) extends Parent[Child2]:
-  def make: Child2 = Child2(s"Child2: make: $s")
+case class Sub2(s: String) extends Super[Sub2]:
+  def make: Sub2 = Sub2(s"Sub2: make: $s")
 // end::definitions[]
 
-val c1  = Child1("c1")            // c1: Child1 = Child1(c1)
-val c2  = Child2("c2")            // c2: Child2 = Child2(c2)
-val c11 = c1.make                 // c11: Child1 = Child1(Child1: make: c1)
-val c22 = c2.make                 // c22: Child2 = Child2(Child2: make: c2)
-assert(c11.s == "Child1: make: c1")
-assert(c22.s == "Child2: make: c2")
+val s1  = Sub1("s1")              // s1: Sub1 = Sub1(s1)
+val s2  = Sub2("s2")              // s2: Sub2 = Sub2(s2)
+val s11 = s1.make                 // s11: Sub1 = Sub1(Sub1: make: s1)
+val s22 = s2.make                 // s22: Sub2 = Sub2(Sub2: make: s2)
+assert(s11.s == "Sub1: make: s1")
+assert(s22.s == "Sub2: make: s2")
 
-val p1: Parent[Child1] = c1       // p1: Parent[Child1] = Child1(c1)
-val p2: Parent[Child2] = c2       // p2: Parent[Child2] = Child2(c2)
-val p11 = p1.make                 // p11: Child1 = Child1(Child1: make: c1)
-val p22 = p2.make                 // p22: Child2 = Child2(Child2: make: c2)
-assert(p11.s == "Child1: make: c1")
-assert(p22.s == "Child2: make: c2")
+val sup1: Super[Sub1] = s1        // sup1: Super[Sub1] = Sub1(s1)
+val sup2: Super[Sub2] = s2        // sup2: Super[Sub2] = Sub2(s2)
+val sup11 = sup1.make             // sup11: Sub1 = Sub1(Sub1: make: s1)
+val sup22 = sup2.make             // sup22: Sub2 = Sub2(Sub2: make: s2)
+assert(sup11.s == "Sub1: make: s1")
+assert(sup22.s == "Sub2: make: s2")
