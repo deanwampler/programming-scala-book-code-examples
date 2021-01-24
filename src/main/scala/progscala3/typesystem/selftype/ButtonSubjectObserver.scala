@@ -14,7 +14,7 @@ object ButtonSubjectObserver extends SubjectObserver:                // <2>
       notifyObservers()
 
   class ButtonClickObserver extends Observer:                        // <4>
-   val clicks = new scala.collection.mutable.HashMap[String,Int]()
+   val clicks = scala.collection.mutable.HashMap[String,Int]()
 
     def receiveUpdate(button: ObservableButton): Unit =
       val count = clicks.getOrElse(button.label, 0) + 1
@@ -25,7 +25,7 @@ object ButtonSubjectObserver extends SubjectObserver:                // <2>
 
   val button1 = ObservableButton("one")
   val button2 = ObservableButton("two")
-  val observer = new ButtonClickObserver
+  val observer = ButtonClickObserver()
   button1.addObserver(observer)
   button2.addObserver(observer)
   button1.click()

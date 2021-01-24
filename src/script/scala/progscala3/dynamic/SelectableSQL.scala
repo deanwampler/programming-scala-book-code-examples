@@ -28,11 +28,11 @@ type Person = SQL.Record {
 // end::definitions[]
 
 // tag::person[]
-val person = new SQL.Record(                                  // <1>
+val person = SQL.Record(                                             // <1>
   "name" -> "Buck Trends", "age" -> 29).asInstanceOf[Person]
 person.name
 person.age
-person.selectDynamic("name")                                  // <2>
+person.selectDynamic("name")                                         // <2>
 // end::person[]
 
 // tag::updates[]

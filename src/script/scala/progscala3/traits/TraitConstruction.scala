@@ -24,7 +24,7 @@ class C extends B with T1 with T2:
   print(s"after:  C.c = $c) ")
   override def m(s:String): Unit = super.m(s"$s C")
 
-val c = new C
+val c = C()
 println()  // Add a linefeed for all the print() statements.
 c.m("Calling c.m:")
 

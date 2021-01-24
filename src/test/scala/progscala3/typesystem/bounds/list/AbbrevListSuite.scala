@@ -18,7 +18,7 @@ class AbbrevListSuite extends FunSuite:
     // If you call foreach directly on AbbrevNil, the compiler warns about dead code,
     // which is true!
     val al: AbbrevList[Any] = AbbrevNil
-    al.foreach(_ => throw new RuntimeException("AbbrevNil.foreach"))
+    al.foreach(_ => throw RuntimeException("AbbrevNil.foreach"))
   }
 
   test("item :: nonEmptyAbbrevList == AbbrevList(item, ...)") {

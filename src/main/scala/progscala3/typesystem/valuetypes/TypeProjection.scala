@@ -13,4 +13,4 @@ trait Service:                                                       // <3>
 
 class ConsoleService extends Service:                                // <4>
   type Log = ConsoleLogger
-  val logger: ConsoleLogger = new ConsoleLogger
+  val logger: ConsoleLogger = ConsoleLogger()

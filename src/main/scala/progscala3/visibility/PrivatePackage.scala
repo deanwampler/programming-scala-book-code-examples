@@ -8,14 +8,14 @@ package progscala3.visibility.privatepackage:
 
       class Nested:
         private[scopeA] val nestedField = 1
-            private[scopeA] val nested = new Nested
+            private[scopeA] val nested = Nested()
 
     class PrivateClass2 extends PrivateClass1:
       val field  = privateField
-      val nField = new Nested().nestedField
+      val nField = Nested().nestedField
 
     class PrivateClass3:
-      val privateClass1 = new PrivateClass1
+      val privateClass1 = PrivateClass1()
       val privateField  = privateClass1.privateField
 
     package scopeA2:
@@ -24,7 +24,7 @@ package progscala3.visibility.privatepackage:
         private[scopeA]  val field2 = 2
 
     class PrivateClass5:
-      val privateClass4 = new scopeA2.PrivateClass4
+      val privateClass4 = scopeA2.PrivateClass4()
       // Scope error:
       // val field1 = privateClass4.field1
       val field2 = privateClass4.field2
@@ -33,6 +33,6 @@ package progscala3.visibility.privatepackage:
     class PrivateClass1B extends scopeA.PrivateClass1:
       // Scope error:
       // val field1 = privateField
-      val privateClass1 = new scopeA.PrivateClass1
+      val privateClass1 = scopeA.PrivateClass1()
       // Scope error:
       // val field2 = privateClass1.privateField

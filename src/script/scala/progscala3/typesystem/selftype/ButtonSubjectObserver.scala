@@ -3,9 +3,9 @@ import progscala3.typesystem.selftype._
 import ButtonSubjectObserver._
 
 val buttons = Vector(
-  new ObservableButton("one"),
-  new ObservableButton("two"))
-val observer = new ButtonClickObserver
+  ObservableButton("one"),
+  ObservableButton("two"))
+val observer = ButtonClickObserver()
 
 buttons foreach (_.addObserver(observer))
 for (i <- 0 to 2) buttons(0).click()

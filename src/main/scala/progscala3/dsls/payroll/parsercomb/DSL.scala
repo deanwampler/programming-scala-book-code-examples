@@ -12,7 +12,7 @@ import progscala3.contexts.accounting._
     insurance premiums   250.0 dollars,
     retirement savings   15.0  percent
   }"""
-  val parser = new PayrollParser
+  val parser = PayrollParser()
   val biweeklyDeductions = parser.parseAll(parser.biweekly, input).get
 
   println(biweeklyDeductions)

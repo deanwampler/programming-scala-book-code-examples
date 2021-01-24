@@ -20,7 +20,7 @@ class ForEithersStepsSuite extends FunSuite:
     (i:Int) => Right(i + 25))
   val partiallySuccessfulSteps: Seq[Step] = List(
     (i:Int) => Right(i + 5),
-    (i:Int) => Left(new RuntimeException("FAIL!")),
+    (i:Int) => Left(RuntimeException("FAIL!")),
     (i:Int) => Right(i + 25))
 
   def sumCounts1(countSteps: Seq[Step]): Either[RuntimeException,Int] =

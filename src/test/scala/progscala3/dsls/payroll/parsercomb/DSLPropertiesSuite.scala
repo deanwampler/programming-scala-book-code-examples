@@ -19,7 +19,7 @@ class DSLPropertiesSuite extends ScalaCheckSuite:
     insurance premiums   250.0 dollars,
     retirement savings   15.0  percent
   }"""
-  val parser = new PayrollParser
+  val parser = PayrollParser()
   val biweeklyDeductions = parser.parseAll(parser.biweekly, input).get
 
   def within(d1: Dollars, d2: Dollars): Boolean =

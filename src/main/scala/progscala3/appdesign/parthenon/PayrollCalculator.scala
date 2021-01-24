@@ -41,6 +41,6 @@ object PayrollCalculator:                                       // <1>
         (name, Dollars(salary.toDouble), ruleString)
       case array => throw BadInput("expected six fields", line)
 
-  private val parser = new PayrollParser                        // <6>
+  private val parser = PayrollParser()                          // <6>
   private def toDeductions(rule: String): Deductions =
     parser.parseAll(parser.biweekly, rule).get

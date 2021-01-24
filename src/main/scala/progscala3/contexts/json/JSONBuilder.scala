@@ -90,7 +90,7 @@ object JSONBuilder:
    * the delimiters.
    */
   trait JSONContainer(open: String, close: String) extends JSONElement:
-    val elements = new ArrayBuffer[JSONElement]
+    val elements = ArrayBuffer[JSONElement]()
     def add(e: JSONElement): Unit = elements += e
     override def toString = elements.mkString(open, ", ", close)
 
@@ -136,7 +136,7 @@ object JSONBuilder:
    * those nested expressions. Finally, we return `jo`.
    */
   def obj(init: JSONObject ?=> Unit) =
-    given jo: JSONObject = new JSONObject
+    given jo: JSONObject = JSONObject()
     init
     jo
 
@@ -149,7 +149,7 @@ object JSONBuilder:
    * is inside the `String` extension method `->`.
    */
   def aobj(init: JSONObject ?=> Unit)(using jc: JSONContainer) =
-    given jo: JSONObject = new JSONObject
+    given jo: JSONObject = JSONObject()
     init
     jc.add(jo)
 
@@ -157,7 +157,7 @@ object JSONBuilder:
    * Define an array. This body is very similar to `obj`.
    */
   def array(init: JSONArray ?=> Unit) =
-    given ja: JSONArray = new JSONArray
+    given ja: JSONArray = JSONArray()
     init
     ja
 end JSONBuilder

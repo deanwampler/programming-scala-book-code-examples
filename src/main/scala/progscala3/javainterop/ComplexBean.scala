@@ -7,6 +7,6 @@ case class ComplexBean(
   @scala.beans.BeanProperty imaginary: Double):
 
   @targetName("plus") def +(that: ComplexBean) =
-    new ComplexBean(real + that.real, imaginary + that.imaginary)
+    ComplexBean(real + that.real, imaginary + that.imaginary)
   @targetName("minus") def -(that: ComplexBean) =
-    new ComplexBean(real - that.real, imaginary - that.imaginary)
+    ComplexBean(real - that.real, imaginary - that.imaginary)

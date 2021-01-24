@@ -9,7 +9,7 @@ def sleep(millis: Long) = Thread.sleep(millis)                       // <2>
   val future = Future {                                              // <3>
     val duration = (math.random * 1000).toLong
     sleep(duration)
-    if i == 3 then throw new RuntimeException(s"$i -> $duration")
+    if i == 3 then throw RuntimeException(s"$i -> $duration")
     duration
   }
   future.onComplete {                                                // <4>

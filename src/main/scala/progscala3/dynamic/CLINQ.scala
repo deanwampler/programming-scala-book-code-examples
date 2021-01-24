@@ -21,7 +21,7 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic:
       CLINQ(newRecords)
 
   def applyDynamic(name: String)(field: String): Where = name match
-    case "where" => new Where(field)                                 // <5>
+    case "where" => Where(field)                                     // <5>
     case _ => throw CLINQ.BadOperation(field, """Expected "where".""")
 
   protected class Where(field: String) extends Dynamic:              // <6>

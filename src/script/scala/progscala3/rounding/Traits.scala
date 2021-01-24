@@ -3,8 +3,7 @@
 import util.Random
 
 open class Service(name: String):                               // <1>
-  def work(i: Int): (Int, Int) =
-    (i, Random.between(0, 1000))
+  def work(i: Int): (Int, Int) = (i, Random.between(0, 1000))
 
 val service1 = new Service("one")
 (1 to 3) foreach (i => println(s"Result: ${service1.work(i)}"))
@@ -43,6 +42,6 @@ case class LoggedService(name: String, level: Level)
     info(s"Ending work: result = $result")
     result
 
-val service2 = new LoggedService("two", Level.INFO)
+val service2 = LoggedService("two", Level.INFO)
 (1 to 3) foreach (i => println(s"Result:  ${service2.work(i)}"))
 // end::example[]

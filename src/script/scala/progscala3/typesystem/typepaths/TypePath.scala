@@ -4,7 +4,7 @@ open class Service:                                                  // <1>
   class Logger:
     def log(message: String): Unit = println(s"log: $message")
 
-  val logger: Logger = new Logger
+  val logger: Logger = Logger()
 
 val s1 = new Service
 val s2 = new Service:

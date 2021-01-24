@@ -25,7 +25,7 @@ class DirectoryAuthenticate(location: URL) extends Authenticate:
 // tag::service1[]
 object ServiceWithoutExports:
   private val dirAuthenticate =
-    new DirectoryAuthenticate(new URL("https://directory.wtf"))
+    DirectoryAuthenticate(URL("https://directory.wtf"))
 
   def authenticate(username: UserName, password: Password): Boolean =
     dirAuthenticate(username, password)
@@ -35,7 +35,7 @@ object ServiceWithoutExports:
 // tag::service2[]
 object Service:
   private val dirAuthenticate =
-    new DirectoryAuthenticate(new URL("https://directory.wtf"))
+    DirectoryAuthenticate(URL("https://directory.wtf"))
 
   export dirAuthenticate.{apply => authenticate, isAuthenticated}
 // end::service2[]

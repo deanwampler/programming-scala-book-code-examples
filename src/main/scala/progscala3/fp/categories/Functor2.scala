@@ -77,7 +77,7 @@ end FunctionF2A
   val fd2bd: Double => BigDecimal = d => BigDecimal(d)
   val fi2d: Int => Double = 1.1 * _
   val fbd2s: BigDecimal => String = _.toString
-  val ff2a = new FunctionF2A[Int,BigDecimal]
+  val ff2a = FunctionF2A[Int,BigDecimal]
   val fi2s: Int => String = ff2a.map(fd2bd)(fi2d)(fbd2s)
   val newList = list.map(fi2s)
   println(s"Input list: $list")

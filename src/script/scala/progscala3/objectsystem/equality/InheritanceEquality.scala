@@ -5,10 +5,10 @@ class Employee(val name: String, val annualSalary: Double)
 class Manager(name: String, annualSalary: Double, val minions: Seq[Employee])
   extends Employee(name, annualSalary)
 
-val e1  = new Employee("Buck Trends", 50000.0)
-val e1b = new Employee("Buck Trends", 50000.0)
-val e2  = new Employee("Jane Doe", 50000.0)
-val m1  = new Manager("Jane Doe", 50000.0, Seq(e1, e2))
+val e1  = Employee("Buck Trends", 50000.0)
+val e1b = Employee("Buck Trends", 50000.0)
+val e2  = Employee("Jane Doe", 50000.0)
+val m1  = Manager("Jane Doe", 50000.0, Seq(e1, e2))
 val all = Seq(e1, e1b, e2, m1)
 // end::definitions[]
 

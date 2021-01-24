@@ -23,7 +23,7 @@ import progscala3.contexts.accounting._
 object dsl:
   def biweekly(                                                      // <5>
       db: DeductionsBuilder => DeductionsBuilder): Deductions =
-    db(new DeductionsBuilder("Biweekly", 26)).deductions
+    db(DeductionsBuilder("Biweekly", 26)).deductions
 
   case class DeductionsBuilder(                                      // <6>
     name: String,

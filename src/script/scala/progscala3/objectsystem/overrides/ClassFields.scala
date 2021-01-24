@@ -8,6 +8,6 @@ class ClassT5 extends T5:
   override val name = "ClassT5"
   count = 1
 
-val c = new ClassT5()
+val c = ClassT5()
 assert(c.name == "ClassT5")
 assert(c.count == 1)

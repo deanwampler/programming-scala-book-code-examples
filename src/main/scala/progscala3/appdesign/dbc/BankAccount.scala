@@ -16,11 +16,10 @@ case class BankAccount(balance: Money):
   def debit(amount: Money) =                                         // <2>
     require(balance >= amount,
       s"Overdrafts are not permitted, balance = $balance, debit = $amount")
-    (new BankAccount(balance - amount)).ensuring(
+    (BankAccount(balance - amount)).ensuring(
       newAccount => newAccount.balance == this.balance - amount)
 
-  def credit(amount: Money) =                                        // <3>
-    new BankAccount(balance + amount)
+  def credit(amount: Money) = BankAccount(balance + amount)          // <3>
 
 import scala.util.Try
 

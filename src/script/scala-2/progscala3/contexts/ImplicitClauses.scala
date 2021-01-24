@@ -2,10 +2,10 @@
 
 case class SortableSeq[A](seq: Seq[A]) {                             // <1>
   def sortBy1[B](transform: A => B)(implicit o: Ordering[B]): SortableSeq[A]=
-    new SortableSeq(seq.sortBy(transform)(o))
+    SortableSeq(seq.sortBy(transform)(o))
 
   def sortBy2[B : Ordering](transform: A => B): SortableSeq[A] =
-    new SortableSeq(seq.sortBy(transform)(implicitly[Ordering[B]]))
+    SortableSeq(seq.sortBy(transform)(implicitly[Ordering[B]]))
 }
 
 val seq = SortableSeq(Seq(1,3,5,2,4))

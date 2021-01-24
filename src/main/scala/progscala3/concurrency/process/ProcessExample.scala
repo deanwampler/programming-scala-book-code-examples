@@ -10,7 +10,7 @@ object ProcessExample:
   // Build a process to open a URL, redirect the output to
   // "grep $filter", and append the output to file (not overwrite it).
   def findURL(url: String, filter: String) =
-    new URL(url) #> s"grep $filter" #>> new File(s"$filter.txt")
+    URL(url) #> s"grep $filter" #>> File(s"$filter.txt")
 
   // Run ls -l on the file. If it exists, then count the lines.
   def countLines(fileName: String) =

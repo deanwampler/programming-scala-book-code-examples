@@ -13,11 +13,11 @@ class ClickCountObserver extends Observer[Clickable]:                // <4>
   var count = 0
   def receiveUpdate(state: Clickable): Unit = count += 1
 
-val clickCountObserver = new ClickCountObserver                      // <5>
+val clickCountObserver = ClickCountObserver()                        // <5>
 observableButton.addObserver(clickCountObserver)
 
 val n = 5
-for i <- 1 to n do observableButton.click()                           // <6>
+for i <- 1 to n do observableButton.click()                          // <6>
 
 assert(clickCountObserver.count == 2,                                // <7>
   s"count = ${clickCountObserver.count}. Should be != $n")

@@ -20,7 +20,7 @@ class ForTriesStepsSuite extends FunSuite:
   (i:Int) => Success(i + 25))
   val partiallySuccessfulSteps: Seq[Step] = Seq(
   (i:Int) => Success(i + 5),
-  (i:Int) => Failure(new RuntimeException("FAIL!")),
+  (i:Int) => Failure(RuntimeException("FAIL!")),
   (i:Int) => Success(i + 25))
 
   def sumCounts1(countSteps: Seq[Step]): Try[Int] =

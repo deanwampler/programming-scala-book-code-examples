@@ -2,6 +2,7 @@
 // Loosely adapted from scala/List.scala in the Scala library.
 package progscala3.typesystem.bounds.list
 import scala.annotation.targetName
+import java.util.NoSuchElementException
 
 sealed abstract class AbbrevList[+A]:
 
@@ -10,8 +11,7 @@ sealed abstract class AbbrevList[+A]:
   def tail: AbbrevList[A]
 
   @targetName("acons")
-  def ::[B >: A] (x: B): AbbrevList[B] =
-    new ::(x, this)
+  def ::[B >: A] (x: B): AbbrevList[B] = new ::(x, this)
 
   final def foreach(f: A => Unit) =
     var these = this
@@ -25,10 +25,10 @@ case object AbbrevNil extends AbbrevList[Nothing]:
   override def isEmpty = true
 
   def head: Nothing =
-    throw new NoSuchElementException("head of empty AbbrevList")
+    throw NoSuchElementException("head of empty AbbrevList")
 
   def tail: AbbrevList[Nothing] =
-    throw new NoSuchElementException("tail of empty AbbrevList")
+    throw NoSuchElementException("tail of empty AbbrevList")
 
 // A non-empty AbbrevList characterized by a head and a tail.
 

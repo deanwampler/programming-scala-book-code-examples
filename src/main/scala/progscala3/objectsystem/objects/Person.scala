@@ -10,7 +10,7 @@ object Person:
 
 @main def TryPerson(name: String, age: Int) =
   // Test the constructor...
-  val person = new Person(name, age)
+  val person = Person(name, age)
   assert(person.name == name)
   assert(person.age  == age)
 

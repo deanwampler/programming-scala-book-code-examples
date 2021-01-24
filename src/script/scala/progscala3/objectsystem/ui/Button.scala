@@ -1,5 +1,5 @@
 // src/script/scala/progscala3/objectsystem/ui/Button.scala
 import progscala3.objectsystem.ui.Button
 
-val b = new Button("Submit")
+val b = Button("Submit")
 b.draw()

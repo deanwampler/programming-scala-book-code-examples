@@ -5,6 +5,6 @@ import scala.annotation.targetName
 case class Complex(real: Double, imaginary: Double) derives CanEqual:
 
   @targetName("plus") def +(that: Complex) =
-    new Complex(real + that.real, imaginary + that.imaginary)
+    Complex(real + that.real, imaginary + that.imaginary)
   @targetName("minus") def -(that: Complex) =
-    new Complex(real - that.real, imaginary - that.imaginary)
+    Complex(real - that.real, imaginary - that.imaginary)

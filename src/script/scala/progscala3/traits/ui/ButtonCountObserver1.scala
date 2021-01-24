@@ -5,8 +5,8 @@ import progscala3.traits.observer._
 val button = new ObservableButton("Click Me!"):
   def updateUI(): Unit = println(s"$label clicked")
 
-val bco1   = new ButtonCountObserver
-val bco2   = new ButtonCountObserver
+val bco1 = ButtonCountObserver()
+val bco2 = ButtonCountObserver()
 
 button.addObserver(bco1)
 button.addObserver(bco2)

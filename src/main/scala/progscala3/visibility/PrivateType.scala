@@ -15,7 +15,7 @@ package progscala3.visibility.privatetype:
       class Nested derives CanEqual:
         private[Nested] val nestedField = 1
 
-      private[PrivateClass1] val nested = new Nested
+      private[PrivateClass1] val nested = Nested()
       // Scope error:
       // val nestedNested = nested.nestedField
 
@@ -24,11 +24,11 @@ package progscala3.visibility.privatetype:
       // All are scope errors:
       // val field1 = privateField1
       // val field2 = privateField2
-      // val nField = new Nested().nestedField
+      // val nField = Nested().nestedField
     }
 
     class PrivateClass3:
-      val privateClass1 = new PrivateClass1(1)
+      val privateClass1 = PrivateClass1(1)
       // All are scope errors:
       // val privateField1 = privateClass1.privateField1
       // val privateField2 = privateClass1.privateField2

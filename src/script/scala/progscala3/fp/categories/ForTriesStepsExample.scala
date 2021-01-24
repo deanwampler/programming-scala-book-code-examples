@@ -3,7 +3,7 @@ import scala.util.{ Try, Success, Failure }
 
 type Step = Int => Try[Int]                                          // <1>
 
-val fail = new RuntimeException("FAIL!")
+val fail = RuntimeException("FAIL!")
 
 val successfulSteps: Seq[Step] = List(                               // <2>
   (i:Int) => Success(i + 5),

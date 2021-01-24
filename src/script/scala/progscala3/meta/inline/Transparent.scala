@@ -1,9 +1,9 @@
 // src/script/scala/progscala3/meta/inline/Transparent.scala
 
-trait T
-class C extends T
+open class C1
+class C2 extends C1
 
-transparent inline def makeT(b: Boolean): T = if b then new T {} else new C
+transparent inline def make(b: Boolean): C1 = if b then C1() else C2()
 
-val t: T = makeT(true)                 // <1>
-val c: C = makeT(false)                // <2>
+val c1: C1 = make(true)                 // <1>
+val c2: C2 = make(false)                // <2>

@@ -10,13 +10,13 @@ class MyMap[A,B](var _key: A, var _value: B):
   def contains(key: A): Boolean = key == _key
   def getValue(key: A): B =
     if contains(key) then _value
-    else throw new IllegalArgumentException(s"No value for key $key")
+    else throw IllegalArgumentException(s"No value for key $key")
 
   def put(key: A, value: B): Unit =
     _key   = key
     _value = value
 
-val m = new MyMap(1, "one")
+val m = MyMap(1, "one")
 assert(m.contains(1) == true)
 assert(m.contains(2) == false)
 assert(m.get(1) == Some("one"))

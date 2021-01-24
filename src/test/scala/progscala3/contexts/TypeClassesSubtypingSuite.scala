@@ -14,7 +14,7 @@ class TypeClassesSubtypingSuite extends FunSuite:
       case i: Int => (i*10).toString
       case f: Float => (f*10).toString
       case other =>
-        throw new UnsupportedOperationException(s"Can't stringize $other")
+        throw UnsupportedOperationException(s"Can't stringize $other")
 
   case class Person(name: String, age: Int)
 

@@ -59,4 +59,4 @@ object ZipCode:
   protected def badZ(zip:Int):String    = s"Invalid zip $zip."
   protected def badE(ext:String):String = s"Invalid extension $ext."
   protected def badE(ext:Int):String    = s"Invalid extension $ext."
-  protected def error(msg: String) = throw new IllegalArgumentException(msg)
+  protected def error(msg: String) = throw IllegalArgumentException(msg)

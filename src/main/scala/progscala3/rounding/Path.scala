@@ -6,7 +6,7 @@ import java.io.File
 
 case class Path(
     value: String, separator: String = Path.defaultSeparator):  // <1>
-  val file = new File(value)
+  val file = File(value)
   override def toString: String = file.getPath                  // <2>
 
   @targetName("concat") def / (node: String): Path =            // <3>

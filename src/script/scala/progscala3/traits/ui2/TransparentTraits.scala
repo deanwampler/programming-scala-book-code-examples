@@ -8,8 +8,8 @@ transparent trait SBase1
 transparent trait SBase2
 class SClass extends SBase1 with SBase2
 
-val c = new Class
-val sc = new SClass
+val c  = Class()
+val sc = SClass()
 
 sealed trait Base
 case object Obj1 extends Base

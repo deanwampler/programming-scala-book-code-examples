@@ -23,6 +23,6 @@ class RemoveBlanksSuite extends FunSuite:
   test("RemoveBlanks optionally prints line numbers from the original text") {
     val lines = RemoveBlanks(path, compress = true, numbers = true)
     assert(lines.mkString("\n") ==
-      """   0: This is a small
-        |   2: test file""".stripMargin, lines.mkString("\n"))
+      """   1: This is a small
+        |   3: test file""".stripMargin, lines.mkString("\n"))
   }

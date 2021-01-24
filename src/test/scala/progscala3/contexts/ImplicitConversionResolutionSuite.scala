@@ -9,7 +9,7 @@ class ImplicitConversionResolutionSuite extends FunSuite:
   case class Foo(s: String)
   object Foo:
     implicit def fromString(s: String): Foo =
-      new Foo(s"Foo's implicit conversion: $s")
+      Foo(s"Foo's implicit conversion: $s")
 
   object scope1:
     import Foo._
@@ -18,7 +18,7 @@ class ImplicitConversionResolutionSuite extends FunSuite:
   object scope2:
     object implicits:
       implicit def overridingConversion(s: String): Foo =
-        new Foo(s"scope2's implicit conversion: $s")
+        Foo(s"scope2's implicit conversion: $s")
 
     def apply(foo: Foo): String  = foo.s
 

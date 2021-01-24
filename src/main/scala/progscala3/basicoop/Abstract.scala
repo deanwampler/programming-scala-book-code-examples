@@ -46,7 +46,7 @@ open class HelloService(override val name: String)                   // <3>
 
 // tag::main[]
 @main def HelloServiceMain(name: String, users: String*): Unit =
-  val hs = new HelloService("hello")
+  val hs = HelloService("hello")
   for
     user <- users
     request = Map("user" -> user)

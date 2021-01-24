@@ -2,7 +2,7 @@
 
 class Human(val name: String, var age: Int)
 
-val p = new Human("Dean Wampler", 29)
+val p = Human("Dean Wampler", 29)
 
 p.name
 p.name = "Buck Trends"       // ERROR

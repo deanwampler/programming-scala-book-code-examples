@@ -21,7 +21,7 @@ class ClickCountObserver extends Observer[Clickable]:
   var count = 0
   def receiveUpdate(state: Clickable): Unit = count += 1
 
-val clickCountObserver = new ClickCountObserver
+val clickCountObserver = ClickCountObserver()
 observableButton.addObserver(clickCountObserver)
 
 val n = 5

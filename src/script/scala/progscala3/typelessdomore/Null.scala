@@ -2,7 +2,7 @@
 
 import java.util.{HashMap => JHashMap}                     // <1>
 
-val jhm = new JHashMap[String,String]()
+val jhm = JHashMap[String,String]()
 jhm.put("one", "1")
 
 val one1: String = jhm.get("one")                          // <2>

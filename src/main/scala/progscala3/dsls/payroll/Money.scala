@@ -14,7 +14,7 @@ given Floating[Percentage] with
 implicit class dsc(sc: StringContext):                          // <4>
   @targetName("dollars") def $(tokens: Any*) =
     val str = StringContextUtil.foldTokens(tokens.toSeq, sc.parts)
-    new Dollars(str.toDouble)
+    Dollars(str.toDouble)
 
 extension (amount: Double)                                      // <5>
   def dollars: Dollars = Dollars(amount)

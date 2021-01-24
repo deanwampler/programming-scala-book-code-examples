@@ -10,5 +10,5 @@ class TT2 extends TT1:
   type TA = Int                                                         // <3>
   val seed: TA = 5
 
-val obj = new TT2
+val obj = TT2()
 println(s"obj: seq = ${obj.seq}")

@@ -41,9 +41,9 @@ class AsyncTokenizer extends AsyncWorker[String, Seq[String]]:
 
 object ServiceWithoutExports:
   private val dirAuthenticate =
-    new DirectoryAuthenticate(new URL("https://directory.wtf"))
-  private val manager = new ResourceManager(sys.env)
-  private val tokenizer = new AsyncTokenizer
+    DirectoryAuthenticate(URL("https://directory.wtf"))
+  private val manager = ResourceManager(sys.env)
+  private val tokenizer = AsyncTokenizer()
 
   def authenticate(username: UserName, password: Password): Boolean =
     dirAuthenticate(username, password)
@@ -55,9 +55,9 @@ object ServiceWithoutExports:
 // tag::service2[]
 object Service:
   private val dirAuthenticate =
-    new DirectoryAuthenticate(new URL("https://directory.wtf"))
-  private val manager = new ResourceManager(sys.env)
-  private val tokenizer = new AsyncTokenizer
+    DirectoryAuthenticate(URL("https://directory.wtf"))
+  private val manager = ResourceManager(sys.env)
+  private val tokenizer = AsyncTokenizer()
 
   export dirAuthenticate.{apply => authenticate, isAuthenticated}
   export manager.getResource

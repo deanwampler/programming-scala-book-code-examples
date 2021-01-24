@@ -6,8 +6,8 @@ object O1:
   def m(s: String) = s"$s, hello from $name"
   class C1
   class C2
-  given c1: C1 = new C1
-  given c2: C2 = new C2
+  given c1: C1 = C1()
+  given c2: C2 = C2()
 // end::O1[]
 
 // tag::imports[]
@@ -22,7 +22,7 @@ import O1.c2            // Import just the given c2 of type C2
 trait Marker[T]
 object O2:
   class C1
-  given C1 = new C1
+  given C1 = C1()
   given Marker[Int] with {}                 // <1>
   given Marker[List[?]] with {}             // <2>
 
