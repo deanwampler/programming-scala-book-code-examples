@@ -3,7 +3,7 @@
 
 trait T3:
   val denominator: Int
-  def inverse = 1.0/denominator                                      // <1>
+  def inverse = 1.0/denominator                                 // <1>
 
 val obj3 = new T3:
   val denominator = 10

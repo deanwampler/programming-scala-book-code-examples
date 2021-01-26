@@ -1,3 +1,4 @@
+// tag::include[]
 // src/script/scala/progscala3/objectsystem/overrides/ClassFields.scala
 
 trait T5:
@@ -7,6 +8,7 @@ trait T5:
 class ClassT5 extends T5:
   override val name = "ClassT5"
   count = 1
+// end::include[]
 
 val c = ClassT5()
 assert(c.name == "ClassT5")

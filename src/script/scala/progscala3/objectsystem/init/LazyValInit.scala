@@ -3,7 +3,7 @@
 
 trait T2:
   val denominator: Int
-  lazy val inverse = 1.0/denominator                                 // <1>
+  lazy val inverse = 1.0/denominator                            // <1>
 
 val obj2 = new T2:
   val denominator = 10

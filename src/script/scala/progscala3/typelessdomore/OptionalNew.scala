@@ -1,6 +1,11 @@
-// tag::file[]
+// tag::aux[]
 // src/script/scala/progscala3/typelessdomore/OptionalNew.scala
 
+class Person(name: String, age: Int):
+  def this() = this("unknown", 0)                               // <1>
+// end::aux[]
+
+// tag::file[]
 import java.io.File
 
 val file = File("README.md")    // No "new" required
@@ -10,6 +15,6 @@ val file = File("README.md")    // No "new" required
 trait Welcome:
   def hello(name: String): Unit
 
-val hi = new Welcome:
+val hello = new Welcome:
   def hello(name: String): Unit = println(s"Hello: $name")
 // end::anon[]
