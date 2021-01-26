@@ -7,8 +7,7 @@ class Person(name: String, age: Int):
 
 // tag::file[]
 import java.io.File
-
-val file = File("README.md")    // No "new" required
+val file = File("README.md")    // No "new" needed, even for Java classes!
 // end::file[]
 
 // tag::anon[]
