@@ -12,7 +12,7 @@ object CommandArgs:
   |""".stripMargin
 
   def quit(status: Int = 0, message: String = ""): Nothing =         // <1>
-    if message.length > 0 then println("ERROR: "+message)
+    if message.length > 0 then println(s"ERROR: $message")
     println(help)
     sys.exit(status)
 
