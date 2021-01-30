@@ -17,7 +17,7 @@ val partiallySuccessfulSteps: Seq[Step] = List(
 def sumCounts(countSteps: Seq[Step]): Try[Int] =                     // <3>
   val zero: Try[Int] = Success(0)
   (countSteps foldLeft zero) {
-    (sumTry, step) => sumTry flatMap (i => step(i))
+    (sumTry, step) => sumTry.flatMap(i => step(i))
   }
 
 assert(sumCounts(successfulSteps) == Success(40))
