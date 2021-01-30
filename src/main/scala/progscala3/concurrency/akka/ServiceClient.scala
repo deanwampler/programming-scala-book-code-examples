@@ -1,5 +1,5 @@
 // tag::first[]
-// src/main/scala/progscala3/concurrency/akka/AkkaClient.scala
+// src/main/scala/progscala3/concurrency/akka/ServiceClient.scala
 package progscala3.concurrency.akka
 
 import akka.actor.typed.scaladsl.Behaviors
@@ -7,14 +7,14 @@ import akka.actor.typed.{ActorRef, ActorSystem, Behavior}
 import java.lang.{NumberFormatException => NFE}
 import scala.util.{Try, Success, Failure}
 
-object AkkaClient:                                                   // <1>
+object ServiceClient:                                                // <1>
   import Messages._
 
   private var server: ActorRef[Request] = null                       // <2>
   private var client: ActorRef[Response] = null
 
   def main(params: Array[String]): Unit =
-    ActorSystem(AkkaClient(), "AkkaClient")                          // <3>
+    ActorSystem(ServiceClient(), "ServiceClient")                    // <3>
     processUserInput()                                               // <4>
 
   def apply(): Behavior[Response] =                                  // <5>
@@ -127,7 +127,7 @@ object AkkaClient:                                                   // <1>
   end processUserInput
 
   private val help =
-    """Usage: AkkaClient [-h | --help]
+    """Usage: ServiceClient [-h | --help]
       |Then, enter one of the following commands, one per line:
       |  h | help      Print this help message.
       |  c n string    Create "record" for key n for value string.
@@ -142,4 +142,4 @@ object AkkaClient:                                                   // <1>
   private def exit(message: String, status: Int): Nothing =          // <10>
     println(message)
     sys.exit(status)
-end AkkaClient
+end ServiceClient

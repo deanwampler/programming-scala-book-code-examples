@@ -14,7 +14,7 @@ object ProcessExample:
 
   // Run ls -l on the file. If it exists, then count the lines.
   def countLines(fileName: String) =
-    s"ls -1 $fileName" #&& s"wc -l $fileName"
+    s"ls -l $fileName" #&& s"wc -l $fileName"
 
 @main def TryProcessExample =
   import ProcessExample._
