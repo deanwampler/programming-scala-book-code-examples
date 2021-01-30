@@ -10,7 +10,7 @@ pf1(seq)   // both == List(1, 2, 3, 4, 5)
 // end::first[]
 
 // tag::second[]
-def m2[A : Numeric](seq: Seq[A]): A =
+def m2[A : Numeric](seq: Seq[A]): A =                           // Okay
   seq.reduce((a,b) => summon.times(a,b))
 val pf2 = [A] => (seq: Seq[A]) => (using n: Numeric[A]) =>      // ERROR
   seq.reduce((a,b) => n.times(a,b))
@@ -19,10 +19,17 @@ val pf2 = [A : Numeric] => (seq: Seq[A]) =>                     // ERROR
 // end::second[]
 
 // tag::third[]
-def work[A <: AnyRef](x:A)(f: [A <: AnyRef] => A => String) = s"<${f(x)}>"
-val fas = [A <: AnyRef] => (a: A) => s"$a-$a"
-work(1)(fas)
-work(2.2)(fas)
+trait Base:
+  def id: String
+case object O1 extends Base:
+  def id: String = "object O1"
+case object O2 extends Base:
+  def id: String = "object O2"
+
+def work[B <: Base](b: B)(f: [B <: Base] => B => String) = s"<${f(b)}>"
+val fas = [B <: Base] => (b: B) => s"found: $b"
+work(O1)(fas)      // Returns: "<found: O1>"
+work(O2)(fas)      // Returns: "<found: O2>"
 // end::third[]
 
 // tag::doesnotwork[]

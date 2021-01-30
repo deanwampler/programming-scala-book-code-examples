@@ -26,8 +26,8 @@ case class Employee(
 
 case class Pay[S <: Step](                                 // <3>
     employee: Employee,
-    grossPay: Dollars,         // This pay periods gross, before taxes
-    netPay:   Dollars,         // This pay periods net, after taxes
+    grossPay: Dollars,         // This pay period's gross, before taxes
+    netPay:   Dollars,         // This pay period's net, after taxes
     taxes:    Dollars = Dollars(0.0),
     preTaxDeductions: Dollars = Dollars(0.0),
     postTaxDeductions: Dollars = Dollars(0.0)):

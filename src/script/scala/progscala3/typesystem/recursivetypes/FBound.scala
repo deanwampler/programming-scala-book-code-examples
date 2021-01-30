@@ -1,8 +1,8 @@
 // tag::definitions[]
 // src/script/scala/progscala3/typesystem/recursivetypes/FBound.scala
 
-trait Super[T <: Super[T]]:                                        // <1>
-  def make: T                                                        // <2>
+trait Super[T <: Super[T]]:                                     // <1>
+  def make: T                                                   // <2>
 
 case class Sub1(s: String) extends Super[Sub1]:                 // <3>
   def make: Sub1 = Sub1(s"Sub1: make: $s")

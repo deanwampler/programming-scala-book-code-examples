@@ -2,6 +2,7 @@
 
 class C1:
   c1this =>                                                          // <1>
+
   def talk(message: String): String = "C1.talk: " + message
   class C2:
     class C3:

@@ -6,9 +6,9 @@ type ElemR[X] = X match         // "R" for "recursive"
   case Array[t] => ElemR[t]                                     // <1>
   case Iterable[t] => ElemR[t]                                  // <2>
   case Option[t] => ElemR[t]
-  case ? => X                                                   // <3>
+  case ? => X
 
-def first[X](x: X): ElemR[X] = x match                          // <4>
+def first[X](x: X): ElemR[X] = x match                          // <3>
   case s: String      => s.charAt(0)
   case a: Array[t]    => first(a(0))
   case i: Iterable[t] => first(i.head)

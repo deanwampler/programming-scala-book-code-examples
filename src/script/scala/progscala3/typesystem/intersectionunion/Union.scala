@@ -67,6 +67,7 @@ val f123a: (T1 | T2 | T3) => String = _ match
   case t2: T2 => "T2"
   case t3: T3 => "T3"
 val f123b: (T1 => String) & (T2 => String) & (T3 => String) = f123a
+val f123c: (T1 & T2 & T3 => String) = f123a
 
 val seqTs: Seq[T1 | T2 | T3] = Seq(new T1 {}, new T2 {}, new T3 {})
 seqTs.map(f123a)

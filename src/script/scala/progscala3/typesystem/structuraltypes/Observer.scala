@@ -2,13 +2,13 @@
 import progscala3.typesystem.structuraltypes.Subject
 import scala.reflect.Selectable.reflectiveSelectable
 
-case class Counter(start: Int = 0) extends Subject:                  // <1>
+case class Counter(start: Int = 0) extends Subject:             // <1>
   var count = start
   def increment(): Unit =
     count += 1
     notifyObservers()
 
-case class CounterObserver(counter: Counter):                        // <2>
+case class CounterObserver(counter: Counter):                   // <2>
   var updateCount = 0
   def update(): Unit = updateCount += 1
 
@@ -22,4 +22,4 @@ c.addObserver(observer2)
 c.increment()
 assert(c.count == 3)
 assert(observer1.updateCount == 2)
-assert(observer2.updateCount == 1)
+assert(observer2.updateCount == 1)                              // <3>

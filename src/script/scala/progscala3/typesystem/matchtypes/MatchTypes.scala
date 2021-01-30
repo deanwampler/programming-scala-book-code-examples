@@ -27,9 +27,12 @@ summon[Elem[Some[String]] =:= String]
 summon[Elem[None.type] =:= Nothing]
 summon[Elem[Float] =:= Float]
 
-summon[Elem[Option[List[Long]]] =:= List[Long]]                 // <3>
 summon[Elem[Option[List[Long]]] =:= Long]                       // <2>
+summon[Elem[Option[List[Long]]] =:= List[Long]]
 // end::examples2[]
+
+// The rest of this script is not included in the book, but another example of
+// recursive match types is discussed.
 
 // tag::matchdefrecur[]
 // Use recursion to handle, e.g., `Option[List[Array[Int]]`, but notice what
@@ -61,7 +64,7 @@ summon[ElemR[Option[List[Long]]] =:= Long]   // Now works!
 // end::examplesrecur[]
 
 // Here are more variations, all of which attempt to abstract over all
-// parameterized types with a single type parameter (not that our code above is
+// parameterized types with a single type parameter (not that the code above is
 // so bad...).
 
 // These uses of abstraction over the higher-kinded type work, but are too
