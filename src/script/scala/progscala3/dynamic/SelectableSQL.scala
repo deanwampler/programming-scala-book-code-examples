@@ -4,39 +4,46 @@
 import reflect.ClassTag
 import collection.mutable.{HashMap => HMap}
 
-object SQL:                                                          // <1>
+object SQL:
   open class Record(elems: (String, Any)*) extends Selectable:
-    private val fields = HMap.from(elems.toMap)                      // <2>
+    private val fields = HMap.from(elems.toMap)                      // <1>
 
-    def selectDynamic(name: String): Any = fields(name)              // <3>
+    def selectDynamic(name: String): Any = fields(name)              // <2>
 
-    def applyDynamic(                                                // <4>
-        operation: String, paramTypes: ClassTag[?]*)(args: Any*): Any = {
+    def applyDynamic(                                                // <3>
+        operation: String, paramTypes: ClassTag[?]*)(args: Any*): Any =
       val fieldName = operation.drop("update".length)  // remove prefix
-      val fname = fieldName.head.toLower +: fieldName.tail           // <5>
+      val fname = fieldName.head.toLower +: fieldName.tail           // <4>
       fields += fname -> args.head
-    }
 
     override def toString: String = s"Record($fields)"
 
 type Person = SQL.Record {
-  val name: String                                                   // <6>
+  val name: String                                                   // <5>
   val age: Int
-  def updateName(newName: String): Unit                              // <7>
+  def updateName(newName: String): Unit                              // <6>
   def updateAge(newAge: Int): Unit
 }
 // end::definitions[]
 
 // tag::person[]
 val person = SQL.Record(                                             // <1>
-  "name" -> "Buck Trends", "age" -> 29).asInstanceOf[Person]
+  "name" -> "Buck Trends", "age" -> 29,
+  "famous" -> false).asInstanceOf[Person]
 person.name
 person.age
 person.selectDynamic("name")                                         // <2>
+person.selectDynamic("age")
+
+person.famous                     // ERROR
+person.selectDynamic("famous")
 // end::person[]
 
 // tag::updates[]
 person.updateName("Dean Wampler")
 person.updateAge(30)
 person
+
+person.updateFamous(true)         // ERROR
+person.applyDynamic("updateFamous", summon[ClassTag[Boolean]])(true)
 // end::updates[]

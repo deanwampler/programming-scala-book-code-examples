@@ -2,8 +2,8 @@
 import progscala3.dynamic.CLINQ
 
 def makeMap(
-  name: String, capital: String, statehood: Int): Map[String,Any] =
-  Map("name" -> name, "capital" -> capital, "statehood" -> statehood)
+  name: String, capital: String, year: Int): Map[String,Any] =
+  Map("name" -> name, "capital" -> capital, "year" -> year)
 
 // Sample "records"
 val data = List(
@@ -15,18 +15,18 @@ val states = CLINQ(data)
 
 states.name
 states.capital
-states.statehood
+states.year
 
 states.name_and_capital
-states.name_and_statehood
-states.capital_and_statehood
+states.name_and_year
+states.capital_and_year
 
-states.name_and_capital_and_statehood
+states.name_and_capital_and_year
 states.all
 
-states.all.where("statehood").EQ(1818)
+states.all.where("year").EQ(1818)
 states.all.where("name").NE("Alaska")
 
 states.name_and_capital.where("capital").EQ("Sacramento")
 states.name_and_capital.where("name").NE("Alaska")
-states.name_and_statehood.where("capital").EQ("Springfield")
+states.name_and_year.where("capital").EQ("Springfield")

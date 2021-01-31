@@ -9,10 +9,10 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic:
     else
       val fields = name.split("_and_")
       val seed = Seq.empty[Map[String,T]]
-      val newRecords = (records foldLeft seed) {
+      val newRecords = records.foldLeft(seed) {
         (results, record) =>
-          val projection = record filter {                           // <4>
-            case (key, _) => fields contains key
+          val projection = record.filter {                           // <4>
+            case (key, _) => fields.contains(key)
           }
           // Drop records with no projection.
           if projection.size > 0 then results :+ projection
@@ -26,7 +26,7 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic:
 
   protected class Where(field: String) extends Dynamic:              // <6>
     def filter(op: T => Boolean): CLINQ[T] =
-      val newRecords = records filter {
+      val newRecords = records.filter {
         _ exists {
           case (k, v) => field == k && op(v)
         }
@@ -38,7 +38,7 @@ case class CLINQ[T](records: Seq[Map[String,T]]) extends Dynamic:
       case "NE" => filter(x => !(value == x))
       case _ => throw CLINQ.BadOperation(field, """Expected "EQ" or "NE".""")
 
-  override def toString: String = records mkString "\n"
+  override def toString: String = records.mkString("\n")
 
 object CLINQ:
   case class BadOperation(name: String, msg: String) extends RuntimeException(
