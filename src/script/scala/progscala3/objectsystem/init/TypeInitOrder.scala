@@ -10,7 +10,7 @@ trait TT1:
 class TT2 extends TT1:
   type TA = Int                                                 // <3>
   val seed: TA = 5
-// tag::include[]
+// end::include[]
 
 val obj = TT2()
 println(s"obj: seq = ${obj.seq}")
