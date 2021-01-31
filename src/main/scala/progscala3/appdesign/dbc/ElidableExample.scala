@@ -12,6 +12,8 @@ import scala.annotation.elidable
  * $ scala -classpath N progscala3.appdesign.dbc.TryMyLogger
  * ```
  * for each N: WARNING, INFO, and ASSERTION
+ * @note At the time of this writing, the -Xelide-below flag is not available
+ * in Scala 3, but it may be added in a subsequent release.
  */
 object MyLogger:
   @elidable(WARNING)

@@ -28,10 +28,12 @@ object PayrollUseCases:
     println("-----------------------------------------")
     printf(fmt, "Totals", gross.amount, net.amount, (gross - net).amount)
 
-  def main(params: Array[String]): Unit =
-    val inputFileName =
-      if params.length > 0 then params(0) else "misc/parthenon-payroll.txt"
-    val data = fromFile(inputFileName)
-
-    biweeklyPayrollPerEmployee(data)
-    biweeklyPayrollTotalsReport(data)
+  @main def RunPayroll(inputFileNames: String*): Unit =
+    val files =
+      if inputFileNames.length == 0 then Seq("misc/parthenon-payroll.txt")
+      else inputFileNames
+    for (file <- files) do
+      println(s"Processing input file: $file")
+      val data = fromFile(file)
+      biweeklyPayrollPerEmployee(data)
+      biweeklyPayrollTotalsReport(data)

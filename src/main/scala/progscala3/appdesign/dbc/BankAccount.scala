@@ -17,7 +17,7 @@ case class BankAccount(balance: Money):
     require(balance >= amount,
       s"Overdrafts are not permitted, balance = $balance, debit = $amount")
     (BankAccount(balance - amount)).ensuring(
-      newAccount => newAccount.balance == this.balance - amount)
+      newBA => newBA.balance == this.balance - amount)
 
   def credit(amount: Money) = BankAccount(balance + amount)          // <3>
 
