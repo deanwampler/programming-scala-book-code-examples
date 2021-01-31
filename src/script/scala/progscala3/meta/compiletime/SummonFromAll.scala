@@ -22,8 +22,9 @@ tryB
 
 import scala.compiletime.summonAll
 
-def allAB =
-  given a: A with {}
-  given b: B with {}
-  summonAll[A *: B *: EmptyTuple]
-  summonAll[A *: B *: C *: EmptyTuple]                          // <1>
+given a: A with {}
+given b: B with {}
+
+summonAll[A *: B *: EmptyTuple]
+
+summonAll[A *: B *: C *: EmptyTuple]                            // <1>
