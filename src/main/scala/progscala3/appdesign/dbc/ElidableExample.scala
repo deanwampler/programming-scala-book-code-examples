@@ -5,6 +5,7 @@ import scala.annotation.elidable._
 import scala.annotation.elidable
 
 /**
+ * This example of the elidable annotation is mentioned in the book, but not shown.
  * Compile outside sbt using the scala compiler:
  * ```
  * $ mkdir -p N

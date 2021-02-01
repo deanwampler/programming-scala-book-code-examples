@@ -23,7 +23,7 @@ case class BankAccount(balance: Money):
 
 import scala.util.Try
 
-@main def TryBankAccount: Unit =                                     // <4>
+@main def TryBankAccount: Unit =
   Seq(-10, 0, 10) foreach (i => println(f"$i%3d: ${Try(Money(i.toDouble))}"))
 
   val ba1 = BankAccount(Money(10.0))
