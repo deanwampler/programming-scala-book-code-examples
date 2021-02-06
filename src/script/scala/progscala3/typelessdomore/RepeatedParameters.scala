@@ -6,7 +6,7 @@ object Mean1:
   def calc1b(ds: Seq[Double]): Double = ds.sum/ds.size
 
   def calc2a(ds: Double*): Double = ds.sum/ds.size
-  def calc2b(ds: Seq[Double]): Double = calc3(ds :_*)
+  def calc2b(ds: Seq[Double]): Double = calc2a(ds :_*)
 // end::mean1[]
 
 // tag::mean2[]
