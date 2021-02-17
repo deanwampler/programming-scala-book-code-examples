@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/fp/recursion/Trampoline.scala
 
-import scala.util.control.TailCalls._
+import scala.util.control.TailCalls.*
 
 def isEven(xs: Seq[Int]): TailRec[Boolean] =
   if xs.isEmpty then done(true) else tailcall(isOdd(xs.tail))

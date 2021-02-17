@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/datastructs/FoldRegexPatternsSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 
 class FoldRegexPatternsSuite extends FunSuite:
   test("Regex pattern matching used in a foldLeft") {
@@ -15,7 +15,7 @@ class FoldRegexPatternsSuite extends FunSuite:
       |book.authors = Dean Wampler
       | an unexpected line
       |book.publisher = O'Reilly
-      |book.publication-year = 2020
+      |book.publication-year = 2021
       |""".stripMargin                                                   // <3>
 
     // Type aliases so the rest of the code is easier to understand
@@ -37,5 +37,5 @@ class FoldRegexPatternsSuite extends FunSuite:
       Right("book.authors" -> "Dean Wampler"),
       Left(6 -> "an unexpected line"),
       Right("book.publisher" -> "O'Reilly"),
-      Right("book.publication-year" -> "2020")))
+      Right("book.publication-year" -> "2021")))
   }

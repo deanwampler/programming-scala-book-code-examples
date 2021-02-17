@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/recursion/FactorialSuite.scala
 package progscala3.fp.recursion
 
-import munit._
+import munit.*
 import scala.annotation.tailrec
 
 class FactorialSuite extends FunSuite:

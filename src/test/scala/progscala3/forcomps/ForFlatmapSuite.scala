@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForFlatmapSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class ForFlatmapSuite extends FunSuite:
   test("Flatmap returns collections and flattens them") {

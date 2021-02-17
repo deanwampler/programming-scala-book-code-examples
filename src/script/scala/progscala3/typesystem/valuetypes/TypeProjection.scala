@@ -1,5 +1,5 @@
 // src/script/scala/progscala3/typesystem/valuetypes/TypeProjection.scala
-import progscala3.typesystem.valuetypes._
+import progscala3.typesystem.valuetypes.*
 
 // The first two attempts try to reference a member of a value, but these are
 // types, not values:

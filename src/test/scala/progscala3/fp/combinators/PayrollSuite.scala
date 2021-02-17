@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/combinators/PayrollSuite.scala
 package progscala3.fp.combinators
 
-import munit._
+import munit.*
 
 class PayrollSuite extends FunSuite:
 

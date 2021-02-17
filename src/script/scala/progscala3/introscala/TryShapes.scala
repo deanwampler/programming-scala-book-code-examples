@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/introscala/TryShapes.scala
 
-import progscala3.introscala.shapes._
+import progscala3.introscala.shapes.*
 
 val p00  = Point()
 val p20  = Point(2.0)

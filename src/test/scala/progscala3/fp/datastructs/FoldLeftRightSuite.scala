@@ -1,11 +1,11 @@
 // src/test/scala/progscala3/fp/datastructs/FoldLeftRightSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 import scala.annotation.tailrec
 
 class FoldLeftRightSuite extends FunSuite:
-  import FoldLeftRight._
+  import FoldLeftRight.*
 
   val seq = Seq(1,2,3,4,5,6)
 

@@ -1,7 +1,7 @@
 // src/script/scala/progscala3/objectsystem/ui/VetoableClicks.scala
 import progscala3.objectsystem.ui.Button
 import progscala3.traits.ui2.{Clickable, ObservableClicks, VetoableClicks}
-import progscala3.traits.observer._
+import progscala3.traits.observer.*
 
 val observableButton = new Button("Okay")                            // <1>
   with ObservableClicks with VetoableClicks(maxAllowed = 2)          // <2>

@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/datastructs/LazyListFibonacciSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 import scala.math.BigInt
 
 class FibonacciSuite extends FunSuite:

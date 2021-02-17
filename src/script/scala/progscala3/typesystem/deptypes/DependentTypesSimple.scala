@@ -14,7 +14,7 @@ summon[2 <:< Double]    // "Cannot prove that (2 : Int) <:< Double"
 
 // tag::opsany[]
 def opsAny =                                                    // <1>
-  import scala.compiletime.ops.any._
+  import scala.compiletime.ops.any.*
 
   val any1: 2 == 2      = true                                  // <2>
   val any2: 1 == 2      = false
@@ -32,7 +32,7 @@ opsAny                                                          // <4>
 
 // tag::opsint[]
 def opsInt =
-  import scala.compiletime.ops.int._                            // <1>
+  import scala.compiletime.ops.int.*                            // <1>
 
   val i1: 0 + 1     = 0 + 1
   val i2: 1 + 1     = 1 + 1
@@ -80,7 +80,7 @@ tryS
 
 // tag::opsboolean[]
 def opsBoolean =
-  import scala.compiletime.ops.boolean._
+  import scala.compiletime.ops.boolean.*
 
   val t1: true = true
   val f1: ![true] = false                                       // <1>
@@ -102,7 +102,7 @@ opsBoolean
 
 // tag::opsstring[]
 def opsString =
-  import scala.compiletime.ops.string._
+  import scala.compiletime.ops.string.*
 
   val s1: "ab" + "cd" = "abcd"
   val bad2: "ab" + "cd" = "abcdef"  // ERROR

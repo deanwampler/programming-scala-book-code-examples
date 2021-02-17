@@ -2,7 +2,7 @@
 // src/script/scala/progscala3/rounding/ScopedOptionFor.scala
 
 import progscala3.rounding.WeekDay
-import progscala3.rounding.WeekDay._
+import progscala3.rounding.WeekDay.*
 
 val dayOptions = Seq(
   Some(Mon), None, Some(Tue), Some(Wed), None,

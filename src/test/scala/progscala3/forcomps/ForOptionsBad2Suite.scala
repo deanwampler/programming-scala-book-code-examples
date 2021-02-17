@@ -1,9 +1,9 @@
 // src/test/scala/progscala3/forcomps/ForOptionsBad2Suite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
-/** Another "bad" example, when easier idioms exist. */
+/** Another "bad" example, when easier idioms exist. .*/
 class ForOptionsBad2Suite extends FunSuite:
   def sumCountsBad(counts: Seq[Option[Int]]): Option[Int] =
     (counts foldLeft Option(0)) {

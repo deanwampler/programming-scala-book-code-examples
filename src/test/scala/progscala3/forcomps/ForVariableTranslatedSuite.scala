@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForVariableTranslatedSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class ForVariableTranslatedSuite extends FunSuite:
 

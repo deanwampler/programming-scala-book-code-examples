@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/curry/LiftedFuncSuite.scala
 package progscala3.fp.curry
 
-import munit._
+import munit.*
 
 class LiftedFuncSuite extends FunSuite:
 

@@ -6,7 +6,7 @@
 // ranges.
 
 import scala.compiletime.S
-import scala.compiletime.ops.int._
+import scala.compiletime.ops.int.*
 
 // A type that allows values between MIN and MAX, inclusive.
 type Bounded[MIN <: Int, MAX <: Int] <: Int = MAX match

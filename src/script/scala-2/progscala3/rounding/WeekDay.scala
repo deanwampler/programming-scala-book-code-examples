@@ -16,7 +16,7 @@ object WeekDay extends Enumeration {
 
   def isWorkingDay(wd: WeekDay): Boolean = ! (wd == Sat || wd == Sun)
 }
-import WeekDay._
+import WeekDay.*
 
 assert(Sun.toString == "Sunday")
 assert(Sun.id == 0)

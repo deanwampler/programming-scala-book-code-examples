@@ -1,8 +1,8 @@
 // src/test/scala/progscala3/fp/categories/ForEithersStepsSuite.scala
 package progscala3.fp.categories
 
-import munit._
-import scala.util.{ Either, Left, Right }
+import munit.*
+import scala.util.{Either, Left, Right}
 import scala.annotation.tailrec
 
 class ForEithersStepsSuite extends FunSuite:

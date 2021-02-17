@@ -1,8 +1,8 @@
 // src/test/scala/progscala3/forcomps/ForEithersSeqSuite.scala
 package progscala3.forcomps
 
-import munit._
-import scala.util.{ Either, Left, Right }
+import munit.*
+import scala.util.{Either, Left, Right}
 
 class ForEithersSeqSuite extends FunSuite:
   test("For loops skip Lefts") {

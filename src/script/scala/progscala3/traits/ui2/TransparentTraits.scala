@@ -20,8 +20,8 @@ def m(whichOne: Boolean) = if whichOne then Obj1 else Obj2
 val v1 = m(true)
 val v2 = m(false)
 
-import progscala3.traits.ui2._
-import progscala3.traits.observer._
+import progscala3.traits.ui2.*
+import progscala3.traits.observer.*
 
 transparent trait S
 val button1 = new Button("Button!")

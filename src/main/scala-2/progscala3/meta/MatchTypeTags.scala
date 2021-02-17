@@ -2,7 +2,7 @@
 
 package progscala3.meta
 
-import scala.reflect.runtime.universe._
+import scala.reflect.runtime.universe.*
 
 /**
  * This example uses TypeTags, which don't exist in Scala 3.
@@ -15,7 +15,7 @@ object MatchTypeTags {
   /**
    * Return a tuple of the type "prefix", the type's symbol and its
    * possibly empty list of type parameters.
-   */
+   .*/
   def toTypeRefInfo[T : TypeTag](x: T): (Type, Symbol, Seq[Type]) = {
     val TypeRef(pre, typName, parems) = toType(x)
     (pre, typName, parems)

@@ -12,7 +12,7 @@ enum WeekDay(val fullName: String):                             // <1>
 
   def isWorkingDay: Boolean = ! (this == Sat || this == Sun)    // <3>
 
-import WeekDay._
+import WeekDay.*
 
 val sorted = WeekDay.values.sortBy(_.ordinal).toSeq             // <4>
 assert(sorted == List(Sun, Mon, Tue, Wed, Thu, Fri, Sat))

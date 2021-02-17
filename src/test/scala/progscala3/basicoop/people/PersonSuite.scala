@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/basicoop/people/PersonSuite.scala
 package progscala3.basicoop.people
 
-import munit._
+import munit.*
 
 class PersonSuite extends FunSuite:
 

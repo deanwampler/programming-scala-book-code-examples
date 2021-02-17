@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/dsls/payroll/Deductions.scala
 package progscala3.dsls.payroll
-import progscala3.contexts.accounting._
+import progscala3.contexts.accounting.*
 
 sealed trait Deduction:                                         // <1>
   def name: String

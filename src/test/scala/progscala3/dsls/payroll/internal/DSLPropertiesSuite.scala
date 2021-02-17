@@ -2,9 +2,9 @@
 package progscala3.dsls.payroll.internal
 
 import munit.ScalaCheckSuite
-import org.scalacheck._
-import progscala3.dsls.payroll._
-import progscala3.contexts.accounting._
+import org.scalacheck.*
+import progscala3.dsls.payroll.*
+import progscala3.contexts.accounting.*
 import scala.language.postfixOps
 
 /**
@@ -12,7 +12,7 @@ import scala.language.postfixOps
  * TODO: Really this should be a "full" ScalaCheck properties test.
  */
 class DSLPropertiesSuite extends ScalaCheckSuite:
-  import dsl._
+  import dsl.*
   import Prop.forAll
 
   val biweeklyDeductions = biweekly { deduct =>

@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/objectsystem/linearization/PhoneNumberSuite.scala
 package progscala3.objectsystem.linearization
 
-import munit._
+import munit.*
 
 class PHoneNumberSuite extends FunSuite:
 

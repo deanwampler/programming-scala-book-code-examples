@@ -5,7 +5,7 @@ enum LoggingLevel:                                                   // <1>
   case INFO, WARN, ERROR
 
 trait Logging(name: String):                                         // <2>
-  import LoggingLevel._
+  import LoggingLevel.*
   def info(message: String): Unit = log(INFO, message)
   def warn(message: String): Unit = log(WARN, message)
   def error(message: String): Unit = log(ERROR, message)

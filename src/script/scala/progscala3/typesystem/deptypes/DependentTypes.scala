@@ -2,7 +2,7 @@
 // src/script/scala/progscala3/typesystem/deptypes/DependentTypes.scala
 
 import scala.compiletime.S
-import scala.compiletime.ops.int._
+import scala.compiletime.ops.int.*
 
 sealed trait DTList[N <: Int]:                                       // <1>
   inline def size: N = valueOf[N]                                    // <2>

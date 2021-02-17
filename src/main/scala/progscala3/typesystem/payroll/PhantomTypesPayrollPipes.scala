@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/typesystem/payroll/PhantomTypesPayrollPipes.scala
 package progscala3.typesystem.payroll
-import progscala3.contexts.accounting._
+import progscala3.contexts.accounting.*
 import scala.annotation.targetName
 
 object Pipeline:
@@ -8,8 +8,8 @@ object Pipeline:
     @targetName("pipe") def |> (f : V => R) = f(value)
 
 @main def TryPhantomTypesPipeline =
-  import Pipeline._
-  import Payroll._
+  import Pipeline.*
+  import Payroll.*
 
   val e = Employee("Buck Trends", Dollars(100000.0), Percentage(25.0),
     Dollars(200), Percentage(10.0), Dollars(100.0))

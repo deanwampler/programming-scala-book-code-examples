@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/datastructs/SetSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 
 class SetSuite extends FunSuite:
 

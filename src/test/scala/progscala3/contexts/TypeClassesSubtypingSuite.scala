@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/contexts/TypeClassesSubtypingSuite.scala
 package progscala3.contexts
 
-import munit._
+import munit.*
 
 class TypeClassesSubtypingSuite extends FunSuite:
 

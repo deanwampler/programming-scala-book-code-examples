@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/basicoop/tagging/Tags2.scala
 
-import progscala3.basicoop.tagging.Tagging2._
+import progscala3.basicoop.tagging.Tagging2.*
 
 trait Meter
 trait Foot

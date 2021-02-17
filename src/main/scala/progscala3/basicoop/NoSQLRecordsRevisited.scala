@@ -10,10 +10,10 @@ trait FromTo[T]:
   def apply(any: Any): T
 
 opaque type Record = Map[String,Any]
-extension [T : FromTo] (rec: Record)
-  def add(nameValue: (String, T)): Record =
+extension (rec: Record)
+  def add[T : FromTo](nameValue: (String, T)): Record =
     rec + nameValue
-  def get(colName: String): Try[T] =
+  def get[T : FromTo](colName: String): Try[T] =
     Try(summon[FromTo[T]](col(colName)))
   private def col(colName: String): Any =
     rec.getOrElse(colName, throw InvalidFieldName(colName))

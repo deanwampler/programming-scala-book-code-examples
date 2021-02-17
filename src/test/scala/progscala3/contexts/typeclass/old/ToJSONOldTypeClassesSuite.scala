@@ -2,7 +2,7 @@
 package progscala3.contexts.typeclass.old
 
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
-import munit._
+import munit.*
 
 class ToJSONOldTypeClassesSuite extends FunSuite:
   val c = Circle(Point(1.0,2.0), 1.0)

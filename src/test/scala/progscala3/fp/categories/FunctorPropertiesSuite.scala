@@ -2,7 +2,7 @@
 package progscala3.fp.categories
 
 import munit.ScalaCheckSuite
-import org.scalacheck._
+import org.scalacheck.*
 
 class FunctorPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
@@ -14,7 +14,7 @@ class FunctorPropertiesSuite extends ScalaCheckSuite:
 
   def testSeqMorphism(f2: Int => Int) =
     val f1: Int => Int = _ * 2
-    import SeqF._
+    import SeqF.*
     forAll { (l: List[Int]) =>
       map(map(l)(f1))(f2) == map(l)(f2 compose f1)
     }
@@ -33,7 +33,7 @@ class FunctorPropertiesSuite extends ScalaCheckSuite:
     def id[A] = identity[A]     // Lift method to a function
 
     {
-      import SeqF._   // scope the import:
+      import SeqF.*   // scope the import:
       map(List.empty[Int])(f1) == List.empty[String]
     }
   }
@@ -45,7 +45,7 @@ class FunctorPropertiesSuite extends ScalaCheckSuite:
     val f:  Int => Int = _ + 21
 
     {  // scope the import:
-      import SeqF._
+      import SeqF.*
       forAll { (l: List[Int]) =>
         val m12 = map(map(l)(f1))(f2)
         val m23 = (seq: Seq[Int]) => map(map(seq)(f2))(f3)

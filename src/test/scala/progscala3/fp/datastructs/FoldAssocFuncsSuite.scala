@@ -1,9 +1,9 @@
 // src/test/scala/progscala3/fp/datastructs/FoldAssocFuncsSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 
-/** To fit the text, "A" == associative, "C" == commutative. */
+/** To fit the text, "A" == associative, "C" == commutative. .*/
 class FoldAssocFuncsSuite extends FunSuite:
 
   // fac: a func. that is associative AND commutative.

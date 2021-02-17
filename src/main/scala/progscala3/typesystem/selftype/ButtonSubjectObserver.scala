@@ -21,7 +21,7 @@ object ButtonSubjectObserver extends SubjectObserver:                // <2>
       clicks.update(button.label, count)
 
 @main def TryButtonSubjectObserver() =
-  import ButtonSubjectObserver._
+  import ButtonSubjectObserver.*
 
   val button1 = ObservableButton("one")
   val button2 = ObservableButton("two")

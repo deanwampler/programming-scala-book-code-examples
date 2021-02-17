@@ -19,7 +19,7 @@ object EnumADT:
     case Branch(left: Tree[T], right: Tree[T])
     case Leaf(elem: T)
 
-  import Tree._                                                 // <5>
+  import Tree.*                                                 // <5>
   val tree = Branch(
     Branch(
       Leaf(1),

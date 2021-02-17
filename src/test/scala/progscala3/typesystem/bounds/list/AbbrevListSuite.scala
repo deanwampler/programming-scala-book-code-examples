@@ -1,12 +1,12 @@
 // src/test/scala/progscala3/typesystem/bounds/list/AbbrevListSuite.scala
 package progscala3.typesystem.bounds.list
 
-import munit._
+import munit.*
 
 /**
  * Test the example "AbbrevList".
  * Not very comprehensive... Should be converted to a ScalaCheck suite.
- */
+ .*/
 class AbbrevListSuite extends FunSuite:
 
   test("item :: AbbrevNil == AbbrevList(item)") {

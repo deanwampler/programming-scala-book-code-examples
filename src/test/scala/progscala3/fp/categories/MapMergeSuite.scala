@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/categories/MapMergeSuite.scala
 package progscala3.fp.categories
 
-import munit._
+import munit.*
 import progscala3.contexts.typeclass.given
 
 class MapMergeSuite extends FunSuite:

@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/dynamic/CLINQSuite.scala
 package progscala3.dynamic
 
-import munit._
+import munit.*
 
 class CLINQSuite extends FunSuite:
 

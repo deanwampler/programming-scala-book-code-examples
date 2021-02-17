@@ -9,7 +9,7 @@ object Serialization:
   implicit def fromFloat(f: Float) = Writable(f)
   implicit def fromString(s: String) = Writable(s)
 
-import Serialization._
+import Serialization.*
 
 object RemoteConnection:                                             // <3>
   def write[T <% Writable](t: T): String =                           // <4>

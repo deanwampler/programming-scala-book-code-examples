@@ -6,7 +6,7 @@ import scala.compiletime.{constValue, constValueOpt}
 // an exception if the expression is not a constant, but return None.
 
 def tryInt =
-  import compiletime.ops.int._   // Scope this import to this method
+  import compiletime.ops.int.*   // Scope this. import to this method
   assert(constValue[1] == 1)
   assert(constValueOpt[1] == Some(1))
 
@@ -14,7 +14,7 @@ def tryInt =
   assert(constValue[1+2] == 3)
 
 def tryBoolean =
-  import compiletime.ops.boolean._
+  import compiletime.ops.boolean.*
   assert(constValue[true] == true)
   assert(constValueOpt[true] == Some(true))
   assert(constValueOpt[![true]] == Some(false))  // The [] required!
@@ -32,7 +32,7 @@ def tryBoolean =
   assert(constValue[false  ^ false] == false)
 
 def tryString =
-  import compiletime.ops.string._
+  import compiletime.ops.string.*
   assert(constValue["foo"] == "foo")
   assert(constValueOpt["foo"] == Some("foo"))
 

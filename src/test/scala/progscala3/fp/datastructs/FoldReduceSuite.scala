@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/datastructs/FoldReduceSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 import java.lang.UnsupportedOperationException
 
 class FoldReduceSuite extends FunSuite:

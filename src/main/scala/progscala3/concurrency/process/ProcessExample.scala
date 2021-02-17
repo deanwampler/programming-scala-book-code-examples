@@ -1,7 +1,7 @@
 // src/main/scala/progscala3/concurrency/process/ProcessExample.scala
 package progscala3.concurrency.process
 
-import scala.sys.process._
+import scala.sys.process.*
 import java.net.URL
 import java.io.File
 
@@ -17,7 +17,7 @@ object ProcessExample:
     s"ls -l $fileName" #&& s"wc -l $fileName"
 
 @main def TryProcessExample =
-  import ProcessExample._
+  import ProcessExample.*
   val resultCode = "ls src".!
   assert(resultCode == 0)
 

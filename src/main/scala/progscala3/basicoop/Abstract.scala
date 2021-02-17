@@ -6,7 +6,7 @@ enum LoggingLevel:                                                   // <1>
   case INFO, WARN, ERROR
 
 trait Logging:
-  import LoggingLevel._
+  import LoggingLevel.*
   final def info(message: String): Unit = log(INFO, message)
   final def warn(message: String): Unit = log(WARN, message)
   final def error(message: String): Unit = log(ERROR, message)
@@ -21,7 +21,7 @@ trait ConsoleLogging extends Logging:
 
 // tag::service[]
 abstract class Service(val name: String) extends Logging:            // <1>
-  import Service._
+  import Service.*
   final def handle(request: Request): Response =
     info(s"($name) Starting handle for request: $request")
     val result = process(request)
@@ -36,7 +36,7 @@ object Service:                                                      // <2>
 
 open class HelloService(override val name: String)                   // <3>
     extends Service(name) with ConsoleLogging:
-  import Service._
+  import Service.*
 
   protected def process(request: Request): Response =
     request.get("user") match

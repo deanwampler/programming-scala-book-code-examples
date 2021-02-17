@@ -2,9 +2,9 @@
 package progscala3.basicoop.people
 
 import munit.ScalaCheckSuite
-import org.scalacheck._
+import org.scalacheck.*
 
-/** ScalaCheck example driven by MUnit */
+/** ScalaCheck example driven by MUnit .*/
 class ZipCodePropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
 

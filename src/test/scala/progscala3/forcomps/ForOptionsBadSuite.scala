@@ -1,13 +1,13 @@
 // src/test/scala/progscala3/forcomps/ForOptionsBadSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 /**
  * A "bad" way to process a sequence of options, because it's unnecessarily
  * verbose. We stop on the first None. Compare with the for-option-good.sc
  * implementation. Note that the +return+ keyword is rarely used in Scala code.
- * When you see one, treat it as a _design smell_, a possible candidate for
+ .* When you see one, treat it as a _design smell_, a possible candidate for
  * refactoring. Often, it can be eliminated by decomposing a function into
  * smaller functions.
  */

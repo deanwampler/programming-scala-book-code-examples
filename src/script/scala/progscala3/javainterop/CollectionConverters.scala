@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/javainterop/CollectionConverters.scala
 
-import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters.*
 import scala.collection.mutable.Set
 
 val s = Set("one")

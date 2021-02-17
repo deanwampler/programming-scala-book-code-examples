@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/typesystem/selftype/ButtonSubjectObserver.scala
-import progscala3.typesystem.selftype._
-import ButtonSubjectObserver._
+import progscala3.typesystem.selftype.*
+import ButtonSubjectObserver.*
 
 val buttons = Vector(
   ObservableButton("one"),

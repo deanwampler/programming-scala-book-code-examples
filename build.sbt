@@ -3,8 +3,8 @@ lazy val root = project
   .settings(
     name := "programming-scala-3rd-ed-code-examples",
     description := "Code examples for Programming Scala, Third Edition (O'Reilly).",
-    version := "3.0.0-M320",
-    scalaVersion := "3.0.0-M3",
+    version := "3.0.0-RC1_001",
+    scalaVersion := "3.0.0-RC1",
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
     organizationHomepage := Some(url("http://programming-scala.org")),
@@ -12,18 +12,18 @@ lazy val root = project
     licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
     maxErrors := 10,
     libraryDependencies ++= Seq(
-      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
-      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.10",
-      "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.10",
-      "ch.qos.logback"          % "logback-classic"  % "1.2.3",
+      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.12",
+      "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.12",
       // Map over this sequence of Scala 2.X libraries & call withDottyCompat(...):
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty/Scala 3:
-      "org.typelevel"          %% "cats-core"        % "2.3.1",
+      "org.typelevel"          %% "cats-core"        % "2.4.2",
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
-      "org.scalacheck"         %% "scalacheck"       % "1.15.2" % Test,
-      "org.scalameta"          %% "munit"            % "0.7.20" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.20" % Test
+      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.2.0-M2",
+      "ch.qos.logback"          % "logback-classic"  % "1.2.3",
+      "org.scalacheck"         %% "scalacheck"       % "1.15.3" % Test,
+      "org.scalameta"          %% "munit"            % "0.7.22" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.22" % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
 
@@ -48,7 +48,7 @@ lazy val root = project
       // "-language:Scala2",                  // Compile Scala 2 code, highlight what needs updating
       // "-migration",                        // Emit warning and location for migration issues from Scala 2.
       // "-rewrite",                          // Attempt to fix code automatically
-      "-source:3.1",                       // Choices: 3.0, 3.1, 3.0-migration, and 3.1-migration. I use 3.1 to force future deprecation warnings, etc.
+      "-source:future",                       // Choices: future and future-migration. I use this to force future deprecation warnings, etc.
       // "-scalajs",                          // Compile in Scala.js mode (requires scalajs-library.jar on the classpath).
       // "-Ycheck-init",                      // Warn on field access before initialization
       "-Xfatal-warnings",                  // Fail on warnings, not just errors

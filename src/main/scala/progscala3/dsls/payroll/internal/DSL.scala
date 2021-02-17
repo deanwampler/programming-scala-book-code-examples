@@ -1,11 +1,11 @@
 // src/main/scala/progscala3/dsls/payroll/internal/DSL.scala
 package progscala3.dsls.payroll.internal
 import scala.language.postfixOps                                     // <1>
-import progscala3.dsls.payroll._
-import progscala3.contexts.accounting._
+import progscala3.dsls.payroll.*
+import progscala3.contexts.accounting.*
 
 @main def TryPayroll =
-  import dsl._                                                       // <2>
+  import dsl.*                                                       // <2>
   val biweeklyDeductions = biweekly { deduct =>                      // <3>
     deduct federal_tax        (25.0  percent)
     deduct state_tax          (5.0   percent)

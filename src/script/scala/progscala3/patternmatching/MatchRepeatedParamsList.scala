@@ -12,14 +12,14 @@ enum Op(val symbol: String) {                                        // <1>
   case GT   extends Op(">")
   case GE   extends Op(">=")
 }
-import Op._
+import Op.*
 
 // Represent a SQL "WHERE x op value" clause, where +op+ is a
 // comparison operator: =, !=, <>, <, <=, >, or >=.
 case class WhereOp[T](columnName: String, op: Op, value: T)          // <2>
 
 // Represent a SQL "WHERE x IN (a, b, c, ...)" clause.
-case class WhereIn[T](columnName: String, val1: T, vals: T*)         // <3>
+case class WhereIn[T](columnName: String, val1: T, vals: T.*)         // <3>
 
 val wheres = Seq(                                                    // <4>
   WhereIn("state", "IL", "CA", "VA"),

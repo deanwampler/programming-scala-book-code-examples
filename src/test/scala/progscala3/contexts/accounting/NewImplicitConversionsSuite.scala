@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/contexts/NewImplicitConversionsSuite.scala
 package progscala3.contexts.accounting
 import scala.language.implicitConversions
-import munit._
+import munit.*
 
 // TODO: A ScalaCheck suite would be much better!
 class NewImplicitConversionsSuite extends FunSuite:

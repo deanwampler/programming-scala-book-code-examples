@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/combinators/MapFSuite.scala
 package progscala3.fp.combinators
 
-import munit._
+import munit.*
 import scala.language.higherKinds                         // <1>
 
 class MapFSuite extends FunSuite:

@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/RemoveBlanksSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class RemoveBlanksSuite extends FunSuite:
   var path = "src/test/scala/progscala3/forcomps/small-test-file.txt"

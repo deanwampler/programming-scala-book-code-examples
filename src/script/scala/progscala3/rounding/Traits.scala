@@ -16,7 +16,7 @@ enum Level:                                                     // <1>
   def >=(other: Level): Boolean = this.ordinal >= other.ordinal
 
 trait Logging:
-  import Level._
+  import Level.*
 
   def level: Level                                              // <2>
   def log(level: Level, message: String): Unit

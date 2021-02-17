@@ -2,7 +2,7 @@
 // src/script/scala/progscala3/dynamic/SelectableSQL.scala
 
 import reflect.ClassTag
-import collection.mutable.{HashMap => HMap}
+import collection.mutable.HashMap as HMap
 
 object SQL:
   open class Record(elems: (String, Any)*) extends Selectable:

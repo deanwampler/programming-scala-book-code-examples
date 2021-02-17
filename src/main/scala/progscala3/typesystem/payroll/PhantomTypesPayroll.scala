@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/typesystem/payroll/PhantomTypesPayroll.scala
 package progscala3.typesystem.payroll
-import progscala3.contexts.accounting._                    // <1>
+import progscala3.contexts.accounting.*                    // <1>
 
 sealed trait Step                                          // <2>
 trait PreTaxDeductions extends Step
@@ -68,7 +68,7 @@ object Payroll:
 end Payroll
 
 @main def TryPhantomTypes  =
-  import Payroll._
+  import Payroll.*
   val e = Employee("Buck Trends", Dollars(100000.0), Percentage(25.0),
     Dollars(200), Percentage(10.0), Dollars(100.0))
   val pay1 = start(e)

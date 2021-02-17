@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/typelessdomore/AbstractTypesSuite.scala
 package progscala3.typelessdomore
 
-import munit._
+import munit.*
 import scala.io.Source
 
 class AbstractTypesSuite extends FunSuite:
@@ -15,5 +15,5 @@ class AbstractTypesSuite extends FunSuite:
     val source = Source.fromFile("src/test/scala/progscala3/typelessdomore/AbstractTypesSuite.scala")
     val result = FileBulkReader(source).read
     assert (result(1) == "package progscala3.typelessdomore")
-    assert (result(3) == "import munit._")
+    assert (result(3) == "import munit.*")
   }

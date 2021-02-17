@@ -10,7 +10,7 @@ val tree2 = SBranch(
     SLeaf(3),
     SBranch(SLeaf(4),SLeaf(5))))
 
-import Tree._
+import Tree.*
 val tree3 = Branch(
   Branch(
     Leaf(1),

@@ -1,9 +1,9 @@
 // src/test/scala/progscala3/forcomps/LoginFormValidatorNecSuite.scala
 package progscala3.forcomps
 
-import cats.data._
-import cats.data.Validated._
-import munit._
+import cats.data.*
+import cats.data.Validated.*
+import munit.*
 
 class LoginFormValidatorNecSuite extends FunSuite:
   test("empty and too short user and password reported") {

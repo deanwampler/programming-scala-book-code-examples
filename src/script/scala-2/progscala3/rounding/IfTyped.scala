@@ -1,7 +1,7 @@
 // src/script/scala-2/progscala3/rounding/IfTyped.scala
 
 import progscala3.rounding.WeekDay
-import progscala3.rounding.WeekDay._
+import progscala3.rounding.WeekDay.*
 
 val days = WeekDay.values.toSeq map { day =>
   if (WeekDay.isWorkingDay(day)) day

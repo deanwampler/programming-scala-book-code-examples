@@ -1,5 +1,5 @@
 // src/script/scala/progscala3/typesystem/typelambdas/Functor.scala
-import progscala3.typesystem.typelambdas.Functor._
+import progscala3.typesystem.typelambdas.Functor.*
 
 assert(List(1,2,3).map2(_ * 2) == List(2, 4, 6))
 assert(Option(2).map2(_ * 2)   == Some(4))

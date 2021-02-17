@@ -27,9 +27,9 @@ object Accounting:
       // override def toString = f"${(p*100.0)}%.2f%%"
       // override def equals(other: AnyRef): Boolean = ???
 
-import Accounting._
+import Accounting.*
 case class Salary(gross: Dollars, taxes: Percentage):      // <5>
-  def net: Dollars = gross - (gross * taxes)
+  def net: Dollars = gross - (gross .* taxes)
 // end::definitions[]
 
 // tag::usage[]

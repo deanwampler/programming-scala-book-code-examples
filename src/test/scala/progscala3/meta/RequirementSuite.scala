@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/meta/RequirementSuite.scala
 package progscala3.meta
 
-import munit._
+import munit.*
 
 class RequirementSuite extends FunSuite:
 

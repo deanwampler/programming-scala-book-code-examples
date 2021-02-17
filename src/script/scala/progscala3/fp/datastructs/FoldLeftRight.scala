@@ -16,7 +16,7 @@ val strLeft = seq6.foldLeft("(0)")(left)
 val strRight = seq6.foldRight("(0)")(right)
 val strRight2 = seq6.foldRight("(0)")(right2)
 
-import progscala3.fp.datastructs.FoldLeftRight._
+import progscala3.fp.datastructs.FoldLeftRight.*
 
 val strLeft3 = foldLeft(seq6)("(0)")(left)
 val strRight3 = foldRight(seq6)("(0)")(right)

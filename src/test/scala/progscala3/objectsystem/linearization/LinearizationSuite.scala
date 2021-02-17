@@ -2,7 +2,7 @@
 // Essentially the same as src/script/.../Linearization.scala
 package progscala3.contexts
 
-import munit._
+import munit.*
 
 class LinearizationSuite extends FunSuite:
 

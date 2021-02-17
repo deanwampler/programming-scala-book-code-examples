@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForOptionsSeqSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class ForOptionsSeqSuite extends FunSuite:
   val options: Seq[Option[Int]] = Vector(Some(10), None, Some(20))

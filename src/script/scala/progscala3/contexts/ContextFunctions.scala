@@ -2,7 +2,7 @@
 
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
 object FutureCF:
   type Executable[T] = ExecutionContext ?=> T                        // <1>

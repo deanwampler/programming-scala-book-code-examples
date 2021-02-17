@@ -11,7 +11,7 @@ object Serialization:
   given Writable[Float]  = (f: Float)  => Rem(f)
   given Writable[String] = (s: String) => Rem(s)
 
-import Serialization._
+import Serialization.*
 
 object RemoteConnection:
   def write[T : Writable](t: T): String =                            // <2>

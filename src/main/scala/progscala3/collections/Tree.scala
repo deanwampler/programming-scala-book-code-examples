@@ -17,7 +17,7 @@ object Tree:
     Tree[A](value, None, Some(right))
 
 def tryTree() =
-  import Tree._
+  import Tree.*
   val tree =
     branch(1,
       right(1.1,

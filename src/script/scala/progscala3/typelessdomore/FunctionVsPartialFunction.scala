@@ -1,5 +1,5 @@
 // src/script/scala/progscala3/typelessdomore/FunctionVsPartialFunction.scala
-import progscala3.introscala.shapes._
+import progscala3.introscala.shapes.*
 
 val func: Message => String = message => message match
   case Exit => "Got Exit"

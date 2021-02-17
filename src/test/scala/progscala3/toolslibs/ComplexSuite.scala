@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/toolslibs/ComplexSuite.scala
 package progscala3.toolslibs
 
-import munit._
+import munit.*
 
 class ComplexSuite extends FunSuite:
 

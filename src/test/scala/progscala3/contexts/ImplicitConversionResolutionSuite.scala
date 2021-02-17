@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/contexts/ImplicitConversionResolutionSuite.scala
 package progscala3.contexts
 
-import munit._
+import munit.*
 import scala.language.implicitConversions
 
 class ImplicitConversionResolutionSuite extends FunSuite:
@@ -12,7 +12,7 @@ class ImplicitConversionResolutionSuite extends FunSuite:
       Foo(s"Foo's implicit conversion: $s")
 
   object scope1:
-    import Foo._
+    import Foo.*
     def apply(foo: Foo): String  = foo.s
 
   object scope2:
@@ -28,7 +28,7 @@ class ImplicitConversionResolutionSuite extends FunSuite:
   }
 
   test("The closest implicit conversion in scope is invoked") {
-    import scope2.implicits._
+    import scope2.implicits.*
     assert(scope2(Foo("no use of conversion")) == "no use of conversion")
     assert(scope2("foo") == "scope2's implicit conversion: foo")
   }

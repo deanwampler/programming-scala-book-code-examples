@@ -59,7 +59,7 @@ object FunctionF2A:
 
 class FunctionF2A[A2,B1]
     extends Functor2[FunctionF2A.F1[B1], FunctionF2A.F2[A2]]:
-  import FunctionF2A._
+  import FunctionF2A.*
   type Transform = [X, Y] =>> Transf[A2, B1][X, Y]
   type F1B = [X] =>> F1[B1][X]
   type F2A = [X] =>> F1[A2][X]

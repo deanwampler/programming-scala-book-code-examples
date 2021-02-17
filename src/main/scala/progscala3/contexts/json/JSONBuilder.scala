@@ -28,7 +28,7 @@ import scala.annotation.targetName
  * ```
  */
 @main def TryJSONBuilder(): Unit =
-  import JSONBuilder._
+  import JSONBuilder.*
   val js = obj {
     "config" -> obj {
       "master" -> obj {
@@ -61,7 +61,7 @@ object JSONBuilder:
    * (as shown in the example). Hence, `valueString` returns `null` without quotes,
    * all other strings are returned in double quotes, and for everything else, the
    * output of `toString` is used.
-   */
+   .*/
   object JSONElement:
     def valueString[T <: Matchable](t: T): String = t match
       case "null" => "null"

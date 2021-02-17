@@ -1,9 +1,9 @@
 // src/test/scala/progscala3/dsls/payroll/parsercomb/DSLPropertiesSuite.scala
 package progscala3.dsls.payroll.parsercomb
 
-import progscala3.contexts.accounting._
+import progscala3.contexts.accounting.*
 import munit.ScalaCheckSuite
-import org.scalacheck._
+import org.scalacheck.*
 
 /**
  * ScalaCheck example driven by MUnit

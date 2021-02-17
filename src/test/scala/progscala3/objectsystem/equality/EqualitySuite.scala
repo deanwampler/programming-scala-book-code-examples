@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/objectsystem/equality/EqualitySuite.scala
 package progscala3.objectsystem.equality
 
-import munit._
+import munit.*
 
 class EqualitySuite extends FunSuite:
 

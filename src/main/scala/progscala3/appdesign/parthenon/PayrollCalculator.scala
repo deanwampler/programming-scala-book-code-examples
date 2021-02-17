@@ -1,8 +1,8 @@
 // src/main/scala/progscala3/appdesign/parthenon/PayrollCalculator.scala
 package progscala3.appdesign.parthenon
 import progscala3.dsls.payroll.parsercomb.dsl.PayrollParser
-import progscala3.dsls.payroll._
-import progscala3.contexts.accounting._
+import progscala3.dsls.payroll.*
+import progscala3.contexts.accounting.*
 
 object PayrollCalculator:                                       // <1>
   val dsl = """biweekly {
@@ -33,7 +33,7 @@ object PayrollCalculator:                                       // <1>
     yield toRule(line)
 
   private def toRule(line: String): Record =                    // <5>
-    line.split("""\s*,\s*""") match
+    line.split("""\s*,\s.*""") match
       case Array(name, salary, fedTax, stateTax, insurance, retirement) =>
         val ruleString = dsl.format(
           fedTax.toDouble, stateTax.toDouble,

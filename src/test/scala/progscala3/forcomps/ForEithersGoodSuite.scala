@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForEithersGoodSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class ForEithersGoodSuite extends FunSuite:
   def positive(i: Int): Either[String,Int] =

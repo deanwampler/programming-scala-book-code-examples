@@ -2,7 +2,7 @@
 package progscala3.fp.categories
 
 import munit.ScalaCheckSuite
-import org.scalacheck._
+import org.scalacheck.*
 
 class MonadPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
@@ -10,7 +10,7 @@ class MonadPropertiesSuite extends ScalaCheckSuite:
   // Arbitrary function:
   val f1: Int => Seq[Int] = i => 0 until 10 by ((math.abs(i) % 10) + 1)
 
-  import SeqM._
+  import SeqM.*
   val unitInt: Int => Seq[Int] = (i:Int) => unit(i)
   val f2: Int => Seq[Int] = i => Seq(i+1)
 

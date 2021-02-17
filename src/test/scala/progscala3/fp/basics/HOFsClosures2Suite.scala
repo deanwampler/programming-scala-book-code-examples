@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/basics/HOFsClosures2Suite.scala
 package progscala3.fp.basics
 
-import munit._
+import munit.*
 
 class HOFsClosures2Suite extends FunSuite:
 

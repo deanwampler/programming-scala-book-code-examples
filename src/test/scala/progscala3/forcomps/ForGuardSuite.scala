@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForGuardSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class ForGuardSuite extends FunSuite:
   val states = Vector("Alabama", "Alaska", "Virginia", "Wyoming")

@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/typelessdomore/Null.scala
 
-import java.util.{HashMap => JHashMap}                     // <1>
+import java.util.HashMap as JHashMap                       // <1>
 
 val jhm = JHashMap[String,String]()
 jhm.put("one", "1")

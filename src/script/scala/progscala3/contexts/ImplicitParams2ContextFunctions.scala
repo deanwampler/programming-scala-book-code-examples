@@ -2,7 +2,7 @@
 // src/script/scala/progscala3/contexts/ImplicitParams2ContextFunctions.scala
 
 import scala.concurrent.{Await, ExecutionContext, Future}
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
 val sameThreadExecutionContext = new ExecutionContext:          // <1>
   def execute(runnable: Runnable): Unit =

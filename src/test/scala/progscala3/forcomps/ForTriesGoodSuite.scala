@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForTriesGoodSuite.scala
 package progscala3.forcomps
-import scala.util.{ Try, Success, Failure }
-import munit._
+import scala.util.{Try, Success, Failure}
+import munit.*
 
 class ForTriesGoodSuite extends FunSuite:
   def positive(i: Int): Try[Int] = Try {

@@ -1,8 +1,8 @@
 // src/test/scala/progscala3/fp/categories/ForTriesStepsSuite.scala
 package progscala3.fp.categories
 
-import munit._
-import scala.util.{ Try, Success, Failure }
+import munit.*
+import scala.util.{Try, Success, Failure}
 import scala.annotation.tailrec
 
 class ForTriesStepsSuite extends FunSuite:

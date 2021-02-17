@@ -20,7 +20,7 @@ object Tree3:
     Tree3(value, None, Some(right))
 
 def tryTree3() =
-  import Tree3._
+  import Tree3.*
   branch(1,
     right(1.1,
       branch("111",

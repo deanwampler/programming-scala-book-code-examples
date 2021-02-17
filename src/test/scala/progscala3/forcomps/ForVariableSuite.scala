@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForVariableSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class ForVariableSuite extends FunSuite:
   val states = List("Alabama", "Alaska", "Virginia", "Wyoming")

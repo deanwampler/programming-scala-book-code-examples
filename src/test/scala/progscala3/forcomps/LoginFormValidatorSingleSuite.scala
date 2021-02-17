@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/LoginFormValidatorSingleSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class LoginFormValidatorSingleSuite extends FunSuite:
   test("empty user") {

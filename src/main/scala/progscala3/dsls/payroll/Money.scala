@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/dsls/payroll/Money.scala
 package progscala3.dsls.payroll
-import progscala3.contexts.accounting._                         // <1>
+import progscala3.contexts.accounting.*                         // <1>
 import scala.annotation.targetName
 
 import scala.util.FromDigits.Floating                           // <2>

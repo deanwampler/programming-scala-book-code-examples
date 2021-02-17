@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/meta/Invariant.scala
 package progscala3.meta
-import scala.quoted._                                                // <1>
+import scala.quoted.*                                                // <1>
 
 object invariant:
   inline val ignore = false

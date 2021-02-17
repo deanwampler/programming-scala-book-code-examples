@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/contexts/UsingParameterSuite.scala
 package progscala3.contexts
 
-import munit._
+import munit.*
 
 class UsingParameterSuite extends FunSuite:
   import math.Ordering

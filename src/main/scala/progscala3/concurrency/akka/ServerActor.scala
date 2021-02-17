@@ -6,7 +6,7 @@ import akka.actor.typed.{ActorRef, Behavior, SupervisorStrategy}
 import scala.util.Success
 
 object ServerActor:
-  import Messages._
+  import Messages.*
 
   var workers = Vector.empty[ActorRef[Request]]                      // <1>
 

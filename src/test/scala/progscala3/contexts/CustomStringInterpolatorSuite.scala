@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/contexts/CustomStringInterpolatorSuite.scala
 package progscala3.contexts
 
-import munit._
+import munit.*
 
 class CustomStringInterpolatorSuite extends FunSuite:
 
@@ -16,7 +16,7 @@ class CustomStringInterpolatorSuite extends FunSuite:
         val kvs = keys zip values                               // <5>
         kvs.toMap                                               // <6>
 
-  import JSONToMapInterpolator._
+  import JSONToMapInterpolator.*
 
   val name = "Dean Wampler"
   val book = "Programming Scala, Third Edition"

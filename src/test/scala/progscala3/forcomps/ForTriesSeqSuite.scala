@@ -1,8 +1,8 @@
 // src/test/scala/progscala3/forcomps/ForTriesSeqSuite.scala
 package progscala3.forcomps
 
-import scala.util.{ Try, Success, Failure }
-import munit._
+import scala.util.{Try, Success, Failure}
+import munit.*
 
 class ForTriesSeqSuite extends FunSuite:
   val tries: Seq[Try[Int]] =

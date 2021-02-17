@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/datastructs/FoldVectorImplSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 import scala.annotation.tailrec
 
 class FoldVectorImplSuite extends FunSuite:
@@ -9,7 +9,7 @@ class FoldVectorImplSuite extends FunSuite:
   /**
    * Simple implementation of reduceLeft for transforming Vectors
    * to vectors.
-   */
+   .*/
   def reduceLeftV[A,B](s: Vector[A])(f: A => B): Vector[B] =
     @tailrec
     def rl(accum: Vector[B], s2: Vector[A]): Vector[B] = s2 match

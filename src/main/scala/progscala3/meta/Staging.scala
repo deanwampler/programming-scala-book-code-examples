@@ -1,11 +1,11 @@
 // src/main/scala/progscala3/meta/Staging.scala
 package progscala3.meta
-import scala.quoted._
-import scala.quoted.staging._                                   // <1>
+import scala.quoted.*
+import scala.quoted.staging.*                                   // <1>
 
 object Fold:
   // make available the necessary toolbox for runtime code generation
-  given Toolbox = Toolbox.make(getClass.getClassLoader)
+  given Compiler = Compiler.make(getClass.getClassLoader)
 
   /**
    * Fold operation:

@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/meta/InvariantSuite.scala
 package progscala3.meta
 
-import munit._
+import munit.*
 
 class InvariantSuite extends FunSuite:
   case class Variable(var i: Int, var s: String)

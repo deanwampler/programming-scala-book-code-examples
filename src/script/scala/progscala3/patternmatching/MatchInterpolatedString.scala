@@ -2,7 +2,7 @@
 
 val catalog = Seq(
   "Book: title=Programming Scala Third Edition, author=Dean Wampler",
-  "Magazine: title=The New Yorker, issue=January 2020",
+  "Magazine: title=The New Yorker, issue=January 2021",
   "Unknown: text=Who put this here??"
 )
 
@@ -13,5 +13,5 @@ val results = catalog.map {
 }
 assert(results == Seq(
   ("Book", ("Programming Scala Third Edition", "Dean Wampler")),
-  ("Magazine", ("The New Yorker", "January 2020")),
+  ("Magazine", ("The New Yorker", "January 2021")),
   ("Unrecognized", "Unknown: text=Who put this here??")))

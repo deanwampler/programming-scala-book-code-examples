@@ -3,7 +3,7 @@ package progscala3.concurrency.akka
 import scala.util.{Try, Success, Failure}
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorRef, Behavior, SupervisorStrategy}
-import Messages._
+import Messages.*
 
 object WorkerActor:
 

@@ -2,7 +2,7 @@
 package progscala3.concurrency.futures
 
 import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @main def TryFutureFold =

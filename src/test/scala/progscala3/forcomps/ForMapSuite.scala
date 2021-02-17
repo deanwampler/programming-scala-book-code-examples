@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForMapSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class ForMapSuite extends FunSuite:
   val states   = Vector("Alabama", "Alaska", "Virginia", "Wyoming")

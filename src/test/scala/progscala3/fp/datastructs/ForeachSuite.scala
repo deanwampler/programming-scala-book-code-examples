@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/datastructs/ForeachSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 
 class ForeachSuite extends FunSuite:
 
@@ -13,7 +13,7 @@ class ForeachSuite extends FunSuite:
 
   test("Foreach does pure side effects") {
     var str = ""
-    stateCapitals.foreach { kv => str += s"${kv._1}: ${kv._2}, " }
+    stateCapitals.foreach(kv => str += s"${kv._1}: ${kv._2}, ")
     assert(str == expected)
   }
 

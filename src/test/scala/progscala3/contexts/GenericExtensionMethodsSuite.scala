@@ -1,8 +1,8 @@
 // src/test/scala/progscala3/contexts/GenericExtensionMethodsSuite.scala
 package progscala3.contexts
 
-import munit._
-import GenericExtensionMethods._
+import munit.*
+import GenericExtensionMethods.*
 
 class GenericExtensionMethodsSuite extends FunSuite:
 

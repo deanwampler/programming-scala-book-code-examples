@@ -4,11 +4,11 @@ package progscala3.concurrency.akka
 
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorRef, ActorSystem, Behavior}
-import java.lang.{NumberFormatException => NFE}
+import java.lang.NumberFormatException as NFE
 import scala.util.{Try, Success, Failure}
 
 object ServiceClient:                                                // <1>
-  import Messages._
+  import Messages.*
 
   private var server: ActorRef[Request] = null                       // <2>
   private var client: ActorRef[Response] = null

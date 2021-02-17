@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/traits/ui/ButtonCountObserver2.scala
-import progscala3.traits.ui._
-import progscala3.traits.observer._
+import progscala3.traits.ui.*
+import progscala3.traits.observer.*
 
 // tag::button[]
 // src/script/scala/progscala3/traits/ui/ButtonCountObserver2.scala

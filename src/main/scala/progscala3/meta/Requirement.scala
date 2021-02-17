@@ -1,6 +1,6 @@
 // src/main/scala/progscala3/meta/Requirement.scala
 package progscala3.meta
-import scala.quoted._
+import scala.quoted.*
 
 /**
  * Requirement thrown if a requirement fails
@@ -48,7 +48,7 @@ object requirement:
         throw RequirementFailure(${showExpr(predicate)}, ${showExpr(message)})
     }
 
-  /** You already know a requirement has failed, so just throw the exception. */
+  /** You already know a requirement has failed, so just throw the exception. .*/
   def fail(message: String): Nothing = throw RequirementFailure(message)
 
   private def showExpr[T](expr: Expr[T])(using Quotes): Expr[String] =

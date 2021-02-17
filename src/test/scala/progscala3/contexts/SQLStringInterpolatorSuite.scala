@@ -1,10 +1,10 @@
 // src/test/scala/progscala3/contexts/SQLStringInterpolatorSuite.scala
 package progscala3.contexts
 
-import munit._
+import munit.*
 
 class SQLStringInterpolatorSuite extends FunSuite:
-  import SimpleSQL._
+  import SimpleSQL.*
 
   test("""A custom interpolator is invoked with name"" """) {
     val query = sql"SELECT one, two FROM t"

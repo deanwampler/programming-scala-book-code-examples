@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/categories/MonadSuite.scala
 package progscala3.fp.categories
 
-import munit._
+import munit.*
 import scala.language.higherKinds                         // <1>
 
 class MonadExampleSuite extends FunSuite:

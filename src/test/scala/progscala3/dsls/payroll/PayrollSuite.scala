@@ -2,15 +2,15 @@
 package progscala3.dsls.payroll
 
 import progscala3.dsls.payroll.dsc
-import progscala3.contexts.accounting._
+import progscala3.contexts.accounting.*
 import munit.FunSuite
-import org.scalacheck._
+import org.scalacheck.*
 import scala.language.postfixOps
 
 /**
  * ScalaCheck example driven by MUnit
  * TODO: Really this should be a "full" ScalaCheck properties test.
- */
+ .*/
 class PayrollSuite extends FunSuite:
 
   val seq1 = Seq("00","10","25","50")

@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/rounding/PathSuite.scala
 package progscala3.rounding
 
-import munit._
+import munit.*
 import java.io.File
 
 class PathSuite extends FunSuite:

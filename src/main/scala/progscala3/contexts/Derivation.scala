@@ -8,7 +8,7 @@ enum Tree[T] derives CanEqual:
   case Leaf(elem: T)
 
 @main def TryDerived() =
-  import Tree._
+  import Tree.*
   val l1 = Leaf("l1")
   val l2 = Leaf(2)
   val b = Branch(l1,Branch(Leaf("b1"),Leaf("b2")))

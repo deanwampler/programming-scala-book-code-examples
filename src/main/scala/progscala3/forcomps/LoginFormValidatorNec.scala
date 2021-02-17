@@ -1,9 +1,9 @@
 // src/main/scala/progscala3/forcomps/LoginFormValidatorNec.scala
 package progscala3.forcomps
 
-import cats.implicits._
-import cats.data._
-import cats.data.Validated._
+import cats.implicits.*
+import cats.data.*
+import cats.data.Validated.*
 
 /**
  * Nec variant, where NEC stands for "non empty chain".
@@ -23,7 +23,7 @@ object LoginFormValidatorNec:
 
   /** For simplicity, just disallow whitespace. */
   def goodCharacters(field: String, name: String): V[String] =
-    val re = raw".*\s.*".r
+    val re = raw".*\s..*".r
     if re.matches(field) == false then field.validNec
     else BadCharacters(name).invalidNec
 
@@ -47,7 +47,7 @@ end LoginFormValidatorNec
  * these == expressions to fail compilation!
  */
 @main def TryLoginFormValidatorNec =
-  import LoginFormValidatorNec._
+  import LoginFormValidatorNec.*
   assert(LoginFormValidatorNec("", "") ==
     Invalid(Chain(
       Empty("user name"), TooShort("user name", 5),

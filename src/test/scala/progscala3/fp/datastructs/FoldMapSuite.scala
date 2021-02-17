@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/fp/datastructs/FoldMapSuite.scala
 package progscala3.fp.datastructs
 
-import munit._
+import munit.*
 
 class FoldMapSuite extends FunSuite:
 

@@ -14,7 +14,7 @@ abstract class Payroll:
   protected def calcFedTaxes(salary: Double): Double            // <2>
   protected def calcStateTaxes(salary: Double, address: Address): Double
 
-object Payroll2020 extends Payroll:
+object Payroll2021 extends Payroll:
   val stateRate = Map(
     "YY" -> 0.03,
     "ZZ" -> 0.0)
@@ -26,5 +26,5 @@ object Payroll2020 extends Payroll:
 val tom  = Employee("Tom Jones", 100000.0, Address("MyTown", "YY", "98765"))
 val jane = Employee("Jane Doe",  110000.0, Address("BigCity", "ZZ", "67890"))
 
-assert(Payroll2020.netPay(tom)  == 72000.0)
-assert(Payroll2020.netPay(jane) == 82500.0)
+assert(Payroll2021.netPay(tom)  == 72000.0)
+assert(Payroll2021.netPay(jane) == 82500.0)

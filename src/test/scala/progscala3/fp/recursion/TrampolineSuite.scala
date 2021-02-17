@@ -1,8 +1,8 @@
 // src/test/scala/progscala3/fp/recursion/TrampolineSuite.scala
 package progscala3.fp.recursion
 
-import munit._
-import scala.util.control.TailCalls._
+import munit.*
+import scala.util.control.TailCalls.*
 
 // Adapted from:
 // https://www.scala-lang.org/api/current/scala/util/control/TailCalls$.html

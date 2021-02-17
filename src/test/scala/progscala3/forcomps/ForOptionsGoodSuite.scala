@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/forcomps/ForOptionsGoodSuite.scala
 package progscala3.forcomps
 
-import munit._
+import munit.*
 
 class ForOptionsGoodSuite extends FunSuite:
   def positive(i: Int): Option[Int] =

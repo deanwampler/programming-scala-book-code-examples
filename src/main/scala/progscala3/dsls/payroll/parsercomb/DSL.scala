@@ -1,8 +1,8 @@
 // src/main/scala/progscala3/dsls/payroll/parsercomb/DSL.scala
 package progscala3.dsls.payroll.parsercomb
-import scala.util.parsing.combinator._
-import progscala3.dsls.payroll._
-import progscala3.contexts.accounting._
+import scala.util.parsing.combinator.*
+import progscala3.dsls.payroll.*
+import progscala3.contexts.accounting.*
 
 @main def TryPayroll =                                               // <1>
   import dsl.PayrollParser
@@ -36,7 +36,7 @@ object dsl:
       ds.toVector
     }
 
-    /** @return Parser[Deduction] */
+    /** @return Parser[Deduction] .*/
     def deduction =                                                  // <5>
       federal_tax | state_tax | insurance | retirement
 

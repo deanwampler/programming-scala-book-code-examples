@@ -7,7 +7,7 @@
 // types and the allowed arities (sizes) of the tuples.
 
 import scala.compiletime.S
-import scala.compiletime.ops.int._
+import scala.compiletime.ops.int.*
 
 // Only allow tuple values with exactly N elements.
 type FixedLength[N <: Int, A] = N match
@@ -35,7 +35,7 @@ val l4: MaxLength[3, Int] = (1, 2, 3, 4)    // ERROR!
 
 type FixedLength2[N <: Int, A] = N match
   case 0 => EmptyTuple
-  case ? => A *: FixedLength2[N - 1, A]
+  case ? => A .*: FixedLength2[N - 1, A]
 
 type MaxLength2[N <: Int, A] = N match
   case 0 => EmptyTuple

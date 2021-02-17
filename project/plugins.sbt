@@ -3,4 +3,4 @@ resolvers ++= Seq(
   "Sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 )
 
-addSbtPlugin("ch.epfl.lamp" % "sbt-dotty" % "0.5.1")
+addSbtPlugin("ch.epfl.lamp" % "sbt-dotty" % "0.5.3")

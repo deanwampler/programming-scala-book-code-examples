@@ -1,7 +1,7 @@
 // src/test/scala/progscala3/basicoop/ValueClassPhoneNumberSuite.scala
 package progscala3.basicoop
 
-import munit._
+import munit.*
 
 class NAPhoneNumberSuite extends FunSuite:
 

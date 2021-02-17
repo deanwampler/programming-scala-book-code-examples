@@ -2,7 +2,7 @@
 package progscala3.toolslibs
 
 import munit.ScalaCheckSuite
-import org.scalacheck._
+import org.scalacheck.*
 
 class ComplexPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll

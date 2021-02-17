@@ -5,7 +5,7 @@ val MagazineExtractorRE = """Magazine: title=([^,]+),\s+issue=(.+)""".r
 
 val catalog = Seq(
   "Book: title=Programming Scala Third Edition, author=Dean Wampler",
-  "Magazine: title=The New Yorker, issue=January 2020",
+  "Magazine: title=The New Yorker, issue=January 2021",
   "Unknown: text=Who put this here??"
 )
 
@@ -18,5 +18,5 @@ val results = catalog.map {
 }
 assert(results == Seq(
   """Book "Programming Scala Third Edition", written by Dean Wampler""",
-  """Magazine "The New Yorker", issue January 2020""",
+  """Magazine "The New Yorker", issue January 2021""",
   "Unrecognized entry: Unknown: text=Who put this here??"))

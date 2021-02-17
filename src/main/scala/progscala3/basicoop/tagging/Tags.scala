@@ -35,7 +35,7 @@ object Tagging:
 end Tagging
 
 @main def TryTagging(): Unit =
-  import Tagging._
+  import Tagging.*
   trait Meter
   trait Foot
 
