@@ -3,17 +3,17 @@
 
 type ElemR[X] = X match         // "R" for "recursive"
   case String => Char
-  case Array[t] => ElemR[t]                                     // <1>
-  case Iterable[t] => ElemR[t]                                  // <2>
+  case Array[t] => ElemR[t]                                          // <1>
+  case Iterable[t] => ElemR[t]                                       // <2>
   case Option[t] => ElemR[t]
-  case ? => X
+  case AnyVal => X
 
-def first[X](x: X): ElemR[X] = x match                          // <3>
+def first[X](x: X): ElemR[X] = x.asInstanceOf[Matchable & X] match   // <3>
   case s: String      => s.charAt(0)
   case a: Array[t]    => first(a(0))
   case i: Iterable[t] => first(i.head)
   case o: Option[t]   => first(o.get)
-  case x              => x
+  case x: AnyVal      => x
 // end::first[]
 
 // tag::example[]
