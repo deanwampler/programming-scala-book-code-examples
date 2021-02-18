@@ -2,14 +2,14 @@
 
 trait Base1
 trait Base2
-class Class extends Base1 with Base2
+class Clazz extends Base1 with Base2
 
 transparent trait SBase1
 transparent trait SBase2
-class SClass extends SBase1 with SBase2
+class SClazz extends SBase1 with SBase2
 
-val c  = Class()
-val sc = SClass()
+val c  = Clazz()
+val sc = SClazz()
 
 sealed trait Base
 case object Obj1 extends Base

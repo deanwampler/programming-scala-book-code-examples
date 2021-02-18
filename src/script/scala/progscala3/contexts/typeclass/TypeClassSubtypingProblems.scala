@@ -83,7 +83,7 @@ list1.map(_.toJSON("object"))
 // person.toJSON() will now recursively call the DomainConcept.toJSON
 // extension method, instead of the original Person.toJSON.
 
-given ToJSON[DomainConcept]:
+given ToJSON[DomainConcept] with
   extension (dc: DomainConcept)
     def toJSON(name: String = "", level: Int = 0): String = dc match
       case person: Person   => person.toJSON(name, level)

@@ -10,7 +10,7 @@ object O2:
   def m(ss: Seq[String])(using StringMarker.type): Int = ss.length
 // end::definitions[]
 
-import O2.{given, _}
+import O2.{given, *}
 
 m(Seq(1,2,3))
 m(Seq("one", "two", "three"))

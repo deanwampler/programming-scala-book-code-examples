@@ -25,7 +25,7 @@ object HKFoldLeft:       // "HK" for "higher-kinded"
 // end::definitions[]
 
 // tag::usage1[]
-import HKFoldLeft.{given, _}
+import HKFoldLeft.{given, *}
 
 summon[Folder[Iterable]]
 summon[Folder[Option]]

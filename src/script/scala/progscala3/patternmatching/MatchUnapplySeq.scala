@@ -2,9 +2,9 @@
 
 // Process pairs
 def windows[T](seq: Seq[T]): String = seq match
-  case Seq(head1, head2, tail: _*) =>                                // <1>
+  case Seq(head1, head2, tail*) =>                                   // <1>
     s"($head1, $head2), " + windows(seq.tail)                        // <2>
-  case Seq(head, tail: _*) =>                                        // <3>
+  case Seq(head, tail*) =>                                           // <3>
     s"($head, _), " + windows(tail)
   case Nil => "Nil"                                                  // <4>
 

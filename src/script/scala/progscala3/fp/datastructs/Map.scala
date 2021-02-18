@@ -17,7 +17,7 @@ assert(caps ==  Map(
   "Alaska"  -> "JUNEAU",
   "Wyoming" -> "CHEYENNE"))
 
-val caps = stateCapitals.map((k, v) => (k, v.toUpperCase))
+val caps2 = stateCapitals.map((k, v) => (k, v.toUpperCase))
 assert(caps ==  Map(
   "Alabama" -> "MONTGOMERY",
   "Alaska"  -> "JUNEAU",

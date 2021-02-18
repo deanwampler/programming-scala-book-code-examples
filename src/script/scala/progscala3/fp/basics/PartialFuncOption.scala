@@ -3,7 +3,7 @@ val finicky: PartialFunction[String,String] =
   case "finicky" => "FINICKY"
 
 finicky("finicky")
-finicky("other")
+finicky("other")                       // MatchError
 
 val finickyOption = finicky.lift
 
@@ -12,4 +12,4 @@ finickyOption("other")
 
 val finicky2 = Function.unlift(finickyOption)
 finicky2("finicky")
-finicky2("other")
+finicky2("other")                      // MatchError

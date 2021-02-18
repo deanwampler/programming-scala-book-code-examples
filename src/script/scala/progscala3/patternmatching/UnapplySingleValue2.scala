@@ -1,6 +1,6 @@
 // src/script/scala/progscala3/patternmatching/UnapplySingleValue2.scala
 
-import java.util.HashMap as JHashMap, HashSet as JHashSet
+import java.util.{HashMap as JHashMap, HashSet as JHashSet}
 
 case class JHashMapWrapper[K,V](jmap: JHashMap[K,V])
 object JHashMapWrapper:

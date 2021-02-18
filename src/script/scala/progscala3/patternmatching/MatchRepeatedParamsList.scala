@@ -19,7 +19,7 @@ import Op.*
 case class WhereOp[T](columnName: String, op: Op, value: T)          // <2>
 
 // Represent a SQL "WHERE x IN (a, b, c, ...)" clause.
-case class WhereIn[T](columnName: String, val1: T, vals: T.*)         // <3>
+case class WhereIn[T](columnName: String, val1: T, vals: T*)         // <3>
 
 val wheres = Seq(                                                    // <4>
   WhereIn("state", "IL", "CA", "VA"),
@@ -28,7 +28,7 @@ val wheres = Seq(                                                    // <4>
   WhereOp("age", GT, 29))
 
 val results = wheres.map {
-  case WhereIn(col, val1, vals: _*) =>                               // <5>
+  case WhereIn(col, val1, vals*) =>                                  // <5>
     val valStr = (val1 +: vals).mkString(", ")
     s"WHERE $col IN ($valStr)"
   case WhereOp(col, op, value) => s"WHERE $col ${op.symbol} $value"

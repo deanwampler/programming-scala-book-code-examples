@@ -6,6 +6,6 @@ import scala.compiletime.constValueTuple
 val goodTuple =
   constValueTuple["foo" *: 10 *: 2.5 *: EmptyTuple]
 
-import compiletime.ops.int*
+import compiletime.ops.int.*
 val goodTuple2 =
-  constValueTuple["foo" *: (10 + 1) *: 2.5 .*: EmptyTuple]
+  constValueTuple["foo" *: (10 + 1) *: 2.5 *: EmptyTuple]

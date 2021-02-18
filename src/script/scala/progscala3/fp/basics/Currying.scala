@@ -15,5 +15,6 @@ def mcat2(s1: String) = (s2: String) => s1 + s2
 val mcat2Uncurried = Function.uncurried(mcat2)
 val mcatUncurried = Function.uncurried(mcatCurried)
 
-mcat2("hello", "world")
-fcat("hello", "world")
+mcat2("hello")("world")
+mcat2Uncurried("hello", "world")
+mcatUncurried("hello", "world")

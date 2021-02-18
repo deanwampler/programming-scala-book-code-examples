@@ -59,9 +59,10 @@ object Service:
   private val manager = ResourceManager(sys.env)
   private val tokenizer = AsyncTokenizer()
 
-  export dirAuthenticate.{apply => authenticate, isAuthenticated}
+  export dirAuthenticate.apply as authenticate
+  export dirAuthenticate.isAuthenticated
   export manager.getResource
-  export tokenizer.{apply => tokenize}
+  export tokenizer.apply as tokenize
 // end::service2[]
 
 // tag::example[]

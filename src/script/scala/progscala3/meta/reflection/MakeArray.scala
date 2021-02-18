@@ -2,7 +2,7 @@
 
 import scala.reflect.ClassTag
 
-def makeArray[T : ClassTag](elems: T*) = Array[T](elems: _*)    // <1>
+def makeArray[T : ClassTag](elems: T*) = Array[T](elems*)  // <1>
 
 makeArray(1, 2, 3)
 makeArray(1.1, 2.2, 3.3)

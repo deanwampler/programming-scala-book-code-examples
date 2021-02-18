@@ -15,5 +15,3 @@ def mult: Int => Int =
   (i: Int) => i * factor
 
 assert((1 to 10).filter(_ % 2 == 0).map(mult).reduce(_ * _) == 122880)
-
-

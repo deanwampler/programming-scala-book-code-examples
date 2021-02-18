@@ -12,9 +12,3 @@ seqToString(Vector(1, 2, 3))
 seqToString(Vector.empty[Int])
 seqToString(Map("one" -> 1, "two" -> 2, "three" -> 3).toSeq)
 seqToString(Map.empty[String,Int].toSeq)
-  "(1 +: (2 +: (3 +: Nil)))",
-  "Nil",
-  "(1 +: (2 +: (3 +: Nil)))",
-  "Nil",
-  "((one,1) +: ((two,2) +: ((three,3) +: Nil)))",
-  "Nil"))
