@@ -37,8 +37,7 @@ object Service:
   private val dirAuthenticate =
     DirectoryAuthenticate(URL("https://directory.wtf"))
 
-  export dirAuthenticate.apply as authenticate
-  export dirAuthenticate.isAuthenticated
+  export dirAuthenticate.{isAuthenticated, apply as authenticate}
 // end::service2[]
 
 // tag::example[]
