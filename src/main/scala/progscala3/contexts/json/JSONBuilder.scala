@@ -121,8 +121,9 @@ object JSONBuilder:
    * key-value pairs to the container `jc`. Note that this definition of `->` will
    * shadow the generic `ArrowAssoc` implementation for constructing tuples!
    */
-  extension [T <: Matchable : ValidJSONValue] (key: String)
-    @targetName("arrow") def ->(element: T)(using jc: JSONContainer) =
+  extension (key: String)
+    @targetName("arrow") def ->[T <: Matchable : ValidJSONValue](
+        element: T)(using jc: JSONContainer) =
       jc.add(JSONKeyedElement(key, element))
 
   /**
