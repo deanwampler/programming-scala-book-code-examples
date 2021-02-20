@@ -10,7 +10,7 @@ sealed abstract class AbbrevList[+A]:
   def head: A
   def tail: AbbrevList[A]
 
-  @targetName("acons")
+  @targetName("prepend")
   def ::[B >: A] (x: B): AbbrevList[B] = new ::(x, this)
 
   final def foreach(f: A => Unit) =
@@ -32,7 +32,7 @@ case object AbbrevNil extends AbbrevList[Nothing]:
 
 // A non-empty AbbrevList characterized by a head and a tail.
 
-@targetName("ACons")
+@targetName("AbbrevListCons")
 final case class ::[B](private var hd: B,
     private[list] var tl: AbbrevList[B]) extends AbbrevList[B]:
 
