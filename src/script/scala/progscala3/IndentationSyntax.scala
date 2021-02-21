@@ -1,5 +1,15 @@
 // src/script/scala/progscala3/IndentationSyntax.scala
+
+// For completeness, Scala 3 imports:
+import scala.concurrent.{given, *}
+import java.util.Queue as JQueue
+import java.util.{HashMap as JHashMap, HashSet as _}
+
 // Significant indentation syntax
+
+// Package definition
+// package mypkg:   // Can't declare a package in a script!
+  // stuff under mypkg...
 
 // For comprehension
 val evens = for
@@ -52,10 +62,6 @@ def multiline(s: String): String =
   val result = s.toUpperCase
   println(s"output: $result")
   result
-
-// Package definition
-package mypkg:
-  // ...
 
 // Trait, class, and object definition
 trait Monoid[A]:

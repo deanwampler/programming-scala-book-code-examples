@@ -1,5 +1,16 @@
 // src/script/scala/progscala3/BracesSyntax.scala
+
+// For completeness, Scala 2 imports, not allowed in Scala 3:
+import scala.concurrent._
+import java.util.{Queue => JQueue}
+import java.util.{HashMap => JHashMap, HashSet => _}
+
 // Braces syntax - valid in both Scala 2 and 3
+
+// Package definition
+// package mypkg {  // Can't declare a package in a script!
+//   // stuff under mypkg...
+// }
 
 // For comprehension
 val evens = for {
@@ -56,11 +67,6 @@ def multiline(s: String): String = {
   val result = s.toUpperCase
   println(s"output: $result")
   result
-}
-
-// Package definition
-package mypkg {
-  // ...
 }
 
 // Trait, class, and object definition
