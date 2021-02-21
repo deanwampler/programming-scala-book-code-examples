@@ -12,7 +12,7 @@ object invariant1:
   inline def apply[T](                                          // <2>
       inline predicate: => Boolean)(
       inline block: => T): T =
-    if !ignore then                                             // <3>
+    inline if !ignore then                                      // <3>
       if !predicate then throw InvariantFailure("before")
       val result = block
       if !predicate then throw InvariantFailure("after")

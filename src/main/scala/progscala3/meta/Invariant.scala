@@ -8,7 +8,7 @@ object invariant:
   inline def apply[T](
       inline predicate: => Boolean, message: => String = "")(        // <2>
       inline block: => T): T =
-    if !ignore then
+    inline if !ignore then
       if !predicate then fail(predicate, message, block, "before")   // <3>
       val result = block
       if !predicate then fail(predicate, message, block, "after")
@@ -28,8 +28,8 @@ object invariant:
   private def failImpl[T](
       predicate: Expr[Boolean], message: Expr[String],
       block: Expr[T], beforeAfter: Expr[String])(
-      using Quotes): Expr[String] =                                  // <5>
-    '{ throw InvariantFailure(
+      using Quotes): Expr[String] =
+    '{ throw InvariantFailure(                                       // <5>
       s"""FAILURE! predicate "${${showExpr(predicate)}}" """
       + s"""failed ${$beforeAfter} evaluation of block:"""
       + s""" "${${showExpr(block)}}". Message = "${$message}". """)
