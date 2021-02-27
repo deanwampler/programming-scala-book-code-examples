@@ -130,5 +130,5 @@ end given
 // Extension method definition
 extension (s: String)
   def bold: String = s.toUpperCase + "!"
-  def meek: String = "(" + s.toLowerCase + ", maybe?)"
+  def meek: String = s"(${s.toLowerCase}, maybe?)"
 end extension
