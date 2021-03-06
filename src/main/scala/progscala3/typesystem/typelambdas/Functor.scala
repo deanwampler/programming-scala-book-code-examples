@@ -1,18 +1,16 @@
 // src/main/scala/progscala3/typesystem/typelambdas/Functor.scala
 package progscala3.typesystem.typelambdas
 
-trait Functor[A,+M[_]]:                                              // <1>
-  def map2[B](f: A => B): M[B]
+trait Functor[A, M[_]]:
+  extension (m: M[A]) def map2[B](f: A => B): M[B]
 
-object Functor:                                                      // <2>
-  implicit class SeqFunctor[A](seq: Seq[A]) extends Functor[A,Seq]:
-    def map2[B](f: A => B): Seq[B] = seq map f
+object Functor:
+  given [A]: Functor[A, Seq] with
+    extension (seq: Seq[A]) def map2[B](f: A => B): Seq[B] = seq map f
 
-  implicit class OptionFunctor[A](opt: Option[A]) extends Functor[A,Option]:
-    def map2[B](f: A => B): Option[B] = opt map f
+  type MapK = [K] =>> [V] =>> Map[K,V]                          // <1>
 
-  implicit class MapFunctor[K,V1](mapKV1: Map[K,V1])                 // <3>
-    extends Functor[V1,({type λ[α] = Map[K,α]})#λ]:                  // <4>
-      def map2[V2](f: V1 => V2): Map[K,V2] = mapKV1 map {
-        case (k,v) => (k,f(v))
-      }
+  given [K, V1]: Functor[V1, MapK[K]] with                      // <2>
+    extension (map: MapK[K][V1])
+      def map2[V2](f: V1 => V2): MapK[K][V2] = map.view.mapValues(f).toMap
+
