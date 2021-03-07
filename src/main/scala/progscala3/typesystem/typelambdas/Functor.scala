@@ -8,9 +8,9 @@ object Functor:
   given [A]: Functor[A, Seq] with
     extension (seq: Seq[A]) def map2[B](f: A => B): Seq[B] = seq map f
 
-  type MapK = [K] =>> [V] =>> Map[K,V]                          // <1>
+  type MapKV = [K] =>> [V] =>> Map[K,V]                         // <1>
 
-  given [K, V1]: Functor[V1, MapK[K]] with                      // <2>
-    extension (map: MapK[K][V1])
-      def map2[V2](f: V1 => V2): MapK[K][V2] = map.view.mapValues(f).toMap
+  given [K, V1]: Functor[V1, MapKV[K]] with                     // <2>
+    extension (map: MapKV[K][V1])
+      def map2[V2](f: V1 => V2): MapKV[K][V2] = map.view.mapValues(f).toMap
 

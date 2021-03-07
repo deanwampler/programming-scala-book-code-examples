@@ -9,8 +9,8 @@ trait TT1:
 
 class TT2 extends TT1:
   type TA = Int                                                 // <3>
-  val seed: TA = 5
+  val seed: TA = 1
 // end::include[]
 
 val obj = TT2()
-println(s"obj: seq = ${obj.seq}")
+obj.seq          // We get List(0, 0, 0, 0, 0), but we wanted 1s!

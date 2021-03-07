@@ -4,8 +4,7 @@ import scala.quoted.*
 import scala.quoted.staging.*                                   // <1>
 
 object Fold:
-  // make available the necessary toolbox for runtime code generation
-  given Compiler = Compiler.make(getClass.getClassLoader)
+  given Compiler = Compiler.make(getClass.getClassLoader)       // <2>
 
   /**
    * Fold operation:
@@ -13,18 +12,18 @@ object Fold:
    * @param the seed value
    * @param the array to fold.
    */
-  val f: (String, Int, Array[Int]) => Int = run {               // <2>
+  val f: (String, Int, Array[Int]) => Int = run {               // <3>
     val stagedFold: Expr[(String, Int, Array[Int]) => Int] = '{
       (op: String, seed: Int, arr: Array[Int]) =>
-        val combine = if op == "*" then (x:Int, y:Int) => x*y   // <3>
+        val combine = if op == "*" then (x:Int, y:Int) => x*y   // <4>
           else (x:Int, y:Int) => x+y
         ${ fold[Int]('seed, 'arr)('combine) }
     }
     println(s"\nStaged fold code after expansion:\n\n${stagedFold.show}")
-    stagedFold                                                  // <4>
+    stagedFold                                                  // <5>
   }
 
-  def fold[T](seed: Expr[T], arr: Expr[Array[T]])(              // <5>
+  def fold[T](seed: Expr[T], arr: Expr[Array[T]])(              // <6>
       combine: Expr[(T,T) => T])(
       using Type[T], Quotes): Expr[T] = '{
     var accum: T = ($seed)
@@ -37,7 +36,7 @@ object Fold:
     accum
   }
 
-@main def TryStaging(operator: String, seed: Int, args: Int*) = // <6>
+@main def TryStaging(operator: String, seed: Int, args: Int*) = // <7>
 
   val result = Fold.f(operator, seed, args.toArray)
   println(s"fold of ($args) with operator $operator and seed $seed: $result")
