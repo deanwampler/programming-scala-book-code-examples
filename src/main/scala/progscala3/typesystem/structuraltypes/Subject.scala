@@ -2,7 +2,7 @@
 package progscala3.typesystem.structuraltypes
 import reflect.Selectable.reflectiveSelectable                       // <1>
 
-type Observer = {                                                    // <2>
+private type Observer = {                                            // <2>
   def update(): Unit
 }
 
