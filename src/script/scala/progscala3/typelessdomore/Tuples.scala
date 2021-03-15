@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/typelessdomore/TupleExample.scala
+// src/script/scala/progscala3/typelessdomore/Tuples.scala
 
 val t = ("Hello", 1, 2.3)                                            // <1>
 println("Print the whole tuple: " + t)

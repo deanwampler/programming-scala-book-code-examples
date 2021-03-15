@@ -1,10 +1,10 @@
-// src/test/scala/progscala3/fp/categories/FunctorExampleSuite.scala
+// src/test/scala/progscala3/fp/categories/FunctorSuite.scala
 package progscala3.fp.categories
 
 import munit.*
 import scala.language.higherKinds                         // <1>
 
-class FunctorExampleSuite extends FunSuite:
+class FunctorSuite extends FunSuite:
 
   val fid: Int => Double    = i => 1.5 * i
 

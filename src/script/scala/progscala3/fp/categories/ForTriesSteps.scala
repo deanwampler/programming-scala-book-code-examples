@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/fp/categories/ForTriesStepsExample.scala
+// src/script/scala/progscala3/fp/categories/ForTriesSteps.scala
 import scala.util.{ Try, Success, Failure }
 
 type Step = Int => Try[Int]                                          // <1>

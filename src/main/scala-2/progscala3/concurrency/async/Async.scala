@@ -1,4 +1,4 @@
-// src/main/scala-2/progscala3/concurrency/async/AsyncExample.scala
+// src/main/scala-2/progscala3/concurrency/async/Async.scala
 package progscala3.concurrency.async
 import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.Duration

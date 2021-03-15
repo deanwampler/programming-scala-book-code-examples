@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/typelessdomore/PackageExample1.scala
+// src/main/scala/progscala3/typelessdomore/Package1.scala
 package com.example.mypkg
 
 class MyClass:

@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/dynamic/CLINQExample.scala
+// src/script/scala/progscala3/dynamic/CLINQ.scala
 import progscala3.dynamic.CLINQ
 
 def makeMap(

@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/appdesign/dbc/ElidableExample.scala
+// src/main/scala/progscala3/appdesign/dbc/Elidable.scala
 package progscala3.appdesign.dbc
 
 import scala.annotation.elidable

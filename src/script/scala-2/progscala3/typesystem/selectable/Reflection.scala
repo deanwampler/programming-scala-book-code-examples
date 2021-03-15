@@ -1,6 +1,6 @@
-// src/script/scala-2/progscala3/typesystem/selectable/ReflectionExample.scala
+// src/script/scala-2/progscala3/typesystem/selectable/Reflection.scala
 // Mentioned, but not shown in the book. This shows a Scala 2 alternative to
-// src/script/scala/progscala3/typesystem/selectable/SelectableExample.scala
+// src/script/scala/progscala3/typesystem/selectable/Selectable.scala
 // using structural typing.
 import scala.language.reflectiveCalls   // Required import.
 trait Record {  // Doesn't extend any other trait, like Scala 3's reflect.Selectable

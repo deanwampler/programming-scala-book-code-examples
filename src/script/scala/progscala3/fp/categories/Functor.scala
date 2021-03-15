@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/fp/categories/FunctorExample.scala
+// src/script/scala/progscala3/fp/categories/Functor.scala
 import progscala3.fp.categories.*
 
 val fid: Int => Double = i => 1.5 * i

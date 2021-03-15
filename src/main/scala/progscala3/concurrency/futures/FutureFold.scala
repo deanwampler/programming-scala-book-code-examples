@@ -1,4 +1,4 @@
-// src/main/scala/progscala3/concurrency/futures/FutureFoldExample.scala
+// src/main/scala/progscala3/concurrency/futures/FutureFold.scala
 package progscala3.concurrency.futures
 
 import scala.concurrent.{Await, Future}

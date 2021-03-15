@@ -1,11 +1,11 @@
-// src/main/scala/progscala3/concurrency/process/ProcessExample.scala
+// src/main/scala/progscala3/concurrency/process/Process.scala
 package progscala3.concurrency.process
 
 import scala.sys.process.*
 import java.net.URL
 import java.io.File
 
-object ProcessExample:
+object DoProcess:
 
   // Build a process to open a URL, redirect the output to
   // "grep $filter", and append the output to file (not overwrite it).
@@ -16,8 +16,8 @@ object ProcessExample:
   def countLines(fileName: String) =
     s"ls -l $fileName" #&& s"wc -l $fileName"
 
-@main def TryProcessExample =
-  import ProcessExample.*
+@main def TryProcess =
+  import DoProcess.*
   val resultCode = "ls src".!
   assert(resultCode == 0)
 
@@ -27,9 +27,4 @@ object ProcessExample:
   assert(countLines("scala.txt").! == 0)
 
   val output = countLines("scala.txt").!!
-  // Split the output on all non-characters and this is the
-  // array you get:
-  //   Array("scala", "txt", nstr, "scala", "txt")
-  // where "nstr" is the number of lines in "scala.txt":
-  val strings = output.split("\\W+")
-  assert(strings(2).toInt > 0)
+  println(output)

@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/typelessdomore/BulkReaderExample.scala
+// src/script/scala/progscala3/typelessdomore/BulkReader.scala
 import progscala3.typelessdomore.{StringBulkReader, FileBulkReader}
 import scala.io.Source
 

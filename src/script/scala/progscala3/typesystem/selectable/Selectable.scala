@@ -1,4 +1,4 @@
-// src/script/scala/progscala3/typesystem/selectable/SelectableExample.scala
+// src/script/scala/progscala3/typesystem/selectable/Selectable.scala
 
 trait Record extends reflect.Selectable:                        // <1>
   def id: Long      // Id of the record in the database
