@@ -7,7 +7,7 @@
   else if n%3 == 0 then
     s"$n is divisible by 3"
   else
-    n
+    n.toString
 }
 // end::one[]
 
@@ -15,6 +15,6 @@
 (0 until 6).map { n =>
   if n%2 == 0 then s"$n is even"
   else if n%3 == 0 then s"$n is divisible by 3"
-  else n
+  else n.toString
 }
 // end::two[]

@@ -1,12 +1,12 @@
 // src/script/scala/progscala3/patternmatching/Infix.scala
 
-infix case class With[A,B](a: A, b: B)
+infix case class And[A,B](a: A, b: B)
 
-val with1: With[String,Int] = With("Foo", 1)
-val with2: String With Int  = With("Bar", 2)
-// val with3: String With Int  = "Baz" With 3  // ERROR
+val and1: And[String,Int] = And("Foo", 1)
+val and2: String And Int  = And("Bar", 2)
+// val and3: String And Int  = "Baz" And 3  // ERROR
 
-val results = Seq(with1, with2).map {
-  case s With i => s"$s with $i"
+val results = Seq(and1, and2).map {
+  case s And i => s"$s and $i"
 }
-assert(results == Seq("Foo with 1", "Bar with 2"))
+assert(results == Seq("Foo and 1", "Bar and 2"))

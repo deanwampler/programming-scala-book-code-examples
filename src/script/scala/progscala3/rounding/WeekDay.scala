@@ -1,8 +1,10 @@
-// src/script/scala/progscala3/rounding/WeekDay.scala
-
 // tag::weekday[]
-enum WeekDay(val fullName: String):                             // <1>
-  case Sun extends WeekDay("Sunday")                            // <2>
+// src/script/scala/progscala3/rounding/WeekDay.scala
+enum WeekDaySimple:                                             // <1>
+  case Sun, Mon, Tue, Wed, Thu, Fri, Sat
+
+enum WeekDay(val fullName: String):                             // <2>
+  case Sun extends WeekDay("Sunday")                            // <3>
   case Mon extends WeekDay("Monday")
   case Tue extends WeekDay("Tuesday")
   case Wed extends WeekDay("Wednesday")
@@ -10,17 +12,17 @@ enum WeekDay(val fullName: String):                             // <1>
   case Fri extends WeekDay("Friday")
   case Sat extends WeekDay("Saturday")
 
-  def isWorkingDay: Boolean = ! (this == Sat || this == Sun)    // <3>
+  def isWorkingDay: Boolean = ! (this == Sat || this == Sun)    // <4>
 
 import WeekDay.*
 
-val sorted = WeekDay.values.sortBy(_.ordinal).toSeq             // <4>
+val sorted = WeekDay.values.sortBy(_.ordinal).toSeq             // <5>
 assert(sorted == List(Sun, Mon, Tue, Wed, Thu, Fri, Sat))
 
 assert(Sun.fullName == "Sunday")
-assert(Sun.ordinal == 0)                                        // <5>
+assert(Sun.ordinal == 0)                                        // <6>
 assert(Sun.isWorkingDay == false)
-assert(WeekDay.valueOf("Sun") == WeekDay.Sun)                   // <6>
+assert(WeekDay.valueOf("Sun") == WeekDay.Sun)                   // <7>
 // end::weekday[]
 
 assert(Mon.fullName == "Monday")

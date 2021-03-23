@@ -5,4 +5,4 @@ def upCase(s: String) =
   if s.length == 0 then
     return s    // COMPILATION ERROR - forces declaration of upCase return type
   else
-    s.toUpperCase()
+    s.toUpperCase

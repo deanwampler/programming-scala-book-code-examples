@@ -5,4 +5,4 @@ val evens = for
   if n%2 == 0
 yield n
 
-assert(evens == Seq(0, 2, 4, 6, 8, 10))
+assert(evens == Vector(0, 2, 4, 6, 8, 10))

@@ -5,5 +5,5 @@ while
   count += 1
   println(count)
   count < 10
-do ()
+do {}
 assert(count == 10)
