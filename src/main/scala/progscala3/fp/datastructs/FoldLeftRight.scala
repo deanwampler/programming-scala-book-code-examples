@@ -7,7 +7,6 @@ import scala.annotation.tailrec
  * Simplified implementations of foldLeft and foldRight.
  */
 object FoldLeftRight:
-
   def foldLeft[A,B](s: Seq[A])(seed: B)(f: (B,A) => B): B =
     @tailrec
     def fl(accum: B, s2: Seq[A]): B = s2 match

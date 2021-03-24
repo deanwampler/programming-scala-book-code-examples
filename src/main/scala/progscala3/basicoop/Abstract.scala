@@ -3,15 +3,15 @@
 package progscala3.basicoop
 
 enum LoggingLevel:                                                   // <1>
-  case INFO, WARN, ERROR
+  case Info, Warn, Error
 
 trait Logging:
   import LoggingLevel.*
-  final def info(message: String): Unit = log(INFO, message)
-  final def warn(message: String): Unit = log(WARN, message)
-  final def error(message: String): Unit = log(ERROR, message)
+  final def info(message: String): Unit = log(Info, message)
+  final def warn(message: String): Unit = log(Warn, message)
+  final def error(message: String): Unit = log(Error, message)
   final def log(level: LoggingLevel, message: String): Unit =
-    write(s"$level: $message")
+    write(s"${level.toString.toUpperCase}: $message")
 
   protected val write: String => Unit                                // <2>
 
