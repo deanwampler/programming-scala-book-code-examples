@@ -5,7 +5,6 @@ import progscala3.dsls.payroll.dsc
 import progscala3.contexts.accounting.*
 import munit.FunSuite
 import org.scalacheck.*
-import scala.language.postfixOps
 
 /**
  * ScalaCheck example driven by MUnit
@@ -17,7 +16,6 @@ class PayrollSuite extends FunSuite:
 
   test("Percentage can be constructed with a floating point literal") {
     assert(0.25.percent == Percentage(0.25))
-    assert((0.25 percent) == Percentage(0.25))
     assert(1.123456e3.percent == Percentage(1.123456e3))
   }
 
@@ -47,7 +45,6 @@ class PayrollSuite extends FunSuite:
 
   test("Dollars can be constructed with a floating point literal") {
     assert(0.25.dollars == Dollars(0.25))
-    assert((0.25 dollars) == Dollars(0.25))
     assert(1.123456e3.dollars == Dollars(1.123456e3))
   }
 

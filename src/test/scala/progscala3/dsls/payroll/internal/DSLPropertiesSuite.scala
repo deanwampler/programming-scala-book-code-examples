@@ -5,7 +5,6 @@ import munit.ScalaCheckSuite
 import org.scalacheck.*
 import progscala3.dsls.payroll.*
 import progscala3.contexts.accounting.*
-import scala.language.postfixOps
 
 /**
  * ScalaCheck example driven by MUnit
@@ -16,10 +15,10 @@ class DSLPropertiesSuite extends ScalaCheckSuite:
   import Prop.forAll
 
   val biweeklyDeductions = biweekly { deduct =>
-    deduct.federal_tax       (25.0  percent)
-    deduct.state_tax         (5.0   percent)
-    deduct.insurance_premiums(500.0 dollars)
-    deduct.retirement_savings(10.0  percent)
+    deduct.federal_tax       (25.0.percent)
+    deduct.state_tax         (5.0.percent)
+    deduct.insurance_premiums(500.0.dollars)
+    deduct.retirement_savings(10.0.percent)
   }
 
   def within(d1: Dollars, d2: Dollars): Boolean =
