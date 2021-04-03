@@ -3,7 +3,7 @@ lazy val root = project
   .settings(
     name := "programming-scala-3rd-ed-code-examples",
     description := "Code examples for Programming Scala, Third Edition (O'Reilly).",
-    version := "3.0.0-RC2-003",
+    version := "3.0.0-RC2-005",
     scalaVersion := "3.0.0-RC2",
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
@@ -52,7 +52,7 @@ lazy val root = project
       "-source:future",                       // Choices: future and future-migration. I use this to force future deprecation warnings, etc.
       "-Xfatal-warnings",                  // Fail on warnings, not just errors
       // "-Xmigration",                       // Warn about constructs whose behavior may have changed since version.
-      // "-Ycheck-init",                      // Warn on field access before initialization
+      // "-Ysafe-init",                       // Warn on field access before initialization
       // "-Yexplicit-nulls",                  // For explicit nulls behavior.
     ),
     Compile / console / scalacOptions := scalacOptions.value,
