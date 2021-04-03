@@ -8,7 +8,8 @@ type ElemR[X] = X match         // "R" for "recursive"
   case Option[t] => ElemR[t]
   case AnyVal => X
 
-def first[X](x: X): ElemR[X] = x.asInstanceOf[Matchable & X] match   // <3>
+import compiletime.asMatchable                                       // <3>
+def first[X](x: X): ElemR[X] = x.asMatchable match                   // <4>
   case s: String      => s.charAt(0)
   case a: Array[t]    => first(a(0))
   case i: Iterable[t] => first(i.head)
