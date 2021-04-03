@@ -7,8 +7,8 @@ trait Super[T <: Super[T]]:                                     // <1>
 case class Sub1(s: String) extends Super[Sub1]:                 // <3>
   def make: Sub1 = Sub1(s"Sub1: make: $s")
 
-case class Sub2(s: String) extends Super[Sub1]:
-  def make: Sub1 = Sub1(s"Sub2: make: $s")
+case class Sub2(s: String) extends Super[Sub2]:
+  def make: Sub2 = Sub2(s"Sub2: make: $s")
 
 // case class Foo(str:String)                                   // <4>
 // case class Odd(s: String) extends Super[Foo]:

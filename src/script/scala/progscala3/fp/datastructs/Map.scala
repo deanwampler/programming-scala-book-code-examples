@@ -6,41 +6,41 @@ val stateCapitals = Map(
   "Wyoming" -> "Cheyenne")
 
 val lengths = stateCapitals.map(kv => (kv._1, kv._2.length))
-assert(lengths == Map(
+assert(lengths.equals(Map(
   "Alabama" -> 10,
   "Alaska"  -> 6,
-  "Wyoming" -> 8))
+  "Wyoming" -> 8)))
 
 val caps = stateCapitals.map { case (k, v) => (k, v.toUpperCase) }
-assert(caps ==  Map(
+assert(caps.equals(Map(
   "Alabama" -> "MONTGOMERY",
   "Alaska"  -> "JUNEAU",
-  "Wyoming" -> "CHEYENNE"))
+  "Wyoming" -> "CHEYENNE")))
 
 val caps2 = stateCapitals.map((k, v) => (k, v.toUpperCase))
-assert(caps ==  Map(
+assert(caps.equals(Map(
   "Alabama" -> "MONTGOMERY",
   "Alaska"  -> "JUNEAU",
-  "Wyoming" -> "CHEYENNE"))
+  "Wyoming" -> "CHEYENNE")))
 
 val stateCapitals2a = stateCapitals + ("Virginia" -> "Richmond")
-assert(stateCapitals2a == Map(
+assert(stateCapitals2a.equals(Map(
   "Alabama" -> "Montgomery",
   "Alaska"  -> "Juneau",
   "Wyoming" -> "Cheyenne",
-  "Virginia" -> "Richmond"))
+  "Virginia" -> "Richmond")))
 
 val stateCapitals2b = stateCapitals + ("Alabama" -> "MONTGOMERY")
-assert(stateCapitals2b == Map(
+assert(stateCapitals2b.equals(Map(
   "Alabama" -> "MONTGOMERY",
   "Alaska"  -> "Juneau",
-  "Wyoming" -> "Cheyenne"))
+  "Wyoming" -> "Cheyenne")))
 
 val stateCapitals2 = stateCapitals ++ Seq(
   "Virginia" -> "Richmond", "Illinois" -> "Springfield")
-assert(stateCapitals2 == Map(
+assert(stateCapitals2.equals(Map(
   "Alabama" -> "Montgomery",
   "Alaska"  -> "Juneau",
   "Wyoming" -> "Cheyenne",
   "Virginia" -> "Richmond",
-  "Illinois" -> "Springfield"))
+  "Illinois" -> "Springfield")))

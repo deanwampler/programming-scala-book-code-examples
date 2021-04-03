@@ -27,7 +27,7 @@ yield tree match
     r @ SBranch(_,_)) => s"1: l=$l, r=$r, ll=$ll, lli=$lli, lr=$lr, lri=$lri"
   case _: SBranch[?] => "2: Other SBranch"
   case Branch(
-    l @ Branch,
+    l @ Branch(_, _),
     r @ Branch(rl @ Leaf(rli), rr @ Branch(_,_))) =>
       s"3: l=$l, r=$r, rl=$rl, rli=$rli, rr=$rr"
   case _:Branch[?] => "4: Other Branch"

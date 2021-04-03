@@ -1,5 +1,7 @@
 // src/script/scala/progscala3/typesystem/matchtypes/MatchTypes2.scala
 // Not in the book. More experimenting with match types.
+import compiletime.asMatchable
+
 type Elem[X <: Matchable] = X match
   case String => Char
   case Array[t] => t
@@ -35,7 +37,8 @@ lastUnsafe(None)
 // Does this parse and provide a safe implementation? No; it has trouble
 // confirming that Char =:= Elem[String] for "s.last" and
 // Matchable =:= Elem[Matchable] for the default Matchable clause.
-def lastOrElse[X <: Matchable](in: X)(default: => Elem[X]): Elem[X] = in match
+
+def lastOrElse[X <: Matchable](in: X)(default: => Elem[X]): Elem[X] = in.asMatchable match
   case s: String => if s.isEmpty then default else s.last
   case a: Array[Elem[X]] => if a.isEmpty then default else a.last
   case i: Iterable[Elem[X]] => if i.isEmpty then default else i.last
@@ -43,7 +46,7 @@ def lastOrElse[X <: Matchable](in: X)(default: => Elem[X]): Elem[X] = in match
   case m: Matchable => m
 
 // What about using options? Same parsing problems...
-def lastOption[X <: Matchable](in: X): Option[Elem[X]] = in match
+def lastOption[X <: Matchable](in: X): Option[Elem[X]] = in.asMatchable match
   case s: String => s.lastOption
   case a: Array[Elem[X]] => a.lastOption
   case i: Iterable[Elem[X]] => i.lastOption
@@ -53,7 +56,7 @@ def lastOption[X <: Matchable](in: X): Option[Elem[X]] = in match
 // Surely this will work, no? No; it seems that any attempt to combine the
 // match type Elem[X] with other types, whether "| Null", Option[...], or
 // using it as the type of a default argument fails to work.
-def lastOrNull[X <: Matchable](in: X): Elem[X] | Null = in match
+def lastOrNull[X <: Matchable](in: X): Elem[X] | Null = in.asMatchable match
   case s: String => if s.isEmpty then null else s.last
   case a: Array[Elem[X]] => if a.isEmpty then null else a.last
   case i: Iterable[Elem[X]] => if i.isEmpty then null else i.last
@@ -69,7 +72,7 @@ type RElem[X <: Matchable] = X match
   case Option[t] => RElem[t]
   case Matchable => X
 
-def rlastUnsafe[X <: Matchable](in: X): RElem[X] = in match
+def rlastUnsafe[X <: Matchable](in: X): RElem[X] = in.asMatchable match
   case s: String => s.last
   case a: Array[t] => rlastUnsafe(a.last)
   case i: Iterable[t] => rlastUnsafe(i.last)
@@ -83,21 +86,21 @@ def rlastUnsafe[X <: Matchable](in: X): RElem[X] = in match
 //   case o: Option[RElem[X]] => rlastOrElse(o.getOrElse(default))
 //   case a: Any => a
 
-def rlastOrElse[X](in: X, default: RElem[X]): RElem[X] = in match
+def rlastOrElse[X](in: X, default: RElem[X]): RElem[X] = in.asMatchable match
   case s: String => s.lastOption.getOrElse(default)
   case a: Array[RElem[X]] => rlastOrElse(a.lastOption.getOrElse(default))
   case i: Iterable[RElem[X]] => rlastOrElse(i.lastOption.getOrElse(default))
   case o: Option[RElem[X]] => rlastOrElse(o.getOrElse(default))
   case a: Any => a
 
-def rlastOption[X](in: X): Option[RElem[X]] = in match
+def rlastOption[X](in: X): Option[RElem[X]] = in.asMatchable match
   case s: String => s.lastOption
   case a: Array[RElem[X]] => a.lastOption.flatMap(x => rlastOption(x))
   case i: Iterable[RElem[X]] => i.lastOption.flatMap(x => rlastOption(x))
   case o: Option[RElem[X]] => o.flatMap(x => rlastOption(x))
   case a: Any => Some(a)
 
-def rlastOrNull[X](in: X): RElem[X] | Null = in match
+def rlastOrNull[X](in: X): RElem[X] | Null = in.asMatchable match
   case s: String => if s.isEmpty then null else s.last
   case a: Array[RElem[X]] => if a.isEmpty then null else rlastOrNull(a.last)
   case i: Iterable[RElem[X]] => if i.isEmpty then null else rlastOrNull(i.last)

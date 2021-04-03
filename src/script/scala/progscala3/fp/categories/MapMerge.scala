@@ -12,6 +12,6 @@ map1i.combine(map2i)
 map1s.combine(map2s)
 map1s <+> map2s
 
-assert(map1i.combine(map2i) == Map("one" -> 1, "two" -> 4, "three" -> 3))
-assert(map1s.combine(map2s) == Map("one" -> "1", "two" -> "22", "three" -> "3"))
-assert((map1s <+> map2s) == Map("one" -> "1", "two" -> "22", "three" -> "3"))
+assert(map1i.combine(map2i).equals(Map("one" -> 1, "two" -> 4, "three" -> 3)))
+assert(map1s.combine(map2s).equals(Map("one" -> "1", "two" -> "22", "three" -> "3")))
+assert((map1s <+> map2s).equals(Map("one" -> "1", "two" -> "22", "three" -> "3")))

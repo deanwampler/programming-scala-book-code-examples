@@ -7,7 +7,9 @@ import scala.annotation.nowarn    // This one has to be imported.
 def obsolete(i: Int) = 2*i
 
 def warning(i: Int) = obsolete(i)
-@nowarn def nowarning(i: Int) = obsolete(i)  // No warning for this method
+// In Scala 2, @nowarn would suppress a warning for this method's use of obsolete.
+// This is not (yet?) implemented in Scala 3.
+@nowarn def nowarning(i: Int) = obsolete(i)
 
 def inc(i: Int,
   @deprecatedName("y", "V1.2.3") n: Int): Int = i + n

@@ -67,7 +67,7 @@ opsInt
 
 // tag::s[]
 def tryS =
-  import scala.compiletime.S
+  import scala.compiletime.ops.int.S
 
   val s1:  S[0] = 1                                             // <1>
   val s2a: S[S[0]] = 2                                          // <2>

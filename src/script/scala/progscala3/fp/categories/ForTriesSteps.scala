@@ -20,5 +20,5 @@ def sumCounts(countSteps: Seq[Step]): Try[Int] =                     // <3>
     (sumTry, step) => sumTry.flatMap(i => step(i))
   }
 
-assert(sumCounts(successfulSteps) == Success(40))
-assert(sumCounts(partiallySuccessfulSteps) == Failure(fail))
+assert(sumCounts(successfulSteps).equals(Success(40)))
+assert(sumCounts(partiallySuccessfulSteps).equals(Failure(fail)))
