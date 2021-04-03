@@ -3,7 +3,7 @@
 // For completeness, Scala 3 imports:
 import scala.concurrent.{given, *}
 import java.util.Queue as JQueue
-import java.util.{*, HashMap as _}
+import java.util.{HashMap as _, *}
 
 // Significant indentation syntax.
 // All the +end identifier+ markers are optional!

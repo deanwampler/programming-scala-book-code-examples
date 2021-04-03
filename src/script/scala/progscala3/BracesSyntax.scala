@@ -3,7 +3,7 @@
 // For completeness, Scala 2 imports. Still allowed in Scala 3.0:
 import scala.concurrent._
 import java.util.{Queue => JQueue}
-import java.util.{*, HashMap => _}
+import java.util.{HashMap => _, _}
 
 // Braces syntax - valid in both Scala 2 and 3
 // Braces around single expressions can be omitted, but they
