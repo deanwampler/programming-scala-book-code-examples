@@ -25,7 +25,6 @@ lazy val root = project
       "org.scalameta"          %% "munit"            % "0.7.23" % Test,
       "org.scalameta"          %% "munit-scalacheck" % "0.7.23" % Test
     ),
-    testFrameworks += new TestFramework("munit.Framework"),
 
     // For Scala 3 (Dotty)
     // The -rewrite and -migration options are best used while migrating
