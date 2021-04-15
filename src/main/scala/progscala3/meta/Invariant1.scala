@@ -6,7 +6,7 @@ object invariant1:
 
   /**
    * Throw an exception if the predicate is false before the block is
-   * evaluatad, then evaluate the block, then check the predicate again.
+   * evaluated, then evaluate the block, then check the predicate again.
    * If all predicate checks pass, then return the block's value.
    */
   inline def apply[T](                                          // <2>

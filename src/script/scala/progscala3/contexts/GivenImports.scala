@@ -13,7 +13,7 @@ object O1:
 // tag::imports[]
 import O1.*             // Import everything EXCEPT the givens, c1 and c2
 import O1.given         // Import ONLY the givens (of type C1 and C2)
-import O1.{given, *}    // Import everything, givens and non-givens in O1
+import O1.{given, *}    // Import everything, givens and nongivens in O1
 import O1.{given C1}    // Import just the given of type C1
 import O1.c2            // Import just the given c2 of type C2
 // end::imports[]
