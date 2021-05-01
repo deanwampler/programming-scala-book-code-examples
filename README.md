@@ -22,6 +22,8 @@
 | November 25, 2020 | First Scala `3.0.0-M2` milestone changes |
 | December 19, 2020 | First Scala `3.0.0-M3` milestone changes |
 | February 21, 2021 | Scala `3.0.0-RC1`  updates |
+| April 3, 2021     | Scala `3.0.0-RC2`  updates |
+| April 24, 2021    | Scala `3.0.0-RC3`  updates |
 
 [![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

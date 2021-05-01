@@ -3,7 +3,7 @@
 
 val iarray = IArray(1,2,3,4,5)
 iarray match
-  case a: Array[Int] => a(2) = 300
+  case a: Array[Int] => a(2) = 300   // Scala 3 warning!!
 println(iarray)
 // end::iarray[]
 

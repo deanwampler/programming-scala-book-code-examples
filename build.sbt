@@ -3,8 +3,8 @@ lazy val root = project
   .settings(
     name := "programming-scala-3rd-ed-code-examples",
     description := "Code examples for Programming Scala, Third Edition (O'Reilly).",
-    version := "3.0.0-RC2-005",
-    scalaVersion := "3.0.0-RC2",
+    version := "3.0.0-RC3-001",
+    scalaVersion := "3.0.0-RC3",
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
     organizationHomepage := Some(url("http://programming-scala.org")),
@@ -12,18 +12,18 @@ lazy val root = project
     licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
     maxErrors := 10,
     libraryDependencies ++= Seq(
-      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.13",
-      "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.13",
+      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.14",
+      "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.14",
       // Map over this sequence of Scala 2.X libraries & call withDottyCompat(...):
     ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
       // Libraries that already fully support Dotty/Scala 3:
-      "org.typelevel"          %% "cats-core"        % "2.5.0",
+      "org.typelevel"          %% "cats-core"        % "2.6.0",
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
-      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.2.0-RC1",
+      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.2.0-RC2",
       "ch.qos.logback"          % "logback-classic"  % "1.2.3",
       "org.scalacheck"         %% "scalacheck"       % "1.15.3" % Test,
-      "org.scalameta"          %% "munit"            % "0.7.23" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.23" % Test
+      "org.scalameta"          %% "munit"            % "0.7.25" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.25" % Test
     ),
 
     // For Scala 3 (Dotty)
