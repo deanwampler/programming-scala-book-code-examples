@@ -9,10 +9,10 @@ val validPwd: Account => Option[Account] =
   a => if a.password.length > 0 then Some(a) else None
 
 val validAge: Account => Option[Account] =
-  a => if a.age > 18 then Some(a) else None                   // <3>
+  a => if a.age >= 18 then Some(a) else None                   // <3>
 
 val accounts = Seq(
-  Account("bucktrends", "1234", 18),
+  Account("bucktrends", "1234", 17),
   Account("", "1234", 29),
   Account("bucktrends", "", 29),
   Account("bucktrends", "1234", 29))
