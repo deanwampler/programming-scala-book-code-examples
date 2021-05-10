@@ -1,15 +1,5 @@
 // src/script/scala/progscala3/fp/basics/PartialApplication.scala
-
-// The book uses a slightly different version of the "cat1" examples, because
-// there's a bug in the Scala 3.1 support that causes the line "val fcat1 = cat1"
-// to report this error:
-// 1 |val fcat1 = cat1
-//   |            ^^^^
-//   |            The syntax `<function> _` is no longer supported;
-//   |            you can simply leave out the trailing ` _`
-// Therefore, I left that example out of the book completely, just including fcat1b.
-// If you compile with the default `-source 3.0`, then that line will work fine.
-// However, the compilation and sbt console use `-source 3.1`.
+// The book uses a slightly shorter version of the following:
 
 def cat1(s1: String)(s2: String) = s1 + s2
 def cat2(s1: String) = (s2: String) => s1 + s2
