@@ -2,9 +2,9 @@
 
 object SealedADT:
   sealed trait Tree[T]                                          // <1>
-  final case class Branch[T](                                   // <2>
+  case class Branch[T](                                         // <2>
     left: Tree[T], right: Tree[T]) extends Tree[T]
-  final case class Leaf[T](elem: T) extends Tree[T]             // <3>
+  case class Leaf[T](elem: T) extends Tree[T]                   // <3>
 
   val tree = Branch(
     Branch(
