@@ -9,7 +9,7 @@ result2
 var r1  = 0
 result1.foreach(i => r1 = i * 2)
 var r2  = 0
-result2.foreach(i => r1 = i * 2)
+result2.foreach(i => r2 = i * 2)
 
 val r3  = result1.map(_ * 2)
 val r4  = result2.map(_ * 2)

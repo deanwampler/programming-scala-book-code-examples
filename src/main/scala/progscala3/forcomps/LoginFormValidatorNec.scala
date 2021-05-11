@@ -39,13 +39,6 @@ object LoginFormValidatorNec:
     }
 end LoginFormValidatorNec
 
-/**
- * This method uses the matching clauses shown rather something like this:
- *   assert(LoginFormValidatorNec("123 45", "678 90") ==
- *     Invalid(Chain(BadCharacters("user name"), BadCharacters("password"))))
- * This is necessary because we use -language:strictEquality, which causes
- * these == expressions to fail compilation!
- */
 @main def TryLoginFormValidatorNec =
   import LoginFormValidatorNec.*
   assert(LoginFormValidatorNec("", "") ==
