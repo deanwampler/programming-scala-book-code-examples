@@ -1,7 +1,7 @@
 // tag::dtlist[]
 // src/script/scala/progscala3/typesystem/deptypes/DependentTypes.scala
 
-import scala.compiletime.S
+import scala.compiletime.ops.S
 import scala.compiletime.ops.int.*
 
 sealed trait DTList[N <: Int]:                                       // <1>
