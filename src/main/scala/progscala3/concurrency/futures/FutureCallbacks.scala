@@ -17,4 +17,4 @@ val doComplete: Try[String] => Unit =                                // <2>
     case i if i % 2 == 0 => Future.successful(i.toString)
     case i => Future.failed(ThatsOdd(i))
   }
-  futures.map(_.onComplete(doComplete))                     // <5>
+  futures.map(_.onComplete(doComplete))                              // <5>

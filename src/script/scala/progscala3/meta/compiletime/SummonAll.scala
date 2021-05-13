@@ -2,8 +2,8 @@
 import scala.compiletime.summonAll
 
 trait C; trait D; trait E
-given a: C with {}
-given b: D with {}
+given c: C with {}
+given d: D with {}
 
 summonAll[C *: D *: EmptyTuple]
 summonAll[C *: D *: E *: EmptyTuple]                            // <1>

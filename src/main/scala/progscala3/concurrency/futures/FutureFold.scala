@@ -7,7 +7,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 @main def TryFutureFold =
   var accumulator = ""                                                 // <1>
-  def update(s:String) = accumulator.synchronized { accumulator += s}
+  def update(s:String) = accumulator.synchronized { accumulator += s }
 
   val futures = (0 to 9) map {                                         // <2>
     i => Future {
