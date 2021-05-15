@@ -29,7 +29,7 @@ object Accounting:
 
 import Accounting.*
 case class Salary(gross: Dollars, taxes: Percentage):      // <5>
-  def net: Dollars = gross - (gross .* taxes)
+  def net: Dollars = gross - (gross * taxes)
 // end::definitions[]
 
 // tag::usage[]
