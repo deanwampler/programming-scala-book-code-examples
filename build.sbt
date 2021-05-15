@@ -1,35 +1,38 @@
+val scala3 = "3.0.0"
 lazy val root = project
   .in(file("."))
   .settings(
     name := "programming-scala-3rd-ed-code-examples",
     description := "Code examples for Programming Scala, Third Edition (O'Reilly).",
-    version := "3.0.0-RC3-002",
-    scalaVersion := "3.0.0-RC3",
+    version := s"$scala3-001",
+    scalaVersion := scala3,
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
     organizationHomepage := Some(url("http://programming-scala.org")),
     homepage := Some(url("https://github.com/deanwampler/programming-scala-book-code-examples/")),
     licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
     maxErrors := 10,
+    // At the time of publication, Scala 3 builds of Akka were not yet available.
+    // Notice how the Scala 2.13-built libraries are used. For more information:
+    // https://www.scala-lang.org/blog/2021/04/08/scala-3-in-sbt.html
     libraryDependencies ++= Seq(
       "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.14",
       "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.14",
-      // Map over this sequence of Scala 2.X libraries & call withDottyCompat(...):
-    ).map(dep => dep.withDottyCompat(scalaVersion.value)) ++ Seq(
-      // Libraries that already fully support Dotty/Scala 3:
-      "org.typelevel"          %% "cats-core"        % "2.6.0",
+    ).map(dep => dep.cross(CrossVersion.for3Use2_13)) ++ Seq(
+      // Libraries that already fully support Scala 3:
+      "org.typelevel"          %% "cats-core"        % "2.6.1",
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
-      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.2.0-RC2",
+      "org.scala-lang.modules" %% "scala-parser-combinators" % "2.0.0",
       "ch.qos.logback"          % "logback-classic"  % "1.2.3",
-      "org.scalacheck"         %% "scalacheck"       % "1.15.3" % Test,
-      "org.scalameta"          %% "munit"            % "0.7.25" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.25" % Test
+      "org.scalacheck"         %% "scalacheck"       % "1.15.4" % Test,
+      "org.scalameta"          %% "munit"            % "0.7.26" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.26" % Test
     ),
 
-    // For Scala 3 (Dotty)
+    // For Scala 3
     // The -rewrite and -migration options are best used while migrating
     // from Scala 2 to Scala 3, then removed.
-    // The default value for -source is 3.0. I'm using 3.1 to force more
+    // The default value for -source is 3.0. I'm using future to force more
     // deprecation warnings for obsolete concepts that are being transitioned
     // out. Use the default value if you are migrating from Scala 2!!
     scalacOptions := Seq(
