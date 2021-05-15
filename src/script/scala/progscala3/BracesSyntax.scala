@@ -1,6 +1,7 @@
 // src/script/scala/progscala3/BracesSyntax.scala
 
-// For completeness, Scala 2 imports. Still allowed in Scala 3.0:
+// For completeness, Scala 2 imports. Still allowed in Scala 3.0, but not
+// with the -source:future flag we use in SBT:
 import scala.concurrent._
 import java.util.{Queue => JQueue}
 import java.util.{HashMap => _, _}
@@ -58,7 +59,6 @@ try {        // Can omit {} if nothing else is done with source...
   // do something with it
 } catch {    // However, the {} are required for catch clauses
   case NonFatal(ex) => println(ex)
-}
 } finally {  // Can omit {} for both finally and if here.
   if (source != None) {
     source.get.close
