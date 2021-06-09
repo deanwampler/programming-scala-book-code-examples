@@ -22,5 +22,5 @@ class PathSuite extends FunSuite:
   }
   test("concatenation with the infix 'append'") {
     val a = Path("a")
-    assert(Path("a/b") == (a append "b"))
+    assert(Path(s"a${Path.defaultSeparator}b") == (a append "b"))
   }
