@@ -26,12 +26,12 @@ object SimpleSQL:
       def tup2Seq(t: (String,String)): Seq[String] = Seq(t._1, t._2)     // <3>
       def keep(s: String): Boolean = s.length > 0 && s != "SELECT" && s != "FROM"
 
-      // It turns out that the length of the "values" passed to +sql+ will always
-      // be one more than the length of the "sc.parts". If we use no variables,
-      // "values" has one element, the whole string, and "sc.parts" is empty.
-      // If we use a variable for the columns, then "values" will be
-      // "Seq("SELECT ", "FROM")" and "sc.parts" will contain a string for columns.
-      // Using a variable for the table name instead will be similar, but "values"
+      // It turns out that the length of the "sc.parts" passed to +sql+ will always
+      // be one more than the length of the "values". If we use no variables,
+      // "sc.parts" has one element, the whole string, and "values" is empty.
+      // If we use a variable for the columns, then "sc.parts" will be
+      // "Seq("SELECT ", "FROM tableName")" and "values" will contain a string for columns.
+      // Using a variable for the table name instead will be similar, but "sc.parts"
       // will end with an empty string. You can add print statements to see this
       // in action.
       // This is why these two sequences are combined with "zipAll", so we can
