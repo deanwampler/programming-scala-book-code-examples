@@ -14,16 +14,17 @@ inline def trySummonFrom(label: String, expected: Int): Unit =  // <1>
 def tryNone = trySummonFrom("tryNone:", 0)                      // <2>
 
 def tryA =                                                      // <3>
-  given A with {}
+  // In Scala 3.0.0, the following has to be written: given A with {}
+  given A()
   trySummonFrom("tryA:", 1)
 
 def tryB =
-  given B with {}
+  given B()
   trySummonFrom("tryB:", 2)
 
 def tryAB =
-  given A with {}
-  given B with {}
+  given A()
+  given B()
   trySummonFrom("tryAB:", 1)
 
 tryNone; tryA; tryB; tryAB

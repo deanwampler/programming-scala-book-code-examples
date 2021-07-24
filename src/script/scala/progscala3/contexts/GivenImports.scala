@@ -23,8 +23,9 @@ trait Marker[T]
 object O2:
   class C1
   given C1 = C1()
-  given Marker[Int] with {}                 // <1>
-  given Marker[List[?]] with {}             // <2>
+  // In Scala 3.0.0, the following has to be written: given Marker[Int] with {}
+  given Marker[Int]()                 // <1>
+  given Marker[List[?]]()             // <2>
 
 import O2.{given Marker[?]}     // Import all given Markers
 import O2.{given Marker[Int]}   // Import just the Marker[Int]

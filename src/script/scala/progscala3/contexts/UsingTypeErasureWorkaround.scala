@@ -3,8 +3,10 @@
 
 object O2:
   trait Marker[T]                                               // <1>
-  given IntMarker: Marker[Int] with {}
-  given StringMarker: Marker[String] with {}
+  // In Scala 3.0.0, the following has to be written:
+  // given IntMarker: Marker[Int] with {}
+  given IntMarker: Marker[Int]()
+  given StringMarker: Marker[String]()
 
   def m(is: Seq[Int])(using IntMarker.type): Int = is.sum       // <2>
   def m(ss: Seq[String])(using StringMarker.type): Int = ss.length
