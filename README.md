@@ -26,6 +26,7 @@
 | April 24, 2021    | Scala `3.0.0-RC3`  updates |
 | May 15, 2021      | Scala `3.0.0` final  updates. Almost done! |
 | May 22, 2021      | _Final_ updates for _Programming Scala, Third Edition_! |
+| July 24, 2021     | Notes on using IntelliJ |
 
 [![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -102,6 +103,23 @@ Most editors and IDEs now have some sort of Scala support:
 For other IDEs and text editors, try [Scala Metals](https://scalameta.org/metals/) first (I've used it with [Sublime Text](https://www.sublimetext.com/), for example) or the older [ENSIME](http://ensime.github.io/) project. You may also need additional, third-party tools for syntax highlighting, etc.
 
 After installing the required plugins, load this project in your IDE, which should detect and use the `sbt` project automatically. For eclipse, run the `sbt eclipse` task to generate project files, then import them.
+
+### Issues with IntelliJ
+
+One reader reported a problem when trying to run examples in IntelliJ: `scalac: Flag -encoding set repeatedly`. I could confirm this problem and I fixed it as follows:
+
+1. Open the preferences ("cmd-," on MacOS)
+2. Search for "scala"
+3. Select "Build, Execution, Deployment > Compiler > Scala Compiler"
+4. Select the "sbt" configuration in the list of Scala build configurations.
+5. Select "Additional compiler options:".
+6. Remove `-encoding utf-8` from the text, since it is already in the `build.sbt` file.
+
+After that, you should be able to select a type with a `main` and run it.
+
+The same reader also reported errors where multiple occurrences of the same name in a `@targetName` annotation collided. I believe this happens if you use `sbt` in a terminal to compile and then allow IntelliJ to do its own build. There are probably two copies of the class files on the resulting runtime classpath. For example, I saw this error when attempting to run `sbt console` in IntelliJ's `sbt shell`, but not when I used `sbt` in a terminal window.
+
+So, what worked for me was to only use the terminal to run `sbt clean`, then let IntelliJ build the software itself, but when I need to use `sbt console`, I use a terminal window.
 
 ### Using Scala Worksheets
 
