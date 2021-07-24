@@ -26,7 +26,7 @@
 | April 24, 2021    | Scala `3.0.0-RC3`  updates |
 | May 15, 2021      | Scala `3.0.0` final  updates. Almost done! |
 | May 22, 2021      | _Final_ updates for _Programming Scala, Third Edition_! |
-| July 24, 2021     | Notes on using IntelliJ |
+| July 24, 2021     | Scala 3.0.1. Notes on using IntelliJ. |
 
 [![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
