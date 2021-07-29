@@ -5,5 +5,5 @@ inline def repeat(s: String, count: Int): String =
   else s + repeat(s, count-1)
 
 repeat("hello", 3)    // Okay
-var n=3
-repeat("hello", n)    // ERROR!
+val n=3
+repeat("hello", n)    // ERROR! (try "inline val n = 3")

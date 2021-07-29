@@ -5,8 +5,8 @@ inline def repeat2(s: String, count: Int): String =
   else s + repeat2(s, count-1)
 
 repeat2("hello", 3)    // Okay
-var n = 3
-repeat2("hello", n)    // ERROR!
+val n = 3
+repeat2("hello", n)    // ERROR! (try "inline val n = 3")
 
 inline def repeat3(s: String, count: Int): String =
   inline count match
