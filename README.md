@@ -34,6 +34,8 @@ This repo contains all the code examples in [Programming Scala, Third Edition](h
 
 The `master` branch and the `3.X.Y` tag releases are for the third edition. The code examples for the second edition are still available. [Download the release tagged 2.1.0](https://github.com/deanwampler/programming-scala-book-code-examples/releases/tag/2.1.0) or check out the `release-2.1.0` branch. While the second edition was published for 2.11. The latest `2.1.0` release and `release-2.1.0` are updated for 2.12 and 2.13. (No more `release-2.X.Y` releases are planned.)
 
+> **TIP:** Several sections offer troubleshooting tips if you encounter problems.
+
 ## How the Code Is Used in the Book
 
 In the book's text, when an example corresponds to a file in this distribution, the listing begins with a path in a comment with the following format:
@@ -104,7 +106,7 @@ For other IDEs and text editors, try [Scala Metals](https://scalameta.org/metals
 
 After installing the required plugins, load this project in your IDE, which should detect and use the `sbt` project automatically. For eclipse, run the `sbt eclipse` task to generate project files, then import them.
 
-### Issues with IntelliJ
+### Troubleshooting with IntelliJ
 
 One reader reported a problem when trying to run examples in IntelliJ: `scalac: Flag -encoding set repeatedly`. I could confirm this problem and I fixed it as follows:
 
@@ -166,6 +168,28 @@ $ scala src/main/scala/progscala3/introscala/UpperMain2.scala Hello World!
 HELLO WORLD!
 $
 ```
+
+### Build Troubleshooting
+
+Here are tips for issues users have reported.
+
+#### Internationalization
+
+I didn't check that the tests pass or the scripts work if your language environment isn't English. So, no surprise I guess, a German user reported that three tests failed when running `sbt test` while the `LANG` was set to `de_DE.UTF-8`:
+
+```
+[info] Passed: Total 7, Failed 0, Errors 0, Passed 7
+[error] Failed: Total 233, Failed 7, Errors 0, Passed 226
+[error] Failed tests:
+[error]         progscala3.fp.combinators.PayrollSuite
+[error]         progscala3.fp.curry.TupledFuncSuite
+[error]         progscala3.dsls.payroll.PayrollSuite
+[error] (Test / test) sbt.TestsFailedException: Tests unsuccessful
+[error] Total time: 2 s, completed 31.07.2021, 16:56:39
+```
+
+
+Setting `export LANG="en_US.UTF-8"; sbt test` works. A PR for this is welcome ;) As an interim step, you could wrap this logic (or the more concise single command `LANG="en_US.UTF-8" sbt test`) in a script or just ignore the three failing tests.
 
 ## Feedback
 
