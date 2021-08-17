@@ -169,28 +169,6 @@ HELLO WORLD!
 $
 ```
 
-### Build Troubleshooting
-
-Here are tips for issues users have reported.
-
-#### Internationalization
-
-I didn't check that the tests pass or the scripts work if your language environment isn't English. So, no surprise I guess, a German user reported that three tests failed when running `sbt test` while the `LANG` was set to `de_DE.UTF-8`:
-
-```
-[info] Passed: Total 7, Failed 0, Errors 0, Passed 7
-[error] Failed: Total 233, Failed 7, Errors 0, Passed 226
-[error] Failed tests:
-[error]         progscala3.fp.combinators.PayrollSuite
-[error]         progscala3.fp.curry.TupledFuncSuite
-[error]         progscala3.dsls.payroll.PayrollSuite
-[error] (Test / test) sbt.TestsFailedException: Tests unsuccessful
-[error] Total time: 2 s, completed 31.07.2021, 16:56:39
-```
-
-
-Setting `export LANG="en_US.UTF-8"; sbt test` works. A PR for this is welcome ;) As an interim step, you could wrap this logic (or the more concise single command `LANG="en_US.UTF-8" sbt test`) in a script or just ignore the three failing tests.
-
 ## Feedback
 
 I welcome feedback on the Book and these examples. Please post comments, corrections, etc. to one of the following places:

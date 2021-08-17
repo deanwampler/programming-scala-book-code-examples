@@ -58,6 +58,10 @@ lazy val root = project
       // "-Yexplicit-nulls",                  // For explicit nulls behavior.
     ),
     Compile / console / scalacOptions := scalacOptions.value,
+    fork := true,
+    javaOptions ++= Seq(
+      "-Duser.language=en_US"
+    ),
     javacOptions ++= Seq(
       "-Xlint:unchecked", "-Xlint:deprecation") // Java 8: "-Xdiags:verbose"),
   )
