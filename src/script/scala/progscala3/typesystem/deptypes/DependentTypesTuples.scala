@@ -6,7 +6,6 @@
 // can manipulate tuples like lists. Here, we'll experiment with dependent
 // types and the allowed arities (sizes) of the tuples.
 
-import scala.compiletime.S
 import scala.compiletime.ops.int.*
 
 // Only allow tuple values with exactly N elements.

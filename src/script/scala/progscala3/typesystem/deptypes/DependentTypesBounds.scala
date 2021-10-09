@@ -5,7 +5,6 @@
 // dependent types. This file focuses on recursive match types for integer
 // ranges.
 
-import scala.compiletime.S
 import scala.compiletime.ops.int.*
 
 // A type that allows values between MIN and MAX, inclusive.
@@ -21,11 +20,10 @@ val b7: Bounded[4,6] = 7      // ERROR
 
 // A type with allowed values between 0 and N-1, inclusive, the same numbers
 // for indexing into a sequence of size N!
-type IndexOf[N] = Bounded[0,N-1]
+type IndexOf[N <: Int] = Bounded[0,N-1]
 
 val im1: IndexOf[3] = -1      // ERROR
 val i0:  IndexOf[3]  = 0
 val i1:  IndexOf[3]  = 1
 val i2:  IndexOf[3]  = 2
 val i3:  IndexOf[3]  = 3       // ERROR
-
