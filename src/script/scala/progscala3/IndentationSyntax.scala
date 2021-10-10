@@ -85,10 +85,10 @@ def multiline(s: String): String =
 end multiline  // for constructors, use their name: this
 
 // Multiline value definition
-val foo =
+val hi =
   println("Hi World!")
   42
-end foo  // val doesn't work in this case, but...
+end hi  // val doesn't work in this case, but...
 
 val (foo, bar) =
   "foo" -> "bar"
