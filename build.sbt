@@ -1,4 +1,4 @@
-val scala3 = "3.0.2"
+val scala3 = "3.1.0"
 lazy val root = project
   .in(file("."))
   .settings(
@@ -26,7 +26,8 @@ lazy val root = project
       "ch.qos.logback"          % "logback-classic"  % "1.2.3",
       "org.scalacheck"         %% "scalacheck"       % "1.15.4" % Test,
       "org.scalameta"          %% "munit"            % "0.7.26" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.26" % Test
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.26" % Test,
+      "com.eed3si9n.expecty"   %% "expecty"          % "0.15.4" % Test,
     ),
 
     // For Scala 3
