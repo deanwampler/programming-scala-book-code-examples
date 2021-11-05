@@ -22,4 +22,4 @@ assert(RemoteConnection.write(100)      == "-- 100 --")
 assert(RemoteConnection.write(3.14f)    == "-- 3.14 --")
 assert(RemoteConnection.write("hello!") == "-- hello! --")
 // The following fails: "no implicit view from (Int, Int) => ...
-RemoteConnection.write((1, 2))
+RemoteConnection.write((1, 2))  // Error!
