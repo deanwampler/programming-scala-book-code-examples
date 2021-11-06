@@ -25,6 +25,6 @@ first(Array(2.2, 3.3))
 first(Seq("4", "five"))
 first(6)
 first(true)
-first(O)
+first(O)   // Works in Scala 3.0.0, but fails to compile in 3.1.0!
 first(C("Dean"))
 // end::example[]
