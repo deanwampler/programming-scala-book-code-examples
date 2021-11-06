@@ -38,6 +38,7 @@ work(O2)(fas)      // Returns: "<found: O2>"
 // tag::doesnotwork[]
 // This section doesn't appear in the book.
 // The first syntax here may be the first supported in a subsequent Scala 3 release.
+// As of Scala 3.1.0, none of these variants compile.
 val pf2a = [A] => (seq: Seq[A]) => (using n: Numeric[A]) =>
   seq.reduce((a,b) => n.times(a,b))
 val pf2b = [T] => (seq: Seq[T]) => (using Numeric[T]) => // anonymous disallowed
