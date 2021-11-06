@@ -8,5 +8,5 @@ def factorial(n: Long): Long = {
   else n*factorial(n-1)
 } ensuring(_ > 0, "BUG!!")
 
-factorial(-1)
 factorial(5)
+factorial(-1)
