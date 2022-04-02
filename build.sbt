@@ -16,8 +16,8 @@ lazy val root = project
     // Notice how the Scala 2.13-built libraries are used. For more information:
     // https://www.scala-lang.org/blog/2021/04/08/scala-3-in-sbt.html
     libraryDependencies ++= Seq(
-      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.14",
-      "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.14",
+      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.19",
+      "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.19",
     ).map(dep => dep.cross(CrossVersion.for3Use2_13)) ++ Seq(
       // Libraries that already fully support Scala 3:
       "org.typelevel"          %% "cats-core"        % "2.6.1",
