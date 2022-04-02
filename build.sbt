@@ -1,4 +1,8 @@
-val scala3 = "3.1.0"
+// Using an experimental feature like "erased definitions" requires a snapshot or nightly build
+// of Scala, which you'll need to build locally. Clone the Dotty repo, 
+// https://github.com/lampepfl/dotty, and run `sbt publishLocal`. Then change the following 
+// definition to match the current version printed.
+val scala3 = "3.1.3-RC1-bin-SNAPSHOT"
 lazy val root = project
   .in(file("."))
   .settings(
