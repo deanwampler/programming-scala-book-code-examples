@@ -1,4 +1,4 @@
-val scala3 = "3.1.0"
+val scala3 = "3.1.2"
 lazy val root = project
   .in(file("."))
   .settings(
@@ -16,17 +16,17 @@ lazy val root = project
     // Notice how the Scala 2.13-built libraries are used. For more information:
     // https://www.scala-lang.org/blog/2021/04/08/scala-3-in-sbt.html
     libraryDependencies ++= Seq(
-      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.14",
-      "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.14",
+      "com.typesafe.akka"      %% "akka-actor-typed" % "2.6.19",
+      "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.19",
     ).map(dep => dep.cross(CrossVersion.for3Use2_13)) ++ Seq(
       // Libraries that already fully support Scala 3:
-      "org.typelevel"          %% "cats-core"        % "2.6.1",
+      "org.typelevel"          %% "cats-core"        % "2.7.0",
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
-      "org.scala-lang.modules" %% "scala-parser-combinators" % "2.0.0",
+      "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1",
       "ch.qos.logback"          % "logback-classic"  % "1.2.11",
       "org.scalacheck"         %% "scalacheck"       % "1.15.4" % Test,
-      "org.scalameta"          %% "munit"            % "0.7.26" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "0.7.26" % Test,
+      "org.scalameta"          %% "munit"            % "0.7.29" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "0.7.29" % Test,
       "com.eed3si9n.expecty"   %% "expecty"          % "0.15.4" % Test,
     ),
 
