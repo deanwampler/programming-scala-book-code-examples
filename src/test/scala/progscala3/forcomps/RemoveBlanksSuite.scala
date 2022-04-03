@@ -8,21 +8,27 @@ class RemoveBlanksSuite extends FunSuite:
 
   test("RemoveBlanks removes blank lines in text") {
     val lines = RemoveBlanks(path, compress = false, numbers = false)
-    assert(lines.mkString("\n") ==
+    val actual = lines.mkString("\n")
+    val expected = 
       """  This is a       small
-        |test   file""".stripMargin)
+        |test   file""".stripMargin
+    assert(actual == expected, s"""Actual:\n$actual\nExpected:\n$expected\n""")
   }
 
   test("RemoveBlanks optionally compresses whitespace in text") {
     val lines = RemoveBlanks(path, compress = true, numbers = false)
-    assert(lines.mkString("\n") ==
+    val actual = lines.mkString("\n")
+    val expected = 
       """This is a small
-        |test file""".stripMargin)
+        |test file""".stripMargin
+    assert(actual == expected, s"""Actual:\n$actual\nExpected:\n$expected\n""")
   }
 
   test("RemoveBlanks optionally prints line numbers from the original text") {
     val lines = RemoveBlanks(path, compress = true, numbers = true)
-    assert(lines.mkString("\n") ==
+    val actual = lines.mkString("\n")
+    val expected = 
       """   1: This is a small
-        |   3: test file""".stripMargin, lines.mkString("\n"))
+        |   3: test file""".stripMargin
+    assert(actual == expected, s"""Actual:\n$actual\nExpected:\n$expected\n""")
   }
