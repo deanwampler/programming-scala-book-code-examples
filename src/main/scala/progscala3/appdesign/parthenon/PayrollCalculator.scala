@@ -21,8 +21,8 @@ object PayrollCalculator:                                       // <1>
       (name, salary, ruleString) <- data
     yield Pay(name, salary, toDeductions(ruleString))
 
-  case class BadInput(message: String, input: String)
-    extends RuntimeException(s"Bad input data, $message: $input")
+  case class BadInput(message: String, input: String, array: Array[String])
+    extends RuntimeException(s"""Bad input data, $message: "$input" (array = ${array.mkString("[", ",", "]")}) """)
 
   private type Record = (String, Dollars, String)               // <4>
 
@@ -33,13 +33,13 @@ object PayrollCalculator:                                       // <1>
     yield toRule(line)
 
   private def toRule(line: String): Record =                    // <5>
-    line.split("""\s*,\s.*""") match
+    line.split("""\s*,\s*""") match
       case Array(name, salary, fedTax, stateTax, insurance, retirement) =>
         val ruleString = dsl.format(
           fedTax.toDouble, stateTax.toDouble,
           insurance.toDouble, retirement.toDouble)
         (name, Dollars(salary.toDouble), ruleString)
-      case array => throw BadInput("expected six fields", line)
+      case array => throw BadInput("expected six fields", line, array)
 
   private val parser = PayrollParser()                          // <6>
   private def toDeductions(rule: String): Deductions =
