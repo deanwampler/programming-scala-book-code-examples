@@ -23,7 +23,7 @@ class FoldRegexPatternsSuite extends FunSuite:
     type KV = (String,String)
 
     // Parse each line, skipping expected
-    val kvPairs =
+    val actual =
       properties.split("\n").
       zipWithIndex.
       foldLeft(Vector.empty[Either[Error,KV]]) { case (vect, (line, n)) =>
@@ -32,10 +32,11 @@ class FoldRegexPatternsSuite extends FunSuite:
           case kvRegex(key, value) => vect :+ Right(key.trim -> value.trim)
           case _ => vect :+ Left(n+1, line.trim)
       }
-    assert(kvPairs == Vector(
+    val expected = Vector(
       Right("book.name" -> "Programming Scala, Third Edition"),
       Right("book.authors" -> "Dean Wampler"),
       Left(6 -> "an unexpected line"),
       Right("book.publisher" -> "O'Reilly"),
-      Right("book.publication-year" -> "2021")))
+      Right("book.publication-year" -> "2021"))
+    assert(actual == expected, "Actual:\n$actual\nExpected:\n$expected")
   }
