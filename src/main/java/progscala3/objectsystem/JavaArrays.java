@@ -3,6 +3,7 @@ package progscala3.objectsystem;
 
 public class JavaArrays {
   public static void main(String[] args) {
+    System.out.println("*** A java.lang.ArrayStoreException will be thrown: ***");
     Integer[] array1 = new Integer[] {
       Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3) };
     Number[] array2 = array1;          // Compiles fine, but shouldn't!!
