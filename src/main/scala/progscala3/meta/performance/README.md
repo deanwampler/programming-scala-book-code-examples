@@ -1,6 +1,6 @@
 # README for package progscala3.meta.performance
 
-This code is not discussed in the book. It experiments with the performance benefits of inlining vs. not inlining. 
+This code is not discussed in the book, but an early version of it was discussed in [this blog post](https://medium.com/scala-3/scala-3-a-look-at-inline-and-programming-scala-is-now-published-9690ca43c23a). It experiments with the performance benefits of inlining vs. not inlining. 
 
 > **Disclaimer:** There are lies, damn lies, and performance benchmarks. As discussed below, a lot is going on in JVM-based software, causing highly nontrivial behavior. At the end of the day, what really matters is how well your whole application performs in real deployment scenarios, rather than how a microbenchmark performs. The results here are measured with a single, ad-hoc example, running on an "elderly" iMac with other processes running. Your mileage/kilometerage will vary.
 
