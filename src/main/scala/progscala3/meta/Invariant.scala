@@ -6,8 +6,8 @@ object invariant:
   inline val ignore = false
 
   inline def apply[T](
-      inline predicate: Boolean,                                     // <2>
-      inline message: String = "")(
+      inline predicate: Boolean,   
+      inline message: String = "")(                                  // <2>
       inline block: T): T =
     inline if !ignore then
       if !predicate then fail(predicate, message, block, "before")   // <3>
