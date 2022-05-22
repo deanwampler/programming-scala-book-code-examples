@@ -7,7 +7,8 @@ object invariantMinInline:
   val ignore = false
 
   inline def apply[T](
-      predicate: => Boolean, message: => String = "")(
+      predicate: => Boolean, 
+      message: => String = "")(
       block: => T): T =
     if !ignore then
       if !predicate then fail(predicate, message, block, "before")

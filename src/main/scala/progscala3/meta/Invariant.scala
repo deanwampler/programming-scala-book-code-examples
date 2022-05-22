@@ -6,8 +6,9 @@ object invariant:
   inline val ignore = false
 
   inline def apply[T](
-      inline predicate: => Boolean, message: => String = "")(        // <2>
-      inline block: => T): T =
+      inline predicate: Boolean,                                     // <2>
+      inline message: String = "")(
+      inline block: T): T =
     inline if !ignore then
       if !predicate then fail(predicate, message, block, "before")   // <3>
       val result = block
@@ -17,9 +18,9 @@ object invariant:
       block
 
   inline private def fail[T](
-      inline predicate: => Boolean,
-      inline message: => String,
-      inline block: => T,
+      inline predicate: Boolean,
+      inline message: String,
+      inline block: T,
       inline beforeAfter: String): Unit =
     ${ failImpl('predicate, 'message, 'block, 'beforeAfter) }        // <4>
 
