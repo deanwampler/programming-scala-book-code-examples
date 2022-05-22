@@ -10,8 +10,8 @@ object invariant1:
    * If all predicate checks pass, then return the block's value.
    */
   inline def apply[T](                                          // <2>
-      inline predicate: => Boolean)(
-      inline block: => T): T =
+      inline predicate: Boolean)(
+      inline block: T): T =
     inline if !ignore then                                      // <3>
       if !predicate then throw InvariantFailure("before")
       val result = block
