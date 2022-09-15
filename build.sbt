@@ -23,7 +23,7 @@ lazy val root = project
       "org.typelevel"          %% "cats-core"        % "2.7.0",
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
       "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1",
-      "ch.qos.logback"          % "logback-classic"  % "1.4.0",
+      "ch.qos.logback"          % "logback-classic"  % "1.4.1",
       "org.scalacheck"         %% "scalacheck"       % "1.16.0" % Test,
       "org.scalameta"          %% "munit"            % "0.7.29" % Test,
       "org.scalameta"          %% "munit-scalacheck" % "0.7.29" % Test,
