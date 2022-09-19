@@ -1,6 +1,6 @@
 // src/test/scala/progscala3/typesystem/bounds/list/AbbrevListSuite.scala
 package progscala3.typesystem.bounds.list
-
+import AbbrevListModule.*
 import munit.*
 
 /**
