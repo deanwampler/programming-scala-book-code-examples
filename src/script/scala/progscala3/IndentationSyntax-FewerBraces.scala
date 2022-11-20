@@ -6,7 +6,7 @@
 // example is repeated twice, once with braces as required for Scala 3.0 to 3.2
 // and again with the new syntax that eliminates the braces.
 //
-// In essense, a `:` (colon) token is also recognized where a function 
+// In essence, a `:` (colon) token is also recognized where a function 
 // argument would be expected. The examples below are adapted from the Dotty
 // documentation page:
 //   https://dotty.epfl.ch/docs/reference/other-new-features/indentation.html
@@ -42,9 +42,9 @@ times(3) {
 // one
 // two
 
-// New braceless syntax to define and pass the function. Now the compiler interprets
-// the trailing colon, followed by indented lines, as the beginning and definition of
-// the anonymous function:
+// New braceless syntax to define and pass the function. Now the compiler
+// interprets the trailing colon, followed by indented lines, as the 
+// beginning and definition of the anonymous function:
 times(3):
   println("one")
   println("two")
@@ -69,8 +69,9 @@ val paths2 = Seq(dir) `++`:
 val xs = 0 until 10
 // val xs: Range = Range 0 until 10
 
-// What about function arguments? They can either go on the next line after the 
-// colon or on the same line:
+// What about function arguments? 
+// The function arguments can either go on the next line after the colon
+// or on the same line:
 val map1a = xs.map {
   x =>
     val y = x - 1
@@ -104,7 +105,7 @@ val map3b = xs.map: x
 
 // Here are multiple arguments:
 
-val fold1 = xs.foldLeft(0) { (x, y) =>
+val fold1a = xs.foldLeft(0) { (x, y) =>
    x + y
 }
 // val fold1: Int = 45
@@ -120,3 +121,42 @@ val fold2a = xs.foldLeft(0): (x, y) =>
 // 1 |val fold2b = xs.foldLeft(0): (x, y) => x + y
 //   |             ^^^^^^^^^^^^^^^^^^^^^^
 //   |             not a legal formal parameter for a function literal
+
+// You'll have to use braces:
+val fold1b = xs.foldLeft(0) {(x, y) => x + y}
+// val fold1b: Int = 45
+
+// So, anonymous functions no longer require braces. What about import statements?
+// First, here's what we know works:
+
+import scala.util.{Try, Success, Failure}
+import scala.{
+  Option, Some, None
+}
+
+// However, there is no braceless alternative: 
+// scala> import scala.util:    # : instead of .??
+//      |  Try, Success, Failure
+//      |
+// -- Error: ---------------------------------------------------------------------------------------------------------------------------------------------------
+// 1 |import scala.util:
+//   |                 ^
+//   |                 end of statement expected but ':' found
+
+// scala> import scala.util.:   # : after .??
+//      |  Try, Success, Failure
+//      |
+// -- [E040] Syntax Error: -------------------------------------------------------------------------------------------------------------------------------------
+// 1 |import scala.util.:
+//   |                  ^
+//   |                  an identifier expected, but ':' found
+//   |
+//   | longer explanation available when compiling with `-explain`
+// -- [E040] Syntax Error: -------------------------------------------------------------------------------------------------------------------------------------
+// 2 | Try, Success, Failure
+//   |             ^
+//   |             '.' expected, but ',' found
+// -- [E040] Syntax Error: -------------------------------------------------------------------------------------------------------------------------------------
+// 3 |
+//   |^
+//   |'.' expected, but eof found

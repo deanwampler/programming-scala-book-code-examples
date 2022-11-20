@@ -57,7 +57,7 @@ lazy val root = project
       // "-Xmigration",                       // Warn about constructs whose behavior may have changed since version.
       // "-Ysafe-init",                       // Warn on field access before initialization
       // "-Yexplicit-nulls",                  // For explicit nulls behavior.
-      "-coverage-out", "coverage"             // Output "scoverage" metrics (new for Scala 3.2.0)
+      // "-coverage-out", "coverage"          // Output "scoverage" metrics (new for Scala 3.2.0)
     ),
     Compile / console / scalacOptions := scalacOptions.value,
     fork := true,
