@@ -3,7 +3,7 @@
 // This version of Exports.scala doesn't appear in the book, but it
 // includes more examples of exporting parts of internal dependencies.
 
-import java.net.URL
+import java.net.{URI, URL}
 
 case class UserName(value: String):
   assert(value.length > 0)
@@ -41,7 +41,7 @@ class AsyncTokenizer extends AsyncWorker[String, Seq[String]]:
 
 object ServiceWithoutExports:
   private val dirAuthenticate =
-    DirectoryAuthenticate(URL("https://directory.wtf"))
+    DirectoryAuthenticate(URI("https://directory.wtf").toURL())
   private val manager = ResourceManager(sys.env)
   private val tokenizer = AsyncTokenizer()
 
@@ -55,7 +55,7 @@ object ServiceWithoutExports:
 // tag::service2[]
 object Service:
   private val dirAuthenticate =
-    DirectoryAuthenticate(URL("https://directory.wtf"))
+    DirectoryAuthenticate(URI("https://directory.wtf").toURL())
   private val manager = ResourceManager(sys.env)
   private val tokenizer = AsyncTokenizer()
 

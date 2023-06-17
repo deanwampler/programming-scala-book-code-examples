@@ -1,7 +1,7 @@
 // tag::traits[]
 // src/script/scala/progscala3/basicoop/Exports.scala
 
-import java.net.URL
+import java.net.{URI, URL}
 
 case class UserName(value: String):                                  // <1>
   assert(value.length > 0)
@@ -25,7 +25,7 @@ class DirectoryAuthenticate(location: URL) extends Authenticate:
 // tag::service1[]
 object ServiceWithoutExports:
   private val dirAuthenticate =
-    DirectoryAuthenticate(URL("https://directory.wtf"))
+    DirectoryAuthenticate(URI("https://directory.wtf").toURL())
 
   def authenticate(username: UserName, password: Password): Boolean =
     dirAuthenticate(username, password)
@@ -35,7 +35,7 @@ object ServiceWithoutExports:
 // tag::service2[]
 object Service:
   private val dirAuthenticate =
-    DirectoryAuthenticate(URL("https://directory.wtf"))
+    DirectoryAuthenticate(URI("https://directory.wtf").toURL())
 
   export dirAuthenticate.{isAuthenticated, apply as authenticate}
 // end::service2[]
