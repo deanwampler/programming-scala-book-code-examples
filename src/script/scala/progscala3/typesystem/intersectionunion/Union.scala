@@ -1,5 +1,6 @@
 // tag::declarations[]
 // src/script/scala/progscala3/typesystem/intersectionunion/Union.scala
+// NOTE: I've reworked parts of this script to fix some errors and ambiguities.
 
 case class Bad(message: String)
 case class Good(i: Int)
@@ -44,20 +45,37 @@ val x11: (A | B) & (A | C) = new B with C {}
 val x12: (A | B) & (A | C) = new A with B with C {}
 // end::distributive[]
 
+// WARNING: I got this backwards in the book! The behavior IS covariant.
 // tag::covariance[]
-val tABCs: Seq[A | B | C] = Seq(new A {}, new B {}, new C {})
-val tAs: Seq[A] = tABCs        // ERROR
-val tBs: Seq[B] = tABCs        // ERROR
-val tCs: Seq[C] = tABCs        // ERROR
-// end::covariance[]
+// First, note that A is a subtype of A|B|C and Similarly for B and C:
+val a: A = new A {}
+val b: B = new B {}
+val c: C = new C {}
 
-// tag::contravariance[]
-val seqAs: Seq[A] = Seq(new A {})
-val seqBs: Seq[B] = Seq(new B {})
-val seqCs: Seq[C] = Seq(new C {})
+val abc1: A | B | C = a
+val abc2: A | B | C = b
+val abc3: A | B | C = c
+
+val bca1: C | B | A = a  // commutative!
+val bca2: C | B | A = b
+val bca3: C | B | A = c
+val cba1: B | C | A = a
+val cba2: B | C | A = b
+val cba3: B | C | A = c  // etc.
+
+val seqAs: Seq[A] = Seq(a)
+val seqBs: Seq[B] = Seq(b)
+val seqCs: Seq[C] = Seq(c)
 val seqABCs1: Seq[A | B | C] = seqAs
 val seqABCs2: Seq[A | B | C] = seqBs
 val seqABCs3: Seq[A | B | C] = seqCs
+// end::covariance[]
+
+// tag::contravariance[]
+val tABCs: Seq[A | B | C] = Seq(a, b, c)
+val tAs: Seq[A] = tABCs        // ERROR
+val tBs: Seq[B] = tABCs        // ERROR
+val tCs: Seq[C] = tABCs        // ERROR
 // end::contravariance[]
 
 // tag::contravariantfunctions[]
@@ -65,10 +83,16 @@ val fABC1: (A | B | C) => String = _ match
   case t1: A => "A"
   case t2: B => "B"
   case t3: C => "C"
-val fABC2: (A => String) & (B => String) & (C => String) = fABC1
+val fABC2: (A => String) & (B => String) & (C => String) = fABC
 
-val seqABCs: Seq[A | B | C] = Seq(new A {}, new B {}, new C {})
+val seqABCs: Seq[A | B | C] = Seq(a, b, c)
 seqABCs.map(fABC1)
 seqABCs.map(fABC2)
-seqABCs.map((x: AnyRef) => s"<$x>")
+seqABCs.map((x: AnyRef) => s"<$x>")  // Not as nice output!!
+seqABCs.map(_.toString)              // similar
+
+// Note that we can pass fABC1 or fABC2 for a function A => String. It works similarly for B and C.
+def stringizeA(a: A)(f: A => String): String = f(a)
+stringizeA(a)(fABC1)
+stringizeA(a)(fABC2)
 // end::contravariantfunctions[]
