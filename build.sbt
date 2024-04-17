@@ -24,7 +24,7 @@ lazy val root = project
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
       "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0",
       "ch.qos.logback"          % "logback-classic"  % "1.5.5",
-      "org.scalacheck"         %% "scalacheck"       % "1.17.0" % Test,
+      "org.scalacheck"         %% "scalacheck"       % "1.17.1" % Test,
       "org.scalameta"          %% "munit"            % "0.7.29" % Test,
       "org.scalameta"          %% "munit-scalacheck" % "0.7.29" % Test,
       "com.eed3si9n.expecty"   %% "expecty"          % "0.16.0" % Test,
