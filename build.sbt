@@ -22,7 +22,7 @@ lazy val root = project
       // Libraries that already fully support Scala 3:
       "org.typelevel"          %% "cats-core"        % "2.10.0",
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
-      "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0",
+      "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0",
       "ch.qos.logback"          % "logback-classic"  % "1.5.5",
       "org.scalacheck"         %% "scalacheck"       % "1.18.0" % Test,
       "org.scalameta"          %% "munit"            % "0.7.29" % Test,
