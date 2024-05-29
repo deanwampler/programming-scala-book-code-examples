@@ -20,7 +20,7 @@ lazy val root = project
       "com.typesafe.akka"      %% "akka-slf4j"       % "2.6.20",
     ).map(dep => dep.cross(CrossVersion.for3Use2_13)) ++ Seq(
       // Libraries that already fully support Scala 3:
-      "org.typelevel"          %% "cats-core"        % "2.10.0",
+      "org.typelevel"          %% "cats-core"        % "2.12.0",
       "org.scala-lang"         %% "scala3-staging"   % scalaVersion.value,
       "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0",
       "ch.qos.logback"          % "logback-classic"  % "1.5.6",
