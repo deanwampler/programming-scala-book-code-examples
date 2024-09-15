@@ -1,5 +1,9 @@
 package progscala3.typesystem.intersectionunion
 
+/**
+ * A new example since publication demonstrating 
+ * intersection and union types.
+ */
 object IntersectionUnion:
 
     trait M:
