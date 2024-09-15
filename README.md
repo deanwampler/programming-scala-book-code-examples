@@ -13,13 +13,17 @@ This repo contains all the code examples in O'Reilly's [Programming Scala, Third
 
 The `master` branch and the `3.X.Y` tag releases are for the third edition. The code examples for the second edition are still available. [Download the release tagged 2.1.0](https://github.com/deanwampler/programming-scala-book-code-examples/releases/tag/2.1.0) or check out the `release-2.1.0` branch. While the second edition was published for 2.11. The latest `2.1.0` release and `release-2.1.0` are updated for 2.12 and 2.13. (No more `release-2.X.Y` releases are planned.)
 
-> **TIP:** Several sections offer troubleshooting tips if you encounter problems.
+> [!WARNING]
+> Scala 3 is evolving, as are the tools that support it. I try to keep the `main` branch up to date with the latest versions, including changing the examples as required to handle new and changed features (see, e.g., [issue #131](https://github.com/deanwampler/programming-scala-book-code-examples/issues/131)). Hence, sometimes an example (or how to run it) will be different from what you see in the book. So, if you are reading the book and want the examples exactly as they appear there, with the same tool versions used at that time, then grab the [`3.0.0-final`](https://github.com/deanwampler/programming-scala-book-code-examples/tree/3.0.0-final) release. 
+
+> [!TIP]
+> Several sections offer troubleshooting tips if you encounter problems.
 
 ## How the Code Is Used in the Book
 
 In the book's text, when an example corresponds to a file in this distribution, the listing begins with a path in a comment with the following format:
 
-```
+```scala
 // src/main/scala/progscala3/.../FooBar.scala
 ```
 
@@ -44,7 +48,7 @@ You won't find many comments in the code, except of the form `// <1>`, which get
 
 Some files have sections marked like this:
 
-```
+```scala
 // tag::section1[]
 // end::section1[]
 ```
@@ -61,7 +65,7 @@ If you want to install Scala separately and Scala's *Scaladocs*, go to the [scal
 
 If you want to play with the Spark example, `src/script/scala-2/progscala3/bigdata/SparkWordCount.scala`, you'll need to download a Spark distribution from https://spark.apache.org. Assuming that `$SPARK_HOME` refers to the root directory of your Spark installation, run the following command in the root directory of this project:
 
-```
+```shell
 $ $SPARK_HOME/bin/spark-shell
 ...
 scala>
@@ -133,7 +137,7 @@ The `~` prefix causes the task to be run continuously each time source code chan
 
 Outside of `sbt`, you could, in principle, run the REPL and load the script files manually at the prompt:
 
-```
+```shell
 $ scala
 scala> :load src/script/scala/.../Foo.scala
 ```
@@ -142,7 +146,7 @@ However, it's easier to run most of the scripts using `sbt console`, because `sb
 
 Also, new for the Scala 3 REPL, for those `src/main/...` files that define one (and only one) _entry point_, meaning a `main` method (Scala 2 compatible) or annotated with `@main` (new Scala 3 technique), you can compile and run them in one step:
 
-```
+```shell
 $ scala src/main/scala/progscala3/introscala/UpperMain2.scala Hello World!
 HELLO WORLD!
 $
