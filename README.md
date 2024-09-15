@@ -135,22 +135,25 @@ tasks -V   # REALLY show ALL tasks
 
 The `~` prefix causes the task to be run continuously each time source code changes are saved. This promotes continuous TDD (test-driven development) and is one of my favorite features!
 
-Outside of `sbt`, you could, in principle, run the REPL and load the script files manually at the prompt:
+Outside of `sbt`, you could, in principle, run the REPL and load the script files manually at the prompt, for example:
 
 ```shell
 $ scala
-scala> :load src/script/scala/.../Foo.scala
+scala> :load src/script/scala/progscala3/introscala/Upper1.scala
 ```
 
 However, it's easier to run most of the scripts using `sbt console`, because `sbt` will configure the `CLASSPATH` with the third-party libraries and compiled code examples that a script file might use.
 
-Also, new for the Scala 3 REPL, for those `src/main/...` files that define one (and only one) _entry point_, meaning a `main` method (Scala 2 compatible) or annotated with `@main` (new Scala 3 technique), you can compile and run them in one step:
+Also, new for the Scala 3 REPL, for those `src/main/...` files that define one (and only one) _entry point_, meaning a `main` method (Scala 2 compatible) or annotated with `@main` (new Scala 3 technique), you can compile and run them in one step, for example:
 
 ```shell
-$ scala src/main/scala/progscala3/introscala/UpperMain2.scala Hello World!
+$ scala src/main/scala/progscala3/introscala/UpperMain2.scala -- Hello World!
 HELLO WORLD!
 $
 ```
+
+> [!NOTE]
+> The `--` argument separator is required for Scala 3.5.0 and later. It is not used for Scala 3.4.X and earlier.
 
 ## Feedback
 
@@ -178,5 +181,6 @@ There is also my dedicated site for the book where occasional updates, clarifica
 | May 22, 2021      | _Final_ updates for _Programming Scala, Third Edition_! |
 | July 24, 2021     | Scala 3.0.1. Notes on using IntelliJ. |
 | November 6, 2021  | Scala 3.1.0 and a fix for locale settings ([PR 42](https://github.com/deanwampler/programming-scala-book-code-examples/pull/42)). |
+| September 15, 2024  | Scala 3.5.0 changes, e.g. the [new Scala CLI](https://docs.scala-lang.org/sips/scala-cli.html). |
 
 

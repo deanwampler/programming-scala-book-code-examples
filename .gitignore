@@ -26,3 +26,4 @@ project/metals.sbt
 .bsp/
 src/worksheet/
 coverage/
+.scala-build/
