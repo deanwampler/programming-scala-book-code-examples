@@ -31,7 +31,7 @@ The `master` branch and the `3.X.Y` tag releases are for the third edition. The 
 >
 > It appears that `sbt` syntax has **not** changed when using `runMain` at the SBT prompt, for example:
 > ```
-> runMain progscala3.introscala.Hello2 Hello Scala World!`
+> runMain progscala3.introscala.Hello2 Hello Scala World!
 > ```
 > (Use of `sbt` is discussed further below.)
 
