@@ -112,11 +112,11 @@ val longMon =
   end new // You can use "end new" here because "new Monoid..." starts at the same column!
 
 // New type class given instantiation
-given floatMonoid: Monoid[Float] with
+given floatMonoid: Monoid[Float]:
   def add(f1: Float, f2: Float): Float = f1+f2
   def zero: Float = 0.0F
 end floatMonoid  // Use identifier.
-given Monoid[Double] with
+given Monoid[Double]:
   def add(d1: Double, d2: Double): Double = d1+d2
   def zero: Double = 0.0
 end given        // Anonymous, so no identifier. Hence, use "given".

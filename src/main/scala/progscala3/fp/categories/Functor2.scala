@@ -106,9 +106,9 @@ object FunctionF2B:
     (fa: F[A]) => flatMap(fa)(t compose f)
 
 @main def TryFunctionF2B() =
-  given [A]: FunctionF2B.FlatMap[A,Seq] with
+  given [A] => FunctionF2B.FlatMap[A,Seq]:
     def apply(seq: Seq[A])(f: A => Seq[A]): Seq[A] = seq.flatMap(f)
-  given [A]: FunctionF2B.FlatMap[A,Option] with
+  given [A] => FunctionF2B.FlatMap[A,Option]:
     def apply(seq: Option[A])(f: A => Option[A]): Option[A] = seq.flatMap(f)
 
   val f: Int => Int = 2 * _
@@ -145,8 +145,8 @@ object FunctionF2C:
     }
 
 @main def TryFunctionF2C() =
-  given [A]: FunctionF2C.Lift[A,Seq] = (a:A) => Seq(a)
-  given [A]: FunctionF2B.FlatMap[A,Set] with
+  given [A] => FunctionF2C.Lift[A,Seq] = (a:A) => Seq(a)
+  given [A] => FunctionF2B.FlatMap[A,Set]:
     def apply(set: Set[A])(f: A => Set[A]): Set[A] = set.flatMap(f)
 
   val fseqd: Seq[Double] => Seq[Double] = _.map(2.0 * _)
@@ -183,8 +183,8 @@ object FunctionF2D:
     }
 
 @main def TryFunctionF2D() =
-  given [A]: FunctionF2C.Lift[A,Seq] = (a:A) => Seq(a)
-  given [A]: FunctionF2B.FlatMap[A,Set] with
+  given [A] => FunctionF2C.Lift[A,Seq] = (a:A) => Seq(a)
+  given [A] => FunctionF2B.FlatMap[A,Set]:
     def apply(set: Set[A])(f: A => Set[A]): Set[A] = set.flatMap(f)
   given Functor[Seq] = SeqF
 

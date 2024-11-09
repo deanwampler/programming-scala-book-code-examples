@@ -23,7 +23,7 @@ trait Marker[T]
 object O2:
   class C1
   given C1 = C1()
-  // In Scala 3.0.0, the following has to be written: given Marker[Int] with {}
+  // In Scala 3.0.0, the following has to be written: given Marker[Int]: {}
   given Marker[Int]()                 // <1>
   given Marker[List[?]]()             // <2>
 

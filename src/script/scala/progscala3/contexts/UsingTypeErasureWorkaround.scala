@@ -4,7 +4,7 @@
 object O2:
   trait Marker[T]                                               // <1>
   // In Scala 3.0.0, the following has to be written:
-  // given IntMarker: Marker[Int] with {}
+  // given IntMarker: Marker[Int]: {}
   given IntMarker: Marker[Int]()
   given StringMarker: Marker[String]()
 

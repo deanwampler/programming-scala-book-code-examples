@@ -102,7 +102,7 @@ object JSONBuilder:
    * are _witnesses_, constraining the allowed types of JSON values. Note that
    * there is nothing to implement in the trait, but we have to use the `with {}`
    * clauses to make these definitions concrete.
-   * NOTE: Scala 3.0.0 requires "given ValidJSONValue[Int] with {}", while 3.0.1
+   * NOTE: Scala 3.0.0 requires "given ValidJSONValue[Int]: {}", while 3.0.1
    * removed the need for "with {}", but you have to add the "()".
    */
   sealed trait ValidJSONValue[T <: Matchable]

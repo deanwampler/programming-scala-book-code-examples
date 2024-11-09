@@ -15,7 +15,7 @@ import progscala3.contexts.{DomainConcept, Address, Person}
 // Helper methods are used, like in
 // src/main/scala/progscala3/contexts/typeclass/new3/ToJSONTypeClasses.scala
 // for reasons explained below.
-given ToJSON[Address] with
+given ToJSON[Address]:
   def toJSON2(address: Address, name: String, level: Int): String =
     val (outdent, indent) = indentation(level)
     s""""$name": {
@@ -26,7 +26,7 @@ given ToJSON[Address] with
     def toJSON(name: String = "", level: Int = 0): String =
       toJSON2(address, name, level)
 
-given ToJSON[Person] with
+given ToJSON[Person]:
   def toJSON2(person: Person, name: String, level: Int): String =
     val (outdent, indent) = indentation(level)
     s""""$name": {
@@ -64,7 +64,7 @@ list1.map(_.toJSON("object"))
 // switches on the actual type. This is ugly and you'll have to remember to update
 // this method if you change the subtypes of DomainConcept. Note that I declared
 // it to be a sealed trait above, which lets the compiler catch some problems.
-given ToJSON[DomainConcept] with
+given ToJSON[DomainConcept]:
   extension (dc: DomainConcept)
     def toJSON(name: String = "", level: Int = 0): String = dc match
       case person: Person   => summon[ToJSON[Person]].toJSON2(person, name, level)
@@ -83,7 +83,7 @@ list1.map(_.toJSON("object"))
 // person.toJSON() will now recursively call the DomainConcept.toJSON
 // extension method, instead of the original Person.toJSON.
 
-given ToJSON[DomainConcept] with
+given ToJSON[DomainConcept]:
   extension (dc: DomainConcept)
     def toJSON(name: String = "", level: Int = 0): String = dc match
       case person: Person   => person.toJSON(name, level)

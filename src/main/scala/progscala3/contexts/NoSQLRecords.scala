@@ -28,7 +28,7 @@ case class Record private (contents: Map[String,Any]):               // <2>
   given Conv[Int] = _.asInstanceOf[Int]                              // <5>
   given Conv[Double] = _.asInstanceOf[Double]
   given Conv[String] = _.asInstanceOf[String]
-  given ab[A : Conv, B : Conv]: Conv[(A, B)] = _.asInstanceOf[(A,B)]
+  given ab: [A : Conv, B : Conv] => Conv[(A, B)] = _.asInstanceOf[(A,B)]
 
   val rec = Record.make.add("one" -> 1).add("two" -> 2.2)
     .add("three" -> "THREE!").add("four" -> (4.4, "four"))

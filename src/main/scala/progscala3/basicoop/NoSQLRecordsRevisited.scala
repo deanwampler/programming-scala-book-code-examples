@@ -21,11 +21,11 @@ extension (rec: Record)
 object Record:
   def empty: Record = Map.empty
 
-given FromTo[Int] with
+given FromTo[Int]:
   def apply(any: Any): Int = any.asInstanceOf[Int]
-given FromTo[Double] with
+given FromTo[Double]:
   def apply(any: Any): Double = any.asInstanceOf[Double]
-given FromTo[String] with
+given FromTo[String]:
   def apply(any: Any): String = any.asInstanceOf[String]
 
 @main def TryScalaDBRevisited =

@@ -14,7 +14,7 @@ inline def trySummonFrom(label: String, expected: Int): Unit =  // <1>
 def tryNone = trySummonFrom("tryNone:", 0)                      // <2>
 
 def tryA =                                                      // <3>
-  // In Scala 3.0.0, the following has to be written: given A with {}
+  // In Scala 3.0.0, the following has to be written: given A: {}
   given A()
   trySummonFrom("tryA:", 1)
 
