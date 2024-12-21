@@ -42,7 +42,7 @@ case class Salary(gross: Dollars, taxes: Percentage):
   val salary = Salary(100_000.0, 20.0)
   println(s"salary: $salary. Net pay: ${salary.net}")
 
-  given Conversion[Int,Dollars] with                            // <3>
+  given Conversion[Int,Dollars]:                            // <3>
     def apply(i:Int): Dollars= Dollars(i.toDouble)
 
   val dollars: Dollars = 10                                     // <4>

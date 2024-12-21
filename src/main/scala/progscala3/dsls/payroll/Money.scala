@@ -3,10 +3,10 @@ package progscala3.dsls.payroll
 import progscala3.contexts.accounting.*                         // <1>
 import scala.util.FromDigits.Floating                           // <2>
 
-given Floating[Dollars] with                                    // <3>
+given Floating[Dollars]:                                    // <3>
   def fromDigits(digits: String): Dollars = Dollars(digits.toDouble)
 
-given Floating[Percentage] with
+given Floating[Percentage]:
   def fromDigits(digits: String): Percentage = Percentage(digits.toDouble)
 
 implicit class dsc(sc: StringContext):                          // <4>

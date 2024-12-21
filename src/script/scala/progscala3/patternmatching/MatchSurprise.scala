@@ -5,7 +5,7 @@ def checkYBad(y: Int): Seq[String] =
   for x <- Seq(99, 100, 101)
   yield x match
     case y => "found y!"
-    case i: Int => "int: "+i  // Unreachable case!
+    case i: Int => "int: "+i  // ERROR Unreachable case!
 // end::bad[]
 
 // tag::good1[]

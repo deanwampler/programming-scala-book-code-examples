@@ -32,7 +32,6 @@ val results = wheres.map {
     val valStr = (val1 +: vals).mkString(", ")
     s"WHERE $col IN ($valStr)"
   case WhereOp(col, op, value) => s"WHERE $col ${op.symbol} $value"
-  case x => s"ERROR: Unknown expression: $x"
 }
 assert(results == Seq(
   "WHERE state IN (IL, CA, VA)",

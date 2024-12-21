@@ -4,7 +4,7 @@
 val seq = (0 to 10).toList
 
 object noimplicit:
-  val unzipped = seq.unzip      // Error.
+  val unzipped = seq.unzip      // ERROR
 
 object topair:
   implicit val toPair: Int => (Int, String) = i => (i, (2*i).toString)

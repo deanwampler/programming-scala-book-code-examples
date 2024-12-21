@@ -6,14 +6,14 @@ object HKFoldLeft:       // "HK" for "higher-kinded"
   trait Folder[-M[_]]:                                          // <1>
     def apply[IN, OUT](m: M[IN], seed: OUT, f: (OUT, IN) => OUT): OUT
 
-  given Folder[Iterable] with                                   // <2>
+  given Folder[Iterable]:                                   // <2>
     def apply[IN, OUT](iter: Iterable[IN],
         seed: OUT, f: (OUT, IN) => OUT): OUT =
       var accumulator = seed
       iter.foreach(t => accumulator = f(accumulator, t))
       accumulator
 
-  given Folder[Option] with                                     // <3>
+  given Folder[Option]:                                     // <3>
     def apply[IN, OUT](opt: Option[IN],
         seed: OUT, f: (OUT, IN) => OUT): OUT = opt match
       case Some(t) => f(seed, t)
@@ -44,7 +44,7 @@ HKFoldLeft(Option.empty[Int])(0.0)(_+_)
 // end::usage1[]
 
 // tag::usage2[]
-given Folder[[X] =>> Either[String, X]] with
+given Folder[[X] =>> Either[String, X]]:
   def apply[IN, OUT](err: Either[String, IN],
       seed: OUT, f: (OUT, IN) => OUT): OUT = err match
     case Right(t) => f(seed, t)

@@ -86,7 +86,7 @@ val mon = new Monoid[Int] {
 }
 
 // New type class given instantiation
-given intMonoid: Monoid[Float] with {
+given intMonoid: Monoid[Float]: {
   def add(f1: Float, f2: Float): Float = f1+f2
   def zero: Float = 0.0F
 }

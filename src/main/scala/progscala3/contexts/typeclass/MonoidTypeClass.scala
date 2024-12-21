@@ -11,11 +11,11 @@ trait Semigroup[T]:
 trait Monoid[T] extends Semigroup[T]:
   def unit: T                                                        // <2>
 
-given StringMonoid: Monoid[String] with                              // <3>
+given StringMonoid: Monoid[String]:                              // <3>
   def unit: String = ""
   extension (s: String) infix def combine(other: String): String = s + other
 
-given IntMonoid: Monoid[Int] with
+given IntMonoid: Monoid[Int]:
   def unit: Int = 0
   extension (i: Int) infix def combine(other: Int): Int = i + other
 // end::definitions[]

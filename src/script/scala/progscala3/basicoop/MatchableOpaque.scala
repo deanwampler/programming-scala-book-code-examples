@@ -5,7 +5,7 @@ object Obj:
   opaque type OArr[T] = Array[T]
 
 summon[Obj.Arr[Int] <:< Matchable]     // Okay
-summon[Obj.OArr[Int] <:< Matchable]    // Doesn't work
+summon[Obj.OArr[Int] <:< Matchable]    // ERROR!
 
 object Obj2:
   type Arr[T] = Array[T]

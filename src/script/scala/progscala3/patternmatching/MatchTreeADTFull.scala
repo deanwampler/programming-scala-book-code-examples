@@ -31,3 +31,4 @@ yield tree match
     r @ Branch(rl @ Leaf(rli), rr @ Branch(_,_))) =>
       s"3: l=$l, r=$r, rl=$rl, rli=$rli, rr=$rr"
   case _:Branch[?] => "4: Other Branch"
+  case Leaf(_) => "5: Leaf"
