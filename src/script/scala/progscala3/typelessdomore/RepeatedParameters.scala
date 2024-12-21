@@ -12,7 +12,7 @@ object Mean1:
 // tag::mean2[]
 object Mean2:
   def apply(ds: Double*): Double = apply(ds)
-  def apply(ds: Seq[Double]): Double = ds.sum/ds.size
+  def apply(ds: Seq[Double]): Double = ds.sum/ds.size   // ERROR
 // end::mean2[]
 
 // tag::mean[]

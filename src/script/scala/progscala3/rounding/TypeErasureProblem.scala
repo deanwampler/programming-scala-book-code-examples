@@ -2,4 +2,4 @@
 
 object O:
   def m(is: Seq[Int]): Int = is.sum
-  def m(ss: Seq[String]): Int = ss.length
+  def m(ss: Seq[String]): Int = ss.length     // ERROR

@@ -2,7 +2,7 @@
 // src/script/scala/progscala3/contexts/typeclass/MonoidAliasGiven.scala
 import progscala3.contexts.typeclass.Monoid
 
-given NumericMonoid2[T : Numeric]: Monoid[T] = new Monoid[T]:
+given NumericMonoid2: [T: Numeric] => Monoid[T] = new Monoid[T]:
   println("Initializing NumericMonoid2")
   def unit: T = summon[Numeric[T]].zero
   extension (t: T) infix def combine(other: T): T =
