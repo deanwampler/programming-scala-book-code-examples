@@ -178,28 +178,29 @@ $
 
 I welcome feedback on the Book and these examples. Please post comments, corrections, etc. to one of the following places:
 
-* This GitHub repo's [Gitter channel](https://gitter.im/deanwampler/programming-scala-book-code-examples), [Discussion forum](https://github.com/deanwampler/programming-scala-book-code-examples/discussions), or [Issues](https://github.com/deanwampler/programming-scala-book-code-examples/issues).
-* The book's Twitter account, [@ProgScala](https://twitter.com/ProgScala).
-* The O'Reilly book and errata sites (coming soon).
+* This GitHub repo's [Discussion forum](https://github.com/deanwampler/programming-scala-book-code-examples/discussions), or [Issues](https://github.com/deanwampler/programming-scala-book-code-examples/issues).
+* The O'Reilly book and errata sites.
+* Dean Wampler's [Bluesky](https://bsky.app/profile/deanwampler.bsky.social) or [Mastodon](https://discuss.systems/@deanwampler) accounts.
 
 There is also my dedicated site for the book where occasional updates, clarifications, corrections, and lame excuses will be posted: [programming-scala.org](http://programming-scala.org).
 
 ## A Little History
 
-| Key Dates         | Description |
-| :---------------- | :---------- |
-| August 11, 2014   | 2nd edition examples |
-| May 27, 2019      | Updated for Scala 2.12 and 2.13 |
-| June 18, 2019     | New support for Maven builds, courtesy of [oldbig](https://github.com/oldbig) |
-| October 12, 2019  | Updated for Scala 2.13.1, sbt 1.3.2, and other dependencies. Also now compiles with JDK 11 |
-| October 13, 2019  | Renamed the repo from `prog-scala-2nd-ed-code-examples` to `programming-scala-book-code-examples` |
-| December 31, 2019 | Renamed the `progscala2` package to `progscala3` and reworked most of the `*.sc` scripts for better testability and other improvements |
-| March 1, 2020     | Completed conversion to Scala 3 |
-| March 20, 2020    | Started incorporating new Scala 3 syntax, idioms |
-| May 15, 2021      | Scala `3.0.0` final  updates. Almost done! |
-| May 22, 2021      | _Final_ updates for _Programming Scala, Third Edition_! |
-| July 24, 2021     | Scala 3.0.1. Notes on using IntelliJ. |
-| November 6, 2021  | Scala 3.1.0 and a fix for locale settings ([PR 42](https://github.com/deanwampler/programming-scala-book-code-examples/pull/42)). |
-| September 15, 2024  | Scala 3.5.0 changes, e.g. the [new Scala CLI](https://docs.scala-lang.org/sips/scala-cli.html). |
+| Key Dates          | Description |
+| :----------------- | :---------- |
+| August 11, 2014    | 2nd edition examples |
+| May 27, 2019       | Updated for Scala 2.12 and 2.13 |
+| June 18, 2019      | New support for Maven builds, courtesy of [oldbig](https://github.com/oldbig) |
+| October 12, 2019   | Updated for Scala 2.13.1, sbt 1.3.2, and other dependencies. Also now compiles with JDK 11 |
+| October 13, 2019   | Renamed the repo from `prog-scala-2nd-ed-code-examples` to `programming-scala-book-code-examples` |
+| December 31, 2019  | Renamed the `progscala2` package to `progscala3` and reworked most of the `*.sc` scripts for better testability and other improvements |
+| March 1, 2020      | Completed conversion to Scala 3 |
+| March 20, 2020     | Started incorporating new Scala 3 syntax, idioms |
+| May 15, 2021       | Scala `3.0.0` final  updates. Almost done! |
+| May 22, 2021       | _Final_ updates for _Programming Scala, Third Edition_! |
+| July 24, 2021      | Scala 3.0.1. Notes on using IntelliJ. |
+| November 6, 2021   | Scala 3.1.0 and a fix for locale settings ([PR 42](https://github.com/deanwampler/programming-scala-book-code-examples/pull/42)). |
+| September 15, 2024 | Scala 3.5.0 changes, e.g. the [new Scala CLI](https://docs.scala-lang.org/sips/scala-cli.html). |
+| December 21, 2024  | Scala 3.6.2 changes, supporting new syntax options. |
 
 
