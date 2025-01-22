@@ -72,7 +72,9 @@ HOWEVER, to be really safe, all the outputs should still be inspected manually.
 Usage: $0 [-h|--help] [-v|--verbose] [-c|--clean] [-n|--no-exec] [dir ...]
 Where:
 -h | --help       Print this message and exit.
--v | --verbose    Print each file name to the console as it is processed.
+-v | --verbose    Print each file name to the console as it is processed and dump
+                  to stdout the test output (in the script's corresponding 
+                  "target/script-tests/...").
 -c | --clean      Delete all previous output.
 -n | --no-exec    Don't execute the commands, just echo what would be done.
 --check | --check-only  
@@ -163,6 +165,7 @@ report() {
   let error_count+=$?
   count_problem 'error'   "$script" "$out"
   let error_count+=$?
+  $VERBOSE && cat "$out"
   return $error_count
 }
 
