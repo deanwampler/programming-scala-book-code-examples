@@ -4,9 +4,8 @@
 [![Scala Steward badge](https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAAVFBMVEUAAACHjojlOy5NWlrKzcYRKjGFjIbp293YycuLa3pYY2LSqql4f3pCUFTgSjNodYRmcXUsPD/NTTbjRS+2jomhgnzNc223cGvZS0HaSD0XLjbaSjElhIr+AAAAAXRSTlMAQObYZgAAAHlJREFUCNdNyosOwyAIhWHAQS1Vt7a77/3fcxxdmv0xwmckutAR1nkm4ggbyEcg/wWmlGLDAA3oL50xi6fk5ffZ3E2E3QfZDCcCN2YtbEWZt+Drc6u6rlqv7Uk0LdKqqr5rk2UCRXOk0vmQKGfc94nOJyQjouF9H/wCc9gECEYfONoAAAAASUVORK5CYII=)](https://scala-steward.org)
 
 * [Dean Wampler](mailto:programming.scala@gmail.com)
-* [@deanwampler](https://twitter.com/deanwampler)
-* [LinkedIn](https://www.linkedin.com/in/deanwampler/)
-* [Book Page](http://programming-scala.org)
+* Dean Wampler's [Bluesky](https://bsky.app/profile/deanwampler.bsky.social), [Mastodon](https://discuss.systems/@deanwampler), or [LinkedIn](https://www.linkedin.com/in/deanwampler/) accounts.
+* [My Book Page](http://programming-scala.org)
 * [Blog about Scala 3](https://medium.com/scala-3)
 
 This repo contains all the code examples in O'Reilly's [Programming Scala, Third Edition](http://programming-scala.org). (The second edition is [available here](http://shop.oreilly.com/product/0636920033073.do).) There are also many code files in this distribution that aren't included in the book.
@@ -179,8 +178,8 @@ $
 I welcome feedback on the Book and these examples. Please post comments, corrections, etc. to one of the following places:
 
 * This GitHub repo's [Discussion forum](https://github.com/deanwampler/programming-scala-book-code-examples/discussions), or [Issues](https://github.com/deanwampler/programming-scala-book-code-examples/issues).
-* The O'Reilly book and errata sites.
-* Dean Wampler's [Bluesky](https://bsky.app/profile/deanwampler.bsky.social) or [Mastodon](https://discuss.systems/@deanwampler) accounts.
+* The [O'Reilly book page](https://oreil.ly/programming-scala-3) and the [errata page](https://www.oreilly.com/catalog/errata.csp?isbn=9781492077893).
+* Dean Wampler's [Bluesky](https://bsky.app/profile/deanwampler.bsky.social), [Mastodon](https://discuss.systems/@deanwampler), or [LinkedIn](https://www.linkedin.com/in/deanwampler/) accounts.
 
 There is also my dedicated site for the book where occasional updates, clarifications, corrections, and lame excuses will be posted: [programming-scala.org](http://programming-scala.org).
 
