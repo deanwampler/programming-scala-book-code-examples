@@ -26,7 +26,7 @@ lazy val root = project
       "ch.qos.logback"          % "logback-classic"  % "1.5.16",
       "org.scalacheck"         %% "scalacheck"       % "1.18.1" % Test,
       "org.scalameta"          %% "munit"            % "1.1.0" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "1.0.0" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "1.1.0" % Test,
       "com.eed3si9n.expecty"   %% "expecty"          % "0.17.0" % Test,
     ),
 
