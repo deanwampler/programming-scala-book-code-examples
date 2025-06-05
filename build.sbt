@@ -1,4 +1,4 @@
-val scala3 = "3.7.0"
+val scala3 = "3.7.1"
 lazy val root = project
   .in(file("."))
   .settings(
