@@ -82,12 +82,13 @@ list1.map(_.toJSON("object"))
 // Well, an infinite recursion occurs!! This is because, for example,
 // person.toJSON() will now recursively call the DomainConcept.toJSON
 // extension method, instead of the original Person.toJSON.
+// Try it yourself; uncomment the following given definition and comment out
+// the previous definition of ToJSON[DomainConcept], then rerun this script.
+// given ToJSON[DomainConcept]:
+//   extension (dc: DomainConcept)
+//     def toJSON(name: String = "", level: Int = 0): String = dc match
+//       case person: Person   => person.toJSON(name, level)
+//       case address: Address => address.toJSON(name, level)
 
-given ToJSON[DomainConcept]:
-  extension (dc: DomainConcept)
-    def toJSON(name: String = "", level: Int = 0): String = dc match
-      case person: Person   => person.toJSON(name, level)
-      case address: Address => address.toJSON(name, level)
-
-list1.map(_.toJSON())   // BOOM!!
+// list1.map(_.toJSON("object"))   // BOOM - Stack overflow!!
 // END 4
