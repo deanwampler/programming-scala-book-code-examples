@@ -57,7 +57,8 @@ end Tagging
   // Compilation Errors!
   // om.compare(x, y)
   val expected: Double @@ Meter = 1.0.tag
-  assert(xs.min(om) == expected)
+  // 2025-06-16: In Scala 3.7, "using" is required in the next line:
+  assert(xs.min(using om) == expected)
   // Compilation Error!
   // xs.min(o)
 end TryTagging

@@ -18,8 +18,8 @@ def make(i: Int): Future[String] =
   else Future.failed(ThatsOdd(i))
 
 @main def TryFuturesForComp =
-  val futures = for {
+  val futures = for
     i <- (0 to 9)
     future = make(i)
-  } yield future
+  yield future
   futures.map(_.onComplete(doComplete))

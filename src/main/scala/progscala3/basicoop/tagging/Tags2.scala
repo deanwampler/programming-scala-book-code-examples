@@ -60,7 +60,8 @@ end Tagging2
   // Compilation Errors!
   // om.compare(x, y)
   // x == y
-  assert(xs.min(om) == 1.0.tag[Meter])
+  // 2025-06-16: In Scala 3.7, "using" is required in the next line:
+  assert(xs.min(using om) == 1.0.tag[Meter])
   // Compilation Error!
   // xs.min(o)
 end TryTagging2

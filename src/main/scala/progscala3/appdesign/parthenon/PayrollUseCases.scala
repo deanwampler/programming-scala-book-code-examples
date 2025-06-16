@@ -32,7 +32,7 @@ object PayrollUseCases:
     val files =
       if inputFileNames.length == 0 then Seq("misc/parthenon-payroll.txt")
       else inputFileNames
-    for (file <- files) do
+    for file <- files do
       println(s"Processing input file: $file")
       val data = fromFile(file)
       biweeklyPayrollPerEmployee(data)

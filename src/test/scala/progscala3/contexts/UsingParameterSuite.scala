@@ -8,10 +8,12 @@ class UsingParameterSuite extends FunSuite:
 
   case class MySeq[A](seq: Seq[A]):
     def sortBy1[B](f: A => B)(implicit ord: Ordering[B]): Seq[A] =
-      seq.sortBy(f)(ord)
+      // 2025-06-16: In Scala 3.7, "using" is required in the next line:
+      seq.sortBy(f)(using ord)
 
     def sortBy2[B : Ordering](f: A => B): Seq[A] =
-      seq.sortBy(f)(summon[Ordering[B]])
+      // 2025-06-16: In Scala 3.7, "using" is required in the next line:
+      seq.sortBy(f)(using summon[Ordering[B]])
 
   test("A view type can be accessed by implicitly") {
     val seq = MySeq(Seq(1,3,5,2,4))
