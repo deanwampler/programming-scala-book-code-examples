@@ -7,4 +7,4 @@ given c: C()
 given d: D()
 
 summonAll[C *: D *: EmptyTuple]
-summonAll[C *: D *: E *: EmptyTuple]                            // <1>
+summonAll[C *: D *: E *: EmptyTuple]  // ERROR                  // <1>

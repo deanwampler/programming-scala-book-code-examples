@@ -15,8 +15,7 @@ import Serialization.*
 
 object RemoteConnection:
   def write[T : Writable](t: T): String =
-    val writable = implicitly
-    writable(t).serialized  // Return a string "as the remote connection"
+    summon[Writable[T]](t).serialized  // Return a string "as the remote connection"
 
 assert(RemoteConnection.write(100)      == "-- 100 --")
 assert(RemoteConnection.write(3.14f)    == "-- 3.14 --")

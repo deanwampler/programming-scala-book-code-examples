@@ -37,5 +37,5 @@ val gross = Dollars(10000.0)
 val taxes = Percentage(0.1)
 val salary1 = Salary(gross, taxes)
 val net1 = salary1.net
-val salary2 = Salary(taxes, gross)   // Won't compile!
+val salary2 = Salary(taxes, gross)   // ERROR Won't compile!
 // end::usage[]

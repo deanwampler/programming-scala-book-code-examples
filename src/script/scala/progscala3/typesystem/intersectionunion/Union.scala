@@ -83,7 +83,7 @@ val fABC1: (A | B | C) => String = _ match
   case t1: A => "A"
   case t2: B => "B"
   case t3: C => "C"
-val fABC2: (A => String) & (B => String) & (C => String) = fABC
+val fABC2: (A => String) & (B => String) & (C => String) = fABC1
 
 val seqABCs: Seq[A | B | C] = Seq(a, b, c)
 seqABCs.map(fABC1)

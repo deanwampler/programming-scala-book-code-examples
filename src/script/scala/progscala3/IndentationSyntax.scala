@@ -52,7 +52,7 @@ end while
 // Match expression
 0 match
   case 0 => println("zero")
-  case _ => println("other value")
+  case _ => println("other value")  // ERROR: "Match case Unreachable Warning"
 end match
 
 // Partially-defined function

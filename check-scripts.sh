@@ -3,30 +3,48 @@
 default_dirs=( "src/script/scala" )
 out_root="target/script-tests"
 out_ext="out"
+timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 expected_errors_in=(
-  src/script/scala/progscala3/appdesign/Deprecated.scala
-  src/script/scala/progscala3/patternmatching/MatchExhaustive.scala
-  src/script/scala/progscala3/patternmatching/MatchSurprise.scala
+
   src/script/scala/progscala3/IndentationSyntax.scala
-  src/script/scala/progscala3/contexts/typeclass/TypeClassSubtypingProblems.scala
+  src/script/scala/progscala3/appdesign/Deprecated.scala
+  src/script/scala/progscala3/basicoop/MatchableOpaque.scala
+  src/script/scala/progscala3/collections/MultiMap.scala
+  src/script/scala/progscala3/contexts/ImplicitEvidence.scala
+  src/script/scala/progscala3/contexts/ImplicitNotFound.scala
+  src/script/scala/progscala3/contexts/MatchGivens.scala
   src/script/scala/progscala3/contexts/SeqUnzip.scala
-  src/script/scala/progscala3/meta/inline/Recursive.scala
-  src/script/scala/progscala3/meta/inline/Overrides.scala
+  src/script/scala/progscala3/dynamic/SelectableSQL.scala
   src/script/scala/progscala3/meta/compiletime/RequireConst.scala
   src/script/scala/progscala3/meta/compiletime/SummonAll.scala
-  src/script/scala/progscala3/rounding/TypeErasureProblem.scala
+  src/script/scala/progscala3/meta/inline/ConditionalMatch.scala
+  src/script/scala/progscala3/meta/inline/Overrides.scala
+  src/script/scala/progscala3/meta/inline/Recursive.scala
+  src/script/scala/progscala3/objectsystem/variance/MutableVariance.scala
+  src/script/scala/progscala3/patternmatching/Matchable.scala
+  src/script/scala/progscala3/patternmatching/MatchExhaustive.scala
+  src/script/scala/progscala3/patternmatching/MatchForFiltering.scala
+  src/script/scala/progscala3/patternmatching/MatchSurprise.scala
+  src/script/scala/progscala3/patternmatching/MatchTypesErasure.scala
+  src/script/scala/progscala3/patternmatching/UnapplySingleValue2.scala
   src/script/scala/progscala3/rounding/InfixMethod.scala
+  src/script/scala/progscala3/rounding/InfixType.scala
+  src/script/scala/progscala3/rounding/TypeErasureProblem.scala
   src/script/scala/progscala3/typelessdomore/Human.scala
-  src/script/scala/progscala3/typelessdomore/RepeatedParameters.scala
   src/script/scala/progscala3/typelessdomore/MethodBroadInference.scala
-  src/script/scala/progscala3/typelessdomore/MethodRecursiveReturn.scala
   src/script/scala/progscala3/typelessdomore/MethodNestedReturn.scala
-  src/script/scala/progscala3/basicoop/MatchableOpaque.scala
+  src/script/scala/progscala3/typelessdomore/MethodRecursiveReturn.scala
+  src/script/scala/progscala3/typelessdomore/RepeatedParameters.scala
+  src/script/scala/progscala3/typesystem/bounds/ViewToContextBounds.scala
+  src/script/scala/progscala3/typesystem/deptypes/DependentTypes.scala
+  src/script/scala/progscala3/typesystem/deptypes/DependentTypesBounds.scala
+  src/script/scala/progscala3/typesystem/deptypes/DependentTypesSimple.scala
+  src/script/scala/progscala3/typesystem/intersectionunion/Intersection.scala
+  src/script/scala/progscala3/typesystem/intersectionunion/Union.scala
+  src/script/scala/progscala3/typesystem/matchtypes/MatchTypes2.scala
   src/script/scala/progscala3/typesystem/typepaths/TypePath.scala
   src/script/scala/progscala3/typesystem/valuetypes/SingletonTypes.scala
-  src/script/scala/progscala3/patternmatching/MatchTypesErasure.scala
-  src/script/scala/progscala3/patternmatching/MatchForFiltering.scala
-  src/script/scala/progscala3/collections/MultiMap.scala
+  src/script/scala/progscala3/typesystem/valuetypes/TypeProjection.scala
 )
 
 error() {
@@ -46,18 +64,19 @@ are files with @main methods under src/main that can be interpreted as Scala 3
 argument.
 
 So, this bash script starts the REPL (using "sbt console") for each file and then
-uses :load to load the file. The output is written to
+uses :load to load the file. The output for that console sessions is written to
 $out_root/path/to/file.$out_ext.
+
+A list of files with errors or warnings is written to $out_root/errors-$timestamp.log.
 
 The following files are known to throw errors intentionally:
 $(for f in ${expected_errors_in[@]}; do echo "  $f"; done)
 
-Failures for these known files are ignored. In some of them, you'll see a comment
-on the same line, like "// ERROR" or "// COMPILATION ERROR", which are easier to
-spot when looking at error messages. In other cases, you have to look at the book
-discussion to see if the error is expected. Unfortunately, this means that any 
-unexpected errors in these files will be missed, unless you inspect the output
-when running them!
+Failures for these known files are ignored, but logged in $out_root/errors-$timestamp.log. 
+In most of them, you'll see a comment on the same line, like "// ERROR" or "// COMPILATION ERROR", 
+which are easier to spot when looking at error messages. In the rest of the cases, you have to
+look at the book discussion to see if the error is expected. Unfortunately, this means that any 
+unexpected errors in these files will be missed, unless you inspect the output carefully!
 
 For finding unexpected errors, the console output is searched for errors by looking
 for any of the following lines near the end (where N=2+):
@@ -67,7 +86,7 @@ N warnings found
 1 error found
 N errors found
 
-HOWEVER, to be really safe, all the outputs should still be inspected manually.
+** HOWEVER, to be really safe, all the outputs should still be inspected manually. **
 
 Usage: $0 [-h|--help] [-v|--verbose] [-c|--clean] [-n|--no-exec] [dir ...]
 Where:
@@ -128,22 +147,23 @@ then
   [[ -n "$out_root" ]] && rm -rf "$out_root"  # safety check!
 fi
 
+
+error_log="$out_root/errors-$timestamp.log"
+rm -f $error_log
+
+print_count() {
+  let count=$1; shift
+  file=$1; shift
+  out=$1; shift
+  message="$1"; shift
+  printf '%5d: %s %s %s\n' $count "$file" "$out" "$message" >> $error_log
+}
+
 count_problem() {
-  problem=$1
-  script=$2
-  out=$3
-  let count=$(grep -cE "^.+ $problem? found$" "$out" | sed -e "s/ $problem.*//")
-  case $count in
-    0)
-      # do nothing
-      ;;
-    1)
-      echo "ERROR: 1 ${problem} found in $script ($out)"
-      ;;
-    *)
-      echo "ERROR: $count ${problem}s found in $script ($out)"
-      ;;
-  esac
+  script=$1
+  out=$2
+  let count=$(grep -cE "^.+ (error|warning)s? found$" "$out")
+  [[ $count -gt 0 ]] && print_count $count $script $out 
   return $count
 }
 
@@ -151,21 +171,23 @@ report() {
   let status=$1
   script=$2
   out=$3
+  for skip in ${expected_errors_in[@]}
+  do
+    if [[ "$skip" = "$script" ]]
+    then
+      print_count 0 "$script" "$out" "NOTE: because of known deliberate errors, unexpected errors might be missed!"
+      return 0
+    fi
+  done
   let error_count=0
   if [[ $status -ne 0 ]]
   then
     echo "ERROR: $script failed! ($out)"
     let error_count+=1
   fi
-  for skip in ${expected_errors_in[@]}
-  do
-    [[ "$skip" = "$script" ]] && return $error_count
-  done
-  count_problem 'warning' "$script" "$out"
+  count_problem "$script" "$out"
   let error_count+=$?
-  count_problem 'error'   "$script" "$out"
-  let error_count+=$?
-  $VERBOSE && cat "$out"
+  # $VERBOSE && cat "$out"
   return $error_count
 }
 
@@ -214,7 +236,8 @@ then
   rm -f "$problem_count"
   if [[ $total_problem_count -gt 0 ]]
   then
-    echo "ERROR: $total_problem_count issues found."
+    echo "ERROR: $total_problem_count issues found. See $error_log"
+    print_count $total_problem_count $error_log "" "issues found!"
     exit 1
   fi
 fi

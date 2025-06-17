@@ -7,6 +7,6 @@ case class Foo(str: String):
 Foo("one").append("two")                         // <1>
 Foo("one") append {"two"}                        // <2>
 Foo("one") `append` "two"
-Foo("one") append "two"                          // <3>
+Foo("one") append "two"     // ERROR             // <3>
 
 Foo("one") combine "two"                         // <4>

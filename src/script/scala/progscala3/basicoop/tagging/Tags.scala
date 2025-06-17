@@ -14,5 +14,5 @@ val o: Ordering[Double] = implicitly
 val om: Ordering[Double @@ Meter] = o.tags
 om.compare(x, x)
 om.compare(x, y)  // Compilation Error!
-xs.min(om)
-xs.min(o)         // Compilation Error!
+xs.min(using om)
+xs.min(using o)   // Compilation Error!

@@ -21,11 +21,11 @@ val set = map.keySet
 
 // Works:
 map match
-  case JHashMapWrapper(jmap) => jmap
+  case JHashMapWrapper(jmap) => map
 set match
-  case JHashSetWrapper(jset) => jset
+  case JHashSetWrapper(jset) => set
 
 // This fails to compile because there are _two_ possible returned values.
 for x <- Seq(map, set) yield x match
-  case JHashMapWrapper(jmap) => jmap
-  case JHashSetWrapper(jset) => jset
+  case JHashMapWrapper(jmap) => map   // ERROR
+  case JHashSetWrapper(jset) => set   // ERROR

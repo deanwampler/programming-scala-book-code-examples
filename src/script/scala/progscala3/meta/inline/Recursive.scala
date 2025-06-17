@@ -5,5 +5,7 @@ inline def repeat(s: String, count: Int): String =
   else s + repeat(s, count-1)
 
 repeat("hello", 3)    // Okay
-val n=3
-repeat("hello", n)    // ERROR! (try "inline val n = 3")
+inline val m = 3
+repeat("hello", m)    // Okay, because m is declared inline
+val n = 3
+repeat("hello", n)    // ERROR! 

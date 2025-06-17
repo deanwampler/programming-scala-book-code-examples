@@ -3,13 +3,13 @@
 
 case class SortableSeq[A](seq: Seq[A]):
   def sortBy1a[B](transform: A => B)(using o: Ordering[B]): SortableSeq[A] =
-    SortableSeq(seq.sortBy(transform)(o))
+    SortableSeq(seq.sortBy(transform)(using o))
 
   def sortBy1b[B](transform: A => B)(using Ordering[B]): SortableSeq[A] =
-    SortableSeq(seq.sortBy(transform)(summon[Ordering[B]]))
+    SortableSeq(seq.sortBy(transform)(using summon[Ordering[B]]))
 
   def sortBy2[B : Ordering](transform: A => B): SortableSeq[A] =
-    SortableSeq(seq.sortBy(transform)(summon[Ordering[B]]))
+    SortableSeq(seq.sortBy(transform)(using summon[Ordering[B]]))
 // end::definitions[]
 
 // tag::defaultOrdering[]

@@ -8,4 +8,4 @@ open class Service:                                                  // <1>
 
 val s1 = new Service
 val s2 = new Service:
-  override val logger: Logger = s1.logger                            // <2>
+  override val logger: Logger = s1.logger      // ERROR              // <2>

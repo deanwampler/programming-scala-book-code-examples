@@ -2,7 +2,7 @@
 
 object OBad:
   def m(seq: Seq[Int]): String = seq.mkString("|")
-  def m(seq: Seq[String]): String = seq.mkString(",")
+  def m(seq: Seq[String]): String = seq.mkString(",")  // ERROR
 
 trait TGood:
   def member(suffix: String): String
@@ -10,4 +10,4 @@ trait TGood:
 
 trait TBad:
   def member: String
-  val member: String
+  val member: String      // ERROR

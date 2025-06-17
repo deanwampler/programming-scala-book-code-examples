@@ -29,16 +29,16 @@ lastUnsafe(Seq(1,2,3))
 lastUnsafe(Some(2))
 lastUnsafe(10)
 // But...
-lastUnsafe("")
-lastUnsafe(Array.empty[Int])
-lastUnsafe(Nil)
-lastUnsafe(None)
+lastUnsafe("")                // ERROR
+lastUnsafe(Array.empty[Int])  // ERROR
+lastUnsafe(Nil)               // ERROR
+lastUnsafe(None)              // ERROR
 
 // Does this parse and provide a safe implementation? No; it has trouble
 // confirming that Char =:= Elem[String] for "s.last" and
 // Matchable =:= Elem[Matchable] for the default Matchable clause.
 
-def lastOrElse[X <: Matchable](in: X)(default: => Elem[X]): Elem[X] = in.asMatchable match
+def lastOrElse[X <: Matchable](in: X)(default: => Elem[X]): Elem[X] = in.asMatchable match // ERROR
   case s: String => if s.isEmpty then default else s.last
   case a: Array[Elem[X]] => if a.isEmpty then default else a.last
   case i: Iterable[Elem[X]] => if i.isEmpty then default else i.last
@@ -46,7 +46,7 @@ def lastOrElse[X <: Matchable](in: X)(default: => Elem[X]): Elem[X] = in.asMatch
   case m: Matchable => m
 
 // What about using options? Same parsing problems...
-def lastOption[X <: Matchable](in: X): Option[Elem[X]] = in.asMatchable match
+def lastOption[X <: Matchable](in: X): Option[Elem[X]] = in.asMatchable match  // ERROR
   case s: String => s.lastOption
   case a: Array[Elem[X]] => a.lastOption
   case i: Iterable[Elem[X]] => i.lastOption
@@ -56,7 +56,7 @@ def lastOption[X <: Matchable](in: X): Option[Elem[X]] = in.asMatchable match
 // Surely this will work, no? No; it seems that any attempt to combine the
 // match type Elem[X] with other types, whether "| Null", Option[...], or
 // using it as the type of a default argument fails to work.
-def lastOrNull[X <: Matchable](in: X): Elem[X] | Null = in.asMatchable match
+def lastOrNull[X <: Matchable](in: X): Elem[X] | Null = in.asMatchable match   // ERROR
   case s: String => if s.isEmpty then null else s.last
   case a: Array[Elem[X]] => if a.isEmpty then null else a.last
   case i: Iterable[Elem[X]] => if i.isEmpty then null else i.last
@@ -72,7 +72,7 @@ type RElem[X <: Matchable] = X match
   case Option[t] => RElem[t]
   case Matchable => X
 
-def rlastUnsafe[X <: Matchable](in: X): RElem[X] = in.asMatchable match
+def rlastUnsafe[X <: Matchable](in: X): RElem[X] = in.asMatchable match  // ERROR
   case s: String => s.last
   case a: Array[t] => rlastUnsafe(a.last)
   case i: Iterable[t] => rlastUnsafe(i.last)
@@ -86,21 +86,21 @@ def rlastUnsafe[X <: Matchable](in: X): RElem[X] = in.asMatchable match
 //   case o: Option[RElem[X]] => rlastOrElse(o.getOrElse(default))
 //   case a: Any => a
 
-def rlastOrElse[X](in: X, default: RElem[X]): RElem[X] = in.asMatchable match
+def rlastOrElse[X](in: X, default: RElem[X]): RElem[X] = in.asMatchable match   // ERROR
   case s: String => s.lastOption.getOrElse(default)
   case a: Array[RElem[X]] => rlastOrElse(a.lastOption.getOrElse(default))
   case i: Iterable[RElem[X]] => rlastOrElse(i.lastOption.getOrElse(default))
   case o: Option[RElem[X]] => rlastOrElse(o.getOrElse(default))
   case a: Any => a
 
-def rlastOption[X](in: X): Option[RElem[X]] = in.asMatchable match
+def rlastOption[X](in: X): Option[RElem[X]] = in.asMatchable match   // ERROR
   case s: String => s.lastOption
   case a: Array[RElem[X]] => a.lastOption.flatMap(x => rlastOption(x))
   case i: Iterable[RElem[X]] => i.lastOption.flatMap(x => rlastOption(x))
   case o: Option[RElem[X]] => o.flatMap(x => rlastOption(x))
   case a: Any => Some(a)
 
-def rlastOrNull[X](in: X): RElem[X] | Null = in.asMatchable match
+def rlastOrNull[X](in: X): RElem[X] | Null = in.asMatchable match   // ERROR
   case s: String => if s.isEmpty then null else s.last
   case a: Array[RElem[X]] => if a.isEmpty then null else rlastOrNull(a.last)
   case i: Iterable[RElem[X]] => if i.isEmpty then null else rlastOrNull(i.last)
@@ -111,14 +111,14 @@ val str  = "01234"
 val arr  = Array(2.2, 3.3, 4.4, 5.5)
 val seq1 = Seq(0.0F, 1.1F, 2.2F, 3.3F)
 val seq2 = Seq(Some(0L), None, Some(3L))
-val opt1 = Some("pi" -> Math.Pi)
+val opt1 = Some("pi" -> Math.PI)
 val opt2 = Some(Seq(Array("e" -> Math.E)))
 val any  = 1.1
 
-val strL  = rlastUnsafe(str)
-val arrL  = rlastUnsafe(arr)
-val seq1L = rlastUnsafe(seq1)
-val seq2L = rlastUnsafe(seq2)
-val opt1L = rlastUnsafe(opt1)
-val opt2L = rlastUnsafe(opt2)
-val anyL  = rlastUnsafe(any)
+val strL  = rlastUnsafe(str)    // ERROR
+val arrL  = rlastUnsafe(arr)    // ERROR
+val seq1L = rlastUnsafe(seq1)   // ERROR
+val seq2L = rlastUnsafe(seq2)   // ERROR
+val opt1L = rlastUnsafe(opt1)   // ERROR
+val opt2L = rlastUnsafe(opt2)   // ERROR
+val anyL  = rlastUnsafe(any)    // ERROR
