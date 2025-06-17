@@ -201,5 +201,6 @@ There is also my dedicated site for the book where occasional updates, clarifica
 | November 6, 2021   | Scala 3.1.0 and a fix for locale settings ([PR 42](https://github.com/deanwampler/programming-scala-book-code-examples/pull/42)). |
 | September 15, 2024 | Scala 3.5.0 changes, e.g. the [new Scala CLI](https://docs.scala-lang.org/sips/scala-cli.html). |
 | December 21, 2024  | Scala 3.6.2 changes, supporting new syntax options. |
+| June 17, 2025      | Scala 3.7.X breaking changes and fixed some old bugs in some of the "scripts". |
 
 
