@@ -4,6 +4,7 @@ default_dirs=( "src/script/scala" )
 out_root="target/script-tests"
 out_ext="out"
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+error_log="$out_root/scripts-errors-$timestamp.log"
 expected_errors_in=(
 
   src/script/scala/progscala3/IndentationSyntax.scala
@@ -67,12 +68,12 @@ So, this bash script starts the REPL (using "sbt console") for each file and the
 uses :load to load the file. The output for that console sessions is written to
 $out_root/path/to/file.$out_ext.
 
-A list of files with errors or warnings is written to $out_root/errors-$timestamp.log.
+A list of files with errors or warnings is written to $error_log.
 
 The following files are known to throw errors intentionally:
 $(for f in ${expected_errors_in[@]}; do echo "  $f"; done)
 
-Failures for these known files are ignored, but logged in $out_root/errors-$timestamp.log. 
+Failures for these known files are ignored, but logged in $error_log. 
 In most of them, you'll see a comment on the same line, like "// ERROR" or "// COMPILATION ERROR", 
 which are easier to spot when looking at error messages. In the rest of the cases, you have to
 look at the book discussion to see if the error is expected. Unfortunately, this means that any 
@@ -86,6 +87,7 @@ N warnings found
 1 error found
 N errors found
 
+
 ** HOWEVER, to be really safe, all the outputs should still be inspected manually. **
 
 Usage: $0 [-h|--help] [-v|--verbose] [-c|--clean] [-n|--no-exec] [dir ...]
@@ -93,7 +95,7 @@ Where:
 -h | --help       Print this message and exit.
 -v | --verbose    Print each file name to the console as it is processed and dump
                   to stdout the test output (in the script's corresponding 
-                  "target/script-tests/...").
+                  "$out_root/...").
 -c | --clean      Delete all previous output.
 -n | --no-exec    Don't execute the commands, just echo what would be done.
 --check | --check-only  
@@ -139,7 +141,7 @@ do
 done
 
 [[ ${#dirs[@]} -gt 0 ]] || dirs=( ${default_dirs[@]} )
-$VERBOSE && echo "Reading directories ${dirs[@]}"
+$VERBOSE && echo "Reading directories: ${dirs[@]}"
 
 if $CLEAN
 then
@@ -147,8 +149,6 @@ then
   [[ -n "$out_root" ]] && rm -rf "$out_root"  # safety check!
 fi
 
-
-error_log="$out_root/errors-$timestamp.log"
 rm -f $error_log
 
 print_count() {
@@ -197,7 +197,7 @@ let total_problem_count=0
 check() {
   script="$1"
   out="$out_root/$script.$out_ext"
-  $VERBOSE && echo "$f --> $out"
+  $VERBOSE && echo "$script --> $out"
   if ! $CHECK_ONLY
   then
     $NOOP rm -f "$out"
@@ -217,7 +217,7 @@ EOF
   # return $?
 }
 
-problem_count="$out_root/problem_count.txt" # see "hack" note below.
+problem_count="$out_root/scripts-problem-count.txt" # see "hack" note below.
 rm -f "$problem_count"
 for dir in "${dirs[@]}"
 do
