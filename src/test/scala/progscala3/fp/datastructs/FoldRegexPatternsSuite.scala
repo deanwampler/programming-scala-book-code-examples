@@ -3,6 +3,8 @@ package progscala3.fp.datastructs
 
 import munit.*
 
+import java.lang.System.lineSeparator
+
 class FoldRegexPatternsSuite extends FunSuite:
   test("Regex pattern matching used in a foldLeft") {
     val ignoreRegex = """^\s*(#.*|\s*)$""".r                             // <1>
@@ -24,7 +26,7 @@ class FoldRegexPatternsSuite extends FunSuite:
 
     // Parse each line, skipping expected
     val actual =
-      properties.split("\n").
+      properties.split(lineSeparator).
       zipWithIndex.
       foldLeft(Vector.empty[Either[Error,KV]]) { case (vect, (line, n)) =>
         if ignoreRegex.matches(line) then vect
