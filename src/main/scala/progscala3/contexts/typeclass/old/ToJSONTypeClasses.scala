@@ -4,51 +4,47 @@ package progscala3.contexts.typeclass.old
 
 import progscala3.introscala.shapes.{Point, Shape, Circle, Rectangle, Triangle}
 
-trait ToJSONOld[T]:
-  def toJSON(name: String = "", level: Int = 0): String         // <1>
+// DeanW: September 14, 2025. Scala is dropping support for implicit classes, so the 
+// `implicit final class PointToJSON`, etc. are now replaced by extension methods
+// and the trait ToJSONOld is converted to an object for its methods.
 
-  protected val indent = "  "
-  protected def indentation(level: Int): (String,String) =
+object ToJSONOld:
+  val indent = "  "
+  def indentation(level: Int): (String,String) =
     (indent * level, indent * (level+1))
-  protected def handleName(name: String): String =
+  def handleName(name: String): String =
     if name.length > 0 then s""""$name": """ else ""
-// end::trait[]
+end ToJSONOld
 
-// tag::pointcircle[]
-implicit final class PointToJSON(
-    point: Point) extends ToJSONOld[Point]:
-  def toJSON(name: String = "", level: Int = 0): String =
-    val (outdent, indent) = indentation(level)
-    s"""${handleName(name)}{
+extension(point: Point)
+  def toJSON(name: String, level: Int): String =
+    val (outdent, indent) = ToJSONOld.indentation(level)
+    s"""${ToJSONOld.handleName(name)}{
       |${indent}"x": "${point.x}",
       |${indent}"y": "${point.y}"
       |$outdent}""".stripMargin
 
-implicit final class CircleToJSON(
-    circle: Circle) extends ToJSONOld[Circle]:
-  def toJSON(name: String = "", level: Int = 0): String =
-    val (outdent, indent) = indentation(level)
-    s"""${handleName(name)}{
+extension(circle: Circle)
+  def toJSON(name: String, level: Int): String =
+    val (outdent, indent) = ToJSONOld.indentation(level)
+    s"""${ToJSONOld.handleName(name)}{
       |${indent}${circle.center.toJSON("center", level + 1)},
       |${indent}"radius": ${circle.radius}
       |$outdent}""".stripMargin
-// end::pointcircle[]
 
-implicit final class RectangleToJSON(
-    rect: Rectangle) extends ToJSONOld[Rectangle]:
-  def toJSON(name: String = "", level: Int = 0): String =
-    val (outdent, indent) = indentation(level)
-    s"""${handleName(name)}{
+extension(rect: Rectangle)
+  def toJSON(name: String, level: Int): String =
+    val (outdent, indent) = ToJSONOld.indentation(level)
+    s"""${ToJSONOld.handleName(name)}{
       |${indent}${rect.lowerLeft.toJSON("lowerLeft", level + 1)},
       |${indent}"height":    ${rect.height}
       |${indent}"width":     ${rect.width}
       |$outdent}""".stripMargin
 
-implicit final class TriangleToJSON(
-    tri: Triangle) extends ToJSONOld[Triangle]:
-  def toJSON(name: String = "", level: Int = 0): String =
-    val (outdent, indent) = indentation(level)
-    s"""${handleName(name)}{
+extension(tri: Triangle)
+  def toJSON(name: String, level: Int): String =
+    val (outdent, indent) = ToJSONOld.indentation(level)
+    s"""${ToJSONOld.handleName(name)}{
       |${indent}${tri.point1.toJSON("point1", level + 1)},
       |${indent}${tri.point2.toJSON("point2", level + 1)},
       |${indent}${tri.point3.toJSON("point3", level + 1)},

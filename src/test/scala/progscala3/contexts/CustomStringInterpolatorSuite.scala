@@ -6,7 +6,12 @@ import munit.*
 class CustomStringInterpolatorSuite extends FunSuite:
 
   object JSONToMapInterpolator:
-    implicit class mapForStringContext(val sc: StringContext):  // <1>
+    /* DeanW: September 2025. Scala is dropping support for implicit classes, 
+     * so we use an extension method instead:
+     * implicit class mapForStringContext(val sc: StringContext):
+     *   def map(values: String*): Map[String, String] = ...     
+     */
+    extension (sc: StringContext)                               // <1>
       def map(values: String*): Map[String, String] =           // <2>
         val keyRE = """^[\s{,]*(\S+):\s*""".r                   // <3>
         val keys = sc.parts map {                               // <4>

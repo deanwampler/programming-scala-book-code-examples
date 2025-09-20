@@ -5,6 +5,7 @@ import progscala3.dsls.payroll.dsc
 import progscala3.contexts.accounting.*
 import munit.FunSuite
 import org.scalacheck.*
+import scala.language.implicitConversions // DeanW: added Sept 2025
 
 /**
  * ScalaCheck example driven by MUnit

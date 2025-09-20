@@ -50,9 +50,9 @@ lazy val root = project
       // "-old-syntax",                       // Require `(...)` around conditions.
       // "-language:Scala2",                  // Compile Scala 2 code, highlight what needs updating
       // "-language:strictEquality",          // Require +derives Eql+ for using == or != comparisons
-      // "-rewrite",                          // Attempt to fix code automatically. Use with -indent and ...-migration.
       // "-scalajs",                          // Compile in Scala.js mode (requires scalajs-library.jar on the classpath).
-      // "-source:future",                       // Choices: future and future-migration. I use this to force future deprecation warnings, etc.
+      "-source:future-migration",          // Choices: future and future-migration. I use this to force future deprecation warnings, etc.
+      "-rewrite",                          // Rewrite source, when necessary, for future migration - DeanW: added Sept 2025
       "-Xfatal-warnings",                  // Fail on warnings, not just errors
       // "-Xmigration",                       // Warn about constructs whose behavior may have changed since version.
       // "-Ysafe-init",                       // Warn on field access before initialization

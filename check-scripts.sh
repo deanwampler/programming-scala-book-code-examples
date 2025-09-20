@@ -6,11 +6,15 @@ out_ext="out"
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 error_log="$out_root/scripts-errors-$timestamp.log"
 expected_errors_in=(
-
   src/script/scala/progscala3/IndentationSyntax.scala
   src/script/scala/progscala3/appdesign/Deprecated.scala
+  src/script/scala/progscala3/basicoop/DollarsPercentagesOpaque.scala
+  src/script/scala/progscala3/basicoop/GoodBad.scala
   src/script/scala/progscala3/basicoop/MatchableOpaque.scala
+  src/script/scala/progscala3/basicoop/tagging/Tags.scala
+  src/script/scala/progscala3/basicoop/tagging/Tags2.scala
   src/script/scala/progscala3/collections/MultiMap.scala
+  src/script/scala/progscala3/contexts/ExtensionMethodScoping.scala
   src/script/scala/progscala3/contexts/ImplicitEvidence.scala
   src/script/scala/progscala3/contexts/ImplicitNotFound.scala
   src/script/scala/progscala3/contexts/MatchGivens.scala
@@ -31,6 +35,7 @@ expected_errors_in=(
   src/script/scala/progscala3/rounding/InfixMethod.scala
   src/script/scala/progscala3/rounding/InfixType.scala
   src/script/scala/progscala3/rounding/TypeErasureProblem.scala
+  src/script/scala/progscala3/typelessdomore/FibonacciTailrec.scala
   src/script/scala/progscala3/typelessdomore/Human.scala
   src/script/scala/progscala3/typelessdomore/MethodBroadInference.scala
   src/script/scala/progscala3/typelessdomore/MethodNestedReturn.scala

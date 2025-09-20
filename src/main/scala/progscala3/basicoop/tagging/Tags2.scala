@@ -21,11 +21,11 @@ object Tagging2:
   @targetName("Tag") type @@[S, T] = Tagged[S, T]
 
   /**
+   * Pre Scala 3.7.X:
    * Instead of extension methods, use implicit conversions to value classes,
    * which won't add any runtime overhead, but allow us to use methods like `tag`
    * the way we want. This implementation is closer to the original example in
    * SIP-35.
-   */
   implicit class tagOps[S](s: S):
     def tag[T]: S @@ T = Tagged.tag(s)
   implicit class untagOps[S, T](st: S @@ T):
@@ -34,6 +34,23 @@ object Tagging2:
     def tags[T]: F[S @@ T] = Tagged.tags(fs)
   implicit class untagsOps[F[_], S, T](fst: F[S @@ T]):
     def untags: F[S] = Tagged.untags(fst)
+  */
+
+  /**
+   * DeanW (September 2025): as of Scala 3.7.X, implicit classes are no longer
+   * supported. Alternative are extension methods and declaring regular classes 
+   * and using given conversions to them. Here, we go back to using extension methods!
+   */
+
+  extension [S](s: S)
+    def tag[T]: S @@ T = Tagged.tag(s)
+  extension [S, T](st: S @@ T)
+    def untag: S = Tagged.untag(st)
+  extension [F[_], S](fs: F[S])
+    def tags[T]: F[S @@ T] = Tagged.tags(fs)
+  extension [F[_], S, T](fst: F[S @@ T])
+    def untags: F[S] = Tagged.untags(fst)
+
 end Tagging2
 
 @main def TryTagging2(): Unit =

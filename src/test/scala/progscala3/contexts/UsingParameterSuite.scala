@@ -7,7 +7,9 @@ class UsingParameterSuite extends FunSuite:
   import math.Ordering
 
   case class MySeq[A](seq: Seq[A]):
-    def sortBy1[B](f: A => B)(implicit ord: Ordering[B]): Seq[A] =
+    // 2025-09-20: In Scala 3.7.3, must replace "implicit" with using":
+    // def sortBy1[B](f: A => B)(implicit ord: Ordering[B]): Seq[A] =
+    def sortBy1[B](f: A => B)(using ord: Ordering[B]): Seq[A] =
       // 2025-06-16: In Scala 3.7, "using" is required in the next line:
       seq.sortBy(f)(using ord)
 

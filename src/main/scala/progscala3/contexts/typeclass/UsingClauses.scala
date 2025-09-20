@@ -1,5 +1,10 @@
 // tag::definitions[]
-// src/script/scala/progscala3/contexts/UsingClauses.scala
+// src/main/scala/progscala3/contexts/UsingClauses.scala
+// This is identical to src/script/scala/progscala3/contexts/UsingClauses.scala,
+// with the method invocations moved to a new @main function at the end.
+// I created it just to make it easier to test some work, and decided it 
+// "doesn't hurt" to keep it around, but only the script version is used in the
+// book.
 
 case class SortableSeq[A](seq: Seq[A]):
   def sortBy1a[B](transform: A => B)(using o: Ordering[B]): SortableSeq[A] =
@@ -20,14 +25,11 @@ def defaultOrdering() =
   assert(seq.sortBy1b(i => -i) == expected)
   assert(seq.sortBy2(i => -i)  == expected)
 
-defaultOrdering()
 // end::defaultOrdering[]
 
 // tag::oddEvenImplicitOrdering[]
 def oddEvenImplicitOrdering() =
-  // DeanW - Sept 2025: implicit vals are no longer supported:
-  // implicit val oddEven: Ordering[Int] = new Ordering[Int]:
-  given oddEven: Ordering[Int] = new Ordering[Int]:
+  implicit val oddEven: Ordering[Int] = new Ordering[Int]:
     def compare(i: Int, j: Int): Int = i%2 compare j%2 match
       case 0 => i compare j
       case c => c
@@ -42,7 +44,6 @@ def oddEvenImplicitOrdering() =
   assert(seq.sortBy1b(i => -i)(using oddEven) == expected)
   assert(seq.sortBy2(i => -i)(using oddEven)  == expected)
 
-oddEvenImplicitOrdering()
 // end::oddEvenImplicitOrdering[]
 
 // tag::oddEvenGivenOrdering[]
@@ -62,5 +63,9 @@ def evenOddGivenOrdering() =
   assert(seq.sortBy1b(i => -i)(using evenOdd) == expected)
   assert(seq.sortBy2(i => -i)(using evenOdd)  == expected)
 
-evenOddGivenOrdering()
 // end::oddEvenGivenOrdering[]
+
+@main def checkUsingClauses() =
+  defaultOrdering()
+  oddEvenImplicitOrdering()
+  evenOddGivenOrdering()

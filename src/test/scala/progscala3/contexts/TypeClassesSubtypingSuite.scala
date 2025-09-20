@@ -5,10 +5,22 @@ import munit.*
 
 class TypeClassesSubtypingSuite extends FunSuite:
 
-  trait Stringizer[+T]:
-    def stringize: String
+  /* DeanW: September 2025. Scala is dropping support for implicit classes, 
+   * so we use an extension method instead:
+   * 
+   *   trait Stringizer[+T]:
+   *     def stringize: String
+   *
+   *   implicit class AnyStringizer(a: Matchable) extends Stringizer[Matchable]:
+   *     def stringize: String = a match
+   *       case s: String => s
+   *       case i: Int => (i*10).toString
+   *       case f: Float => (f*10).toString
+   *       case other =>
+   *         throw UnsupportedOperationException(s"Can't stringize $other")
+   */
 
-  implicit class AnyStringizer(a: Matchable) extends Stringizer[Matchable]:
+  extension (a: Matchable)
     def stringize: String = a match
       case s: String => s
       case i: Int => (i*10).toString

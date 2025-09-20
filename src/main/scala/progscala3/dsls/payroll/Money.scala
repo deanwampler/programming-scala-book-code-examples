@@ -9,10 +9,21 @@ given Floating[Dollars]:                                    // <3>
 given Floating[Percentage]:
   def fromDigits(digits: String): Percentage = Percentage(digits.toDouble)
 
-implicit class dsc(sc: StringContext):                          // <4>
+/**
+ * DeanW (September 2025): as of Scala 3.7.X, implicit classes are no longer
+ * supported. Alternative are extension methods and declaring regular classes 
+ * with given conversions. Here, we'll use the latter:
+implicit class dsc(sc: StringContext):
   def $(tokens: Any*) =
     val str = StringContextUtil.foldTokens(tokens.toSeq, sc.parts)
     Dollars(str.toDouble)
+ */
+
+class dsc(sc: StringContext):                                   // <4>
+  def $(tokens: Any*) =
+    val str = StringContextUtil.foldTokens(tokens.toSeq, sc.parts)
+    Dollars(str.toDouble)
+given Conversion[StringContext, dsc] = sc => dsc(sc)
 
 extension (amount: Double)                                      // <5>
   def dollars: Dollars = Dollars(amount)
