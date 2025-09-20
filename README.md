@@ -1,10 +1,12 @@
 # "Programming Scala, 3rd Edition" Code Examples
 
+<!--
 [![Join the chat at https://gitter.im/deanwampler/programming-scala-book-code-examples](https://badges.gitter.im/deanwampler/programming-scala-book-code-examples.svg)](https://gitter.im/deanwampler/programming-scala-book-code-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+-->
 [![Scala Steward badge](https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAAVFBMVEUAAACHjojlOy5NWlrKzcYRKjGFjIbp293YycuLa3pYY2LSqql4f3pCUFTgSjNodYRmcXUsPD/NTTbjRS+2jomhgnzNc223cGvZS0HaSD0XLjbaSjElhIr+AAAAAXRSTlMAQObYZgAAAHlJREFUCNdNyosOwyAIhWHAQS1Vt7a77/3fcxxdmv0xwmckutAR1nkm4ggbyEcg/wWmlGLDAA3oL50xi6fk5ffZ3E2E3QfZDCcCN2YtbEWZt+Drc6u6rlqv7Uk0LdKqqr5rk2UCRXOk0vmQKGfc94nOJyQjouF9H/wCc9gECEYfONoAAAAASUVORK5CYII=)](https://scala-steward.org)
 
 * [Dean Wampler](mailto:programming.scala@gmail.com)
-* Dean Wampler's [Bluesky](https://bsky.app/profile/deanwampler.bsky.social), [Mastodon](https://discuss.systems/@deanwampler), or [LinkedIn](https://www.linkedin.com/in/deanwampler/) accounts.
+* Dean Wampler's [Bluesky](https://bsky.app/profile/deanwampler.bsky.social), [Mastodon](https://discuss.systems/@deanwampler), and [LinkedIn](https://www.linkedin.com/in/deanwampler/) accounts.
 * [My Book Page](http://programming-scala.org)
 * [Blog about Scala 3](https://medium.com/scala-3)
 
@@ -173,6 +175,17 @@ $
 > [!NOTE]
 > The `--` argument separator is required for Scala 3.5.0 and later. It is not used for Scala 3.4.X and earlier.
 
+### Testing the Scala Scripts and "Mains"
+
+There are a lot of _script_ files under `src/script/scala/...`, which are used in the book as suggestions to try in the console as you are reading the book. However, they are hard to test in the usual way. Similarly, there are many `@main` routines and they are also not covered by tests. So, to "semi-automate" testing them, try the following two `zsh` scripts, both of which take a long time to run:
+
+```shell
+check-scripts.sh
+check-mains.sh
+```
+
+Both have `--help` options to see what options they accept. Both do their best to check that the output is expected, but a complication is the fact that many of the Scala scripts and "mains" have deliberate errors for illustrative purposes. The `check-*.sh` scripts attempt to compensate for this, for example by knowing which scripts should fail and allowing them to fail "successfully", but to be _absolutely certain_ they are running correctly, it is really necessary to visually inspect the saved output from the runs (as described in console output of the `check-*.sh`) to see if the behavior _looks_ correct.
+
 ## Feedback
 
 I welcome feedback on the Book and these examples. Please post comments, corrections, etc. to one of the following places:
@@ -184,6 +197,8 @@ I welcome feedback on the Book and these examples. Please post comments, correct
 There is also my dedicated site for the book where occasional updates, clarifications, corrections, and lame excuses will be posted: [programming-scala.org](http://programming-scala.org).
 
 ## A Little History
+
+Some milestones (but probably not all of them...).
 
 | Key Dates          | Description |
 | :----------------- | :---------- |
@@ -202,5 +217,6 @@ There is also my dedicated site for the book where occasional updates, clarifica
 | September 15, 2024 | Scala 3.5.0 changes, e.g. the [new Scala CLI](https://docs.scala-lang.org/sips/scala-cli.html). |
 | December 21, 2024  | Scala 3.6.2 changes, supporting new syntax options. |
 | June 17, 2025      | Scala 3.7.X breaking changes and fixed some old bugs in some of the "scripts". |
+| September 20, 2025 | Scala 3.7.3 breaking changes. Yes, a "patch" release, but in fairness, triggered by my strict compiler flags. |
 
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 default_dirs=( "src/script/scala" )
 out_root="target/script-tests"
@@ -173,7 +173,7 @@ count_problem() {
 }
 
 report() {
-  let status=$1
+  let run_status=$1
   script=$2
   out=$3
   for skip in ${expected_errors_in[@]}
@@ -185,7 +185,7 @@ report() {
     fi
   done
   let error_count=0
-  if [[ $status -ne 0 ]]
+  if [[ $run_status -ne 0 ]]
   then
     echo "ERROR: $script failed! ($out)"
     let error_count+=1

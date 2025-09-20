@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 out_root="target/main-tests"
 out_ext="out"
@@ -53,7 +53,7 @@ def_mains=(
   progscala3.meta.TryStaging
   progscala3.meta.TryTracer
   progscala3.meta.TryUsingClassTagViews
-  "progscala3.meta.performance.InlinePerf true 10"
+  progscala3.meta.performance.InlinePerf
   progscala3.objectsystem.CommandArgs
   progscala3.objectsystem.JavaArrays
   progscala3.objectsystem.objects.TryPerson
@@ -67,7 +67,16 @@ def_mains=(
   progscala3.typesystem.payroll.TryPhantomTypesPipeline
   progscala3.typesystem.selftype.TryButtonSubjectObserver
 )
-expected_errors_in=()
+
+declare -A mains_args
+mains_args["progscala3.meta.performance.InlinePerf"]="true 10"
+mains_args["progscala3.objectsystem.CommandArgs"]="--help"
+
+expected_errors_in=(
+  progscala3.meta.TryInvariant
+  progscala3.meta.TryInvariant1
+  progscala3.objectsystem.JavaArrays
+)
 
 error() {
   echo "ERROR: $@"
@@ -165,7 +174,7 @@ count_problem() {
 }
 
 report() {
-  let status=$1
+  let run_status=$1
   main=$2
   out=$3
   for skip in ${expected_errors_in[@]}
@@ -177,7 +186,7 @@ report() {
     fi
   done
   let error_count=0
-  if [[ $status -ne 0 ]]
+  if [[ $run_status -ne 0 ]]
   then
     echo "ERROR: $main failed! ($out)"
     let error_count+=1
@@ -202,10 +211,10 @@ check() {
     if [[ -z "$NOOP" ]]
     then
       mkdir -p $(dirname "$out")
-      TERM=dumb sbt "runMain $main $@" > "$out"
+      TERM=dumb sbt "runMain $main $mains_args[\"$main\"] $@" > "$out"
     else
       $NOOP mkdir -p $(dirname $out)
-      $NOOP "TERM=dumb sbt runMain $main $@ > $out"
+      $NOOP "TERM=dumb sbt runMain $main $mains_args[\"$main\"] $@ > $out"
     fi
   fi
   $NOOP report $? "$main" "$out"
