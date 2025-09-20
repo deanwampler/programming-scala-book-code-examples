@@ -6,4 +6,4 @@ package progscala3.meta
   invariant(i >= 0, s"i = $i")(i += 1)
   println(s"success: $i")
   println(s"Will now fail:")
-  invariant(i >= 0, s"i = $i")(i -= 2)
+  invariant(i >= 0, s"i = $i // expected ERROR")(i -= 2) 
