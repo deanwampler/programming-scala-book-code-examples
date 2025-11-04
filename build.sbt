@@ -27,7 +27,7 @@ lazy val root = project
       "org.scalacheck"         %% "scalacheck"       % "1.19.0" % Test,
       "org.scalameta"          %% "munit"            % "1.2.1" % Test,
       "org.scalameta"          %% "munit-scalacheck" % "1.2.0" % Test,
-      "com.eed3si9n.expecty"   %% "expecty"          % "0.17.0" % Test,
+      "com.eed3si9n.expecty"   %% "expecty"          % "0.17.1" % Test,
     ),
 
     // For Scala 3
