@@ -15,25 +15,29 @@ The `master` branch and the `3.X.Y` tag releases are for the third edition. The 
 
 > [!WARNING]
 > Scala 3 is evolving, as are the tools that support it. I try to keep the `main` branch up to date with the latest versions, including changing the examples as required to handle new and changed features (see, e.g., [issue #131](https://github.com/deanwampler/programming-scala-book-code-examples/issues/131)). Hence, sometimes an example (or how to run it) will be different from what you see in the book. So, if you are reading the book and want the examples exactly as they appear there, with the same tool versions used at that time, then grab the [`3.0.0-final`](https://github.com/deanwampler/programming-scala-book-code-examples/tree/3.0.0-final) release. 
->
-> In particular, running a scala program on the command line has changed as of 3.5.0. So, for example, at the top of page 12 of the book, change this command for running a program at the shell prompt:
->
-> ```
-> $ cp="target/scala-3.0.0/classes/"
-> $ scala -classpath $cp progscala3.introscala.Hello2 Hello Scala World!
-> ```
-> to this:
-> ```
-> $ cp="target/scala-3.5.0/classes/"  # Note the book has "3.0.0"
-> $ scala -classpath $cp --main-class progscala3.introscala.Hello2 -- Hello Scala World!
-> ```
-> Note the required `--main-class` (or `-M`) flag before the &ldquo;`main`&rdquo; class `progscala3.introscala.Hello2` and the `--` to separate `scala` command arguments from your programs' arguments. Use these changes for all subsequent examples in the book that use the `scala` command to run code.
->
-> It appears that `sbt` syntax has **not** changed when using `runMain` at the SBT prompt. So, for example, the following still works as documented in the book:
-> ```
-> runMain progscala3.introscala.Hello2 Hello Scala World!
-> ```
-> (Use of `sbt` is discussed further below.)
+
+In particular, running a `scala` command-line program has changed as of version 3.5.0. So, for example, at the top of page 12 of the book, this command is shown for running a program at the shell prompt:
+
+```
+$ cp="target/scala-3.0.0/classes/"
+$ scala -classpath $cp progscala3.introscala.Hello2 Hello Scala World!
+```
+
+Instead, use the following, where the latest Scala version (at the time of this writing...) is `3.7.4`:
+
+```
+$ cp="target/scala-3.7.4/classes/" 
+$ scala -classpath $cp --main-class progscala3.introscala.Hello2 -- Hello Scala World!
+```
+
+Note the required `--main-class` (or `-M`) flag before the &ldquo;`main`&rdquo; class `progscala3.introscala.Hello2` and the `--` to separate `scala` command arguments from your program's arguments. Change all other command-line examples in the book the same way.
+
+However, it appears that `sbt` syntax has **not** changed when using `runMain` at the SBT prompt. So, for example, the following still works as documented in the book:
+
+```
+runMain progscala3.introscala.Hello2 Hello Scala World!
+```
+(Use of `sbt` is discussed further below.)
 
 > [!TIP]
 > Several sections offer troubleshooting tips if you encounter problems.
