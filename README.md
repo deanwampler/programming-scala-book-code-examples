@@ -19,17 +19,17 @@ The `master` branch and the `3.X.Y` tag releases are for the third edition. The 
 > In particular, running a scala program on the command line has changed as of 3.5.0. So, for example, at the top of page 12 of the book, change this command for running a program at the shell prompt:
 >
 > ```
-> $ cp="target/scala-3.5.0/classes/"  # Note the book has "3.0.0"
+> $ cp="target/scala-3.0.0/classes/"
 > $ scala -classpath $cp progscala3.introscala.Hello2 Hello Scala World!
 > ```
 > to this:
 > ```
 > $ cp="target/scala-3.5.0/classes/"  # Note the book has "3.0.0"
-> $ scala -classpath $cp -M progscala3.introscala.Hello2 -- Hello Scala World!
+> $ scala -classpath $cp --main-class progscala3.introscala.Hello2 -- Hello Scala World!
 > ```
-> Note the required `-M` (or `--main-class`) flag before the &ldquo;`main`&rdquo; class and the `--` to separate `scala` arguments from your programs arguments. Use these changes for all subsequent examples in the book that use the `scala` command to run code.
+> Note the required `--main-class` (or `-M`) flag before the &ldquo;`main`&rdquo; class `progscala3.introscala.Hello2` and the `--` to separate `scala` command arguments from your programs' arguments. Use these changes for all subsequent examples in the book that use the `scala` command to run code.
 >
-> It appears that `sbt` syntax has **not** changed when using `runMain` at the SBT prompt, for example:
+> It appears that `sbt` syntax has **not** changed when using `runMain` at the SBT prompt. So, for example, the following still works as documented in the book:
 > ```
 > runMain progscala3.introscala.Hello2 Hello Scala World!
 > ```
@@ -40,7 +40,7 @@ The `master` branch and the `3.X.Y` tag releases are for the third edition. The 
 
 ## How the Code Is Used in the Book
 
-In the book's text, when an example corresponds to a file in this distribution, the listing begins with a path in a comment with the following format:
+In the book's text, when an example corresponds to a file in this repo, the listing begins with a path in a comment with the following format:
 
 ```scala
 // src/main/scala/progscala3.introscala.UpperMain1
@@ -48,7 +48,7 @@ In the book's text, when an example corresponds to a file in this distribution, 
 
 Following the usual conventions, tests are in `src/test/...`.
 
-Use these comments to find the corresponding source file. This archive also contains *MUnit* and *ScalaCheck* unit tests to validate some of the code. 
+Use these comments shown in the book to find the corresponding source file in the repo. The repo also contains *MUnit* and *ScalaCheck* unit tests to validate some of the code. 
 
 ## Naming Conventions
 
@@ -76,13 +76,13 @@ These are used to mark sections that are selectively included in the book. Somet
 
 ## Required and Optional Tools
 
-To build and run the examples, all you need is a recent version of the the JDK and [`sbt`](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html). When you run `sbt`, it will bootstrap itself with the correct version of its jar file, Scala, and project dependencies, which are specified in the `build.sbt` file in the root directory and other build files in the `project` directory.
+To build and run the examples, all you need is a recent version of the the Java SDK and [`sbt`](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html). When you run `sbt`, it will bootstrap itself with the correct version of itself, Scala, and project dependencies, which are specified in the `build.sbt` file in the root directory and other build files in the `project` directory.
 
 Follow these [`sbt` installation instructions](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html).
 
 If you want to install Scala separately and Scala's *Scaladocs*, go to the [scala-lang.org _Getting Started_ guide](https://docs.scala-lang.org/scala3/getting-started.html) for details. However, this isn't required.
 
-If you want to play with the Spark example, `src/script/scala-2/progscala3/bigdata/SparkWordCount.scala`, you'll need to download a Spark distribution from https://spark.apache.org. Assuming that `$SPARK_HOME` refers to the root directory of your Spark installation, run the following command in the root directory of this project:
+If you want to play with the Spark example, `src/script/scala-2/progscala3/bigdata/SparkWordCount.scala`, you'll need to download a Spark distribution from [spark.apache.org](https://spark.apache.org). Assuming that `$SPARK_HOME` refers to the root directory of your Spark installation, run the following command in the root directory of this repo to start the Scala REPL with Spark enabled:
 
 ```shell
 $ $SPARK_HOME/bin/spark-shell
@@ -96,9 +96,7 @@ Then copy and paste the content of `src/script/scala-2/progscala3/bigdata/SparkW
 
 ### Editors, IntelliJ, Visual Studio Code, and Other IDEs
 
-> **NOTE:** Support for Scala 3 may be limited for a while in the following tools.
-
-Most editors and IDEs now have some sort of Scala support:
+Most editors and IDEs now have some sort of Scala 3 support, either "natively" or through optional plugins:
 
 * [IntelliJ](https://www.jetbrains.com/idea/): Either the Community or Ultimate additions will work. Install the Scala plugin, which has built-in support for `sbt`.
 * [Visual Studio Code](https://code.visualstudio.com/): Use the new [Scala Metals](https://scalameta.org/metals/) plugin instead of older plugins.
@@ -110,7 +108,7 @@ After installing the required plugins, load this project in your IDE, which shou
 
 ### Troubleshooting with IntelliJ
 
-One reader reported a problem when trying to run examples in IntelliJ: `scalac: Flag -encoding set repeatedly`. I could confirm this problem and I fixed it as follows:
+One reader reported a problem when trying to run examples in IntelliJ: `scalac: Flag -encoding set repeatedly`. I confirmed this problem (at the time; it may no longer be an issue...) and I fixed it as follows:
 
 1. Open the preferences ("cmd-," on MacOS)
 2. Search for "scala"
@@ -183,13 +181,13 @@ check-scripts.sh
 check-mains.sh
 ```
 
-Both have `--help` options to see what options they accept. Both do their best to check that the output is expected, but a complication is the fact that many of the Scala scripts and "mains" have deliberate errors for illustrative purposes. The `check-*.sh` scripts attempt to compensate for this, for example by knowing which scripts should fail and allowing them to fail "successfully", but to be _absolutely certain_ they are running correctly, it is really necessary to visually inspect the saved output from the runs (as described in console output of the `check-*.sh`) to see if the behavior _looks_ correct.
+Both have `--help` options to see what options they accept. Both do their best to check that the output is expected, but a complication is the fact that many of the Scala scripts and "mains" have deliberate errors for illustrative purposes. The `check-*.sh` scripts attempt to compensate for this, for example by knowing which scripts should fail and allowing them to fail "successfully", but to be _absolutely certain_ all the examples are running correctly, it is really necessary to visually inspect the saved output from the runs (as described in console output of the `check-*.sh`) to see if the results _look_ correct.
 
 ## Feedback
 
 I welcome feedback on the Book and these examples. Please post comments, corrections, etc. to one of the following places:
 
-* This GitHub repo's [Discussion forum](https://github.com/deanwampler/programming-scala-book-code-examples/discussions), or [Issues](https://github.com/deanwampler/programming-scala-book-code-examples/issues).
+* This GitHub repo's [discussion forum](https://github.com/deanwampler/programming-scala-book-code-examples/discussions) or [post an issue](https://github.com/deanwampler/programming-scala-book-code-examples/issues).
 * The [O'Reilly book page](https://oreil.ly/programming-scala-3) and the [errata page](https://www.oreilly.com/catalog/errata.csp?isbn=9781492077893).
 * Dean Wampler's [Bluesky](https://bsky.app/profile/deanwampler.bsky.social), [Mastodon](https://discuss.systems/@deanwampler), or [LinkedIn](https://www.linkedin.com/in/deanwampler/) accounts.
 
@@ -217,5 +215,3 @@ Some milestones (but probably not all of them...).
 | December 21, 2024  | Scala 3.6.2 changes, supporting new syntax options. |
 | June 17, 2025      | Scala 3.7.X breaking changes and fixed some old bugs in some of the "scripts". |
 | September 20, 2025 | Scala 3.7.3 breaking changes. Yes, a "patch" release, but in fairness, triggered by my strict compiler flags. |
-
-
