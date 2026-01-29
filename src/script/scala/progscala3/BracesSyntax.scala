@@ -39,9 +39,10 @@ var i = 0
 while (i < 10) { i+=1 }
 
 // Match expression
-0 match {
+var x: Int = 0
+x match {
   case 0 => println("zero")
-  case _ => println("other value")
+  case _ => println("other value") 
 }
 
 // Partially-defined function
@@ -50,18 +51,17 @@ val opt: Option[Int] => Int = {
   case None => 0
 }
 
-// Try, catch, finally expression
-import scala.io.Source
+// Try, catch, finally expression (contrived...)
 import scala.util.control.NonFatal
-var source: Option[Source] = None
-try {        // Can omit {} if nothing else is done with source...
-  source = Some(Source.fromFile("README.md"))
-  // do something with it
-} catch {    // However, the {} are required for catch clauses
-  case NonFatal(ex) => println(ex)
-} finally {  // Can omit {} for both finally and if here.
-  if (source != None) {
-    source.get.close
+var string: Option[Int] = None
+try {
+  string = Some(Integer.parseInt("foo"))
+  println(s"Parsed \"foo\" to ${string}")
+} catch {
+  case NonFatal(ex) => println(s"NonFatal thrown: ${ex}")
+} finally {
+  if (string == None) {
+    println("string is None")
   }
 }
 
@@ -86,7 +86,7 @@ val mon = new Monoid[Int] {
 }
 
 // New type class given instantiation
-given intMonoid: Monoid[Float]: {
+given intMonoid: Monoid[Float] {
   def add(f1: Float, f2: Float): Float = f1+f2
   def zero: Float = 0.0F
 }

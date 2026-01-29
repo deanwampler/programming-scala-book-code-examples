@@ -5,6 +5,8 @@ import scala.annotation.elidable
 import scala.annotation.elidable.*
 
 /**
+ * Update for Scala 3.8. @elidable is now deprecated!
+ * 
  * This example of the elidable annotation is mentioned in the book, but not shown.
  * Compile outside sbt using the scala compiler:
  * ```
@@ -17,11 +19,11 @@ import scala.annotation.elidable.*
  * in Scala 3, but it may be added in a subsequent release.
  .*/
 object MyLogger:
-  @elidable(WARNING)
+  // @elidable(WARNING)
   def warn(message: String) = println(s"WARNING:        $message")
-  @elidable(INFO)
+  // @elidable(INFO)
   def info(message: String) = println(s"INFO:           $message")
-  @elidable(ASSERTION)
+  // @elidable(ASSERTION)
   def assertion(message: String) = println(s"ASSERTION: $message")
 
 @main def TryMyLogger =

@@ -50,9 +50,10 @@ do     // For longer do blocks.
 end while
 
 // Match expression
-0 match
+var x: Int = 0
+x match
   case 0 => println("zero")
-  case _ => println("other value")  // ERROR: "Match case Unreachable Warning"
+  case _ => println("other value")
 end match
 
 // Partially-defined function
@@ -61,18 +62,17 @@ val opt: Option[Int] => Int =
   case None => 0
 end opt
 
-// Try, catch, finally expression
-import scala.io.Source
+// Try, catch, finally expression (contrived...)
 import scala.util.control.NonFatal
-var source: Option[Source] = None
+var string: Option[Int] = None
 try
-  source = Some(Source.fromFile("README.md"))
-  // ...
+  string = Some(Integer.parseInt("foo"))
+  println(s"Parsed \"foo\" to ${string}")
 catch
-  case NonFatal(ex) => println(ex)
+  case NonFatal(ex) => println(s"NonFatal thrown: ${ex}")
 finally
-  if source != None then
-    source.get.close
+  if string == None then
+    println("string is None")
   end if
 end try
 

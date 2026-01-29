@@ -5,7 +5,7 @@ package progscala3.introscala.shapes
   val messages = Seq(                                                // <2>
     Draw(Circle(Point(0.0,0.0), 1.0)),
     Draw(Rectangle(Point(0.0,0.0), 2, 5)),
-    Response(s"Say hello to pi: 3.14159"),
+    Response(s"Say hello to pi: 3.14159 (Expected ERROR!)"),
     Draw(Triangle(Point(0.0,0.0), Point(2.0,0.0), Point(1.0,2.0))),
     Exit)
 

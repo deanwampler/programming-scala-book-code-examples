@@ -13,6 +13,6 @@ val xs = Array(1.0, 2.0, 3.0).tags[Meter]
 val o: Ordering[Double] = implicitly
 val om: Ordering[Double @@ Meter] = o.tags
 om.compare(x, x)
-om.compare(x, y)  // Compilation Error!
+om.compare(x, y)  // Compilation ERROR!
 xs.min(using om)
-xs.min(using o)   // Compilation Error!
+xs.min(using o)   // Compilation ERROR!

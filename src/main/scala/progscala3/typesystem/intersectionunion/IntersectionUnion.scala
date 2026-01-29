@@ -135,7 +135,8 @@ object IntersectionUnion:
 
         val seqT1T2T3s: Seq[T1 | T2 | T3] = Seq(new T1 {}, new T2 {}, new T3 {})
         seqT1T2T3s.map(fT1T2T31)
-        seqT1T2T3s.map(fT1T2T32)
+        // The Scala 3.8 type checker rejects the following!
+        // seqT1T2T3s.map(fT1T2T32)
         seqT1T2T3s.map((x: AnyRef) => s"<$x>")
 
     def main(args: Array[String]): Unit =

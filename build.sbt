@@ -53,7 +53,8 @@ lazy val root = project
       // "-scalajs",                          // Compile in Scala.js mode (requires scalajs-library.jar on the classpath).
       "-source:future-migration",          // Choices: future and future-migration. I use this to force future deprecation warnings, etc.
       "-rewrite",                          // Rewrite source, when necessary, for future migration - DeanW: added Sept 2025
-      "-Xfatal-warnings",                  // Fail on warnings, not just errors
+      // "-Xfatal-warnings",                  // Deprecated in Scala 3.8. Use -Werror instead:
+      "-Werror",                           // Fail on warnings, not just errors
       // "-Xmigration",                       // Warn about constructs whose behavior may have changed since version.
       // "-Ysafe-init",                       // Warn on field access before initialization
       // "-Yexplicit-nulls",                  // For explicit nulls behavior.
