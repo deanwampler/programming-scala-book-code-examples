@@ -27,7 +27,7 @@ object manage:
   val sizes = fileNames.map { fileName =>
     try
       val size = manage(Source.fromFile(fileName)) { source =>
-        source.getLines.size
+        source.getLines().size
       }
       println(s"file $fileName has $size lines")
       size

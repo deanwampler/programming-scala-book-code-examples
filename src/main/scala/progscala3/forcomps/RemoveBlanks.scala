@@ -4,7 +4,7 @@ package progscala3.forcomps
 object RemoveBlanks:
   def apply(path: String, compress: Boolean, numbers: Boolean): Seq[String] =
     for                                                              // <1>
-      (line, i) <- scala.io.Source.fromFile(path).getLines.toSeq.zipWithIndex
+      (line, i) <- scala.io.Source.fromFile(path).getLines().toSeq.zipWithIndex
       if line.matches("""^\s*$""") == false                          // <2>
       line2 = if compress then line.trim.replaceAll("\\s+", " ")     // <3>
               else line

@@ -15,4 +15,4 @@ case class StringBulkReader(source: String) extends BulkReader:      // <2>
 
 case class FileBulkReader(source: Source) extends BulkReader:        // <3>
   type In = Source
-  def read: Seq[String] = source.getLines.toVector
+  def read: Seq[String] = source.getLines().toVector

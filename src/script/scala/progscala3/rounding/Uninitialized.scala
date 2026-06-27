@@ -6,7 +6,7 @@ case class LineLoader(file: java.io.File):
   private var source: Source = uninitialized                    // <2>
   val lines = try
     source = Source.fromFile("README.md")
-    source.getLines.toSeq
+    source.getLines().toSeq
   finally
     if source != null then source.close
 

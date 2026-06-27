@@ -28,7 +28,7 @@ object PayrollCalculator:                                       // <1>
 
   private def readData(inputFileName: String): Seq[Record] =
     for
-      line <- scala.io.Source.fromFile(inputFileName).getLines.toVector
+      line <- scala.io.Source.fromFile(inputFileName).getLines().toVector
       if line.matches("\\s*#.*") == false    // skip comments
     yield toRule(line)
 

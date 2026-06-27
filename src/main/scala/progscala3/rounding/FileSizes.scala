@@ -8,7 +8,7 @@ import scala.io.Source
 @main def FileSizes(fileNames: String*) =
   val sizes = fileNames.map { fileName =>
     Using.resource(Source.fromFile(fileName)) { source =>
-      source.getLines.size
+      source.getLines().size
     }
   }
   println(s"Returned sizes: ${sizes.mkString(", ")}")

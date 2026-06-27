@@ -20,4 +20,4 @@ class ListBuilder[T] extends Builder[T, List[T]]:
 @main def TryListBuilder =
   val lb = ListBuilder[Int]
   (1 to 3) foreach (i => lb += i)
-  assert(lb.result == List(1, 2, 3))
+  assert(lb.result() == List(1, 2, 3))
