@@ -23,10 +23,10 @@ $ cp="target/scala-3.0.0/classes/"
 $ scala -classpath $cp progscala3.introscala.Hello2 Hello Scala World!
 ```
 
-Instead, use the following, where the latest Scala version (at the time of this writing...) is `3.7.4`:
+Instead, use the following, where the latest Scala version (at the time of this writing...) is `3.8.4` and the output path for compiled files has changed:
 
 ```
-$ cp="target/scala-3.7.4/classes/" 
+$ cp="target/out/jvm/scala-3.8.4/programming-scala-3rd-ed-code-examples/classes"
 $ scala -classpath $cp --main-class progscala3.introscala.Hello2 -- Hello Scala World!
 ```
 
@@ -135,7 +135,7 @@ See this [Dotty documentation page](https://dotty.epfl.ch/docs/usage/worksheet-m
 
 ## Building the Code Examples
 
-After installing `sbt`, open a command/terminal window and run the `sbt test` command. 
+After installing `sbt`, open a command/terminal window and run the `sbt testFull` command.
 
 You'll see lots of output as it downloads all the dependencies, compiles the code and runs the tests. You should see `[success]` messages at the end.
 
@@ -147,8 +147,8 @@ If you start `sbt` without any arguments, it puts you into an interactive mode w
 help       # help on tasks and settings
 clean      # delete all build outputs
 compile    # compile the source, but not test code
-test       # compile source and test code, if necessary and run the tests.
-~test      # continuously compile and test when source changes are saved.
+testFull   # compile source and test code, if necessary, and run the tests.
+~testFull  # continuously compile and test when source changes are saved.
 console    # run the Scala REPL; dependencies and code are on the CLASSPATH
 tasks      # show the most common tasks (commands).
 tasks -V   # REALLY show ALL tasks
