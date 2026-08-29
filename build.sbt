@@ -8,9 +8,9 @@ lazy val root = project
     scalaVersion := scala3,
     organization := "org.programming-scala",
     organizationName := "ProgrammingScala",
-    organizationHomepage := Some(url("http://programming-scala.org")),
-    homepage := Some(url("https://github.com/deanwampler/programming-scala-book-code-examples/")),
-    licenses += "Apache2" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
+    organizationHomepage := Some(uri("http://programming-scala.org")),
+    homepage := Some(uri("https://github.com/deanwampler/programming-scala-book-code-examples/")),
+    licenses += "Apache2" -> uri("http://www.apache.org/licenses/LICENSE-2.0"),
     maxErrors := 10,
     // At the time of publication, Scala 3 builds of Akka were not yet available.
     // Notice how the Scala 2.13-built libraries are used. For more information:
