@@ -25,8 +25,9 @@ lazy val root = project
       "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0",
       "ch.qos.logback"          % "logback-classic"  % "1.6.3",
       "org.scalacheck"         %% "scalacheck"       % "1.20.0" % Test,
+
       "org.scalameta"          %% "munit"            % "1.3.6" % Test,
-      "org.scalameta"          %% "munit-scalacheck" % "1.3.0" % Test,
+      "org.scalameta"          %% "munit-scalacheck" % "1.3.1" % Test,
       "com.eed3si9n.expecty"   %% "expecty"          % "0.17.1" % Test,
     ),
 
