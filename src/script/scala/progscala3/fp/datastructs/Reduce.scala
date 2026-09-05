@@ -4,7 +4,11 @@ val int1 = Seq(1,2,3,4,5,6).reduceLeft (_ + _)             // <1>
 
 val int2 = Seq(1,2,3,4,5,6).foldLeft(0)(_ + _)             // <2>
 
-val int3 = Seq.empty[Int].reduceLeft(_ + _)                // <3>
+try
+  val int3 = Seq.empty[Int].reduceLeft(_ + _)              // <3>
+catch
+  case uoe: java.lang.UnsupportedOperationException =>
+  	println("Can't call reduceLeft on an empty sequence. Use reduceLeftOption instead.")
 
 val int4 = Seq(1).reduceLeft(_ + _)                        // <4>
 

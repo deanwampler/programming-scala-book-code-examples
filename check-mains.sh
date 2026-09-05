@@ -16,7 +16,8 @@ def_mains=(
   progscala3.basicoop.tagging.TryTagging
   progscala3.basicoop.tagging.TryTagging2
   progscala3.collections.TryListBuilder
-  progscala3.concurrency.akka.ServiceClient
+  # Requires user input, so it blocks this script:
+  # progscala3.concurrency.akka.ServiceClient
   progscala3.concurrency.boundary.BoundaryExamples
   progscala3.concurrency.futures.TryFutureFold
   progscala3.concurrency.futures.TryFuturesCallbacks
@@ -69,6 +70,9 @@ def_mains=(
 )
 
 declare -A mains_args
+mains_args["progscala3.appdesign.IntDoubleStringMain"]="10 20.2 thirty-three"
+mains_args["progscala3.basicoop.HelloServiceMain"]="My-Service Bob Brenda"
+mains_args["progscala3.meta.TryStaging"]="* 1 1 2 3 4 5 6"
 mains_args["progscala3.meta.performance.InlinePerf"]="true 10"
 mains_args["progscala3.objectsystem.CommandArgs"]="--help"
 
@@ -82,6 +86,13 @@ error() {
   echo "ERROR: $@"
   help
   exit 1
+}
+
+pause() {
+  echo
+  printf 'Hit return to continue...'
+  read line
+  echo
 }
 
 help() {
@@ -98,22 +109,26 @@ A list of files with errors or warnings is written to $error_log.
 
 Usage: $0 [-h|--help] [-v|--verbose] [-c|--clean] [-n|--no-exec] [dir ...]
 Where:
--h | --help       Print this message and exit.
--v | --verbose    Print each file name to the console as it is processed and dump
-                  to stdout the test output (in the script's corresponding 
-                  "$out_root/...").
--c | --clean      Delete all previous output.
--n | --no-exec    Don't execute the commands, just echo what would be done.
+-h | --help         Print this message and exit.
+-v | --verbose      Print each file name to the console as it is processed and dump
+                    to stdout the test output (in the script's corresponding
+                    "$out_root/...").
+-c | --clean        Delete all previous output.
+-i | --interactive  Pause after each script is run, waiting for confirmation to continue.
+                    This is the probably the easiest way, if tedious, to visually verify
+                    that ever program returns the expected results. Implies --verbose.
+-n | --no-exec      Don't execute the commands, just echo what would be done.
 --check | --check-only  
-                  Don't run the mains; just check for reported errors only
-                  on any existing output files under $out_root.
-main ...          Run these "mains". (default "${def_mains[@]}")
+                    Don't run the mains; just check for reported errors only
+                    on any existing output files under $out_root.
+main ...            Run these "mains". (default "${def_mains[@]}")
 EOF
 }
 
 : ${VERBOSE:=false}
 : ${CLEAN:=false}
 : ${CHECK_ONLY=false}
+: ${INTERACTIVE=false}
 : ${NOOP:=}
 mains=()
 
@@ -132,6 +147,10 @@ do
       ;;
     -c|--cl*)
       CLEAN=true
+      ;;
+    -i|--interactive)
+      INTERACTIVE=true
+      VERBOSE=true
       ;;
     -n|--n*)
       NOOP=echo
@@ -192,8 +211,8 @@ report() {
     let error_count+=1
   fi
   count_problem "$main" "$out"
+  $INTERACTIVE && cat "$out"
   let error_count+=$?
-  # $VERBOSE && cat "$out"
   return $error_count
 }
 
@@ -230,6 +249,7 @@ do
   # hack! The value of total_problem_count is lost to the outer shell,
   # so write the values to a file for consumption "outside".
   echo $total_problem_count >> "$problem_count"
+  $INTERACTIVE && pause
 done
 
 if [[ -f "$problem_count" ]]

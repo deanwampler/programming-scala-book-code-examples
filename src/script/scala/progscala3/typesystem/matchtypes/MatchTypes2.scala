@@ -1,5 +1,7 @@
 // src/script/scala/progscala3/typesystem/matchtypes/MatchTypes2.scala
 // Not in the book. More experimenting with match types.
+// There are lots of known errors in this script. Therefore, it is skipped
+// by the top-level check-scripts.sh.
 import compiletime.asMatchable
 
 type Elem[X <: Matchable] = X match

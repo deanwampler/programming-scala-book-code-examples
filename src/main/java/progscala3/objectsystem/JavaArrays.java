@@ -6,7 +6,11 @@ public class JavaArrays {
     System.out.println("*** A java.lang.ArrayStoreException will be thrown: ***");
     Integer[] array1 = new Integer[] {
       Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3) };
-    Number[] array2 = array1;          // Compiles fine, but shouldn't!!
-    array2[2] = Double.valueOf(3.14);  // Compiles, but throws a runtime error!
+    Number[] array2 = array1;            // Compiles fine, but shouldn't!!
+    try {
+      array2[2] = Double.valueOf(3.14);  // Compiles, but throws a runtime error!
+    } catch (java.lang.ArrayStoreException ase) {
+      System.out.println(ase);
+    }
   }
 }

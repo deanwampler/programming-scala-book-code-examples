@@ -5,7 +5,7 @@ out_root="target/script-tests"
 out_ext="out"
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 error_log="$out_root/scripts-errors-$timestamp.log"
-expected_errors_in=(
+expected_errors_in_list=(
   src/script/scala/progscala3/IndentationSyntax.scala
   src/script/scala/progscala3/appdesign/Deprecated.scala
   src/script/scala/progscala3/basicoop/DollarsPercentagesOpaque.scala
@@ -26,6 +26,7 @@ expected_errors_in=(
   src/script/scala/progscala3/meta/inline/Overrides.scala
   src/script/scala/progscala3/meta/inline/Recursive.scala
   src/script/scala/progscala3/objectsystem/variance/MutableVariance.scala
+  src/script/scala/progscala3/patternmatching/AssignmentsFragile.scala
   src/script/scala/progscala3/patternmatching/Matchable.scala
   src/script/scala/progscala3/patternmatching/MatchExhaustive.scala
   src/script/scala/progscala3/patternmatching/MatchForFiltering.scala
@@ -45,18 +46,33 @@ expected_errors_in=(
   src/script/scala/progscala3/typesystem/deptypes/DependentTypes.scala
   src/script/scala/progscala3/typesystem/deptypes/DependentTypesBounds.scala
   src/script/scala/progscala3/typesystem/deptypes/DependentTypesSimple.scala
+  src/script/scala/progscala3/typesystem/deptypes/DependentTypesTuples.scala
   src/script/scala/progscala3/typesystem/intersectionunion/Intersection.scala
   src/script/scala/progscala3/typesystem/intersectionunion/Union.scala
-  src/script/scala/progscala3/typesystem/matchtypes/MatchTypes2.scala
   src/script/scala/progscala3/typesystem/typepaths/TypePath.scala
   src/script/scala/progscala3/typesystem/valuetypes/SingletonTypes.scala
   src/script/scala/progscala3/typesystem/valuetypes/TypeProjection.scala
 )
+declare -A expected_errors_in
+for name in ${expected_errors_in_list[@]}
+do
+  expected_errors_in["$name"]=true
+done
+
+declare -A skip_scripts
+skip_scripts["src/script/scala/progscala3/typesystem/matchtypes/MatchTypes2.scala"]=true
 
 error() {
   echo "ERROR: $@"
   help
   exit 1
+}
+
+pause() {
+  echo
+  printf 'Hit return to continue...'
+  read line
+  echo
 }
 
 help() {
@@ -76,7 +92,7 @@ $out_root/path/to/file.$out_ext.
 A list of files with errors or warnings is written to $error_log.
 
 The following files are known to throw errors intentionally:
-$(for f in ${expected_errors_in[@]}; do echo "  $f"; done)
+$(for f in ${(k)expected_errors_in}; do echo "  $f"; done)
 
 Failures for these known files are ignored, but logged in $error_log. 
 In most of them, you'll see a comment on the same line, like "// ERROR" or "// COMPILATION ERROR", 
@@ -95,24 +111,29 @@ N errors found
 
 ** HOWEVER, to be really safe, all the outputs should still be inspected manually. **
 
-Usage: $0 [-h|--help] [-v|--verbose] [-c|--clean] [-n|--no-exec] [dir ...]
-Where:
--h | --help       Print this message and exit.
--v | --verbose    Print each file name to the console as it is processed and dump
-                  to stdout the test output (in the script's corresponding 
-                  "$out_root/...").
--c | --clean      Delete all previous output.
--n | --no-exec    Don't execute the commands, just echo what would be done.
+Usage: $0 [options]
+Where the options are:
+-h | --help         Print this message and exit.
+-v | --verbose      Print each file name to the console as it is processed and dump
+                    to stdout the test output (in the script's corresponding
+                    "$out_root/...").
+-c | --clean        Delete all previous output.
+-n | --no-exec      Don't execute the commands, just echo what would be done.
+-i | --interactive  Pause after each script is run, waiting for confirmation to continue.
+                    This is the probably the easiest way, if tedious, to visually verify
+                    that ever script returns the expected results. Implies --verbose.
 --check | --check-only  
-                  Don't run the scripts; just check for reported errors only
-                  on any existing output files under $out_root.
-dir ...           Start in these directories. (default "${default_dirs[@]}")
+                    Don't run the scripts; just check for reported errors only
+                    on any existing output files under $out_root.
+dir ...             Start in these directories. (default "${default_dirs[@]}")
+                    You can specify individual script files, too.
 EOF
 }
 
 : ${VERBOSE:=false}
 : ${CLEAN:=false}
 : ${CHECK_ONLY=false}
+: ${INTERACTIVE=false}
 : ${NOOP:=}
 dirs=()
 
@@ -131,6 +152,10 @@ do
       ;;
     -c|--cl*)
       CLEAN=true
+      ;;
+    -i|--interactive)
+      INTERACTIVE=true
+      VERBOSE=true
       ;;
     -n|--n*)
       NOOP=echo
@@ -151,7 +176,7 @@ $VERBOSE && echo "Reading directories: ${dirs[@]}"
 if $CLEAN
 then
   $VERBOSE && echo "Cleaning old output in $out_root..."
-  [[ -n "$out_root" ]] && rm -rf "$out_root"  # safety check!
+  [[ -n "$out_root" ]] && $NOOP rm -rf "$out_root"  # safety check!
 fi
 
 rm -f $error_log
@@ -162,12 +187,14 @@ print_count() {
   out=$1; shift
   message="$1"; shift
   printf '%5d: %s %s %s\n' $count "$file" "$out" "$message" >> $error_log
+  $INTERACTIVE && printf '%s %s %s\n' "$file" "$out" "$message"
 }
 
 count_problem() {
   script=$1
   out=$2
-  let count=$(grep -cE "^.+ (error|warning)s? found$" "$out")
+  let count=0
+  [[ -z $NOOP ]] && let count=$(grep -cE "^.+ (error|warning)s? found$" "$out")
   [[ $count -gt 0 ]] && print_count $count $script $out 
   return $count
 }
@@ -176,14 +203,11 @@ report() {
   let run_status=$1
   script=$2
   out=$3
-  for skip in ${expected_errors_in[@]}
-  do
-    if [[ "$skip" = "$script" ]]
-    then
-      print_count 0 "$script" "$out" "NOTE: because of known deliberate errors, unexpected errors might be missed!"
-      return 0
-    fi
-  done
+  if [[ -n "$expected_errors_in[\"$script\"]" ]]
+  then
+    print_count 0 "$script" "$out" "NOTE: because of known deliberate errors, unexpected errors might be missed!"
+    return 0
+  fi
   let error_count=0
   if [[ $run_status -ne 0 ]]
   then
@@ -201,37 +225,50 @@ let total_problem_count=0
 
 check() {
   script="$1"
+  if [[ -n $skip_scripts["$script"] ]]
+  then
+    echo "*** WARNING: Skipping script with known errors: $script ***"
+    return 0
+  fi
   out="$out_root/$script.$out_ext"
   $VERBOSE && echo "$script --> $out"
   if ! $CHECK_ONLY
   then
     $NOOP rm -f "$out"
+    $NOOP mkdir -p $(dirname $out)
     if [[ -z "$NOOP" ]]
     then
-      mkdir -p $(dirname "$out")
       TERM=dumb sbt console <<EOF > "$out"
 :load $script
 EOF
     else
-      $NOOP mkdir -p $(dirname $out)
       $NOOP "TERM=dumb sbt console ... :load $script ... > $out"
     fi
   fi
   $NOOP report $? "$script" "$out"
+  $INTERACTIVE && $NOOP cat "$out"
   let total_problem_count+=$? 
   # return $?
 }
 
 problem_count="$out_root/scripts-problem-count.txt" # see "hack" note below.
-rm -f "$problem_count"
+$NOOP rm -f "$problem_count"
+
+scala_files=()
 for dir in "${dirs[@]}"
 do
 	find "$dir" -name '*.scala' | while read f
+  do
+    scala_files+=("$f")
+  done
+  $VERBOSE && echo "Trying ${#scala_files[@]} scripts..."
+  for f in ${scala_files[@]}
 	do
     check $f
     # hack! The value of total_problem_count is lost to the outer shell,
     # so write the values to a file for consumption "outside".
-    echo $total_problem_count >> "$problem_count"
+    [[ -z $NOOP ]] && echo $total_problem_count >> "$problem_count"
+    $INTERACTIVE && pause
   done
 done
 
@@ -246,6 +283,6 @@ then
     exit 1
   fi
 fi
-echo "No obvious issues found, but consider checking all the output files in $out_root!"
+echo "No obvious issues found (although this can be erroneous!). So, consider checking all the output files in $out_root!"
 exit 0
 

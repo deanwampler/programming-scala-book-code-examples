@@ -2,7 +2,9 @@
 // NOTE: This file uses deprecated features, like MultiMap.
 import collection.mutable.{HashMap, MultiMap, Set}                // <1>
 
-val mm = new HashMap[Int, Set[String]] with MultiMap[Int, String] // <2>
+// Deprecation warnings on the next line!
+val mm = new HashMap[Int, Set[String]] with MultiMap[Int, String] // DEPRECATION WARNINGS!
+                                                                  // <2>
 
 mm.addBinding(1, "a")                                             // <3>
 mm.addBinding(2, "b")

@@ -2,6 +2,7 @@
 val finicky: PartialFunction[String,String] =
   case "finicky" => "FINICKY"
 
+println("This script throws MatchErrors!")
 finicky("finicky")
 finicky("other")                       // MatchError
 

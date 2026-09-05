@@ -34,11 +34,11 @@ val l4: MaxLength[3, Int] = (1, 2, 3, 4)    // ERROR!
 
 type FixedLength2[N <: Int, A] = N match
   case 0 => EmptyTuple
-  case ? => A *: FixedLength2[N - 1, A]
+  case _ => A *: FixedLength2[N - 1, A]
 
 type MaxLength2[N <: Int, A] = N match
   case 0 => EmptyTuple
-  case ? => FixedLength2[N, A] | MaxLength[N - 1, A]
+  case _ => FixedLength2[N, A] | MaxLength[N - 1, A]
 
 val f3b: FixedLength2[3, Double] = (1.1, 2.2, 3.3)
 val l2b: MaxLength2[3, Int] = (1, 2)

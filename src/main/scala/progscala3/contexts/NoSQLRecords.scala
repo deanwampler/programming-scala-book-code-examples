@@ -46,5 +46,6 @@ case class Record private (contents: Map[String,Any]):               // <2>
 
   println(
     s"one, two, three, four, five ->\n  $one, $two, $three, $four,\n  $five")
+  println("The three 'bad' Failures shown next are expected:")
   println(
     s"bad1, bad2, bad3 ->\n  $bad1\n  $bad2\n  $bad3")

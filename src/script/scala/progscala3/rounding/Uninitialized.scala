@@ -11,4 +11,5 @@ case class LineLoader(file: java.io.File):
     if source != null then source.close
 
 val ll = LineLoader(java.io.File("README.md"))
-assert(ll.lines.take(1) == List("# Programming Scala, 3rd Edition"))
+assert(ll.lines.take(1) ==
+  List("""# "Programming Scala, 3rd Edition" Code Examples"""))
